@@ -1,0 +1,157 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg: #0e0e0e;
+  --color-bg-card: #1a1a1a;
+  --color-bg-card-hover: #222222;
+  --color-border: #2a2a2a;
+  --color-text: #e8e0d4;
+  --color-text-muted: #9a9084;
+  --color-accent: #c8a96e;
+  --color-accent-light: #dfc18f;
+  --color-hero-overlay: #151515;
+  --font-body: "Pretendard", "Noto Serif KR", -apple-system, sans-serif;
+  --font-serif: "Noto Serif KR", Georgia, serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+  }
+
+  body {
+    @apply bg-bg text-text antialiased;
+    font-family: var(--font-body);
+    line-height: 1.8;
+    word-break: keep-all;
+  }
+
+  ::selection {
+    background: rgba(200, 169, 110, 0.3);
+  }
+}
+
+@layer components {
+  .section-padding {
+    @apply px-6 py-20 md:px-8 lg:py-24;
+    max-width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .heading-xl {
+    @apply font-serif font-bold leading-snug;
+    font-size: 3.2rem;
+    letter-spacing: -0.02em;
+  }
+
+  .heading-lg {
+    @apply font-serif font-semibold;
+    font-size: 1.8rem;
+    letter-spacing: -0.02em;
+  }
+
+  .heading-md {
+    @apply font-serif font-semibold;
+    font-size: 1.4rem;
+  }
+
+  .body-text {
+    @apply text-text-muted leading-relaxed;
+    font-size: 0.95rem;
+    line-height: 1.9;
+  }
+
+  .section-label {
+    @apply text-accent uppercase tracking-widest font-medium;
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+  }
+
+  .card {
+    @apply bg-bg-card border border-border transition-all duration-200;
+    border-radius: 10px;
+  }
+
+  .card:hover {
+    @apply bg-bg-card-hover border-accent;
+  }
+
+  .btn-primary {
+    @apply inline-block bg-accent text-bg font-semibold transition-colors duration-200;
+    padding: 14px 36px;
+    font-size: 0.9rem;
+    border-radius: 6px;
+  }
+
+  .btn-primary:hover {
+    @apply bg-accent-light;
+  }
+
+  .btn-ghost {
+    @apply inline-block border border-border text-text-muted transition-all duration-200;
+    padding: 12px 28px;
+    font-size: 0.9rem;
+    border-radius: 6px;
+  }
+
+  .btn-ghost:hover {
+    @apply border-accent text-accent;
+  }
+
+  .gold-divider {
+    width: 40px;
+    height: 1px;
+    @apply bg-accent;
+  }
+
+  .fade-in {
+    animation: fadeInUp 0.6s ease forwards;
+    opacity: 0;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scrollDown {
+  0% {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scaleY(0.3) translateY(16px);
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .heading-xl {
+    font-size: 2.2rem;
+  }
+  .heading-lg {
+    font-size: 1.4rem;
+  }
+  .heading-md {
+    font-size: 1.15rem;
+  }
+  .section-padding {
+    @apply px-5 py-12;
+  }
+}
+
+@media (max-width: 480px) {
+  .heading-xl {
+    font-size: 1.8rem;
+  }
+}
