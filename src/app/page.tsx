@@ -7,7 +7,7 @@ export default async function Home() {
   return (
     <>
       {/* ── Hero ── */}
-      <section className="relative flex min-h-screen items-end justify-center overflow-hidden">
+      <section className="relative flex min-h-[50vh] items-end justify-center overflow-hidden">
         <div className="absolute inset-0 bg-hero-overlay" />
         <div
           className="absolute inset-0"
