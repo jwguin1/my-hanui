@@ -3,7 +3,13 @@ import { fetchBlogPosts } from "@/lib/blog";
 import SectionReveal from "@/components/SectionReveal";
 
 export const metadata = {
-  title: "의학칼럼 | 일산한의원",
+  title: "의학칼럼 – 건강 정보 블로그",
+  description:
+    "일산한의원이 전하는 건강 정보와 치료 이야기. 근골격계 통증, 피부질환, 한약 처방 등 다양한 의학 칼럼을 확인하세요.",
+  openGraph: {
+    title: "의학칼럼 – 일산한의원 건강 정보",
+    description: "일산한의원이 전하는 건강 정보와 치료 이야기.",
+  },
 };
 
 export default async function ColumnPage() {

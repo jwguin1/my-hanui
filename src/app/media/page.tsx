@@ -1,7 +1,13 @@
 import SectionReveal from "@/components/SectionReveal";
 
 export const metadata = {
-  title: "미디어 | 일산한의원",
+  title: "유튜브 – 건강 정보 영상",
+  description:
+    "일산한의원 유튜브 채널. 족저근막염, 아킬레스건, 무릎통증, 허리디스크, 오십견 등 통증 치료와 건강 정보를 영상으로 전합니다.",
+  openGraph: {
+    title: "유튜브 – 일산한의원 건강 정보 영상",
+    description: "통증 치료와 건강 정보를 영상으로 쉽게 전합니다.",
+  },
 };
 
 const videos = [

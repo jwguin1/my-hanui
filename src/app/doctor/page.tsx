@@ -1,7 +1,13 @@
 import DoctorGrid from "@/components/DoctorGrid";
 
 export const metadata = {
-  title: "의료진 소개 | 일산한의원",
+  title: "의료진 소개 – 6명의 한의사",
+  description:
+    "장경진, 남태훈, 박건희, 강민석, 박동석, 이명주. 6명의 한의사가 정성을 다해 진료합니다. 각 원장의 전문 분야와 소개를 확인하세요.",
+  openGraph: {
+    title: "의료진 소개 – 일산한의원 6명의 한의사",
+    description: "장경진, 남태훈, 박건희, 강민석, 박동석, 이명주 원장. 각 원장의 전문 분야와 소개.",
+  },
 };
 
 const doctors = [
