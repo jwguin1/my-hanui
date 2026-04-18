@@ -8,6 +8,6 @@ export default function robots(): MetadataRoute.Robots {
         allow: "/",
       },
     ],
-    sitemap: "https://my-hanui.vercel.app/sitemap.xml",
+    sitemap: "https://www.ilsanhan.com/sitemap.xml",
   };
 }

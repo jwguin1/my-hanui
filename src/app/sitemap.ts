@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { getAllPosts } from "@/lib/blog-local";
 
-const BASE_URL = "https://my-hanui.vercel.app";
+const BASE_URL = "https://www.ilsanhan.com";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const healthInfoPosts = getAllPosts().map((post) => ({

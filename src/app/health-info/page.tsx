@@ -2,7 +2,7 @@ import Link from "next/link";
 import { getAllPosts } from "@/lib/blog-local";
 import SectionReveal from "@/components/SectionReveal";
 
-const SITE_URL = "https://my-hanui.vercel.app";
+const SITE_URL = "https://www.ilsanhan.com";
 
 function toAbsoluteUrl(path: string): string {
   if (!path) return "";
@@ -20,7 +20,7 @@ export const metadata = {
       "일산한의원의 최신 의학 논문 리뷰와 건강정보를 확인하세요.",
   },
   alternates: {
-    canonical: "https://my-hanui.vercel.app/health-info",
+    canonical: "https://www.ilsanhan.com/health-info",
   },
 };
 

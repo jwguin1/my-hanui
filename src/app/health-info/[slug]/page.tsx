@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 import { getAllPosts, getPostBySlug } from "@/lib/blog-local";
 import { marked } from "marked";
 
-const SITE_URL = "https://my-hanui.vercel.app";
+const SITE_URL = "https://www.ilsanhan.com";
 
 export const revalidate = 60;
 export const dynamicParams = true;

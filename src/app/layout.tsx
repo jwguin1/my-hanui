@@ -4,7 +4,7 @@ import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import KakaoButton from "@/components/KakaoButton";
 
-const SITE_URL = "https://my-hanui.vercel.app";
+const SITE_URL = "https://www.ilsanhan.com";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),

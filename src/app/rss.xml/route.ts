@@ -1,6 +1,6 @@
 import { getAllPosts } from "@/lib/blog-local";
 
-const BASE_URL = "https://my-hanui.vercel.app";
+const BASE_URL = "https://www.ilsanhan.com";
 const SITE_TITLE = "my-hanui 건강정보";
 const SITE_DESCRIPTION = "한의학 기반 건강정보와 치료 이야기";
 
