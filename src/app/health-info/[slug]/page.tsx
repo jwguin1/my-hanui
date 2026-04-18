@@ -6,7 +6,6 @@ import { marked } from "marked";
 
 const SITE_URL = "https://my-hanui.vercel.app";
 
-export const dynamic = "force-static";
 export const revalidate = 60;
 export const dynamicParams = true;
 
