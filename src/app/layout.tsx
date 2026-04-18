@@ -86,6 +86,8 @@ export default function RootLayout({
               name: "일산한의원",
               alternateName: "일산한의원 이마트풍산점",
               url: SITE_URL,
+              image: `${SITE_URL}/og-image.jpg`,
+              priceRange: "₩₩",
               telephone: "+82-31-976-7706",
               address: {
                 "@type": "PostalAddress",
