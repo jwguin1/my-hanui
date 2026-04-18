@@ -81,6 +81,91 @@ export function getPostBySlug(slug: string): LocalBlogPost | null {
   };
 }
 
+export function getRelatedPosts(
+  slug: string,
+  maxCount: number = 3
+): LocalBlogPost[] {
+  const all = getAllPosts();
+  const current = all.find((p) => p.slug === slug);
+  if (!current) return [];
+
+  const others = all.filter((p) => p.slug !== slug);
+  const currentTags = new Set(current.tags);
+
+  const withOverlap = others
+    .map((p) => ({
+      post: p,
+      overlap: p.tags.filter((t) => currentTags.has(t)).length,
+    }))
+    .filter((s) => s.overlap > 0)
+    .sort(
+      (a, b) =>
+        b.overlap - a.overlap ||
+        new Date(b.post.date).getTime() - new Date(a.post.date).getTime()
+    )
+    .map((s) => s.post);
+
+  if (withOverlap.length >= maxCount) return withOverlap.slice(0, maxCount);
+
+  const picked = new Set(withOverlap.map((p) => p.slug));
+  const fillers = others.filter((p) => !picked.has(p.slug));
+  return [...withOverlap, ...fillers].slice(0, maxCount);
+}
+
+export function autoLinkMarkdown(
+  content: string,
+  currentSlug: string,
+  maxLinks: number = 3
+): string {
+  const others = getAllPosts().filter((p) => p.slug !== currentSlug);
+
+  const keywordMap: Array<{ keyword: string; slug: string }> = [];
+  const seen = new Set<string>();
+  for (const post of others) {
+    for (const tag of post.tags) {
+      const k = tag.trim();
+      if (k.length >= 3 && !seen.has(k)) {
+        keywordMap.push({ keyword: k, slug: post.slug });
+        seen.add(k);
+      }
+    }
+  }
+  keywordMap.sort((a, b) => b.keyword.length - a.keyword.length);
+
+  const lines = content.split("\n");
+  let linked = 0;
+  const linkedKeywords = new Set<string>();
+  let inFence = false;
+
+  const out = lines.map((line) => {
+    if (/^\s*```/.test(line)) {
+      inFence = !inFence;
+      return line;
+    }
+    if (inFence) return line;
+    if (linked >= maxLinks) return line;
+    if (/^\s*#/.test(line)) return line;
+    if (/^\s*!\[/.test(line)) return line;
+    if (/\[[^\]]+\]\(/.test(line)) return line;
+
+    let next = line;
+    for (const { keyword, slug } of keywordMap) {
+      if (linked >= maxLinks) break;
+      if (linkedKeywords.has(keyword)) continue;
+      const escaped = keyword.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+      const re = new RegExp(escaped);
+      if (re.test(next)) {
+        next = next.replace(re, `[${keyword}](/health-info/${slug})`);
+        linkedKeywords.add(keyword);
+        linked++;
+      }
+    }
+    return next;
+  });
+
+  return out.join("\n");
+}
+
 export function createPost(
   slug: string,
   frontmatter: {

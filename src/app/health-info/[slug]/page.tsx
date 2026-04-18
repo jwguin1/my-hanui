@@ -1,7 +1,12 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import type { Metadata } from "next";
-import { getAllPosts, getPostBySlug } from "@/lib/blog-local";
+import {
+  autoLinkMarkdown,
+  getAllPosts,
+  getPostBySlug,
+  getRelatedPosts,
+} from "@/lib/blog-local";
 import { marked } from "marked";
 
 const SITE_URL = "https://www.ilsanhan.com";
@@ -50,7 +55,9 @@ export default async function HealthInfoPostPage({
   const post = getPostBySlug(slug);
   if (!post || !post.published) notFound();
 
-  const html = await marked(post.content);
+  const linkedContent = autoLinkMarkdown(post.content, slug);
+  const html = await marked(linkedContent);
+  const relatedPosts = getRelatedPosts(slug, 3);
 
   const absoluteImage = post.thumbnail
     ? post.thumbnail.startsWith("http")
@@ -110,6 +117,40 @@ export default async function HealthInfoPostPage({
           dangerouslySetInnerHTML={{ __html: html }}
         />
       </section>
+
+      {/* Related posts */}
+      {relatedPosts.length > 0 && (
+        <section className="section-padding !pt-0">
+          <div className="mx-auto max-w-3xl">
+            <h2 className="font-serif text-[1.25rem] font-semibold text-text">
+              관련 글
+            </h2>
+            <div
+              className="gold-divider mt-4"
+              style={{ width: "3rem", marginLeft: 0 }}
+            />
+            <ul className="mt-6 space-y-4">
+              {relatedPosts.map((rp) => (
+                <li key={rp.slug}>
+                  <Link
+                    href={`/health-info/${rp.slug}`}
+                    className="group block rounded-md p-4 transition-colors hover:bg-white/5"
+                  >
+                    <h3 className="font-serif text-[1rem] font-semibold text-text group-hover:text-accent transition-colors">
+                      {rp.title}
+                    </h3>
+                    {rp.description && (
+                      <p className="mt-1.5 text-[0.85rem] leading-relaxed text-text-muted line-clamp-2">
+                        {rp.description}
+                      </p>
+                    )}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+      )}
 
       {/* Bottom nav */}
       <section className="section-padding !pt-0 text-center">
