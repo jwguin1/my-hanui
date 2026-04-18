@@ -21,6 +21,17 @@ function ensureBlogDir() {
   }
 }
 
+function extractFirstImage(content: string): string {
+  const m = content.match(/!\[[^\]]*\]\(([^)\s]+)(?:\s+"[^"]*")?\)/);
+  return m ? m[1].trim() : "";
+}
+
+function resolveThumbnail(data: Record<string, unknown>, content: string): string {
+  const fromFm = (data.thumbnail || data.image || "") as string;
+  if (fromFm && fromFm.trim()) return fromFm.trim();
+  return extractFirstImage(content);
+}
+
 export function getAllPosts(): LocalBlogPost[] {
   ensureBlogDir();
 
@@ -37,7 +48,7 @@ export function getAllPosts(): LocalBlogPost[] {
         title: data.title || slug,
         description: data.description || "",
         date: data.date || "",
-        thumbnail: data.thumbnail || "",
+        thumbnail: resolveThumbnail(data, content),
         tags: data.tags || [],
         published: data.published !== false,
         content,
@@ -63,7 +74,7 @@ export function getPostBySlug(slug: string): LocalBlogPost | null {
     title: data.title || slug,
     description: data.description || "",
     date: data.date || "",
-    thumbnail: data.thumbnail || "",
+    thumbnail: resolveThumbnail(data, content),
     tags: data.tags || [],
     published: data.published !== false,
     content,
