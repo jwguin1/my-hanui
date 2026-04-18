@@ -37,6 +37,14 @@ export const metadata: Metadata = {
     title: "일산한의원 | 이마트풍산점 – 고양시 일산 한의원",
     description:
       "고양시 일산동구 이마트 풍산점 3층. 건강보험 우선 진료, 대학병원급 초음파 진단, 비수술 치료. 풍산역 도보 1분.",
+    images: [
+      {
+        url: `${SITE_URL}/og-image.jpg`,
+        width: 1200,
+        height: 630,
+        alt: "일산한의원 이마트풍산점",
+      },
+    ],
   },
   robots: {
     index: true,
