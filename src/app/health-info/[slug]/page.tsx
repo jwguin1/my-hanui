@@ -8,7 +8,7 @@ import {
   getRelatedPosts,
   toISO8601KST,
 } from "@/lib/blog-local";
-import { marked } from "marked";
+import PostContent from "@/components/PostContent";
 
 const SITE_URL = "https://www.ilsanhan.com";
 
@@ -57,7 +57,6 @@ export default async function HealthInfoPostPage({
   if (!post || !post.published) notFound();
 
   const linkedContent = autoLinkMarkdown(post.content, slug);
-  const html = await marked(linkedContent);
   const relatedPosts = getRelatedPosts(slug, 3);
 
   const absoluteImage = post.thumbnail
@@ -101,7 +100,7 @@ export default async function HealthInfoPostPage({
             {post.tags.length > 0 && (
               <div className="flex gap-2">
                 {post.tags.map((tag) => (
-                  <span key={tag} className="text-accent opacity-70">
+                  <span key={tag} className="text-accent">
                     #{tag}
                   </span>
                 ))}
@@ -113,10 +112,9 @@ export default async function HealthInfoPostPage({
 
       {/* Content */}
       <section className="section-padding">
-        <article
-          className="prose-custom mx-auto max-w-3xl"
-          dangerouslySetInnerHTML={{ __html: html }}
-        />
+        <article className="prose-custom mx-auto max-w-3xl">
+          <PostContent markdown={linkedContent} />
+        </article>
       </section>
 
       {/* Related posts */}

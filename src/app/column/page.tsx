@@ -83,7 +83,7 @@ export default async function ColumnPage() {
                     <p className="mt-2 flex-1 text-[0.82rem] leading-relaxed text-text-muted line-clamp-3">
                       {post.description}
                     </p>
-                    <p className="mt-3 text-[0.72rem] text-text-muted opacity-60">
+                    <p className="mt-3 text-[0.72rem] text-text-muted">
                       {formatDate(post.pubDate)}
                     </p>
                   </div>

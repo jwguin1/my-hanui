@@ -126,7 +126,7 @@ export default function HealthInfoListPage() {
                       {post.description}
                     </p>
                     <div className="mt-3 flex items-center justify-between">
-                      <p className="text-[0.72rem] text-text-muted opacity-60">
+                      <p className="text-[0.72rem] text-text-muted">
                         {formatDate(post.date)}
                       </p>
                       {post.tags.length > 0 && (
@@ -134,7 +134,7 @@ export default function HealthInfoListPage() {
                           {post.tags.slice(0, 2).map((tag) => (
                             <span
                               key={tag}
-                              className="text-[0.65rem] text-accent opacity-60"
+                              className="text-[0.7rem] text-accent"
                             >
                               #{tag}
                             </span>

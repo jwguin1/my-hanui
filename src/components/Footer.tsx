@@ -39,12 +39,12 @@ export default function Footer() {
           </a>
         </div>
 
-        <p className="mt-4 text-[0.78rem] text-text-muted opacity-60">
+        <p className="mt-4 text-[0.78rem] text-text-muted">
           경기 고양시 일산동구 무궁화로 237, 3층 · 경의중앙선 풍산역 2번 출구 도보
           1분
         </p>
 
-        <p className="mt-6 text-[0.75rem] text-text-muted opacity-60">
+        <p className="mt-6 text-[0.75rem] text-text-muted">
           © {new Date().getFullYear()} 일산한의원. All rights reserved.
         </p>
       </div>
