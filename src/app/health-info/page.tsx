@@ -2,6 +2,14 @@ import Link from "next/link";
 import { getAllPosts } from "@/lib/blog-local";
 import SectionReveal from "@/components/SectionReveal";
 
+const SITE_URL = "https://my-hanui.vercel.app";
+
+function toAbsoluteUrl(path: string): string {
+  if (!path) return "";
+  if (path.startsWith("http")) return path;
+  return `${SITE_URL}${path.startsWith("/") ? "" : "/"}${path}`;
+}
+
 export const metadata = {
   title: "건강정보",
   description:
@@ -20,6 +28,39 @@ export const revalidate = 60;
 
 export default function HealthInfoListPage() {
   const posts = getAllPosts();
+
+  const itemListJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    itemListElement: posts.map((post, idx) => ({
+      "@type": "ListItem",
+      position: idx + 1,
+      url: `${SITE_URL}/health-info/${post.slug}`,
+      item: {
+        "@type": "Article",
+        "@id": `${SITE_URL}/health-info/${post.slug}`,
+        headline: post.title,
+        description: post.description,
+        datePublished: post.date,
+        dateModified: post.date,
+        ...(post.thumbnail ? { image: [toAbsoluteUrl(post.thumbnail)] } : {}),
+        author: {
+          "@type": "Organization",
+          name: "일산한의원",
+          url: SITE_URL,
+        },
+        publisher: {
+          "@type": "Organization",
+          name: "일산한의원",
+          url: SITE_URL,
+        },
+        mainEntityOfPage: {
+          "@type": "WebPage",
+          "@id": `${SITE_URL}/health-info/${post.slug}`,
+        },
+      },
+    })),
+  };
 
   return (
     <>
@@ -112,6 +153,14 @@ export default function HealthInfoListPage() {
           </div>
         )}
       </section>
+
+      {/* JSON-LD (ItemList — 네이버 캐러셀) */}
+      {posts.length > 0 && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListJsonLd) }}
+        />
+      )}
     </>
   );
 }

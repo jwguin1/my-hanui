@@ -52,6 +52,12 @@ export default async function HealthInfoPostPage({
 
   const html = await marked(post.content);
 
+  const absoluteImage = post.thumbnail
+    ? post.thumbnail.startsWith("http")
+      ? post.thumbnail
+      : `${SITE_URL}${post.thumbnail.startsWith("/") ? "" : "/"}${post.thumbnail}`
+    : "";
+
   return (
     <>
       {/* Hero */}
@@ -112,27 +118,32 @@ export default async function HealthInfoPostPage({
         </Link>
       </section>
 
-      {/* JSON-LD */}
+      {/* JSON-LD (Article — 네이버 캐러셀 호환) */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
             "@context": "https://schema.org",
-            "@type": "BlogPosting",
+            "@type": "Article",
             headline: post.title,
             description: post.description,
             datePublished: post.date,
-            ...(post.thumbnail ? { image: post.thumbnail } : {}),
+            dateModified: post.date,
+            ...(absoluteImage ? { image: [absoluteImage] } : {}),
             author: {
               "@type": "Organization",
               name: "일산한의원",
+              url: SITE_URL,
             },
             publisher: {
               "@type": "Organization",
               name: "일산한의원",
               url: SITE_URL,
             },
-            mainEntityOfPage: `${SITE_URL}/health-info/${slug}`,
+            mainEntityOfPage: {
+              "@type": "WebPage",
+              "@id": `${SITE_URL}/health-info/${slug}`,
+            },
           }),
         }}
       />
