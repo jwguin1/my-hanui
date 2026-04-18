@@ -8,6 +8,7 @@ const SITE_URL = "https://my-hanui.vercel.app";
 
 export const dynamic = "force-static";
 export const revalidate = 60;
+export const dynamicParams = true;
 
 export function generateStaticParams() {
   return getAllPosts().map((post) => ({ slug: post.slug }));
