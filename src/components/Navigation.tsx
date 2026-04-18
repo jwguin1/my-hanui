@@ -7,6 +7,7 @@ const links: { href: string; label: string; external?: boolean }[] = [
   { href: "/about", label: "일산한의원" },
   { href: "/doctor", label: "의료진" },
   { href: "/column", label: "의학칼럼" },
+  { href: "/blog", label: "블로그" },
   { href: "/media", label: "유튜브" },
   { href: "/contact", label: "오시는 길" },
 ];

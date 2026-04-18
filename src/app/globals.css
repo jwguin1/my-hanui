@@ -110,6 +110,86 @@
     animation: fadeInUp 0.6s ease forwards;
     opacity: 0;
   }
+
+  /* Blog prose */
+  .prose-custom {
+    @apply text-text;
+    font-size: 0.95rem;
+    line-height: 1.9;
+  }
+
+  .prose-custom h1 {
+    @apply font-serif font-bold mt-10 mb-4;
+    font-size: 1.6rem;
+  }
+
+  .prose-custom h2 {
+    @apply font-serif font-semibold mt-8 mb-3;
+    font-size: 1.3rem;
+  }
+
+  .prose-custom h3 {
+    @apply font-serif font-semibold mt-6 mb-2;
+    font-size: 1.1rem;
+  }
+
+  .prose-custom p {
+    @apply mb-5 text-text-muted leading-relaxed;
+    line-height: 2;
+  }
+
+  .prose-custom strong {
+    @apply text-text font-semibold;
+  }
+
+  .prose-custom a {
+    @apply text-accent underline underline-offset-2 hover:text-accent-light transition-colors;
+  }
+
+  .prose-custom ul,
+  .prose-custom ol {
+    @apply mb-5 pl-6 text-text-muted;
+  }
+
+  .prose-custom ul {
+    list-style-type: disc;
+  }
+
+  .prose-custom ol {
+    list-style-type: decimal;
+  }
+
+  .prose-custom li {
+    @apply mb-2;
+    line-height: 1.8;
+  }
+
+  .prose-custom blockquote {
+    @apply border-l-2 border-accent pl-5 my-6 text-text-muted italic;
+  }
+
+  .prose-custom code {
+    @apply bg-bg-card text-accent px-1.5 py-0.5 text-[0.85rem];
+    border-radius: 4px;
+  }
+
+  .prose-custom pre {
+    @apply bg-bg-card border border-border p-5 my-6 overflow-x-auto;
+    border-radius: 8px;
+  }
+
+  .prose-custom pre code {
+    @apply bg-transparent p-0;
+  }
+
+  .prose-custom img {
+    @apply my-6 max-w-full;
+    border-radius: 8px;
+  }
+
+  .prose-custom hr {
+    @apply border-border my-8;
+  }
 }
 
 @keyframes fadeInUp {

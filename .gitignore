@@ -3,3 +3,9 @@ node_modules
 out
 .DS_Store
 *.Zone.Identifier
+
+# Claude Code local settings
+.claude/
+
+# Local env files
+.env*.local
