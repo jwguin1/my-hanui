@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { getAllPosts } from "@/lib/blog-local";
+import { getAllPosts, toISO8601KST } from "@/lib/blog-local";
 import SectionReveal from "@/components/SectionReveal";
 
 const SITE_URL = "https://www.ilsanhan.com";
@@ -41,8 +41,8 @@ export default function HealthInfoListPage() {
         "@id": `${SITE_URL}/health-info/${post.slug}`,
         headline: post.title,
         description: post.description,
-        datePublished: post.date,
-        dateModified: post.date,
+        datePublished: toISO8601KST(post.date),
+        dateModified: toISO8601KST(post.date),
         ...(post.thumbnail ? { image: [toAbsoluteUrl(post.thumbnail)] } : {}),
         author: {
           "@type": "Organization",

@@ -6,6 +6,7 @@ import {
   getAllPosts,
   getPostBySlug,
   getRelatedPosts,
+  toISO8601KST,
 } from "@/lib/blog-local";
 import { marked } from "marked";
 
@@ -168,8 +169,8 @@ export default async function HealthInfoPostPage({
             "@type": "Article",
             headline: post.title,
             description: post.description,
-            datePublished: post.date,
-            dateModified: post.date,
+            datePublished: toISO8601KST(post.date),
+            dateModified: toISO8601KST(post.date),
             ...(absoluteImage ? { image: [absoluteImage] } : {}),
             author: {
               "@type": "Organization",

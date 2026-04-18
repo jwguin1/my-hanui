@@ -81,6 +81,15 @@ export function getPostBySlug(slug: string): LocalBlogPost | null {
   };
 }
 
+export function toISO8601KST(dateStr: string): string {
+  if (!dateStr) return "";
+  if (/T\d{2}:\d{2}/.test(dateStr)) return dateStr;
+  if (/^\d{4}-\d{2}-\d{2}$/.test(dateStr)) {
+    return `${dateStr}T00:00:00+09:00`;
+  }
+  return dateStr;
+}
+
 export function getRelatedPosts(
   slug: string,
   maxCount: number = 3
