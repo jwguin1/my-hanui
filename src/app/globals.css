@@ -10,8 +10,8 @@
   --color-accent: #c8a96e;
   --color-accent-light: #dfc18f;
   --color-hero-overlay: #151515;
-  --font-body: "Pretendard", "Noto Serif KR", -apple-system, sans-serif;
-  --font-serif: "Noto Serif KR", Georgia, serif;
+  --font-body: "Pretendard", var(--font-serif-kr, "Noto Serif KR"), -apple-system, sans-serif;
+  --font-serif: var(--font-serif-kr, "Noto Serif KR"), Georgia, serif;
 }
 
 @layer base {

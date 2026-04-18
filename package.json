@@ -1,1 +1,40 @@
-{"name":"my-hanui","version":"0.1.0","private":true,"scripts":{"dev":"next dev","build":"next build","start":"next start","lint":"next lint"},"dependencies":{"gray-matter":"^4.0.3","next":"^16.2.1","react":"^19.0.0","react-dom":"^19.0.0","react-markdown":"^10.1.0"},"devDependencies":{"@eslint/eslintrc":"^3.3.5","@tailwindcss/postcss":"^4","@types/node":"^22","@types/react":"^19","@types/react-dom":"^19","eslint":"^9","eslint-config-next":"15.3.1","postcss":"^8","tailwindcss":"^4","typescript":"^5"}}
+{
+  "name": "my-hanui",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "gray-matter": "^4.0.3",
+    "next": "^16.2.1",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-markdown": "^10.1.0"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3.3.5",
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^22",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "15.3.1",
+    "postcss": "^8",
+    "tailwindcss": "^4",
+    "typescript": "^5"
+  },
+  "browserslist": [
+    "last 2 Chrome versions",
+    "last 2 Firefox versions",
+    "last 2 Safari versions",
+    "last 2 Edge versions",
+    "last 2 iOS versions",
+    "last 2 Android versions",
+    "not dead",
+    "not ie 11"
+  ]
+}
