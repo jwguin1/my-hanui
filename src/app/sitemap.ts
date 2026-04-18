@@ -6,9 +6,9 @@ const BASE_URL = "https://my-hanui.vercel.app";
 export default function sitemap(): MetadataRoute.Sitemap {
   const healthInfoPosts = getAllPosts().map((post) => ({
     url: `${BASE_URL}/health-info/${post.slug}`,
-    lastModified: new Date(post.date),
-    changeFrequency: "monthly" as const,
-    priority: 0.7,
+    lastModified: post.date ? new Date(post.date) : new Date(),
+    changeFrequency: "daily" as const,
+    priority: 0.9,
   }));
 
   return [
