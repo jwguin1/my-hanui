@@ -4,8 +4,8 @@ import { getAllPosts } from "@/lib/blog-local";
 const BASE_URL = "https://my-hanui.vercel.app";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const blogPosts = getAllPosts().map((post) => ({
-    url: `${BASE_URL}/blog/${post.slug}`,
+  const healthInfoPosts = getAllPosts().map((post) => ({
+    url: `${BASE_URL}/health-info/${post.slug}`,
     lastModified: new Date(post.date),
     changeFrequency: "monthly" as const,
     priority: 0.7,
@@ -55,11 +55,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
-      url: `${BASE_URL}/blog`,
+      url: `${BASE_URL}/health-info`,
       lastModified: new Date(),
       changeFrequency: "daily",
       priority: 0.9,
     },
-    ...blogPosts,
+    ...healthInfoPosts,
   ];
 }

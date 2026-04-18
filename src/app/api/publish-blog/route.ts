@@ -119,7 +119,7 @@ export async function POST(req: NextRequest) {
     {
       success: true,
       slug: post.slug,
-      url: `/blog/${post.slug}`,
+      url: `/health-info/${post.slug}`,
     },
     { status: 201 }
   );
