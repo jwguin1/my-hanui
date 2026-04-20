@@ -1,7 +1,7 @@
 import { getAllPosts } from "@/lib/blog-local";
 
 const BASE_URL = "https://www.ilsanhan.com";
-const SITE_TITLE = "my-hanui 건강정보";
+const SITE_TITLE = "일산한의원 블로그";
 const SITE_DESCRIPTION = "한의학 기반 건강정보와 치료 이야기";
 
 function escapeXml(value: string): string {
@@ -25,6 +25,11 @@ function toRfc822(date: string): string {
   return valid.toUTCString();
 }
 
+function postUrl(category: string, slug: string): string {
+  if (category === "blog") return `${BASE_URL}/blog/${slug}`;
+  return `${BASE_URL}/${category}/${slug}`;
+}
+
 export async function GET() {
   const posts = getAllPosts();
 
@@ -32,7 +37,7 @@ export async function GET() {
 
   const items = posts
     .map((post) => {
-      const link = `${BASE_URL}/health-info/${post.slug}`;
+      const link = postUrl(post.category, post.slug);
       const thumbnail = toAbsoluteUrl(post.thumbnail);
       const enclosure = thumbnail
         ? `    <enclosure url="${escapeXml(thumbnail)}" type="image/jpeg" />\n`

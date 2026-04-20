@@ -1,7 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
 import fs from "fs";
 import path from "path";
-import { createPost, getPostBySlug } from "@/lib/blog-local";
+import {
+  CATEGORIES,
+  type Category,
+  createPost,
+  getPostBySlug,
+} from "@/lib/blog-local";
 
 const DATA_URL_RE =
   /data:image\/(png|jpe?g|gif|webp|svg\+xml);base64,([A-Za-z0-9+/=]+)/g;
@@ -38,6 +43,10 @@ function saveImage(dir: string, filename: string, b64: string): void {
   fs.writeFileSync(path.join(dir, filename), Buffer.from(b64, "base64"));
 }
 
+function isCategory(value: string): value is Category {
+  return (CATEGORIES as readonly string[]).includes(value);
+}
+
 export async function POST(req: NextRequest) {
   const apiKey = req.headers.get("x-api-key");
   const expected = process.env.BLOG_API_KEY;
@@ -52,6 +61,7 @@ export async function POST(req: NextRequest) {
     tags?: string[];
     thumbnail?: string;
     published?: boolean;
+    category?: string;
   };
   try {
     body = await req.json();
@@ -66,6 +76,21 @@ export async function POST(req: NextRequest) {
       { status: 400 }
     );
   }
+
+  const rawCategory = (body.category || "").trim();
+  if (!rawCategory) {
+    return NextResponse.json(
+      { error: `category is required (one of: ${CATEGORIES.join(", ")})` },
+      { status: 400 }
+    );
+  }
+  if (!isCategory(rawCategory)) {
+    return NextResponse.json(
+      { error: `Invalid category. Allowed: ${CATEGORIES.join(", ")}` },
+      { status: 400 }
+    );
+  }
+  const category: Category = rawCategory;
 
   const titleSlug = slugifyTitle(title);
   const slug = `${todayYYYYMMDD()}-${titleSlug || `post-${Date.now()}`}`;
@@ -112,14 +137,16 @@ export async function POST(req: NextRequest) {
       tags: body.tags,
       published: body.published !== false,
     },
-    processedContent
+    processedContent,
+    category
   );
 
   return NextResponse.json(
     {
       success: true,
       slug: post.slug,
-      url: `/health-info/${post.slug}`,
+      category,
+      url: `/${category}/${post.slug}`,
     },
     { status: 201 }
   );

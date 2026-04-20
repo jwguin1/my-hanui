@@ -1,5 +1,11 @@
 import Link from "next/link";
-import { getAllPosts, toISO8601KST } from "@/lib/blog-local";
+import {
+  CATEGORY_DESCRIPTION,
+  CATEGORY_LABEL,
+  type Category,
+  getAllPosts,
+  toISO8601KST,
+} from "@/lib/blog-local";
 import SectionReveal from "@/components/SectionReveal";
 
 const SITE_URL = "https://www.ilsanhan.com";
@@ -10,24 +16,19 @@ function toAbsoluteUrl(path: string): string {
   return `${SITE_URL}${path.startsWith("/") ? "" : "/"}${path}`;
 }
 
-export const metadata = {
-  title: "건강정보",
-  description:
-    "일산한의원의 최신 의학 논문 리뷰와 건강정보를 확인하세요.",
-  openGraph: {
-    title: "건강정보 | 일산한의원",
-    description:
-      "일산한의원의 최신 의학 논문 리뷰와 건강정보를 확인하세요.",
-  },
-  alternates: {
-    canonical: "https://www.ilsanhan.com/health-info",
-  },
-};
+function formatDate(dateStr: string): string {
+  try {
+    const date = new Date(dateStr);
+    return `${date.getFullYear()}.${String(date.getMonth() + 1).padStart(2, "0")}.${String(date.getDate()).padStart(2, "0")}`;
+  } catch {
+    return "";
+  }
+}
 
-export const revalidate = 60;
-
-export default function HealthInfoListPage() {
-  const posts = getAllPosts();
+export default function CategoryListPage({ category }: { category: Category }) {
+  const label = CATEGORY_LABEL[category];
+  const description = CATEGORY_DESCRIPTION[category];
+  const posts = getAllPosts(category);
 
   const itemListJsonLd = {
     "@context": "https://schema.org",
@@ -35,10 +36,10 @@ export default function HealthInfoListPage() {
     itemListElement: posts.map((post, idx) => ({
       "@type": "ListItem",
       position: idx + 1,
-      url: `${SITE_URL}/health-info/${post.slug}`,
+      url: `${SITE_URL}/${category}/${post.slug}`,
       item: {
         "@type": "Article",
-        "@id": `${SITE_URL}/health-info/${post.slug}`,
+        "@id": `${SITE_URL}/${category}/${post.slug}`,
         headline: post.title,
         description: post.description,
         datePublished: toISO8601KST(post.date),
@@ -56,7 +57,7 @@ export default function HealthInfoListPage() {
         },
         mainEntityOfPage: {
           "@type": "WebPage",
-          "@id": `${SITE_URL}/health-info/${post.slug}`,
+          "@id": `${SITE_URL}/${category}/${post.slug}`,
         },
       },
     })),
@@ -73,12 +74,12 @@ export default function HealthInfoListPage() {
         }}
       >
         <div className="section-padding w-full !py-0 text-center">
-          <p className="fade-in section-label">Health Info</p>
+          <p className="fade-in section-label">{label}</p>
           <h1
             className="fade-in heading-xl mt-4"
             style={{ animationDelay: "0.2s" }}
           >
-            건강정보
+            {label}
           </h1>
           <div
             className="fade-in gold-divider mx-auto mt-6"
@@ -88,7 +89,7 @@ export default function HealthInfoListPage() {
             className="fade-in body-text mx-auto mt-6 max-w-md"
             style={{ animationDelay: "0.45s" }}
           >
-            최신 의학 논문 리뷰와 건강정보를 전합니다
+            {description}
           </p>
         </div>
       </section>
@@ -100,7 +101,7 @@ export default function HealthInfoListPage() {
             {posts.map((post) => (
               <SectionReveal key={post.slug}>
                 <Link
-                  href={`/health-info/${post.slug}`}
+                  href={`/${category}/${post.slug}`}
                   className="card group flex flex-col overflow-hidden transition-transform duration-200 hover:-translate-y-1"
                 >
                   {post.thumbnail ? (
@@ -114,7 +115,9 @@ export default function HealthInfoListPage() {
                     </div>
                   ) : (
                     <div className="flex aspect-square items-center justify-center bg-bg">
-                      <span className="text-4xl text-accent opacity-30">H</span>
+                      <span className="text-4xl text-accent opacity-30">
+                        {label[0]}
+                      </span>
                     </div>
                   )}
 
@@ -154,7 +157,6 @@ export default function HealthInfoListPage() {
         )}
       </section>
 
-      {/* JSON-LD (ItemList — 네이버 캐러셀) */}
       {posts.length > 0 && (
         <script
           type="application/ld+json"
@@ -163,13 +165,4 @@ export default function HealthInfoListPage() {
       )}
     </>
   );
-}
-
-function formatDate(dateStr: string): string {
-  try {
-    const date = new Date(dateStr);
-    return `${date.getFullYear()}.${String(date.getMonth() + 1).padStart(2, "0")}.${String(date.getDate()).padStart(2, "0")}`;
-  } catch {
-    return "";
-  }
 }

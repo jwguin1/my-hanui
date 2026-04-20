@@ -1,9 +1,9 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import type { Metadata } from "next";
 import {
+  CATEGORY_LABEL,
+  type Category,
   autoLinkMarkdown,
-  getAllPosts,
   getPostBySlug,
   getRelatedPosts,
   toISO8601KST,
@@ -12,52 +12,28 @@ import PostContent from "@/components/PostContent";
 
 const SITE_URL = "https://www.ilsanhan.com";
 
-export const revalidate = 60;
-export const dynamicParams = true;
-
-export function generateStaticParams() {
-  return getAllPosts().map((post) => ({ slug: post.slug }));
+function formatDate(dateStr: string): string {
+  try {
+    const date = new Date(dateStr);
+    return `${date.getFullYear()}.${String(date.getMonth() + 1).padStart(2, "0")}.${String(date.getDate()).padStart(2, "0")}`;
+  } catch {
+    return "";
+  }
 }
 
-export function generateMetadata({
-  params,
+export default function CategoryPostPage({
+  category,
+  slug,
 }: {
-  params: Promise<{ slug: string }>;
-}): Promise<Metadata> {
-  return params.then(({ slug }) => {
-    const post = getPostBySlug(slug);
-    if (!post) return { title: "글을 찾을 수 없습니다" };
-
-    const fullTitle = `${post.title} | 일산한의원 건강정보`;
-
-    return {
-      title: { absolute: fullTitle },
-      description: post.description,
-      openGraph: {
-        title: fullTitle,
-        description: post.description,
-        type: "article",
-        url: `${SITE_URL}/health-info/${slug}`,
-        ...(post.thumbnail ? { images: [{ url: post.thumbnail }] } : {}),
-      },
-      alternates: {
-        canonical: `${SITE_URL}/health-info/${slug}`,
-      },
-    };
-  });
-}
-
-export default async function HealthInfoPostPage({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
+  category: Category;
+  slug: string;
 }) {
-  const { slug } = await params;
-  const post = getPostBySlug(slug);
+  const post = getPostBySlug(slug, category);
   if (!post || !post.published) notFound();
 
+  const label = CATEGORY_LABEL[category];
   const linkedContent = autoLinkMarkdown(post.content, slug);
-  const relatedPosts = getRelatedPosts(slug, 3);
+  const relatedPosts = getRelatedPosts(slug, 3, category);
 
   const absoluteImage = post.thumbnail
     ? post.thumbnail.startsWith("http")
@@ -77,10 +53,10 @@ export default async function HealthInfoPostPage({
       >
         <div className="section-padding w-full !py-0">
           <Link
-            href="/health-info"
+            href={`/${category}`}
             className="fade-in text-[0.8rem] text-text-muted hover:text-accent transition-colors"
           >
-            &larr; 건강정보 목록
+            &larr; {label} 목록
           </Link>
           <h1
             className="fade-in heading-xl mt-6"
@@ -132,7 +108,7 @@ export default async function HealthInfoPostPage({
               {relatedPosts.map((rp) => (
                 <li key={rp.slug}>
                   <Link
-                    href={`/health-info/${rp.slug}`}
+                    href={`/${rp.category}/${rp.slug}`}
                     className="group block rounded-md p-4 transition-colors hover:bg-white/5"
                   >
                     <h3 className="font-serif text-[1rem] font-semibold text-text group-hover:text-accent transition-colors">
@@ -153,12 +129,12 @@ export default async function HealthInfoPostPage({
 
       {/* Bottom nav */}
       <section className="section-padding !pt-0 text-center">
-        <Link href="/health-info" className="btn-ghost">
+        <Link href={`/${category}`} className="btn-ghost">
           목록으로 돌아가기
         </Link>
       </section>
 
-      {/* JSON-LD (Article — 네이버 캐러셀 호환) */}
+      {/* JSON-LD */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -182,20 +158,11 @@ export default async function HealthInfoPostPage({
             },
             mainEntityOfPage: {
               "@type": "WebPage",
-              "@id": `${SITE_URL}/health-info/${slug}`,
+              "@id": `${SITE_URL}/${category}/${slug}`,
             },
           }),
         }}
       />
     </>
   );
-}
-
-function formatDate(dateStr: string): string {
-  try {
-    const date = new Date(dateStr);
-    return `${date.getFullYear()}.${String(date.getMonth() + 1).padStart(2, "0")}.${String(date.getDate()).padStart(2, "0")}`;
-  } catch {
-    return "";
-  }
 }
