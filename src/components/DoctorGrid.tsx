@@ -9,6 +9,9 @@ interface Doctor {
   name: string;
   image: string;
   bio?: string[];
+  school?: string;
+  credentials?: string[];
+  societies?: string[];
 }
 
 export default function DoctorGrid({ doctors }: { doctors: Doctor[] }) {
@@ -73,6 +76,65 @@ export default function DoctorGrid({ doctors }: { doctors: Doctor[] }) {
                     소개글이 준비 중입니다.
                   </p>
                 )}
+
+                {(selected.school ||
+                  selected.credentials?.length ||
+                  selected.societies?.length) && (
+                  <div className="mt-10 border-t border-white/10 pt-8">
+                    <p className="text-[0.8rem] text-accent tracking-wide">
+                      약력
+                    </p>
+                    <dl className="mt-4 space-y-5">
+                      {selected.school && (
+                        <div>
+                          <dt className="text-[0.8rem] font-semibold text-text">
+                            학력
+                          </dt>
+                          <dd className="mt-2 text-[0.9rem] leading-[1.8] text-text-muted">
+                            {selected.school} 졸업
+                          </dd>
+                        </div>
+                      )}
+                      {selected.credentials && selected.credentials.length > 0 && (
+                        <div>
+                          <dt className="text-[0.8rem] font-semibold text-text">
+                            자격
+                          </dt>
+                          <dd className="mt-2">
+                            <ul className="space-y-1.5 text-[0.9rem] leading-[1.7] text-text-muted">
+                              {selected.credentials.map((c) => (
+                                <li key={c} className="flex gap-2">
+                                  <span className="text-accent">·</span>
+                                  <span>{c}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          </dd>
+                        </div>
+                      )}
+                      {selected.societies && selected.societies.length > 0 && (
+                        <div>
+                          <dt className="text-[0.8rem] font-semibold text-text">
+                            학회 활동
+                          </dt>
+                          <dd className="mt-2">
+                            <ul className="flex flex-wrap gap-x-2 gap-y-1.5 text-[0.85rem] text-text-muted">
+                              {selected.societies.map((s, i) => (
+                                <li key={s} className="flex items-center gap-2">
+                                  <span>{s}</span>
+                                  {i < selected.societies!.length - 1 && (
+                                    <span className="text-white/20">|</span>
+                                  )}
+                                </li>
+                              ))}
+                            </ul>
+                          </dd>
+                        </div>
+                      )}
+                    </dl>
+                  </div>
+                )}
+
                 <button
                   onClick={() => setSelectedIndex(null)}
                   className="btn-ghost mt-8 w-fit text-[0.82rem]"

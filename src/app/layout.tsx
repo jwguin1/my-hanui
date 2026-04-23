@@ -161,6 +161,68 @@ export default function RootLayout({
                 "@type": "QuantitativeValue",
                 value: 6,
               },
+              employee: [
+                {
+                  "@type": "Physician",
+                  name: "장경진",
+                  jobTitle: "한의사",
+                  alumniOf: {
+                    "@type": "CollegeOrUniversity",
+                    name: "대구한의대학교 한의과대학",
+                  },
+                  url: `${SITE_URL}/doctor`,
+                },
+                {
+                  "@type": "Physician",
+                  name: "남태훈",
+                  jobTitle: "한의사",
+                  alumniOf: {
+                    "@type": "CollegeOrUniversity",
+                    name: "상지대학교 한의과대학",
+                  },
+                  url: `${SITE_URL}/doctor`,
+                },
+                {
+                  "@type": "Physician",
+                  name: "박건희",
+                  jobTitle: "한의사",
+                  alumniOf: {
+                    "@type": "CollegeOrUniversity",
+                    name: "상지대학교 한의과대학",
+                  },
+                  url: `${SITE_URL}/doctor`,
+                },
+                {
+                  "@type": "Physician",
+                  name: "강민석",
+                  jobTitle: "한의사",
+                  alumniOf: {
+                    "@type": "CollegeOrUniversity",
+                    name: "상지대학교 한의과대학",
+                  },
+                  url: `${SITE_URL}/doctor`,
+                },
+                {
+                  "@type": "Physician",
+                  name: "박동석",
+                  jobTitle: "한의사",
+                  alumniOf: {
+                    "@type": "CollegeOrUniversity",
+                    name: "부산대학교 한의과대학",
+                  },
+                  url: `${SITE_URL}/doctor`,
+                },
+                {
+                  "@type": "Physician",
+                  name: "이명주",
+                  jobTitle: "한의사",
+                  alumniOf: {
+                    "@type": "CollegeOrUniversity",
+                    name: "동의대학교 한의과대학",
+                  },
+                  url: `${SITE_URL}/doctor`,
+                },
+              ],
               sameAs: [
                 "https://naver.me/IItclnGB",
                 "https://blog.naver.com/jwguin",

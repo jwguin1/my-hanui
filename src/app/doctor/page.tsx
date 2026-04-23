@@ -1,19 +1,47 @@
 import DoctorGrid from "@/components/DoctorGrid";
 
+const SITE_URL = "https://www.ilsanhan.com";
+
 export const metadata = {
   title: "의료진 소개 – 6명의 한의사",
   description:
-    "장경진, 남태훈, 박건희, 강민석, 박동석, 이명주. 6명의 한의사가 정성을 다해 진료합니다. 각 원장의 전문 분야와 소개를 확인하세요.",
+    "장경진, 남태훈, 박건희, 강민석, 박동석, 이명주. 6명의 한의사가 정성을 다해 진료합니다. 각 원장의 학력, 자격, 학회 활동과 전문 분야를 확인하세요.",
   openGraph: {
     title: "의료진 소개 – 일산한의원 6명의 한의사",
-    description: "장경진, 남태훈, 박건희, 강민석, 박동석, 이명주 원장. 각 원장의 전문 분야와 소개.",
+    description: "장경진, 남태훈, 박건희, 강민석, 박동석, 이명주 원장. 각 원장의 학력·자격·학회 활동과 전문 분야 소개.",
   },
 };
 
-const doctors = [
+export interface Doctor {
+  name: string;
+  image: string;
+  school: string;
+  credentials: string[];
+  societies: string[];
+  bio: string[];
+}
+
+const doctors: Doctor[] = [
   {
     name: "장경진",
     image: "/images/doctor-1.JPG",
+    school: "대구한의대학교 한의과대학",
+    credentials: [
+      "APCA RMSK (근골격계 초음파사 자격)",
+      "APCA RMDS (복부 초음파사 자격)",
+      "한의기능영상학회 학술위원",
+      "한의영양학회 학술위원",
+    ],
+    societies: [
+      "한의기능영양학회",
+      "한의영상학회",
+      "국제레이저미용피부과학회",
+      "척추신경추나의학회",
+      "동의방약학회",
+      "대한약침학회",
+      "한방비만학회",
+      "대한한의학회",
+    ],
     bio: [
       "안녕하세요. 일산한의원 원장 장경진입니다.",
       "몸이 아파도 진료비 부담에 병원 문턱을 넘기 망설여지신 적이 있으신가요? 저 역시 운동 중 허리를 삐끗했을 때, 혹여 무리한 비싼 치료를 권유받을까 걱정했던 적이 있습니다. 그래서 일산한의원은 가벼운 근육 뭉침이나 단순 염좌에 과잉 진료를 하지 않습니다. 누구나 마음 편히 침 치료와 물리치료를 받으며, 온전히 쉬어가실 수 있도록 돕겠습니다.",
@@ -26,6 +54,14 @@ const doctors = [
   {
     name: "남태훈",
     image: "/images/doctor-2.JPG",
+    school: "상지대학교 한의과대학",
+    credentials: ["APCA RMSK (근골격계 초음파사 자격)"],
+    societies: [
+      "척추신경추나의학회",
+      "대한약침학회",
+      "한방비만학회",
+      "대한한의사협회",
+    ],
     bio: [
       "안녕하세요. 일산한의원 원장 남태훈입니다.",
       "갑자기 찾아온 통증, '어느 병원에 가야 할까?' 막막하고 두려우셨던 적이 있으신가요? 며칠 쉬면 낫는 가벼운 근육통인지, 뼈나 인대 등 깊은 곳에 문제가 생긴 것인지 스스로가 판단하기는 참 어렵습니다.",
@@ -37,6 +73,14 @@ const doctors = [
   {
     name: "박건희",
     image: "/images/doctor-3.png",
+    school: "상지대학교 한의과대학",
+    credentials: ["APCA RMSK (근골격계 초음파사 자격)"],
+    societies: [
+      "한의기능영양학회",
+      "대한연부조직학회",
+      "한방비만학회",
+      "대한한의사협회",
+    ],
     bio: [
       "안녕하세요. 일산한의원 원장 박건희입니다.",
       "운동하다 다치면 가장 많이 듣는 말이 있습니다. \"운동 당분간 쉬세요.\" 근데 그게 제일 어렵죠.",
@@ -50,6 +94,14 @@ const doctors = [
   {
     name: "강민석",
     image: "/images/doctor-4.jpg",
+    school: "상지대학교 한의과대학",
+    credentials: ["APCA RMSK (근골격계 초음파사 자격)"],
+    societies: [
+      "척추신경추나의학회",
+      "통합방제의학회",
+      "대한약침학회",
+      "대한한의사협회",
+    ],
     bio: [
       "안녕하세요. 일산한의원 원장 강민석입니다.",
       "병원 진료 후, '내 증상을 미처 다 설명하지 못한 것 같아' 답답하셨던 적 있으신가요? 사실 이건 치료를 하는 제게도 오랫동안 남았던 고민이었습니다.",
@@ -63,6 +115,14 @@ const doctors = [
   {
     name: "박동석",
     image: "/images/doctor-5.png",
+    school: "부산대학교 한의과대학",
+    credentials: ["APCA RMSK (근골격계 초음파사 자격)"],
+    societies: [
+      "한의영상학회",
+      "대한연부조직학회",
+      "한방비만학회",
+      "대한한의사협회",
+    ],
     bio: [
       "안녕하세요. 일산한의원 원장 박동석입니다.",
       "저도 예전에 큰 교통사고로 손목과 무릎을 심하게 다친 적이 있었습니다. MRI를 찍어보니 무릎 연골이 일부 찢어졌다는 진단을 받았죠. 솔직히 수술을 생각하니 무섭기도 하고 리스크가 커서 고민이 많았습니다. 그래서 우선은 보존적인 치료를 선택해 침, 추나, 약침 치료를 꾸준히 받았고, 다행히 지금은 아주 좋아졌습니다.",
@@ -76,6 +136,15 @@ const doctors = [
   {
     name: "이명주",
     image: "/images/doctor-6.png",
+    school: "동의대학교 한의과대학",
+    credentials: ["APCA RMSK (근골격계 초음파사 자격)"],
+    societies: [
+      "척추신경추나의학회",
+      "통합방제의학회",
+      "대한연부조직학회",
+      "대한한방비만학회",
+      "대한한의사협회",
+    ],
     bio: [
       "안녕하세요. 일산한의원 원장 이명주입니다.",
       "여러분은 어떤 운동을 좋아하시나요? 저는 주짓수나 킥복싱 같은 격렬한 운동을 즐기다 보니, 사실 안 아파본 곳이 없습니다. 직접 다치고 회복해 보며 얻은 결론은 하나입니다. 운동을 사랑하는 사람에게 부상은 일상을 멈추는 공포라는 것, 그리고 무리한 시술은 오히려 독이 될 수 있다는 점입니다.",
@@ -87,9 +156,37 @@ const doctors = [
   },
 ];
 
+const physicianJsonLd = doctors.map((doc) => ({
+  "@context": "https://schema.org",
+  "@type": "Physician",
+  name: doc.name,
+  jobTitle: "한의사",
+  image: `${SITE_URL}${doc.image}`,
+  worksFor: {
+    "@type": "MedicalClinic",
+    name: "일산한의원",
+    url: SITE_URL,
+  },
+  alumniOf: {
+    "@type": "CollegeOrUniversity",
+    name: doc.school,
+  },
+  hasCredential: doc.credentials,
+  memberOf: doc.societies.map((name) => ({
+    "@type": "Organization",
+    name,
+  })),
+}));
+
 export default function DoctorPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(physicianJsonLd),
+        }}
+      />
       {/* Hero */}
       <section
         className="flex items-end pb-16 pt-32 md:pb-20 md:pt-40"
