@@ -10,6 +10,44 @@ import SectionReveal from "@/components/SectionReveal";
 
 const SITE_URL = "https://www.ilsanhan.com";
 
+const CATEGORY_INTRO: Record<
+  Category,
+  { title: string; lines: string[] }
+> = {
+  pain: {
+    title: "일산한의원 통증 클리닉",
+    lines: [
+      "교통사고 후유증, 초음파 진단, 초음파약침,",
+      "척추치료, 체형교정추나치료에 특화.",
+      "APCA RMSK 자격 보유 의료진의 초음파 진단.",
+      "연간 18,250건 추나·약침 시술 경험.",
+    ],
+  },
+  diet: {
+    title: "일산한의원 다이어트 클리닉",
+    lines: [
+      "연간 8,000건 이상 한방 다이어트 처방.",
+      "고양시에서 가장 많은 처방 실적.",
+      "체계적인 한방비만치료와 대사증후군 관리.",
+    ],
+  },
+  autonomic: {
+    title: "일산한의원 자율신경 클리닉",
+    lines: [
+      "자율신경실조증, 이명, 두통, 불면,",
+      "기능성소화불량, 과민성대장증후군에 특화.",
+      "한의학적 접근으로 자율신경 균형 회복.",
+    ],
+  },
+  skin: {
+    title: "일산한의원 피부·미용레이저 클리닉",
+    lines: [
+      "피부레이저, 아토피, 피부염, 피부재생에 특화.",
+      "국제레이저미용피부과학회 소속 의료진.",
+    ],
+  },
+};
+
 function toAbsoluteUrl(path: string): string {
   if (!path) return "";
   if (path.startsWith("http")) return path;
@@ -28,6 +66,7 @@ function formatDate(dateStr: string): string {
 export default function CategoryListPage({ category }: { category: Category }) {
   const label = CATEGORY_LABEL[category];
   const description = CATEGORY_DESCRIPTION[category];
+  const intro = CATEGORY_INTRO[category];
   const posts = getAllPosts(category);
 
   const itemListJsonLd = {
@@ -94,8 +133,26 @@ export default function CategoryListPage({ category }: { category: Category }) {
         </div>
       </section>
 
+      {/* Intro */}
+      <section className="section-padding !pb-4">
+        <SectionReveal>
+          <div className="card mx-auto max-w-3xl p-7 text-center">
+            <p className="section-label">Clinic</p>
+            <h2 className="font-serif mt-3 text-[1.15rem] font-semibold text-text">
+              {intro.title}
+            </h2>
+            <div className="gold-divider mx-auto mt-4" />
+            <div className="mt-5 space-y-1.5 body-text">
+              {intro.lines.map((line, i) => (
+                <p key={i}>{line}</p>
+              ))}
+            </div>
+          </div>
+        </SectionReveal>
+      </section>
+
       {/* Posts */}
-      <section className="section-padding">
+      <section className="section-padding !pt-8">
         {posts.length > 0 ? (
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {posts.map((post) => (

@@ -1,4 +1,5 @@
 import SectionReveal from "@/components/SectionReveal";
+import { fetchLatestVideos } from "@/lib/youtube";
 
 export const metadata = {
   title: "유튜브 – 건강 정보 영상",
@@ -10,42 +11,8 @@ export const metadata = {
   },
 };
 
-const videos = [
-  {
-    id: "LVCKZ2Ou1fE",
-    title: "발바닥 통증의 진짜 해법! 족저근막염 치료",
-  },
-  {
-    id: "kQ0PtqhoqEY",
-    title: "아킬레스건 통증! 꼭 치료해야 하는 이유",
-  },
-  {
-    id: "BI2kzHjt-ko",
-    title: "무릎 통증 비싼 연골주사 말고 진짜 치료 방법",
-  },
-  {
-    id: "IveqAQcg9zo",
-    title: "이상근 증후군 좌골신경통증 다리저림 해결",
-  },
-  {
-    id: "2F7Sr5vL7zs",
-    title: "허리통증, 다리저림, 허리협착증 해결법",
-  },
-  {
-    id: "w8a7HXqMSVI",
-    title: "허리 아픈 사람 99%가 모르는 장요근의 비밀",
-  },
-  {
-    id: "8NEzNCxkCGQ",
-    title: "오십견 잘못 스트레칭하면 어깨가 10년 늙습니다",
-  },
-  {
-    id: "mFvI91OAYe4",
-    title: "살 빠지는 뇌로 바뀌는 다이어트 방법",
-  },
-];
-
-export default function MediaPage() {
+export default async function MediaPage() {
+  const videos = await fetchLatestVideos(20);
   return (
     <>
       {/* Hero */}
