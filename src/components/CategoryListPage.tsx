@@ -151,6 +151,48 @@ export default function CategoryListPage({ category }: { category: Category }) {
         </SectionReveal>
       </section>
 
+      {/* Diet 전문 페이지 배너 */}
+      {category === "diet" && (
+        <section className="section-padding !pb-4 !pt-8">
+          <SectionReveal>
+            <a
+              href="https://diet.ilsanhan.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="card group mx-auto flex max-w-3xl items-center justify-between gap-5 p-6 transition-transform duration-200 hover:-translate-y-0.5 sm:p-7"
+            >
+              <div className="min-w-0 flex-1">
+                <p className="section-label">Specialty Site</p>
+                <h2 className="font-serif mt-2 text-[1.05rem] font-semibold leading-snug text-text group-hover:text-accent transition-colors duration-200 sm:text-[1.15rem]">
+                  일산한의원 다이어트 전문 페이지
+                </h2>
+                <p className="mt-2 text-[0.85rem] leading-relaxed text-text-muted">
+                  처방 사례, 비용 안내, 상담 예약까지 한 곳에서 확인하세요.
+                </p>
+              </div>
+              <span
+                aria-hidden="true"
+                className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-border text-accent transition-all duration-200 group-hover:border-accent group-hover:bg-accent group-hover:text-bg"
+              >
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M7 17 17 7" />
+                  <path d="M8 7h9v9" />
+                </svg>
+              </span>
+            </a>
+          </SectionReveal>
+        </section>
+      )}
+
       {/* Posts */}
       <section className="section-padding !pt-8">
         {posts.length > 0 ? (
