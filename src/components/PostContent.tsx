@@ -12,7 +12,7 @@ export default function PostContent({ markdown }: { markdown: string }) {
           const current = imgIndex++;
           const isFirst = current === 0;
           return (
-            <span className="relative my-6 block w-full overflow-hidden rounded-lg">
+            <span className="article-img-wrapper">
               <Image
                 src={src}
                 alt={alt ?? ""}
@@ -21,7 +21,7 @@ export default function PostContent({ markdown }: { markdown: string }) {
                 sizes="(max-width: 768px) 100vw, 768px"
                 priority={isFirst}
                 loading={isFirst ? "eager" : "lazy"}
-                className="h-auto w-full"
+                className="article-img"
               />
             </span>
           );

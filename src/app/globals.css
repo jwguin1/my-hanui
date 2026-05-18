@@ -183,13 +183,154 @@
   }
 
   .prose-custom img {
-    @apply my-6 max-w-full;
+    @apply max-w-full;
     border-radius: 8px;
   }
 
   .prose-custom hr {
     @apply border-border my-8;
   }
+
+  /* Article body images: centered, capped, dark-mode friendly.
+     Patch 5: lower max-height + cap max-width so a single image doesn't
+     fill the screen, and hide the markdown alt text from rendering as
+     visible content (it should only be exposed to assistive tech / on
+     image-load failure, not visually). */
+  .prose-custom .article-img-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 1.5rem auto;
+    max-width: 100%;
+  }
+
+  .prose-custom .article-img {
+    display: block;
+    max-width: 100%;
+    width: auto !important;
+    height: auto !important;
+    /* Patch 6: Next/Image 의 inline style 이 max-height 를 덮을 수 있어
+       !important 강제. 모바일은 아래 @media + 외부 백업 규칙에서 조정. */
+    max-height: 480px !important;
+    border-radius: 8px;
+    object-fit: contain;
+    background-color: var(--color-bg-card);
+    /* Hide alt text from displaying as visible text inside the <img>
+       (some browsers render alt content during lazy-load or on miss). */
+    color: transparent;
+    font-size: 0;
+    line-height: 0;
+  }
+
+  /* Caption: italic-only paragraph immediately after an image paragraph */
+  .prose-custom p:has(> .article-img-wrapper) {
+    margin-bottom: 0;
+  }
+
+  .prose-custom p:has(> .article-img-wrapper) + p:has(> em:only-child) {
+    @apply text-text-muted;
+    text-align: center;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    margin-top: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .prose-custom p:has(> .article-img-wrapper) + p:has(> em:only-child) > em {
+    font-style: italic;
+    font-weight: normal;
+  }
+}
+
+@media (max-width: 768px) {
+  .prose-custom .article-img {
+    max-height: 320px !important;
+  }
+}
+
+/* ──────────────────────────────────────────────────────────────
+   Patch 6: 본문 이미지 사이즈/alt 노출 백업 규칙.
+   `@layer components` 밖이라 cascade 우선순위가 높고, Next/Image 가
+   inline style 로 width/height 를 박아도 max-height 가 적용되도록
+   `!important` 강제. PostContent.tsx 가 출력하는 클래스를 1차로,
+   다른 마크다운 렌더 경로(article img, .prose img) 도 함께 커버.
+   ────────────────────────────────────────────────────────────── */
+.article-img,
+.article-img-wrapper img,
+.prose-custom .article-img,
+.prose-custom .article-img-wrapper img,
+article img:not(.logo):not(.icon) {
+  display: block !important;
+  width: auto !important;
+  height: auto !important;
+  max-width: 100% !important;
+  max-height: 480px !important;
+  object-fit: contain !important;
+  margin: 1.5rem auto !important;
+  border-radius: 8px !important;
+  /* alt 텍스트가 lazy-load / 로드 실패 시 가시 텍스트로 노출되는 것 차단 */
+  color: transparent;
+  font-size: 0;
+  line-height: 0;
+}
+
+@media (max-width: 768px) {
+  .article-img,
+  .article-img-wrapper img,
+  .prose-custom .article-img,
+  .prose-custom .article-img-wrapper img,
+  article img:not(.logo):not(.icon) {
+    max-height: 320px !important;
+  }
+}
+
+.article-img-wrapper {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  margin: 1.5rem auto !important;
+  max-width: 100% !important;
+}
+
+/* ──────────────────────────────────────────────────────────────
+   Patch 8: Figure 캡션이 잘려 표시되는 문제 방어 규칙.
+   - 어느 부모 셀렉터에서 -webkit-line-clamp / max-height / overflow:hidden /
+     text-overflow:ellipsis 가 캐스케이드 되더라도 캡션 줄이 잘리지 않도록 강제 해제.
+   - 캡션은 markdown `*...*` 가 `<em>` 으로 렌더되고, 이미지 다음 단락의
+     em:only-child 가 캡션 노드. 가독성 유지하면서 전문 노출.
+   ────────────────────────────────────────────────────────────── */
+article p:has(> em:only-child),
+.prose-custom p:has(> em:only-child),
+.prose-custom p:has(> .article-img-wrapper) + p:has(> em:only-child) {
+  display: block !important;
+  overflow: visible !important;
+  max-height: none !important;
+  -webkit-line-clamp: unset !important;
+  line-clamp: unset !important;
+  white-space: normal !important;
+  word-break: keep-all;
+  word-wrap: break-word;
+  text-overflow: clip !important;
+  text-align: center;
+  margin-top: 0.5rem;
+  margin-bottom: 1.5rem;
+  padding: 0 0.5rem;
+}
+
+article p > em:only-child,
+.prose-custom p > em:only-child {
+  display: inline !important;
+  overflow: visible !important;
+  max-height: none !important;
+  -webkit-line-clamp: unset !important;
+  line-clamp: unset !important;
+  white-space: normal !important;
+  text-overflow: clip !important;
+  font-style: italic;
+  font-weight: normal;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: var(--color-text-muted);
 }
 
 @keyframes fadeInUp {
