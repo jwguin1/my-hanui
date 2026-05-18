@@ -7,6 +7,7 @@ import {
   toISO8601KST,
 } from "@/lib/blog-local";
 import SectionReveal from "@/components/SectionReveal";
+import { CATEGORY_META } from "@/lib/categories";
 
 const SITE_URL = "https://www.ilsanhan.com";
 
@@ -69,37 +70,47 @@ export default function CategoryListPage({ category }: { category: Category }) {
   const intro = CATEGORY_INTRO[category];
   const posts = getAllPosts(category);
 
+  const categoryOgImage = toAbsoluteUrl(CATEGORY_META[category].ogImage);
+
   const itemListJsonLd = {
     "@context": "https://schema.org",
     "@type": "ItemList",
-    itemListElement: posts.map((post, idx) => ({
-      "@type": "ListItem",
-      position: idx + 1,
-      url: `${SITE_URL}/${category}/${post.slug}`,
-      item: {
-        "@type": "Article",
-        "@id": `${SITE_URL}/${category}/${post.slug}`,
-        headline: post.title,
-        description: post.description,
-        datePublished: toISO8601KST(post.date),
-        dateModified: toISO8601KST(post.date),
-        ...(post.thumbnail ? { image: [toAbsoluteUrl(post.thumbnail)] } : {}),
-        author: {
-          "@type": "Organization",
-          name: "일산한의원",
-          url: SITE_URL,
-        },
-        publisher: {
-          "@type": "Organization",
-          name: "일산한의원",
-          url: SITE_URL,
-        },
-        mainEntityOfPage: {
-          "@type": "WebPage",
+    itemListElement: posts.map((post, idx) => {
+      // 글마다 thumbnail 이 있으면 그 경로, 없으면 카테고리 대표 OG 로 폴백
+      const imageUrl = post.thumbnail
+        ? toAbsoluteUrl(post.thumbnail)
+        : categoryOgImage;
+      return {
+        "@type": "ListItem",
+        position: idx + 1,
+        url: `${SITE_URL}/${category}/${post.slug}`,
+        name: post.title,
+        image: imageUrl,
+        item: {
+          "@type": "Article",
           "@id": `${SITE_URL}/${category}/${post.slug}`,
+          headline: post.title,
+          description: post.description,
+          datePublished: toISO8601KST(post.date),
+          dateModified: toISO8601KST(post.date),
+          image: [imageUrl],
+          author: {
+            "@type": "Organization",
+            name: "일산한의원",
+            url: SITE_URL,
+          },
+          publisher: {
+            "@type": "Organization",
+            name: "일산한의원",
+            url: SITE_URL,
+          },
+          mainEntityOfPage: {
+            "@type": "WebPage",
+            "@id": `${SITE_URL}/${category}/${post.slug}`,
+          },
         },
-      },
-    })),
+      };
+    }),
   };
 
   return (

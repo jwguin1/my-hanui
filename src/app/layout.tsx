@@ -259,6 +259,38 @@ export default function RootLayout({
             }),
           }}
         />
+        {/* 네이버가 사이트 메뉴 구조를 인식하도록 — 전역 적용 */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "SiteNavigationElement",
+              name: [
+                "일산한의원",
+                "의료진",
+                "통증",
+                "다이어트",
+                "자율신경",
+                "피부",
+                "의학칼럼",
+                "유튜브",
+                "오시는 길",
+              ],
+              url: [
+                `${SITE_URL}/about`,
+                `${SITE_URL}/doctor`,
+                `${SITE_URL}/pain`,
+                `${SITE_URL}/diet`,
+                `${SITE_URL}/autonomic`,
+                `${SITE_URL}/skin`,
+                `${SITE_URL}/column`,
+                `${SITE_URL}/media`,
+                `${SITE_URL}/contact`,
+              ],
+            }),
+          }}
+        />
       </head>
       <body>
         <Navigation />

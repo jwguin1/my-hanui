@@ -1,14 +1,41 @@
+import type { Metadata } from "next";
 import DoctorGrid from "@/components/DoctorGrid";
+import { DOCTOR_META } from "@/lib/categories";
 
 const SITE_URL = "https://www.ilsanhan.com";
 
-export const metadata = {
+// 기존 title/description/OG title·desc 는 그대로 유지(더 상세함)하고
+// OG 이미지 · twitter 카드 · canonical 만 병합 추가.
+export const metadata: Metadata = {
   title: "의료진 소개 – 6명의 한의사",
   description:
     "장경진, 남태훈, 박건희, 강민석, 박동석, 이명주. 6명의 한의사가 정성을 다해 진료합니다. 각 원장의 학력, 자격, 학회 활동과 주요 진료 분야를 확인하세요.",
   openGraph: {
     title: "의료진 소개 – 일산한의원 6명의 한의사",
-    description: "장경진, 남태훈, 박건희, 강민석, 박동석, 이명주 원장. 각 원장의 학력·자격·학회 활동과 주요 진료 분야 소개.",
+    description:
+      "장경진, 남태훈, 박건희, 강민석, 박동석, 이명주 원장. 각 원장의 학력·자격·학회 활동과 주요 진료 분야 소개.",
+    url: `${SITE_URL}/doctor`,
+    siteName: "일산한의원",
+    images: [
+      {
+        url: `${SITE_URL}${DOCTOR_META.ogImage}`,
+        width: 1200,
+        height: 630,
+        alt: "일산한의원 6인 한의사 협진 의료진",
+      },
+    ],
+    locale: "ko_KR",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "의료진 소개 – 일산한의원 6명의 한의사",
+    description:
+      "장경진, 남태훈, 박건희, 강민석, 박동석, 이명주 원장. 각 원장의 학력·자격·학회 활동과 주요 진료 분야 소개.",
+    images: [`${SITE_URL}${DOCTOR_META.ogImage}`],
+  },
+  alternates: {
+    canonical: `${SITE_URL}/doctor`,
   },
 };
 

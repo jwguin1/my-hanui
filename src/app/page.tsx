@@ -2,6 +2,7 @@ import Link from "next/link";
 import SectionReveal from "@/components/SectionReveal";
 import { fetchBlogPosts } from "@/lib/blog";
 import { fetchLatestVideos } from "@/lib/youtube";
+import { HOME_ITEM_LIST, SITE_URL } from "@/lib/categories";
 
 const TRUST_STATS = [
   { value: "65,700명", label: "연간 내원 환자" },
@@ -48,6 +49,20 @@ const faqJsonLd = {
       "@type": "Answer",
       text: f.a,
     },
+  })),
+};
+
+// 네이버 사이트 컬렉션(카드 슬라이드) 노출용 — 의료진 1 + 4개 분과 = 총 5개 항목
+const homeItemListJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: "일산한의원 진료 분과 및 의료진",
+  itemListElement: HOME_ITEM_LIST.map((item, idx) => ({
+    "@type": "ListItem",
+    position: idx + 1,
+    url: `${SITE_URL}/${item.slug}`,
+    name: item.fullLabel,
+    image: `${SITE_URL}${item.ogImage}`,
   })),
 };
 
@@ -457,6 +472,12 @@ export default async function Home() {
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(homeItemListJsonLd),
+          }}
         />
       </section>
 
