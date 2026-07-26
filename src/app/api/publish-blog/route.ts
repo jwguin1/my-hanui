@@ -7,6 +7,7 @@ import {
   createPost,
   getPostBySlug,
 } from "@/lib/blog-local";
+import { generateOgImageForPost } from "@/lib/og-render";
 
 const DATA_URL_RE =
   /data:image\/(png|jpe?g|gif|webp|svg\+xml);base64,([A-Za-z0-9+/=]+)/g;
@@ -141,12 +142,22 @@ export async function POST(req: NextRequest) {
     category
   );
 
+  // OG/캐러셀용 파생 이미지(1200x630) 생성. 실패해도 발행 자체는 성공 처리한다.
+  let ogImage: string | null = null;
+  try {
+    const og = await generateOgImageForPost(slug, thumbnail, processedContent);
+    if (og.status === "created" || og.status === "exists") ogImage = og.rel;
+  } catch (e) {
+    console.error(`[publish-blog] og.png 생성 실패 (${slug}):`, e);
+  }
+
   return NextResponse.json(
     {
       success: true,
       slug: post.slug,
       category,
       url: `/${category}/${post.slug}`,
+      ogImage,
     },
     { status: 201 }
   );
