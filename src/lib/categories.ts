@@ -24,28 +24,28 @@ export const CATEGORY_META: Record<Category, CategoryMeta> = {
     fullLabel: "통증 · 근골격계",
     description:
       "근골격계 통증, 신경포착증후군, 초음파 유도 치료 등 일산한의원의 통증·근골격계 의학정보입니다.",
-    ogImage: "/images/pain-og.png",
+    ogImage: "/images/pain-og.jpg",
   },
   autonomic: {
     label: "자율신경",
     fullLabel: "자율신경 · 내과",
     description:
       "자율신경실조증, 이명, 두통, 불면, 기능성소화불량 등 일산한의원의 자율신경·내과 건강정보입니다.",
-    ogImage: "/images/autonomic-og.png",
+    ogImage: "/images/autonomic-og.jpg",
   },
   diet: {
     label: "다이어트",
     fullLabel: "한방비만 · 다이어트",
     description:
       "한방비만치료, 체중감량, 대사증후군 관리. 연간 8,000건+ 처방, 고양시 최다 실적의 일산한의원 다이어트 정보입니다.",
-    ogImage: "/images/diet-og.png",
+    ogImage: "/images/diet-og.jpg",
   },
   skin: {
     label: "피부",
     fullLabel: "피부 · 미용레이저",
     description:
       "피부레이저, 아토피, 피부염, 피부재생 등 일산한의원의 피부·미용레이저 정보입니다.",
-    ogImage: "/images/skin-og.png",
+    ogImage: "/images/skin-og.jpg",
   },
 };
 
@@ -58,7 +58,7 @@ export const DOCTOR_META = {
   description:
     "고양시 유일 6인 한의사 협진 — 장경진·남태훈·박건희·강민석·박동석·이명주",
   // 1200x630 의료진 대표 OG 이미지
-  ogImage: "/images/doctor-og.png",
+  ogImage: "/images/doctor-og.jpg",
 } as const;
 
 /**
