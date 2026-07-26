@@ -1,8 +1,9 @@
 import Link from "next/link";
 import SectionReveal from "@/components/SectionReveal";
-import { fetchBlogPosts } from "@/lib/blog";
+import PostCard from "@/components/PostCard";
 import { fetchLatestVideos } from "@/lib/youtube";
-import { HOME_ITEM_LIST, SITE_URL } from "@/lib/categories";
+import { CATEGORY_META, SITE_URL } from "@/lib/categories";
+import { getLatestPostCards, latestPostsItemListJsonLd } from "@/lib/latest-posts";
 
 const TRUST_STATS = [
   { value: "65,700명", label: "연간 내원 환자" },
@@ -52,22 +53,55 @@ const faqJsonLd = {
   })),
 };
 
-// 네이버 사이트 컬렉션(카드 슬라이드) 노출용 — 의료진 1 + 4개 분과 = 총 5개 항목
-const homeItemListJsonLd = {
+// "진료 범위" 섹션의 단일 소스 — 화면 카드와 아래 ItemList JSON-LD 가 이 배열에서 함께 생성된다.
+const CLINIC_CARDS = [
+  {
+    slug: "pain",
+    badge: "① MSK",
+    heading: "근골격계 · 통증",
+    blurb:
+      "교통사고 후유증, 초음파 진단, 초음파약침 치료, 척추치료, 체형교정추나치료, 약침치료",
+  },
+  {
+    slug: "autonomic",
+    badge: "② 자율신경 · 내과",
+    heading: "자율신경 · 내과",
+    blurb:
+      "자율신경실조증, 기능성소화불량, 불면, 이명, 두통, 스트레스, 과민성대장증후군",
+  },
+  {
+    slug: "diet",
+    badge: "③ 다이어트 · 비만",
+    heading: "한방비만 · 다이어트",
+    blurb:
+      "한방비만치료, 체중감량, 대사증후군 관리. 연간 8,000건 이상 처방 – 고양시 최다 실적.",
+  },
+  {
+    slug: "skin",
+    badge: "④ 피부 · 미용레이저",
+    heading: "피부 · 미용레이저",
+    blurb: "피부레이저, 아토피, 피부염, 피부재생",
+  },
+] as const;
+
+// 네이버 사이트 컬렉션(카드 슬라이드) 노출용 — 화면의 진료 범위 카드 4개와 1:1 대응
+const clinicsItemListJsonLd = {
   "@context": "https://schema.org",
   "@type": "ItemList",
-  name: "일산한의원 진료 분과 및 의료진",
-  itemListElement: HOME_ITEM_LIST.map((item, idx) => ({
+  name: "일산한의원 진료 분과",
+  itemListElement: CLINIC_CARDS.map((card, idx) => ({
     "@type": "ListItem",
     position: idx + 1,
-    url: `${SITE_URL}/${item.slug}`,
-    name: item.fullLabel,
-    image: `${SITE_URL}${item.ogImage}`,
+    url: `${SITE_URL}/${card.slug}`,
+    name: card.heading,
+    image: `${SITE_URL}${CATEGORY_META[card.slug].ogImage}`,
   })),
 };
 
 export default async function Home() {
-  const posts = (await fetchBlogPosts()).slice(0, 3);
+  // 화면 카드와 ItemList JSON-LD 의 유일한 출처 (개수·순서·제목이 반드시 일치해야 함)
+  const postCards = getLatestPostCards(5);
+  const postsItemListJsonLd = latestPostsItemListJsonLd(postCards);
   const videos = await fetchLatestVideos(3);
   return (
     <>
@@ -221,60 +255,21 @@ export default async function Home() {
           </div>
 
           <div className="mx-auto mt-14 grid max-w-5xl gap-5 sm:grid-cols-2">
-            <Link
-              href="/pain"
-              className="card group block p-7 transition-transform duration-200 hover:-translate-y-1"
-            >
-              <p className="text-[0.8rem] text-accent">① MSK</p>
-              <h3 className="font-serif mt-2 text-[1.15rem] font-semibold text-text group-hover:text-accent transition-colors">
-                근골격계 · 통증
-              </h3>
-              <p className="body-text mt-3" style={{ lineHeight: 1.9 }}>
-                교통사고 후유증, 초음파 진단, 초음파약침 치료,
-                척추치료, 체형교정추나치료, 약침치료
-              </p>
-            </Link>
-
-            <Link
-              href="/autonomic"
-              className="card group block p-7 transition-transform duration-200 hover:-translate-y-1"
-            >
-              <p className="text-[0.8rem] text-accent">② 자율신경 · 내과</p>
-              <h3 className="font-serif mt-2 text-[1.15rem] font-semibold text-text group-hover:text-accent transition-colors">
-                자율신경 · 내과
-              </h3>
-              <p className="body-text mt-3" style={{ lineHeight: 1.9 }}>
-                자율신경실조증, 기능성소화불량, 불면, 이명, 두통,
-                스트레스, 과민성대장증후군
-              </p>
-            </Link>
-
-            <Link
-              href="/diet"
-              className="card group block p-7 transition-transform duration-200 hover:-translate-y-1"
-            >
-              <p className="text-[0.8rem] text-accent">③ 다이어트 · 비만</p>
-              <h3 className="font-serif mt-2 text-[1.15rem] font-semibold text-text group-hover:text-accent transition-colors">
-                한방비만 · 다이어트
-              </h3>
-              <p className="body-text mt-3" style={{ lineHeight: 1.9 }}>
-                한방비만치료, 체중감량, 대사증후군 관리.
-                연간 8,000건 이상 처방 – 고양시 최다 실적.
-              </p>
-            </Link>
-
-            <Link
-              href="/skin"
-              className="card group block p-7 transition-transform duration-200 hover:-translate-y-1"
-            >
-              <p className="text-[0.8rem] text-accent">④ 피부 · 미용레이저</p>
-              <h3 className="font-serif mt-2 text-[1.15rem] font-semibold text-text group-hover:text-accent transition-colors">
-                피부 · 미용레이저
-              </h3>
-              <p className="body-text mt-3" style={{ lineHeight: 1.9 }}>
-                피부레이저, 아토피, 피부염, 피부재생
-              </p>
-            </Link>
+            {CLINIC_CARDS.map((card) => (
+              <Link
+                key={card.slug}
+                href={`/${card.slug}`}
+                className="card group block p-7 transition-transform duration-200 hover:-translate-y-1"
+              >
+                <p className="text-[0.8rem] text-accent">{card.badge}</p>
+                <h3 className="font-serif mt-2 text-[1.15rem] font-semibold text-text group-hover:text-accent transition-colors">
+                  {card.heading}
+                </h3>
+                <p className="body-text mt-3" style={{ lineHeight: 1.9 }}>
+                  {card.blurb}
+                </p>
+              </Link>
+            ))}
           </div>
         </SectionReveal>
       </section>
@@ -325,55 +320,38 @@ export default async function Home() {
         </SectionReveal>
       </section>
 
-      {/* ── Column (Blog) ── */}
-      {posts.length > 0 && (
+      {/* ── 최신 의학정보 (자사 상세글) ── */}
+      {postCards.length > 0 && (
         <section className="section-padding !pt-8">
           <SectionReveal>
-            <p className="section-label text-center">Column</p>
-            <h2 className="heading-lg mt-4 text-center">의학칼럼</h2>
+            <p className="section-label text-center">Insights</p>
+            <h2 className="heading-lg mt-4 text-center">최신 의학정보</h2>
+            <p className="body-text mt-6 text-center">
+              진료 현장에서 마주한 사례와 최신 연구를 정리합니다
+            </p>
 
             <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-              {posts.map((post, i) => (
-                <a
-                  key={i}
-                  href={post.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="card group flex flex-col overflow-hidden transition-transform duration-200 hover:-translate-y-1"
-                >
-                  {post.thumbnail ? (
-                    <div className="relative aspect-square overflow-hidden bg-bg">
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img
-                        src={post.thumbnail}
-                        alt={post.title}
-                        referrerPolicy="no-referrer"
-                        className="h-full w-full object-cover"
-                      />
-                    </div>
-                  ) : (
-                    <div className="flex aspect-square items-center justify-center bg-bg">
-                      <span className="text-2xl">📝</span>
-                    </div>
-                  )}
-                  <div className="p-5">
-                    <h3 className="font-serif text-[1rem] font-semibold leading-snug text-text line-clamp-2 group-hover:text-accent transition-colors duration-200">
-                      {post.title}
-                    </h3>
-                    <p className="mt-2 text-[0.82rem] leading-relaxed text-text-muted line-clamp-2">
-                      {post.description}
-                    </p>
-                  </div>
-                </a>
+              {postCards.map((post) => (
+                <PostCard key={post.slug} post={post} />
               ))}
             </div>
 
-            <div className="mt-10 text-center">
+            <div className="mt-10 flex flex-wrap justify-center gap-4">
+              <Link href="/blog" className="btn-ghost">
+                글 더보기
+              </Link>
               <Link href="/column" className="btn-ghost">
-                칼럼 더보기
+                네이버 의학칼럼
               </Link>
             </div>
           </SectionReveal>
+
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify(postsItemListJsonLd),
+            }}
+          />
         </section>
       )}
 
@@ -476,7 +454,7 @@ export default async function Home() {
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify(homeItemListJsonLd),
+            __html: JSON.stringify(clinicsItemListJsonLd),
           }}
         />
       </section>

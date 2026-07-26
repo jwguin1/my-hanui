@@ -61,15 +61,6 @@ export const DOCTOR_META = {
   ogImage: "/images/doctor-og.png",
 } as const;
 
-// 홈 ItemList JSON-LD 용 통합 목록 — 의료진을 맨 앞에 배치 (총 5개 항목)
-export const HOME_ITEM_LIST = [
-  DOCTOR_META,
-  { slug: "pain", ...CATEGORY_META.pain },
-  { slug: "autonomic", ...CATEGORY_META.autonomic },
-  { slug: "diet", ...CATEGORY_META.diet },
-  { slug: "skin", ...CATEGORY_META.skin },
-];
-
 /**
  * 카테고리 목록 페이지(/pain 등)용 Next.js Metadata 를 CATEGORY_META 에서 생성.
  *
