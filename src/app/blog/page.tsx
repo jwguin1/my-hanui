@@ -7,24 +7,19 @@ import {
   toISO8601KST,
 } from "@/lib/blog-local";
 import SectionReveal from "@/components/SectionReveal";
+import { pageMetadata } from "@/lib/page-metadata";
 
 const SITE_URL = "https://www.ilsanhan.com";
 
 export const revalidate = 60;
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
+  path: "/blog",
   title: "전체 글 아카이브",
   description:
     "일산한의원이 발행한 모든 카테고리(통증·다이어트·자율신경·피부)의 글을 한자리에서 확인하세요.",
-  openGraph: {
-    title: "전체 글 아카이브 | 일산한의원",
-    description:
-      "일산한의원이 발행한 모든 카테고리(통증·다이어트·자율신경·피부)의 글을 한자리에서 확인하세요.",
-  },
-  alternates: {
-    canonical: `${SITE_URL}/blog`,
-  },
-};
+  ogTitle: "전체 글 아카이브 | 일산한의원",
+});
 
 function toAbsoluteUrl(p: string): string {
   if (!p) return "";

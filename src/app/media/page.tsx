@@ -1,15 +1,16 @@
+import type { Metadata } from "next";
 import SectionReveal from "@/components/SectionReveal";
 import { fetchLatestVideos } from "@/lib/youtube";
+import { pageMetadata } from "@/lib/page-metadata";
 
-export const metadata = {
+export const metadata: Metadata = pageMetadata({
+  path: "/media",
   title: "유튜브 – 건강 정보 영상",
   description:
     "일산한의원 유튜브 채널. 족저근막염, 아킬레스건, 무릎통증, 허리디스크, 오십견 등 통증 치료와 건강 정보를 영상으로 전합니다.",
-  openGraph: {
-    title: "유튜브 – 일산한의원 건강 정보 영상",
-    description: "통증 치료와 건강 정보를 영상으로 쉽게 전합니다.",
-  },
-};
+  ogTitle: "유튜브 – 일산한의원 건강 정보 영상",
+  ogDescription: "통증 치료와 건강 정보를 영상으로 쉽게 전합니다.",
+});
 
 export default async function MediaPage() {
   const videos = await fetchLatestVideos(20);

@@ -1,14 +1,16 @@
+import type { Metadata } from "next";
 import SectionReveal from "@/components/SectionReveal";
+import { pageMetadata } from "@/lib/page-metadata";
 
-export const metadata = {
+export const metadata: Metadata = pageMetadata({
+  path: "/contact",
   title: "오시는 길 – 위치, 진료시간, 주차안내",
   description:
     "경기 고양시 일산동구 무궁화로 237 이마트 풍산점 3층. 경의중앙선 풍산역 2번 출구 도보 1분. 무료주차 3시간. 평일 10:00-20:00, 토일 10:00-16:00. 031-976-7706.",
-  openGraph: {
-    title: "오시는 길 – 일산한의원 위치, 진료시간",
-    description: "이마트 풍산점 3층. 풍산역 도보 1분. 무료주차 3시간. 031-976-7706.",
-  },
-};
+  ogTitle: "오시는 길 – 일산한의원 위치, 진료시간",
+  ogDescription:
+    "이마트 풍산점 3층. 풍산역 도보 1분. 무료주차 3시간. 031-976-7706.",
+});
 
 export default function ContactPage() {
   return (

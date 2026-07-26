@@ -1,14 +1,16 @@
+import type { Metadata } from "next";
 import SectionReveal from "@/components/SectionReveal";
+import { pageMetadata } from "@/lib/page-metadata";
 
-export const metadata = {
+export const metadata: Metadata = pageMetadata({
+  path: "/treatment",
   title: "진료 안내 – 한약, 침, 추나, 약침",
   description:
     "일산한의원 진료 안내. 한약처방, 침치료, 추나요법, 약침치료, 뜸, 부항. 건강보험 적용 진료. 초음파 정밀 진단으로 정확한 치료를 제공합니다.",
-  openGraph: {
-    title: "진료 안내 – 일산한의원",
-    description: "한약처방, 침치료, 추나요법, 약침치료. 건강보험 적용, 초음파 정밀 진단.",
-  },
-};
+  ogTitle: "진료 안내 – 일산한의원",
+  ogDescription:
+    "한약처방, 침치료, 추나요법, 약침치료. 건강보험 적용, 초음파 정밀 진단.",
+});
 
 const treatments = [
   {
