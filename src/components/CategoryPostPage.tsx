@@ -9,6 +9,8 @@ import {
   toISO8601KST,
 } from "@/lib/blog-local";
 import PostContent from "@/components/PostContent";
+import { CATEGORY_META } from "@/lib/categories";
+import { postImagePath } from "@/lib/og-image";
 
 const SITE_URL = "https://www.ilsanhan.com";
 
@@ -35,11 +37,15 @@ export default function CategoryPostPage({
   const linkedContent = autoLinkMarkdown(post.content, slug);
   const relatedPosts = getRelatedPosts(slug, 3, category);
 
-  const absoluteImage = post.thumbnail
-    ? post.thumbnail.startsWith("http")
-      ? post.thumbnail
-      : `${SITE_URL}${post.thumbnail.startsWith("/") ? "" : "/"}${post.thumbnail}`
-    : "";
+  // 파생 OG(1200x630) → 원본 썸네일 → 카테고리 대표 OG 순으로 폴백
+  const imagePath = postImagePath(
+    slug,
+    post.thumbnail,
+    CATEGORY_META[category].ogImage
+  );
+  const absoluteImage = imagePath.startsWith("http")
+    ? imagePath
+    : `${SITE_URL}${imagePath.startsWith("/") ? "" : "/"}${imagePath}`;
 
   return (
     <>

@@ -8,6 +8,7 @@ import {
 } from "@/lib/blog-local";
 import SectionReveal from "@/components/SectionReveal";
 import { CATEGORY_META } from "@/lib/categories";
+import { postImagePath } from "@/lib/og-image";
 
 const SITE_URL = "https://www.ilsanhan.com";
 
@@ -70,16 +71,14 @@ export default function CategoryListPage({ category }: { category: Category }) {
   const intro = CATEGORY_INTRO[category];
   const posts = getAllPosts(category);
 
-  const categoryOgImage = toAbsoluteUrl(CATEGORY_META[category].ogImage);
-
   const itemListJsonLd = {
     "@context": "https://schema.org",
     "@type": "ItemList",
     itemListElement: posts.map((post, idx) => {
-      // 글마다 thumbnail 이 있으면 그 경로, 없으면 카테고리 대표 OG 로 폴백
-      const imageUrl = post.thumbnail
-        ? toAbsoluteUrl(post.thumbnail)
-        : categoryOgImage;
+      // 파생 OG(1200x630) → 원본 썸네일 → 카테고리 대표 OG 순으로 폴백
+      const imageUrl = toAbsoluteUrl(
+        postImagePath(post.slug, post.thumbnail, CATEGORY_META[category].ogImage)
+      );
       return {
         "@type": "ListItem",
         position: idx + 1,
