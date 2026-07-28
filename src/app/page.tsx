@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Hero from "@/components/Hero";
 import SectionReveal from "@/components/SectionReveal";
 import PostCard from "@/components/PostCard";
 import { fetchLatestVideos } from "@/lib/youtube";
@@ -106,61 +107,7 @@ export default async function Home() {
   return (
     <>
       {/* ── Hero ── */}
-      <section className="relative flex min-h-[70vh] items-end justify-center overflow-hidden">
-        <div className="absolute inset-0 bg-hero-overlay" />
-        <div
-          className="absolute inset-0"
-          style={{
-            background:
-              "linear-gradient(to bottom, transparent 40%, rgba(14,14,14,0.7) 70%, #0e0e0e 100%)",
-          }}
-        />
-
-        <div className="relative z-10 mx-auto max-w-[1100px] px-6 pb-20 text-center">
-          <p
-            className="fade-in text-[0.85rem] text-text-muted"
-            style={{ letterSpacing: "0.15em" }}
-          >
-            일산한의원
-          </p>
-          <p
-            className="fade-in mt-3 text-[0.95rem] text-accent"
-            style={{ animationDelay: "0.15s", letterSpacing: "0.1em" }}
-          >
-            매 순간 최선을 다해 진료합니다
-          </p>
-          <h1
-            className="fade-in heading-xl mt-5"
-            style={{ animationDelay: "0.3s" }}
-          >
-            몸과 마음이
-            <br />
-            편안해지는 곳
-          </h1>
-          <div
-            className="fade-in gold-divider mx-auto mt-8"
-            style={{ animationDelay: "0.45s" }}
-          />
-          <p
-            className="fade-in mt-6 text-[1rem] text-text-muted"
-            style={{ animationDelay: "0.55s" }}
-          >
-            이마트 풍산점 3층 · 풍산역 도보 1분
-          </p>
-        </div>
-
-        {/* Scroll indicator */}
-        <div className="absolute bottom-6 left-1/2 -translate-x-1/2">
-          <div
-            className="h-12 w-px"
-            style={{
-              background:
-                "linear-gradient(to bottom, var(--color-accent), transparent)",
-              animation: "scrollDown 2s infinite",
-            }}
-          />
-        </div>
-      </section>
+      <Hero />
 
       {/* ── Trust Indicators ── */}
       <section className="section-padding">

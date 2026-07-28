@@ -10,8 +10,39 @@
   --color-accent: #c8a96e;
   --color-accent-light: #dfc18f;
   --color-hero-overlay: #151515;
+
+  /* ── 리디자인 토큰 (라이트 웜) ──
+     위 다크 계열 변수는 기존 섹션이 사용 중이므로 유지한다. 신규 컴포넌트는 아래만 사용.
+     --bg 는 기존 --color-bg(다크)와 키가 겹쳐 덮어쓰지 않고, 신규 컴포넌트에서
+     bg-[var(--bg)] 형태로 참조한다. */
+  --color-surface: #f7f2ea;
+  --color-card: #ffffff;
+  --color-line: #efe7db;
+  --color-ink: #2a211a;
+  --color-primary: #6b4226;
+  --color-tan: #8a5f38;
+  --color-tan-soft: #b99b72;
+  --color-brush: #dcc7a6;
+  --color-muted: #857c73;
+  --color-ok: #1d9e75;
+
   --font-body: "Pretendard", var(--font-serif-kr, "Noto Serif KR"), -apple-system, sans-serif;
   --font-serif: var(--font-serif-kr, "Noto Serif KR"), Georgia, serif;
+}
+
+/* 리디자인 토큰 원본값 — 유틸리티로 표현하기 어려운 지점에서 var()로 직접 참조 */
+:root {
+  --bg: #fdfbf7;
+  --surface: #f7f2ea;
+  --card: #ffffff;
+  --line: #efe7db;
+  --ink: #2a211a;
+  --primary: #6b4226;
+  --tan: #8a5f38;
+  --tan-soft: #b99b72;
+  --brush: #dcc7a6;
+  --muted: #857c73;
+  --ok: #1d9e75;
 }
 
 @layer base {

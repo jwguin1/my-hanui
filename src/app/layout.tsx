@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import Navigation from "@/components/Navigation";
+import SiteHeader from "@/components/SiteHeader";
 import Footer from "@/components/Footer";
 import KakaoButton from "@/components/KakaoButton";
 
@@ -296,7 +296,7 @@ export default function RootLayout({
         />
       </head>
       <body>
-        <Navigation />
+        <SiteHeader />
         <main>{children}</main>
         <Footer />
         <KakaoButton />
