@@ -116,7 +116,7 @@ export default function RootLayout({
               name: "일산한의원",
               alternateName: "일산한의원 이마트풍산점",
               description:
-                "고양시 최대 규모, 유일한 6인 한의사 협진. 근골격계, 자율신경, 다이어트, 피부레이저 특화. 연간 65,700명 내원. 고양시 최다 한방 다이어트 처방.",
+                "6인의 한의사가 4개 분과를 협진합니다. 근골격계, 자율신경, 다이어트, 피부레이저 특화. 연간 65,700명 내원. 연간 8,000건 이상 한방 다이어트 처방.",
               url: SITE_URL,
               image: `${SITE_URL}/og-image.jpg`,
               priceRange: "₩₩",

@@ -23,7 +23,7 @@ export default async function ColumnPage() {
         className="flex items-end pb-16 pt-32 md:pb-20 md:pt-40"
         style={{
           background:
-            "linear-gradient(180deg, #151515 0%, var(--color-bg) 100%)",
+            "linear-gradient(180deg, var(--surface) 0%, var(--color-bg) 100%)",
         }}
       >
         <div className="section-padding w-full !py-0 text-center">

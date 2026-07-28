@@ -1,20 +1,20 @@
 @import "tailwindcss";
 
 @theme {
-  --color-bg: #0e0e0e;
-  --color-bg-card: #1a1a1a;
-  --color-bg-card-hover: #222222;
-  --color-border: #2a2a2a;
-  --color-text: #e8e0d4;
-  --color-text-muted: #9a9084;
-  --color-accent: #c8a96e;
-  --color-accent-light: #dfc18f;
-  --color-hero-overlay: #151515;
+  /* ── 레거시 키 → 라이트 웜 값으로 재정의 ──
+     bg-bg / text-text / .card / .prose-custom 등 기존 클래스가 사이트 전역에서
+     이 키들을 참조한다. 키를 지우면 홈 외 페이지가 스타일을 통째로 잃으므로,
+     키는 유지하고 값만 라이트 팔레트로 교체한다. 다크 값은 한 곳도 남지 않는다. */
+  --color-bg: #fdfbf7;
+  --color-bg-card: #ffffff;
+  --color-bg-card-hover: #f7f2ea;
+  --color-border: #efe7db;
+  --color-text: #2a211a;
+  --color-text-muted: #857c73;
+  --color-accent: #6b4226;
+  --color-accent-light: #8a5f38;
 
-  /* ── 리디자인 토큰 (라이트 웜) ──
-     위 다크 계열 변수는 기존 섹션이 사용 중이므로 유지한다. 신규 컴포넌트는 아래만 사용.
-     --bg 는 기존 --color-bg(다크)와 키가 겹쳐 덮어쓰지 않고, 신규 컴포넌트에서
-     bg-[var(--bg)] 형태로 참조한다. */
+  /* ── 리디자인 토큰 (라이트 웜) ── */
   --color-surface: #f7f2ea;
   --color-card: #ffffff;
   --color-line: #efe7db;
@@ -59,7 +59,7 @@
   }
 
   ::selection {
-    background: rgba(200, 169, 110, 0.3);
+    background: rgba(220, 199, 166, 0.5);
   }
 }
 
@@ -102,7 +102,7 @@
 
   .card {
     @apply bg-bg-card border border-border transition-all duration-200;
-    border-radius: 10px;
+    border-radius: 16px;
   }
 
   .card:hover {

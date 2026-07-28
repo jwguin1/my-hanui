@@ -101,6 +101,65 @@ export function Phone(props: IconProps) {
   );
 }
 
+export function ChartBar(props: IconProps) {
+  return (
+    <Base {...props}>
+      <path d="M4 20h16" />
+      <rect x="5.5" y="11" width="3.4" height="6" rx="1" />
+      <rect x="10.8" y="7" width="3.4" height="10" rx="1" />
+      <rect x="16.1" y="4" width="3.4" height="13" rx="1" />
+    </Base>
+  );
+}
+
+export function ListCheck(props: IconProps) {
+  return (
+    <Base {...props}>
+      <path d="M10.5 6.5h9M10.5 12h9M10.5 17.5h9" />
+      <path d="M4 6.2l1.4 1.4L8 5M4 17.2l1.4 1.4L8 16" />
+    </Base>
+  );
+}
+
+export function Quote(props: IconProps) {
+  return (
+    <Base {...props}>
+      <path d="M9.5 6.5C6.9 7.6 5.5 9.8 5.5 13v4.5h5V12H8c0-1.9.6-3.2 1.5-3.9z" />
+      <path d="M18.5 6.5C15.9 7.6 14.5 9.8 14.5 13v4.5h5V12H17c0-1.9.6-3.2 1.5-3.9z" />
+    </Base>
+  );
+}
+
+export function Microscope(props: IconProps) {
+  return (
+    <Base {...props}>
+      <path d="M6 20h14" />
+      <path d="M9 20a6 6 0 0 0 6-6" />
+      <path d="M10.6 4.6l3.4-1.4 2.8 6.6-3.4 1.4z" />
+      <path d="M12.4 10.6l1.6 3.6" />
+      <path d="M7.5 14.5h4" />
+    </Base>
+  );
+}
+
+export function PlayerPlay(props: IconProps) {
+  return (
+    <Base {...props}>
+      <path d="M8.5 5.6l10 6.4-10 6.4z" />
+    </Base>
+  );
+}
+
+export function HelpCircle(props: IconProps) {
+  return (
+    <Base {...props}>
+      <circle cx="12" cy="12" r="8.5" />
+      <path d="M9.8 9.6a2.3 2.3 0 1 1 3.1 2.2c-.6.3-.9.8-.9 1.5v.4" />
+      <path d="M12 16.9h.01" />
+    </Base>
+  );
+}
+
 export function Menu(props: IconProps) {
   return (
     <Base {...props}>

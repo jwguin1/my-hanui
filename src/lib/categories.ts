@@ -37,7 +37,7 @@ export const CATEGORY_META: Record<Category, CategoryMeta> = {
     label: "다이어트",
     fullLabel: "한방비만 · 다이어트",
     description:
-      "한방비만치료, 체중감량, 대사증후군 관리. 연간 8,000건+ 처방, 고양시 최다 실적의 일산한의원 다이어트 정보입니다.",
+      "한방비만치료, 체중감량, 대사증후군 관리. 연간 8,000건 이상 처방, 일산한의원 다이어트 정보입니다.",
     ogImage: "/images/diet-og.jpg",
   },
   skin: {
@@ -56,7 +56,7 @@ export const DOCTOR_META = {
   label: "의료진",
   fullLabel: "6인 한의사 협진 의료진",
   description:
-    "고양시 유일 6인 한의사 협진 — 장경진·남태훈·박건희·강민석·박동석·이명주",
+    "6인 한의사 협진 — 장경진·남태훈·박건희·강민석·박동석·이명주",
   // 1200x630 의료진 대표 OG 이미지
   ogImage: "/images/doctor-og.jpg",
 } as const;

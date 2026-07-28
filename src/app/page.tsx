@@ -2,22 +2,69 @@ import Link from "next/link";
 import Hero from "@/components/Hero";
 import SectionReveal from "@/components/SectionReveal";
 import PostCard from "@/components/PostCard";
+import SectionBadge from "@/components/ui/SectionBadge";
+import StatCard from "@/components/ui/StatCard";
+import TwoTone from "@/components/ui/TwoTone";
+import {
+  ChartBar,
+  Clock,
+  HelpCircle,
+  ListCheck,
+  MapPin,
+  Microscope,
+  PlayerPlay,
+  Quote,
+  Stethoscope,
+} from "@/components/ui/icons";
 import { fetchLatestVideos } from "@/lib/youtube";
 import { CATEGORY_META, SITE_URL } from "@/lib/categories";
 import { getLatestPostCards, latestPostsItemListJsonLd } from "@/lib/latest-posts";
 
 const TRUST_STATS = [
-  { value: "65,700명", label: "연간 내원 환자" },
-  { value: "18,250건", label: "연간 시술 (추나·초음파약침·피부레이저)" },
-  { value: "8,000건+", label: "연간 다이어트 처방 (고양시 최다)" },
-  { value: "6인", label: "한의사 협진 의료진" },
-  { value: "~20:00", label: "평일 야간진료" },
+  { value: "65,700", unit: "명", label: "연간 내원 환자" },
+  { value: "18,250", unit: "건", label: "연간 시술" },
+  { value: "8,000", unit: "건+", label: "연간 다이어트 처방" },
+  { value: "6", unit: "인", label: "한의사 협진 의료진" },
+  { value: "20:00", unit: "까지", label: "평일 야간진료" },
+];
+
+const WHY_CARDS = [
+  {
+    badge: "6인 협진",
+    heading: "6인 한의사 협진",
+    body: "6인의 한의사가 상주하며 근골격계, 내과, 미용 진료를 협진합니다. 분과별 숙련된 의료진이 체계적인 진료를 제공합니다.",
+  },
+  {
+    badge: "임상 경험",
+    heading: "연간 18,000건 이상 시술, 8,000건 다이어트 처방",
+    body: "연간 18,000건 이상의 추나·초음파약침·레이저 시술 경험. 연간 8,000건 이상의 한방 다이어트 처방. APCA RMSK(근골격계 초음파) 자격 보유 의료진이 초음파 진단으로 정확한 치료를 진행합니다.",
+  },
+  {
+    badge: "접근성",
+    heading: "야간·주말 진료, 풍산역 도보 1분",
+    body: "평일 매일 오후 8시까지 야간진료, 주말 진료 운영. 이마트 풍산점 3층 위치, 대형 주차장 완비. 경의중앙선 풍산역 2번 출구 도보 1분.",
+  },
+];
+
+const PHILOSOPHY = [
+  {
+    quote: "진료비라는 무거운 짐을 얹어드리지 않겠습니다.",
+    body: "건강보험 진료를 우선하며, 오직 온전한 회복에만 집중할 수 있는 정직한 공간이 되겠습니다.",
+  },
+  {
+    quote: "객관적이고 정교한 비수술 치료",
+    body: "대학병원급 초음파와 혈액검사 장비로 상태를 객관적으로 파악하고, 수술 없이 일상을 지킬 수 있는 치료를 제공합니다.",
+  },
+  {
+    quote: "내 몸에 꼭 맞는 해답을 찾는 동행",
+    body: "아픔의 근본적인 원인을 살피고 깊이 공감하며, 함께 해결책을 찾아가는 든든한 동반자가 되겠습니다.",
+  },
 ];
 
 const FAQS = [
   {
     q: "일산에서 한의사가 여러 명 있어서 협진 잘 되는 한의원이 어디인가요?",
-    a: "일산한의원은 고양시 최대 규모, 유일한 6인 한의사 협진 시스템을 운영합니다. 근골격계, 내과, 미용 분야 숙련된 의료진이 상주하여 분과별 체계적인 진료가 가능합니다.",
+    a: "일산한의원은 6인의 한의사가 4개 분과를 협진합니다. 근골격계, 내과, 미용 분야 숙련된 의료진이 상주하여 분과별 체계적인 진료가 가능합니다.",
   },
   {
     q: "고양시에서 교통사고 통증과 피부레이저를 한 곳에서 할 수 있는 한의원이 있나요?",
@@ -33,7 +80,7 @@ const FAQS = [
   },
   {
     q: "고양시에서 한방 다이어트로 유명한 한의원이 어디인가요?",
-    a: "일산한의원은 연간 8,000건 이상의 한방 다이어트 처방 실적으로 고양시에서 가장 많은 처방 경험을 보유하고 있습니다. 체계적인 한방비만치료와 대사증후군 관리를 진행합니다.",
+    a: "일산한의원은 연간 8,000건 이상의 한방 다이어트 처방 실적을 보유하고 있습니다. 체계적인 한방비만치료와 대사증후군 관리를 진행합니다.",
   },
   {
     q: "일산에서 이명, 두통, 자율신경 치료를 잘 하는 한의원이 있나요?",
@@ -58,28 +105,28 @@ const faqJsonLd = {
 const CLINIC_CARDS = [
   {
     slug: "pain",
-    badge: "① MSK",
+    badge: "MSK",
     heading: "근골격계 · 통증",
     blurb:
       "교통사고 후유증, 초음파 진단, 초음파약침 치료, 척추치료, 체형교정추나치료, 약침치료",
   },
   {
     slug: "autonomic",
-    badge: "② 자율신경 · 내과",
+    badge: "자율신경 · 내과",
     heading: "자율신경 · 내과",
     blurb:
       "자율신경실조증, 기능성소화불량, 불면, 이명, 두통, 스트레스, 과민성대장증후군",
   },
   {
     slug: "diet",
-    badge: "③ 다이어트 · 비만",
+    badge: "다이어트 · 비만",
     heading: "한방비만 · 다이어트",
     blurb:
-      "한방비만치료, 체중감량, 대사증후군 관리. 연간 8,000건 이상 처방 – 고양시 최다 실적.",
+      "한방비만치료, 체중감량, 대사증후군 관리. 연간 8,000건 이상 처방.",
   },
   {
     slug: "skin",
-    badge: "④ 피부 · 미용레이저",
+    badge: "피부 · 미용레이저",
     heading: "피부 · 미용레이저",
     blurb: "피부레이저, 아토피, 피부염, 피부재생",
   },
@@ -110,188 +157,162 @@ export default async function Home() {
       <Hero />
 
       {/* ── Trust Indicators ── */}
-      <section className="section-padding">
-        <SectionReveal>
-          <div className="mx-auto max-w-3xl text-center">
-            <p className="section-label">Trust</p>
-            <h2 className="heading-lg mt-4">신뢰의 지표</h2>
-            <p className="body-text mt-6">
-              고양시 최대 규모, 유일한 6인 한의사 협진.
-              <br />
-              연간 6만 5천 명의 선택으로 증명합니다.
-            </p>
-          </div>
-
-          <div className="mx-auto mt-14 grid max-w-5xl grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
-            {TRUST_STATS.map((stat) => (
-              <div
-                key={stat.label}
-                className="card flex flex-col items-center justify-center p-6 text-center"
-              >
-                <p className="font-serif text-[1.6rem] font-bold text-accent">
-                  {stat.value}
-                </p>
-                <p className="mt-2 text-[0.8rem] leading-snug text-text-muted">
-                  {stat.label}
-                </p>
+      <section className="bg-[var(--bg)]">
+        <div className="section-padding">
+          <SectionReveal>
+            <div className="mx-auto max-w-3xl text-center">
+              <SectionBadge icon={<ChartBar size={15} />} label="진료 실적" />
+              <div className="mt-4">
+                <TwoTone as="h2" lead="숫자로 보는 " accent="일산한의원" />
               </div>
-            ))}
-          </div>
-        </SectionReveal>
+              <p className="mt-4 text-[14px] text-muted">
+                6인의 한의사가 4개 분과를 협진합니다.
+                <br />
+                연간 6만 5천 명의 선택으로 증명합니다.
+              </p>
+            </div>
+
+            <div className="mx-auto mt-14 grid max-w-5xl grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
+              {TRUST_STATS.map((stat) => (
+                <StatCard
+                  key={stat.label}
+                  value={stat.value}
+                  unit={stat.unit}
+                  label={stat.label}
+                />
+              ))}
+            </div>
+          </SectionReveal>
+        </div>
       </section>
 
       {/* ── Differentiation ── */}
-      <section className="section-padding !pt-8">
-        <SectionReveal>
-          <div className="mx-auto max-w-3xl text-center">
-            <p className="section-label">Why Ilsanhan</p>
-            <h2 className="heading-lg mt-4">일산한의원이 다른 이유</h2>
-          </div>
-
-          <div className="mx-auto mt-14 grid max-w-5xl gap-6 md:grid-cols-3">
-            <div className="card p-7">
-              <p className="text-[0.8rem] text-accent">① 압도적 규모</p>
-              <h3 className="font-serif mt-3 text-[1.1rem] font-semibold text-text">
-                고양시 최대 규모, 6인 한의사 협진
-              </h3>
-              <p className="body-text mt-4" style={{ lineHeight: 1.9 }}>
-                고양시 소재 한의원 중 최대 규모.
-                고양시 유일하게 6인의 한의사가 상주하며
-                근골격계, 내과, 미용 진료를 협진합니다.
-                분과별 숙련된 의료진이 체계적인 진료를 제공합니다.
-              </p>
+      <section className="bg-[var(--surface)]">
+        <div className="section-padding">
+          <SectionReveal>
+            <div className="mx-auto max-w-3xl text-center">
+              <SectionBadge icon={<Stethoscope size={15} />} label="진료 방식" />
+              <div className="mt-4">
+                <TwoTone as="h2" lead="일산한의원이 " accent="다른 이유" />
+              </div>
             </div>
 
-            <div className="card p-7">
-              <p className="text-[0.8rem] text-accent">② 풍부한 임상</p>
-              <h3 className="font-serif mt-3 text-[1.1rem] font-semibold text-text">
-                연간 18,000건 이상 시술, 8,000건 다이어트 처방
-              </h3>
-              <p className="body-text mt-4" style={{ lineHeight: 1.9 }}>
-                연간 18,000건 이상의 추나·초음파약침·레이저 시술 경험.
-                연간 8,000건 이상의 한방 다이어트 처방 – 고양시에서
-                가장 많은 처방 실적. APCA RMSK(근골격계 초음파)
-                자격 보유 의료진이 초음파 진단으로 정확한 치료를 진행합니다.
-              </p>
+            <div className="mx-auto mt-14 grid max-w-5xl gap-6 md:grid-cols-3">
+              {WHY_CARDS.map((card) => (
+                <div key={card.badge} className="card p-7">
+                  <SectionBadge label={card.badge} />
+                  <h3 className="font-serif mt-3 text-[1.1rem] font-semibold text-ink">
+                    {card.heading}
+                  </h3>
+                  <p className="mt-4 text-[0.95rem] leading-[1.9] text-muted">
+                    {card.body}
+                  </p>
+                </div>
+              ))}
             </div>
-
-            <div className="card p-7">
-              <p className="text-[0.8rem] text-accent">③ 압도적 편의</p>
-              <h3 className="font-serif mt-3 text-[1.1rem] font-semibold text-text">
-                야간·주말 진료, 풍산역 도보 1분
-              </h3>
-              <p className="body-text mt-4" style={{ lineHeight: 1.9 }}>
-                평일 매일 오후 8시까지 야간진료, 주말 진료 운영.
-                이마트 풍산점 3층 위치, 대형 주차장 완비.
-                경의중앙선 풍산역 2번 출구 도보 1분.
-              </p>
-            </div>
-          </div>
-        </SectionReveal>
+          </SectionReveal>
+        </div>
       </section>
 
       {/* ── Treatment Scope (4 Clinics) ── */}
-      <section className="section-padding !pt-8">
-        <SectionReveal>
-          <div className="mx-auto max-w-3xl text-center">
-            <p className="section-label">Clinics</p>
-            <h2 className="heading-lg mt-4">진료 범위</h2>
-            <p className="body-text mt-6">
-              4개 분과를 6인 한의사가 협진합니다
-            </p>
-          </div>
+      <section className="bg-[var(--bg)]">
+        <div className="section-padding">
+          <SectionReveal>
+            <div className="mx-auto max-w-3xl text-center">
+              <SectionBadge icon={<ListCheck size={15} />} label="진료 범위" />
+              <div className="mt-4">
+                <TwoTone as="h2" lead="어떤 치료가 " accent="필요하신가요?" />
+              </div>
+              <p className="mt-4 text-[14px] text-muted">
+                4개 분과를 6인 한의사가 협진합니다
+              </p>
+            </div>
 
-          <div className="mx-auto mt-14 grid max-w-5xl gap-5 sm:grid-cols-2">
-            {CLINIC_CARDS.map((card) => (
-              <Link
-                key={card.slug}
-                href={`/${card.slug}`}
-                className="card group block p-7 transition-transform duration-200 hover:-translate-y-1"
-              >
-                <p className="text-[0.8rem] text-accent">{card.badge}</p>
-                <h3 className="font-serif mt-2 text-[1.15rem] font-semibold text-text group-hover:text-accent transition-colors">
-                  {card.heading}
-                </h3>
-                <p className="body-text mt-3" style={{ lineHeight: 1.9 }}>
-                  {card.blurb}
-                </p>
-              </Link>
-            ))}
-          </div>
-        </SectionReveal>
+            <div className="mx-auto mt-14 grid max-w-5xl gap-5 sm:grid-cols-2">
+              {CLINIC_CARDS.map((card) => (
+                <Link
+                  key={card.slug}
+                  href={`/${card.slug}`}
+                  className="card group block p-7"
+                >
+                  <SectionBadge label={card.badge} />
+                  <h3 className="font-serif mt-2 text-[1.15rem] font-semibold text-ink transition-colors group-hover:text-primary">
+                    {card.heading}
+                  </h3>
+                  <p className="mt-3 text-[0.95rem] leading-[1.9] text-muted">
+                    {card.blurb}
+                  </p>
+                </Link>
+              ))}
+            </div>
+          </SectionReveal>
+        </div>
       </section>
 
       {/* ── Philosophy ── */}
-      <section className="section-padding !pt-8">
-        <SectionReveal>
-          <div className="mx-auto max-w-3xl text-center">
-            <p className="section-label">Philosophy</p>
-            <h2 className="heading-lg mt-4">진료 철학</h2>
-          </div>
+      <section className="bg-[var(--surface)]">
+        <div className="section-padding">
+          <SectionReveal>
+            <div className="mx-auto max-w-3xl text-center">
+              <SectionBadge icon={<Quote size={15} />} label="우리의 약속" />
+              <div className="mt-4">
+                <TwoTone as="h2" lead="저희의 " accent="진료 철학" />
+              </div>
+            </div>
 
-          <div className="mx-auto mt-14 max-w-3xl space-y-10">
-            <div>
-              <p className="font-serif text-[1.05rem] font-semibold leading-relaxed text-text">
-                &ldquo;진료비라는 무거운 짐을 얹어드리지 않겠습니다.&rdquo;
-              </p>
-              <p className="body-text mt-3" style={{ lineHeight: 2 }}>
-                건강보험 진료를 우선하며, 오직 온전한 회복에만 집중할 수 있는
-                정직한 공간이 되겠습니다.
-              </p>
+            <div className="mx-auto mt-14 max-w-3xl space-y-10">
+              {PHILOSOPHY.map((item) => (
+                <div key={item.quote}>
+                  <p className="font-serif text-[1.05rem] font-semibold leading-relaxed text-ink">
+                    &ldquo;{item.quote}&rdquo;
+                  </p>
+                  <p className="mt-3 text-[0.95rem] leading-[2] text-muted">
+                    {item.body}
+                  </p>
+                </div>
+              ))}
             </div>
-            <div>
-              <p className="font-serif text-[1.05rem] font-semibold leading-relaxed text-text">
-                &ldquo;객관적이고 정교한 비수술 치료&rdquo;
-              </p>
-              <p className="body-text mt-3" style={{ lineHeight: 2 }}>
-                대학병원급 초음파와 혈액검사 장비로 상태를 객관적으로 파악하고,
-                수술 없이 일상을 지킬 수 있는 치료를 제공합니다.
-              </p>
-            </div>
-            <div>
-              <p className="font-serif text-[1.05rem] font-semibold leading-relaxed text-text">
-                &ldquo;내 몸에 꼭 맞는 해답을 찾는 동행&rdquo;
-              </p>
-              <p className="body-text mt-3" style={{ lineHeight: 2 }}>
-                아픔의 근본적인 원인을 살피고 깊이 공감하며, 함께 해결책을
-                찾아가는 든든한 동반자가 되겠습니다.
-              </p>
-            </div>
-          </div>
 
-          <div className="mt-10 text-center">
-            <Link href="/about" className="btn-ghost">
-              자세히 보기
-            </Link>
-          </div>
-        </SectionReveal>
+            <div className="mt-10 text-center">
+              <Link href="/about" className="btn-ghost">
+                자세히 보기
+              </Link>
+            </div>
+          </SectionReveal>
+        </div>
       </section>
 
       {/* ── 최신 의학정보 (자사 상세글) ── */}
       {postCards.length > 0 && (
-        <section className="section-padding !pt-8">
-          <SectionReveal>
-            <p className="section-label text-center">Insights</p>
-            <h2 className="heading-lg mt-4 text-center">최신 의학정보</h2>
-            <p className="body-text mt-6 text-center">
-              진료 현장에서 마주한 사례와 최신 연구를 정리합니다
-            </p>
+        <section className="bg-[var(--bg)]">
+          <div className="section-padding">
+            <SectionReveal>
+              <div className="text-center">
+                <SectionBadge icon={<Microscope size={15} />} label="의학정보" />
+                <div className="mt-4">
+                  <TwoTone as="h2" lead="근거를 " accent="함께 봅니다" />
+                </div>
+                <p className="mt-4 text-[14px] text-muted">
+                  진료 현장에서 마주한 사례와 최신 연구를 정리합니다
+                </p>
+              </div>
 
-            <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-              {postCards.map((post) => (
-                <PostCard key={post.slug} post={post} />
-              ))}
-            </div>
+              <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+                {postCards.map((post) => (
+                  <PostCard key={post.slug} post={post} />
+                ))}
+              </div>
 
-            <div className="mt-10 flex flex-wrap justify-center gap-4">
-              <Link href="/blog" className="btn-ghost">
-                글 더보기
-              </Link>
-              <Link href="/column" className="btn-ghost">
-                네이버 의학칼럼
-              </Link>
-            </div>
-          </SectionReveal>
+              <div className="mt-10 flex flex-wrap justify-center gap-4">
+                <Link href="/blog" className="btn-ghost">
+                  글 더보기
+                </Link>
+                <Link href="/column" className="btn-ghost">
+                  네이버 의학칼럼
+                </Link>
+              </div>
+            </SectionReveal>
+          </div>
 
           <script
             type="application/ld+json"
@@ -303,10 +324,15 @@ export default async function Home() {
       )}
 
       {/* ── YouTube ── */}
-      <section className="section-padding !pt-8">
+      <section className="bg-[var(--surface)]">
+        <div className="section-padding">
         <SectionReveal>
-          <p className="section-label text-center">YouTube</p>
-          <h2 className="heading-lg mt-4 text-center">유튜브</h2>
+          <div className="text-center">
+            <SectionBadge icon={<PlayerPlay size={15} />} label="영상" />
+            <div className="mt-4">
+              <TwoTone as="h2" lead="진료실 " accent="이야기" />
+            </div>
+          </div>
 
           <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {videos.map((v) => (
@@ -327,7 +353,7 @@ export default async function Home() {
                   />
                 </div>
                 <div className="p-5">
-                  <h3 className="font-serif text-[1rem] font-semibold leading-snug text-text group-hover:text-accent transition-colors duration-200">
+                  <h3 className="font-serif text-[1rem] font-semibold leading-snug text-ink transition-colors duration-200 group-hover:text-primary">
                     {v.title}
                   </h3>
                 </div>
@@ -362,37 +388,42 @@ export default async function Home() {
             </div>
           </div>
         </SectionReveal>
+        </div>
       </section>
 
       {/* ── FAQ ── */}
-      <section className="section-padding !pt-8">
+      <section className="bg-[var(--bg)]">
+        <div className="section-padding">
         <SectionReveal>
           <div className="mx-auto max-w-3xl text-center">
-            <p className="section-label">FAQ</p>
-            <h2 className="heading-lg mt-4">자주 묻는 질문</h2>
+            <SectionBadge icon={<HelpCircle size={15} />} label="자주 묻는 질문" />
+            <div className="mt-4">
+              <TwoTone as="h2" lead="궁금하신 점, " accent="먼저 답해드립니다" />
+            </div>
           </div>
 
           <div className="mx-auto mt-14 max-w-3xl space-y-4">
             {FAQS.map((faq, i) => (
               <details
                 key={i}
-                className="card group p-6 transition-colors open:border-accent/40"
+                className="card group p-6 transition-colors open:border-primary/40"
               >
                 <summary className="flex cursor-pointer items-start justify-between gap-4 list-none">
-                  <h3 className="font-serif text-[1rem] font-semibold leading-snug text-text group-open:text-accent">
+                  <h3 className="font-serif text-[1rem] font-semibold leading-snug text-ink group-open:text-primary">
                     Q. {faq.q}
                   </h3>
-                  <span className="shrink-0 text-accent transition-transform group-open:rotate-45">
+                  <span className="shrink-0 text-primary transition-transform group-open:rotate-45">
                     +
                   </span>
                 </summary>
-                <p className="body-text mt-4" style={{ lineHeight: 2 }}>
+                <p className="mt-4 text-[0.95rem] leading-[2] text-muted">
                   {faq.a}
                 </p>
               </details>
             ))}
           </div>
         </SectionReveal>
+        </div>
 
         <script
           type="application/ld+json"
@@ -407,73 +438,83 @@ export default async function Home() {
       </section>
 
       {/* ── Hours & Contact Summary ── */}
-      <section className="section-padding !pt-8">
-        <SectionReveal>
-          <div className="grid gap-10 md:grid-cols-2">
-            <div>
-              <p className="section-label">Hours</p>
-              <h2 className="heading-lg mt-4">진료시간</h2>
-              <ul className="mt-8 space-y-3 text-[0.9rem]">
-                <li className="flex justify-between border-b border-border pb-3">
-                  <span className="text-text">월 – 금</span>
-                  <span className="text-text">10:00 – 20:00</span>
-                </li>
-                <li className="flex justify-between border-b border-border pb-3">
-                  <span className="text-text">토 · 일</span>
-                  <span className="text-text">10:00 – 16:00</span>
-                </li>
-                <li className="flex justify-between border-b border-border pb-3">
-                  <span className="text-text-muted">점심시간 (평일)</span>
-                  <span className="text-text-muted">13:00 – 14:00</span>
-                </li>
-              </ul>
-              <p className="mt-4 text-[0.82rem] text-accent">
-                주말·공휴일은 점심시간 없이 진료합니다
-              </p>
-              <p className="mt-1 text-[0.82rem] text-text-muted">
-                매달 2·4번째 수요일 휴무 (이마트 풍산점 휴업일)
-              </p>
-            </div>
-
-            <div>
-              <p className="section-label">Contact</p>
-              <h2 className="heading-lg mt-4">오시는 길</h2>
-              <div className="mt-8 space-y-5">
-                <div>
-                  <p className="text-[0.8rem] text-accent">주소</p>
-                  <p className="mt-1 text-text">
-                    경기 고양시 일산동구 무궁화로 237
-                  </p>
-                  <p className="text-text">이마트 풍산점 3층</p>
+      <section className="bg-[var(--surface)]">
+        <div className="section-padding">
+          <SectionReveal>
+            <div className="grid gap-10 md:grid-cols-2">
+              <div>
+                <div className="text-center">
+                  <SectionBadge icon={<Clock size={15} />} label="진료시간" />
+                  <div className="mt-4">
+                    <TwoTone as="h2" lead="언제 " accent="오시면 되나요?" />
+                  </div>
                 </div>
-                <div>
-                  <p className="text-[0.8rem] text-accent">전화</p>
-                  <a
-                    href="tel:031-976-7706"
-                    className="mt-1 block text-[1.1rem] font-semibold text-text transition-colors hover:text-accent"
-                  >
-                    031-976-7706
-                  </a>
-                </div>
-                <div>
-                  <p className="text-[0.8rem] text-accent">교통</p>
-                  <p className="mt-1 text-[0.9rem] text-text">
-                    경의중앙선 풍산역 2번 출구 도보 1분
-                  </p>
-                </div>
-                <div>
-                  <p className="text-[0.8rem] text-accent">주차</p>
-                  <p className="mt-1 text-[0.9rem] text-text-muted">
-                    이마트 4·5·6·7층 주차장 · 무료주차 3시간
-                  </p>
-                </div>
+                <ul className="mt-8 space-y-3 text-[0.9rem]">
+                  <li className="flex justify-between border-b border-line pb-3">
+                    <span className="text-ink">월 – 금</span>
+                    <span className="text-ink">10:00 – 20:00</span>
+                  </li>
+                  <li className="flex justify-between border-b border-line pb-3">
+                    <span className="text-ink">토 · 일</span>
+                    <span className="text-ink">10:00 – 16:00</span>
+                  </li>
+                  <li className="flex justify-between border-b border-line pb-3">
+                    <span className="text-muted">점심시간 (평일)</span>
+                    <span className="text-muted">13:00 – 14:00</span>
+                  </li>
+                </ul>
+                <p className="mt-4 text-[0.82rem] text-primary">
+                  주말·공휴일은 점심시간 없이 진료합니다
+                </p>
+                <p className="mt-1 text-[0.82rem] text-muted">
+                  매달 2·4번째 수요일 휴무 (이마트 풍산점 휴업일)
+                </p>
               </div>
-              <Link href="/contact" className="btn-primary mt-8 inline-block">
-                자세한 안내 →
-              </Link>
+
+              <div>
+                <div className="text-center">
+                  <SectionBadge icon={<MapPin size={15} />} label="오시는 길" />
+                  <div className="mt-4">
+                    <TwoTone as="h2" lead="이마트 풍산점 " accent="3층입니다" />
+                  </div>
+                </div>
+                <div className="mt-8 space-y-5">
+                  <div>
+                    <p className="text-[0.8rem] text-primary">주소</p>
+                    <p className="mt-1 text-ink">
+                      경기 고양시 일산동구 무궁화로 237
+                    </p>
+                    <p className="text-ink">이마트 풍산점 3층</p>
+                  </div>
+                  <div>
+                    <p className="text-[0.8rem] text-primary">전화</p>
+                    <a
+                      href="tel:031-976-7706"
+                      className="mt-1 block text-[1.1rem] font-semibold text-ink transition-colors hover:text-primary"
+                    >
+                      031-976-7706
+                    </a>
+                  </div>
+                  <div>
+                    <p className="text-[0.8rem] text-primary">교통</p>
+                    <p className="mt-1 text-[0.9rem] text-ink">
+                      경의중앙선 풍산역 2번 출구 도보 1분
+                    </p>
+                  </div>
+                  <div>
+                    <p className="text-[0.8rem] text-primary">주차</p>
+                    <p className="mt-1 text-[0.9rem] text-muted">
+                      이마트 4·5·6·7층 주차장 · 무료주차 3시간
+                    </p>
+                  </div>
+                </div>
+                <Link href="/contact" className="btn-primary mt-8 inline-block">
+                  자세한 안내 →
+                </Link>
+              </div>
             </div>
-          </div>
-        </SectionReveal>
+          </SectionReveal>
+        </div>
       </section>
     </>
   );

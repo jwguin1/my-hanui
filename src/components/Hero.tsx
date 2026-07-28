@@ -37,7 +37,7 @@ const ORBS = [
 export default function Hero() {
   return (
     <section className="bg-[var(--bg)]">
-      <div className="mx-auto grid max-w-[1180px] grid-cols-1 items-center gap-10 px-6 py-12 lg:grid-cols-[55%_45%] lg:py-[88px]">
+      <div className="mx-auto grid max-w-[1180px] grid-cols-1 items-center gap-10 px-6 pb-[72px] pt-12 lg:grid-cols-[55%_45%] lg:pb-[112px] lg:pt-[88px]">
         {/* ── 좌측 ── */}
         <div>
           <div className="w-fit">
@@ -96,7 +96,7 @@ export default function Hero() {
         </div>
 
         {/* ── 우측: 스케치 영역 ── */}
-        <div className="mx-auto w-full max-w-[420px]">
+        <div className="mx-auto w-full max-w-[340px]">
           <div className="relative aspect-square w-full">
             {/* 점선 원 */}
             <div className="absolute inset-0 rounded-full border-[1.5px] border-dashed border-brush" />
@@ -117,16 +117,16 @@ export default function Hero() {
               />
             ))}
 
-            {/* 체크 뱃지 — 모바일에서는 숨김 */}
+            {/* 체크 뱃지 — 원 테두리 위(우상단 45°)에 걸치도록 중심을 궤도에 맞춘다 */}
             <span
               aria-hidden="true"
-              className="absolute right-[2%] top-[6%] hidden h-14 w-14 items-center justify-center rounded-full bg-primary text-white md:inline-flex"
+              className="absolute left-[85.36%] top-[14.64%] hidden h-14 w-14 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-primary text-white md:inline-flex"
             >
               <Check size={26} />
             </span>
 
-            {/* 이미지 슬롯 */}
-            <div className="absolute inset-[12%] flex items-center justify-center">
+            {/* 이미지 슬롯 — 원 지름의 62% 로 고정해 원 안쪽에 완전히 들어가게 한다 */}
+            <div className="absolute left-1/2 top-1/2 flex h-[62%] w-[62%] -translate-x-1/2 -translate-y-1/2 items-center justify-center">
               {hasSketch ? (
                 <Image
                   src="/images/hero-sketch.png"
