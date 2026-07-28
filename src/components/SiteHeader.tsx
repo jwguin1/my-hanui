@@ -1,17 +1,9 @@
 import Link from "next/link";
 import ClinicStatusPill from "@/components/ClinicStatusPill";
-import SiteHeaderNav from "@/components/SiteHeaderNav";
+import SiteNavDesktop from "@/components/SiteNavDesktop";
+import SiteNavMobile from "@/components/SiteNavMobile";
 import PillButton from "@/components/ui/PillButton";
 import { MessageCircle, Phone } from "@/components/ui/icons";
-
-const LINKS = [
-  { href: "/pain", label: "통증" },
-  { href: "/diet", label: "다이어트" },
-  { href: "/skin", label: "피부" },
-  { href: "/autonomic", label: "자율신경" },
-  { href: "/column", label: "의학칼럼" },
-  { href: "/contact", label: "오시는 길" },
-];
 
 export default function SiteHeader() {
   return (
@@ -28,21 +20,8 @@ export default function SiteHeader() {
           <ClinicStatusPill />
         </div>
 
-        {/* 중: 주요 진료 카테고리 */}
-        <nav className="hidden lg:block">
-          <ul className="flex items-center gap-6">
-            {LINKS.map((l) => (
-              <li key={l.href}>
-                <Link
-                  href={l.href}
-                  className="whitespace-nowrap text-[14px] text-muted transition-colors duration-200 hover:text-ink"
-                >
-                  {l.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </nav>
+        {/* 중: 드롭다운 네비게이션 */}
+        <SiteNavDesktop />
 
         {/* 우: 전화 + 카카오톡 상담 */}
         <div className="flex items-center gap-1.5">
@@ -64,7 +43,7 @@ export default function SiteHeader() {
               카카오톡 상담
             </PillButton>
           </span>
-          <SiteHeaderNav links={LINKS} />
+          <SiteNavMobile />
         </div>
       </div>
     </header>

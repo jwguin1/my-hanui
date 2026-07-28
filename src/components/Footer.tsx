@@ -25,6 +25,18 @@ export default function Footer() {
             의학칼럼
           </Link>
           <Link
+            href="/doctor"
+            className="text-[0.82rem] text-text-muted transition-colors duration-200 hover:text-accent"
+          >
+            의료진
+          </Link>
+          <Link
+            href="/blog"
+            className="text-[0.82rem] text-text-muted transition-colors duration-200 hover:text-accent"
+          >
+            블로그
+          </Link>
+          <Link
             href="https://naver.me/IItclnGB"
             target="_blank"
             className="text-[0.82rem] text-text-muted transition-colors duration-200 hover:text-accent"
