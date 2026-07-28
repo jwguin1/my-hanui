@@ -125,19 +125,21 @@ export default function Hero() {
               <Check size={26} />
             </span>
 
-            {/* 이미지 슬롯 — 원 지름의 62% 로 고정해 원 안쪽에 완전히 들어가게 한다 */}
-            <div className="absolute left-1/2 top-1/2 flex h-[62%] w-[62%] -translate-x-1/2 -translate-y-1/2 items-center justify-center">
+            {/* 이미지 슬롯 — 16:9 일러스트가 원 안에 들어가는 한계 폭은 지름의 약 87%.
+                85% 로 잡아 여유를 두고, 흰 배경은 multiply 로 페이지 배경에 녹인다. */}
+            <div className="absolute left-1/2 top-1/2 flex w-[85%] -translate-x-1/2 -translate-y-1/2 items-center justify-center">
               {hasSketch ? (
                 <Image
                   src="/images/hero-sketch.png"
-                  alt="일산한의원 진료 안내 일러스트"
-                  width={600}
-                  height={600}
+                  alt="일산한의원 이마트 풍산점 입구 일러스트"
+                  width={1672}
+                  height={941}
                   priority
-                  className="h-full w-full object-contain"
+                  sizes="(max-width: 1024px) 290px, 290px"
+                  className="h-auto w-full object-contain mix-blend-multiply"
                 />
               ) : (
-                <div className="flex h-full w-full items-center justify-center rounded-3xl border-[1.5px] border-dashed border-brush">
+                <div className="flex aspect-[16/9] w-full items-center justify-center rounded-3xl border-[1.5px] border-dashed border-brush">
                   <span className="text-[13px] text-muted">
                     스케치 이미지 자리
                   </span>
