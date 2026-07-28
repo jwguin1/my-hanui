@@ -83,25 +83,39 @@ export default function SiteNavMobile() {
                     </button>
 
                     {isOpen ? (
-                      <ul className="pb-2">
-                        {group.items?.map((item) => (
-                          <li key={item.href}>
-                            <Link
-                              href={item.href}
-                              onClick={close}
-                              className={`block rounded-lg py-3 pr-3 text-[14px] ${
-                                item.indent ? "pl-7" : "pl-3"
-                              } ${
-                                isActivePath(pathname, item.href)
-                                  ? "bg-surface text-primary"
-                                  : "text-muted"
-                              }`}
-                            >
-                              {item.label}
-                            </Link>
-                          </li>
+                      <div className="pb-2">
+                        {group.sections?.map((section, si) => (
+                          <div
+                            key={section.label ?? si}
+                            className={
+                              si > 0 ? "mt-2 border-t border-line pt-2" : ""
+                            }
+                          >
+                            {section.label ? (
+                              <div className="px-3 pb-1 pt-2 text-[12px] tracking-[0.04em] text-muted">
+                                {section.label}
+                              </div>
+                            ) : null}
+                            <ul>
+                              {section.items.map((item) => (
+                                <li key={item.href}>
+                                  <Link
+                                    href={item.href}
+                                    onClick={close}
+                                    className={`block rounded-lg px-3 py-3 text-[14px] ${
+                                      isActivePath(pathname, item.href)
+                                        ? "bg-surface text-primary"
+                                        : "text-muted"
+                                    }`}
+                                  >
+                                    {item.label}
+                                  </Link>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
                         ))}
-                      </ul>
+                      </div>
                     ) : null}
                   </li>
                 );

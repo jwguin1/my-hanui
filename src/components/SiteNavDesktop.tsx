@@ -129,26 +129,39 @@ export default function SiteNavDesktop() {
                   open ? "block" : "hidden"
                 }`}
               >
-                <div className="min-w-[168px] rounded-xl border border-line bg-card p-1.5">
-                  <ul>
-                    {group.items?.map((item) => (
-                      <li key={item.href}>
-                        <Link
-                          href={item.href}
-                          onClick={closeNow}
-                          className={`block whitespace-nowrap rounded-lg py-2.5 pr-3 text-[14px] transition-colors duration-200 hover:bg-surface ${
-                            item.indent ? "pl-6" : "pl-3"
-                          } ${
-                            isActivePath(pathname, item.href)
-                              ? "text-primary"
-                              : "text-ink"
-                          }`}
-                        >
-                          {item.label}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
+                <div className="min-w-[190px] rounded-xl border border-line bg-card p-1.5">
+                  {group.sections?.map((section, si) => (
+                    <div
+                      key={section.label ?? si}
+                      className={
+                        si > 0 ? "mt-1.5 border-t border-line pt-1.5" : ""
+                      }
+                    >
+                      {/* 계층은 라벨이 표현한다 — 클릭/포커스 대상이 아니다 */}
+                      {section.label ? (
+                        <div className="px-4 pb-1.5 pt-2.5 text-[12px] tracking-[0.04em] text-muted">
+                          {section.label}
+                        </div>
+                      ) : null}
+                      <ul>
+                        {section.items.map((item) => (
+                          <li key={item.href}>
+                            <Link
+                              href={item.href}
+                              onClick={closeNow}
+                              className={`block whitespace-nowrap rounded-lg px-4 py-2.5 text-[14px] transition-colors duration-200 hover:bg-surface ${
+                                isActivePath(pathname, item.href)
+                                  ? "text-primary"
+                                  : "text-ink"
+                              }`}
+                            >
+                              {item.label}
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
                 </div>
               </div>
             </li>

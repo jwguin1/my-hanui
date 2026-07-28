@@ -1,39 +1,65 @@
 /**
  * 사이트 네비게이션 단일 소스.
  * 데스크톱 드롭다운 / 모바일 아코디언이 이 배열을 공유한다.
+ *
+ * 계층은 들여쓰기가 아니라 "그룹 라벨"로 표현한다 —
+ * 드롭다운은 평평한 목록이라 항목마다 들여쓰기를 주면 정렬이 어색해진다.
  */
-export type NavLink = { href: string; label: string; indent?: boolean };
+export type NavLink = { href: string; label: string };
+
+/** 라벨이 없으면 구분 없는 단일 묶음 */
+export type NavSection = { label?: string; items: NavLink[] };
+
 export type NavGroup = {
   label: string;
   /** 하위가 없는 단일 링크 그룹 */
   href?: string;
-  items?: NavLink[];
+  sections?: NavSection[];
 };
 
 export const SITE_NAV: NavGroup[] = [
   {
     label: "일산한의원",
-    items: [
-      { href: "/about", label: "병원 소개" },
-      { href: "/doctor", label: "의료진" },
+    sections: [
+      {
+        items: [
+          { href: "/about", label: "병원 소개" },
+          { href: "/doctor", label: "의료진" },
+        ],
+      },
     ],
   },
   {
     label: "진료",
-    items: [
-      { href: "/pain", label: "통증" },
-      { href: "/pain/acute", label: "└ 침·물리치료", indent: true },
-      { href: "/diet", label: "다이어트" },
-      { href: "/skin", label: "피부" },
-      { href: "/autonomic", label: "자율신경" },
+    sections: [
+      {
+        label: "통증 · 근골격",
+        // 만성 통증(/pain/chronic), 교통사고(/accident) 는 페이지가 아직 없어 제외
+        items: [
+          { href: "/pain/acute", label: "급성 통증" },
+          { href: "/pain", label: "통증 의학정보" },
+        ],
+      },
+      {
+        label: "내과 · 미용",
+        items: [
+          { href: "/diet", label: "다이어트" },
+          { href: "/skin", label: "피부" },
+          { href: "/autonomic", label: "자율신경" },
+        ],
+      },
     ],
   },
   {
     label: "콘텐츠",
-    items: [
-      { href: "/column", label: "의학칼럼" },
-      { href: "/media", label: "유튜브" },
-      { href: "/blog", label: "블로그" },
+    sections: [
+      {
+        items: [
+          { href: "/column", label: "의학칼럼" },
+          { href: "/media", label: "유튜브" },
+          { href: "/blog", label: "블로그" },
+        ],
+      },
     ],
   },
   { label: "오시는 길", href: "/contact" },
@@ -47,5 +73,7 @@ export function isActivePath(pathname: string, href: string) {
 /** 그룹 안에 활성 링크가 있는지 */
 export function isActiveGroup(pathname: string, group: NavGroup) {
   if (group.href) return isActivePath(pathname, group.href);
-  return (group.items ?? []).some((i) => isActivePath(pathname, i.href));
+  return (group.sections ?? []).some((s) =>
+    s.items.some((i) => isActivePath(pathname, i.href))
+  );
 }
