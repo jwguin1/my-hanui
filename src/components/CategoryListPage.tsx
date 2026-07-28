@@ -7,6 +7,9 @@ import {
   toISO8601KST,
 } from "@/lib/blog-local";
 import SectionReveal from "@/components/SectionReveal";
+import PageHeader from "@/components/ui/PageHeader";
+import SectionBadge from "@/components/ui/SectionBadge";
+import { ListCheck } from "@/components/ui/icons";
 import { CATEGORY_META } from "@/lib/categories";
 import { postImagePath } from "@/lib/og-image";
 
@@ -29,7 +32,6 @@ const CATEGORY_INTRO: Record<
     title: "일산한의원 다이어트 클리닉",
     lines: [
       "연간 8,000건 이상 한방 다이어트 처방.",
-      "고양시에서 가장 많은 처방 실적.",
       "체계적인 한방비만치료와 대사증후군 관리.",
     ],
   },
@@ -115,43 +117,21 @@ export default function CategoryListPage({ category }: { category: Category }) {
   return (
     <>
       {/* Hero */}
-      <section
-        className="flex items-end pb-16 pt-32 md:pb-20 md:pt-40"
-        style={{
-          background:
-            "linear-gradient(180deg, var(--surface) 0%, var(--color-bg) 100%)",
-        }}
-      >
-        <div className="section-padding w-full !py-0 text-center">
-          <p className="fade-in section-label">{label}</p>
-          <h1
-            className="fade-in heading-xl mt-4"
-            style={{ animationDelay: "0.2s" }}
-          >
-            {label}
-          </h1>
-          <div
-            className="fade-in gold-divider mx-auto mt-6"
-            style={{ animationDelay: "0.35s" }}
-          />
-          <p
-            className="fade-in body-text mx-auto mt-6 max-w-md"
-            style={{ animationDelay: "0.45s" }}
-          >
-            {description}
-          </p>
-        </div>
-      </section>
+      <PageHeader
+        badge="진료 분과"
+        icon={<ListCheck size={15} />}
+        lead={label}
+        description={description}
+      />
 
       {/* Intro */}
       <section className="section-padding !pb-4">
         <SectionReveal>
           <div className="card mx-auto max-w-3xl p-7 text-center">
-            <p className="section-label">Clinic</p>
-            <h2 className="font-serif mt-3 text-[1.15rem] font-semibold text-text">
+            <SectionBadge label="한의원 안내" />
+            <h2 className="font-serif mt-3 text-[1.15rem] font-semibold text-ink">
               {intro.title}
             </h2>
-            <div className="gold-divider mx-auto mt-4" />
             <div className="mt-5 space-y-1.5 body-text">
               {intro.lines.map((line, i) => (
                 <p key={i}>{line}</p>
@@ -172,7 +152,7 @@ export default function CategoryListPage({ category }: { category: Category }) {
               className="card group mx-auto flex max-w-3xl items-center justify-between gap-5 p-6 transition-transform duration-200 hover:-translate-y-0.5 sm:p-7"
             >
               <div className="min-w-0 flex-1">
-                <p className="section-label">Specialty Site</p>
+                <SectionBadge label="전문 페이지" />
                 <h2 className="font-serif mt-2 text-[1.05rem] font-semibold leading-snug text-text group-hover:text-accent transition-colors duration-200 sm:text-[1.15rem]">
                   일산한의원 다이어트 전문 페이지
                 </h2>

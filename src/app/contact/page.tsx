@@ -2,6 +2,11 @@ import type { Metadata } from "next";
 import SectionReveal from "@/components/SectionReveal";
 import { pageMetadata } from "@/lib/page-metadata";
 
+import PageHeader from "@/components/ui/PageHeader";
+import SectionBadge from "@/components/ui/SectionBadge";
+import TwoTone from "@/components/ui/TwoTone";
+import { ListCheck, MapPin } from "@/components/ui/icons";
+
 export const metadata: Metadata = pageMetadata({
   path: "/contact",
   title: "오시는 길 – 위치, 진료시간, 주차안내",
@@ -16,27 +21,13 @@ export default function ContactPage() {
   return (
     <>
       {/* Hero */}
-      <section
-        className="flex items-end pb-16 pt-32 md:pb-20 md:pt-40"
-        style={{
-          background:
-            "linear-gradient(180deg, var(--surface) 0%, var(--color-bg) 100%)",
-        }}
-      >
-        <div className="section-padding w-full !py-0 text-center">
-          <p className="fade-in section-label">Contact</p>
-          <h1
-            className="fade-in heading-xl mt-4"
-            style={{ animationDelay: "0.2s" }}
-          >
-            오시는 길
-          </h1>
-          <div
-            className="fade-in gold-divider mx-auto mt-6"
-            style={{ animationDelay: "0.35s" }}
-          />
-        </div>
-      </section>
+      <PageHeader
+        badge="위치 안내"
+        icon={<MapPin size={15} />}
+        lead="오시는 "
+        accent="길"
+        description="이마트 풍산점 3층 · 경의중앙선 풍산역 2번 출구 도보 1분"
+      />
 
       {/* Info Cards */}
       <section className="section-padding">
@@ -158,8 +149,12 @@ export default function ContactPage() {
       {/* Directions Detail */}
       <section className="section-padding">
         <SectionReveal>
-          <p className="section-label text-center">Directions</p>
-          <h2 className="heading-lg mt-4 text-center">찾아오시는 방법</h2>
+          <div className="text-center">
+            <SectionBadge icon={<ListCheck size={15} />} label="교통편" />
+            <div className="mt-4">
+              <TwoTone as="h2" lead="찾아오시는 " accent="방법" />
+            </div>
+          </div>
           <div className="mt-10 grid gap-5 md:grid-cols-3">
             <div className="card p-7">
               <h3 className="font-serif text-[1.05rem] font-semibold text-text">

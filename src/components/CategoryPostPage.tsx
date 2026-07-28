@@ -50,34 +50,18 @@ export default function CategoryPostPage({
   return (
     <>
       {/* Hero */}
-      <section
-        className="flex items-end pb-16 pt-32 md:pb-20 md:pt-40"
-        style={{
-          background:
-            "linear-gradient(180deg, var(--surface) 0%, var(--color-bg) 100%)",
-        }}
-      >
-        <div className="section-padding w-full !py-0">
+      <section className="bg-[var(--surface)]">
+        <div className="section-padding w-full !py-0 py-16 md:py-20">
           <Link
             href={`/${category}`}
-            className="fade-in text-[0.8rem] text-text-muted hover:text-accent transition-colors"
+            className="text-[0.8rem] text-muted transition-colors hover:text-primary"
           >
             &larr; {label} 목록
           </Link>
-          <h1
-            className="fade-in heading-xl mt-6"
-            style={{ animationDelay: "0.2s" }}
-          >
+          <h1 className="mt-5 text-[26px] font-bold leading-[1.35] tracking-[-0.02em] text-ink md:text-[38px]">
             {post.title}
           </h1>
-          <div
-            className="fade-in gold-divider mt-6"
-            style={{ animationDelay: "0.35s" }}
-          />
-          <div
-            className="fade-in mt-4 flex items-center gap-4 text-[0.8rem] text-text-muted"
-            style={{ animationDelay: "0.45s" }}
-          >
+          <div className="mt-4 flex items-center gap-4 text-[0.8rem] text-muted">
             <time>{formatDate(post.date)}</time>
             {post.tags.length > 0 && (
               <div className="flex gap-2">

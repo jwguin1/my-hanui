@@ -131,10 +131,11 @@
     @apply border-accent text-accent;
   }
 
+  /* 남은 장식용 구분선 — 강조 브라운 대신 부드러운 브러시 톤 */
   .gold-divider {
     width: 40px;
     height: 1px;
-    @apply bg-accent;
+    @apply bg-brush;
   }
 
   .fade-in {

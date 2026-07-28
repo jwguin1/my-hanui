@@ -4,6 +4,9 @@ import { fetchBlogPosts } from "@/lib/blog";
 import SectionReveal from "@/components/SectionReveal";
 import { pageMetadata } from "@/lib/page-metadata";
 
+import PageHeader from "@/components/ui/PageHeader";
+import { Microscope } from "@/components/ui/icons";
+
 export const metadata: Metadata = pageMetadata({
   path: "/column",
   title: "의학칼럼 – 건강 정보 블로그",
@@ -19,33 +22,13 @@ export default async function ColumnPage() {
   return (
     <>
       {/* Hero */}
-      <section
-        className="flex items-end pb-16 pt-32 md:pb-20 md:pt-40"
-        style={{
-          background:
-            "linear-gradient(180deg, var(--surface) 0%, var(--color-bg) 100%)",
-        }}
-      >
-        <div className="section-padding w-full !py-0 text-center">
-          <p className="fade-in section-label">Column</p>
-          <h1
-            className="fade-in heading-xl mt-4"
-            style={{ animationDelay: "0.2s" }}
-          >
-            의학칼럼
-          </h1>
-          <div
-            className="fade-in gold-divider mx-auto mt-6"
-            style={{ animationDelay: "0.35s" }}
-          />
-          <p
-            className="fade-in body-text mx-auto mt-6 max-w-md"
-            style={{ animationDelay: "0.45s" }}
-          >
-            일산한의원이 전하는 건강 정보와 치료 이야기
-          </p>
-        </div>
-      </section>
+      <PageHeader
+        badge="네이버 칼럼"
+        icon={<Microscope size={15} />}
+        lead="의학"
+        accent="칼럼"
+        description="일산한의원이 전하는 건강 정보와 치료 이야기"
+      />
 
       {/* Blog Posts */}
       <section className="section-padding">

@@ -7,6 +7,8 @@ import {
   toISO8601KST,
 } from "@/lib/blog-local";
 import SectionReveal from "@/components/SectionReveal";
+import PageHeader from "@/components/ui/PageHeader";
+import { Microscope } from "@/components/ui/icons";
 import { pageMetadata } from "@/lib/page-metadata";
 
 const SITE_URL = "https://www.ilsanhan.com";
@@ -75,33 +77,13 @@ export default function BlogArchivePage() {
 
   return (
     <>
-      <section
-        className="flex items-end pb-16 pt-32 md:pb-20 md:pt-40"
-        style={{
-          background:
-            "linear-gradient(180deg, var(--surface) 0%, var(--color-bg) 100%)",
-        }}
-      >
-        <div className="section-padding w-full !py-0 text-center">
-          <p className="fade-in section-label">Archive</p>
-          <h1
-            className="fade-in heading-xl mt-4"
-            style={{ animationDelay: "0.2s" }}
-          >
-            전체 글
-          </h1>
-          <div
-            className="fade-in gold-divider mx-auto mt-6"
-            style={{ animationDelay: "0.35s" }}
-          />
-          <p
-            className="fade-in body-text mx-auto mt-6 max-w-md"
-            style={{ animationDelay: "0.45s" }}
-          >
-            모든 카테고리의 글을 최신순으로 모아 보여드립니다
-          </p>
-        </div>
-      </section>
+      <PageHeader
+        badge="글 모음"
+        icon={<Microscope size={15} />}
+        lead="전체 "
+        accent="글"
+        description="모든 카테고리의 글을 최신순으로 모아 보여드립니다"
+      />
 
       <section className="section-padding">
         {posts.length > 0 ? (

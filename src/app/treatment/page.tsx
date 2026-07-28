@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import SectionReveal from "@/components/SectionReveal";
 import { pageMetadata } from "@/lib/page-metadata";
 
+import PageHeader from "@/components/ui/PageHeader";
+import { Stethoscope } from "@/components/ui/icons";
+
 export const metadata: Metadata = pageMetadata({
   path: "/treatment",
   title: "진료 안내 – 한약, 침, 추나, 약침",
@@ -61,34 +64,13 @@ export default function TreatmentPage() {
   return (
     <>
       {/* Hero */}
-      <section
-        className="flex items-end pb-16 pt-32 md:pb-20 md:pt-40"
-        style={{
-          background:
-            "linear-gradient(180deg, var(--surface) 0%, var(--color-bg) 100%)",
-        }}
-      >
-        <div className="section-padding w-full !py-0 text-center">
-          <p className="fade-in section-label">Treatment</p>
-          <h1
-            className="fade-in heading-xl mt-4"
-            style={{ animationDelay: "0.2s" }}
-          >
-            진료 안내
-          </h1>
-          <div
-            className="fade-in gold-divider mx-auto mt-6"
-            style={{ animationDelay: "0.35s" }}
-          />
-          <p
-            className="fade-in body-text mx-auto mt-6 max-w-md"
-            style={{ animationDelay: "0.45s" }}
-          >
-            환자의 체질과 상태를 정밀하게 파악하여 가장 적합한 치료를
-            제공합니다.
-          </p>
-        </div>
-      </section>
+      <PageHeader
+        badge="치료"
+        icon={<Stethoscope size={15} />}
+        lead="진료 "
+        accent="안내"
+        description="환자의 체질과 상태를 정밀하게 파악하여 가장 적합한 치료를 제공합니다."
+      />
 
       {/* Treatment Cards */}
       <section className="section-padding space-y-6">

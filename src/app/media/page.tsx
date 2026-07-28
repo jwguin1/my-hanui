@@ -3,6 +3,9 @@ import SectionReveal from "@/components/SectionReveal";
 import { fetchLatestVideos } from "@/lib/youtube";
 import { pageMetadata } from "@/lib/page-metadata";
 
+import PageHeader from "@/components/ui/PageHeader";
+import { PlayerPlay } from "@/components/ui/icons";
+
 export const metadata: Metadata = pageMetadata({
   path: "/media",
   title: "유튜브 – 건강 정보 영상",
@@ -17,35 +20,14 @@ export default async function MediaPage() {
   return (
     <>
       {/* Hero */}
-      <section
-        className="flex items-end pb-16 pt-32 md:pb-20 md:pt-40"
-        style={{
-          background:
-            "linear-gradient(180deg, var(--surface) 0%, var(--color-bg) 100%)",
-        }}
-      >
-        <div className="section-padding w-full !py-0 text-center">
-          <p className="fade-in section-label">Media</p>
-          <h1
-            className="fade-in heading-xl mt-4"
-            style={{ animationDelay: "0.2s" }}
-          >
-            영상으로 만나는
-            <br />
-            일산한의원
-          </h1>
-          <div
-            className="fade-in gold-divider mx-auto mt-6"
-            style={{ animationDelay: "0.35s" }}
-          />
-          <p
-            className="fade-in body-text mx-auto mt-6 max-w-md"
-            style={{ animationDelay: "0.45s" }}
-          >
-            일산한의원이 전하는 한의학 이야기와 건강 정보
-          </p>
-        </div>
-      </section>
+      <PageHeader
+        badge="영상"
+        icon={<PlayerPlay size={15} />}
+        lead="영상으로 만나는"
+        accent="일산한의원"
+        stacked
+        description="일산한의원이 전하는 한의학 이야기와 건강 정보"
+      />
 
       {/* Videos */}
       <section className="section-padding">

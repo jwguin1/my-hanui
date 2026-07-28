@@ -2,6 +2,11 @@ import type { Metadata } from "next";
 import SectionReveal from "@/components/SectionReveal";
 import { pageMetadata } from "@/lib/page-metadata";
 
+import PageHeader from "@/components/ui/PageHeader";
+import SectionBadge from "@/components/ui/SectionBadge";
+import TwoTone from "@/components/ui/TwoTone";
+import { Quote, Users } from "@/components/ui/icons";
+
 export const metadata: Metadata = pageMetadata({
   path: "/about",
   title: "일산한의원 소개 – 진료 철학",
@@ -15,40 +20,22 @@ export default function AboutPage() {
   return (
     <>
       {/* Hero */}
-      <section
-        className="flex items-end pb-16 pt-32 md:pb-20 md:pt-40"
-        style={{
-          background:
-            "linear-gradient(180deg, var(--surface) 0%, var(--color-bg) 100%)",
-        }}
-      >
-        <div className="section-padding w-full !py-0 text-center">
-          <p className="fade-in section-label">About</p>
-          <h1
-            className="fade-in heading-xl mt-4"
-            style={{ animationDelay: "0.2s" }}
-          >
-            일산한의원
-          </h1>
-          <p
-            className="fade-in mt-4 text-[0.95rem] text-text-muted"
-            style={{ animationDelay: "0.3s" }}
-          >
-            고양시 일산에서 가장 많은 환자들에게 사랑받는
-          </p>
-          <div
-            className="fade-in gold-divider mx-auto mt-6"
-            style={{ animationDelay: "0.45s" }}
-          />
-        </div>
-      </section>
+      <PageHeader
+        badge="소개"
+        icon={<Users size={15} />}
+        lead="일산"
+        accent="한의원"
+        description="고양시 일산에서 오래 진료해 온"
+      />
 
       {/* Philosophy */}
       <section className="section-padding">
         <SectionReveal>
           <div className="mx-auto max-w-3xl text-center">
-            <p className="section-label">Philosophy</p>
-            <h2 className="heading-lg mt-4">진료 철학</h2>
+            <SectionBadge icon={<Quote size={15} />} label="우리의 약속" />
+            <div className="mt-4">
+              <TwoTone as="h2" lead="진료 " accent="철학" />
+            </div>
           </div>
 
           <div className="mx-auto mt-14 max-w-3xl space-y-12">

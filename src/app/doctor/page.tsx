@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import DoctorGrid from "@/components/DoctorGrid";
 import { DOCTOR_META } from "@/lib/categories";
 
+import PageHeader from "@/components/ui/PageHeader";
+import { Users } from "@/components/ui/icons";
+
 const SITE_URL = "https://www.ilsanhan.com";
 
 // 기존 title/description/OG title·desc 는 그대로 유지(더 상세함)하고
@@ -215,33 +218,13 @@ export default function DoctorPage() {
         }}
       />
       {/* Hero */}
-      <section
-        className="flex items-end pb-16 pt-32 md:pb-20 md:pt-40"
-        style={{
-          background:
-            "linear-gradient(180deg, var(--surface) 0%, var(--color-bg) 100%)",
-        }}
-      >
-        <div className="section-padding w-full !py-0 text-center">
-          <p className="fade-in section-label">Doctors</p>
-          <h1
-            className="fade-in heading-xl mt-4"
-            style={{ animationDelay: "0.2s" }}
-          >
-            의료진 소개
-          </h1>
-          <div
-            className="fade-in gold-divider mx-auto mt-6"
-            style={{ animationDelay: "0.35s" }}
-          />
-          <p
-            className="fade-in body-text mx-auto mt-6 max-w-md"
-            style={{ animationDelay: "0.45s" }}
-          >
-            6명의 한의사가 정성을 다해 진료합니다
-          </p>
-        </div>
-      </section>
+      <PageHeader
+        badge="의료진"
+        icon={<Users size={15} />}
+        lead="의료진 "
+        accent="소개"
+        description="6명의 한의사가 정성을 다해 진료합니다"
+      />
 
       <DoctorGrid doctors={doctors} />
     </>
