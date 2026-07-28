@@ -87,7 +87,9 @@ export default function SiteNavDesktop() {
                         <Link
                           href={item.href}
                           onClick={() => setOpenIdx(null)}
-                          className={`block whitespace-nowrap rounded-lg px-3 py-2.5 text-[14px] transition-colors duration-200 hover:bg-surface ${
+                          className={`block whitespace-nowrap rounded-lg py-2.5 pr-3 text-[14px] transition-colors duration-200 hover:bg-surface ${
+                            item.indent ? "pl-6" : "pl-3"
+                          } ${
                             isActivePath(pathname, item.href)
                               ? "text-primary"
                               : "text-ink"

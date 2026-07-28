@@ -141,6 +141,34 @@ export default function CategoryListPage({ category }: { category: Category }) {
         </SectionReveal>
       </section>
 
+      {/* Pain 치료 안내 페이지 배너 */}
+      {category === "pain" && (
+        <section className="section-padding !pb-4 !pt-8">
+          <SectionReveal>
+            <Link
+              href="/pain/acute"
+              className="card group mx-auto flex max-w-3xl items-center justify-between gap-5 p-6 sm:p-7"
+            >
+              <div className="min-w-0 flex-1">
+                <SectionBadge label="치료 안내" />
+                <h2 className="font-serif mt-2 text-[1.05rem] font-semibold leading-snug text-ink transition-colors duration-200 group-hover:text-primary sm:text-[1.15rem]">
+                  삐끗한 허리·담 결림, 먼저 여기부터 보세요
+                </h2>
+                <p className="mt-2 text-[0.85rem] leading-relaxed text-muted">
+                  경과 단계별 치료와 예상 횟수를 정리했습니다.
+                </p>
+              </div>
+              <span
+                aria-hidden="true"
+                className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-line text-primary transition-colors duration-200 group-hover:bg-surface"
+              >
+                →
+              </span>
+            </Link>
+          </SectionReveal>
+        </section>
+      )}
+
       {/* Diet 전문 페이지 배너 */}
       {category === "diet" && (
         <section className="section-padding !pb-4 !pt-8">

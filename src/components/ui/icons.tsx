@@ -160,6 +160,89 @@ export function HelpCircle(props: IconProps) {
   );
 }
 
+export function Activity(props: IconProps) {
+  return (
+    <Base {...props}>
+      <path d="M3 12h4l2.5-6 5 12 2.5-6h4" />
+    </Base>
+  );
+}
+
+export function AlertTriangle(props: IconProps) {
+  return (
+    <Base {...props}>
+      <path d="M12 4.2 21 19.4H3z" />
+      <path d="M12 10v4M12 17h.01" />
+    </Base>
+  );
+}
+
+export function Footprint(props: IconProps) {
+  return (
+    <Base {...props}>
+      <path d="M8.5 14.6c-1.9-1.3-2.6-3.6-2.6-6.1C5.9 5.6 7.2 3.5 9.4 3.5c2.1 0 3.2 2 3.2 4.6 0 2-.5 3.4-.5 5 0 1 .3 1.7.3 2.6 0 1.4-.9 2.3-2.2 2.3S8 17.1 8 15.9c0-.5.2-.9.5-1.3z" />
+      <path d="M16.4 20.5c-1 0-1.7-.7-1.7-1.7 0-.7.2-1.2.2-1.9 0-1.2-.4-2.2-.4-3.4 0-1.9.8-3.3 2.3-3.3s2.3 1.6 2.3 3.7c0 1.9-.5 3.6-1.9 4.6.2.3.3.6.3.9 0 .7-.4 1.1-1.1 1.1z" />
+    </Base>
+  );
+}
+
+export function BodyScan(props: IconProps) {
+  return (
+    <Base {...props}>
+      <path d="M3.5 7.5V5.3a1.8 1.8 0 0 1 1.8-1.8h2.2M16.5 3.5h2.2A1.8 1.8 0 0 1 20.5 5.3v2.2M20.5 16.5v2.2a1.8 1.8 0 0 1-1.8 1.8h-2.2M7.5 20.5H5.3a1.8 1.8 0 0 1-1.8-1.8v-2.2" />
+      <circle cx="12" cy="9" r="1.9" />
+      <path d="M9 19v-3.6a3 3 0 0 1 3-3 3 3 0 0 1 3 3V19" />
+    </Base>
+  );
+}
+
+export function Needle(props: IconProps) {
+  return (
+    <Base {...props}>
+      <path d="M19.8 4.2 9.4 14.6" />
+      <path d="M17.2 3.2 20.8 6.8" />
+      <path d="M9.4 14.6 7 19.4a.6.6 0 0 1-1 .2l-1.6-1.6a.6.6 0 0 1 .2-1z" />
+      <path d="M12.6 9.2 14.8 11.4" />
+    </Base>
+  );
+}
+
+export function Zap(props: IconProps) {
+  return (
+    <Base {...props}>
+      <path d="M13.4 2.8 4.8 13.4h6L10.6 21.2l8.6-10.6h-6z" />
+    </Base>
+  );
+}
+
+export function Waves(props: IconProps) {
+  return (
+    <Base {...props}>
+      <path d="M2.8 8.4c1.6 0 1.6-1.6 3.2-1.6s1.6 1.6 3.2 1.6 1.6-1.6 3.2-1.6 1.6 1.6 3.2 1.6 1.6-1.6 3.2-1.6 1.6 1.6 2.4 1.6" />
+      <path d="M2.8 13.2c1.6 0 1.6-1.6 3.2-1.6s1.6 1.6 3.2 1.6 1.6-1.6 3.2-1.6 1.6 1.6 3.2 1.6 1.6-1.6 3.2-1.6 1.6 1.6 2.4 1.6" />
+      <path d="M2.8 18c1.6 0 1.6-1.6 3.2-1.6s1.6 1.6 3.2 1.6 1.6-1.6 3.2-1.6 1.6 1.6 3.2 1.6 1.6-1.6 3.2-1.6 1.6 1.6 2.4 1.6" />
+    </Base>
+  );
+}
+
+export function Cup(props: IconProps) {
+  return (
+    <Base {...props}>
+      <path d="M6.5 4.5h11v8a5.5 5.5 0 0 1-11 0z" />
+      <path d="M9.5 8.2v3.6M14.5 8.2v3.6" />
+      <path d="M5.5 20.5h13" />
+    </Base>
+  );
+}
+
+export function Flame(props: IconProps) {
+  return (
+    <Base {...props}>
+      <path d="M12 2.8c3.2 3.4 5.6 6 5.6 9.5A5.6 5.6 0 0 1 12 20.8a5.6 5.6 0 0 1-5.6-8.5c0-2.2 1-3.6 2.4-5.2.4 1.4 1.1 2.2 2 2.6.3-2.6-.1-4.7 1.2-6.9z" />
+    </Base>
+  );
+}
+
 export function Menu(props: IconProps) {
   return (
     <Base {...props}>

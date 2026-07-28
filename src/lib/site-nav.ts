@@ -2,7 +2,7 @@
  * 사이트 네비게이션 단일 소스.
  * 데스크톱 드롭다운 / 모바일 아코디언이 이 배열을 공유한다.
  */
-export type NavLink = { href: string; label: string };
+export type NavLink = { href: string; label: string; indent?: boolean };
 export type NavGroup = {
   label: string;
   /** 하위가 없는 단일 링크 그룹 */
@@ -22,6 +22,7 @@ export const SITE_NAV: NavGroup[] = [
     label: "진료",
     items: [
       { href: "/pain", label: "통증" },
+      { href: "/pain/acute", label: "└ 침·물리치료", indent: true },
       { href: "/diet", label: "다이어트" },
       { href: "/skin", label: "피부" },
       { href: "/autonomic", label: "자율신경" },

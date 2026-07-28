@@ -89,7 +89,9 @@ export default function SiteNavMobile() {
                             <Link
                               href={item.href}
                               onClick={close}
-                              className={`block rounded-lg px-3 py-3 text-[14px] ${
+                              className={`block rounded-lg py-3 pr-3 text-[14px] ${
+                                item.indent ? "pl-7" : "pl-3"
+                              } ${
                                 isActivePath(pathname, item.href)
                                   ? "bg-surface text-primary"
                                   : "text-muted"
