@@ -243,6 +243,109 @@ export function Flame(props: IconProps) {
   );
 }
 
+export function CircleDot(props: IconProps) {
+  return (
+    <Base {...props}>
+      <circle cx="12" cy="12" r="8.5" />
+      <circle cx="12" cy="12" r="2.6" fill="currentColor" stroke="none" />
+    </Base>
+  );
+}
+
+export function ArrowsUp(props: IconProps) {
+  return (
+    <Base {...props}>
+      <path d="M7 20V6M3.4 9.6 7 6l3.6 3.6" />
+      <path d="M17 20V10M13.4 13.6 17 10l3.6 3.6" />
+    </Base>
+  );
+}
+
+export function Walk(props: IconProps) {
+  return (
+    <Base {...props}>
+      <circle cx="13.4" cy="4.6" r="1.9" />
+      <path d="M9 21l2.4-5.2 1.2-3.4 3 2.2.8 4" />
+      <path d="M12.6 12.4 10 9.6l-3 1.6-1.4 3" />
+      <path d="M15.6 10.6l2.8 1.2" />
+    </Base>
+  );
+}
+
+export function Spine(props: IconProps) {
+  return (
+    <Base {...props}>
+      <path d="M12 3v18" />
+      <path d="M8.4 5.6h7.2M8 9.4h8M8 13.2h8M8.4 17h7.2" />
+    </Base>
+  );
+}
+
+export function Stairs(props: IconProps) {
+  return (
+    <Base {...props}>
+      <path d="M3 20h4.4v-4.2h4.3v-4.2H16V7.4h5" />
+    </Base>
+  );
+}
+
+export function HandFinger(props: IconProps) {
+  return (
+    <Base {...props}>
+      <path d="M10.4 12.6V5.4a1.7 1.7 0 0 1 3.4 0v6.2" />
+      <path d="M13.8 10.6a1.6 1.6 0 0 1 3.2 0v1.6" />
+      <path d="M17 11.6a1.6 1.6 0 0 1 3.2 0v3.2a6 6 0 0 1-6 6h-1.8a5 5 0 0 1-3.7-1.6l-3-3.2a1.7 1.7 0 0 1 2.4-2.4l2.3 2" />
+    </Base>
+  );
+}
+
+export function Hands(props: IconProps) {
+  return (
+    <Base {...props}>
+      <path d="M8.5 11V5.6a1.6 1.6 0 0 1 3.2 0V11" />
+      <path d="M11.7 10.2V4.8a1.6 1.6 0 0 1 3.2 0V11" />
+      <path d="M14.9 11V7.2a1.6 1.6 0 0 1 3.2 0V15a6 6 0 0 1-6 6h-1.3a5 5 0 0 1-3.6-1.5l-3-3.1a1.6 1.6 0 0 1 2.3-2.3l1.9 1.7" />
+    </Base>
+  );
+}
+
+export function Scan(props: IconProps) {
+  return (
+    <Base {...props}>
+      <path d="M3.5 8V5.6a2 2 0 0 1 2-2H8M16 3.6h2.5a2 2 0 0 1 2 2V8M20.5 16v2.4a2 2 0 0 1-2 2H16M8 20.4H5.5a2 2 0 0 1-2-2V16" />
+      <path d="M7.6 12.6c1.6-2.6 3-3.9 4.4-3.9s2.8 1.3 4.4 3.9" />
+      <path d="M9.8 15.4c1.1-1.6 1.9-2.4 2.2-2.4s1.1.8 2.2 2.4" />
+    </Base>
+  );
+}
+
+export function Decompress(props: IconProps) {
+  return (
+    <Base {...props}>
+      <path d="M12 3v5.4M8.6 6 12 2.6 15.4 6" />
+      <path d="M4.5 12h15" />
+      <path d="M12 21v-5.4M8.6 18 12 21.4 15.4 18" />
+    </Base>
+  );
+}
+
+export function QuestionMark(props: IconProps) {
+  return (
+    <Base strokeWidth={2.2} {...props}>
+      <path d="M9.4 9.2a2.7 2.7 0 1 1 3.6 2.6c-.7.3-1 .9-1 1.7v.5" />
+      <path d="M12 18h.01" />
+    </Base>
+  );
+}
+
+export function ArrowRight(props: IconProps) {
+  return (
+    <Base {...props}>
+      <path d="M4 12h16M14 6l6 6-6 6" />
+    </Base>
+  );
+}
+
 export function Menu(props: IconProps) {
   return (
     <Base {...props}>

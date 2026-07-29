@@ -145,26 +145,51 @@ export default function CategoryListPage({ category }: { category: Category }) {
       {category === "pain" && (
         <section className="section-padding !pb-4 !pt-8">
           <SectionReveal>
-            <Link
-              href="/pain/acute"
-              className="card group mx-auto flex max-w-3xl items-center justify-between gap-5 p-6 sm:p-7"
-            >
-              <div className="min-w-0 flex-1">
-                <SectionBadge label="치료 안내" />
-                <h2 className="font-serif mt-2 text-[1.05rem] font-semibold leading-snug text-ink transition-colors duration-200 group-hover:text-primary sm:text-[1.15rem]">
-                  삐끗한 허리·담 결림, 먼저 여기부터 보세요
-                </h2>
-                <p className="mt-2 text-[0.85rem] leading-relaxed text-muted">
-                  경과 단계별 치료와 예상 횟수를 정리했습니다.
-                </p>
+            <div className="card mx-auto max-w-3xl p-6 sm:p-7">
+              <SectionBadge label="치료 안내" />
+              <h2 className="font-serif mt-2 text-[1.05rem] font-semibold leading-snug text-ink sm:text-[1.15rem]">
+                삐끗한 허리·담 결림, 먼저 여기부터 보세요
+              </h2>
+              <p className="mt-2 text-[0.85rem] leading-relaxed text-muted">
+                다친 지 얼마나 됐는지에 따라 치료가 달라집니다.
+              </p>
+
+              <div className="mt-5 grid gap-3 sm:grid-cols-2">
+                <Link
+                  href="/pain/acute"
+                  className="group flex items-center justify-between gap-3 rounded-xl border border-line px-4 py-3.5 transition-colors duration-200 hover:bg-surface"
+                >
+                  <span className="min-w-0">
+                    <span className="block text-[0.95rem] font-semibold text-ink transition-colors duration-200 group-hover:text-primary">
+                      급성 통증
+                    </span>
+                    <span className="mt-0.5 block text-[0.8rem] text-muted">
+                      담 결림 · 삐끗 · 발목 접질림
+                    </span>
+                  </span>
+                  <span aria-hidden="true" className="shrink-0 text-primary">
+                    →
+                  </span>
+                </Link>
+
+                <Link
+                  href="/pain/chronic"
+                  className="group flex items-center justify-between gap-3 rounded-xl border border-line px-4 py-3.5 transition-colors duration-200 hover:bg-surface"
+                >
+                  <span className="min-w-0">
+                    <span className="block text-[0.95rem] font-semibold text-ink transition-colors duration-200 group-hover:text-primary">
+                      만성 통증
+                    </span>
+                    <span className="mt-0.5 block text-[0.8rem] text-muted">
+                      석회성 건염 · 오십견 · 디스크
+                    </span>
+                  </span>
+                  <span aria-hidden="true" className="shrink-0 text-primary">
+                    →
+                  </span>
+                </Link>
               </div>
-              <span
-                aria-hidden="true"
-                className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-line text-primary transition-colors duration-200 group-hover:bg-surface"
-              >
-                →
-              </span>
-            </Link>
+            </div>
           </SectionReveal>
         </section>
       )}

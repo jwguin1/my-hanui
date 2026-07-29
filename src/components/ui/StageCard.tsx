@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function StageCard({
   step,
   badge,
@@ -6,6 +8,8 @@ export default function StageCard({
   tags,
   treatment,
   highlight = false,
+  linkHref,
+  linkLabel,
 }: {
   step: number;
   badge: string;
@@ -15,6 +19,9 @@ export default function StageCard({
   treatment: string;
   /** 강조 카드 — 테두리를 --primary 로 */
   highlight?: boolean;
+  /** 다음 단계 페이지로 넘기는 링크 */
+  linkHref?: string;
+  linkLabel?: string;
 }) {
   return (
     <div
@@ -51,6 +58,15 @@ export default function StageCard({
         <span className="font-medium text-primary">치료: </span>
         <span className="text-ink">{treatment}</span>
       </p>
+
+      {linkHref && linkLabel ? (
+        <Link
+          href={linkHref}
+          className="mt-3 inline-flex text-[13px] font-medium text-primary transition-colors duration-200 hover:text-tan"
+        >
+          {linkLabel} &rarr;
+        </Link>
+      ) : null}
     </div>
   );
 }

@@ -34,9 +34,10 @@ export const SITE_NAV: NavGroup[] = [
     sections: [
       {
         label: "통증 · 근골격",
-        // 만성 통증(/pain/chronic), 교통사고(/accident) 는 페이지가 아직 없어 제외
+        // 교통사고(/accident) 는 페이지가 아직 없어 제외
         items: [
           { href: "/pain/acute", label: "급성 통증" },
+          { href: "/pain/chronic", label: "만성 통증" },
           { href: "/pain", label: "통증 의학정보" },
         ],
       },

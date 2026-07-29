@@ -84,6 +84,8 @@ const STAGES = [
     tags: ["호전 없음", "같은 자리 재발"],
     treatment: "초음파로 확인 후 재평가",
     highlight: true,
+    linkHref: "/pain/chronic",
+    linkLabel: "만성 통증 치료 보기",
   },
 ];
 
