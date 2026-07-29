@@ -41,7 +41,11 @@ export const SITE_NAV: NavGroup[] = [
         ],
       },
       {
-        label: "내과 · 미용",
+        label: "내과",
+        items: [{ href: "/internal/dyspepsia", label: "소화불량" }],
+      },
+      {
+        label: "미용 · 대사",
         items: [
           { href: "/diet/program", label: "다이어트 처방" },
           { href: "/skin/spot", label: "잡티 제거" },

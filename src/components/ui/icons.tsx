@@ -433,6 +433,45 @@ export function Rotate(props: IconProps) {
   );
 }
 
+export function Soup(props: IconProps) {
+  return (
+    <Base {...props}>
+      <path d="M3.6 10.4h16.8a8.4 8.4 0 0 1-8.4 8.4 8.4 8.4 0 0 1-8.4-8.4z" />
+      <path d="M2.6 21h18.8" />
+      <path d="M9 7.4c0-1.2-1-1.4-1-2.4s1-1.6 1-1.6M13.4 7.4c0-1.2-1-1.4-1-2.4s1-1.6 1-1.6" />
+    </Base>
+  );
+}
+
+export function AlertCircle(props: IconProps) {
+  return (
+    <Base {...props}>
+      <circle cx="12" cy="12" r="8.6" />
+      <path d="M12 7.8v4.6M12 16.2h.01" />
+    </Base>
+  );
+}
+
+export function Wind(props: IconProps) {
+  return (
+    <Base {...props}>
+      <path d="M3.4 8.4h9.2a2.6 2.6 0 1 0-2.6-2.6" />
+      <path d="M3.4 12.4h13a2.6 2.6 0 1 1-2.6 2.6" />
+      <path d="M3.4 16.4h6.2a2.2 2.2 0 1 1-2.2 2.2" />
+    </Base>
+  );
+}
+
+export function MoodSad(props: IconProps) {
+  return (
+    <Base {...props}>
+      <circle cx="12" cy="12" r="8.6" />
+      <path d="M9.4 10h.01M14.6 10h.01" />
+      <path d="M8.6 15.8a4.4 4.4 0 0 1 6.8 0" />
+    </Base>
+  );
+}
+
 export function Menu(props: IconProps) {
   return (
     <Base {...props}>

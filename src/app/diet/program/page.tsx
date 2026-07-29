@@ -123,6 +123,25 @@ export default function DietProgramPage() {
       <section className="bg-[var(--bg)]">
         <div className="section-padding">
           <SectionReveal>
+            {/* 전용 페이지 안내 배너 — 하단 CTA 와 함께 상·하 2곳 */}
+            <div className="mx-auto mb-10 flex max-w-3xl flex-col gap-4 rounded-2xl border border-line bg-surface px-6 py-5 sm:flex-row sm:items-center sm:justify-between">
+              <div className="min-w-0">
+                <p className="text-[15px] font-medium text-ink">
+                  일산감비환 상담 신청
+                </p>
+                <p className="mt-1 text-[13px] leading-relaxed text-muted">
+                  처방 구성과 비용은 전용 페이지에서 확인하실 수 있습니다
+                </p>
+              </div>
+              <PillButton
+                href="https://diet.ilsanhan.com"
+                variant="solid"
+                className="w-full shrink-0 sm:w-auto"
+              >
+                상담 신청하기 &rarr;
+              </PillButton>
+            </div>
+
             <div className="mx-auto max-w-3xl">
               <DefinitionCard
                 title="일산한의원 다이어트 한약이란?"

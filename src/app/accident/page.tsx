@@ -226,7 +226,7 @@ export default function AccidentPage() {
             </div>
 
             <div className="mx-auto mt-10 grid max-w-3xl grid-cols-1 gap-4 md:grid-cols-3">
-              <StatCard value="본인부담" unit="0원" label="자동차보험 적용" />
+              <StatCard value="0원" label="자동차보험 적용 시 본인부담금" />
               <StatCard value="20:00" label="평일 야간진료" />
               <StatCard value="도보 1" unit="분" label="풍산역" />
             </div>
