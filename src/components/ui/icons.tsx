@@ -346,6 +346,39 @@ export function ArrowRight(props: IconProps) {
   );
 }
 
+export function Point(props: IconProps) {
+  return (
+    <Base {...props}>
+      <circle cx="12" cy="12" r="4.2" fill="currentColor" stroke="none" />
+      <circle cx="12" cy="12" r="8.6" strokeDasharray="2.4 3" />
+    </Base>
+  );
+}
+
+export function Grain(props: IconProps) {
+  return (
+    <Base {...props}>
+      <circle cx="7.4" cy="7.4" r="1.7" />
+      <circle cx="14.2" cy="6" r="1.4" />
+      <circle cx="18" cy="11.4" r="1.7" />
+      <circle cx="11.6" cy="12.4" r="1.5" />
+      <circle cx="6.4" cy="14.6" r="1.4" />
+      <circle cx="15.2" cy="17.6" r="1.6" />
+      <circle cx="9.8" cy="18.6" r="1.3" />
+    </Base>
+  );
+}
+
+export function MoodSmile(props: IconProps) {
+  return (
+    <Base {...props}>
+      <circle cx="12" cy="12" r="8.6" />
+      <path d="M9.4 10h.01M14.6 10h.01" />
+      <path d="M8.6 14.2a4.4 4.4 0 0 0 6.8 0" />
+    </Base>
+  );
+}
+
 export function Menu(props: IconProps) {
   return (
     <Base {...props}>

@@ -36,6 +36,14 @@ export default function Footer() {
           >
             블로그
           </Link>
+          <a
+            href="https://diet.ilsanhan.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-[0.82rem] text-text-muted transition-colors duration-200 hover:text-accent"
+          >
+            일산감비환
+          </a>
           <Link
             href="https://naver.me/IItclnGB"
             target="_blank"

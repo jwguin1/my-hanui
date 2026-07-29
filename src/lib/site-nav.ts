@@ -44,8 +44,10 @@ export const SITE_NAV: NavGroup[] = [
       {
         label: "내과 · 미용",
         items: [
-          { href: "/diet", label: "다이어트" },
-          { href: "/skin", label: "피부" },
+          { href: "/diet/program", label: "다이어트 처방" },
+          { href: "/diet", label: "다이어트 의학정보" },
+          { href: "/skin/spot", label: "잡티 제거" },
+          { href: "/skin", label: "피부 의학정보" },
           { href: "/autonomic", label: "자율신경" },
         ],
       },
