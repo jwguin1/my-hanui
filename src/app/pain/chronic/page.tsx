@@ -419,7 +419,13 @@ export default function ChronicPainPage() {
       <section className="bg-[var(--surface)]">
         <div className="section-padding">
           <SectionReveal>
-            <div className="mb-8 text-center">
+            <div className="mb-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-center">
+              <Link
+                href="/pain"
+                className="text-[14px] font-medium text-primary transition-colors duration-200 hover:text-tan"
+              >
+                통증 관련 연구 보기 &rarr;
+              </Link>
               <Link
                 href="/accident"
                 className="text-[14px] font-medium text-primary transition-colors duration-200 hover:text-tan"

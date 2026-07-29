@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import SectionReveal from "@/components/SectionReveal";
 import PageHeader from "@/components/ui/PageHeader";
 import SectionBadge from "@/components/ui/SectionBadge";
@@ -225,6 +226,15 @@ export default function DietProgramPage() {
               <p className="mt-3 text-[15px] text-muted">
                 체질과 대사 상태에 맞춘 처방을 상담받으실 수 있습니다
               </p>
+
+              <div className="mt-6">
+                <Link
+                  href="/diet"
+                  className="text-[14px] font-medium text-primary transition-colors duration-200 hover:text-tan"
+                >
+                  다이어트 관련 연구 보기 &rarr;
+                </Link>
+              </div>
 
               <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
                 <PillButton

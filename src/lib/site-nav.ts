@@ -38,18 +38,14 @@ export const SITE_NAV: NavGroup[] = [
           { href: "/pain/acute", label: "급성 통증" },
           { href: "/pain/chronic", label: "만성 통증" },
           { href: "/accident", label: "교통사고" },
-          { href: "/pain", label: "통증 의학정보" },
         ],
       },
       {
         label: "내과 · 미용",
         items: [
           { href: "/diet/program", label: "다이어트 처방" },
-          { href: "/diet", label: "다이어트 의학정보" },
           { href: "/skin/spot", label: "잡티 제거" },
-          { href: "/skin", label: "피부 의학정보" },
           { href: "/autonomic/care", label: "이명·어지럼·두통" },
-          { href: "/autonomic", label: "자율신경 의학정보" },
         ],
       },
     ],
@@ -58,10 +54,21 @@ export const SITE_NAV: NavGroup[] = [
     label: "콘텐츠",
     sections: [
       {
+        // 논문 아카이브 — 진료 안내가 아니라 "읽는 것" 이므로 콘텐츠 안에 둔다
+        label: "질환별 의학정보",
+        items: [
+          { href: "/pain", label: "통증" },
+          { href: "/diet", label: "다이어트" },
+          { href: "/skin", label: "피부" },
+          { href: "/autonomic", label: "자율신경" },
+        ],
+      },
+      {
+        label: "칼럼 · 영상",
         items: [
           { href: "/column", label: "의학칼럼" },
           { href: "/media", label: "유튜브" },
-          { href: "/blog", label: "블로그" },
+          { href: "/blog", label: "블로그 전체" },
         ],
       },
     ],

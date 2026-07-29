@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import SectionReveal from "@/components/SectionReveal";
 import PageHeader from "@/components/ui/PageHeader";
 import SectionBadge from "@/components/ui/SectionBadge";
@@ -397,6 +398,14 @@ export default function AutonomicCarePage() {
       <section className="bg-[var(--surface)]">
         <div className="section-padding">
           <SectionReveal>
+            <div className="mb-8 text-center">
+              <Link
+                href="/autonomic"
+                className="text-[14px] font-medium text-primary transition-colors duration-200 hover:text-tan"
+              >
+                자율신경 관련 연구 보기 &rarr;
+              </Link>
+            </div>
             <div className="mx-auto flex max-w-3xl flex-col items-center gap-3 sm:flex-row sm:justify-center">
               <PillButton
                 href="tel:031-976-7706"
