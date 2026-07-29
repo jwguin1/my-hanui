@@ -379,6 +379,60 @@ export function MoodSmile(props: IconProps) {
   );
 }
 
+export function ArrowsMove(props: IconProps) {
+  return (
+    <Base {...props}>
+      <path d="M12 3.4v17.2M9.2 6.2 12 3.4l2.8 2.8M9.2 17.8 12 20.6l2.8-2.8" />
+      <path d="M3.4 12h17.2M6.2 9.2 3.4 12l2.8 2.8M17.8 9.2 20.6 12l-2.8 2.8" />
+    </Base>
+  );
+}
+
+export function HeadCircuit(props: IconProps) {
+  return (
+    <Base {...props}>
+      <path d="M14.6 20.6v-2.4h2a1.8 1.8 0 0 0 1.8-1.8v-2.2h1.6l-2-4.2a7.6 7.6 0 1 0-9.6 9.4v1.2" />
+      <circle cx="11.4" cy="10.6" r="1.6" />
+      <path d="M11.4 6.4v2.6M8.2 12.6l1.8-1M13.4 11.9l1.8 1.2" />
+    </Base>
+  );
+}
+
+export function Moon(props: IconProps) {
+  return (
+    <Base {...props}>
+      <path d="M20.4 14.4A8.6 8.6 0 0 1 9.6 3.6a8.6 8.6 0 1 0 10.8 10.8z" />
+    </Base>
+  );
+}
+
+export function Herb(props: IconProps) {
+  return (
+    <Base {...props}>
+      <path d="M6 20.4c0-6.4 3.4-10.4 9.4-11.6" />
+      <path d="M18.8 5.2c1 5.6-2 9.6-7.4 9.8-1 0-2-.2-2.8-.6.6-5.4 4.6-8.8 10.2-9.2z" />
+    </Base>
+  );
+}
+
+export function Ear(props: IconProps) {
+  return (
+    <Base {...props}>
+      <path d="M6.4 9.4a5.6 5.6 0 1 1 11.2 0c0 2.6-1.6 3.6-2.8 4.6-1.2 1-1.6 1.8-1.8 3a2.6 2.6 0 0 1-5.2-.2" />
+      <path d="M10 9.6a2.2 2.2 0 1 1 4.4 0c0 1.2-1 1.8-1.6 2.4" />
+    </Base>
+  );
+}
+
+export function Rotate(props: IconProps) {
+  return (
+    <Base {...props}>
+      <path d="M19.6 8.2A8.4 8.4 0 1 0 20.4 12" />
+      <path d="M20.4 3.6v4.8h-4.8" />
+    </Base>
+  );
+}
+
 export function Menu(props: IconProps) {
   return (
     <Base {...props}>

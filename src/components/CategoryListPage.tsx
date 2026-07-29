@@ -141,12 +141,20 @@ export default function CategoryListPage({ category }: { category: Category }) {
         </SectionReveal>
       </section>
 
-      {/* Diet / Skin 치료 안내 페이지 배너 */}
-      {(category === "diet" || category === "skin") && (
+      {/* Diet / Skin / Autonomic 치료 안내 페이지 배너 */}
+      {(category === "diet" ||
+        category === "skin" ||
+        category === "autonomic") && (
         <section className="section-padding !pb-4 !pt-8">
           <SectionReveal>
             <Link
-              href={category === "diet" ? "/diet/program" : "/skin/spot"}
+              href={
+                category === "diet"
+                  ? "/diet/program"
+                  : category === "skin"
+                    ? "/skin/spot"
+                    : "/autonomic/care"
+              }
               className="card group mx-auto flex max-w-3xl items-center justify-between gap-5 p-6 sm:p-7"
             >
               <div className="min-w-0 flex-1">
@@ -154,12 +162,16 @@ export default function CategoryListPage({ category }: { category: Category }) {
                 <h2 className="font-serif mt-2 text-[1.05rem] font-semibold leading-snug text-ink transition-colors duration-200 group-hover:text-primary sm:text-[1.15rem]">
                   {category === "diet"
                     ? "한약 처방이 어떻게 진행되는지 보기"
-                    : "점·편평사마귀·쥐젖 제거 안내 보기"}
+                    : category === "skin"
+                      ? "점·편평사마귀·쥐젖 제거 안내 보기"
+                      : "이명·어지럼·두통 치료 안내 보기"}
                 </h2>
                 <p className="mt-2 text-[0.85rem] leading-relaxed text-muted">
                   {category === "diet"
                     ? "복용 방식과 확인해야 할 증상을 정리했습니다."
-                    : "부위별 비용과 시술 후 관리까지 정리했습니다."}
+                    : category === "skin"
+                      ? "부위별 비용과 시술 후 관리까지 정리했습니다."
+                      : "증상별 치료 기준과 먼저 확인할 것을 정리했습니다."}
                 </p>
               </div>
               <span

@@ -34,10 +34,10 @@ export const SITE_NAV: NavGroup[] = [
     sections: [
       {
         label: "통증 · 근골격",
-        // 교통사고(/accident) 는 페이지가 아직 없어 제외
         items: [
           { href: "/pain/acute", label: "급성 통증" },
           { href: "/pain/chronic", label: "만성 통증" },
+          { href: "/accident", label: "교통사고" },
           { href: "/pain", label: "통증 의학정보" },
         ],
       },
@@ -48,7 +48,8 @@ export const SITE_NAV: NavGroup[] = [
           { href: "/diet", label: "다이어트 의학정보" },
           { href: "/skin/spot", label: "잡티 제거" },
           { href: "/skin", label: "피부 의학정보" },
-          { href: "/autonomic", label: "자율신경" },
+          { href: "/autonomic/care", label: "이명·어지럼·두통" },
+          { href: "/autonomic", label: "자율신경 의학정보" },
         ],
       },
     ],
