@@ -28,12 +28,15 @@ import {
 } from "@/components/ui/icons";
 import { SITE_URL } from "@/lib/categories";
 import { pageMetadata } from "@/lib/page-metadata";
+import LocalBlock from "@/components/LocalBlock";
+import { LOCAL_BLOCKS, localFaqEntities } from "@/lib/local-blocks";
 
 export const metadata: Metadata = pageMetadata({
   path: "/accident",
-  title: "일산 교통사고 한의원 | 자동차보험 추나·물리치료 – 일산한의원",
+  title: "일산 교통사고 한의원 | 자동차보험 추나·물리치료",
   description:
     "고양시 일산한의원 교통사고 후유증 치료. 자동차보험 적용으로 본인부담 없이 추나·물리치료·초음파 진단·한약 처방. 풍산역 도보 1분, 평일 20시까지.",
+  routeOgImage: true,
 });
 
 const QUESTIONS = [
@@ -190,11 +193,14 @@ const jsonLd = [
   {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    mainEntity: QUESTIONS.map((q) => ({
-      "@type": "Question",
-      name: q.quote,
-      acceptedAnswer: { "@type": "Answer", text: q.answer },
-    })),
+    mainEntity: [
+      ...QUESTIONS.map((q) => ({
+        "@type": "Question",
+        name: q.quote,
+        acceptedAnswer: { "@type": "Answer", text: q.answer },
+      })),
+      ...localFaqEntities("/accident"),
+    ],
   },
 ];
 
@@ -394,6 +400,8 @@ export default function AccidentPage() {
           </SectionReveal>
         </div>
       </section>
+
+      <LocalBlock {...LOCAL_BLOCKS["/accident"]} />
 
       {/* ── CTA ── */}
       <section className="bg-[var(--surface)]">

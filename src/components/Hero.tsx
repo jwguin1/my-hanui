@@ -77,7 +77,7 @@ export default function Hero() {
 
           <div className="mt-[34px] flex flex-col gap-2.5 sm:flex-row">
             <PillButton
-              href="/pain"
+              href="/pain/acute"
               variant="solid"
               icon={<Stethoscope size={16} />}
               className="w-full sm:w-auto"

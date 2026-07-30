@@ -21,7 +21,10 @@ export function categoryPostMetadata(
   if (!post) return { title: "글을 찾을 수 없습니다" };
 
   const label = CATEGORY_LABEL[category];
-  const fullTitle = `${post.title} | 일산한의원 ${label}`;
+  // 글 제목에 이미 브랜드명이 들어 있으면 접미사를 붙이지 않는다 (title 내 중복 방지)
+  const fullTitle = post.title.includes("일산한의원")
+    ? `${post.title} | ${label}`
+    : `${post.title} | 일산한의원 ${label}`;
   const url = `${SITE_URL}/${category}/${slug}`;
 
   const imagePath = postImagePath(

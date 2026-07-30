@@ -38,21 +38,6 @@ export const metadata: Metadata = {
   },
   description:
     "일산한의원. 이마트풍산점 3층. 침, 한약, 초음파진단, 피부레이저, 추나, 약침, 경의중앙선 풍산역 2번출구. 031-976-7706.",
-  keywords: [
-    "일산한의원",
-    "고양시한의원",
-    "일산동구한의원",
-    "풍산역한의원",
-    "이마트풍산점한의원",
-    "침치료",
-    "한약처방",
-    "추나요법",
-    "약침치료",
-    "비수술치료",
-    "초음파한의원",
-    "교통사고한의원",
-    "일산통증치료",
-  ],
   openGraph: {
     type: "website",
     locale: "ko_KR",
@@ -112,9 +97,28 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
-              "@type": "MedicalClinic",
+              "@type": ["MedicalClinic", "LocalBusiness"],
               name: "일산한의원",
               alternateName: "일산한의원 이마트풍산점",
+              publicAccess: true,
+              isAcceptingNewPatients: true,
+              areaServed: [
+                { "@type": "City", name: "고양시" },
+                { "@type": "AdministrativeArea", name: "일산동구" },
+                { "@type": "AdministrativeArea", name: "일산서구" },
+                { "@type": "AdministrativeArea", name: "덕양구" },
+                { "@type": "AdministrativeArea", name: "파주시 운정" },
+              ],
+              availableService: [
+                { "@type": "MedicalTherapy", name: "침 치료" },
+                { "@type": "MedicalTherapy", name: "추나요법" },
+                { "@type": "MedicalTherapy", name: "약침 치료" },
+                { "@type": "MedicalTherapy", name: "한약 처방" },
+                { "@type": "MedicalTherapy", name: "물리치료" },
+                { "@type": "MedicalTherapy", name: "체외충격파" },
+                { "@type": "MedicalTest", name: "근골격계 초음파 진단" },
+                { "@type": "MedicalTherapy", name: "피부 CO2 레이저" },
+              ],
               description:
                 "6인의 한의사가 4개 분과를 협진합니다. 근골격계, 자율신경, 다이어트, 피부레이저 특화. 연간 65,700명 내원. 연간 8,000건 이상 한방 다이어트 처방.",
               url: SITE_URL,
@@ -126,7 +130,7 @@ export default function RootLayout({
                 streetAddress: "무궁화로 237, 이마트 풍산점 3층",
                 addressLocality: "고양시 일산동구",
                 addressRegion: "경기도",
-                postalCode: "10381",
+                postalCode: "10311",
                 addressCountry: "KR",
               },
               geo: {

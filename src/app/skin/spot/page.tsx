@@ -27,12 +27,15 @@ import {
 } from "@/components/ui/icons";
 import { SITE_URL } from "@/lib/categories";
 import { pageMetadata } from "@/lib/page-metadata";
+import LocalBlock from "@/components/LocalBlock";
+import { LOCAL_BLOCKS, localFaqEntities } from "@/lib/local-blocks";
 
 export const metadata: Metadata = pageMetadata({
   path: "/skin/spot",
-  title: "일산 점빼기 편평사마귀 쥐젖 제거 | CO2 레이저 – 일산한의원",
+  title: "일산 점빼기 | 편평사마귀·쥐젖 CO2 레이저",
   description:
     "고양시 일산한의원 잡티 제거. 점, 편평사마귀, 쥐젖을 CO2 레이저로 제거합니다. 부위별 비용 전체 공개. 이마트 풍산점 3층, 평일 20시까지.",
+  routeOgImage: true,
 });
 
 const QUESTIONS = [
@@ -133,11 +136,14 @@ const jsonLd = [
   {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    mainEntity: QUESTIONS.map((q) => ({
-      "@type": "Question",
-      name: q.quote,
-      acceptedAnswer: { "@type": "Answer", text: q.answer },
-    })),
+    mainEntity: [
+      ...QUESTIONS.map((q) => ({
+        "@type": "Question",
+        name: q.quote,
+        acceptedAnswer: { "@type": "Answer", text: q.answer },
+      })),
+      ...localFaqEntities("/skin/spot"),
+    ],
   },
 ];
 
@@ -353,6 +359,8 @@ export default function SkinSpotPage() {
           </SectionReveal>
         </div>
       </section>
+
+      <LocalBlock {...LOCAL_BLOCKS["/skin/spot"]} />
 
       {/* ── CTA ── */}
       <section className="bg-[var(--surface)]">

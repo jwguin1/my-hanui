@@ -32,13 +32,15 @@ import {
 } from "@/components/ui/icons";
 import { SITE_URL } from "@/lib/categories";
 import { pageMetadata } from "@/lib/page-metadata";
+import LocalBlock from "@/components/LocalBlock";
+import { LOCAL_BLOCKS, localFaqEntities } from "@/lib/local-blocks";
 
 export const metadata: Metadata = pageMetadata({
   path: "/pain/chronic",
-  title:
-    "일산 추나 초음파약침 | 석회성건염·오십견·디스크·협착증 – 일산한의원",
+  title: "일산 추나·초음파약침 | 오십견·디스크·협착증",
   description:
     "고양시 일산한의원. 석회성건염, 오십견, 무릎관절염, 디스크, 척추관협착증을 초음파 진단 후 추나요법·초음파약침으로 치료합니다. 비용 전 항목 공개. 이마트 풍산점 3층.",
+  routeOgImage: true,
 });
 
 const QUESTIONS = [
@@ -175,11 +177,14 @@ const jsonLd = [
   {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    mainEntity: QUESTIONS.map((q) => ({
-      "@type": "Question",
-      name: q.quote,
-      acceptedAnswer: { "@type": "Answer", text: q.answer },
-    })),
+    mainEntity: [
+      ...QUESTIONS.map((q) => ({
+        "@type": "Question",
+        name: q.quote,
+        acceptedAnswer: { "@type": "Answer", text: q.answer },
+      })),
+      ...localFaqEntities("/pain/chronic"),
+    ],
   },
 ];
 
@@ -414,6 +419,8 @@ export default function ChronicPainPage() {
           </SectionReveal>
         </div>
       </section>
+
+      <LocalBlock {...LOCAL_BLOCKS["/pain/chronic"]} />
 
       {/* ── CTA ── */}
       <section className="bg-[var(--surface)]">

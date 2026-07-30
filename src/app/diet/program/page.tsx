@@ -18,12 +18,15 @@ import {
 } from "@/components/ui/icons";
 import { SITE_URL } from "@/lib/categories";
 import { pageMetadata } from "@/lib/page-metadata";
+import LocalBlock from "@/components/LocalBlock";
+import { LOCAL_BLOCKS, localFaqEntities } from "@/lib/local-blocks";
 
 export const metadata: Metadata = pageMetadata({
   path: "/diet/program",
-  title: "일산 다이어트 한의원 | 한방 다이어트 처방 – 일산한의원 이마트풍산점",
+  title: "일산 다이어트 한약 | 한방 다이어트 처방",
   description:
     "고양시 일산한의원 한방 다이어트. 식단을 지속할 수 있도록 돕는 처방과 진료 기반 용량 조절. 연간 8,000건 이상 처방. 이마트 풍산점 3층, 평일 20시까지.",
+  routeOgImage: true,
 });
 
 const QUESTIONS = [
@@ -100,11 +103,14 @@ const jsonLd = [
   {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    mainEntity: QUESTIONS.map((q) => ({
-      "@type": "Question",
-      name: q.quote,
-      acceptedAnswer: { "@type": "Answer", text: q.answer },
-    })),
+    mainEntity: [
+      ...QUESTIONS.map((q) => ({
+        "@type": "Question",
+        name: q.quote,
+        acceptedAnswer: { "@type": "Answer", text: q.answer },
+      })),
+      ...localFaqEntities("/diet/program"),
+    ],
   },
 ];
 
@@ -233,6 +239,8 @@ export default function DietProgramPage() {
           </SectionReveal>
         </div>
       </section>
+
+      <LocalBlock {...LOCAL_BLOCKS["/diet/program"]} />
 
       {/* ── CTA ── */}
       <section className="bg-[var(--bg)]">

@@ -9,7 +9,7 @@ import { Quote, Users } from "@/components/ui/icons";
 
 export const metadata: Metadata = pageMetadata({
   path: "/about",
-  title: "일산한의원 소개 – 진료 철학",
+  title: "병원 소개 – 진료 철학",
   description:
     "건강보험 우선 진료, 대학병원급 초음파 진단, 비수술 치료. 과잉 진료 없이 정직하게, 환자 한 분 한 분의 이야기를 깊이 듣는 일산한의원입니다.",
   ogDescription:

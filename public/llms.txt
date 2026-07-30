@@ -1,0 +1,63 @@
+# 일산한의원 (Ilsanhan Korean Medicine Clinic)
+
+경기도 고양시 일산동구에 있는 한의원입니다. 6인의 한의사가 근골격계·내과·미용
+분과를 나눠 진료합니다. 근골격계 초음파로 확인한 뒤 필요한 치료만 권하는 것을
+진료 원칙으로 삼습니다.
+
+- 웹사이트: https://www.ilsanhan.com
+- 주소: 경기도 고양시 일산동구 무궁화로 237, 이마트 풍산점 3층
+- 전화: 031-976-7706
+- 교통: 경의중앙선 풍산역 2번 출구 도보 1분
+- 주차: 이마트 풍산점 4~7층 주차장, 3시간 무료
+- 진료지역: 고양시(일산동구·일산서구·덕양구), 파주 운정
+
+## 진료시간
+
+- 월~금: 10:00–20:00 (점심 13:00–14:00)
+- 토·일: 10:00–16:00 (점심시간 없이 진료)
+- 휴무: 매달 2·4번째 수요일 (이마트 풍산점 휴업일)
+
+## 진료 항목
+
+- 침 치료, 물리치료, 부항, 온열·뜸
+- 추나요법 (건강보험 적용, 연 20회까지)
+- 약침·초음파 약침
+- 한약 처방 (기능성소화불량은 첩약 건강보험 시범사업 적용 대상)
+- 근골격계 초음파 진단
+- 체외충격파, 무중력 감압치료
+- 피부 CO2 레이저 (점·편평사마귀·쥐젖 제거)
+
+## 진료 안내 페이지
+
+- 급성 통증 (담 결림·허리 삐끗·발목 염좌): https://www.ilsanhan.com/pain/acute
+- 만성 통증 (오십견·디스크·척추관협착증): https://www.ilsanhan.com/pain/chronic
+- 교통사고 후유증 (자동차보험): https://www.ilsanhan.com/accident
+- 소화불량 (급체·기능성소화불량): https://www.ilsanhan.com/internal/dyspepsia
+- 이명·어지럼·두통: https://www.ilsanhan.com/autonomic/care
+- 다이어트 한약 처방: https://www.ilsanhan.com/diet/program
+- 잡티 제거 (점·편평사마귀·쥐젖): https://www.ilsanhan.com/skin/spot
+
+## 의학정보 아카이브
+
+진료 분야별로 논문·연구를 정리한 글 모음입니다.
+
+- 통증: https://www.ilsanhan.com/pain
+- 다이어트: https://www.ilsanhan.com/diet
+- 피부: https://www.ilsanhan.com/skin
+- 자율신경: https://www.ilsanhan.com/autonomic
+- 전체 글: https://www.ilsanhan.com/blog
+
+## 그 외
+
+- 병원 소개: https://www.ilsanhan.com/about
+- 의료진 (6인): https://www.ilsanhan.com/doctor
+- 오시는 길·진료시간: https://www.ilsanhan.com/contact
+- 의학칼럼: https://www.ilsanhan.com/column
+- 유튜브: https://www.ilsanhan.com/media
+- 다이어트 전문 사이트: https://diet.ilsanhan.com
+
+## 참고
+
+- sitemap: https://www.ilsanhan.com/sitemap.xml
+- 이 사이트에는 환자 후기나 치료 전후 사진을 게시하지 않습니다.
+  의료광고 규정에 따라 치료 효과를 단정하는 표현을 쓰지 않습니다.

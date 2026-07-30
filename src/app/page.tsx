@@ -102,47 +102,70 @@ const faqJsonLd = {
 };
 
 // "진료 범위" 섹션의 단일 소스 — 화면 카드와 아래 ItemList JSON-LD 가 이 배열에서 함께 생성된다.
+// 진료 페이지로 직접 보내는 카드 — 아카이브(/pain 등)는 하단 "의학정보" 섹션에만 둔다
 const CLINIC_CARDS = [
   {
-    slug: "pain",
-    badge: "MSK",
-    heading: "근골격계 · 통증",
-    blurb:
-      "교통사고 후유증, 초음파 진단, 초음파약침 치료, 척추치료, 체형교정추나치료, 약침치료",
+    href: "/pain/acute",
+    badge: "통증",
+    heading: "급성 통증",
+    blurb: "침·물리치료로 3~5회 안에",
+    ogImage: CATEGORY_META.pain.ogImage,
   },
   {
-    slug: "autonomic",
-    badge: "자율신경 · 내과",
-    heading: "자율신경 · 내과",
-    blurb:
-      "자율신경실조증, 기능성소화불량, 불면, 이명, 두통, 스트레스, 과민성대장증후군",
+    href: "/pain/chronic",
+    badge: "통증",
+    heading: "만성 통증",
+    blurb: "추나·초음파약침, 비용 공개",
+    ogImage: CATEGORY_META.pain.ogImage,
   },
   {
-    slug: "diet",
-    badge: "다이어트 · 비만",
-    heading: "한방비만 · 다이어트",
-    blurb:
-      "한방비만치료, 체중감량, 대사증후군 관리. 연간 8,000건 이상 처방.",
+    href: "/accident",
+    badge: "통증",
+    heading: "교통사고",
+    blurb: "자동차보험 본인부담 없이",
+    ogImage: CATEGORY_META.pain.ogImage,
   },
   {
-    slug: "skin",
-    badge: "피부 · 미용레이저",
-    heading: "피부 · 미용레이저",
-    blurb: "피부레이저, 아토피, 피부염, 피부재생",
+    href: "/internal/dyspepsia",
+    badge: "내과",
+    heading: "소화불량",
+    blurb: "급체는 당일, 만성은 한약",
+    ogImage: CATEGORY_META.autonomic.ogImage,
+  },
+  {
+    href: "/autonomic/care",
+    badge: "내과",
+    heading: "이명·어지럼·두통",
+    blurb: "침으로 먼저 반응 확인",
+    ogImage: CATEGORY_META.autonomic.ogImage,
+  },
+  {
+    href: "/diet/program",
+    badge: "대사",
+    heading: "다이어트 처방",
+    blurb: "식단을 지속하게 돕는 처방",
+    ogImage: CATEGORY_META.diet.ogImage,
+  },
+  {
+    href: "/skin/spot",
+    badge: "미용",
+    heading: "잡티 제거",
+    blurb: "점·편평사마귀·쥐젖, 비용 공개",
+    ogImage: CATEGORY_META.skin.ogImage,
   },
 ] as const;
 
-// 네이버 사이트 컬렉션(카드 슬라이드) 노출용 — 화면의 진료 범위 카드 4개와 1:1 대응
+// 네이버 사이트 컬렉션(카드 슬라이드) 노출용 — 화면 카드와 1:1 대응
 const clinicsItemListJsonLd = {
   "@context": "https://schema.org",
   "@type": "ItemList",
-  name: "일산한의원 진료 분과",
+  name: "일산한의원 진료 안내",
   itemListElement: CLINIC_CARDS.map((card, idx) => ({
     "@type": "ListItem",
     position: idx + 1,
-    url: `${SITE_URL}/${card.slug}`,
+    url: `${SITE_URL}${card.href}`,
     name: card.heading,
-    image: `${SITE_URL}${CATEGORY_META[card.slug].ogImage}`,
+    image: `${SITE_URL}${card.ogImage}`,
   })),
 };
 
@@ -224,15 +247,15 @@ export default async function Home() {
                 <TwoTone as="h2" lead="어떤 치료가 " accent="필요하신가요?" />
               </div>
               <p className="mt-4 text-[14px] text-muted">
-                4개 분과를 6인 한의사가 협진합니다
+                증상별 치료 안내입니다. 6인 한의사가 분과를 나눠 진료합니다
               </p>
             </div>
 
-            <div className="mx-auto mt-14 grid max-w-5xl gap-5 sm:grid-cols-2">
+            <div className="mx-auto mt-14 grid max-w-5xl gap-5 sm:grid-cols-2 lg:grid-cols-3">
               {CLINIC_CARDS.map((card) => (
                 <Link
-                  key={card.slug}
-                  href={`/${card.slug}`}
+                  key={card.href}
+                  href={card.href}
                   className="card group block p-7"
                 >
                   <SectionBadge label={card.badge} />

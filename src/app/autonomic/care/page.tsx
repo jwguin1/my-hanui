@@ -28,12 +28,15 @@ import {
 } from "@/components/ui/icons";
 import { SITE_URL } from "@/lib/categories";
 import { pageMetadata } from "@/lib/page-metadata";
+import LocalBlock from "@/components/LocalBlock";
+import { LOCAL_BLOCKS, localFaqEntities } from "@/lib/local-blocks";
 
 export const metadata: Metadata = pageMetadata({
   path: "/autonomic/care",
-  title: "일산 이명 어지럼 두통 한의원 | 자율신경 치료 – 일산한의원",
+  title: "일산 이명·어지럼·두통 | 자율신경 치료",
   description:
     "고양시 일산한의원. 이명, 어지럼, 두통을 침·물리치료로 먼저 확인하고 반응에 따라 추나·약침·한약으로 접근합니다. 이마트 풍산점 3층, 평일 20시까지.",
+  routeOgImage: true,
 });
 
 const QUESTIONS = [
@@ -190,11 +193,14 @@ const jsonLd = [
   {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    mainEntity: QUESTIONS.map((q) => ({
-      "@type": "Question",
-      name: q.quote,
-      acceptedAnswer: { "@type": "Answer", text: q.answer },
-    })),
+    mainEntity: [
+      ...QUESTIONS.map((q) => ({
+        "@type": "Question",
+        name: q.quote,
+        acceptedAnswer: { "@type": "Answer", text: q.answer },
+      })),
+      ...localFaqEntities("/autonomic/care"),
+    ],
   },
 ];
 
@@ -393,6 +399,8 @@ export default function AutonomicCarePage() {
           </SectionReveal>
         </div>
       </section>
+
+      <LocalBlock {...LOCAL_BLOCKS["/autonomic/care"]} />
 
       {/* ── CTA ── */}
       <section className="bg-[var(--surface)]">

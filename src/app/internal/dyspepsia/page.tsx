@@ -27,12 +27,15 @@ import {
 } from "@/components/ui/icons";
 import { SITE_URL } from "@/lib/categories";
 import { pageMetadata } from "@/lib/page-metadata";
+import LocalBlock from "@/components/LocalBlock";
+import { LOCAL_BLOCKS, localFaqEntities } from "@/lib/local-blocks";
 
 export const metadata: Metadata = pageMetadata({
   path: "/internal/dyspepsia",
-  title: "일산 소화불량 한의원 | 급체·기능성소화불량 침치료 – 일산한의원",
+  title: "일산 소화불량 한의원 | 급체·기능성소화불량 침치료",
   description:
     "고양시 일산한의원. 급체는 당일 침 치료로, 반복되는 소화불량은 한약·침·추나로 접근합니다. 이마트 풍산점 3층, 평일 20시까지.",
+  routeOgImage: true,
 });
 
 const QUESTIONS = [
@@ -174,11 +177,14 @@ const jsonLd = [
   {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    mainEntity: QUESTIONS.map((q) => ({
-      "@type": "Question",
-      name: q.quote,
-      acceptedAnswer: { "@type": "Answer", text: q.answer },
-    })),
+    mainEntity: [
+      ...QUESTIONS.map((q) => ({
+        "@type": "Question",
+        name: q.quote,
+        acceptedAnswer: { "@type": "Answer", text: q.answer },
+      })),
+      ...localFaqEntities("/internal/dyspepsia"),
+    ],
   },
 ];
 
@@ -377,6 +383,8 @@ export default function DyspepsiaPage() {
           </SectionReveal>
         </div>
       </section>
+
+      <LocalBlock {...LOCAL_BLOCKS["/internal/dyspepsia"]} />
 
       {/* ── CTA ── */}
       <section className="bg-[var(--surface)]">

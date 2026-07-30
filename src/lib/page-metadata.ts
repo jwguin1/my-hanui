@@ -29,6 +29,8 @@ export interface PageMetadataInput {
   /** public 기준 절대경로. 미지정 시 사이트 기본 OG */
   image?: string;
   imageAlt?: string;
+  /** opengraph-image.tsx 파일 규약을 쓰는 페이지 — metadata 에서 og:image 를 지정하지 않는다 */
+  routeOgImage?: boolean;
 }
 
 export function pageMetadata({
@@ -39,6 +41,7 @@ export function pageMetadata({
   ogDescription,
   image,
   imageAlt,
+  routeOgImage = false,
 }: PageMetadataInput): Metadata {
   const url = `${SITE_URL}${path}`;
   const imagePath = image ?? DEFAULT_OG_IMAGE;
@@ -47,6 +50,24 @@ export function pageMetadata({
     image === undefined
       ? DEFAULT_OG_IMAGE_SIZE
       : { width: OG_WIDTH, height: OG_HEIGHT };
+
+  // opengraph-image.tsx 를 둔 페이지는 images 를 비워야 파일 규약이 적용된다.
+  // (metadata 에서 openGraph.images 를 명시하면 파일 규약을 덮어쓴다)
+  const images = routeOgImage
+    ? {}
+    : {
+        openGraph: {
+          images: [
+            {
+              url: imageUrl,
+              width: size.width,
+              height: size.height,
+              alt: imageAlt ?? ogTitle ?? title,
+            },
+          ],
+        },
+        twitter: { images: [imageUrl] },
+      };
 
   return {
     title,
@@ -58,20 +79,13 @@ export function pageMetadata({
       siteName: "일산한의원",
       locale: "ko_KR",
       type: "website",
-      images: [
-        {
-          url: imageUrl,
-          width: size.width,
-          height: size.height,
-          alt: imageAlt ?? ogTitle ?? title,
-        },
-      ],
+      ...(images.openGraph ?? {}),
     },
     twitter: {
       card: "summary_large_image",
       title: ogTitle ?? title,
       description: ogDescription ?? description,
-      images: [imageUrl],
+      ...(images.twitter ?? {}),
     },
     alternates: { canonical: url },
   };

@@ -28,13 +28,15 @@ import {
 } from "@/components/ui/icons";
 import { SITE_URL } from "@/lib/categories";
 import { pageMetadata } from "@/lib/page-metadata";
+import LocalBlock from "@/components/LocalBlock";
+import { LOCAL_BLOCKS, localFaqEntities } from "@/lib/local-blocks";
 
 export const metadata: Metadata = pageMetadata({
   path: "/pain/acute",
-  title:
-    "일산 통증 한의원 | 담 결림·허리 삐끗·발목 염좌 침치료 – 일산한의원",
+  title: "일산 통증 한의원 | 담 결림·삐끗·발목 염좌 침치료",
   description:
     "고양시 일산한의원. 담 결림, 급성 요추 염좌, 발목 염좌, 근육 뭉침을 침·물리치료·부항으로 치료합니다. 이마트 풍산점 3층, 평일 20시까지.",
+  routeOgImage: true,
 });
 
 const SYMPTOMS = [
@@ -164,7 +166,8 @@ const PROCESS = [
   },
 ];
 
-const jsonLd = {
+const jsonLd = [
+  {
   "@context": "https://schema.org",
   "@type": "MedicalWebPage",
   name: "급성 통증 침·물리치료 – 일산한의원",
@@ -183,7 +186,13 @@ const jsonLd = {
     url: SITE_URL,
     telephone: "+82-31-976-7706",
   },
-};
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: localFaqEntities("/pain/acute"),
+  },
+];
 
 export default function AcutePainPage() {
   return (
@@ -364,6 +373,8 @@ export default function AcutePainPage() {
         </div>
       </section>
 
+      <LocalBlock {...LOCAL_BLOCKS["/pain/acute"]} />
+
       {/* ── CTA ── */}
       <section className="bg-[var(--bg)]">
         <div className="section-padding">
@@ -404,10 +415,13 @@ export default function AcutePainPage() {
         </div>
       </section>
 
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+      {jsonLd.map((data, i) => (
+        <script
+          key={i}
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
+        />
+      ))}
     </>
   );
 }

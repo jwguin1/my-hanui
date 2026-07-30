@@ -26,7 +26,10 @@ export function generateMetadata({
   return params.then(({ slug }) => {
     const post = getPostBySlug(slug);
     if (!post) return { title: "글을 찾을 수 없습니다" };
-    const fullTitle = `${post.title} | 일산한의원`;
+    // 글 제목에 이미 브랜드명이 있으면 접미사를 붙이지 않는다 (title 내 중복 방지)
+    const fullTitle = post.title.includes("일산한의원")
+      ? post.title
+      : `${post.title} | 일산한의원`;
     const canonical =
       post.category === "blog"
         ? `${SITE_URL}/blog/${slug}`
