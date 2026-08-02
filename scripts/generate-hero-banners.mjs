@@ -93,9 +93,10 @@ const BANNERS = [
     sub: "경의중앙선 풍산역 2번출구",
     foot: "도보 1분 · 무료주차 3시간",
     fallback: "public/og-image.jpg",
-    // about 과 같은 외관 사진이라 크롭을 달리해 카드가 구분되게 한다.
-    // (실사 교체 시 scripts/banner-sources/contact.jpg 를 넣으면 이 크롭은 무시된다)
-    position: "left",
+    // 소스가 4:3(1448x1086) 이마트 외관이라 가로 기준으로 맞추면 세로가 남는다.
+    // centre 로 잘라 위쪽 하늘과 아래쪽 도로를 균등하게 덜어낸다 —
+    // emart 간판(상단 14%)과 매장입구(하단 80%)가 둘 다 살아남는 지점이다.
+    position: "centre",
   },
 ];
 
