@@ -94,9 +94,14 @@ export default function VerifyClinicSection() {
               className="mx-auto mt-6 h-px w-16 bg-[var(--line)]"
             />
 
+            {/* 문장 경계에서 끊어 데스크톱에서 정확히 두 줄로 보이게 한다.
+                모바일은 폭이 모자라 어차피 더 접히므로 br 을 숨긴다
+                (about 페이지와 같은 관례) */}
             <p className="mt-6 text-[0.95rem] leading-[1.9] text-muted">
               건강보험심사평가원에 ‘일산한의원’이라는 이름으로 등록된 요양기관은
-              전국에 한 곳입니다. 이마트 풍산점 3층에 있는 저희 한의원입니다.
+              전국에 한 곳입니다.
+              <br className="hidden md:block" /> 이마트 풍산점 3층에 있는 저희
+              한의원입니다.
             </p>
           </div>
 
