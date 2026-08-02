@@ -96,8 +96,7 @@ export default function VerifyClinicSection() {
 
             <p className="mt-6 text-[0.95rem] leading-[1.9] text-muted">
               건강보험심사평가원에 ‘일산한의원’이라는 이름으로 등록된 요양기관은
-              전국에 한 곳입니다. 경기 고양시 일산동구 무궁화로 237, 이마트
-              풍산점 3층에 있는 저희 한의원입니다.
+              전국에 한 곳입니다. 이마트 풍산점 3층에 있는 저희 한의원입니다.
             </p>
           </div>
 
