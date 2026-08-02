@@ -7,6 +7,7 @@ import {
   toISO8601KST,
 } from "@/lib/blog-local";
 import SectionReveal from "@/components/SectionReveal";
+import PageHeroBanner from "@/components/PageHeroBanner";
 import PageHeader from "@/components/ui/PageHeader";
 import SectionBadge from "@/components/ui/SectionBadge";
 import { Microscope } from "@/components/ui/icons";
@@ -85,6 +86,10 @@ export default function CategoryListPage({ category }: { category: Category }) {
         lead={label}
         description={description}
       />
+
+      {/* 네이버 하위링크 카드용 대표이미지 — 본문 최상단의 첫 이미지이자 최대 이미지.
+          /autonomic 은 이번 캐러셀 타깃이 아니라 배너를 두지 않는다. */}
+      {category !== "autonomic" && <PageHeroBanner page={category} />}
 
       {/* Diet / Skin / Autonomic 치료 안내 페이지 배너 */}
       {(category === "diet" ||

@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import SectionReveal from "@/components/SectionReveal";
+import PageHeroBanner from "@/components/PageHeroBanner";
 import { pageMetadata } from "@/lib/page-metadata";
+import { CAROUSEL_TARGETS } from "@/lib/carousel-targets";
 
 import PageHeader from "@/components/ui/PageHeader";
 import SectionBadge from "@/components/ui/SectionBadge";
@@ -9,7 +11,7 @@ import { ListCheck, MapPin } from "@/components/ui/icons";
 
 export const metadata: Metadata = pageMetadata({
   path: "/contact",
-  title: "오시는 길 – 위치, 진료시간, 주차안내",
+  title: CAROUSEL_TARGETS.contact.title,
   description:
     "경기 고양시 일산동구 무궁화로 237 이마트 풍산점 3층. 경의중앙선 풍산역 2번 출구 도보 1분. 무료주차 3시간. 평일 10:00-20:00, 토일 10:00-16:00. 031-976-7706.",
   ogTitle: "오시는 길 – 일산한의원 위치, 진료시간",
@@ -28,6 +30,8 @@ export default function ContactPage() {
         accent="길"
         description="이마트 풍산점 3층 · 경의중앙선 풍산역 2번 출구 도보 1분"
       />
+
+      <PageHeroBanner page="contact" />
 
       {/* Info Cards */}
       <section className="section-padding">

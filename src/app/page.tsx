@@ -18,6 +18,7 @@ import {
 } from "@/components/ui/icons";
 import { fetchLatestVideos } from "@/lib/youtube";
 import { CATEGORY_META, SITE_URL } from "@/lib/categories";
+import { CAROUSEL_ORDER, CAROUSEL_TARGETS } from "@/lib/carousel-targets";
 import { getLatestPostCards, latestPostsItemListJsonLd } from "@/lib/latest-posts";
 
 const TRUST_STATS = [
@@ -268,6 +269,48 @@ export default async function Home() {
                 </Link>
               ))}
             </div>
+          </SectionReveal>
+        </div>
+      </section>
+
+      {/* ── 둘러보기 (네이버 하위링크 카드 후보 6개) ──
+          네이버가 웹사이트 결과 아래 거는 하위링크는 이 6개다.
+          홈 본문에서 6개를 한 블록으로 묶어 걸어 후보를 명확히 한다.
+          앵커 문구는 푸터 사이트맵·각 페이지 title 과 동일하다
+          (단일 소스: lib/carousel-targets.ts) */}
+      <section className="bg-[var(--bg)]">
+        {/* 바로 위 "진료 범위"와 같은 배경이라 pt 를 줄여 한 블록처럼 이어 붙인다 */}
+        <div className="section-padding !pt-4">
+          <SectionReveal>
+            <div className="mx-auto max-w-3xl text-center">
+              <SectionBadge icon={<ListCheck size={15} />} label="둘러보기" />
+              <div className="mt-4">
+                <TwoTone as="h2" lead="어디부터 " accent="보시겠어요?" />
+              </div>
+            </div>
+
+            <nav
+              aria-label="주요 안내"
+              className="mx-auto mt-14 grid max-w-4xl gap-4 sm:grid-cols-2"
+            >
+              {CAROUSEL_ORDER.map((key) => {
+                const t = CAROUSEL_TARGETS[key];
+                return (
+                  <Link
+                    key={t.path}
+                    href={t.path}
+                    className="card group flex items-center justify-between gap-4 p-5"
+                  >
+                    <span className="min-w-0 text-[0.95rem] font-medium leading-snug text-ink transition-colors group-hover:text-primary">
+                      {t.title}
+                    </span>
+                    <span aria-hidden="true" className="shrink-0 text-primary">
+                      →
+                    </span>
+                  </Link>
+                );
+              })}
+            </nav>
           </SectionReveal>
         </div>
       </section>

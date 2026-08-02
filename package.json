@@ -8,7 +8,9 @@
     "start": "next start",
     "lint": "next lint",
     "og:generate": "node scripts/generate-og-images.mjs",
-    "hero:generate": "node scripts/generate-hero-team.mjs"
+    "hero:generate": "node scripts/generate-hero-team.mjs",
+    "banners": "node scripts/generate-hero-banners.mjs",
+    "verify:carousel": "node scripts/verify-carousel.mjs"
   },
   "dependencies": {
     "gray-matter": "^4.0.3",

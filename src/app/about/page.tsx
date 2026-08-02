@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import SectionReveal from "@/components/SectionReveal";
+import PageHeroBanner from "@/components/PageHeroBanner";
 import { pageMetadata } from "@/lib/page-metadata";
+import { CAROUSEL_TARGETS } from "@/lib/carousel-targets";
 
 import PageHeader from "@/components/ui/PageHeader";
 import SectionBadge from "@/components/ui/SectionBadge";
@@ -9,7 +11,7 @@ import { Quote, Users } from "@/components/ui/icons";
 
 export const metadata: Metadata = pageMetadata({
   path: "/about",
-  title: "병원 소개 – 진료 철학",
+  title: CAROUSEL_TARGETS.about.title,
   description:
     "건강보험 우선 진료, 대학병원급 초음파 진단, 비수술 치료. 과잉 진료 없이 정직하게, 환자 한 분 한 분의 이야기를 깊이 듣는 일산한의원입니다.",
   ogDescription:
@@ -27,6 +29,8 @@ export default function AboutPage() {
         accent="한의원"
         description="고양시 일산에서 오래 진료해 온"
       />
+
+      <PageHeroBanner page="about" />
 
       {/* Philosophy */}
       <section className="section-padding">

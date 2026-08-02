@@ -5,6 +5,8 @@
  * 계층은 들여쓰기가 아니라 "그룹 라벨"로 표현한다 —
  * 드롭다운은 평평한 목록이라 항목마다 들여쓰기를 주면 정렬이 어색해진다.
  */
+import { CAROUSEL_TARGETS } from "@/lib/carousel-targets";
+
 export type NavLink = { href: string; label: string };
 
 /** 라벨이 없으면 구분 없는 단일 묶음 */
@@ -23,8 +25,8 @@ export const SITE_NAV: NavGroup[] = [
     sections: [
       {
         items: [
-          { href: "/about", label: "병원 소개" },
-          { href: "/doctor", label: "의료진" },
+          { href: "/about", label: CAROUSEL_TARGETS.about.navLabel },
+          { href: "/doctor", label: CAROUSEL_TARGETS.doctor.navLabel },
         ],
       },
     ],
@@ -60,10 +62,12 @@ export const SITE_NAV: NavGroup[] = [
       {
         // 논문 아카이브 — 진료 안내가 아니라 "읽는 것" 이므로 콘텐츠 안에 둔다
         label: "질환별 의학정보",
+        // 앵커 텍스트 = 페이지 title 앞부분. 네이버가 카드 라벨을 앵커에서
+        // 뽑든 title 에서 뽑든 같은 말이 나오게 한다 (carousel-targets.ts 참조)
         items: [
-          { href: "/pain", label: "통증" },
-          { href: "/diet", label: "다이어트" },
-          { href: "/skin", label: "피부" },
+          { href: "/pain", label: CAROUSEL_TARGETS.pain.navLabel },
+          { href: "/diet", label: CAROUSEL_TARGETS.diet.navLabel },
+          { href: "/skin", label: CAROUSEL_TARGETS.skin.navLabel },
           { href: "/autonomic", label: "자율신경" },
         ],
       },
@@ -77,7 +81,7 @@ export const SITE_NAV: NavGroup[] = [
       },
     ],
   },
-  { label: "오시는 길", href: "/contact" },
+  { label: CAROUSEL_TARGETS.contact.navLabel, href: "/contact" },
 ];
 
 /** 현재 경로가 해당 링크(또는 그 하위)인지 */

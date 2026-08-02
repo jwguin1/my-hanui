@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import DoctorGrid from "@/components/DoctorGrid";
+import PageHeroBanner from "@/components/PageHeroBanner";
 import { DOCTOR_META } from "@/lib/categories";
+import { CAROUSEL_TARGETS } from "@/lib/carousel-targets";
 
 import PageHeader from "@/components/ui/PageHeader";
 import { Users } from "@/components/ui/icons";
@@ -10,7 +12,7 @@ const SITE_URL = "https://www.ilsanhan.com";
 // 기존 title/description/OG title·desc 는 그대로 유지(더 상세함)하고
 // OG 이미지 · twitter 카드 · canonical 만 병합 추가.
 export const metadata: Metadata = {
-  title: "의료진 소개 – 6명의 한의사",
+  title: CAROUSEL_TARGETS.doctor.title,
   description:
     "장경진, 남태훈, 박건희, 강민석, 박동석, 이명주. 6명의 한의사가 정성을 다해 진료합니다. 각 원장의 학력, 자격, 학회 활동과 주요 진료 분야를 확인하세요.",
   openGraph: {
@@ -225,6 +227,8 @@ export default function DoctorPage() {
         accent="소개"
         description="6명의 한의사가 정성을 다해 진료합니다"
       />
+
+      <PageHeroBanner page="doctor" />
 
       <DoctorGrid doctors={doctors} />
     </>

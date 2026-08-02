@@ -273,13 +273,16 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "SiteNavigationElement",
+              // 이름은 네비 앵커 · 푸터 사이트맵 · 각 페이지 title 과 같은 문구를
+              // 쓴다. 단일 소스는 lib/carousel-targets.ts —
+              // 여기서 다른 말을 쓰면 네이버가 뽑는 카드 라벨이 갈린다.
               name: [
-                "일산한의원",
+                "병원 소개",
                 "의료진",
-                "통증",
-                "다이어트",
+                "통증 · 근골격",
+                "한방 다이어트",
                 "자율신경",
-                "피부",
+                "피부 · 레이저",
                 "의학칼럼",
                 "유튜브",
                 "오시는 길",

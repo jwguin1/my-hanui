@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import type { Category } from "@/lib/blog-local";
+import { CAROUSEL_TARGETS } from "@/lib/carousel-targets";
 
 // blog-local 의 Category 는 type-only import 이므로 이 모듈은 fs 의존성이 없다.
 // (서버/클라이언트 어디서나 안전하게 import 가능)
@@ -65,17 +66,25 @@ export const DOCTOR_META = {
  * 카테고리 목록 페이지(/pain 등)용 Next.js Metadata 를 CATEGORY_META 에서 생성.
  *
  * 주의: 루트 layout 의 title.template 이 "%s | 일산한의원" 이므로
- *   - page title 은 meta.label 만 둔다 (template 이 접미사를 붙임 → "통증 | 일산한의원")
+ *   - page title 은 앞부분만 둔다 (template 이 접미사를 붙임)
  *   - openGraph/twitter title 은 풀타이틀을 직접 지정 (OG title 엔 template 미적용)
+ *
+ * 네이버 캐러셀 타깃(pain/diet/skin)은 라벨 일치를 위해 carousel-targets.ts 의
+ * title 을 쓴다. 기존 첫 단어(통증·다이어트·피부)는 그대로 두고 설명만 덧붙인
+ * 문구다 — 교체가 아니라 삽입. 타깃이 아닌 autonomic 은 meta.label 그대로.
  */
 export function categoryMetadata(category: Category): Metadata {
   const meta = CATEGORY_META[category];
   const url = `${SITE_URL}/${category}`;
   const ogImageUrl = `${SITE_URL}${meta.ogImage}`;
-  const fullTitle = `${meta.label} | 일산한의원`;
+  const title =
+    category in CAROUSEL_TARGETS
+      ? CAROUSEL_TARGETS[category as keyof typeof CAROUSEL_TARGETS].title
+      : meta.label;
+  const fullTitle = `${title} | 일산한의원`;
 
   return {
-    title: meta.label,
+    title,
     description: meta.description,
     openGraph: {
       title: fullTitle,

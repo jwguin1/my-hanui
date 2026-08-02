@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { CAROUSEL_ORDER, CAROUSEL_TARGETS } from "@/lib/carousel-targets";
 
 export default function Footer() {
   return (
@@ -11,24 +12,35 @@ export default function Footer() {
           이마트 풍산점 3층
         </p>
 
-        <div className="mt-6 flex flex-wrap items-center justify-center gap-5">
-          <Link
-            href="/about"
-            className="text-[0.82rem] text-text-muted transition-colors duration-200 hover:text-accent"
-          >
-            일산한의원
-          </Link>
+        {/* 사이트맵 — 네이버 하위링크 카드의 라벨 후보.
+            네비는 폭 제약이 있어 짧게 걸고, 여기는 title 과 완전히 같은
+            전체 문구로 건다. 단일 소스는 carousel-targets.ts. */}
+        <nav
+          aria-label="사이트맵"
+          className="mx-auto mt-8 grid max-w-2xl gap-x-8 gap-y-2.5 text-left sm:grid-cols-2"
+        >
+          {CAROUSEL_ORDER.map((key) => {
+            const t = CAROUSEL_TARGETS[key];
+            return (
+              <Link
+                key={t.path}
+                href={t.path}
+                className="text-[0.82rem] text-text-muted transition-colors duration-200 hover:text-accent"
+              >
+                {t.title}
+              </Link>
+            );
+          })}
+        </nav>
+
+        <div className="mt-8 flex flex-wrap items-center justify-center gap-5">
+          {/* /about · /doctor 는 위 사이트맵으로 옮겼다 — 같은 URL 에
+              "일산한의원" 같은 다른 앵커가 남으면 라벨 신호가 갈린다 */}
           <Link
             href="/column"
             className="text-[0.82rem] text-text-muted transition-colors duration-200 hover:text-accent"
           >
             의학칼럼
-          </Link>
-          <Link
-            href="/doctor"
-            className="text-[0.82rem] text-text-muted transition-colors duration-200 hover:text-accent"
-          >
-            의료진
           </Link>
           <Link
             href="/blog"
