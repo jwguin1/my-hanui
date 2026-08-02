@@ -2,6 +2,7 @@ import Link from "next/link";
 import Hero from "@/components/Hero";
 import SectionReveal from "@/components/SectionReveal";
 import PostCard from "@/components/PostCard";
+import VerifyClinicSection from "@/components/VerifyClinicSection";
 import SectionBadge from "@/components/ui/SectionBadge";
 import StatCard from "@/components/ui/StatCard";
 import TwoTone from "@/components/ui/TwoTone";
@@ -209,6 +210,9 @@ export default async function Home() {
           </SectionReveal>
         </div>
       </section>
+
+      {/* ── 의료기관 확인 ── */}
+      <VerifyClinicSection />
 
       {/* ── Differentiation ── */}
       <section className="bg-[var(--surface)]">
