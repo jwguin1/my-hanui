@@ -120,7 +120,7 @@ export default function RootLayout({
                 { "@type": "MedicalTherapy", name: "피부 CO2 레이저" },
               ],
               description:
-                "6인의 한의사가 4개 분과를 협진합니다. 근골격계, 자율신경, 다이어트, 피부레이저 특화. 연간 65,700명 내원. 연간 8,000건 이상 한방 다이어트 처방.",
+                "6인의 한의사가 4개 분과를 협진합니다. 근골격계, 자율신경, 다이어트, 피부레이저 특화. 누적 13,000명이 80,000회 내원. 누적 9,000건 한방 다이어트 처방.",
               url: SITE_URL,
               image: `${SITE_URL}/og-image.jpg`,
               priceRange: "₩₩",

@@ -59,7 +59,7 @@ const BANNERS = [
     slug: "diet",
     title: "한방 다이어트",
     sub: "일산감비환 · 체질 처방",
-    foot: "연간 8,000건 이상 처방",
+    foot: "누적 9,000건 처방",
     fallback: "public/images/diet-og.jpg",
     position: "centre",
   },

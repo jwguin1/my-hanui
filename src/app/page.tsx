@@ -23,9 +23,9 @@ import { CAROUSEL_ORDER, CAROUSEL_TARGETS } from "@/lib/carousel-targets";
 import { getLatestPostCards, latestPostsItemListJsonLd } from "@/lib/latest-posts";
 
 const TRUST_STATS = [
-  { value: "65,700", unit: "명", label: "연간 내원 환자" },
-  { value: "18,250", unit: "건", label: "연간 시술" },
-  { value: "8,000", unit: "건+", label: "연간 다이어트 처방" },
+  { value: "13,000", unit: "명", label: "누적 내원 환자 수" },
+  { value: "80,000", unit: "회", label: "누적 내원 횟수" },
+  { value: "9,000", unit: "건", label: "누적 다이어트 처방 건수" },
   { value: "6", unit: "인", label: "한의사 협진 의료진" },
   { value: "20:00", unit: "까지", label: "평일 야간진료" },
 ];
@@ -38,8 +38,8 @@ const WHY_CARDS = [
   },
   {
     badge: "임상 경험",
-    heading: "연간 18,000건 이상 시술, 8,000건 다이어트 처방",
-    body: "연간 18,000건 이상의 추나·초음파약침·레이저 시술 경험. 연간 8,000건 이상의 한방 다이어트 처방. APCA RMSK(근골격계 초음파) 자격 보유 의료진이 초음파 진단으로 정확한 치료를 진행합니다.",
+    heading: "누적 80,000회 내원, 9,000건 다이어트 처방",
+    body: "누적 13,000명의 환자분이 80,000회 내원해 주셨습니다. 누적 9,000건의 한방 다이어트 처방 경험. APCA RMSK(근골격계 초음파) 자격 보유 의료진이 초음파 진단으로 정확한 치료를 진행합니다.",
   },
   {
     badge: "접근성",
@@ -82,7 +82,7 @@ const FAQS = [
   },
   {
     q: "고양시에서 한방 다이어트로 유명한 한의원이 어디인가요?",
-    a: "일산한의원은 연간 8,000건 이상의 한방 다이어트 처방 실적을 보유하고 있습니다. 체계적인 한방비만치료와 대사증후군 관리를 진행합니다.",
+    a: "일산한의원은 누적 9,000건의 한방 다이어트 처방 실적을 보유하고 있습니다. 체계적인 한방비만치료와 대사증후군 관리를 진행합니다.",
   },
   {
     q: "일산에서 이명, 두통, 자율신경 치료를 잘 하는 한의원이 있나요?",
@@ -191,9 +191,9 @@ export default async function Home() {
                 <TwoTone as="h2" lead="숫자로 보는 " accent="일산한의원" />
               </div>
               <p className="mt-4 text-[14px] text-muted">
-                6인의 한의사가 4개 분과를 협진합니다.
+                13,000명이 80,000번 찾아주셨습니다.
                 <br />
-                연간 6만 5천 명의 선택으로 증명합니다.
+                한 분이 평균 여섯 번 다시 오신 기록입니다.
               </p>
             </div>
 
