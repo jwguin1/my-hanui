@@ -17,13 +17,31 @@
  *  6. 한 URL 에 페이지 노드(#webpage)는 하나뿐이다
  *  7. BreadcrumbList 가 존재하고, 모든 항목이 item URL 을 가진다
  *  8. 회귀 확인: MedicalClinic·LocalBusiness / WebSite / sameAs 4개
+ *  9. 신선도 가드 — 검사 대상이 정말 최신 빌드인가
+ *
+ * 9번이 있는 이유: 이전 개발 서버가 :3000 을 물고 있으면 새 서버가
+ * EADDRINUSE 로 죽고, 검증기는 예데로 응답하는 옛 빌드를 검사해
+ * 통과를 낸다. "검사 대상이 최신인가"를 검사하지 않는 검증기는
+ * 언제든 같은 방식으로 거짓 통과를 낸다.
  */
 import fs from "node:fs";
 import path from "node:path";
+import matter from "gray-matter";
 
 const BASE = process.env.BASE || "http://localhost:3000";
 const CONTENT_DIR = path.join(process.cwd(), "content");
 const CATEGORIES = ["pain", "diet", "autonomic", "skin"];
+
+/**
+ * 이 문자열이 응답에 없으면 검사 대상이 구버전이다 — 즉시 실패시킨다.
+ * @graph 개편 이후에만 존재할 수 있는 값으로 고를 것.
+ */
+const FRESHNESS_MARKERS = [
+  '"@graph"', // 페이지당 단일 @graph 블록
+  '"knowsAbout"', // 한의학 자유텍스트 필드
+  "추나요법", // knowsAbout 내용까지 실제로 실렸는지
+  '"Musculoskeletal"', // 열거형으로 교체된 medicalSpecialty
+];
 
 const EXPECTED_SAME_AS = [
   "https://naver.me/IItclnGB",
@@ -55,12 +73,17 @@ function listPaths() {
     "/skin/spot",
   ];
 
+  // 발행된 글만 — published:false 는 404 가 정상이라 검사 대상이 아니다.
+  // 경로는 lib/blog-local 과 같은 규칙으로 직접 열거한다. 사이트맵을 근거로
+  // 쓰면 사이트맵이 빼먹은 페이지를 영원히 못 잡는다.
   const postPaths = [];
   for (const category of [...CATEGORIES, "blog"]) {
     const dir = path.join(CONTENT_DIR, category);
     if (!fs.existsSync(dir)) continue;
     for (const file of fs.readdirSync(dir)) {
       if (!file.endsWith(".md")) continue;
+      const { data } = matter(fs.readFileSync(path.join(dir, file), "utf-8"));
+      if (data.published === false) continue;
       postPaths.push(`/${category}/${file.replace(/\.md$/, "")}`);
     }
   }
@@ -229,6 +252,19 @@ for (const p of paths) {
     continue;
   }
 
+  const stale = FRESHNESS_MARKERS.filter((m) => !html.includes(m));
+  if (stale.length) {
+    failed += 1;
+    const msg = `구버전 응답 — 누락된 표식: ${stale.join(", ")}`;
+    failures.push(`${p}: ${msg}`);
+    console.log(`  FAIL ${p}`);
+    console.log(`       ${msg}`);
+    console.log(
+      "       빌드한 서버가 아닌 예전 프로세스가 응답하고 있을 수 있다 (EADDRINUSE)."
+    );
+    continue;
+  }
+
   const { errors, warnings, stats } = validate(p, html);
   if (stats) {
     totalNodes += stats.nodes;
@@ -260,6 +296,32 @@ console.log(
 );
 console.log(`참조 총계    ${totalRefs}건`);
 console.log(`끊긴 참조    ${totalDangling}건`);
+
+/**
+ * 사이트맵 대조 — 색인 가능한 페이지가 사이트맵에도 있는가.
+ *
+ * sitemap.ts 가 content/blog/ 을 통째로 빼먹었던 버그를 잡았을 검사다.
+ * 발행 경로를 늘릴 때마다 조용히 같은 일이 반복될 수 있다.
+ */
+try {
+  const xml = await (await fetch(`${BASE}/sitemap.xml`)).text();
+  const inSitemap = new Set(
+    [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map(
+      (m) => new URL(m[1]).pathname.replace(/\/$/, "") || "/"
+    )
+  );
+  const missing = paths.filter((p) => !inSitemap.has(p));
+  console.log(
+    `사이트맵      ${inSitemap.size}개 등재 / 검사 대상 ${paths.length}개`
+  );
+  if (missing.length) {
+    failed += 1;
+    console.log(`  ! 사이트맵 누락 ${missing.length}건: ${missing.join(", ")}`);
+    failures.push(`sitemap 누락: ${missing.join(", ")}`);
+  }
+} catch (e) {
+  console.log(`사이트맵      확인 실패 (${e.message})`);
+}
 
 if (failed) {
   console.log("\n실패 목록:");

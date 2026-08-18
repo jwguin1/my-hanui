@@ -39,7 +39,7 @@ my-hanui/
 │   ├── diet/                 # 다이어트 카테고리 글
 │   ├── autonomic/            # 자율신경 카테고리 글
 │   ├── skin/                 # 피부 카테고리 글
-│   └── health-info/          # (논문 요약 원자료 — 라우팅되지 않음)
+│   └── _health-info/         # (논문 요약 원자료 — 라우팅 안 됨. 언더스코어 = 발행 대상 아님)
 ├── public/
 │   ├── blog-images/{slug}/   # API로 업로드된 글의 이미지 (img-1.png, thumbnail.*)
 │   ├── images/               # 의료진 사진 등 정적 이미지

@@ -549,6 +549,21 @@ export interface ItemListEntry {
   item?: SchemaNode;
 }
 
+/**
+ * 목록 노드.
+ *
+ * ⚠ 홈(/)에는 ItemList 가 의도적으로 2개다 — #treatment-list(진료 카드 7개)와
+ * #recent-posts(최신 글 5개). 둘 다 네이버 캐러셀 대응용이고 화면 카드와 1:1로
+ * 맞춰둔 구조라 합치면 그 대응이 깨진다.
+ *
+ * 그 탓에 Google Rich Results Test 가 홈에서 "페이지에 여러 ListItem 요소가
+ * 정의됨" 캐러셀 경고를 띄우는데, **무시한다.**
+ * - 마크업 유효성 문제가 아니라 캐러셀 리치결과 적격성만의 문제다.
+ * - Google 캐러셀 리치결과는 레시피·코스·영화·음식점 등 특정 타입 전용이라
+ *   한의원은 애초에 대상이 아니다. 합쳐도 얻을 게 없다.
+ * - 같은 그래프의 Article 5개는 그대로 "글" 유효 항목으로 인식된다.
+ * - BreadcrumbList 는 이 경고와 무관하다 (ItemList 1개인 /pain 은 경고 없음으로 확인).
+ */
 export function itemListNode(
   path: string,
   fragment: string,
