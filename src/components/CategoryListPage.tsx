@@ -246,6 +246,8 @@ export default function CategoryListPage({ category }: { category: Category }) {
                       <img
                         src={post.thumbnail}
                         alt={post.title}
+                        loading="lazy"
+                        decoding="async"
                         className="h-full w-full object-cover"
                       />
                     </div>

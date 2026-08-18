@@ -6,7 +6,8 @@ import {
   toISO8601KST,
 } from "@/lib/blog-local";
 import { CATEGORY_META, SITE_URL } from "@/lib/categories";
-import { postImagePath } from "@/lib/og-image";
+import { OG_HEIGHT, OG_WIDTH, postImagePath } from "@/lib/og-image";
+import { imageSize } from "@/lib/image-size";
 import { articleStub, itemListNode, type SchemaNode } from "@/lib/schema";
 
 /**
@@ -30,9 +31,16 @@ export interface LatestPostCard {
   title: string;
   description: string;
   date: string;
-  /** 화면 <img> 용 상대경로. 파생 og.png → 원본 썸네일 → 카테고리 대표 OG 순 */
+  /** 화면 <img> 용 상대경로. 파생 og.webp → og.png → 원본 썸네일 → 카테고리 대표 OG */
   imagePath: string;
-  /** 위와 같은 파일의 절대 URL — JSON-LD 용 (크롤러가 따라갈 수 있어야 함) */
+  /** imagePath 파일의 실제 픽셀 크기 — <img width/height> 용 (CLS 방지) */
+  imageWidth: number;
+  imageHeight: number;
+  /**
+   * JSON-LD image / og:image 용 절대 URL. 항상 PNG 계열(social) 이다.
+   * 화면용 WebP 와 파일이 갈리는데, 이는 의도된 분리다 —
+   * 카카오·네이버 크롤러 중 WebP 를 처리하지 못하는 것이 있다.
+   */
   image: string;
   tags: string[];
   /** 프론트매터 author (선택) — Article.author 귀속용 */
@@ -55,11 +63,22 @@ export function getLatestPostCards(limit: number = 5): LatestPostCard[] {
     .slice(0, limit)
     .map((post) => {
       const category = post.category as Category;
+      const fallback = CATEGORY_META[category].ogImage;
       const imagePath = postImagePath(
         post.slug,
         post.thumbnail,
-        CATEGORY_META[category].ogImage
+        fallback,
+        "display"
       );
+      const socialPath = postImagePath(
+        post.slug,
+        post.thumbnail,
+        fallback,
+        "social"
+      );
+      // 파생 OG 가 없는 글은 원본 썸네일을 그대로 쓰므로 1200x630 이 아니다.
+      // 실측값을 넣지 않으면 종횡비가 어긋나 CLS 가 생긴다.
+      const size = imageSize(imagePath);
       return {
         slug: post.slug,
         category,
@@ -70,7 +89,9 @@ export function getLatestPostCards(limit: number = 5): LatestPostCard[] {
         description: post.description,
         date: post.date,
         imagePath,
-        image: toAbsoluteUrl(imagePath),
+        imageWidth: size?.width ?? OG_WIDTH,
+        imageHeight: size?.height ?? OG_HEIGHT,
+        image: toAbsoluteUrl(socialPath),
         tags: post.tags,
         author: post.author,
       };

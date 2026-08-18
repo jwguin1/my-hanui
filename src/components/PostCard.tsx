@@ -14,8 +14,14 @@ function formatDate(dateStr: string): string {
 /**
  * 자사 상세글 카드 (제목 + 요약 + 날짜 + 태그 + 썸네일).
  *
- * 이미지 영역 비율을 파생 OG(1200x630) 와 동일하게 잡아 잘림 없이 그대로 노출한다 —
- * 화면에 보이는 카드 이미지와 ItemList JSON-LD 의 image 가 같은 파일이 된다.
+ * 이미지 영역 비율을 파생 OG(1200x630) 와 동일하게 잡아 잘림 없이 그대로 노출한다.
+ *
+ * src 는 화면용 og.webp, JSON-LD image 는 og.png 로 갈린다 — 같은 캔버스에서
+ * 나온 같은 그림이고, 소셜 크롤러의 WebP 미지원 때문에 일부러 분리했다
+ * (lib/og-image.ts 의 ImagePurpose 참고).
+ *
+ * 히어로가 아니므로 lazy 다. 이 카드는 네이버 캐러셀 대표이미지 후보가 아니다
+ * — 그 역할은 PageHeroBanner 가 하고, 거기는 lazy 를 붙이면 안 된다.
  */
 export default function PostCard({ post }: { post: LatestPostCard }) {
   return (
@@ -31,8 +37,10 @@ export default function PostCard({ post }: { post: LatestPostCard }) {
         <img
           src={post.imagePath}
           alt={post.title}
-          width={OG_WIDTH}
-          height={OG_HEIGHT}
+          width={post.imageWidth}
+          height={post.imageHeight}
+          loading="lazy"
+          decoding="async"
           className="h-full w-full object-cover"
         />
       </div>

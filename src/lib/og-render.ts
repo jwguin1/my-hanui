@@ -5,6 +5,7 @@ import {
   OG_HEIGHT,
   OG_WIDTH,
   ogImagePath,
+  ogWebpPath,
   resolveOgSource,
 } from "./og-image.ts";
 
@@ -22,6 +23,8 @@ const SIZE_BUDGET_BYTES = 300 * 1024;
 
 export interface RenderResult {
   bytes: number;
+  /** 화면용 WebP 파생의 바이트 수 */
+  webpBytes: number;
   srcW: number;
   srcH: number;
   innerW: number;
@@ -31,7 +34,8 @@ export interface RenderResult {
 
 export async function renderOgImage(
   srcAbs: string,
-  destAbs: string
+  destAbs: string,
+  webpDestAbs?: string
 ): Promise<RenderResult> {
   const meta = await sharp(srcAbs).metadata();
 
@@ -81,8 +85,23 @@ export async function renderOgImage(
   fs.mkdirSync(path.dirname(destAbs), { recursive: true });
   fs.writeFileSync(destAbs, buf);
 
+  // 화면용 WebP 파생.
+  //
+  // og.png 를 대체하는 게 아니라 나란히 둔다 — og.png 는 og:image 메타와
+  // JSON-LD image 가 계속 가리키고(카카오·네이버 크롤러 호환), og.webp 는
+  // 화면 <img src> 전용이다. 같은 캔버스에서 나오므로 두 파일은 항상 같은
+  // 그림, 같은 1200x630 이다.
+  let webpBytes = 0;
+  if (webpDestAbs) {
+    const webp = await base.clone().webp({ quality: 82, effort: 5 }).toBuffer();
+    fs.mkdirSync(path.dirname(webpDestAbs), { recursive: true });
+    fs.writeFileSync(webpDestAbs, webp);
+    webpBytes = webp.length;
+  }
+
   return {
     bytes: buf.length,
+    webpBytes,
     srcW: meta.width ?? 0,
     srcH: meta.height ?? 0,
     innerW,
@@ -107,8 +126,10 @@ export async function generateOgImageForPost(
 ): Promise<GenerateOutcome> {
   const destRel = ogImagePath(slug);
   const destAbs = path.join(PUBLIC_DIR, destRel.replace(/^\//, ""));
+  const webpAbs = path.join(PUBLIC_DIR, ogWebpPath(slug).replace(/^\//, ""));
 
-  if (fs.existsSync(destAbs) && !opts.force) {
+  // 둘 다 있을 때만 건너뛴다. png 만 있는 과거 글은 webp 를 채워야 한다.
+  if (fs.existsSync(destAbs) && fs.existsSync(webpAbs) && !opts.force) {
     return { status: "exists", rel: destRel };
   }
 
@@ -120,6 +141,6 @@ export async function generateOgImageForPost(
     return { status: "skipped", reason: `원본 파일 없음 (${source.rel})` };
   }
 
-  const render = await renderOgImage(srcAbs, destAbs);
+  const render = await renderOgImage(srcAbs, destAbs, webpAbs);
   return { status: "created", rel: destRel, source: source.rel, via: source.via, render };
 }

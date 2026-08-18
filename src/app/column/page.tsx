@@ -60,6 +60,8 @@ export default async function ColumnPage() {
                         src={post.thumbnail}
                         alt={post.title}
                         referrerPolicy="no-referrer"
+                        loading="lazy"
+                        decoding="async"
                         className="h-full w-full object-cover"
                       />
                     </div>

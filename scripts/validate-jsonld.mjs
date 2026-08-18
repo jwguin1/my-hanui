@@ -18,6 +18,7 @@
  *  7. BreadcrumbList 가 존재하고, 모든 항목이 item URL 을 가진다
  *  8. 회귀 확인: MedicalClinic·LocalBusiness / WebSite / sameAs 4개
  *  9. 신선도 가드 — 검사 대상이 정말 최신 빌드인가
+ * 10. 파생 OG 쌍 — 발행된 글마다 og.png 와 og.webp 가 둘 다 있는가
  *
  * 9번이 있는 이유: 이전 개발 서버가 :3000 을 물고 있으면 새 서버가
  * EADDRINUSE 로 죽고, 검증기는 예데로 응답하는 옛 빌드를 검사해
@@ -296,6 +297,41 @@ console.log(
 );
 console.log(`참조 총계    ${totalRefs}건`);
 console.log(`끊긴 참조    ${totalDangling}건`);
+
+/**
+ * 파생 OG 쌍 대조 — 발행된 글마다 og.png 와 og.webp 가 둘 다 있는가.
+ *
+ * og.png 는 og:image 메타와 JSON-LD image 가, og.webp 는 화면 <img src> 가
+ * 가리킨다. 한쪽만 생기면 화면이나 공유 미리보기 중 하나가 조용히 깨진다
+ * (postImagePath 가 png 로 폴백하므로 눈에 잘 안 띈다).
+ */
+{
+  const missingPairs = [];
+  for (const category of [...CATEGORIES, "blog"]) {
+    const dir = path.join(CONTENT_DIR, category);
+    if (!fs.existsSync(dir)) continue;
+    for (const file of fs.readdirSync(dir)) {
+      if (!file.endsWith(".md")) continue;
+      const { data } = matter(fs.readFileSync(path.join(dir, file), "utf-8"));
+      if (data.published === false) continue;
+      const slug = file.replace(/\.md$/, "");
+      const base = path.join(process.cwd(), "public", "blog-images", slug);
+      const hasPng = fs.existsSync(path.join(base, "og.png"));
+      const hasWebp = fs.existsSync(path.join(base, "og.webp"));
+      // 둘 다 없는 글은 파생 OG 자체가 없는 것(원본 썸네일 사용) — 정상이다.
+      if (hasPng !== hasWebp) {
+        missingPairs.push(`${slug}(${hasPng ? "webp 없음" : "png 없음"})`);
+      }
+    }
+  }
+  console.log(`파생 OG 쌍    불일치 ${missingPairs.length}건`);
+  if (missingPairs.length) {
+    failed += 1;
+    console.log(`  ! ${missingPairs.join(", ")}`);
+    console.log("    복구: node scripts/generate-og-images.mjs");
+    failures.push(`파생 OG 쌍 불일치: ${missingPairs.join(", ")}`);
+  }
+}
 
 /**
  * 사이트맵 대조 — 색인 가능한 페이지가 사이트맵에도 있는가.
