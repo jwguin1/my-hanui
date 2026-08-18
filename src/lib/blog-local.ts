@@ -31,6 +31,13 @@ export interface LocalBlogPost {
   published: boolean;
   content: string;
   category: string; // "blog" (uncategorized/공지) | Category
+  /**
+   * 작성 한의사 실명 (선택). 의료 콘텐츠는 YMYL 이라 작성자 귀속이
+   * 평가에 반영된다. 값이 있고 lib/schema.ts 의 DOCTOR_SLUGS 에 등록된
+   * 이름이면 Article.author 가 Physician 노드(/doctor#{슬러그})로 연결되고,
+   * 비어 있으면 병원 노드(#clinic)로 폴백한다.
+   */
+  author?: string;
 }
 
 function isCategory(value: string): value is Category {
@@ -64,6 +71,7 @@ function readPostFile(filePath: string, slug: string, category: string): LocalBl
     thumbnail: resolveThumbnail(data, content),
     tags: (data.tags as string[]) || [],
     published: data.published !== false,
+    author: ((data.author as string) || "").trim() || undefined,
     content,
     category,
   };
@@ -237,6 +245,8 @@ export function createPost(
     thumbnail?: string;
     tags?: string[];
     published?: boolean;
+    /** 작성 한의사 실명 (선택) */
+    author?: string;
   },
   content: string,
   category: Category | "blog" = "blog"
@@ -252,6 +262,7 @@ export function createPost(
     thumbnail: frontmatter.thumbnail || "",
     tags: frontmatter.tags || [],
     published: frontmatter.published !== false,
+    ...(frontmatter.author ? { author: frontmatter.author } : {}),
   };
 
   const fileContent = matter.stringify(content, data);

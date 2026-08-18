@@ -28,6 +28,8 @@ import {
 } from "@/components/ui/icons";
 import { SITE_URL } from "@/lib/categories";
 import { pageMetadata } from "@/lib/page-metadata";
+import JsonLd from "@/components/JsonLd";
+import { buildGraph, faqEntities } from "@/lib/schema";
 import LocalBlock from "@/components/LocalBlock";
 import { LOCAL_BLOCKS, localFaqEntities } from "@/lib/local-blocks";
 
@@ -169,44 +171,26 @@ const PROCESS = [
   },
 ];
 
-const jsonLd = [
-  {
-    "@context": "https://schema.org",
-    "@type": "MedicalWebPage",
-    name: "교통사고 후유증 치료 – 일산한의원",
-    description:
-      "자동차보험 적용으로 추나·물리치료·초음파 진단·한약 처방을 진행합니다.",
-    url: `${SITE_URL}/accident`,
-    inLanguage: "ko",
-    about: {
-      "@type": "MedicalCondition",
-      name: "교통사고 후유증",
-      alternateName: ["경추 염좌", "요추 염좌"],
-    },
-    provider: {
-      "@type": "MedicalClinic",
-      name: "일산한의원",
-      url: SITE_URL,
-      telephone: "+82-31-976-7706",
-    },
+const graph = buildGraph({
+  path: "/accident",
+  name: "교통사고 후유증 치료 – 일산한의원",
+  description:
+    "자동차보험 적용으로 추나·물리치료·초음파 진단·한약 처방을 진행합니다.",
+  about: {
+    "@type": "MedicalCondition",
+    name: "교통사고 후유증",
+    alternateName: ["경추 염좌", "요추 염좌"],
   },
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: [
-      ...QUESTIONS.map((q) => ({
-        "@type": "Question",
-        name: q.quote,
-        acceptedAnswer: { "@type": "Answer", text: q.answer },
-      })),
-      ...localFaqEntities("/accident"),
-    ],
-  },
-];
+  faq: [
+    ...faqEntities(QUESTIONS.map((q) => ({ q: q.quote, a: q.answer }))),
+    ...localFaqEntities("/accident"),
+  ],
+});
 
 export default function AccidentPage() {
   return (
     <>
+      <JsonLd graph={graph} />
       <PageHeader
         badge="교통사고"
         icon={<Stethoscope size={15} />}
@@ -429,13 +413,6 @@ export default function AccidentPage() {
         </div>
       </section>
 
-      {jsonLd.map((data, i) => (
-        <script
-          key={i}
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
-        />
-      ))}
     </>
   );
 }

@@ -28,6 +28,8 @@ import {
 } from "@/components/ui/icons";
 import { SITE_URL } from "@/lib/categories";
 import { pageMetadata } from "@/lib/page-metadata";
+import JsonLd from "@/components/JsonLd";
+import { buildGraph } from "@/lib/schema";
 import LocalBlock from "@/components/LocalBlock";
 import { LOCAL_BLOCKS, localFaqEntities } from "@/lib/local-blocks";
 
@@ -166,37 +168,23 @@ const PROCESS = [
   },
 ];
 
-const jsonLd = [
-  {
-  "@context": "https://schema.org",
-  "@type": "MedicalWebPage",
+const graph = buildGraph({
+  path: "/pain/acute",
   name: "급성 통증 침·물리치료 – 일산한의원",
   description:
     "담 결림, 급성 요추 염좌, 발목 염좌, 근육 뭉침을 침·물리치료·부항으로 치료합니다.",
-  url: `${SITE_URL}/pain/acute`,
-  inLanguage: "ko",
   about: {
     "@type": "MedicalCondition",
     name: "급성 근골격계 통증",
     alternateName: ["담 결림", "급성 요추 염좌", "발목 염좌"],
   },
-  provider: {
-    "@type": "MedicalClinic",
-    name: "일산한의원",
-    url: SITE_URL,
-    telephone: "+82-31-976-7706",
-  },
-  },
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: localFaqEntities("/pain/acute"),
-  },
-];
+  faq: localFaqEntities("/pain/acute"),
+});
 
 export default function AcutePainPage() {
   return (
     <>
+      <JsonLd graph={graph} />
       <PageHeader
         badge="통증 치료"
         icon={<Stethoscope size={15} />}
@@ -415,13 +403,6 @@ export default function AcutePainPage() {
         </div>
       </section>
 
-      {jsonLd.map((data, i) => (
-        <script
-          key={i}
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
-        />
-      ))}
     </>
   );
 }

@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import SectionReveal from "@/components/SectionReveal";
 import { fetchLatestVideos } from "@/lib/youtube";
 import { pageMetadata } from "@/lib/page-metadata";
+import JsonLd from "@/components/JsonLd";
+import { buildGraph } from "@/lib/schema";
 
 import PageHeader from "@/components/ui/PageHeader";
 import { PlayerPlay } from "@/components/ui/icons";
@@ -15,10 +17,18 @@ export const metadata: Metadata = pageMetadata({
   ogDescription: "통증 치료와 건강 정보를 영상으로 쉽게 전합니다.",
 });
 
+const graph = buildGraph({
+  path: "/media",
+  name: "유튜브 – 건강 정보 영상 | 일산한의원",
+  description:
+    "일산한의원 유튜브 채널. 족저근막염, 아킬레스건, 무릎통증, 허리디스크, 오십견 등 통증 치료와 건강 정보를 영상으로 전합니다.",
+});
+
 export default async function MediaPage() {
   const videos = await fetchLatestVideos(20);
   return (
     <>
+      <JsonLd graph={graph} />
       {/* Hero */}
       <PageHeader
         badge="영상"

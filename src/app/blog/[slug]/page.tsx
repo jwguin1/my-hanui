@@ -8,6 +8,8 @@ import {
   toISO8601KST,
 } from "@/lib/blog-local";
 import PostContent from "@/components/PostContent";
+import JsonLd from "@/components/JsonLd";
+import { articleNode, buildGraph, physicianStub } from "@/lib/schema";
 
 const SITE_URL = "https://www.ilsanhan.com";
 
@@ -79,8 +81,30 @@ export default async function BlogPostPage({
       : `${SITE_URL}${post.thumbnail.startsWith("/") ? "" : "/"}${post.thumbnail}`
     : "";
 
+  const path = `/blog/${slug}`;
+  const graph = buildGraph({
+    path,
+    name: post.title,
+    description: post.description,
+    image: absoluteImage || undefined,
+    breadcrumbName: post.title,
+    nodes: [
+      articleNode({
+        path,
+        headline: post.title,
+        description: post.description,
+        datePublished: toISO8601KST(post.date),
+        image: absoluteImage || undefined,
+        author: post.author,
+      }),
+      // author 가 Physician 을 가리키면 참조가 끊기지 않도록 함께 넣는다
+      physicianStub(post.author),
+    ],
+  });
+
   return (
     <>
+      <JsonLd graph={graph} />
       <section className="bg-[var(--surface)]">
         <div className="section-padding w-full !py-0 py-16 md:py-20">
           <Link
@@ -119,34 +143,6 @@ export default async function BlogPostPage({
         </Link>
       </section>
 
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "Article",
-            headline: post.title,
-            description: post.description,
-            datePublished: toISO8601KST(post.date),
-            dateModified: toISO8601KST(post.date),
-            ...(absoluteImage ? { image: [absoluteImage] } : {}),
-            author: {
-              "@type": "Organization",
-              name: "일산한의원",
-              url: SITE_URL,
-            },
-            publisher: {
-              "@type": "Organization",
-              name: "일산한의원",
-              url: SITE_URL,
-            },
-            mainEntityOfPage: {
-              "@type": "WebPage",
-              "@id": `${SITE_URL}/blog/${slug}`,
-            },
-          }),
-        }}
-      />
     </>
   );
 }

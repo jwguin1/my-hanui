@@ -10,6 +10,14 @@ import SectionReveal from "@/components/SectionReveal";
 import PageHeader from "@/components/ui/PageHeader";
 import { Microscope } from "@/components/ui/icons";
 import { pageMetadata } from "@/lib/page-metadata";
+import JsonLd from "@/components/JsonLd";
+import {
+  articleStub,
+  buildGraph,
+  itemListNode,
+  pageId,
+  ref,
+} from "@/lib/schema";
 
 const SITE_URL = "https://www.ilsanhan.com";
 
@@ -46,37 +54,42 @@ function postUrl(category: string, slug: string): string {
 export default function BlogArchivePage() {
   const posts = getAllPosts();
 
-  const itemListJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "ItemList",
-    itemListElement: posts.map((post, idx) => ({
-      "@type": "ListItem",
-      position: idx + 1,
-      url: `${SITE_URL}${postUrl(post.category, post.slug)}`,
-      item: {
-        "@type": "Article",
-        "@id": `${SITE_URL}${postUrl(post.category, post.slug)}`,
-        headline: post.title,
-        description: post.description,
-        datePublished: toISO8601KST(post.date),
-        dateModified: toISO8601KST(post.date),
-        ...(post.thumbnail ? { image: [toAbsoluteUrl(post.thumbnail)] } : {}),
-        author: {
-          "@type": "Organization",
-          name: "일산한의원",
-          url: SITE_URL,
-        },
-        publisher: {
-          "@type": "Organization",
-          name: "일산한의원",
-          url: SITE_URL,
-        },
-      },
-    })),
-  };
+  const listNode = itemListNode(
+    "/blog",
+    "post-list",
+    "일산한의원 전체 글",
+    posts.map((post) => {
+      const href = postUrl(post.category, post.slug);
+      const image = post.thumbnail ? toAbsoluteUrl(post.thumbnail) : undefined;
+      return {
+        url: `${SITE_URL}${href}`,
+        name: post.title,
+        image,
+        // 각 글의 정식 정의는 상세 페이지에 있다 — 여기는 교차 페이지 스텁
+        item: articleStub({
+          path: href,
+          headline: post.title,
+          description: post.description,
+          datePublished: toISO8601KST(post.date),
+          image,
+          author: post.author,
+        }),
+      };
+    })
+  );
+
+  const graph = buildGraph({
+    path: "/blog",
+    name: "전체 글 아카이브 | 일산한의원",
+    description:
+      "일산한의원이 발행한 모든 카테고리(통증·다이어트·자율신경·피부)의 글을 한자리에서 확인하세요.",
+    mainEntity: posts.length > 0 ? ref(pageId("/blog", "post-list")) : undefined,
+    nodes: posts.length > 0 ? [listNode] : [],
+  });
 
   return (
     <>
+      <JsonLd graph={graph} />
       <PageHeader
         badge="글 모음"
         icon={<Microscope size={15} />}
@@ -158,12 +171,6 @@ export default function BlogArchivePage() {
         )}
       </section>
 
-      {posts.length > 0 && (
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListJsonLd) }}
-        />
-      )}
     </>
   );
 }

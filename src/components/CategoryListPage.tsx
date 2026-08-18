@@ -13,6 +13,14 @@ import SectionBadge from "@/components/ui/SectionBadge";
 import { Microscope } from "@/components/ui/icons";
 import { CATEGORY_META } from "@/lib/categories";
 import { postImagePath } from "@/lib/og-image";
+import JsonLd from "@/components/JsonLd";
+import {
+  articleStub,
+  buildGraph,
+  itemListNode,
+  pageId,
+  ref,
+} from "@/lib/schema";
 
 const SITE_URL = "https://www.ilsanhan.com";
 
@@ -36,49 +44,41 @@ export default function CategoryListPage({ category }: { category: Category }) {
   const description = CATEGORY_DESCRIPTION[category];
   const posts = getAllPosts(category);
 
-  const itemListJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "ItemList",
-    itemListElement: posts.map((post, idx) => {
-      // 파생 OG(1200x630) → 원본 썸네일 → 카테고리 대표 OG 순으로 폴백
-      const imageUrl = toAbsoluteUrl(
-        postImagePath(post.slug, post.thumbnail, CATEGORY_META[category].ogImage)
-      );
-      return {
-        "@type": "ListItem",
-        position: idx + 1,
-        url: `${SITE_URL}/${category}/${post.slug}`,
-        name: post.title,
-        image: imageUrl,
-        item: {
-          "@type": "Article",
-          "@id": `${SITE_URL}/${category}/${post.slug}`,
-          headline: post.title,
-          description: post.description,
-          datePublished: toISO8601KST(post.date),
-          dateModified: toISO8601KST(post.date),
-          image: [imageUrl],
-          author: {
-            "@type": "Organization",
-            name: "일산한의원",
-            url: SITE_URL,
-          },
-          publisher: {
-            "@type": "Organization",
-            name: "일산한의원",
-            url: SITE_URL,
-          },
-          mainEntityOfPage: {
-            "@type": "WebPage",
-            "@id": `${SITE_URL}/${category}/${post.slug}`,
-          },
-        },
-      };
-    }),
-  };
+  const path = `/${category}`;
+  const listNode = itemListNode(path, "post-list", `일산한의원 ${label}`, posts.map((post) => {
+    // 파생 OG(1200x630) → 원본 썸네일 → 카테고리 대표 OG 순으로 폴백
+    const image = toAbsoluteUrl(
+      postImagePath(post.slug, post.thumbnail, CATEGORY_META[category].ogImage)
+    );
+    const href = `/${category}/${post.slug}`;
+    return {
+      url: `${SITE_URL}${href}`,
+      name: post.title,
+      image,
+      // 각 글의 정식 정의는 상세 페이지에 있다 — 여기는 교차 페이지 스텁
+      item: articleStub({
+        path: href,
+        headline: post.title,
+        description: post.description,
+        datePublished: toISO8601KST(post.date),
+        image,
+        author: post.author,
+      }),
+    };
+  }));
+
+  const graph = buildGraph({
+    path,
+    name: `${label} | 일산한의원`,
+    description,
+    image: CATEGORY_META[category].ogImage,
+    mainEntity: posts.length > 0 ? ref(pageId(path, "post-list")) : undefined,
+    nodes: posts.length > 0 ? [listNode] : [],
+  });
 
   return (
     <>
+      <JsonLd graph={graph} />
       {/* Hero — 이 페이지들은 진료 안내가 아니라 논문·연구 아카이브다 */}
       <PageHeader
         badge="의학정보"
@@ -293,12 +293,6 @@ export default function CategoryListPage({ category }: { category: Category }) {
         )}
       </section>
 
-      {posts.length > 0 && (
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListJsonLd) }}
-        />
-      )}
     </>
   );
 }

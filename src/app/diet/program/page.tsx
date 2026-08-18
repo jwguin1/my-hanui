@@ -18,6 +18,8 @@ import {
 } from "@/components/ui/icons";
 import { SITE_URL } from "@/lib/categories";
 import { pageMetadata } from "@/lib/page-metadata";
+import JsonLd from "@/components/JsonLd";
+import { buildGraph, faqEntities } from "@/lib/schema";
 import LocalBlock from "@/components/LocalBlock";
 import { LOCAL_BLOCKS, localFaqEntities } from "@/lib/local-blocks";
 
@@ -83,40 +85,22 @@ const STAGES = [
   },
 ];
 
-const jsonLd = [
-  {
-    "@context": "https://schema.org",
-    "@type": "MedicalWebPage",
-    name: "한방 다이어트 처방 – 일산한의원",
-    description:
-      "식단을 지속할 수 있도록 돕는 한방 다이어트 처방. 복용량은 진료를 통해 조절합니다.",
-    url: `${SITE_URL}/diet/program`,
-    inLanguage: "ko",
-    about: { "@type": "MedicalCondition", name: "비만" },
-    provider: {
-      "@type": "MedicalClinic",
-      name: "일산한의원",
-      url: SITE_URL,
-      telephone: "+82-31-976-7706",
-    },
-  },
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: [
-      ...QUESTIONS.map((q) => ({
-        "@type": "Question",
-        name: q.quote,
-        acceptedAnswer: { "@type": "Answer", text: q.answer },
-      })),
-      ...localFaqEntities("/diet/program"),
-    ],
-  },
-];
+const graph = buildGraph({
+  path: "/diet/program",
+  name: "한방 다이어트 처방 – 일산한의원",
+  description:
+    "식단을 지속할 수 있도록 돕는 한방 다이어트 처방. 복용량은 진료를 통해 조절합니다.",
+  about: { "@type": "MedicalCondition", name: "비만" },
+  faq: [
+    ...faqEntities(QUESTIONS.map((q) => ({ q: q.quote, a: q.answer }))),
+    ...localFaqEntities("/diet/program"),
+  ],
+});
 
 export default function DietProgramPage() {
   return (
     <>
+      <JsonLd graph={graph} />
       <PageHeader
         badge="다이어트"
         icon={<Activity size={15} />}
@@ -285,13 +269,6 @@ export default function DietProgramPage() {
         </div>
       </section>
 
-      {jsonLd.map((data, i) => (
-        <script
-          key={i}
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
-        />
-      ))}
     </>
   );
 }

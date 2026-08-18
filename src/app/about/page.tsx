@@ -3,6 +3,8 @@ import SectionReveal from "@/components/SectionReveal";
 import PageHeroBanner from "@/components/PageHeroBanner";
 import { pageMetadata } from "@/lib/page-metadata";
 import { CAROUSEL_TARGETS } from "@/lib/carousel-targets";
+import JsonLd from "@/components/JsonLd";
+import { buildGraph } from "@/lib/schema";
 
 import PageHeader from "@/components/ui/PageHeader";
 import SectionBadge from "@/components/ui/SectionBadge";
@@ -18,9 +20,18 @@ export const metadata: Metadata = pageMetadata({
     "건강보험 우선 진료, 대학병원급 초음파 진단, 비수술 치료. 고양시 일산 이마트 풍산점 3층.",
 });
 
+const graph = buildGraph({
+  path: "/about",
+  name: `${CAROUSEL_TARGETS.about.title} | 일산한의원`,
+  description:
+    "건강보험 우선 진료, 대학병원급 초음파 진단, 비수술 치료. 과잉 진료 없이 정직하게, 환자 한 분 한 분의 이야기를 깊이 듣는 일산한의원입니다.",
+  image: CAROUSEL_TARGETS.about.hero.src,
+});
+
 export default function AboutPage() {
   return (
     <>
+      <JsonLd graph={graph} />
       {/* Hero */}
       <PageHeader
         badge="소개"

@@ -28,6 +28,8 @@ import {
 } from "@/components/ui/icons";
 import { SITE_URL } from "@/lib/categories";
 import { pageMetadata } from "@/lib/page-metadata";
+import JsonLd from "@/components/JsonLd";
+import { buildGraph, faqEntities } from "@/lib/schema";
 import LocalBlock from "@/components/LocalBlock";
 import { LOCAL_BLOCKS, localFaqEntities } from "@/lib/local-blocks";
 
@@ -169,44 +171,26 @@ const PROCESS = [
   },
 ];
 
-const jsonLd = [
-  {
-    "@context": "https://schema.org",
-    "@type": "MedicalWebPage",
-    name: "이명·어지럼·두통 치료 – 일산한의원",
-    description:
-      "이명, 어지럼, 두통을 침·물리치료로 먼저 확인하고 반응에 따라 추나·약침·한약으로 접근합니다.",
-    url: `${SITE_URL}/autonomic/care`,
-    inLanguage: "ko",
-    about: {
-      "@type": "MedicalCondition",
-      name: "자율신경 관련 증상",
-      alternateName: ["이명", "어지럼", "두통"],
-    },
-    provider: {
-      "@type": "MedicalClinic",
-      name: "일산한의원",
-      url: SITE_URL,
-      telephone: "+82-31-976-7706",
-    },
+const graph = buildGraph({
+  path: "/autonomic/care",
+  name: "이명·어지럼·두통 치료 – 일산한의원",
+  description:
+    "이명, 어지럼, 두통을 침·물리치료로 먼저 확인하고 반응에 따라 추나·약침·한약으로 접근합니다.",
+  about: {
+    "@type": "MedicalCondition",
+    name: "자율신경 관련 증상",
+    alternateName: ["이명", "어지럼", "두통"],
   },
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: [
-      ...QUESTIONS.map((q) => ({
-        "@type": "Question",
-        name: q.quote,
-        acceptedAnswer: { "@type": "Answer", text: q.answer },
-      })),
-      ...localFaqEntities("/autonomic/care"),
-    ],
-  },
-];
+  faq: [
+    ...faqEntities(QUESTIONS.map((q) => ({ q: q.quote, a: q.answer }))),
+    ...localFaqEntities("/autonomic/care"),
+  ],
+});
 
 export default function AutonomicCarePage() {
   return (
     <>
+      <JsonLd graph={graph} />
       <PageHeader
         badge="자율신경"
         icon={<Stethoscope size={15} />}
@@ -442,13 +426,6 @@ export default function AutonomicCarePage() {
         </div>
       </section>
 
-      {jsonLd.map((data, i) => (
-        <script
-          key={i}
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
-        />
-      ))}
     </>
   );
 }

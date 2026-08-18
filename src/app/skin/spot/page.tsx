@@ -27,6 +27,8 @@ import {
 } from "@/components/ui/icons";
 import { SITE_URL } from "@/lib/categories";
 import { pageMetadata } from "@/lib/page-metadata";
+import JsonLd from "@/components/JsonLd";
+import { buildGraph, faqEntities } from "@/lib/schema";
 import LocalBlock from "@/components/LocalBlock";
 import { LOCAL_BLOCKS, localFaqEntities } from "@/lib/local-blocks";
 
@@ -112,44 +114,26 @@ const AFTERCARE = [
   },
 ];
 
-const jsonLd = [
-  {
-    "@context": "https://schema.org",
-    "@type": "MedicalWebPage",
-    name: "잡티 제거 (점·편평사마귀·쥐젖) – 일산한의원",
-    description:
-      "점, 편평사마귀, 쥐젖을 CO2 레이저로 제거합니다. 시술 전 확대경으로 병변을 확인합니다.",
-    url: `${SITE_URL}/skin/spot`,
-    inLanguage: "ko",
-    about: {
-      "@type": "MedicalCondition",
-      name: "피부 양성 병변",
-      alternateName: ["점", "편평사마귀", "쥐젖"],
-    },
-    provider: {
-      "@type": "MedicalClinic",
-      name: "일산한의원",
-      url: SITE_URL,
-      telephone: "+82-31-976-7706",
-    },
+const graph = buildGraph({
+  path: "/skin/spot",
+  name: "잡티 제거 (점·편평사마귀·쥐젖) – 일산한의원",
+  description:
+    "점, 편평사마귀, 쥐젖을 CO2 레이저로 제거합니다. 시술 전 확대경으로 병변을 확인합니다.",
+  about: {
+    "@type": "MedicalCondition",
+    name: "피부 양성 병변",
+    alternateName: ["점", "편평사마귀", "쥐젖"],
   },
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: [
-      ...QUESTIONS.map((q) => ({
-        "@type": "Question",
-        name: q.quote,
-        acceptedAnswer: { "@type": "Answer", text: q.answer },
-      })),
-      ...localFaqEntities("/skin/spot"),
-    ],
-  },
-];
+  faq: [
+    ...faqEntities(QUESTIONS.map((q) => ({ q: q.quote, a: q.answer }))),
+    ...localFaqEntities("/skin/spot"),
+  ],
+});
 
 export default function SkinSpotPage() {
   return (
     <>
+      <JsonLd graph={graph} />
       <PageHeader
         badge="피부 · 미용"
         icon={<Scan size={15} />}
@@ -396,13 +380,6 @@ export default function SkinSpotPage() {
         </div>
       </section>
 
-      {jsonLd.map((data, i) => (
-        <script
-          key={i}
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
-        />
-      ))}
     </>
   );
 }

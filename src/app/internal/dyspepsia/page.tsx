@@ -27,6 +27,8 @@ import {
 } from "@/components/ui/icons";
 import { SITE_URL } from "@/lib/categories";
 import { pageMetadata } from "@/lib/page-metadata";
+import JsonLd from "@/components/JsonLd";
+import { buildGraph, faqEntities } from "@/lib/schema";
 import LocalBlock from "@/components/LocalBlock";
 import { LOCAL_BLOCKS, localFaqEntities } from "@/lib/local-blocks";
 
@@ -153,44 +155,26 @@ const PROCESS = [
   },
 ];
 
-const jsonLd = [
-  {
-    "@context": "https://schema.org",
-    "@type": "MedicalWebPage",
-    name: "소화불량 치료 – 일산한의원",
-    description:
-      "급체는 당일 침 치료로, 반복되는 소화불량은 한약·침·추나로 접근합니다.",
-    url: `${SITE_URL}/internal/dyspepsia`,
-    inLanguage: "ko",
-    about: {
-      "@type": "MedicalCondition",
-      name: "소화불량",
-      alternateName: ["급체", "기능성소화불량"],
-    },
-    provider: {
-      "@type": "MedicalClinic",
-      name: "일산한의원",
-      url: SITE_URL,
-      telephone: "+82-31-976-7706",
-    },
+const graph = buildGraph({
+  path: "/internal/dyspepsia",
+  name: "소화불량 치료 – 일산한의원",
+  description:
+    "급체는 당일 침 치료로, 반복되는 소화불량은 한약·침·추나로 접근합니다.",
+  about: {
+    "@type": "MedicalCondition",
+    name: "소화불량",
+    alternateName: ["급체", "기능성소화불량"],
   },
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: [
-      ...QUESTIONS.map((q) => ({
-        "@type": "Question",
-        name: q.quote,
-        acceptedAnswer: { "@type": "Answer", text: q.answer },
-      })),
-      ...localFaqEntities("/internal/dyspepsia"),
-    ],
-  },
-];
+  faq: [
+    ...faqEntities(QUESTIONS.map((q) => ({ q: q.quote, a: q.answer }))),
+    ...localFaqEntities("/internal/dyspepsia"),
+  ],
+});
 
 export default function DyspepsiaPage() {
   return (
     <>
+      <JsonLd graph={graph} />
       <PageHeader
         badge="내과"
         icon={<Stethoscope size={15} />}
@@ -412,13 +396,6 @@ export default function DyspepsiaPage() {
         </div>
       </section>
 
-      {jsonLd.map((data, i) => (
-        <script
-          key={i}
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
-        />
-      ))}
     </>
   );
 }

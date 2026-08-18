@@ -1,4 +1,5 @@
 import type { LocalFaq } from "@/components/LocalBlock";
+import { faqEntities, type FaqEntity } from "@/lib/schema";
 
 export type LocalBlockData = {
   title: string;
@@ -129,10 +130,6 @@ export const LOCAL_BLOCKS: Record<string, LocalBlockData> = {
 };
 
 /** 지역 FAQ 를 FAQPage JSON-LD 의 mainEntity 형태로 변환 */
-export function localFaqEntities(path: string) {
-  return (LOCAL_BLOCKS[path]?.faqs ?? []).map((f) => ({
-    "@type": "Question",
-    name: f.q,
-    acceptedAnswer: { "@type": "Answer", text: f.a },
-  }));
+export function localFaqEntities(path: string): FaqEntity[] {
+  return faqEntities(LOCAL_BLOCKS[path]?.faqs ?? []);
 }

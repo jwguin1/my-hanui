@@ -7,6 +7,7 @@ import {
 } from "@/lib/blog-local";
 import { CATEGORY_META, SITE_URL } from "@/lib/categories";
 import { postImagePath } from "@/lib/og-image";
+import { articleStub, itemListNode, type SchemaNode } from "@/lib/schema";
 
 /**
  * 홈 "의학칼럼" 섹션의 단일 소스.
@@ -34,6 +35,8 @@ export interface LatestPostCard {
   /** 위와 같은 파일의 절대 URL — JSON-LD 용 (크롤러가 따라갈 수 있어야 함) */
   image: string;
   tags: string[];
+  /** 프론트매터 author (선택) — Article.author 귀속용 */
+  author?: string;
 }
 
 function toAbsoluteUrl(pathOrUrl: string): string {
@@ -69,37 +72,30 @@ export function getLatestPostCards(limit: number = 5): LatestPostCard[] {
         imagePath,
         image: toAbsoluteUrl(imagePath),
         tags: post.tags,
+        author: post.author,
       };
     });
 }
 
 /**
- * 위 카드 배열과 1:1 대응하는 ItemList JSON-LD.
+ * 위 카드 배열과 1:1 대응하는 ItemList 노드.
  * 반드시 화면에 렌더링한 것과 동일한 배열을 넘길 것.
+ *
+ * itemListElement 의 Article 은 각 글 상세 페이지에 정의된 엔티티의
+ * 스텁이다 — @id 가 같아야 같은 글로 인식된다.
  */
-export function latestPostsItemListJsonLd(cards: LatestPostCard[]) {
-  return {
-    "@context": "https://schema.org",
-    "@type": "ItemList",
-    name: "일산한의원 의학칼럼",
-    itemListElement: cards.map((card, idx) => ({
-      "@type": "ListItem",
-      position: idx + 1,
-      url: card.url,
-      name: card.title,
+export function latestPostsListNode(cards: LatestPostCard[]): SchemaNode {
+  return itemListNode("/", "recent-posts", "일산한의원 의학칼럼", cards.map((card) => ({
+    url: card.url,
+    name: card.title,
+    image: card.image,
+    item: articleStub({
+      path: card.href,
+      headline: card.title,
+      description: card.description,
+      datePublished: toISO8601KST(card.date),
       image: card.image,
-      item: {
-        "@type": "Article",
-        "@id": card.url,
-        headline: card.title,
-        description: card.description,
-        datePublished: toISO8601KST(card.date),
-        dateModified: toISO8601KST(card.date),
-        image: [card.image],
-        author: { "@type": "Organization", name: "일산한의원", url: SITE_URL },
-        publisher: { "@type": "Organization", name: "일산한의원", url: SITE_URL },
-        mainEntityOfPage: { "@type": "WebPage", "@id": card.url },
-      },
-    })),
-  };
+      author: card.author,
+    }),
+  })));
 }

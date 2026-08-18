@@ -3,6 +3,8 @@ import SectionReveal from "@/components/SectionReveal";
 import PageHeroBanner from "@/components/PageHeroBanner";
 import { pageMetadata } from "@/lib/page-metadata";
 import { CAROUSEL_TARGETS } from "@/lib/carousel-targets";
+import JsonLd from "@/components/JsonLd";
+import { buildGraph } from "@/lib/schema";
 
 import PageHeader from "@/components/ui/PageHeader";
 import SectionBadge from "@/components/ui/SectionBadge";
@@ -19,9 +21,18 @@ export const metadata: Metadata = pageMetadata({
     "이마트 풍산점 3층. 풍산역 도보 1분. 무료주차 3시간. 031-976-7706.",
 });
 
+const graph = buildGraph({
+  path: "/contact",
+  name: `${CAROUSEL_TARGETS.contact.title} | 일산한의원`,
+  description:
+    "경기 고양시 일산동구 무궁화로 237 이마트 풍산점 3층. 경의중앙선 풍산역 2번 출구 도보 1분. 무료주차 3시간. 평일 10:00-20:00, 토일 10:00-16:00. 031-976-7706.",
+  image: CAROUSEL_TARGETS.contact.hero.src,
+});
+
 export default function ContactPage() {
   return (
     <>
+      <JsonLd graph={graph} />
       {/* Hero */}
       <PageHeader
         badge="위치 안내"

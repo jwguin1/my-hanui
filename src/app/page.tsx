@@ -20,7 +20,9 @@ import {
 import { fetchLatestVideos } from "@/lib/youtube";
 import { CATEGORY_META, SITE_URL } from "@/lib/categories";
 import { CAROUSEL_ORDER, CAROUSEL_TARGETS } from "@/lib/carousel-targets";
-import { getLatestPostCards, latestPostsItemListJsonLd } from "@/lib/latest-posts";
+import { getLatestPostCards, latestPostsListNode } from "@/lib/latest-posts";
+import JsonLd from "@/components/JsonLd";
+import { buildGraph, faqEntities, itemListNode } from "@/lib/schema";
 
 const TRUST_STATS = [
   { value: "13,000", unit: "명", label: "누적 내원 환자 수" },
@@ -90,20 +92,7 @@ const FAQS = [
   },
 ];
 
-const faqJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  mainEntity: FAQS.map((f) => ({
-    "@type": "Question",
-    name: f.q,
-    acceptedAnswer: {
-      "@type": "Answer",
-      text: f.a,
-    },
-  })),
-};
-
-// "진료 범위" 섹션의 단일 소스 — 화면 카드와 아래 ItemList JSON-LD 가 이 배열에서 함께 생성된다.
+// "진료 범위" 섹션의 단일 소스 — 화면 카드와 아래 ItemList 노드가 이 배열에서 함께 생성된다.
 // 진료 페이지로 직접 보내는 카드 — 아카이브(/pain 등)는 하단 "의학정보" 섹션에만 둔다
 const CLINIC_CARDS = [
   {
@@ -158,26 +147,35 @@ const CLINIC_CARDS = [
 ] as const;
 
 // 네이버 사이트 컬렉션(카드 슬라이드) 노출용 — 화면 카드와 1:1 대응
-const clinicsItemListJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "ItemList",
-  name: "일산한의원 진료 안내",
-  itemListElement: CLINIC_CARDS.map((card, idx) => ({
-    "@type": "ListItem",
-    position: idx + 1,
+const treatmentListNode = itemListNode(
+  "/",
+  "treatment-list",
+  "일산한의원 진료 안내",
+  CLINIC_CARDS.map((card) => ({
     url: `${SITE_URL}${card.href}`,
     name: card.heading,
     image: `${SITE_URL}${card.ogImage}`,
-  })),
-};
+  }))
+);
 
 export default async function Home() {
   // 화면 카드와 ItemList JSON-LD 의 유일한 출처 (개수·순서·제목이 반드시 일치해야 함)
   const postCards = getLatestPostCards(5);
-  const postsItemListJsonLd = latestPostsItemListJsonLd(postCards);
   const videos = await fetchLatestVideos(3);
+
+  const graph = buildGraph({
+    path: "/",
+    name: "일산한의원 | 이마트풍산점 – 고양시 일산 한의원",
+    description:
+      "일산한의원. 이마트풍산점 3층. 침, 한약, 초음파진단, 피부레이저, 추나, 약침, 경의중앙선 풍산역 2번출구. 031-976-7706.",
+    image: "/og-image.jpg",
+    faq: faqEntities(FAQS),
+    nodes: [treatmentListNode, latestPostsListNode(postCards)],
+  });
+
   return (
     <>
+      <JsonLd graph={graph} />
       {/* ── Hero ── */}
       <Hero />
 
@@ -383,13 +381,6 @@ export default async function Home() {
               </div>
             </SectionReveal>
           </div>
-
-          <script
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{
-              __html: JSON.stringify(postsItemListJsonLd),
-            }}
-          />
         </section>
       )}
 
@@ -494,17 +485,6 @@ export default async function Home() {
           </div>
         </SectionReveal>
         </div>
-
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(clinicsItemListJsonLd),
-          }}
-        />
       </section>
 
       {/* ── Hours & Contact Summary ── */}

@@ -62,6 +62,7 @@ export async function POST(req: NextRequest) {
     tags?: string[];
     thumbnail?: string;
     published?: boolean;
+    author?: string;
     category?: string;
   };
   try {
@@ -137,6 +138,9 @@ export async function POST(req: NextRequest) {
       thumbnail,
       tags: body.tags,
       published: body.published !== false,
+      // 선택 필드 — 한의사 실명을 넣으면 Article.author 가
+      // Physician 노드(/doctor#{슬러그})로 연결된다 (lib/schema.ts DOCTOR_SLUGS)
+      author: body.author,
     },
     processedContent,
     category

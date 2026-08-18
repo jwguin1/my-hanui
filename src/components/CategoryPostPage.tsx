@@ -11,6 +11,8 @@ import {
 import PostContent from "@/components/PostContent";
 import { CATEGORY_META } from "@/lib/categories";
 import { postImagePath } from "@/lib/og-image";
+import JsonLd from "@/components/JsonLd";
+import { articleNode, buildGraph, physicianStub } from "@/lib/schema";
 
 const SITE_URL = "https://www.ilsanhan.com";
 
@@ -47,8 +49,30 @@ export default function CategoryPostPage({
     ? imagePath
     : `${SITE_URL}${imagePath.startsWith("/") ? "" : "/"}${imagePath}`;
 
+  const path = `/${category}/${slug}`;
+  const graph = buildGraph({
+    path,
+    name: post.title,
+    description: post.description,
+    image: absoluteImage,
+    breadcrumbName: post.title,
+    nodes: [
+      articleNode({
+        path,
+        headline: post.title,
+        description: post.description,
+        datePublished: toISO8601KST(post.date),
+        image: absoluteImage,
+        author: post.author,
+      }),
+      // author 가 Physician 을 가리키면 참조가 끊기지 않도록 함께 넣는다
+      physicianStub(post.author),
+    ],
+  });
+
   return (
     <>
+      <JsonLd graph={graph} />
       {/* Hero */}
       <section className="bg-[var(--surface)]">
         <div className="section-padding w-full !py-0 py-16 md:py-20">
@@ -124,35 +148,6 @@ export default function CategoryPostPage({
         </Link>
       </section>
 
-      {/* JSON-LD */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "Article",
-            headline: post.title,
-            description: post.description,
-            datePublished: toISO8601KST(post.date),
-            dateModified: toISO8601KST(post.date),
-            ...(absoluteImage ? { image: [absoluteImage] } : {}),
-            author: {
-              "@type": "Organization",
-              name: "일산한의원",
-              url: SITE_URL,
-            },
-            publisher: {
-              "@type": "Organization",
-              name: "일산한의원",
-              url: SITE_URL,
-            },
-            mainEntityOfPage: {
-              "@type": "WebPage",
-              "@id": `${SITE_URL}/${category}/${slug}`,
-            },
-          }),
-        }}
-      />
     </>
   );
 }

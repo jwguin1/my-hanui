@@ -3,6 +3,8 @@ import DoctorGrid from "@/components/DoctorGrid";
 import PageHeroBanner from "@/components/PageHeroBanner";
 import { DOCTOR_META } from "@/lib/categories";
 import { CAROUSEL_TARGETS } from "@/lib/carousel-targets";
+import JsonLd from "@/components/JsonLd";
+import { CLINIC_ID, buildGraph, pageId, physicianId, ref } from "@/lib/schema";
 
 import PageHeader from "@/components/ui/PageHeader";
 import { Users } from "@/components/ui/icons";
@@ -188,17 +190,19 @@ const doctors: Doctor[] = [
   },
 ];
 
-const physicianJsonLd = doctors.map((doc) => ({
-  "@context": "https://schema.org",
+// Physician 정식 노드는 이 페이지에만 둔다.
+// 병원 노드에는 employee[] 를 두지 않고 worksFor 방향으로만 연결한다
+// (전역에 6인을 실으면 51개 페이지 용량만 늘고 여기서 중복된다).
+// 학력·사진·자격·학회는 기존 두 소스(layout employee[] / 이 페이지)를 합친 값이다.
+const physicianNodes = doctors.map((doc) => ({
   "@type": "Physician",
+  "@id": physicianId(doc.name),
   name: doc.name,
   jobTitle: "한의사",
+  url: `${SITE_URL}/doctor`,
   image: `${SITE_URL}${doc.image}`,
-  worksFor: {
-    "@type": "MedicalClinic",
-    name: "일산한의원",
-    url: SITE_URL,
-  },
+  mainEntityOfPage: ref(pageId("/doctor", "webpage")),
+  worksFor: ref(CLINIC_ID),
   alumniOf: {
     "@type": "CollegeOrUniversity",
     name: doc.school,
@@ -210,15 +214,19 @@ const physicianJsonLd = doctors.map((doc) => ({
   })),
 }));
 
+const graph = buildGraph({
+  path: "/doctor",
+  name: "의료진 – 한의사 6인 협진 | 일산한의원",
+  description:
+    "장경진, 남태훈, 박건희, 강민석, 박동석, 이명주. 6명의 한의사가 정성을 다해 진료합니다. 각 원장의 학력, 자격, 학회 활동과 주요 진료 분야를 확인하세요.",
+  image: DOCTOR_META.ogImage,
+  nodes: physicianNodes,
+});
+
 export default function DoctorPage() {
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(physicianJsonLd),
-        }}
-      />
+      <JsonLd graph={graph} />
       {/* Hero */}
       <PageHeader
         badge="의료진"

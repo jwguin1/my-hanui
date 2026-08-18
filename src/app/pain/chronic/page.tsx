@@ -32,6 +32,8 @@ import {
 } from "@/components/ui/icons";
 import { SITE_URL } from "@/lib/categories";
 import { pageMetadata } from "@/lib/page-metadata";
+import JsonLd from "@/components/JsonLd";
+import { buildGraph, faqEntities } from "@/lib/schema";
 import LocalBlock from "@/components/LocalBlock";
 import { LOCAL_BLOCKS, localFaqEntities } from "@/lib/local-blocks";
 
@@ -153,44 +155,26 @@ const PROCESS = [
   },
 ];
 
-const jsonLd = [
-  {
-    "@context": "https://schema.org",
-    "@type": "MedicalWebPage",
-    name: "만성 통증 추나·초음파 약침 – 일산한의원",
-    description:
-      "석회성건염, 오십견, 무릎관절염, 디스크, 척추관협착증을 초음파 진단 후 추나요법·초음파약침으로 치료합니다.",
-    url: `${SITE_URL}/pain/chronic`,
-    inLanguage: "ko",
-    about: {
-      "@type": "MedicalCondition",
-      name: "만성 근골격계 통증",
-      alternateName: ["석회성 건염", "오십견", "척추관 협착증"],
-    },
-    provider: {
-      "@type": "MedicalClinic",
-      name: "일산한의원",
-      url: SITE_URL,
-      telephone: "+82-31-976-7706",
-    },
+const graph = buildGraph({
+  path: "/pain/chronic",
+  name: "만성 통증 추나·초음파 약침 – 일산한의원",
+  description:
+    "석회성건염, 오십견, 무릎관절염, 디스크, 척추관협착증을 초음파 진단 후 추나요법·초음파약침으로 치료합니다.",
+  about: {
+    "@type": "MedicalCondition",
+    name: "만성 근골격계 통증",
+    alternateName: ["석회성 건염", "오십견", "척추관 협착증"],
   },
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: [
-      ...QUESTIONS.map((q) => ({
-        "@type": "Question",
-        name: q.quote,
-        acceptedAnswer: { "@type": "Answer", text: q.answer },
-      })),
-      ...localFaqEntities("/pain/chronic"),
-    ],
-  },
-];
+  faq: [
+    ...faqEntities(QUESTIONS.map((q) => ({ q: q.quote, a: q.answer }))),
+    ...localFaqEntities("/pain/chronic"),
+  ],
+});
 
 export default function ChronicPainPage() {
   return (
     <>
+      <JsonLd graph={graph} />
       <PageHeader
         badge="통증 치료"
         icon={<Stethoscope size={15} />}
@@ -462,13 +446,6 @@ export default function ChronicPainPage() {
         </div>
       </section>
 
-      {jsonLd.map((data, i) => (
-        <script
-          key={i}
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
-        />
-      ))}
     </>
   );
 }

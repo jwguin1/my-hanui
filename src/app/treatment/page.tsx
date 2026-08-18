@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import SectionReveal from "@/components/SectionReveal";
 import { pageMetadata } from "@/lib/page-metadata";
+import JsonLd from "@/components/JsonLd";
+import { buildGraph } from "@/lib/schema";
 
 import PageHeader from "@/components/ui/PageHeader";
 import { Stethoscope } from "@/components/ui/icons";
@@ -60,9 +62,17 @@ const treatments = [
   },
 ];
 
+const graph = buildGraph({
+  path: "/treatment",
+  name: "진료 안내 – 한약, 침, 추나, 약침 | 일산한의원",
+  description:
+    "일산한의원 진료 안내. 한약처방, 침치료, 추나요법, 약침치료, 뜸, 부항. 건강보험 적용 진료. 초음파 정밀 진단으로 정확한 치료를 제공합니다.",
+});
+
 export default function TreatmentPage() {
   return (
     <>
+      <JsonLd graph={graph} />
       {/* Hero */}
       <PageHeader
         badge="치료"

@@ -3,6 +3,8 @@ import Link from "next/link";
 import { fetchBlogPosts } from "@/lib/blog";
 import SectionReveal from "@/components/SectionReveal";
 import { pageMetadata } from "@/lib/page-metadata";
+import JsonLd from "@/components/JsonLd";
+import { buildGraph } from "@/lib/schema";
 
 import PageHeader from "@/components/ui/PageHeader";
 import { Microscope } from "@/components/ui/icons";
@@ -16,11 +18,19 @@ export const metadata: Metadata = pageMetadata({
   ogDescription: "일산한의원이 전하는 건강 정보와 치료 이야기.",
 });
 
+const graph = buildGraph({
+  path: "/column",
+  name: "의학칼럼 – 건강 정보 블로그 | 일산한의원",
+  description:
+    "일산한의원이 전하는 건강 정보와 치료 이야기. 근골격계 통증, 피부질환, 한약 처방 등 다양한 의학 칼럼을 확인하세요.",
+});
+
 export default async function ColumnPage() {
   const posts = await fetchBlogPosts();
 
   return (
     <>
+      <JsonLd graph={graph} />
       {/* Hero */}
       <PageHeader
         badge="네이버 칼럼"
