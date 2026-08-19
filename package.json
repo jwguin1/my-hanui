@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "icons": "node scripts/build-icons.mjs",
+    "cards:generate": "node scripts/generate-title-cards.mjs",
     "og:generate": "node scripts/generate-og-images.mjs",
     "hero:generate": "node scripts/generate-hero-team.mjs",
     "banners": "node scripts/generate-hero-banners.mjs",
