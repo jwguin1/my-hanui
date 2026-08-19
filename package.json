@@ -7,6 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "icons": "node scripts/build-icons.mjs",
     "og:generate": "node scripts/generate-og-images.mjs",
     "hero:generate": "node scripts/generate-hero-team.mjs",
     "banners": "node scripts/generate-hero-banners.mjs",
@@ -30,6 +31,7 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "15.3.1",
+    "png-to-ico": "^3.0.2",
     "postcss": "^8",
     "tailwindcss": "^4",
     "typescript": "^5"

@@ -42,6 +42,7 @@ const FRESHNESS_MARKERS = [
   '"knowsAbout"', // 한의학 자유텍스트 필드
   "추나요법", // knowsAbout 내용까지 실제로 실렸는지
   '"Musculoskeletal"', // 열거형으로 교체된 medicalSpecialty
+  'rel="icon"', // App Router 파일 규칙이 붙이는 파비콘 링크
 ];
 
 const EXPECTED_SAME_AS = [

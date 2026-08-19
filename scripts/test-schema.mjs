@@ -18,6 +18,8 @@ const {
   buildGraph,
   clinicNode,
   doctorId,
+  LOGO_ID,
+  logoNode,
   normalizePath,
   pageId,
   pageTypeFor,
@@ -150,6 +152,30 @@ test("FAQ 는 페이지 노드의 @type 배열에 합쳐진다 (별도 FAQPage �
   assert.deepEqual(pages[0]["@type"], ["MedicalWebPage", "FAQPage"]);
   assert.equal(pages[0].mainEntity.length, 1);
   assert.equal(graph.filter((n) => n["@type"] === "FAQPage").length, 0);
+});
+
+
+test("병원 노드의 logo 는 #logo 노드를 참조하고, 그래프에 그 노드가 있다", () => {
+  assert.deepEqual(clinicNode().logo, { "@id": LOGO_ID });
+  assert.equal(LOGO_ID, "https://www.ilsanhan.com/#logo");
+
+  // 참조가 끊기면 verify:jsonld 가 51개 URL 전부에서 터진다
+  const graph = buildGraph({ path: "/contact", name: "오시는 길" });
+  const logo = graph.find((n) => n["@id"] === LOGO_ID);
+  assert.ok(logo, "@graph 에 #logo 노드가 없다");
+  assert.equal(logo["@type"], "ImageObject");
+
+  // image(대표 사진)와 logo 는 별개다 — 서로 덮어쓰지 않았는지
+  assert.equal(clinicNode().image, "https://www.ilsanhan.com/og-image.jpg");
+});
+
+test("#logo 가 주장하는 치수는 실제 public/logo.png 와 같다", async () => {
+  const { default: sharp } = await import("sharp");
+  const meta = await sharp("public/logo.png").metadata();
+  const logo = logoNode();
+  assert.equal(logo.width, meta.width);
+  assert.equal(logo.height, meta.height);
+  assert.ok(logo.url.endsWith("/logo.png"));
 });
 
 test("prune: undefined 키를 제거한다", () => {

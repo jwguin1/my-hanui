@@ -64,6 +64,7 @@ export function ref(id: string): { "@id": string } {
 export const CLINIC_ID = pageId("/", "clinic");
 export const WEBSITE_ID = pageId("/", "website");
 export const NAV_ID = pageId("/", "nav");
+export const LOGO_ID = pageId("/", "logo");
 
 /* ────────────────────────────────────────────────────────────
  * 의료진 — 이름 → @id 슬러그
@@ -189,8 +190,9 @@ export function buildBreadcrumb(path: string, currentName?: string): SchemaNode 
  * 병원↔의료진 관계는 Physician.worksFor 방향으로만 표현한다
  * (전역에 6인을 실으면 51개 페이지 용량만 늘고 /doctor 에서 중복된다).
  *
- * logo 는 넣지 않는다 — 정사각 로고 에셋(public/logo.png)이 아직 없고,
- * 1280x846 단체사진(og-image.jpg)을 로고로 선언하는 것은 잘못된 값이다.
+ * logo 와 image 는 역할이 다르다. logo 는 정사각 도장 로고(#logo, 512x512)를
+ * 참조하고, image 는 대표 사진(og-image.jpg, 1280x846)을 그대로 둔다.
+ * 단체사진을 로고로 선언하면 잘못된 값이고, 반대도 마찬가지다.
  */
 export function clinicNode(): SchemaNode {
   return {
@@ -201,6 +203,7 @@ export function clinicNode(): SchemaNode {
     description:
       "6인의 한의사가 4개 분과를 협진합니다. 근골격계, 자율신경, 다이어트, 피부레이저 특화. 누적 13,000명이 80,000회 내원. 누적 9,000건 한방 다이어트 처방.",
     url: BASE_URL,
+    logo: ref(LOGO_ID),
     image: `${BASE_URL}/og-image.jpg`,
     telephone: "+82-31-976-7706",
     priceRange: "₩₩",
@@ -309,6 +312,25 @@ export function clinicNode(): SchemaNode {
       "https://www.youtube.com/@%EC%9D%BC%EC%82%B0%ED%95%9C%EC%9D%98%EC%9B%90",
       "https://pf.kakao.com/_eXXun",
     ],
+  };
+}
+
+/**
+ * 로고 노드 — 병원 노드의 logo 가 참조하는 정사각 ImageObject.
+ *
+ * 파일은 scripts/build-icons.mjs 가 public/logo.svg 에서 생성한다.
+ * width/height 는 실제 파일 치수(512x512)와 반드시 같아야 한다 —
+ * 어긋나면 구조화 데이터가 조용히 틀린 값을 주장하게 된다.
+ */
+export function logoNode(): SchemaNode {
+  return {
+    "@type": "ImageObject",
+    "@id": LOGO_ID,
+    url: `${BASE_URL}/logo.png`,
+    contentUrl: `${BASE_URL}/logo.png`,
+    width: 512,
+    height: 512,
+    caption: "일산한의원",
   };
 }
 
@@ -598,13 +620,14 @@ export interface GraphInput extends PageNodeInput {
 }
 
 /**
- * 페이지의 @graph 배열. 병원 · 웹사이트 · 내비 · 페이지 · 이동경로가 항상 들어가고,
+ * 페이지의 @graph 배열. 병원 · 로고 · 웹사이트 · 내비 · 페이지 · 이동경로가 항상 들어가고,
  * 그 뒤에 페이지 고유 노드가 붙는다.
  */
 export function buildGraph(input: GraphInput): SchemaNode[] {
   const { breadcrumbName, nodes = [], ...pageInput } = input;
   const graph: Array<SchemaNode | undefined> = [
     clinicNode(),
+    logoNode(),
     websiteNode(),
     siteNavigationNode(),
     webPageNode(pageInput),
