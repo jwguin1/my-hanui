@@ -10,6 +10,7 @@ import SectionReveal from "@/components/SectionReveal";
 import PageHeader from "@/components/ui/PageHeader";
 import { Microscope } from "@/components/ui/icons";
 import { pageMetadata } from "@/lib/page-metadata";
+import { postPath } from "@/lib/slug";
 import JsonLd from "@/components/JsonLd";
 import {
   articleStub,
@@ -47,8 +48,7 @@ function formatDate(dateStr: string): string {
 }
 
 function postUrl(category: string, slug: string): string {
-  if (category === "blog") return `/blog/${slug}`;
-  return `/${category}/${slug}`;
+  return postPath(category, slug);
 }
 
 export default function BlogArchivePage() {

@@ -11,6 +11,7 @@ import {
 import PostContent from "@/components/PostContent";
 import { CATEGORY_META } from "@/lib/categories";
 import { postImagePath } from "@/lib/og-image";
+import { postPath } from "@/lib/slug";
 import JsonLd from "@/components/JsonLd";
 import { articleNode, buildGraph, physicianStub } from "@/lib/schema";
 
@@ -32,16 +33,19 @@ export default function CategoryPostPage({
   category: Category;
   slug: string;
 }) {
+  // getPostBySlug 가 NFC 정규화까지 한다 — params 를 여기서 다시 만지지 않는다
   const post = getPostBySlug(slug, category);
   if (!post || !post.published) notFound();
 
   const label = CATEGORY_LABEL[category];
-  const linkedContent = autoLinkMarkdown(post.content, slug);
-  const relatedPosts = getRelatedPosts(slug, 3, category);
+  // 이후로는 params 의 slug 가 아니라 정규화된 post.slug 만 쓴다
+  const linkedContent = autoLinkMarkdown(post.content, post.slug);
+  const relatedPosts = getRelatedPosts(post.slug, 3, category);
 
-  // 파생 OG(1200x630) → 원본 썸네일 → 카테고리 대표 OG 순으로 폴백
+  // 파생 OG(1200x630) → 원본 썸네일 → 카테고리 대표 OG 순으로 폴백.
+  // 폴더 키는 슬러그가 아니라 파일 ID 다.
   const imagePath = postImagePath(
-    slug,
+    post.id,
     post.thumbnail,
     CATEGORY_META[category].ogImage
   );
@@ -49,7 +53,7 @@ export default function CategoryPostPage({
     ? imagePath
     : `${SITE_URL}${imagePath.startsWith("/") ? "" : "/"}${imagePath}`;
 
-  const path = `/${category}/${slug}`;
+  const path = postPath(category, post.slug);
   const graph = buildGraph({
     path,
     name: post.title,
@@ -122,7 +126,7 @@ export default function CategoryPostPage({
               {relatedPosts.map((rp) => (
                 <li key={rp.slug}>
                   <Link
-                    href={`/${rp.category}/${rp.slug}`}
+                    href={postPath(rp.category, rp.slug)}
                     className="group block rounded-md p-4 transition-colors hover:bg-white/5"
                   >
                     <h3 className="font-serif text-[1rem] font-semibold text-text group-hover:text-accent transition-colors">

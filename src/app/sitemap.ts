@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { CATEGORIES, getAllPosts } from "@/lib/blog-local";
+import { postPath } from "@/lib/slug";
 
 const BASE_URL = "https://www.ilsanhan.com";
 
@@ -116,10 +117,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
    * (/blog/{slug} 는 app/blog/[slug] 에서 308 로 리다이렉트된다).
    */
   const postEntries: MetadataRoute.Sitemap = getAllPosts().map((post) => ({
-    url:
-      post.category === "blog"
-        ? `${BASE_URL}/blog/${post.slug}`
-        : `${BASE_URL}/${post.category}/${post.slug}`,
+    // canonical / og:url / JSON-LD @id 와 **같은 문자열**이어야 한다.
+    // Next 의 sitemap 직렬화기는 URL 을 인코딩해 주지 않으므로(한글이 그대로 나간다)
+    // 여기서 postPath() 를 거쳐 인코딩된 경로를 넘긴다.
+    url: `${BASE_URL}${postPath(post.category, post.slug)}`,
     lastModified: post.date ? new Date(post.date) : new Date(),
     changeFrequency: "daily" as const,
     priority: 0.9,

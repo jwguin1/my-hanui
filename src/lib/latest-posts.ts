@@ -8,6 +8,7 @@ import {
 import { CATEGORY_META, SITE_URL } from "@/lib/categories";
 import { OG_HEIGHT, OG_WIDTH, postImagePath } from "@/lib/og-image";
 import { imageSize } from "@/lib/image-size";
+import { postPath } from "@/lib/slug";
 import { articleStub, itemListNode, type SchemaNode } from "@/lib/schema";
 
 /**
@@ -64,14 +65,15 @@ export function getLatestPostCards(limit: number = 5): LatestPostCard[] {
     .map((post) => {
       const category = post.category as Category;
       const fallback = CATEGORY_META[category].ogImage;
+      // 이미지 폴더 키는 파일 ID 다 (슬러그가 아니다)
       const imagePath = postImagePath(
-        post.slug,
+        post.id,
         post.thumbnail,
         fallback,
         "display"
       );
       const socialPath = postImagePath(
-        post.slug,
+        post.id,
         post.thumbnail,
         fallback,
         "social"
@@ -79,12 +81,13 @@ export function getLatestPostCards(limit: number = 5): LatestPostCard[] {
       // 파생 OG 가 없는 글은 원본 썸네일을 그대로 쓰므로 1200x630 이 아니다.
       // 실측값을 넣지 않으면 종횡비가 어긋나 CLS 가 생긴다.
       const size = imageSize(imagePath);
+      const href = postPath(category, post.slug);
       return {
         slug: post.slug,
         category,
         categoryLabel: CATEGORY_LABEL[category],
-        href: `/${category}/${post.slug}`,
-        url: `${SITE_URL}/${category}/${post.slug}`,
+        href,
+        url: `${SITE_URL}${href}`,
         title: post.title,
         description: post.description,
         date: post.date,

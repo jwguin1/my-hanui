@@ -1,4 +1,5 @@
 import { getAllPosts } from "@/lib/blog-local";
+import { postPath } from "@/lib/slug";
 
 const BASE_URL = "https://www.ilsanhan.com";
 const SITE_TITLE = "일산한의원 블로그";
@@ -26,8 +27,7 @@ function toRfc822(date: string): string {
 }
 
 function postUrl(category: string, slug: string): string {
-  if (category === "blog") return `${BASE_URL}/blog/${slug}`;
-  return `${BASE_URL}/${category}/${slug}`;
+  return `${BASE_URL}${postPath(category, slug)}`;
 }
 
 export async function GET() {

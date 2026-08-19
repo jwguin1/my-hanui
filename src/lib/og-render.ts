@@ -119,21 +119,22 @@ export type GenerateOutcome =
  * 글 1건의 og.png 를 생성한다. 소스가 없거나 이미 존재하면 건너뛴다.
  */
 export async function generateOgImageForPost(
-  slug: string,
+  /** 글의 파일 ID (LocalBlogPost.id). 슬러그가 아니다 — 자산 경로는 슬러그와 분리돼 있다 */
+  id: string,
   thumbnail: string,
   content: string,
   opts: { force?: boolean } = {}
 ): Promise<GenerateOutcome> {
-  const destRel = ogImagePath(slug);
+  const destRel = ogImagePath(id);
   const destAbs = path.join(PUBLIC_DIR, destRel.replace(/^\//, ""));
-  const webpAbs = path.join(PUBLIC_DIR, ogWebpPath(slug).replace(/^\//, ""));
+  const webpAbs = path.join(PUBLIC_DIR, ogWebpPath(id).replace(/^\//, ""));
 
   // 둘 다 있을 때만 건너뛴다. png 만 있는 과거 글은 webp 를 채워야 한다.
   if (fs.existsSync(destAbs) && fs.existsSync(webpAbs) && !opts.force) {
     return { status: "exists", rel: destRel };
   }
 
-  const source = resolveOgSource(slug, thumbnail, content);
+  const source = resolveOgSource(id, thumbnail, content);
   if (!source) return { status: "skipped", reason: "자사 이미지 없음" };
 
   const srcAbs = path.join(PUBLIC_DIR, source.rel.replace(/^\//, ""));

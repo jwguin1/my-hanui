@@ -19,6 +19,10 @@
  *  8. 회귀 확인: MedicalClinic·LocalBusiness / WebSite / sameAs 4개
  *  9. 신선도 가드 — 검사 대상이 정말 최신 빌드인가
  * 10. 파생 OG 쌍 — 발행된 글마다 og.png 와 og.webp 가 둘 다 있는가
+ * 11. 슬러그 규칙 — 허용 문자 · 길이 · 예약어 · NFC 정규형
+ * 12. URL 일관성 — canonical / og:url / JSON-LD @id 가 같은 문자열인가
+ * 13. 슬러그 변경 감지 — 프로덕션 사이트맵에 있던 글 URL 이 사라졌는데
+ *     리다이렉트가 없으면 실패. 필요한 리다이렉트 규칙을 출력한다.
  *
  * 9번이 있는 이유: 이전 개발 서버가 :3000 을 물고 있으면 새 서버가
  * EADDRINUSE 로 죽고, 검증기는 예데로 응답하는 옛 빌드를 검사해
@@ -28,8 +32,19 @@
 import fs from "node:fs";
 import path from "node:path";
 import matter from "gray-matter";
+import {
+  RESERVED_BY_CATEGORY,
+  normalizeSlug,
+  postPath,
+  validateSlug,
+} from "../src/lib/slug.ts";
 
 const BASE = process.env.BASE || "http://localhost:3000";
+/**
+ * 슬러그 변경 감지용 기준. 이미 색인된 URL 이 무엇인지 아는 곳은 프로덕션뿐이다.
+ * PROD=off 로 끄면 그 검사만 건너뛴다 (오프라인 작업용).
+ */
+const PROD = process.env.PROD || "https://www.ilsanhan.com";
 const CONTENT_DIR = path.join(process.cwd(), "content");
 const CATEGORIES = ["pain", "diet", "autonomic", "skin"];
 
@@ -51,6 +66,28 @@ const EXPECTED_SAME_AS = [
   "https://www.youtube.com/@%EC%9D%BC%EC%82%B0%ED%95%9C%EC%9D%98%EC%9B%90",
   "https://pf.kakao.com/_eXXun",
 ];
+
+/**
+ * 발행된 글의 목록. 프론트매터 slug 가 있으면 그것이 URL 이고, 없으면 파일명이다.
+ * (lib/blog-local.ts 의 폴백 규칙과 같아야 한다 — 어긋나면 아래 검사가 바로 잡는다)
+ */
+function listPosts() {
+  const out = [];
+  for (const category of [...CATEGORIES, "blog"]) {
+    const dir = path.join(CONTENT_DIR, category);
+    if (!fs.existsSync(dir)) continue;
+    for (const file of fs.readdirSync(dir)) {
+      if (!file.endsWith(".md")) continue;
+      const { data } = matter(fs.readFileSync(path.join(dir, file), "utf-8"));
+      if (data.published === false) continue;
+      const id = file.replace(/\.md$/, "");
+      const rawSlug = typeof data.slug === "string" ? data.slug : "";
+      const slug = normalizeSlug(rawSlug) || id;
+      out.push({ category, id, rawSlug, slug, path: postPath(category, slug) });
+    }
+  }
+  return out;
+}
 
 function listPaths() {
   const staticPaths = [
@@ -78,18 +115,7 @@ function listPaths() {
   // 발행된 글만 — published:false 는 404 가 정상이라 검사 대상이 아니다.
   // 경로는 lib/blog-local 과 같은 규칙으로 직접 열거한다. 사이트맵을 근거로
   // 쓰면 사이트맵이 빼먹은 페이지를 영원히 못 잡는다.
-  const postPaths = [];
-  for (const category of [...CATEGORIES, "blog"]) {
-    const dir = path.join(CONTENT_DIR, category);
-    if (!fs.existsSync(dir)) continue;
-    for (const file of fs.readdirSync(dir)) {
-      if (!file.endsWith(".md")) continue;
-      const { data } = matter(fs.readFileSync(path.join(dir, file), "utf-8"));
-      if (data.published === false) continue;
-      postPaths.push(`/${category}/${file.replace(/\.md$/, "")}`);
-    }
-  }
-  return [...staticPaths, ...postPaths];
+  return [...staticPaths, ...listPosts().map((p) => p.path)];
 }
 
 const SCRIPT_RE =
@@ -208,6 +234,38 @@ function validate(pagePath, html) {
 
   if (!graph.some((n) => n["@type"] === "WebSite"))
     errors.push("WebSite 노드 없음");
+
+  /**
+   * URL 일관성 — canonical / og:url / JSON-LD #webpage @id 가 같은 문자열인가.
+   *
+   * 한 글자만 달라도(퍼센트 인코딩 유무, 후행 슬래시) 엔티티 병합이 조용히 실패한다.
+   * 한글 슬러그를 쓰면 인코딩 표기가 갈릴 여지가 커지므로 이 검사가 필요하다.
+   *
+   * 홈만 예외다 — `@id` 는 `https://.../#webpage`(슬래시 있음), canonical 은
+   * 슬래시 없음이 의도된 표기다(lib/schema.ts pageId 주석). 그래서 비교 전에
+   * 후행 슬래시 하나만 떼고 맞춘다.
+   */
+  const trimSlash = (u) => (u ? u.replace(/\/$/, "") : u);
+  const canonical = trimSlash(
+    html.match(/<link[^>]+rel="canonical"[^>]+href="([^"]*)"/i)?.[1] ??
+      html.match(/<link[^>]+href="([^"]*)"[^>]+rel="canonical"/i)?.[1] ??
+      null
+  );
+  const ogUrl = trimSlash(
+    html.match(/<meta[^>]+property="og:url"[^>]+content="([^"]*)"/i)?.[1] ??
+      html.match(/<meta[^>]+content="([^"]*)"[^>]+property="og:url"/i)?.[1] ??
+      null
+  );
+  const webpageUrl = trimSlash(
+    webpages[0] ? String(webpages[0]["@id"]).replace(/#webpage$/, "") : null
+  );
+
+  if (!canonical) errors.push("canonical 없음");
+  if (canonical && webpageUrl && canonical !== webpageUrl)
+    errors.push(`canonical != @id: ${canonical} vs ${webpageUrl}`);
+  // og:url 은 선언하지 않는 페이지가 있을 수 있어 있을 때만 본다
+  if (ogUrl && canonical && ogUrl !== canonical)
+    errors.push(`og:url != canonical: ${ogUrl} vs ${canonical}`);
 
   const faqPage = graph.find((n) =>
     [].concat(n["@type"]).includes("FAQPage")
@@ -331,6 +389,107 @@ console.log(`끊긴 참조    ${totalDangling}건`);
     console.log(`  ! ${missingPairs.join(", ")}`);
     console.log("    복구: node scripts/generate-og-images.mjs");
     failures.push(`파생 OG 쌍 불일치: ${missingPairs.join(", ")}`);
+  }
+}
+
+/**
+ * 슬러그 규칙 검사 — 허용 문자 · 길이 · 예약어 · NFC 정규형 · 카테고리 내 중복.
+ *
+ * 프론트매터 slug 가 없는 글(기존 32편)은 파일명이 곧 슬러그다. 그 값도 같은
+ * 규칙으로 본다 — 다만 예약어/문자셋은 이미 발행된 URL 이라 되돌릴 수 없으므로
+ * 실패가 아니라 경고로 남긴다. 새로 적은 slug 만 실패시킨다.
+ */
+{
+  const posts = listPosts();
+  const byCategory = new Map();
+  for (const p of posts) {
+    if (!byCategory.has(p.category)) byCategory.set(p.category, []);
+    byCategory.get(p.category).push(p);
+  }
+
+  const hard = [];
+  const soft = [];
+  for (const p of posts) {
+    const siblings = byCategory
+      .get(p.category)
+      .filter((o) => o !== p)
+      .map((o) => o.slug);
+    const problems = validateSlug(p.slug, {
+      category: p.category,
+      existing: siblings,
+    });
+    if (!problems.length) continue;
+    const line = `${p.category}/${p.slug} — ${problems.map((x) => `${x.code}: ${x.message}`).join(" / ")}`;
+    // 프론트매터에 직접 적은 슬러그는 고칠 수 있으므로 실패시킨다.
+    // 파일명 폴백은 이미 색인된 기존 URL 이라 경고로만 남긴다.
+    (p.rawSlug ? hard : soft).push(line);
+  }
+
+  console.log(
+    `슬러그 규칙    ${posts.length}건 검사 · 위반 ${hard.length}건` +
+      (soft.length ? ` · 기존 URL 경고 ${soft.length}건` : "")
+  );
+  for (const line of soft) console.log(`  (경고) ${line}`);
+  if (hard.length) {
+    failed += 1;
+    for (const line of hard) console.log(`  ! ${line}`);
+    failures.push(`슬러그 규칙 위반: ${hard.join(" | ")}`);
+  }
+
+  // NFC 는 validateSlug 안에서도 보지만, 원문이 NFD 인 파일을 짚어 주기 위해 따로 출력한다
+  const nfd = posts.filter((p) => p.rawSlug && p.rawSlug !== p.rawSlug.normalize("NFC"));
+  console.log(`NFC 정규형     불일치 ${nfd.length}건`);
+  if (nfd.length) {
+    for (const p of nfd) {
+      console.log(`  ! ${p.category}/${p.id} — 프론트매터 slug 가 NFD 다`);
+      console.log(`    고치기: slug: "${p.rawSlug.normalize("NFC")}"`);
+    }
+  }
+}
+
+/**
+ * 슬러그 변경 감지 — 이번 작업의 안전장치.
+ *
+ * 지금은 리다이렉트가 필요 없다(기존 글을 옮기지 않으므로). 하지만 앞으로
+ * 누군가 이미 발행된 글의 슬러그를 고치면 그 순간 옛 URL 이 조용히 404 가 된다.
+ * 색인된 URL 이 무엇인지 아는 곳은 프로덕션 사이트맵뿐이므로 그걸 기준으로 삼는다.
+ *
+ * 프로덕션에 못 닿으면 실패가 아니라 경고다 — 오프라인에서 검증기를 못 돌리게
+ * 만들면 아무도 안 돌리게 된다. 대신 "검사 못 했다"고 분명히 말한다.
+ */
+if (PROD === "off") {
+  console.log(`슬러그 변경    건너뜀 (PROD=off)`);
+} else {
+  const isPostPath = (p) => {
+    const seg = p.split("/").filter(Boolean);
+    if (seg.length !== 2) return false;
+    if (![...CATEGORIES, "blog"].includes(seg[0])) return false;
+    // 형제 정적 라우트(/pain/acute 등)는 글이 아니다
+    return !(RESERVED_BY_CATEGORY[seg[0]] ?? []).includes(decodeURIComponent(seg[1]));
+  };
+
+  try {
+    const xml = await (await fetch(`${PROD}/sitemap.xml`)).text();
+    const live = [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)]
+      .map((m) => new URL(m[1]).pathname.replace(/\/$/, ""))
+      .filter(isPostPath);
+    const current = new Set(listPosts().map((p) => p.path));
+    const gone = live.filter((p) => !current.has(p));
+
+    console.log(
+      `슬러그 변경    프로덕션 글 ${live.length}건 대조 · 사라진 URL ${gone.length}건`
+    );
+    if (gone.length) {
+      failed += 1;
+      console.log("  ! 이미 색인된 글 URL 이 이번 빌드에 없다. 리다이렉트 없이 배포하면 404 다.");
+      console.log("    next.config.ts 의 redirects() 에 아래를 추가하고 다시 돌릴 것:");
+      for (const p of gone) {
+        console.log(`      { source: "${p}", destination: "<새 URL>", permanent: true },`);
+      }
+      failures.push(`슬러그 변경으로 사라진 URL ${gone.length}건: ${gone.join(", ")}`);
+    }
+  } catch (e) {
+    console.log(`슬러그 변경    확인 실패 — 검사하지 못했다 (${e.message})`);
   }
 }
 

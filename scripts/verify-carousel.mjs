@@ -29,7 +29,35 @@ const FROZEN = {
     "/contact": `${SITE_URL}/og-image.jpg`,
   },
   /** 이 경로들이 diff 에 뜨면 실패 */
-  untouchable: ["src/app/robots.ts", "public/robots.txt", "src/app/sitemap.ts"],
+  untouchable: ["src/app/robots.ts", "public/robots.txt"],
+  /**
+   * 사이트맵에서 절대 사라지면 안 되는 URL — 순위를 만든 페이지들.
+   *
+   * 예전에는 src/app/sitemap.ts 를 통째로 "수정 금지"로 묶었는데, 그건
+   * 파일을 못 고치게 할 뿐 **출력이 맞는지는 보지 않는 검사**였다.
+   * 한글 슬러그 도입으로 sitemap.ts 는 고쳐야 했고(인코딩을 canonical 과
+   * 맞춰야 한다), 그래서 파일 동결을 출력 동결로 바꿨다.
+   * 이쪽이 원래 지키려던 것 — "URL 이 사라지지 않는다" — 을 실제로 지킨다.
+   *
+   * 글 URL 의 사라짐 감지는 validate-jsonld.mjs 의 "슬러그 변경" 검사가
+   * 프로덕션 사이트맵과 대조해서 담당한다.
+   */
+  sitemapMustContain: [
+    SITE_URL,
+    `${SITE_URL}/pain`,
+    `${SITE_URL}/diet`,
+    `${SITE_URL}/skin`,
+    `${SITE_URL}/doctor`,
+    `${SITE_URL}/about`,
+    `${SITE_URL}/contact`,
+    `${SITE_URL}/pain/acute`,
+    `${SITE_URL}/pain/chronic`,
+    `${SITE_URL}/diet/program`,
+    `${SITE_URL}/skin/spot`,
+    `${SITE_URL}/accident`,
+    `${SITE_URL}/autonomic/care`,
+    `${SITE_URL}/internal/dyspepsia`,
+  ],
 };
 
 /**
@@ -157,8 +185,8 @@ if (changed === null) {
   fatal.push("git diff 불가");
 } else {
   const hits = FROZEN.untouchable.filter((p) => changed.includes(p));
-  if (!check("robots / sitemap 미변경", hits.length === 0, hits.join(", ")))
-    fatal.push("robots/sitemap 변경됨");
+  if (!check("robots 미변경", hits.length === 0, hits.join(", ")))
+    fatal.push("robots 변경됨");
 }
 
 // ── 1~6. 타깃 6개 페이지 ─────────────────────────────────────────────
@@ -284,6 +312,40 @@ if (home) {
   });
 } else {
   check("/ 빌드 산출물", false, "index.html 없음");
+}
+
+// ── 8. 사이트맵 출력 동결 ────────────────────────────────────────────
+{
+  const body = path.join(APP_DIR, "sitemap.xml.body");
+  if (!fs.existsSync(body)) {
+    check("사이트맵 산출물", false, "sitemap.xml.body 없음");
+    fatal.push("사이트맵 산출물 없음");
+  } else {
+    const xml = fs.readFileSync(body, "utf-8");
+    const locs = new Set(
+      [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1].replace(/\/$/, ""))
+    );
+    const missing = FROZEN.sitemapMustContain.filter((u) => !locs.has(u));
+    if (
+      !check(
+        `사이트맵 핵심 URL ${FROZEN.sitemapMustContain.length}개 유지`,
+        missing.length === 0,
+        missing.join(", ")
+      )
+    )
+      fatal.push("사이트맵에서 핵심 URL 이 사라짐");
+
+    // 글 URL 은 전부 퍼센트 인코딩된 ASCII 여야 한다 — canonical 과 같은 표기.
+    // 한글이 날것으로 나가면 canonical 과 문자열이 갈려 엔티티 병합이 실패한다.
+    const nonAscii = [...locs].filter((u) =>
+      [...u].some((ch) => ch.codePointAt(0) > 127)
+    );
+    check(
+      "사이트맵 URL 이 전부 ASCII (인코딩 일관)",
+      nonAscii.length === 0,
+      nonAscii.slice(0, 3).join(", ")
+    );
+  }
 }
 
 // ── 출력 ─────────────────────────────────────────────────────────────

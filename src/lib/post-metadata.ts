@@ -6,6 +6,7 @@ import {
 } from "@/lib/blog-local";
 import { CATEGORY_META, SITE_URL } from "@/lib/categories";
 import { OG_HEIGHT, OG_WIDTH, hasOgImage, postImagePath } from "@/lib/og-image";
+import { postPath } from "@/lib/slug";
 
 /**
  * 카테고리 글 상세(/{category}/{slug}) 페이지의 Metadata.
@@ -25,10 +26,12 @@ export function categoryPostMetadata(
   const fullTitle = post.title.includes("일산한의원")
     ? `${post.title} | ${label}`
     : `${post.title} | 일산한의원 ${label}`;
-  const url = `${SITE_URL}/${category}/${slug}`;
+  // canonical · og:url · JSON-LD @id 가 같은 문자열이 되도록 postPath() 하나만 쓴다
+  const url = `${SITE_URL}${postPath(category, post.slug)}`;
 
+  // 이미지 폴더 키는 슬러그가 아니라 파일 ID 다
   const imagePath = postImagePath(
-    slug,
+    post.id,
     post.thumbnail,
     CATEGORY_META[category].ogImage
   );
@@ -37,7 +40,7 @@ export function categoryPostMetadata(
     : `${SITE_URL}${imagePath}`;
 
   // 파생 OG 와 카테고리 대표 OG 만 치수를 보장할 수 있다 (원본 썸네일은 비율이 제각각)
-  const knownSize = hasOgImage(slug) || imagePath === CATEGORY_META[category].ogImage;
+  const knownSize = hasOgImage(post.id) || imagePath === CATEGORY_META[category].ogImage;
   const image = knownSize
     ? { url: imageUrl, width: OG_WIDTH, height: OG_HEIGHT, alt: post.title }
     : { url: imageUrl, alt: post.title };

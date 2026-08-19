@@ -10,6 +10,7 @@ import {
 import PostContent from "@/components/PostContent";
 import JsonLd from "@/components/JsonLd";
 import { articleNode, buildGraph, physicianStub } from "@/lib/schema";
+import { postPath } from "@/lib/slug";
 
 const SITE_URL = "https://www.ilsanhan.com";
 
@@ -32,10 +33,8 @@ export function generateMetadata({
     const fullTitle = post.title.includes("일산한의원")
       ? post.title
       : `${post.title} | 일산한의원`;
-    const canonical =
-      post.category === "blog"
-        ? `${SITE_URL}/blog/${slug}`
-        : `${SITE_URL}/${post.category}/${slug}`;
+    // 정규 URL 은 카테고리 경로다. 미분류(blog)만 /blog/{slug} 가 정규다.
+    const canonical = `${SITE_URL}${postPath(post.category, post.slug)}`;
     return {
       title: { absolute: fullTitle },
       description: post.description,
@@ -71,17 +70,17 @@ export default async function BlogPostPage({
 
   // 카테고리 글이면 카테고리 URL로 영구 리다이렉트 (정규화)
   if (post.category !== "blog") {
-    permanentRedirect(`/${post.category}/${slug}`);
+    permanentRedirect(postPath(post.category, post.slug));
   }
 
-  const linkedContent = autoLinkMarkdown(post.content, slug);
+  const linkedContent = autoLinkMarkdown(post.content, post.slug);
   const absoluteImage = post.thumbnail
     ? post.thumbnail.startsWith("http")
       ? post.thumbnail
       : `${SITE_URL}${post.thumbnail.startsWith("/") ? "" : "/"}${post.thumbnail}`
     : "";
 
-  const path = `/blog/${slug}`;
+  const path = postPath("blog", post.slug);
   const graph = buildGraph({
     path,
     name: post.title,

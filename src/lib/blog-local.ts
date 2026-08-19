@@ -1,6 +1,7 @@
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
+import { normalizeSlug, postPath, readSlugParam } from "@/lib/slug";
 
 const CONTENT_DIR = path.join(process.cwd(), "content");
 
@@ -22,6 +23,21 @@ export const CATEGORY_DESCRIPTION: Record<Category, string> = {
 };
 
 export interface LocalBlogPost {
+  /**
+   * 파일 ID — 확장자를 뗀 파일명. **자산 키**다.
+   *
+   * `public/blog-images/{id}/` 폴더와 프론트매터 thumbnail 경로가 이 값에 묶여 있다.
+   * 슬러그와 분리해 둔 이유는, 슬러그를 고칠 때마다 폴더를 옮기면
+   * og.png/og.webp 쌍 대조와 소셜 크롤러 캐시가 함께 깨지기 때문이다.
+   * URL 을 만들 때 id 를 쓰지 말 것 — 그건 slug 의 일이다.
+   */
+  id: string;
+  /**
+   * URL 슬러그. 프론트매터 `slug` 가 있으면 그 값(NFC), 없으면 id 로 폴백한다.
+   * 폴백 덕분에 기존 글은 프론트매터를 건드리지 않아도 URL 이 그대로 유지된다.
+   *
+   * **발행 후 불변으로 취급한다.** 제목을 고쳐도 재계산하지 않는다.
+   */
   slug: string;
   title: string;
   description: string;
@@ -59,13 +75,17 @@ function resolveThumbnail(data: Record<string, unknown>, content: string): strin
   return extractFirstImage(content);
 }
 
-function readPostFile(filePath: string, slug: string, category: string): LocalBlogPost | null {
+function readPostFile(filePath: string, id: string, category: string): LocalBlogPost | null {
   if (!fs.existsSync(filePath)) return null;
   const raw = fs.readFileSync(filePath, "utf-8");
   const { data, content } = matter(raw);
+  // 프론트매터 슬러그는 선택 필드다. 없으면 파일 ID 로 폴백한다.
+  // 읽는 시점에 정규화한다 — NFD 가 섞인 파일이 들어와도 여기서 걸러진다.
+  const fmSlug = normalizeSlug((data.slug as string) || "");
   return {
-    slug,
-    title: (data.title as string) || slug,
+    id,
+    slug: fmSlug || id,
+    title: (data.title as string) || id,
     description: (data.description as string) || "",
     date: (data.date as string) || "",
     thumbnail: resolveThumbnail(data, content),
@@ -116,19 +136,19 @@ export function getPostBySlug(
   slug: string,
   category?: Category
 ): LocalBlogPost | null {
-  if (category) {
-    return readPostFile(
-      path.join(CONTENT_DIR, category, `${slug}.md`),
-      slug,
-      category
-    );
-  }
-  const candidates = ["blog", ...CATEGORIES];
-  for (const cat of candidates) {
-    const post = readPostFile(
-      path.join(CONTENT_DIR, cat, `${slug}.md`),
-      slug,
-      cat
+  // 슬러그로 파일 경로를 조립하지 않는다. 프론트매터 슬러그는 파일명과
+  // 다를 수 있으므로 폴더를 훑어 슬러그로 매칭한다.
+  // (getAllPosts 가 이미 매 요청 전 파일을 읽으므로 새로 생기는 비용은 아니다)
+  //
+  // readSlugParam 은 퍼센트 디코드까지 한다 — Next 는 params.slug 를
+  // URL 세그먼트 원문(인코딩된 상태)으로 넘기기 때문이다.
+  const wanted = readSlugParam(slug);
+  if (!wanted) return null;
+
+  const dirs = category ? [category] : ["blog", ...CATEGORIES];
+  for (const cat of dirs) {
+    const post = listPostsInDir(path.join(CONTENT_DIR, cat), cat).find(
+      (p) => p.slug === wanted
     );
     if (post) return post;
   }
@@ -225,7 +245,7 @@ export function autoLinkMarkdown(
       const escaped = keyword.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
       const re = new RegExp(escaped);
       if (re.test(next)) {
-        next = next.replace(re, `[${keyword}](/${category}/${slug})`);
+        next = next.replace(re, `[${keyword}](${postPath(category, slug)})`);
         linkedKeywords.add(keyword);
         linked++;
       }
@@ -237,9 +257,12 @@ export function autoLinkMarkdown(
 }
 
 export function createPost(
-  slug: string,
+  /** 파일 ID — 파일명이자 이미지 폴더 키가 된다 */
+  id: string,
   frontmatter: {
     title: string;
+    /** URL 슬러그. 생략하면 id 가 그대로 URL 이 된다 */
+    slug?: string;
     description?: string;
     date?: string;
     thumbnail?: string;
@@ -255,8 +278,12 @@ export function createPost(
   ensureDir(dir);
 
   const date = frontmatter.date || new Date().toISOString().split("T")[0];
+  const slug = normalizeSlug(frontmatter.slug || "") || id;
   const data = {
     title: frontmatter.title,
+    // 슬러그는 발행 시점에 한 번 적고 이후 재계산하지 않는다.
+    // id 와 같으면 굳이 적지 않는다 — 기존 글과 같은 모양을 유지한다.
+    ...(slug !== id ? { slug } : {}),
     description: frontmatter.description || "",
     date,
     thumbnail: frontmatter.thumbnail || "",
@@ -266,7 +293,7 @@ export function createPost(
   };
 
   const fileContent = matter.stringify(content, data);
-  fs.writeFileSync(path.join(dir, `${slug}.md`), fileContent, "utf-8");
+  fs.writeFileSync(path.join(dir, `${id}.md`), fileContent, "utf-8");
 
-  return { slug, ...data, content, category };
+  return { id, ...data, slug, content, category };
 }

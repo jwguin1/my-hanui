@@ -13,6 +13,7 @@ import SectionBadge from "@/components/ui/SectionBadge";
 import { Microscope } from "@/components/ui/icons";
 import { CATEGORY_META } from "@/lib/categories";
 import { postImagePath } from "@/lib/og-image";
+import { postPath } from "@/lib/slug";
 import JsonLd from "@/components/JsonLd";
 import {
   articleStub,
@@ -48,9 +49,10 @@ export default function CategoryListPage({ category }: { category: Category }) {
   const listNode = itemListNode(path, "post-list", `일산한의원 ${label}`, posts.map((post) => {
     // 파생 OG(1200x630) → 원본 썸네일 → 카테고리 대표 OG 순으로 폴백
     const image = toAbsoluteUrl(
-      postImagePath(post.slug, post.thumbnail, CATEGORY_META[category].ogImage)
+      // 폴더 키는 파일 ID, URL 은 슬러그 — 둘을 섞지 않는다
+      postImagePath(post.id, post.thumbnail, CATEGORY_META[category].ogImage)
     );
-    const href = `/${category}/${post.slug}`;
+    const href = postPath(category, post.slug);
     return {
       url: `${SITE_URL}${href}`,
       name: post.title,
@@ -237,7 +239,7 @@ export default function CategoryListPage({ category }: { category: Category }) {
             {posts.map((post) => (
               <SectionReveal key={post.slug}>
                 <Link
-                  href={`/${category}/${post.slug}`}
+                  href={postPath(category, post.slug)}
                   className="card group flex flex-col overflow-hidden transition-transform duration-200 hover:-translate-y-1"
                 >
                   {post.thumbnail ? (

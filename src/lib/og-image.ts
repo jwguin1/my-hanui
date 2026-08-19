@@ -17,22 +17,31 @@ export function isExternalImage(src: string): boolean {
   return /^https?:\/\//.test(src);
 }
 
-/** 파생 OG 이미지의 public 기준 절대경로 (`/blog-images/{slug}/og.png`) */
-export function ogImagePath(slug: string): string {
-  return `/blog-images/${slug}/og.png`;
+/**
+ * 이 모듈의 모든 함수는 슬러그가 아니라 **글의 파일 ID** 를 받는다.
+ *
+ * 자산 경로를 슬러그에 묶으면 슬러그를 고칠 때마다 폴더를 옮겨야 하고,
+ * og.png/og.webp 쌍 대조와 소셜 크롤러 캐시가 함께 깨진다.
+ * 기존 글은 프론트매터 thumbnail 에 `/blog-images/{id}/...` 를 하드코딩해 두었기 때문에
+ * 더더욱 id 로 고정한다. (LocalBlogPost.id 를 넘길 것 — post.slug 가 아니다)
+ */
+
+/** 파생 OG 이미지의 public 기준 절대경로 (`/blog-images/{id}/og.png`) */
+export function ogImagePath(id: string): string {
+  return `/blog-images/${id}/og.png`;
 }
 
-export function hasOgImage(slug: string): boolean {
-  return fs.existsSync(path.join(PUBLIC_DIR, "blog-images", slug, "og.png"));
+export function hasOgImage(id: string): boolean {
+  return fs.existsSync(path.join(PUBLIC_DIR, "blog-images", id, "og.png"));
 }
 
-/** 화면 표시용 파생 OG 의 public 기준 절대경로 (`/blog-images/{slug}/og.webp`) */
-export function ogWebpPath(slug: string): string {
-  return `/blog-images/${slug}/og.webp`;
+/** 화면 표시용 파생 OG 의 public 기준 절대경로 (`/blog-images/{id}/og.webp`) */
+export function ogWebpPath(id: string): string {
+  return `/blog-images/${id}/og.webp`;
 }
 
-export function hasOgWebp(slug: string): boolean {
-  return fs.existsSync(path.join(PUBLIC_DIR, "blog-images", slug, "og.webp"));
+export function hasOgWebp(id: string): boolean {
+  return fs.existsSync(path.join(PUBLIC_DIR, "blog-images", id, "og.webp"));
 }
 
 /**
@@ -58,15 +67,16 @@ export type ImagePurpose = "display" | "social";
  * 실수로 빠뜨렸을 때 크롤러가 깨지는 쪽이 아니라 안전한 쪽으로 떨어진다.
  */
 export function postImagePath(
-  slug: string,
+  /** 글의 파일 ID (LocalBlogPost.id). 슬러그를 넘기지 말 것 */
+  id: string,
   thumbnail: string,
   fallback: string,
   purpose: ImagePurpose = "social"
 ): string {
   // display 는 WebP 파생이 실제로 있을 때만 쓴다 — 과거 글에 og.webp 가
   // 없어도 조용히 깨지지 않도록 png 로 폴백한다.
-  if (purpose === "display" && hasOgWebp(slug)) return ogWebpPath(slug);
-  if (hasOgImage(slug)) return ogImagePath(slug);
+  if (purpose === "display" && hasOgWebp(id)) return ogWebpPath(id);
+  if (hasOgImage(id)) return ogImagePath(id);
   if (thumbnail) return thumbnail;
   return fallback;
 }
@@ -79,7 +89,8 @@ export function postImagePath(
  * 본문의 첫 로컬 이미지 → blog-images/{slug} 의 첫 파일 순으로 폴백한다.
  */
 export function resolveOgSource(
-  slug: string,
+  /** 글의 파일 ID (LocalBlogPost.id) */
+  id: string,
   thumbnail: string,
   content: string
 ): { rel: string; via: string } | null {
@@ -94,14 +105,14 @@ export function resolveOgSource(
     .find((p) => !isExternalImage(p));
   if (localInBody) return { rel: localInBody, via: "본문 로컬 이미지 폴백" };
 
-  const dir = path.join(PUBLIC_DIR, "blog-images", slug);
+  const dir = path.join(PUBLIC_DIR, "blog-images", id);
   if (fs.existsSync(dir)) {
     const first = fs
       .readdirSync(dir)
       .filter((f) => /^(img-\d+|thumbnail)\.(png|jpe?g|webp)$/i.test(f))
       .sort((a, b) => a.localeCompare(b, undefined, { numeric: true }))[0];
     if (first) {
-      return { rel: `/blog-images/${slug}/${first}`, via: "이미지 폴더 폴백" };
+      return { rel: `/blog-images/${id}/${first}`, via: "이미지 폴더 폴백" };
     }
   }
 
