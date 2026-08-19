@@ -13,7 +13,8 @@ import { CATEGORY_META } from "@/lib/categories";
 import { postImagePath } from "@/lib/og-image";
 import { postPath } from "@/lib/slug";
 import JsonLd from "@/components/JsonLd";
-import { articleNode, buildGraph, physicianStub } from "@/lib/schema";
+import { articleNode, buildGraph, faqEntities, physicianStub } from "@/lib/schema";
+import { parsePostFaq } from "@/lib/post-faq";
 
 const SITE_URL = "https://www.ilsanhan.com";
 
@@ -53,6 +54,11 @@ export default function CategoryPostPage({
     ? imagePath
     : `${SITE_URL}${imagePath.startsWith("/") ? "" : "/"}${imagePath}`;
 
+  // 본문의 "자주 묻는 질문" 섹션을 그대로 FAQPage 로 올린다.
+  // 화면에 렌더하는 문자열(linkedContent)에서 뽑으므로, 화면에 없는 FAQ 가
+  // 스키마에만 실리는 일이 생기지 않는다.
+  const faq = faqEntities(parsePostFaq(linkedContent));
+
   const path = postPath(category, post.slug);
   const graph = buildGraph({
     path,
@@ -60,6 +66,7 @@ export default function CategoryPostPage({
     description: post.description,
     image: absoluteImage,
     breadcrumbName: post.title,
+    faq: faq.length ? faq : undefined,
     nodes: [
       articleNode({
         path,

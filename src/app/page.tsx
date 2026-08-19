@@ -22,7 +22,12 @@ import { CATEGORY_META, SITE_URL } from "@/lib/categories";
 import { CAROUSEL_ORDER, CAROUSEL_TARGETS } from "@/lib/carousel-targets";
 import { getLatestPostCards, latestPostsListNode } from "@/lib/latest-posts";
 import JsonLd from "@/components/JsonLd";
-import { buildGraph, faqEntities, itemListNode } from "@/lib/schema";
+import {
+  buildGraph,
+  faqEntities,
+  itemListNode,
+  physicianStubs,
+} from "@/lib/schema";
 
 const TRUST_STATS = [
   { value: "13,000", unit: "명", label: "누적 내원 환자 수" },
@@ -170,7 +175,12 @@ export default async function Home() {
       "일산한의원. 이마트풍산점 3층. 침, 한약, 초음파진단, 피부레이저, 추나, 약침, 경의중앙선 풍산역 2번출구. 031-976-7706.",
     image: "/og-image.jpg",
     faq: faqEntities(FAQS),
-    nodes: [treatmentListNode, latestPostsListNode(postCards)],
+    nodes: [
+      treatmentListNode,
+      latestPostsListNode(postCards),
+      // 카드의 author 참조가 끊기지 않도록 Physician 스텁을 함께 싣는다
+      ...physicianStubs(postCards.map((c) => c.author)),
+    ],
   });
 
   return (

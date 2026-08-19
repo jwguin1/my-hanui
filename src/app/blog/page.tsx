@@ -17,6 +17,7 @@ import {
   buildGraph,
   itemListNode,
   pageId,
+  physicianStubs,
   ref,
 } from "@/lib/schema";
 
@@ -84,7 +85,11 @@ export default function BlogArchivePage() {
     description:
       "일산한의원이 발행한 모든 카테고리(통증·다이어트·자율신경·피부)의 글을 한자리에서 확인하세요.",
     mainEntity: posts.length > 0 ? ref(pageId("/blog", "post-list")) : undefined,
-    nodes: posts.length > 0 ? [listNode] : [],
+    nodes:
+      posts.length > 0
+        ? // 목록 카드의 author 참조가 끊기지 않도록 Physician 스텁을 함께 싣는다
+          [listNode, ...physicianStubs(posts.map((p) => p.author))]
+        : [],
   });
 
   return (

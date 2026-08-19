@@ -20,6 +20,7 @@ import {
   buildGraph,
   itemListNode,
   pageId,
+  physicianStubs,
   ref,
 } from "@/lib/schema";
 
@@ -75,7 +76,11 @@ export default function CategoryListPage({ category }: { category: Category }) {
     description,
     image: CATEGORY_META[category].ogImage,
     mainEntity: posts.length > 0 ? ref(pageId(path, "post-list")) : undefined,
-    nodes: posts.length > 0 ? [listNode] : [],
+    nodes:
+      posts.length > 0
+        ? // 목록 카드의 author 참조가 끊기지 않도록 Physician 스텁을 함께 싣는다
+          [listNode, ...physicianStubs(posts.map((p) => p.author))]
+        : [],
   });
 
   return (

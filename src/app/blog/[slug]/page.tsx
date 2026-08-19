@@ -9,7 +9,8 @@ import {
 } from "@/lib/blog-local";
 import PostContent from "@/components/PostContent";
 import JsonLd from "@/components/JsonLd";
-import { articleNode, buildGraph, physicianStub } from "@/lib/schema";
+import { articleNode, buildGraph, faqEntities, physicianStub } from "@/lib/schema";
+import { parsePostFaq } from "@/lib/post-faq";
 import { postPath } from "@/lib/slug";
 
 const SITE_URL = "https://www.ilsanhan.com";
@@ -80,6 +81,9 @@ export default async function BlogPostPage({
       : `${SITE_URL}${post.thumbnail.startsWith("/") ? "" : "/"}${post.thumbnail}`
     : "";
 
+  // 카테고리 글과 같은 규칙 — 본문 FAQ 섹션을 FAQPage 로 올린다
+  const faq = faqEntities(parsePostFaq(linkedContent));
+
   const path = postPath("blog", post.slug);
   const graph = buildGraph({
     path,
@@ -87,6 +91,7 @@ export default async function BlogPostPage({
     description: post.description,
     image: absoluteImage || undefined,
     breadcrumbName: post.title,
+    faq: faq.length ? faq : undefined,
     nodes: [
       articleNode({
         path,

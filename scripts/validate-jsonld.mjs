@@ -23,6 +23,12 @@
  * 12. URL 일관성 — canonical / og:url / JSON-LD @id 가 같은 문자열인가
  * 13. 슬러그 변경 감지 — 프로덕션 사이트맵에 있던 글 URL 이 사라졌는데
  *     리다이렉트가 없으면 실패. 필요한 리다이렉트 규칙을 출력한다.
+ * 14. FAQ 파싱 가드 — 본문에 "자주 묻는 질문" 섹션이 있는데 한 쌍도
+ *     못 뽑히면 실패. 본문 파싱 방식의 약점을 조용한 실패가 아니라
+ *     요란한 실패로 바꾸는 장치다.
+ *
+ * 슬러그 규칙(11)과 FAQ 가드(14)는 **미발행 글도 검사한다.**
+ * 발행 전에 잡는 것이 검사의 목적인데 미발행을 건너뛰면 앞뒤가 안 맞는다.
  *
  * 9번이 있는 이유: 이전 개발 서버가 :3000 을 물고 있으면 새 서버가
  * EADDRINUSE 로 죽고, 검증기는 예데로 응답하는 옛 빌드를 검사해
@@ -38,6 +44,7 @@ import {
   postPath,
   validateSlug,
 } from "../src/lib/slug.ts";
+import { hasFaqSection, parsePostFaq } from "../src/lib/post-faq.ts";
 
 const BASE = process.env.BASE || "http://localhost:3000";
 /**
@@ -78,12 +85,24 @@ function listPosts() {
     if (!fs.existsSync(dir)) continue;
     for (const file of fs.readdirSync(dir)) {
       if (!file.endsWith(".md")) continue;
-      const { data } = matter(fs.readFileSync(path.join(dir, file), "utf-8"));
-      if (data.published === false) continue;
+      const { data, content } = matter(
+        fs.readFileSync(path.join(dir, file), "utf-8")
+      );
       const id = file.replace(/\.md$/, "");
       const rawSlug = typeof data.slug === "string" ? data.slug : "";
       const slug = normalizeSlug(rawSlug) || id;
-      out.push({ category, id, rawSlug, slug, path: postPath(category, slug) });
+      // 미발행 글도 담는다. URL 목록은 published 로 거르지만, 슬러그 규칙과
+      // FAQ 가드는 발행 **전에** 잡아야 의미가 있다.
+      out.push({
+        category,
+        id,
+        rawSlug,
+        slug,
+        published: data.published !== false,
+        path: postPath(category, slug),
+        faqSection: hasFaqSection(content),
+        faqCount: parsePostFaq(content).length,
+      });
     }
   }
   return out;
@@ -115,7 +134,11 @@ function listPaths() {
   // 발행된 글만 — published:false 는 404 가 정상이라 검사 대상이 아니다.
   // 경로는 lib/blog-local 과 같은 규칙으로 직접 열거한다. 사이트맵을 근거로
   // 쓰면 사이트맵이 빼먹은 페이지를 영원히 못 잡는다.
-  return [...staticPaths, ...listPosts().map((p) => p.path)];
+  // 발행분만 URL 검사 대상이다 (published:false 는 404 가 정상)
+  return [
+    ...staticPaths,
+    ...listPosts().filter((p) => p.published).map((p) => p.path),
+  ];
 }
 
 const SCRIPT_RE =
@@ -409,6 +432,7 @@ console.log(`끊긴 참조    ${totalDangling}건`);
 
   const hard = [];
   const soft = [];
+  const draftCount = posts.filter((p) => !p.published).length;
   for (const p of posts) {
     const siblings = byCategory
       .get(p.category)
@@ -419,14 +443,14 @@ console.log(`끊긴 참조    ${totalDangling}건`);
       existing: siblings,
     });
     if (!problems.length) continue;
-    const line = `${p.category}/${p.slug} — ${problems.map((x) => `${x.code}: ${x.message}`).join(" / ")}`;
+    const line = `${p.category}/${p.slug}${p.published ? "" : " (미발행)"} — ${problems.map((x) => `${x.code}: ${x.message}`).join(" / ")}`;
     // 프론트매터에 직접 적은 슬러그는 고칠 수 있으므로 실패시킨다.
     // 파일명 폴백은 이미 색인된 기존 URL 이라 경고로만 남긴다.
     (p.rawSlug ? hard : soft).push(line);
   }
 
   console.log(
-    `슬러그 규칙    ${posts.length}건 검사 · 위반 ${hard.length}건` +
+    `슬러그 규칙    ${posts.length}건 검사(미발행 ${draftCount} 포함) · 위반 ${hard.length}건` +
       (soft.length ? ` · 기존 URL 경고 ${soft.length}건` : "")
   );
   for (const line of soft) console.log(`  (경고) ${line}`);
@@ -473,7 +497,9 @@ if (PROD === "off") {
     const live = [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)]
       .map((m) => new URL(m[1]).pathname.replace(/\/$/, ""))
       .filter(isPostPath);
-    const current = new Set(listPosts().map((p) => p.path));
+    const current = new Set(
+      listPosts().filter((p) => p.published).map((p) => p.path)
+    );
     const gone = live.filter((p) => !current.has(p));
 
     console.log(
@@ -490,6 +516,36 @@ if (PROD === "off") {
     }
   } catch (e) {
     console.log(`슬러그 변경    확인 실패 — 검사하지 못했다 (${e.message})`);
+  }
+}
+
+/**
+ * FAQ 파싱 가드.
+ *
+ * 본문 파싱 방식의 유일한 약점은 마크다운 형식 의존이다. 글쓴이가 형식을
+ * 조금만 달리 쓰면 FAQ 가 **조용히 0쌍이 되고** 아무도 모른 채 넘어간다.
+ * 그래서 "섹션은 있는데 한 쌍도 못 뽑힘" 을 실패로 못박는다.
+ *
+ * 미발행 글도 검사한다 — 발행 버튼을 누르기 전에 알아야 고칠 수 있다.
+ */
+{
+  const posts = listPosts();
+  const withSection = posts.filter((p) => p.faqSection);
+  const broken = withSection.filter((p) => p.faqCount === 0);
+  const pairs = withSection.reduce((n, p) => n + p.faqCount, 0);
+
+  console.log(
+    `FAQ 파싱      섹션 ${withSection.length}건 · ${pairs}쌍 · 파싱 실패 ${broken.length}건`
+  );
+  if (broken.length) {
+    failed += 1;
+    for (const p of broken) {
+      console.log(`  ! ${p.category}/${p.id} — "자주 묻는 질문" 섹션은 있는데 Q/A 를 못 뽑았다`);
+    }
+    console.log('    형식: `**Q. 질문?**` 한 줄 뒤 빈 줄, 그다음 답변 문단');
+    failures.push(
+      `FAQ 파싱 실패 ${broken.length}건: ${broken.map((p) => `${p.category}/${p.id}`).join(", ")}`
+    );
   }
 }
 

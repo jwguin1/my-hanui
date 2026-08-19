@@ -14,6 +14,7 @@
     "verify:carousel": "node scripts/verify-carousel.mjs",
     "verify:jsonld": "node scripts/validate-jsonld.mjs",
     "test:slug": "node --experimental-strip-types --test scripts/test-slug.mjs",
+    "test:faq": "node --experimental-strip-types --test scripts/test-faq.mjs",
     "test:schema": "node --experimental-strip-types --test scripts/test-schema.mjs"
   },
   "dependencies": {

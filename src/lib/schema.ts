@@ -559,6 +559,29 @@ export function physicianStub(name?: string): SchemaNode | undefined {
   };
 }
 
+/**
+ * 여러 글의 author 를 한 번에 Physician 스텁으로. 중복은 하나만 남긴다.
+ *
+ * 목록 페이지(홈·/blog·카테고리)는 articleStub() 안에 author 참조를 싣는데,
+ * 그 참조가 가리키는 Physician 노드가 같은 그래프에 없으면 끊긴 참조가 된다.
+ * 상세 페이지는 physicianStub() 하나로 해결하지만 목록은 글이 여럿이라
+ * 이 헬퍼가 필요하다. (author 없는 글은 병원 노드로 폴백하므로 대상이 아니다)
+ */
+export function physicianStubs(
+  names: ReadonlyArray<string | undefined>
+): SchemaNode[] {
+  const seen = new Set<string>();
+  const out: SchemaNode[] = [];
+  for (const name of names) {
+    const id = doctorId(name);
+    if (!id || seen.has(id)) continue;
+    seen.add(id);
+    const stub = physicianStub(name);
+    if (stub) out.push(stub);
+  }
+  return out;
+}
+
 /* ────────────────────────────────────────────────────────────
  * 목록 노드
  * ────────────────────────────────────────────────────────── */
