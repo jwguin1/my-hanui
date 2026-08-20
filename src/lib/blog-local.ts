@@ -66,6 +66,18 @@ export interface LocalBlogPost {
    * 개별 심사가 끝나면 이 줄만 지우면 원래대로 돌아온다.
    */
   status?: string;
+  /**
+   * 글 하단 전환 블록의 본문 (선택). 2~3문장.
+   *
+   * "이럴 때 진료실에서 확인합니다" 아래에 들어간다.
+   * **원장이 글마다 직접 쓴다 — 자동 생성하지 않는다.**
+   * 21편에 같은 문장이 반복되면 정보량이 0이고, 신뢰를 얻으려고 넣은 블록이
+   * 정확히 반대로 작동한다.
+   *
+   * 비어 있으면 components/ClinicCta 가 소제목·문단을 렌더링하지 않고
+   * 병원 정보 두 줄만 출력한다.
+   */
+  clinicNote?: string;
 }
 
 /** 노출 경로에서 빼야 하는 글인지 (URL 자체는 살아 있다) */
@@ -109,6 +121,7 @@ function readPostFile(filePath: string, id: string, category: string): LocalBlog
     tags: (data.tags as string[]) || [],
     published: data.published !== false,
     status: ((data.status as string) || "").trim() || undefined,
+    clinicNote: ((data.clinicNote as string) || "").trim() || undefined,
     author: ((data.author as string) || "").trim() || undefined,
     content,
     category,

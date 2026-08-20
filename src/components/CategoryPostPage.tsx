@@ -9,6 +9,7 @@ import {
   toISO8601KST,
 } from "@/lib/blog-local";
 import PostContent from "@/components/PostContent";
+import ClinicCta from "@/components/ClinicCta";
 import { CATEGORY_META } from "@/lib/categories";
 import { postImagePath } from "@/lib/og-image";
 import { postPath } from "@/lib/slug";
@@ -117,6 +118,12 @@ export default function CategoryPostPage({
           <PostContent markdown={linkedContent} />
         </article>
       </section>
+
+      {/* 전환 블록 — 관련 글보다 **위**에 둔다.
+          글을 다 읽은 직후가 내원을 판단하는 지점이고, 관련 글 목록을 먼저
+          보여주면 그 지점을 지나쳐 다른 글로 새어 나간다.
+          clinicNote 가 비어 있어도 병원 정보 두 줄은 항상 출력된다. */}
+      <ClinicCta note={post.clinicNote} />
 
       {/* Related posts */}
       {relatedPosts.length > 0 && (
