@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { CLINIC, isPublicHoliday } from "@/lib/clinic";
+import { CLINIC, holidayFor, isClinicClosedDay } from "@/lib/clinic";
 
 /**
  * 진료 상태 판정 (KST 고정)
@@ -97,16 +97,47 @@ function hhmm(minutes: number) {
   ).padStart(2, "0")}`;
 }
 
+/**
+ * 다음 진료일 안내 문구 — 「내일 10:00 오픈」.
+ * 확정 휴진일과 명절 당일은 건너뛴다. 8일까지만 본다 (그 이상은 표가 이상한 것).
+ */
+function nextOpenLabel(today: Date): string {
+  for (let i = 1; i <= 8; i += 1) {
+    const next = new Date(today.getTime() + i * 86_400_000);
+    const ny = next.getUTCFullYear();
+    const nm = next.getUTCMonth() + 1;
+    const nd = next.getUTCDate();
+    const nextYmd = ymd(ny, nm, nd);
+    if (isClosedDate(ny, nm, nd) || isClinicClosedDay(nextYmd)) continue;
+    const when = i === 1 ? "내일" : `${DAY_NAMES[next.getUTCDay()]}요일`;
+    const nextOpen = openMinuteOf(holidayFor(nextYmd)?.open === true);
+    return `${when} ${hhmm(nextOpen)} 오픈`;
+  }
+  return `${hhmm(OPEN_MIN)} 오픈`;
+}
+
 function computeStatus(now: Date): Status {
   const { y, m, d, minutes } = kstParts(now);
   const today = new Date(Date.UTC(y, m - 1, d));
   const weekday = today.getUTCDay();
-  const holiday = isPublicHoliday(ymd(y, m, d));
+  const today0 = ymd(y, m, d);
+  const holidayToday = holidayFor(today0);
+  // 설·추석 당일은 공휴일이지만 **휴진**이다. 여는 공휴일과 갈라 본다.
+  const holiday = holidayToday?.open === true;
   const closeMin = closeMinuteOf(weekday, holiday);
   const openMin = openMinuteOf(holiday);
-  const openToday = !isClosedDate(y, m, d);
+  const openToday = !isClosedDate(y, m, d) && !isClinicClosedDay(today0);
   // 의무휴업일 후보면 「진료중」 뒤에 확인 안내를 덧붙인다 (닫혔다고 말하지 않는다)
   const caution = isMartClosureWednesday(y, m, d) ? " · 확인" : "";
+
+  /* 명절 당일이면 시간과 무관하게 휴진이다. 여기서 갈라주지 않으면
+     아래 「오늘 10:00 오픈」 분기를 타서 여는 것처럼 보인다. */
+  if (holidayToday && holidayToday.open === false) {
+    return {
+      open: false,
+      label: `${holidayToday.name} 휴진 · ${nextOpenLabel(today)}`,
+    };
+  }
 
   if (openToday && minutes >= openMin && minutes < closeMin) {
     /* 점심시간은 **평일에만** 있다. 공휴일은 주말과 마찬가지로 이어서 본다 —
@@ -127,17 +158,7 @@ function computeStatus(now: Date): Status {
   if (openToday && minutes < openMin) {
     return { open: false, label: `진료종료 · 오늘 ${hhmm(openMin)} 오픈` };
   }
-  for (let i = 1; i <= 8; i += 1) {
-    const next = new Date(today.getTime() + i * 86_400_000);
-    const ny = next.getUTCFullYear();
-    const nm = next.getUTCMonth() + 1;
-    const nd = next.getUTCDate();
-    if (isClosedDate(ny, nm, nd)) continue;
-    const when = i === 1 ? "내일" : `${DAY_NAMES[next.getUTCDay()]}요일`;
-    const nextOpen = openMinuteOf(isPublicHoliday(ymd(ny, nm, nd)));
-    return { open: false, label: `진료종료 · ${when} ${hhmm(nextOpen)} 오픈` };
-  }
-  return { open: false, label: `진료종료 · ${hhmm(openMin)} 오픈` };
+  return { open: false, label: `진료종료 · ${nextOpenLabel(today)}` };
 }
 
 export default function ClinicStatusPill() {

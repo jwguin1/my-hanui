@@ -80,8 +80,18 @@ export const CLINIC = {
        schema.org 의 dayOfWeek 로는 표현되지 않는다 (PublicHolidays 는 표준이 아니다).
        JSON-LD 반영은 별건 — 권고안 승인 전까지 넣지 않는다. */
     holiday: { opens: "10:00", closes: "16:00" },
+    /* 휴무일 표기. JSON-LD 에서 「그날은 열지 않는다」를 나타내는 표준 방식이
+       opens 와 closes 를 같은 값으로 두는 것이다. 화면에는 쓰지 않는다. */
+    closed: { opens: "00:00", closes: "00:00" },
   },
   weekdayClose: "평일 20:00까지",
+
+  /**
+   * 명절 휴진 안내. 「토·일·공휴일 16:00까지」만으로는 설·추석 당일 휴무가
+   * 드러나지 않는다 — 공휴일이라 여는 줄 알고 오시게 된다.
+   * 화면과 llms.txt 가 이 문장을 그대로 쓴다.
+   */
+  holidayClosedNote: "설날·추석 당일은 휴진합니다.",
 
   /**
    * 이마트 풍산점 의무휴업일 안내.
@@ -103,8 +113,15 @@ export const CLINIC = {
   closedDates: [] as readonly string[],
 
   /**
-   * 관공서 공휴일 (YYYY-MM-DD, KST). **여는 날**이지 휴진일이 아니다.
-   * 이 날짜에는 평일이어도 주말과 같은 10:00~16:00, 점심시간 없이 본다.
+   * 관공서 공휴일 (YYYY-MM-DD, KST).
+   *
+   * `open: true`  — 평일이어도 주말과 같은 10:00~16:00, 점심시간 없이 본다
+   * `open: false` — 휴진. **설날 당일과 추석 당일 두 날뿐이다.**
+   *                 연휴 전날·다음날은 정상 진료한다.
+   *
+   * 이 구분이 화면·llms.txt·상태 뱃지·JSON-LD 네 곳의 유일한 출처다.
+   * 「공휴일 = 여는 날」로만 두면 명절 당일에 헛걸음하게 만든다 —
+   * 요일로만 판정해 공휴일에 20:00 까지로 안내하던 것과 같은 유형의 사고다.
    *
    * 왜 정적 표인가
    *  - 설날·추석·부처님오신날은 음력이라 규칙으로 계산할 수 없다.
@@ -126,28 +143,28 @@ export const CLINIC = {
    * 여는 날 시간이 어긋나 그대로 환자를 돌려보낸다.
    */
   holidays: [
-    "2026-01-01", // 신정
-    "2026-02-16", // 설날 연휴
-    "2026-02-17", // 설날
-    "2026-02-18", // 설날 연휴
-    "2026-03-01", // 삼일절
-    "2026-03-02", // 삼일절 대체공휴일
-    "2026-05-05", // 어린이날
-    "2026-05-24", // 부처님오신날
-    "2026-05-25", // 부처님오신날 대체공휴일
-    "2026-06-03", // 제9회 전국동시지방선거
-    "2026-06-06", // 현충일
-    "2026-07-17", // 제헌절 (2026 재지정, 금요일이라 대체공휴일 없음)
-    "2026-08-15", // 광복절
-    "2026-08-17", // 광복절 대체공휴일
-    "2026-09-24", // 추석 연휴
-    "2026-09-25", // 추석
-    "2026-09-26", // 추석 연휴
-    "2026-10-03", // 개천절
-    "2026-10-05", // 개천절 대체공휴일
-    "2026-10-09", // 한글날
-    "2026-12-25", // 성탄절
-  ] as readonly string[],
+    { date: "2026-01-01", name: "신정", open: true },
+    { date: "2026-02-16", name: "설날 연휴", open: true },
+    { date: "2026-02-17", name: "설날", open: false },
+    { date: "2026-02-18", name: "설날 연휴", open: true },
+    { date: "2026-03-01", name: "삼일절", open: true },
+    { date: "2026-03-02", name: "삼일절 대체공휴일", open: true },
+    { date: "2026-05-05", name: "어린이날", open: true },
+    { date: "2026-05-24", name: "부처님오신날", open: true },
+    { date: "2026-05-25", name: "부처님오신날 대체공휴일", open: true },
+    { date: "2026-06-03", name: "제9회 전국동시지방선거", open: true },
+    { date: "2026-06-06", name: "현충일", open: true },
+    { date: "2026-07-17", name: "제헌절", open: true },
+    { date: "2026-08-15", name: "광복절", open: true },
+    { date: "2026-08-17", name: "광복절 대체공휴일", open: true },
+    { date: "2026-09-24", name: "추석 연휴", open: true },
+    { date: "2026-09-25", name: "추석", open: false },
+    { date: "2026-09-26", name: "추석 연휴", open: true },
+    { date: "2026-10-03", name: "개천절", open: true },
+    { date: "2026-10-05", name: "개천절 대체공휴일", open: true },
+    { date: "2026-10-09", name: "한글날", open: true },
+    { date: "2026-12-25", name: "성탄절", open: true },
+  ] as readonly { date: string; name: string; open: boolean }[],
 
   /**
    * 진료 권역 — JSON-LD areaServed 의 정본.
@@ -213,14 +230,30 @@ export const CLINIC_WEEKEND_HOLIDAY_LABEL = "토·일·공휴일";
 export const CLINIC_WEEKEND_HOLIDAY_CLOSE =
   `${CLINIC_WEEKEND_HOLIDAY_LABEL} ${CLINIC.hours.weekend.closes}까지`;
 
-/** 관공서 공휴일인가 (YYYY-MM-DD, KST) */
-export function isPublicHoliday(isoDate: string): boolean {
-  return CLINIC.holidays.includes(isoDate);
+export type ClinicHoliday = { date: string; name: string; open: boolean };
+
+/** 그날의 공휴일 항목. 공휴일이 아니면 undefined */
+export function holidayFor(isoDate: string): ClinicHoliday | undefined {
+  return CLINIC.holidays.find((h) => h.date === isoDate);
 }
+
+/** 관공서 공휴일인가 (여는 날·휴진일 모두 포함) */
+export function isPublicHoliday(isoDate: string): boolean {
+  return holidayFor(isoDate) !== undefined;
+}
+
+/** 그날 휴진인가 — 설날 당일·추석 당일 */
+export function isClinicClosedDay(isoDate: string): boolean {
+  return holidayFor(isoDate)?.open === false;
+}
+
+/** 휴진으로 지정된 공휴일 목록 */
+export const CLINIC_CLOSED_HOLIDAYS: readonly ClinicHoliday[] =
+  CLINIC.holidays.filter((h) => !h.open);
 
 /** 표에 실린 마지막 공휴일. 검증기가 이 날짜로 갱신 시점을 재촉한다 */
 export const CLINIC_HOLIDAY_TABLE_END =
-  [...CLINIC.holidays].sort().at(-1) ?? "";
+  [...CLINIC.holidays].map((h) => h.date).sort().at(-1) ?? "";
 /** 점심 = 두 평일 구간 **사이의 빈 시간**. 따로 적지 않고 파생시킨다 */
 export const CLINIC_HOURS_LUNCH = `${CLINIC.hours.weekdayMorning.closes} – ${CLINIC.hours.weekdayAfternoon.opens}`;
 

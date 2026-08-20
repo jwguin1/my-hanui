@@ -289,13 +289,19 @@ export function clinicNode(): SchemaNode {
           그쪽은 조례로 바뀌고 대부분 여는 불확실한 날이라 단정하지 않는다.)
 
          날짜는 clinic.ts 의 정적 표에서 그대로 파생한다. 여기에 적지 않는다. */
-      ...CLINIC.holidays.map((date) => ({
-        "@type": "OpeningHoursSpecification",
-        opens: CLINIC.hours.holiday.opens,
-        closes: CLINIC.hours.holiday.closes,
-        validFrom: date,
-        validThrough: date,
-      })),
+      ...CLINIC.holidays.map((h) => {
+        /* 휴진일(설·추석 당일)은 opens 와 closes 를 같은 값으로 둔다 —
+           「그날은 열지 않는다」를 나타내는 표준 방식이다.
+           빼버리면 요일 패턴이 살아나 오히려 여는 것으로 읽힌다. */
+        const hours = h.open ? CLINIC.hours.holiday : CLINIC.hours.closed;
+        return {
+          "@type": "OpeningHoursSpecification",
+          opens: hours.opens,
+          closes: hours.closes,
+          validFrom: h.date,
+          validThrough: h.date,
+        };
+      }),
     ],
     // schema.org MedicalSpecialty 열거형으로만 쓴다 — 한글 자유텍스트는
     // INVALID_SCHEMA_ENUM_VALUE 오류를 낸다. 사람이 읽는 분과명과

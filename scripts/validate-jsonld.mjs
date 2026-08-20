@@ -47,6 +47,7 @@ import {
 import { hasFaqSection, parsePostFaq } from "../src/lib/post-faq.ts";
 import {
   CLINIC,
+  CLINIC_CLOSED_HOLIDAYS,
   CLINIC_HOLIDAY_TABLE_END,
   CLINIC_WEEKEND_HOLIDAY_LABEL,
 } from "../src/lib/clinic.ts";
@@ -629,7 +630,8 @@ function validate(pagePath, html) {
 
     /* ── 공휴일(날짜 기반) 항목 ── 정적 표와 건수·날짜·시각을 전부 대조 ── */
     {
-      const want = [...CLINIC.holidays].sort();
+      const want = CLINIC.holidays.map((h) => h.date).slice().sort();
+      const byDate = new Map(CLINIC.holidays.map((h) => [h.date, h]));
       const got = dateSpecs
         .map((x) => String(x.validFrom))
         .slice()
@@ -650,11 +652,16 @@ function validate(pagePath, html) {
           `공휴일 openingHours 에 중복 날짜 — ${[...new Set(dupes)].join(", ")}`
         );
 
-      const hh = CLINIC.hours.holiday;
       for (const spec of dateSpecs) {
+        /* 진료일과 휴무일의 시각이 다르다. 한 값으로 뭉뚱그려 보면
+           설·추석 당일이 10:00~16:00 로 나가도 통과한다 — 명절에 헛걸음시킨다. */
+        const entry = byDate.get(String(spec.validFrom));
+        const hh =
+          entry && !entry.open ? CLINIC.hours.closed : CLINIC.hours.holiday;
+        const tag = entry ? ` ${entry.name}${entry.open ? "" : " 휴진"}` : "";
         if (spec.opens !== hh.opens || spec.closes !== hh.closes)
           errors.push(
-            `공휴일 openingHours(${spec.validFrom}) 시각이 정본과 다르다 — 출력 ${spec.opens}~${spec.closes}, 정본 ${hh.opens}~${hh.closes}`
+            `공휴일 openingHours(${spec.validFrom}${tag}) 시각이 정본과 다르다 — 출력 ${spec.opens}~${spec.closes}, 정본 ${hh.opens}~${hh.closes}`
           );
         if (spec.validThrough !== spec.validFrom)
           errors.push(
@@ -1426,6 +1433,58 @@ try {
     console.log(`  ! ${msg}`);
     failures.push(msg);
   }
+  /* 표의 각 항목이 진료/휴무 구분을 갖고 있는가.
+     구분이 없으면 코드가 undefined 를 falsy 로 읽어 조용히 휴무 처리한다.
+     설·추석 당일이 진료로 넘어가면 명절에 헛걸음시키고, 반대면 여는 날을 닫는다. */
+  const badShape = CLINIC.holidays.filter(
+    (x) => typeof x?.date !== "string" || typeof x?.open !== "boolean" || !x?.name
+  );
+  if (badShape.length) {
+    failed += 1;
+    const msg = `공휴일 표에 date/name/open 이 갖춰지지 않은 항목 ${badShape.length}건`;
+    console.log(`  ! ${msg}`);
+    failures.push(msg);
+  }
+  console.log(
+    `  · 진료 ${CLINIC.holidays.filter((x) => x.open).length}일 · 휴진 ${
+      CLINIC_CLOSED_HOLIDAYS.length
+    }일 (${CLINIC_CLOSED_HOLIDAYS.map((x) => `${x.date} ${x.name}`).join(", ") || "없음"})`
+  );
+
+  /* 설·추석 **당일**은 휴진이어야 한다. 이름으로 찾되 「연휴」가 붙은 날은 뺀다 —
+     연휴 전날·다음날은 정상 진료다. */
+  for (const label of ["설날", "추석"]) {
+    const sameDay = CLINIC.holidays.filter(
+      (x) => x.name === label
+    );
+    if (!sameDay.length) {
+      failed += 1;
+      const msg = `공휴일 표에 "${label}" 당일 항목이 없다`;
+      console.log(`  ! ${msg}`);
+      failures.push(msg);
+      continue;
+    }
+    const open = sameDay.filter((x) => x.open);
+    if (open.length) {
+      failed += 1;
+      const msg = `"${label}" 당일이 진료로 지정돼 있다 — ${open
+        .map((x) => x.date)
+        .join(", ")} (휴진이어야 한다)`;
+      console.log(`  ! ${msg}`);
+      failures.push(msg);
+    }
+  }
+
+  /* 휴무 표기는 00:00~00:00 이어야 한다. 다른 값이면 JSON-LD 에서
+     「그날은 열지 않는다」로 읽히지 않는다. */
+  const cl = CLINIC.hours.closed;
+  if (cl.opens !== cl.closes || cl.opens !== "00:00") {
+    failed += 1;
+    const msg = `휴무 표기가 00:00~00:00 이 아니다 — ${cl.opens}~${cl.closes}`;
+    console.log(`  ! ${msg}`);
+    failures.push(msg);
+  }
+
   if (!CLINIC.holidays.length) {
     failed += 1;
     console.log("  ! 공휴일 표가 비어 있다");

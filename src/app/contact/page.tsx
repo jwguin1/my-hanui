@@ -115,6 +115,9 @@ export default function ContactPage() {
               <p className="mt-3 text-[0.8rem] text-accent">
                 주말·공휴일은 점심시간 없이 진료
               </p>
+              {/* 명절 휴진 — 「토·일·공휴일 16:00까지」만으로는 드러나지 않는다.
+                  문안은 clinic.ts 가 정본이다. */}
+              <p className="mt-1 text-[0.8rem] text-accent">{CLINIC.holidayClosedNote}</p>
               <p className="mt-1 text-[0.8rem] text-text-muted">
                 {CLINIC.closedNote}
               </p>

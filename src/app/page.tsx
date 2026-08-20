@@ -566,6 +566,9 @@ export default async function Home() {
                 <p className="mt-4 text-[0.82rem] text-primary">
                   주말·공휴일은 점심시간 없이 진료합니다
                 </p>
+                {/* 명절 휴진 — 「토·일·공휴일 16:00까지」만으로는 드러나지 않는다.
+                    문안은 clinic.ts 가 정본이다. */}
+                <p className="mt-1 text-[0.82rem] text-primary">{CLINIC.holidayClosedNote}</p>
                 <p className="mt-1 text-[0.82rem] text-muted">
                   {CLINIC.closedNote}
                 </p>
