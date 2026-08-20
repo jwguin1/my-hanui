@@ -32,6 +32,15 @@ import { buildGraph, faqEntities } from "@/lib/schema";
 import LocalBlock from "@/components/LocalBlock";
 import { LOCAL_BLOCKS, localFaqEntities } from "@/lib/local-blocks";
 import { CLINIC } from "@/lib/clinic";
+import { postPath } from "@/lib/slug";
+import {
+  SPOT_PRICE_ROWS,
+  SPOT_PRICE_HEADERS,
+  SPOT_PRICE_NOTE,
+  SPOT_ENTRY,
+  won,
+  wonDigits,
+} from "@/lib/pricing";
 
 export const metadata: Metadata = pageMetadata({
   path: "/skin/spot",
@@ -99,6 +108,19 @@ const DEVICE = [
   },
 ];
 
+// 앵커 텍스트는 글 제목 그대로 쓴다 — 「자세히 보기」 금지.
+// 경로는 postPath() 로만 만든다 (lib/slug.ts 가 인코딩의 유일한 지점).
+const RELATED_POSTS: { slug: string; title: string }[] = [
+  {
+    slug: "잡티제거-개수와-비용",
+    title: "얼굴에 여러 개인데 한 번에 다 뺄 수 있나요? 비용은요?",
+  },
+  {
+    slug: "쥐젖-사마귀-검버섯-구분",
+    title: "쥐젖, 사마귀, 검버섯 — 뭐가 다르고 어떻게 구분하나요?",
+  },
+];
+
 const AFTERCARE = [
   { title: "연고 도포", body: "처방해드린 연고를 하루 2회 바릅니다." },
   {
@@ -160,7 +182,11 @@ export default function SkinSpotPage() {
             </div>
 
             <div className="mx-auto mt-10 grid max-w-3xl grid-cols-1 gap-4 md:grid-cols-3">
-              <StatCard value="9,900" unit="원" label="개별 제거 1개" />
+              <StatCard
+                value={wonDigits(SPOT_ENTRY.upTo100)}
+                unit="원"
+                label={`${SPOT_ENTRY.name} 100개까지`}
+              />
               <StatCard value="1" unit="회" label="대부분 당일 완료" />
               <StatCard value="확대경" label="시술 전 확인" />
             </div>
@@ -261,30 +287,13 @@ export default function SkinSpotPage() {
             <div className="mx-auto mt-14 max-w-2xl">
               <PriceTable
                 caption="잡티 제거"
-                headers={["100개까지", "개수 제한 없음"]}
-                rows={[
-                  {
-                    name: "얼굴 1부위",
-                    price: "110,000원",
-                    price2: "165,000원",
-                  },
-                  {
-                    name: "얼굴 + 목 앞면",
-                    price: "165,000원",
-                    price2: "220,000원",
-                  },
-                  {
-                    name: "얼굴 + 목 앞·뒷면",
-                    price: "220,000원",
-                    price2: "275,000원",
-                  },
-                  {
-                    name: "개별 제거 (1개)",
-                    price: "9,900원",
-                    price2: "크기 제한 없음",
-                  },
-                ]}
-                note="전 항목 비급여이며 부가세 포함 금액입니다. 개수가 적으시면 개별 제거가 더 유리합니다. 시술 범위는 진료 후 함께 정합니다."
+                headers={SPOT_PRICE_HEADERS}
+                rows={SPOT_PRICE_ROWS.map((r) => ({
+                  name: r.name,
+                  price: won(r.upTo100),
+                  price2: won(r.unlimited),
+                }))}
+                note={SPOT_PRICE_NOTE}
               />
             </div>
           </SectionReveal>
@@ -340,6 +349,40 @@ export default function SkinSpotPage() {
                 title="시술 전 알려주세요"
                 body="켈로이드 체질이거나 상처가 잘 아물지 않는 편이면 미리 알려주세요. 편평사마귀는 바이러스성이라 제거 후에도 재발할 수 있습니다. 모양이나 색이 최근 변한 병변은 제거하지 않고 검사가 가능한 의료기관으로 안내드릴 수 있습니다."
               />
+            </div>
+          </SectionReveal>
+        </div>
+      </section>
+
+      {/* 질문형 글로 보낸다 — 설명을 여기 옮겨 적지 않는다.
+          같은 내용을 두 곳에 두면 갈리고, 이 페이지는 진료 안내가 역할이다.
+          「큰 점」 계열 검색어(네이버 101 클릭)가 이 페이지로 들어오는데
+          페이지 본문에 그 말이 없다 — 아래 두 글이 그 질문에 답한다. */}
+      <section className="bg-[var(--bg)]">
+        <div className="section-padding">
+          <SectionReveal>
+            <div className="mx-auto max-w-3xl">
+              <SectionBadge icon={<HelpCircle size={15} />} label="자주 묻는 것" />
+              <h2 className="font-serif mt-3 text-[1.15rem] font-semibold leading-snug text-ink">
+                이런 걸 많이 물어보십니다
+              </h2>
+              <ul className="mt-6 space-y-2.5">
+                {RELATED_POSTS.map((p) => (
+                  <li key={p.slug}>
+                    <Link
+                      href={postPath("skin", p.slug)}
+                      className="group flex items-center justify-between gap-3 rounded-xl border border-line px-4 py-3.5 transition-colors duration-200 hover:bg-surface"
+                    >
+                      <span className="min-w-0 text-[0.95rem] leading-snug text-ink transition-colors duration-200 group-hover:text-primary">
+                        {p.title}
+                      </span>
+                      <span aria-hidden="true" className="shrink-0 text-primary">
+                        →
+                      </span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
             </div>
           </SectionReveal>
         </div>

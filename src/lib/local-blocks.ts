@@ -1,5 +1,6 @@
 import type { LocalFaq } from "@/components/LocalBlock";
 import { faqEntities, type FaqEntity } from "@/lib/schema";
+import { SPOT_PRICE_ROWS, SPOT_PRICE_NOTE, won } from "@/lib/pricing";
 
 export type LocalBlockData = {
   title: string;
@@ -122,7 +123,11 @@ export const LOCAL_BLOCKS: Record<string, LocalBlockData> = {
     faqs: [
       {
         q: "일산에서 점 빼는 비용은 얼마인가요?",
-        a: "개별 제거는 1개 9,900원이고, 얼굴 1부위는 100개까지 110,000원입니다. 전 항목 비급여이며 부가세 포함 금액입니다.",
+        // 금액을 여기 적지 않는다 — lib/pricing.ts 가 정본이다
+        a: `${SPOT_PRICE_ROWS.map(
+          (r) =>
+            `${r.name} 100개까지 ${won(r.upTo100)}, 개수 제한 없이 ${won(r.unlimited)}`,
+        ).join(". ")}. ${SPOT_PRICE_NOTE}`,
       },
       ...FAQ_ACCESS,
     ],
