@@ -267,15 +267,36 @@ export function clinicNode(): SchemaNode {
      * 안내는 화면 문구(CLINIC.closedNote)로만 하고 스키마는 정상 패턴을 유지한다.
      */
     openingHoursSpecification: [
-      CLINIC.hours.weekdayMorning,
-      CLINIC.hours.weekdayAfternoon,
-      CLINIC.hours.weekend,
-    ].map((h) => ({
-      "@type": "OpeningHoursSpecification",
-      dayOfWeek: [...h.days],
-      opens: h.opens,
-      closes: h.closes,
-    })),
+      // 요일 기반 — 평일은 점심을 비우느라 오전·오후 두 구간이다
+      ...[
+        CLINIC.hours.weekdayMorning,
+        CLINIC.hours.weekdayAfternoon,
+        CLINIC.hours.weekend,
+      ].map((h) => ({
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: [...h.days],
+        opens: h.opens,
+        closes: h.closes,
+      })),
+      /* 날짜 기반 — 관공서 공휴일.
+         schema.org 의 dayOfWeek 에는 「공휴일」에 해당하는 값이 없다
+         (PublicHolidays 는 표준이 아니다). 대신 dayOfWeek 를 생략하고
+         validFrom/validThrough 로 그 하루만 지정하는 것이 표준 문법이다.
+
+         넣는 이유: 공휴일은 법정이고 예측 가능하며 **실제로 여는 날**이다.
+         빼두면 요일 패턴만 남아 AI·검색이 「공휴일 휴진」으로 읽는다.
+         (이마트 의무휴업일을 넣지 않는 것과 판단이 다른 지점 —
+          그쪽은 조례로 바뀌고 대부분 여는 불확실한 날이라 단정하지 않는다.)
+
+         날짜는 clinic.ts 의 정적 표에서 그대로 파생한다. 여기에 적지 않는다. */
+      ...CLINIC.holidays.map((date) => ({
+        "@type": "OpeningHoursSpecification",
+        opens: CLINIC.hours.holiday.opens,
+        closes: CLINIC.hours.holiday.closes,
+        validFrom: date,
+        validThrough: date,
+      })),
+    ],
     // schema.org MedicalSpecialty 열거형으로만 쓴다 — 한글 자유텍스트는
     // INVALID_SCHEMA_ENUM_VALUE 오류를 낸다. 사람이 읽는 분과명과
     // 한의학 고유 시술명은 아래 knowsAbout 으로 옮겼다.
