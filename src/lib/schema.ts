@@ -11,6 +11,18 @@
  * - 노드 간 관계는 전부 { "@id": ... } 참조로 연결한다. 익명 노드를 만들지 않는다.
  */
 
+/**
+ * **`@/lib/clinic` 으로 바꾸지 말 것.** 상대경로 + `.ts` 확장자여야 한다.
+ *
+ * scripts/test-schema.mjs · test-slug.mjs 가 이 파일을 Next 밖에서
+ * `node --experimental-strip-types` 로 직접 불러 쓴다. 거긴 tsconfig 의
+ * 경로 별칭(@/)이 없어서 `@/lib/clinic` 은 ERR_MODULE_NOT_FOUND 로 죽는다.
+ * (실제로 이 import 를 별칭으로 넣었다가 테스트 2건이 깨졌다)
+ *
+ * 같은 이유로 lib/post-faq.ts 는 아예 의존을 두지 않는다.
+ */
+import { CLINIC } from "./clinic.ts";
+
 export const BASE_URL = "https://www.ilsanhan.com";
 
 /* ────────────────────────────────────────────────────────────
@@ -205,22 +217,23 @@ export function clinicNode(): SchemaNode {
     url: BASE_URL,
     logo: ref(LOGO_ID),
     image: `${BASE_URL}/og-image.jpg`,
-    telephone: "+82-31-976-7706",
+    telephone: CLINIC.telIntl,
     priceRange: "₩₩",
     publicAccess: true,
     isAcceptingNewPatients: true,
     address: {
       "@type": "PostalAddress",
-      streetAddress: "무궁화로 237, 이마트 풍산점 3층",
-      addressLocality: "고양시 일산동구",
-      addressRegion: "경기도",
-      postalCode: "10311",
+      streetAddress: `${CLINIC.streetAddress}, ${CLINIC.building}`,
+      addressLocality: CLINIC.addressLocality,
+      addressRegion: CLINIC.addressRegion,
+      postalCode: CLINIC.postalCode,
       addressCountry: "KR",
     },
+    // 좌표는 lib/clinic.ts 가 정본이다. 이전 값은 실제 위치에서 10km 벗어나 있었다.
     geo: {
       "@type": "GeoCoordinates",
-      latitude: 37.7636,
-      longitude: 126.7735,
+      latitude: CLINIC.geo.latitude,
+      longitude: CLINIC.geo.longitude,
     },
     areaServed: [
       { "@type": "City", name: "고양시" },

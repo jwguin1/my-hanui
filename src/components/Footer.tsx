@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { CAROUSEL_ORDER, CAROUSEL_TARGETS } from "@/lib/carousel-targets";
+import { CLINIC, CLINIC_ADDRESS_STREET } from "@/lib/clinic";
 
 export default function Footer() {
   return (
@@ -64,16 +65,17 @@ export default function Footer() {
             네이버 플레이스
           </Link>
           <a
-            href="tel:031-976-7706"
+            href={CLINIC.telHref}
             className="text-[0.82rem] text-text-muted transition-colors duration-200 hover:text-accent"
           >
-            031-976-7706
+            {CLINIC.tel}
           </a>
         </div>
 
+        {/* NAP 표기는 lib/clinic.ts 가 정본이다 (네이버 플레이스 등록 정보 기준).
+            여기서 문자열을 직접 쓰면 사이트 안에서 주소가 갈린다. */}
         <p className="mt-4 text-[0.78rem] text-text-muted">
-          경기 고양시 일산동구 무궁화로 237, 3층 · 경의중앙선 풍산역 2번 출구 도보
-          1분
+          {CLINIC_ADDRESS_STREET}, {CLINIC.building} · {CLINIC.transit}
         </p>
 
         <p className="mt-6 text-[0.75rem] text-text-muted">

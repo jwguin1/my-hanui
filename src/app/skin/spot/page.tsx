@@ -31,6 +31,7 @@ import JsonLd from "@/components/JsonLd";
 import { buildGraph, faqEntities } from "@/lib/schema";
 import LocalBlock from "@/components/LocalBlock";
 import { LOCAL_BLOCKS, localFaqEntities } from "@/lib/local-blocks";
+import { CLINIC } from "@/lib/clinic";
 
 export const metadata: Metadata = pageMetadata({
   path: "/skin/spot",
@@ -360,12 +361,12 @@ export default function SkinSpotPage() {
             </div>
             <div className="mx-auto flex max-w-3xl flex-col items-center gap-3 sm:flex-row sm:justify-center">
               <PillButton
-                href="tel:031-976-7706"
+                href={CLINIC.telHref}
                 variant="solid"
                 icon={<Phone size={16} />}
                 className="w-full sm:w-auto"
               >
-                전화 문의 031-976-7706
+                전화 문의 {CLINIC.tel}
               </PillButton>
               <PillButton
                 href="https://pf.kakao.com/_eXXun"

@@ -20,6 +20,7 @@ import {
 import { fetchLatestVideos } from "@/lib/youtube";
 import { CATEGORY_META, SITE_URL } from "@/lib/categories";
 import { CAROUSEL_ORDER, CAROUSEL_TARGETS } from "@/lib/carousel-targets";
+import { CLINIC, CLINIC_ADDRESS_STREET } from "@/lib/clinic";
 import { getLatestPostCards, latestPostsListNode } from "@/lib/latest-posts";
 import JsonLd from "@/components/JsonLd";
 import {
@@ -531,22 +532,22 @@ export default async function Home() {
                 <ul className="mt-8 space-y-3 text-[0.9rem]">
                   <li className="flex justify-between border-b border-line pb-3">
                     <span className="text-ink">월 – 금</span>
-                    <span className="text-ink">10:00 – 20:00</span>
+                    <span className="text-ink">{CLINIC.hoursWeekday}</span>
                   </li>
                   <li className="flex justify-between border-b border-line pb-3">
                     <span className="text-ink">토 · 일</span>
-                    <span className="text-ink">10:00 – 16:00</span>
+                    <span className="text-ink">{CLINIC.hoursWeekend}</span>
                   </li>
                   <li className="flex justify-between border-b border-line pb-3">
                     <span className="text-muted">점심시간 (평일)</span>
-                    <span className="text-muted">13:00 – 14:00</span>
+                    <span className="text-muted">{CLINIC.hoursLunch}</span>
                   </li>
                 </ul>
                 <p className="mt-4 text-[0.82rem] text-primary">
                   주말·공휴일은 점심시간 없이 진료합니다
                 </p>
                 <p className="mt-1 text-[0.82rem] text-muted">
-                  매달 2·4번째 수요일 휴무 (이마트 풍산점 휴업일)
+                  {CLINIC.closedNote}
                 </p>
               </div>
 
@@ -558,32 +559,31 @@ export default async function Home() {
                   </div>
                 </div>
                 <div className="mt-8 space-y-5">
+                  {/* NAP 는 lib/clinic.ts 가 정본 (네이버 플레이스 등록 정보 기준) */}
                   <div>
                     <p className="text-[0.8rem] text-primary">주소</p>
-                    <p className="mt-1 text-ink">
-                      경기 고양시 일산동구 무궁화로 237
-                    </p>
-                    <p className="text-ink">이마트 풍산점 3층</p>
+                    <p className="mt-1 text-ink">{CLINIC_ADDRESS_STREET}</p>
+                    <p className="text-ink">{CLINIC.building}</p>
                   </div>
                   <div>
                     <p className="text-[0.8rem] text-primary">전화</p>
                     <a
-                      href="tel:031-976-7706"
+                      href={CLINIC.telHref}
                       className="mt-1 block text-[1.1rem] font-semibold text-ink transition-colors hover:text-primary"
                     >
-                      031-976-7706
+                      {CLINIC.tel}
                     </a>
                   </div>
                   <div>
                     <p className="text-[0.8rem] text-primary">교통</p>
                     <p className="mt-1 text-[0.9rem] text-ink">
-                      경의중앙선 풍산역 2번 출구 도보 1분
+                      {CLINIC.transit}
                     </p>
                   </div>
                   <div>
                     <p className="text-[0.8rem] text-primary">주차</p>
                     <p className="mt-1 text-[0.9rem] text-muted">
-                      이마트 4·5·6·7층 주차장 · 무료주차 3시간
+                      {CLINIC.parkingDetail}
                     </p>
                   </div>
                 </div>
