@@ -54,11 +54,16 @@ export const CLINIC = {
   /** 주차 가능 층 — 안내가 필요한 페이지에서만 쓴다 */
   parkingDetail: "이마트 4·5·6·7층 주차장 · 3시간 무료",
 
-  /* ── 진료시간 ── 한 곳에서만 정의한다 */
+  /* ── 진료시간 ──
+     기계가 읽는 값(HH:MM)만 정의하고 화면 문자열은 아래에서 파생시킨다.
+     화면과 JSON-LD 를 따로 적으면 언젠가 갈린다 —
+     「지금 진료하나요」류 질의에 직접 쓰이는 값이라 갈리면 틀린 답이 나간다. */
+  hours: {
+    weekday: { opens: "10:00", closes: "20:00" },
+    weekend: { opens: "10:00", closes: "16:00" },
+    lunch: { opens: "13:00", closes: "14:00" },
+  },
   weekdayClose: "평일 20:00까지",
-  hoursWeekday: "10:00 – 20:00",
-  hoursWeekend: "10:00 – 16:00",
-  hoursLunch: "13:00 – 14:00",
   closedNote: "매달 2·4번째 수요일 휴무 (이마트 풍산점 휴업일)",
 
   /**
@@ -71,6 +76,13 @@ export const CLINIC = {
    */
   geo: { latitude: 37.6738501, longitude: 126.7871254 },
 } as const;
+
+/** 화면 표기용 진료시간 — 기계 값에서 파생시킨다. 직접 문자열을 쓰지 말 것. */
+const range = (t: { opens: string; closes: string }) => `${t.opens} – ${t.closes}`;
+
+export const CLINIC_HOURS_WEEKDAY = range(CLINIC.hours.weekday);
+export const CLINIC_HOURS_WEEKEND = range(CLINIC.hours.weekend);
+export const CLINIC_HOURS_LUNCH = range(CLINIC.hours.lunch);
 
 /** 한 줄 주소 — 「경기도 고양시 일산동구 무궁화로 237, 이마트 풍산점 3층」 */
 export const CLINIC_ADDRESS_FULL =
