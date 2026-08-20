@@ -97,6 +97,23 @@ const FORBIDDEN_IN_JSONLD = [
 const REGION_SUPERLATIVE = /(고양시|일산|파주|덕양구|일산동구|일산서구)[^.\n]{0,20}(최다|가장\s*많|1위|최고|유일|최대)/;
 
 /**
+ * 실적 숫자에 기준이 붙어 있는가 — **경고(WARN)** 로 낸다.
+ *
+ * 「9,000건」처럼 숫자만 크게 띄우면 기간도 근거도 없는 광고 문구로 읽힌다.
+ * 실제로 다이어트 실적이 「누적 9,000건」으로만 있다가 나중에
+ * 「개원 이래 누적 9,000건 이상 (원내 진료기록 기준)」으로 고쳐졌다.
+ * 다른 숫자가 추가될 때 같은 누락이 반복되므로 자동으로 잡는다.
+ *
+ * FAIL 이 아니라 WARN 인 이유: 「연 20회까지」(보험 한도)나 「3~5회」(치료 횟수)처럼
+ * 실적이 아닌 숫자도 「회/건」을 쓴다. 기계적으로 막으면 정상 문구를 잡는다.
+ * 사람이 보고 판단하도록 목록만 띄운다.
+ */
+const PERIOD_BASIS = /(누적|연간|개원\s*이래|올해|월평균|일평균)/;
+const SOURCE_BASIS = /(진료기록|EMR|건강보험|청구|실인원)/;
+/** 실적으로 읽히는 규모의 숫자만 본다 — 1,000 이상 */
+const PERF_NUMBER = /(?<![\d,.])(\d{1,3},\d{3}|\d{4,})\s*(건|명|회)/g;
+
+/**
  * schema.org 가 인정하는 요일 문자열. 이 목록에 없는 값(「Sun」·「일요일」 등)은
  * 파서가 조용히 버린다 — 그러면 그 요일은 휴진으로 읽힌다.
  */
@@ -540,6 +557,30 @@ function validate(pagePath, html) {
       `JSON-LD 에 지역 한정 최상급이 있다 — "${regionSup[0]}" (확인할 수 없는 주장이다)`
     );
 
+  /* ── 실적 숫자 기준 ── WARN. 판단은 사람이 한다 ── */
+  PERF_NUMBER.lastIndex = 0;
+  for (const m of blocks[0].matchAll(PERF_NUMBER)) {
+    /* 기준은 **문장 단위**로 본다. 고정 폭(±40자)으로 자르면
+       「… 9,000건 이상 (원내 진료기록 기준).」처럼 문장 끝에 붙은 근거를
+       창 밖으로 놓친다 — 실제로 그렇게 오탐이 났다.
+       문장 경계는 마침표와 JSON 문자열 경계(")로 잡는다. */
+    const head = blocks[0].slice(0, m.index);
+    const tail = blocks[0].slice(m.index + m[0].length);
+    const start = Math.max(head.lastIndexOf("."), head.lastIndexOf('"')) + 1;
+    const endRel = tail.search(/[."]/);
+    const around =
+      head.slice(start) + m[0] + (endRel < 0 ? tail : tail.slice(0, endRel + 1));
+    const hasPeriod = PERIOD_BASIS.test(around);
+    const hasSource = SOURCE_BASIS.test(around);
+    if (hasPeriod && hasSource) continue;
+    const missing = [!hasPeriod && "기간 기준(누적/연간)", !hasSource && "산출 근거(원내 진료기록 등)"]
+      .filter(Boolean)
+      .join(" · ");
+    warnings.push(
+      `실적 숫자 "${m[0]}" 에 ${missing} 가 없다 — …${around.replace(/\s+/g, " ").slice(0, 70)}…`
+    );
+  }
+
   if (!graph.some((n) => n["@type"] === "WebSite"))
     errors.push("WebSite 노드 없음");
 
@@ -594,6 +635,8 @@ function validate(pagePath, html) {
 
 const paths = listPaths();
 let failed = 0;
+/** 경고 본문 → { 발생 페이지 수, 첫 페이지 }. 중복을 접어 요약에 띄운다 */
+const warnSummary = new Map();
 let totalNodes = 0;
 let totalWithId = 0;
 let totalRefs = 0;
@@ -654,6 +697,13 @@ for (const p of paths) {
         w
     );
   }
+  /* 경고는 건수만 찍히면 아무도 안 본다. 내용을 모아 아래 요약에 띄운다.
+     같은 문구가 51개 페이지에 반복되므로 중복은 접고 발생 페이지 수만 센다. */
+  for (const w of warnings) {
+    const hit = warnSummary.get(w);
+    if (hit) hit.count += 1;
+    else warnSummary.set(w, { count: 1, first: p });
+  }
 }
 
 console.log("\n─────────────────────────────────────────");
@@ -664,6 +714,17 @@ console.log(
 );
 console.log(`참조 총계    ${totalRefs}건`);
 console.log(`끊긴 참조    ${totalDangling}건`);
+
+/* 경고 요약 — 건수만 찍히면 아무도 안 본다. 내용을 띄우고 사람이 판단하게 한다.
+   같은 문구가 수십 개 페이지에 반복되므로 중복은 접고 발생 페이지 수만 센다. */
+if (warnSummary.size) {
+  console.log(`경고         ${warnSummary.size}종 (실패는 아니다 — 사람이 판단할 것)`);
+  for (const [msg, { count }] of warnSummary) {
+    console.log(`  ! ${msg}  (${count}개 페이지)`);
+  }
+} else {
+  console.log("경고         0건");
+}
 
 /**
  * 파생 OG 쌍 대조 — 발행된 글마다 og.png 와 og.webp 가 둘 다 있는가.
