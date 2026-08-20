@@ -3,6 +3,7 @@ import SectionReveal from "@/components/SectionReveal";
 import PageHeroBanner from "@/components/PageHeroBanner";
 import { pageMetadata } from "@/lib/page-metadata";
 import { CAROUSEL_TARGETS } from "@/lib/carousel-targets";
+import { CLINIC, CLINIC_ADDRESS_CITY, CLINIC_ADDRESS_STREET } from "@/lib/clinic";
 import JsonLd from "@/components/JsonLd";
 import { buildGraph } from "@/lib/schema";
 
@@ -15,17 +16,17 @@ export const metadata: Metadata = pageMetadata({
   path: "/contact",
   title: CAROUSEL_TARGETS.contact.title,
   description:
-    "경기 고양시 일산동구 무궁화로 237 이마트 풍산점 3층. 경의중앙선 풍산역 2번 출구 도보 1분. 무료주차 3시간. 평일 10:00-20:00, 토일 10:00-16:00. 031-976-7706.",
+    `${CLINIC_ADDRESS_STREET} ${CLINIC.building}. ${CLINIC.transit}. ${CLINIC.parking}. 평일 ${CLINIC.hoursWeekday}, 토일 ${CLINIC.hoursWeekend}. ${CLINIC.tel}.`,
   ogTitle: "오시는 길 – 일산한의원 위치, 진료시간",
   ogDescription:
-    "이마트 풍산점 3층. 풍산역 도보 1분. 무료주차 3시간. 031-976-7706.",
+    `${CLINIC.building}. 풍산역 도보 1분. ${CLINIC.parking}. ${CLINIC.tel}.`,
 });
 
 const graph = buildGraph({
   path: "/contact",
   name: `${CAROUSEL_TARGETS.contact.title} | 일산한의원`,
   description:
-    "경기 고양시 일산동구 무궁화로 237 이마트 풍산점 3층. 경의중앙선 풍산역 2번 출구 도보 1분. 무료주차 3시간. 평일 10:00-20:00, 토일 10:00-16:00. 031-976-7706.",
+    `${CLINIC_ADDRESS_STREET} ${CLINIC.building}. ${CLINIC.transit}. ${CLINIC.parking}. 평일 ${CLINIC.hoursWeekday}, 토일 ${CLINIC.hoursWeekend}. ${CLINIC.tel}.`,
   image: CAROUSEL_TARGETS.contact.hero.src,
 });
 
@@ -54,18 +55,19 @@ export default function ContactPage() {
                 주소 · 전화
               </p>
               <p className="mt-3 text-text">
-                경기 고양시 일산동구
+                {CLINIC_ADDRESS_CITY}
                 <br />
-                무궁화로 237, 3층
+                {CLINIC.streetAddress}
               </p>
+              {/* 건물·층은 아래 한 줄에서만 말한다 — 위에 함께 넣으면 중복된다 */}
               <p className="mt-1 text-[0.85rem] text-text-muted">
-                이마트 풍산점 3층
+                {CLINIC.building}
               </p>
               <a
-                href="tel:031-976-7706"
+                href={CLINIC.telHref}
                 className="mt-3 block text-[1.1rem] font-semibold text-text transition-colors hover:text-accent"
               >
-                031-976-7706
+                {CLINIC.tel}
               </a>
             </div>
 
@@ -89,15 +91,15 @@ export default function ContactPage() {
               <ul className="mt-3 space-y-2 text-[0.9rem]">
                 <li className="flex justify-between">
                   <span className="text-text-muted">월 – 금</span>
-                  <span className="text-text">10:00 – 20:00</span>
+                  <span className="text-text">{CLINIC.hoursWeekday}</span>
                 </li>
                 <li className="flex justify-between">
                   <span className="text-text-muted">토 · 일</span>
-                  <span className="text-text">10:00 – 16:00</span>
+                  <span className="text-text">{CLINIC.hoursWeekend}</span>
                 </li>
                 <li className="flex justify-between">
                   <span className="text-text-muted">점심 (평일)</span>
-                  <span className="text-text-muted">13:00 – 14:00</span>
+                  <span className="text-text-muted">{CLINIC.hoursLunch}</span>
                 </li>
               </ul>
               <p className="mt-3 text-[0.8rem] text-accent">
@@ -152,7 +154,7 @@ export default function ContactPage() {
               💬 카카오톡 상담
             </a>
             <a
-              href="tel:031-976-7706"
+              href={CLINIC.telHref}
               className="inline-flex items-center gap-2 rounded-md border border-border px-7 py-3.5 text-[0.9rem] font-semibold text-text transition-all hover:border-accent hover:text-accent"
             >
               📞 전화 상담

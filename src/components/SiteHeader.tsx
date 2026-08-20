@@ -4,6 +4,7 @@ import SiteNavDesktop from "@/components/SiteNavDesktop";
 import SiteNavMobile from "@/components/SiteNavMobile";
 import PillButton from "@/components/ui/PillButton";
 import { MessageCircle, Phone } from "@/components/ui/icons";
+import { CLINIC } from "@/lib/clinic";
 
 export default function SiteHeader() {
   return (
@@ -26,8 +27,8 @@ export default function SiteHeader() {
         {/* 우: 전화 + 카카오톡 상담 */}
         <div className="flex items-center gap-1.5">
           <a
-            href="tel:031-976-7706"
-            aria-label="일산한의원 전화 031-976-7706"
+            href={CLINIC.telHref}
+            aria-label={`일산한의원 전화 ${CLINIC.tel}`}
             className="inline-flex h-9 w-9 items-center justify-center rounded-full text-primary transition-colors duration-200 hover:bg-surface"
           >
             <Phone size={20} />

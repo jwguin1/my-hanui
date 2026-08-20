@@ -9,6 +9,7 @@ import {
   isActiveGroup,
   isActivePath,
 } from "@/lib/site-nav";
+import { CLINIC } from "@/lib/clinic";
 
 export default function SiteNavMobile() {
   const pathname = usePathname() ?? "/";
@@ -126,7 +127,7 @@ export default function SiteNavMobile() {
           {/* 하단 고정 CTA */}
           <div className="flex gap-2 border-t border-line bg-card px-6 py-4">
             <a
-              href="tel:031-976-7706"
+              href={CLINIC.telHref}
               onClick={close}
               className="inline-flex flex-1 items-center justify-center gap-2 rounded-full border border-line px-5 py-3 text-[14px] font-medium text-ink"
             >

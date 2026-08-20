@@ -22,6 +22,7 @@ import JsonLd from "@/components/JsonLd";
 import { buildGraph, faqEntities } from "@/lib/schema";
 import LocalBlock from "@/components/LocalBlock";
 import { LOCAL_BLOCKS, localFaqEntities } from "@/lib/local-blocks";
+import { CLINIC } from "@/lib/clinic";
 
 export const metadata: Metadata = pageMetadata({
   path: "/diet/program",
@@ -256,12 +257,12 @@ export default function DietProgramPage() {
                   상담 신청하기 &rarr;
                 </PillButton>
                 <PillButton
-                  href="tel:031-976-7706"
+                  href={CLINIC.telHref}
                   variant="outline"
                   icon={<Phone size={16} />}
                   className="w-full sm:w-auto"
                 >
-                  전화 문의 031-976-7706
+                  전화 문의 {CLINIC.tel}
                 </PillButton>
               </div>
             </div>
