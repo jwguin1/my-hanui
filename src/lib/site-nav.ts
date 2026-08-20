@@ -64,12 +64,17 @@ export const SITE_NAV: NavGroup[] = [
         label: "질환별 의학정보",
         // 앵커 텍스트 = 페이지 title 앞부분. 네이버가 카드 라벨을 앵커에서
         // 뽑든 title 에서 뽑든 같은 말이 나오게 한다 (carousel-targets.ts 참조)
-        items: [
-          { href: "/pain", label: CAROUSEL_TARGETS.pain.navLabel },
-          { href: "/diet", label: CAROUSEL_TARGETS.diet.navLabel },
-          { href: "/skin", label: CAROUSEL_TARGETS.skin.navLabel },
-          { href: "/autonomic", label: "자율신경" },
-        ],
+        //
+        // /diet · /skin · /autonomic 은 뺐다 — 발행 중인 글이 0편이라
+        // 네비에서 보내면 읽을 것이 없는 페이지에 도착한다.
+        // **URL 은 그대로 살아 있고 noindex 도 걸지 않는다**:
+        //   - /diet · /skin 은 네이버 하위링크 캐러셀 타깃이다
+        //     (carousel-targets.ts / verify-carousel.mjs). noindex 를 걸면
+        //     Yeti 도 따르므로 캐러셀 후보에서 빠진다.
+        //   - 홈 "둘러보기" 6블록과 푸터 사이트맵은 CAROUSEL_ORDER 를 쓰므로
+        //     이 배열과 무관하다. 여기서 빼도 캐러셀 링크는 유지된다.
+        // 해당 카테고리에 글이 생기면 이 줄만 되돌리면 된다.
+        items: [{ href: "/pain", label: CAROUSEL_TARGETS.pain.navLabel }],
       },
       {
         label: "칼럼 · 영상",

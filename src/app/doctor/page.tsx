@@ -46,27 +46,66 @@ export const metadata: Metadata = {
   },
 };
 
+/**
+ * 국제 자격 1건.
+ *
+ * **한국어로 풀어쓰지 않는다.** 「APCA RMSK (근골격계 초음파사 자격)」 처럼
+ * 쓰면 두 겹으로 틀린다 — RMSK 는 APCA 가 의사·advanced care provider 에게
+ * 발급하는 자격이고, sonographer(초음파사) 등급은 ARDMS 의 RMSKS 로 따로 있다.
+ * 상위 자격을 하위 등급으로 낮춰 적으면서, 동시에 국내에 없는 직역 명칭을
+ * 만들어내는 셈이다.
+ *
+ * 원문 명칭과 발급기관만 쓴다. 발급기관을 정확히 밝히는 쪽이
+ * 오인 소지를 없애고 신뢰도 올린다.
+ */
+export interface Credential {
+  /** 자격 약칭 (예: "RMSK") */
+  abbr: string;
+  /** 영문 정식 명칭 */
+  name: string;
+  /** 발급기관 약칭 (예: "APCA") */
+  issuer: string;
+  /** 발급기관 정식 명칭 */
+  issuerFull: string;
+}
+
 export interface Doctor {
   name: string;
   image: string;
   school: string;
-  credentials: string[];
+  /** 국제 자격. 학회 직책은 societies 로 뺀다 (자격이 아니다) */
+  credentials: Credential[];
+  /** 국내 학회 활동 · 직책 */
   societies: string[];
   bio: string[];
 }
+
+/**
+ * APCA RMSK — 6인 전원 보유.
+ *
+ * APCA 발급 자격은 ABVM · CBCCT · CBNC · CBCMR · RPVI · RPVI-China · RMSK 다.
+ * 「APCA RMDS」는 이 목록에 없는 조합이라 삭제했다 — 복부 초음파 계열의
+ * RDMS 는 별개 기관(ARDMS)이 발급하는 sonographer 등급 자격이다.
+ * 근거 없는 자격 표방은 의료법 제56조에 걸릴 수 있어, 정확한 확인 전까지
+ * 표기하지 않는다.
+ */
+const RMSK: Credential = {
+  abbr: "RMSK",
+  name: "Registered in Musculoskeletal Sonography",
+  issuer: "APCA",
+  issuerFull: "Alliance for Physician Certification & Advancement",
+};
 
 const doctors: Doctor[] = [
   {
     name: "장경진",
     image: "/images/doctor-1.JPG",
     school: "대구한의대학교 한의과대학",
-    credentials: [
-      "APCA RMSK (근골격계 초음파사 자격)",
-      "APCA RMDS (복부 초음파사 자격)",
+    credentials: [RMSK],
+    societies: [
+      // 학회 "학술위원"은 자격이 아니라 활동이다 — hasCredential 에 싣지 않는다
       "한의기능영상학회 학술위원",
       "한의영양학회 학술위원",
-    ],
-    societies: [
       "한의기능영양학회",
       "한의영상학회",
       "국제레이저미용피부과학회",
@@ -79,7 +118,7 @@ const doctors: Doctor[] = [
     bio: [
       "안녕하세요. 일산한의원 원장 장경진입니다.",
       "몸이 아파도 진료비 부담에 병원 문턱을 넘기 망설여지신 적이 있으신가요? 저 역시 운동 중 허리를 삐끗했을 때, 혹여 무리한 비싼 치료를 권유받을까 걱정했던 적이 있습니다. 그래서 일산한의원은 가벼운 근육 뭉침이나 단순 염좌에 과잉 진료를 하지 않습니다. 누구나 마음 편히 침 치료와 물리치료를 받으며, 온전히 쉬어가실 수 있도록 돕겠습니다.",
-      "하지만 가벼운 치료만으로 낫지 않는 통증도 있습니다. 저 또한 어깨 회전근개 파열로 수술을 권유받은 적이 있고, 디스크 수술 후유증으로 고생하시는 아버지를 뵈었기에 수술만큼은 꼭 피하고 싶었습니다. 수술 없이 몸을 회복하려면 정확한 진단과 정교한 치료가 필수입니다. 일산한의원은 대학병원급 첨단 장비를 갖추고, 건강보험 진료를 우선하여 환자분들의 비용 부담을 덜고 수술 없이 회복할 수 있는 최선의 방법을 먼저 찾습니다.",
+      "하지만 가벼운 치료만으로 낫지 않는 통증도 있습니다. 저 또한 어깨 회전근개 파열로 수술을 권유받은 적이 있고, 디스크 수술 후유증으로 고생하시는 아버지를 뵈었기에 수술만큼은 꼭 피하고 싶었습니다. 수술 없이 몸을 회복하려면 정확한 진단과 정교한 치료가 필수입니다. 일산한의원은 근골격계 초음파 장비를 갖추고, 건강보험 진료를 우선하여 환자분들의 비용 부담을 덜고 수술 없이 회복할 수 있는 최선의 방법을 먼저 찾습니다.",
       "'한약은 비싸다', '성분을 알 수 없다'고 오해하시는 분들이 많습니다. 하지만 약국에서 흔히 찾는 쌍화탕도 한약입니다. 감기약, 소화제 같은 기본 한약은 이미 건강보험이 적용되어 진료비 부담이 적습니다. 만성 소화불량, 비염, 심한 생리통이나 피로감 등에는 맞춤 처방이 필요한데, 이를 위해 전통적인 진찰에 더해 혈액검사와 초음파 검사를 병행합니다.",
       "진단 후에는 제가 직접 먹고, 제 가족에게 처방하는 질 좋은 약재 그대로 정성껏 달여냅니다. 처방전과 실제 사용된 약재 사진도 투명하게 보내드립니다.",
       "가장 부담 없는 건강보험 감기약부터, 내 몸의 뿌리를 채우는 맞춤 보약까지. 일산 이웃들의 건강한 일상을 곁에서 지키겠습니다. 감사합니다.",
@@ -89,7 +128,7 @@ const doctors: Doctor[] = [
     name: "남태훈",
     image: "/images/doctor-2.JPG",
     school: "상지대학교 한의과대학",
-    credentials: ["APCA RMSK (근골격계 초음파사 자격)"],
+    credentials: [RMSK],
     societies: [
       "척추신경추나의학회",
       "대한약침학회",
@@ -108,7 +147,7 @@ const doctors: Doctor[] = [
     name: "박건희",
     image: "/images/doctor-3.png",
     school: "상지대학교 한의과대학",
-    credentials: ["APCA RMSK (근골격계 초음파사 자격)"],
+    credentials: [RMSK],
     societies: [
       "한의기능영양학회",
       "대한연부조직학회",
@@ -129,7 +168,7 @@ const doctors: Doctor[] = [
     name: "강민석",
     image: "/images/doctor-4.jpg",
     school: "상지대학교 한의과대학",
-    credentials: ["APCA RMSK (근골격계 초음파사 자격)"],
+    credentials: [RMSK],
     societies: [
       "척추신경추나의학회",
       "통합방제의학회",
@@ -150,7 +189,7 @@ const doctors: Doctor[] = [
     name: "박동석",
     image: "/images/doctor-5.png",
     school: "부산대학교 한의과대학",
-    credentials: ["APCA RMSK (근골격계 초음파사 자격)"],
+    credentials: [RMSK],
     societies: [
       "한의영상학회",
       "대한연부조직학회",
@@ -171,7 +210,7 @@ const doctors: Doctor[] = [
     name: "이명주",
     image: "/images/doctor-6.png",
     school: "동의대학교 한의과대학",
-    credentials: ["APCA RMSK (근골격계 초음파사 자격)"],
+    credentials: [RMSK],
     societies: [
       "척추신경추나의학회",
       "통합방제의학회",
@@ -207,7 +246,12 @@ const physicianNodes = doctors.map((doc) => ({
     "@type": "CollegeOrUniversity",
     name: doc.school,
   },
-  hasCredential: doc.credentials,
+  hasCredential: doc.credentials.map((c) => ({
+    "@type": "EducationalOccupationalCredential",
+    name: `${c.abbr} — ${c.name}`,
+    credentialCategory: "certification",
+    recognizedBy: { "@type": "Organization", name: c.issuerFull, alternateName: c.issuer },
+  })),
   memberOf: doc.societies.map((name) => ({
     "@type": "Organization",
     name,
