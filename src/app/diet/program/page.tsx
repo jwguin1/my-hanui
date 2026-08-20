@@ -28,7 +28,7 @@ export const metadata: Metadata = pageMetadata({
   path: "/diet/program",
   title: "일산 다이어트 한약 | 한방 다이어트 처방",
   description:
-    "고양시 일산한의원 한방 다이어트. 식단을 지속할 수 있도록 돕는 처방과 진료 기반 용량 조절. 누적 9,000건 처방. 이마트 풍산점 3층, 평일 20시까지.",
+    "고양시 일산한의원 한방 다이어트. 식단을 지속할 수 있도록 돕는 처방과 진료 기반 용량 조절. 개원 이래 누적 9,000건 이상 처방. 이마트 풍산점 3층, 평일 20시까지.",
   routeOgImage: true,
 });
 
@@ -146,7 +146,7 @@ export default function DietProgramPage() {
             </div>
 
             <div className="mx-auto mt-10 grid max-w-3xl grid-cols-1 gap-4 md:grid-cols-3">
-              <StatCard value="9,000" unit="건" label="누적 처방" />
+              <StatCard value="9,000" unit="건+" label="개원 이래 누적 처방" />
               <StatCard value="혈액검사" label="대사 확인" />
               <StatCard value="고양·파주" label="내원 지역" />
             </div>

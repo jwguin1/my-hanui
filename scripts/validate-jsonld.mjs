@@ -73,7 +73,28 @@ const GEO_BOUNDS = { latMin: 37.6, latMax: 37.72, lngMin: 126.72, lngMax: 126.92
  *   RMDS           APCA 가 발급하지 않는 조합 — 존재하지 않는 자격
  *   대학병원급      검증 불가능한 비교 표현
  */
-const FORBIDDEN_IN_JSONLD = ["전문의", "인증의", "초음파사", "RMDS", "대학병원급"];
+const FORBIDDEN_IN_JSONLD = [
+  "전문의",
+  "인증의",
+  "초음파사",
+  "RMDS",
+  "대학병원급",
+  /* 2026-08-21 추가 — 「최다」는 있는데 「가장 많은」이 없어서 같은 뜻의 표현이
+     그대로 통과할 수 있었다. 금지어는 **뜻이 아니라 문자열**로 걸리므로
+     같은 주장을 하는 다른 표기를 함께 막아야 한다. */
+  "가장 많은",
+  "가장 많이",
+  "최다",
+  "1위",
+];
+
+/**
+ * 지역명 + 최상급 조합. 개별 단어로는 잡히지 않는 주장을 잡는다.
+ *
+ * 「고양시에서 가장 많은 처방 경험」처럼 지역을 한정하면 검증 가능해 보이지만,
+ * 실제로는 고양시 전체 통계를 가진 곳이 없어 **확인할 수 없는 주장**이다.
+ */
+const REGION_SUPERLATIVE = /(고양시|일산|파주|덕양구|일산동구|일산서구)[^.\n]{0,20}(최다|가장\s*많|1위|최고|유일|최대)/;
 
 /**
  * schema.org 가 인정하는 요일 문자열. 이 목록에 없는 값(「Sun」·「일요일」 등)은
@@ -513,6 +534,11 @@ function validate(pagePath, html) {
     if (blocks[0].includes(word))
       errors.push(`JSON-LD 에 금지 표현 "${word}" 가 있다`);
   }
+  const regionSup = blocks[0].match(REGION_SUPERLATIVE);
+  if (regionSup)
+    errors.push(
+      `JSON-LD 에 지역 한정 최상급이 있다 — "${regionSup[0]}" (확인할 수 없는 주장이다)`
+    );
 
   if (!graph.some((n) => n["@type"] === "WebSite"))
     errors.push("WebSite 노드 없음");

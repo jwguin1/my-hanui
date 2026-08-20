@@ -213,7 +213,7 @@ export function clinicNode(): SchemaNode {
     name: "일산한의원",
     alternateName: "일산한의원 이마트풍산점",
     description:
-      "6인의 한의사가 4개 분과를 협진합니다. 근골격계, 자율신경, 다이어트, 피부레이저 특화. 누적 13,000명이 80,000회 내원. 누적 9,000건 한방 다이어트 처방.",
+      "6인의 한의사가 4개 분과를 협진합니다. 근골격계, 자율신경, 다이어트, 피부레이저 특화. 누적 13,000명이 80,000회 내원. 개원 이래 누적 9,000건 이상 한방 다이어트 처방.",
     url: BASE_URL,
     logo: ref(LOGO_ID),
     image: `${BASE_URL}/og-image.jpg`,
