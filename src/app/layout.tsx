@@ -46,14 +46,14 @@ export const metadata: Metadata = {
     title: "일산한의원 | 이마트풍산점 – 고양시 일산 한의원",
     description:
       "일산한의원. 이마트풍산점 3층. 침, 한약, 초음파진단, 피부레이저, 추나, 약침, 경의중앙선 풍산역 2번출구. 031-976-7706.",
-    // 실제 파일 치수와 일치시킬 것 (public/og-image.jpg = 1280x846).
+    // 실제 파일 치수와 일치시킬 것 (public/og-image.jpg = 1200x630).
     // 하위 페이지는 openGraph 를 선언하는 순간 이 images 를 상속받지 못하므로
     // 반드시 lib/page-metadata.ts 의 pageMetadata() 를 통해 metadata 를 만든다.
     images: [
       {
         url: `${SITE_URL}/og-image.jpg`,
-        width: 1280,
-        height: 846,
+        width: 1200,
+        height: 630,
         alt: "일산한의원 이마트풍산점",
       },
     ],
