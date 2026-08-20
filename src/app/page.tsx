@@ -26,6 +26,7 @@ import {
   CLINIC_HOURS_LUNCH,
   CLINIC_HOURS_WEEKDAY,
   CLINIC_HOURS_WEEKEND,
+  CLINIC_WEEKEND_HOLIDAY_LABEL,
 } from "@/lib/clinic";
 import { getLatestPostCards, latestPostsListNode } from "@/lib/latest-posts";
 import JsonLd from "@/components/JsonLd";
@@ -72,7 +73,7 @@ const WHY_CARDS = [
   {
     badge: "접근성",
     heading: "야간·주말 진료, 풍산역 도보 1분",
-    body: "평일 매일 오후 8시까지 야간진료, 주말 진료 운영. 이마트 풍산점 3층 위치, 대형 주차장 완비. 경의중앙선 풍산역 2번 출구 도보 1분.",
+    body: "평일 매일 오후 8시까지 야간진료, 토·일·공휴일 진료 운영. 이마트 풍산점 3층 위치, 대형 주차장 완비. 경의중앙선 풍산역 2번 출구 도보 1분.",
   },
 ];
 
@@ -104,7 +105,7 @@ const FAQS = [
   },
   {
     q: "일산 풍산역 근처에 주차 편하고 야간에도 여는 한의원이 있나요?",
-    a: "일산한의원은 이마트 풍산점 3층에 위치하여 대형 주차장을 이용하실 수 있습니다. 평일 매일 오후 8시까지 야간진료, 주말 진료를 운영합니다. 경의중앙선 풍산역 2번 출구에서 도보 1분 거리입니다.",
+    a: "일산한의원은 이마트 풍산점 3층에 위치하여 대형 주차장을 이용하실 수 있습니다. 평일 매일 오후 8시까지 야간진료, 토요일·일요일·공휴일 진료를 운영합니다. 경의중앙선 풍산역 2번 출구에서 도보 1분 거리입니다.",
   },
   {
     q: "근골격계 통증과 내과 질환을 함께 볼 수 있는 일산 한의원이 있나요?",
@@ -552,7 +553,9 @@ export default async function Home() {
                     <span className="text-ink">{CLINIC_HOURS_WEEKDAY}</span>
                   </li>
                   <li className="flex justify-between border-b border-line pb-3">
-                    <span className="text-ink">토 · 일</span>
+                    <span className="text-ink">
+                      {CLINIC_WEEKEND_HOLIDAY_LABEL}
+                    </span>
                     <span className="text-ink">{CLINIC_HOURS_WEEKEND}</span>
                   </li>
                   <li className="flex justify-between border-b border-line pb-3">

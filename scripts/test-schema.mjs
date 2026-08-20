@@ -215,11 +215,39 @@ test("진료시간: dayOfWeek 가 clinic.ts 정본과 일치한다", async () =>
 
   // 평일은 점심을 비우느라 오전·오후 두 구간이다. 같은 요일 구성이 둘이므로
   // 시각까지 맞춰 찾아야 한다.
-  for (const [key, h] of Object.entries(CLINIC.hours)) {
+  /* days 가 없는 구간(공휴일)은 뺀다 — 공휴일은 요일이 아니라 날짜로 정해져
+     schema.org 의 dayOfWeek 로 표현되지 않는다. 조용히 거르지 않고 아래에서
+     제외 건수를 따로 단언한다. */
+  const dayBased = Object.entries(CLINIC.hours).filter(([, h]) =>
+    Array.isArray(h.days)
+  );
+  for (const [key, h] of dayBased) {
     const spec = specs.find((s) => s.opens === h.opens && s.closes === h.closes);
     assert.ok(spec, `${key}(${h.opens}~${h.closes}) 항목이 없다`);
     assert.deepEqual([].concat(spec.dayOfWeek), [...h.days], `${key} 요일 불일치`);
   }
+  assert.equal(
+    specs.length,
+    dayBased.length,
+    "openingHoursSpecification 개수가 요일 기반 구간 수와 다르다"
+  );
+});
+
+test("진료시간: 공휴일은 주말과 같은 시간대이고 요일로 표현하지 않는다", async () => {
+  const { CLINIC } = await import("../src/lib/clinic.ts");
+  const h = CLINIC.hours.holiday;
+  const w = CLINIC.hours.weekend;
+  assert.ok(h, "공휴일 시간이 clinic.ts 에 없다 — 공휴일이 평일로 계산된다");
+  assert.equal(h.opens, w.opens, "공휴일 시작이 주말과 다르다");
+  assert.equal(h.closes, w.closes, "공휴일 종료가 주말과 다르다");
+  assert.ok(
+    !("days" in h),
+    "공휴일에 days 가 있으면 안 된다 — 날짜로 정해지는 날이다"
+  );
+  assert.ok(
+    CLINIC.holidays.length > 0,
+    "공휴일 표가 비어 있다 — 평일에 걸린 공휴일이 20:00 까지로 계산된다"
+  );
 });
 
 test("진료시간: 일요일이 주말 항목에 들어 있다 (실제로 일요일 진료함)", () => {

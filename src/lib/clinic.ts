@@ -76,6 +76,10 @@ export const CLINIC = {
     },
     /* 주말은 점심시간 없이 이어서 본다 */
     weekend: { days: ["Saturday", "Sunday"], opens: "10:00", closes: "16:00" },
+    /* 공휴일도 주말과 같다. 요일이 아니라 **날짜**로 정해지므로 days 가 없고,
+       schema.org 의 dayOfWeek 로는 표현되지 않는다 (PublicHolidays 는 표준이 아니다).
+       JSON-LD 반영은 별건 — 권고안 승인 전까지 넣지 않는다. */
+    holiday: { opens: "10:00", closes: "16:00" },
   },
   weekdayClose: "평일 20:00까지",
 
@@ -97,6 +101,47 @@ export const CLINIC = {
    * 위 closedNote 와 같다.
    */
   closedDates: [] as readonly string[],
+
+  /**
+   * 관공서 공휴일 (YYYY-MM-DD, KST). **여는 날**이지 휴진일이 아니다.
+   * 이 날짜에는 평일이어도 주말과 같은 10:00~16:00, 점심시간 없이 본다.
+   *
+   * 왜 정적 표인가
+   *  - 설날·추석·부처님오신날은 음력이라 규칙으로 계산할 수 없다.
+   *  - 대체공휴일과 선거일은 그해 상황에 따라 정해진다.
+   *  - 외부 라이브러리나 런타임 API 를 쓰면 의존성이 늘고, 뱃지는 클라이언트
+   *    컴포넌트라 네트워크 호출이 더 나쁘다.
+   *  → 확인된 날짜만 적고, 표가 떨어지기 전에 **검증기가 FAIL 로 알린다.**
+   *
+   * 넣지 않은 것 (관공서 공휴일이 아니다)
+   *  - 근로자의 날(5/1) — 근로기준법상 유급휴일이지 관공서 공휴일이 아니다
+   *  - 제헌절(7/17) — 2008년부터 공휴일에서 제외
+   *
+   * 2026년분만 싣는다. 2027년분은 확인 후 추가한다 — 틀린 날짜를 넣으면
+   * 여는 날 시간이 어긋나 그대로 환자를 돌려보낸다.
+   */
+  holidays: [
+    "2026-01-01", // 신정
+    "2026-02-16", // 설날 연휴
+    "2026-02-17", // 설날
+    "2026-02-18", // 설날 연휴
+    "2026-03-01", // 삼일절
+    "2026-03-02", // 삼일절 대체공휴일
+    "2026-05-05", // 어린이날
+    "2026-05-24", // 부처님오신날
+    "2026-05-25", // 부처님오신날 대체공휴일
+    "2026-06-03", // 제8회 전국동시지방선거
+    "2026-06-06", // 현충일
+    "2026-08-15", // 광복절
+    "2026-08-17", // 광복절 대체공휴일
+    "2026-09-24", // 추석 연휴
+    "2026-09-25", // 추석
+    "2026-09-26", // 추석 연휴
+    "2026-10-03", // 개천절
+    "2026-10-05", // 개천절 대체공휴일
+    "2026-10-09", // 한글날
+    "2026-12-25", // 성탄절
+  ] as readonly string[],
 
   /**
    * 진료 권역 — JSON-LD areaServed 의 정본.
@@ -153,6 +198,23 @@ const range = (t: { opens: string; closes: string }) => `${t.opens} – ${t.clos
 /** 평일 전체 구간 — 오전 시작 ~ 오후 종료 */
 export const CLINIC_HOURS_WEEKDAY = `${CLINIC.hours.weekdayMorning.opens} – ${CLINIC.hours.weekdayAfternoon.closes}`;
 export const CLINIC_HOURS_WEEKEND = range(CLINIC.hours.weekend);
+export const CLINIC_HOURS_HOLIDAY = range(CLINIC.hours.holiday);
+
+/** 「토·일·공휴일」 — 같은 시간대를 쓰는 날들의 표기. 문자열을 직접 쓰지 말 것 */
+export const CLINIC_WEEKEND_HOLIDAY_LABEL = "토·일·공휴일";
+
+/** 「토·일·공휴일 16:00까지」 */
+export const CLINIC_WEEKEND_HOLIDAY_CLOSE =
+  `${CLINIC_WEEKEND_HOLIDAY_LABEL} ${CLINIC.hours.weekend.closes}까지`;
+
+/** 관공서 공휴일인가 (YYYY-MM-DD, KST) */
+export function isPublicHoliday(isoDate: string): boolean {
+  return CLINIC.holidays.includes(isoDate);
+}
+
+/** 표에 실린 마지막 공휴일. 검증기가 이 날짜로 갱신 시점을 재촉한다 */
+export const CLINIC_HOLIDAY_TABLE_END =
+  [...CLINIC.holidays].sort().at(-1) ?? "";
 /** 점심 = 두 평일 구간 **사이의 빈 시간**. 따로 적지 않고 파생시킨다 */
 export const CLINIC_HOURS_LUNCH = `${CLINIC.hours.weekdayMorning.closes} – ${CLINIC.hours.weekdayAfternoon.opens}`;
 
@@ -184,7 +246,7 @@ export const CLINIC_CTA_LINES: readonly string[] = [
      원장이 직접 쓴 글 하단 문구에도 토·일 시간이 들어 있었다. */
   [
     CLINIC.weekdayClose,
-    `토·일 ${CLINIC.hours.weekend.closes}까지`,
+    CLINIC_WEEKEND_HOLIDAY_CLOSE,
     CLINIC.parking,
     CLINIC.tel,
   ].join(" · "),
