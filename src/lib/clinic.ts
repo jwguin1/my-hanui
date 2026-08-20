@@ -124,6 +124,27 @@ export const CLINIC = {
    * 네이버 플레이스 등록 좌표로 교정했다 (풍산역 위치와도 일치).
    */
   geo: { latitude: 37.6738501, longitude: 126.7871254 },
+
+  /**
+   * 개원 연도. 화면의 「2023년 개원 이래 누적 …」과 JSON-LD foundingDate 가
+   * 여기서 같이 나온다. 진료시간 요일·실적 산출 근거·좌표에서 화면과 스키마가
+   * 갈려 문제가 됐다 — 같은 값은 한 곳에 두고 양쪽이 파생한다.
+   */
+  foundingYear: 2023,
+
+  /**
+   * 초음파 장비. 정식 명칭은 라벨 실물 기준이다.
+   *
+   * detail 문안은 원장 확정본이다. 「고사양」·「프리미엄」·「최상위」·「최고급」은
+   * 쓰지 않는다 — 제조사 마케팅 문구이고, 우리가 인용하면 최상급 표현이 된다.
+   * 「대학병원급」을 걷어낸 것과 같은 이유다. 검증기가 금지어로 막는다.
+   */
+  ultrasound: {
+    name: "GE LOGIQ Totus",
+    count: 3,
+    detail:
+      "GE LOGIQ Totus — LOGIQ E10 시리즈의 씨사운드 이미지포머(cSound Imageformer) 기술을 적용한 범용 초음파 진단기기입니다.",
+  },
 } as const;
 
 /** 화면 표기용 진료시간 — 기계 값에서 파생시킨다. 직접 문자열을 쓰지 말 것. */
@@ -153,6 +174,9 @@ export const CLINIC_ADDRESS_STREET =
  * 순서를 바꾸지 말 것 — 첫 줄은 "어디인가", 둘째 줄은 "언제·어떻게 가는가"다.
  * 환자가 글을 다 읽고 판단하는 순서와 같다.
  */
+/** 화면 문구 접두사 — 「2023년 개원 이래」 */
+export const CLINIC_FOUNDING_PREFIX = `${CLINIC.foundingYear}년 개원 이래`;
+
 export const CLINIC_CTA_LINES: readonly string[] = [
   [CLINIC.name, CLINIC.building, CLINIC.transit].join(" · "),
   /* 주말 마감을 함께 적는다. 「주말에 하는 한의원」은 실제 검색 유형이고

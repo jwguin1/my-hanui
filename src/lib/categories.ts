@@ -38,7 +38,7 @@ export const CATEGORY_META: Record<Category, CategoryMeta> = {
     label: "다이어트",
     fullLabel: "한방비만 · 다이어트",
     description:
-      "한방비만치료, 체중감량, 대사증후군 관리. 개원 이래 누적 9,000건 이상 처방, 일산한의원 다이어트 정보입니다.",
+      "한방비만치료, 체중감량, 대사증후군 관리. 2023년 개원 이래 누적 9,000건 이상 처방, 일산한의원 다이어트 정보입니다.",
     ogImage: "/images/diet-og.jpg",
   },
   skin: {

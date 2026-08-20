@@ -10,6 +10,7 @@ import {
 } from "@/lib/blog-local";
 import PostContent from "@/components/PostContent";
 import ClinicCta from "@/components/ClinicCta";
+import { painPostHub } from "@/lib/pain-groups";
 import { CATEGORY_META } from "@/lib/categories";
 import { postImagePath } from "@/lib/og-image";
 import { postPath } from "@/lib/slug";
@@ -43,6 +44,8 @@ export default function CategoryPostPage({
   // 이후로는 params 의 slug 가 아니라 정규화된 post.slug 만 쓴다
   const linkedContent = autoLinkMarkdown(post.content, post.slug);
   const relatedPosts = getRelatedPosts(post.slug, 3, category);
+  // 그룹 배열(lib/pain-groups.ts)이 정본이다. 글 쪽 프론트매터에 넣지 않는다.
+  const hub = category === "pain" ? painPostHub(post.slug) : undefined;
 
   // 파생 OG(1200x630) → 원본 썸네일 → 카테고리 대표 OG 순으로 폴백.
   // 폴더 키는 슬러그가 아니라 파일 ID 다.
@@ -123,6 +126,28 @@ export default function CategoryPostPage({
           글을 다 읽은 직후가 내원을 판단하는 지점이고, 관련 글 목록을 먼저
           보여주면 그 지점을 지나쳐 다른 글로 새어 나간다.
           clinicNote 가 비어 있어도 병원 정보 두 줄은 항상 출력된다. */}
+      {/* 허브 역링크 — 이 글이 속한 그룹에 진료 안내 페이지가 있을 때만.
+          전역 내비게이션의 링크는 모든 페이지에 똑같이 있어서 이 글과
+          그 페이지가 이어져 있다는 신호가 되지 못한다. 여기서 따로 건다.
+          앵커는 그 페이지의 이름 그대로 — 「자세히 보기」는 쓰지 않는다. */}
+      {hub && (
+        <section className="section-padding !pb-0 !pt-0">
+          <div className="mx-auto max-w-3xl">
+            <Link
+              href={hub.href}
+              className="group flex items-center justify-between gap-3 rounded-xl border border-line px-4 py-3.5 transition-colors duration-200 hover:bg-surface"
+            >
+              <span className="min-w-0 text-[0.95rem] leading-snug text-ink transition-colors duration-200 group-hover:text-primary">
+                {hub.label}
+              </span>
+              <span aria-hidden="true" className="shrink-0 text-primary">
+                →
+              </span>
+            </Link>
+          </div>
+        </section>
+      )}
+
       <ClinicCta note={post.clinicNote} />
 
       {/* Related posts */}

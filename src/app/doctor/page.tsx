@@ -7,6 +7,7 @@ import JsonLd from "@/components/JsonLd";
 import { CLINIC_ID, buildGraph, pageId, physicianId, ref } from "@/lib/schema";
 
 import PageHeader from "@/components/ui/PageHeader";
+import { CLINIC } from "@/lib/clinic";
 import { Users } from "@/components/ui/icons";
 
 const SITE_URL = "https://www.ilsanhan.com";
@@ -283,6 +284,17 @@ export default function DoctorPage() {
       <PageHeroBanner page="doctor" />
 
       <DoctorGrid doctors={doctors} />
+
+      {/* 장비 표기. 의료진 본인 문장(bio) 안에 끼워 넣지 않는다 —
+          남의 말을 고쳐 쓰는 셈이 된다. 별도 줄로 둔다.
+          문안은 clinic.ts 가 정본이고, 제조사 마케팅 문구는 쓰지 않는다. */}
+      <section className="bg-[var(--bg)]">
+        <div className="section-padding">
+          <p className="mx-auto max-w-3xl text-[0.85rem] leading-relaxed text-muted">
+            {CLINIC.ultrasound.detail}
+          </p>
+        </div>
+      </section>
     </>
   );
 }

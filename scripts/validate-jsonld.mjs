@@ -48,6 +48,12 @@ import { hasFaqSection, parsePostFaq } from "../src/lib/post-faq.ts";
 import { CLINIC } from "../src/lib/clinic.ts";
 import { DOCTOR_SLUGS } from "../src/lib/schema.ts";
 import {
+  PAIN_GROUP_HUB,
+  PAIN_GROUP_ORDER,
+  PAIN_GROUP_POSTS,
+  painGroupSlugs,
+} from "../src/lib/pain-groups.ts";
+import {
   SPOT_PRICE_ROWS,
   AFTERCARE_PRODUCTS,
   allowedSkinAmounts,
@@ -93,7 +99,17 @@ const FORBIDDEN_IN_JSONLD = [
   "가장 많이",
   "최다",
   "1위",
+  /* 2026-08-21 추가 — 초음파 장비 표기에 딸려 올 수 있는 제조사 마케팅 문구.
+     우리가 인용하면 그대로 최상급 표현이 된다. 「대학병원급」과 같은 이유다. */
+  "프리미엄",
+  "최상위",
+  "고사양",
+  "최고급",
 ];
+
+/* 화면에서도 막는다. JSON-LD 만 보면 본문·컴포넌트에 그대로 남는다 —
+   장비 상세 문안은 화면에만 있으므로 여기서 걸러야 의미가 있다. */
+const FORBIDDEN_ON_SCREEN = ["프리미엄", "최상위", "고사양", "최고급", "대학병원급"];
 
 /**
  * 지역명 + 최상급 조합. 개별 단어로는 잡히지 않는 주장을 잡는다.
@@ -723,6 +739,50 @@ function validate(pagePath, html) {
     if (blocks[0].includes(word))
       errors.push(`JSON-LD 에 금지 표현 "${word}" 가 있다`);
   }
+
+  /* 화면에도 같은 잣대를 댄다. 장비 상세 문안처럼 JSON-LD 에 없고
+     화면에만 있는 문장이 있어서, 스키마만 보면 그냥 통과한다. */
+  {
+    const screen = visibleText(html);
+    for (const word of FORBIDDEN_ON_SCREEN) {
+      if (screen.includes(word))
+        errors.push(`화면에 금지 표현 "${word}" 가 있다`);
+    }
+  }
+  /* ── 개원 연도 ── 화면과 스키마가 갈리지 않게 ──
+     진료시간 요일·실적 산출 근거·좌표에서 반복해서 갈렸던 자리다.
+     스키마의 foundingDate 와 화면의 「2023년 개원 이래」를 양쪽에서 본다. */
+  if (clinic) {
+    const want = String(CLINIC.foundingYear);
+    const got = clinic.foundingDate;
+    if (!got) {
+      errors.push("병원 노드에 foundingDate 가 없다");
+    } else if (String(got) !== want) {
+      errors.push(
+        `foundingDate 가 clinic.ts 와 다르다 — 출력 "${got}", 정본 "${want}"`
+      );
+    }
+  }
+  {
+    /* 화면에 「개원 이래」를 쓰면서 연도를 안 붙인 곳이 있으면 잡는다.
+       스키마에만 연도가 있고 화면에는 없으면 읽는 사람에게는 없는 것이다. */
+    const screen = visibleText(html).replace(/\s+/g, " ");
+    const prefix = `${CLINIC.foundingYear}년 개원 이래`;
+    let from = 0;
+    for (;;) {
+      const at = screen.indexOf("개원 이래", from);
+      if (at === -1) break;
+      from = at + 1;
+      const head = screen.slice(Math.max(0, at - prefix.length), at + 5);
+      if (!head.includes(prefix)) {
+        errors.push(
+          `화면의 "개원 이래" 에 연도가 없다 — "${screen.slice(Math.max(0, at - 12), at + 24).trim()}" (정본 "${prefix}")`
+        );
+        break;
+      }
+    }
+  }
+
   const regionSup = blocks[0].match(REGION_SUPERLATIVE);
   if (regionSup)
     errors.push(
@@ -1131,6 +1191,87 @@ try {
   }
 } catch (e) {
   console.log(`사이트맵      확인 실패 (${e.message})`);
+}
+
+/* ── /pain 부위 그룹 양방향 대조 ────────────────────────────
+   자동 분류를 쓰지 않고 명시 배열로 두는 대신, 배열과 실제 글 목록이
+   갈리지 않는지 양쪽에서 본다.
+     ① 배열에 있는데 발행된 글이 없다  (죽은 링크가 허브에 뜬다)
+     ② 발행된 글인데 배열에 없다        (inbound 0 인 글이 생긴다)
+     ③ 같은 슬러그가 두 그룹에 있다
+   예외를 조용히 넘기지 않는다 — 건수를 항상 출력한다. */
+{
+  const published = listPosts().filter(
+    (p) => p.category === "pain" && p.published && p.status !== "under_review"
+  );
+  const publishedSlugs = new Set(published.map((p) => p.slug));
+  const listed = painGroupSlugs();
+
+  const dangling = listed.filter((slug) => !publishedSlugs.has(slug));
+  const orphan = published
+    .map((p) => p.slug)
+    .filter((slug) => !listed.includes(slug));
+  const dupes = listed.filter((slug, i) => listed.indexOf(slug) !== i);
+
+  console.log(
+    `/pain 그룹     ${PAIN_GROUP_ORDER.length}그룹 · 배열 ${listed.length}건 · 발행 ${published.length}편 · ` +
+      `배열에만 ${dangling.length} · 글에만 ${orphan.length} · 중복 ${dupes.length}`
+  );
+  for (const name of PAIN_GROUP_ORDER) {
+    console.log(`  · ${name} — ${(PAIN_GROUP_POSTS[name] ?? []).length}편`);
+  }
+  /* 허브 ↔ 글 양방향. 허브가 글을 링크하는 것만으로는 한쪽이다.
+     전역 내비게이션의 링크는 모든 페이지에 똑같이 있어 신호가 되지 않으므로
+     본문 블록의 앵커 라벨로 센다. */
+  const hubMisses = [];
+  for (const [group, hub] of Object.entries(PAIN_GROUP_HUB)) {
+    const slugs = PAIN_GROUP_POSTS[group] ?? [];
+    let hubHtml = "";
+    try {
+      const res = await fetch(`${BASE}${hub.href}`);
+      hubHtml = res.ok ? await res.text() : "";
+    } catch {
+      hubHtml = "";
+    }
+    if (!hubHtml) {
+      hubMisses.push(`${hub.href} 응답 없음`);
+      continue;
+    }
+    for (const slug of slugs) {
+      if (!hubHtml.includes(encodeURIComponent(slug)))
+        hubMisses.push(`${hub.href} → ${slug} 링크 없음`);
+      let postHtml = "";
+      try {
+        const res = await fetch(`${BASE}${postPath("pain", slug)}`);
+        postHtml = res.ok ? await res.text() : "";
+      } catch {
+        postHtml = "";
+      }
+      if (!postHtml.includes(hub.label))
+        hubMisses.push(`${slug} → ${hub.href} 역링크 없음`);
+    }
+  }
+  console.log(
+    `  허브 양방향   ${Object.keys(PAIN_GROUP_HUB).length}그룹 · 누락 ${hubMisses.length}건`
+  );
+  if (hubMisses.length) {
+    failed += 1;
+    for (const m of hubMisses) console.log(`  ! ${m}`);
+    failures.push(`허브 양방향 누락 ${hubMisses.length}건`);
+  }
+
+  if (dangling.length || orphan.length || dupes.length) {
+    failed += 1;
+    if (dangling.length)
+      console.log(`  ! 배열에 있으나 발행된 글이 없다: ${dangling.join(", ")}`);
+    if (orphan.length)
+      console.log(`  ! 발행됐으나 어느 그룹에도 없다: ${orphan.join(", ")}`);
+    if (dupes.length)
+      console.log(`  ! 두 그룹에 중복: ${[...new Set(dupes)].join(", ")}`);
+    failures.push(
+      `pain 그룹 불일치 — 배열에만 ${dangling.length} · 글에만 ${orphan.length} · 중복 ${dupes.length}`
+    );
+  }
 }
 
 console.log(
