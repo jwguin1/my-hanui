@@ -46,6 +46,7 @@ import {
 } from "../src/lib/slug.ts";
 import { hasFaqSection, parsePostFaq } from "../src/lib/post-faq.ts";
 import { CLINIC } from "../src/lib/clinic.ts";
+import { DOCTOR_SLUGS } from "../src/lib/schema.ts";
 
 /**
  * 좌표가 들어 있어야 할 범위 — 고양시를 넉넉히 감싼다.
@@ -59,6 +60,30 @@ import { CLINIC } from "../src/lib/clinic.ts";
  * 구조화 데이터가 정교할수록 오류가 오래 살아남는다.
  */
 const GEO_BOUNDS = { latMin: 37.6, latMax: 37.72, lngMin: 126.72, lngMax: 126.92 };
+
+/**
+ * JSON-LD 에 절대 나오면 안 되는 문자열.
+ *
+ * Phase 1 에서 전부 걷어낸 표현들이다. 지금은 누가 다시 넣어도 아무것도
+ * 잡히지 않는다 — 좌표가 144일 살아남은 것과 같은 구조다.
+ * 값 검사는 어렵지만 금지어 검사는 비용이 거의 없다.
+ *
+ *   전문의·인증의   일산한의원에 해당 자격 보유자가 없다 (의료법 제56조)
+ *   초음파사        RMSK 는 의사 자격이고 sonographer 등급은 ARDMS 의 RMSKS 다
+ *   RMDS           APCA 가 발급하지 않는 조합 — 존재하지 않는 자격
+ *   대학병원급      검증 불가능한 비교 표현
+ */
+const FORBIDDEN_IN_JSONLD = ["전문의", "인증의", "초음파사", "RMDS", "대학병원급"];
+
+/** "HH:MM" → 분. 형식이 아니면 null. */
+function toMinutes(hhmm) {
+  const m = /^(\d{2}):(\d{2})$/.exec(hhmm ?? "");
+  if (!m) return null;
+  const h = Number(m[1]);
+  const min = Number(m[2]);
+  if (h > 23 || min > 59) return null;
+  return h * 60 + min;
+}
 
 const BASE = process.env.BASE || "http://localhost:3000";
 /**
@@ -311,6 +336,68 @@ function validate(pagePath, html) {
       errors.push(
         `telephone 이 clinic.ts 와 다르다 — 출력 "${clinic.telephone}", 정본 "${CLINIC.telIntl}"`
       );
+
+    /* ── 진료시간 ── 「지금 진료하나요」류 질의에 직접 쓰이는 값이다 ── */
+    const specs = clinic.openingHoursSpecification || [];
+    const WANT = [
+      { key: "weekday", days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"] },
+      { key: "weekend", days: ["Saturday", "Sunday"] },
+    ];
+    for (const { key, days } of WANT) {
+      const spec = specs.find((s) =>
+        days.every((d) => [].concat(s.dayOfWeek || []).includes(d))
+      );
+      if (!spec) {
+        errors.push(`openingHours 에 ${key}(${days[0]}…) 항목이 없다`);
+        continue;
+      }
+      const wantHours = CLINIC.hours[key];
+      // 정본 대조
+      if (spec.opens !== wantHours.opens || spec.closes !== wantHours.closes)
+        errors.push(
+          `openingHours(${key}) 가 clinic.ts 와 다르다 — 출력 ${spec.opens}~${spec.closes}, 정본 ${wantHours.opens}~${wantHours.closes}`
+        );
+      // 타당성 — 정본 자체가 틀린 경우를 잡는다 (좌표 범위 검사와 같은 역할)
+      const o = toMinutes(spec.opens);
+      const c = toMinutes(spec.closes);
+      if (o === null || c === null)
+        errors.push(`openingHours(${key}) 시각 형식이 HH:MM 이 아니다 — ${spec.opens}~${spec.closes}`);
+      else if (c <= o)
+        errors.push(`openingHours(${key}) 종료가 시작보다 빠르거나 같다 — ${spec.opens}~${spec.closes}`);
+      else if (c - o > 24 * 60)
+        errors.push(`openingHours(${key}) 진료시간이 24시간을 넘는다 — ${spec.opens}~${spec.closes}`);
+    }
+
+    /* ── 인원 ──
+       schema.ts 가 numberOfEmployees 를 DOCTOR_SLUGS 에서 세므로 그 둘의 대조는
+       동어반복이다. 의미 있는 교차 검사는 **다른 소스**와 맞춰 보는 것이다:
+       /doctor 페이지의 Physician 노드는 app/doctor/page.tsx 의 doctors[] 에서
+       나오므로, 그 개수가 DOCTOR_SLUGS 와 갈리면 여기서 잡힌다.
+       (아래 pagePath === "/doctor" 분기) */
+    const emp = clinic.numberOfEmployees;
+    if (!emp || typeof emp.value !== "number" || emp.value < 1)
+      errors.push("numberOfEmployees 가 없거나 유효한 숫자가 아니다");
+  }
+
+  // /doctor 에서만: doctors[] → Physician 노드 수 vs DOCTOR_SLUGS vs numberOfEmployees
+  if (pagePath === "/doctor") {
+    const physicians = graph.filter((n) => n["@type"] === "Physician");
+    const slugCount = Object.keys(DOCTOR_SLUGS).length;
+    if (physicians.length !== slugCount)
+      errors.push(
+        `/doctor 의 Physician 노드가 ${physicians.length}개 — DOCTOR_SLUGS 는 ${slugCount}명 (doctors[] 와 갈렸다)`
+      );
+    const empValue = clinic?.numberOfEmployees?.value;
+    if (typeof empValue === "number" && empValue !== physicians.length)
+      errors.push(
+        `numberOfEmployees(${empValue}) 가 /doctor 의 Physician ${physicians.length}명과 다르다`
+      );
+  }
+
+  /* ── 금지 문자열 ── 구조가 아니라 내용을 본다 ── */
+  for (const word of FORBIDDEN_IN_JSONLD) {
+    if (blocks[0].includes(word))
+      errors.push(`JSON-LD 에 금지 표현 "${word}" 가 있다`);
   }
 
   if (!graph.some((n) => n["@type"] === "WebSite"))

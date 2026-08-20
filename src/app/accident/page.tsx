@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import SectionReveal from "@/components/SectionReveal";
 import PageHeader from "@/components/ui/PageHeader";
 import SectionBadge from "@/components/ui/SectionBadge";
@@ -33,6 +34,7 @@ import { buildGraph, faqEntities } from "@/lib/schema";
 import LocalBlock from "@/components/LocalBlock";
 import { LOCAL_BLOCKS, localFaqEntities } from "@/lib/local-blocks";
 import { CLINIC } from "@/lib/clinic";
+import { postPath } from "@/lib/slug";
 
 export const metadata: Metadata = pageMetadata({
   path: "/accident",
@@ -41,6 +43,28 @@ export const metadata: Metadata = pageMetadata({
     "고양시 일산한의원 교통사고 후유증 치료. 자동차보험 적용으로 본인부담 없이 추나·물리치료·초음파 진단·한약 처방. 풍산역 도보 1분, 평일 20시까지.",
   routeOgImage: true,
 });
+
+/**
+ * 자동차보험 서술의 기준 시점. 심사기준이 바뀌면 내용과 **함께** 갱신한다.
+ * 날짜만 미루면 오래된 내용에 새 날짜를 붙이는 셈이라 더 나쁘다.
+ */
+const INSURANCE_AS_OF = "2026년 8월";
+
+/**
+ * 교통사고 질문형 글 — `/pain` 아래 「교통사고」 그룹.
+ *
+ * 교통사고 후유증은 결국 목·허리 통증이라 통증 글과 같은 컬렉션에 둔다.
+ * 이 페이지는 진료 안내이고, 개별 질문에 답하는 것은 글의 몫이다.
+ *
+ * **본문이 준비되기 전까지 published:false 라 아직 링크하지 않는다.**
+ * 원장이 본문을 쓰고 published 를 true 로 바꾸면 이 배열의 항목을 살린다.
+ */
+const RELATED_POSTS: Array<{ slug: string; title: string }> = [
+  // { slug: "교통사고-다음날-목통증", title: "사고 당일엔 괜찮았는데 다음날부터 목이 아파요" },
+  // { slug: "교통사고-엑스레이-정상", title: "엑스레이는 정상이라는데 계속 아픕니다" },
+  // { slug: "교통사고-병원-한의원-병행", title: "정형외과 다니는데 한의원도 같이 가도 되나요" },
+  // { slug: "교통사고-치료기간-횟수", title: "교통사고 치료, 몇 주 동안 몇 번까지 받을 수 있나요" },
+];
 
 const QUESTIONS = [
   {
@@ -221,6 +245,14 @@ export default function AccidentPage() {
               <StatCard value="20:00" label="평일 야간진료" />
               <StatCard value="도보 1" unit="분" label="풍산역" />
             </div>
+
+            {/* 기준일 표시 — 자동차보험 심사기준은 바뀐다.
+                이 페이지의 보험 관련 서술이 언제 기준인지 밝혀 두면
+                AI 가 현재성을 판단할 근거가 되고, 오래된 내용을 최신인 양
+                인용하는 일을 막는다. 내용을 고칠 때 이 날짜도 함께 고칠 것. */}
+            <p className="mx-auto mt-6 max-w-3xl text-center text-[12px] text-muted">
+              자동차보험 적용 범위와 심사기준은 {INSURANCE_AS_OF} 기준입니다.
+            </p>
           </SectionReveal>
         </div>
       </section>
@@ -385,6 +417,40 @@ export default function AccidentPage() {
           </SectionReveal>
         </div>
       </section>
+
+      {/* 교통사고 질문형 글 — 본문이 준비되면 RELATED_POSTS 주석을 풀면 나온다.
+          빈 배열이면 섹션 자체를 렌더링하지 않는다. */}
+      {RELATED_POSTS.length > 0 && (
+        <section className="bg-[var(--bg)]">
+          <div className="section-padding">
+            <SectionReveal>
+              <div className="mx-auto max-w-3xl">
+                <SectionBadge icon={<HelpCircle size={15} />} label="자주 묻는 것" />
+                <h2 className="font-serif mt-3 text-[1.15rem] font-semibold leading-snug text-ink">
+                  교통사고 치료, 이런 걸 물어보십니다
+                </h2>
+                <ul className="mt-6 space-y-2.5">
+                  {RELATED_POSTS.map((p) => (
+                    <li key={p.slug}>
+                      <Link
+                        href={postPath("pain", p.slug)}
+                        className="group flex items-center justify-between gap-3 rounded-xl border border-line px-4 py-3.5 transition-colors duration-200 hover:bg-surface"
+                      >
+                        <span className="min-w-0 text-[0.95rem] leading-snug text-ink transition-colors duration-200 group-hover:text-primary">
+                          {p.title}
+                        </span>
+                        <span aria-hidden="true" className="shrink-0 text-primary">
+                          →
+                        </span>
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </SectionReveal>
+          </div>
+        </section>
+      )}
 
       <LocalBlock {...LOCAL_BLOCKS["/accident"]} />
 

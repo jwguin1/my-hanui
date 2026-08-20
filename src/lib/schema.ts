@@ -252,18 +252,19 @@ export function clinicNode(): SchemaNode {
       { "@type": "MedicalTest", name: "근골격계 초음파 진단" },
       { "@type": "MedicalTherapy", name: "피부 CO2 레이저" },
     ],
+    // 시간 값은 lib/clinic.ts 가 정본이다. 화면 표기도 같은 값에서 파생된다.
     openingHoursSpecification: [
       {
         "@type": "OpeningHoursSpecification",
         dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-        opens: "10:00",
-        closes: "20:00",
+        opens: CLINIC.hours.weekday.opens,
+        closes: CLINIC.hours.weekday.closes,
       },
       {
         "@type": "OpeningHoursSpecification",
         dayOfWeek: ["Saturday", "Sunday"],
-        opens: "10:00",
-        closes: "16:00",
+        opens: CLINIC.hours.weekend.opens,
+        closes: CLINIC.hours.weekend.closes,
       },
     ],
     // schema.org MedicalSpecialty 열거형으로만 쓴다 — 한글 자유텍스트는
@@ -317,7 +318,12 @@ export function clinicNode(): SchemaNode {
         value: true,
       },
     ],
-    numberOfEmployees: { "@type": "QuantitativeValue", value: 6 },
+    // 하드코딩한 6 이 /doctor 의 실제 인원과 갈리지 않도록 DOCTOR_SLUGS 에서 센다.
+    // (validate-jsonld 가 /doctor 의 Physician 노드 수와도 대조한다)
+    numberOfEmployees: {
+      "@type": "QuantitativeValue",
+      value: Object.keys(DOCTOR_SLUGS).length,
+    },
     // 외부 프로필 4개 — 변경/삭제 금지
     sameAs: [
       "https://naver.me/IItclnGB",

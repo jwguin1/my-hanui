@@ -20,7 +20,13 @@ import {
 import { fetchLatestVideos } from "@/lib/youtube";
 import { CATEGORY_META, SITE_URL } from "@/lib/categories";
 import { CAROUSEL_ORDER, CAROUSEL_TARGETS } from "@/lib/carousel-targets";
-import { CLINIC, CLINIC_ADDRESS_STREET } from "@/lib/clinic";
+import {
+  CLINIC,
+  CLINIC_ADDRESS_STREET,
+  CLINIC_HOURS_LUNCH,
+  CLINIC_HOURS_WEEKDAY,
+  CLINIC_HOURS_WEEKEND,
+} from "@/lib/clinic";
 import { getLatestPostCards, latestPostsListNode } from "@/lib/latest-posts";
 import JsonLd from "@/components/JsonLd";
 import {
@@ -532,15 +538,15 @@ export default async function Home() {
                 <ul className="mt-8 space-y-3 text-[0.9rem]">
                   <li className="flex justify-between border-b border-line pb-3">
                     <span className="text-ink">월 – 금</span>
-                    <span className="text-ink">{CLINIC.hoursWeekday}</span>
+                    <span className="text-ink">{CLINIC_HOURS_WEEKDAY}</span>
                   </li>
                   <li className="flex justify-between border-b border-line pb-3">
                     <span className="text-ink">토 · 일</span>
-                    <span className="text-ink">{CLINIC.hoursWeekend}</span>
+                    <span className="text-ink">{CLINIC_HOURS_WEEKEND}</span>
                   </li>
                   <li className="flex justify-between border-b border-line pb-3">
                     <span className="text-muted">점심시간 (평일)</span>
-                    <span className="text-muted">{CLINIC.hoursLunch}</span>
+                    <span className="text-muted">{CLINIC_HOURS_LUNCH}</span>
                   </li>
                 </ul>
                 <p className="mt-4 text-[0.82rem] text-primary">

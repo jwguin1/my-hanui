@@ -78,6 +78,17 @@ export interface LocalBlogPost {
    * 병원 정보 두 줄만 출력한다.
    */
   clinicNote?: string;
+  /**
+   * 문제군 (선택). `/pain` 허브의 소제목이 될 값이다.
+   *
+   * 「허리」「목·팔저림」「어깨」「무릎」「발목」「손목·손」「팔꿈치」「교통사고」
+   * — **환자가 쓰는 말로 유지한다.** 「경추 추간판 탈출증」이 아니라 「목·팔저림」이다.
+   *
+   * 값이 없는 글은 허브 그룹에 들어가지 않고 `/blog` 아카이브에서만 보인다.
+   * 그룹 순서와 그룹 내 글 순서는 자동 정렬이 아니라 명시적 배열로 관리한다
+   * (검색량 순은 사람이 정하는 것이지 날짜가 정하는 게 아니다).
+   */
+  group?: string;
 }
 
 /** 노출 경로에서 빼야 하는 글인지 (URL 자체는 살아 있다) */
@@ -122,6 +133,7 @@ function readPostFile(filePath: string, id: string, category: string): LocalBlog
     published: data.published !== false,
     status: ((data.status as string) || "").trim() || undefined,
     clinicNote: ((data.clinicNote as string) || "").trim() || undefined,
+    group: ((data.group as string) || "").trim() || undefined,
     author: ((data.author as string) || "").trim() || undefined,
     content,
     category,
