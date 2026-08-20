@@ -176,6 +176,26 @@ const EXPECTED_SAME_AS = [
  * 발행된 글의 목록. 프론트매터 slug 가 있으면 그것이 URL 이고, 없으면 파일명이다.
  * (lib/blog-local.ts 의 폴백 규칙과 같아야 한다 — 어긋나면 아래 검사가 바로 잡는다)
  */
+/**
+ * 마크다운 원문에 GFM 표가 있는가.
+ * 헤더 행 다음 줄이 구분선(|---|---|)인 형태만 표로 본다.
+ *
+ * 이 검사가 있는 이유: react-markdown 에 remark-gfm 이 빠져 있어
+ * 표 24편이 파이프 문자 그대로 <p> 안에 박힌 채 배포돼 있었다.
+ * JSON-LD 도 사이트맵도 전부 통과했다 — 「우리가 출력했는가」가 아니라
+ * 「환자가 실제로 보는가」를 봐야 잡히는 유형이다. 좌표·진료시간과 같다.
+ */
+function hasMarkdownTable(markdown) {
+  const lines = markdown.split(String.fromCharCode(10));
+  for (let i = 0; i < lines.length - 1; i += 1) {
+    const head = lines[i].trim();
+    const sep = lines[i + 1].trim();
+    if (!head.startsWith("|") || (head.match(/\|/g) || []).length < 3) continue;
+    if (/^\|(\s*:?-{3,}:?\s*\|)+$/.test(sep)) return true;
+  }
+  return false;
+}
+
 function listPosts() {
   const out = [];
   for (const category of [...CATEGORIES, "blog"]) {
@@ -204,6 +224,7 @@ function listPosts() {
         path: postPath(category, slug),
         faqSection: hasFaqSection(content),
         faqCount: parsePostFaq(content).length,
+        hasMarkdownTable: hasMarkdownTable(content),
       });
     }
   }
@@ -797,6 +818,14 @@ let totalRefs = 0;
 let totalDangling = 0;
 let totalPriceTokens = 0;
 let pricePages = 0;
+/* 원문에 표가 있는 글의 경로 → 파일. 렌더 결과에 <table> 이 없으면 FAIL 시킨다. */
+const TABLE_POSTS = new Map(
+  listPosts()
+    .filter((p) => p.hasMarkdownTable && p.published)
+    .map((p) => [p.path, `${p.category}/${p.id}`])
+);
+let tableOk = 0;
+const tableBroken = [];
 const failures = [];
 
 console.log(`검증 대상 ${paths.length}개 URL — ${BASE}\n`);
@@ -833,6 +862,20 @@ for (const p of paths) {
   }
 
   const { errors, warnings, stats } = validate(p, html);
+
+  /* 원문에 표가 있으면 렌더 결과에도 <table> 이 있어야 한다.
+     remark-gfm 이 빠지면 여기서 걸린다. */
+  const tableSource = TABLE_POSTS.get(p);
+  if (tableSource) {
+    if (/<table[\s>]/.test(html)) {
+      tableOk += 1;
+    } else {
+      errors.push(
+        `본문에 표 문법이 있는데 렌더 결과에 <table> 이 없다 (${tableSource}) — remark-gfm 을 확인하라`
+      );
+      tableBroken.push(tableSource);
+    }
+  }
   if (stats) {
     totalNodes += stats.nodes;
     totalWithId += stats.withId;
@@ -1088,6 +1131,19 @@ try {
   }
 } catch (e) {
   console.log(`사이트맵      확인 실패 (${e.message})`);
+}
+
+console.log(
+  `표 렌더링      원문에 표 있는 글 ${TABLE_POSTS.size}편 · <table> 생성 ${tableOk}편 · 미생성 ${tableBroken.length}편`
+);
+if (tableBroken.length) {
+  console.log(`  ! 미생성: ${tableBroken.join(", ")}`);
+}
+if (TABLE_POSTS.size === 0) {
+  failed += 1;
+  const msg = "표 검사 대상이 0편이다 — hasMarkdownTable 을 확인하라";
+  console.log(`  ! ${msg}`);
+  failures.push(msg);
 }
 
 /* 가격 정본 대조 결과. 건수만 찍으면 아무도 안 보므로 정본 표 자체를 같이 띄운다.
