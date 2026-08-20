@@ -223,6 +223,37 @@
     @apply border-border my-8;
   }
 
+  /* 본문 표 (GFM). PriceTable 컴포넌트와 같은 결로 맞춘다 —
+     같은 사이트 안에서 표가 두 가지 모양이면 읽는 사람이 헷갈린다. */
+  .prose-table-wrap {
+    @apply my-6 overflow-x-auto border border-border;
+    border-radius: 12px;
+  }
+
+  .prose-custom table {
+    @apply w-full text-left;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+  }
+
+  .prose-custom thead {
+    @apply bg-bg-card;
+  }
+
+  .prose-custom th {
+    @apply px-4 py-3 font-semibold text-text whitespace-nowrap;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .prose-custom td {
+    @apply px-4 py-3 text-text-muted align-top;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .prose-custom tbody tr:last-child td {
+    border-bottom: 0;
+  }
+
   /* Article body images: centered, capped, dark-mode friendly.
      Patch 5: lower max-height + cap max-width so a single image doesn't
      fill the screen, and hide the markdown alt text from rendering as
