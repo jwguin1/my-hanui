@@ -80,7 +80,8 @@ export default function AboutPage() {
               <div className="gold-divider mt-5" />
               <p className="body-text mt-5" style={{ lineHeight: 2 }}>
                 주관적인 감에만 의존하지 않습니다. 정밀한 한의학적 진단에
-                GE Tortus 초음파 3대와 혈액검사 장비를 더해 상태를 객관적으로
+                {/* 모델명은 장비 라벨 실물 확인 후 추가 — 임의로 채우지 않는다 */}
+                근골격계 초음파 3대와 혈액검사 장비를 더해 상태를 객관적으로
                 파악합니다. 명확한 데이터를 바탕으로, 수술 없이 일상을 지킬 수
                 있는 정교한 비수술 치료를 제공합니다.
               </p>
