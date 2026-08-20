@@ -10,6 +10,7 @@ import {
   CLINIC_HOURS_LUNCH,
   CLINIC_HOURS_WEEKDAY,
   CLINIC_HOURS_WEEKEND,
+  CLINIC_WEEKEND_HOLIDAY_LABEL,
 } from "@/lib/clinic";
 import JsonLd from "@/components/JsonLd";
 import { buildGraph } from "@/lib/schema";
@@ -23,7 +24,7 @@ export const metadata: Metadata = pageMetadata({
   path: "/contact",
   title: CAROUSEL_TARGETS.contact.title,
   description:
-    `${CLINIC_ADDRESS_STREET} ${CLINIC.building}. ${CLINIC.transit}. ${CLINIC.parking}. 평일 ${CLINIC_HOURS_WEEKDAY}, 토일 ${CLINIC_HOURS_WEEKEND}. ${CLINIC.tel}.`,
+    `${CLINIC_ADDRESS_STREET} ${CLINIC.building}. ${CLINIC.transit}. ${CLINIC.parking}. 평일 ${CLINIC_HOURS_WEEKDAY}, ${CLINIC_WEEKEND_HOLIDAY_LABEL} ${CLINIC_HOURS_WEEKEND}. ${CLINIC.tel}.`,
   ogTitle: "오시는 길 – 일산한의원 위치, 진료시간",
   ogDescription:
     `${CLINIC.building}. 풍산역 도보 1분. ${CLINIC.parking}. ${CLINIC.tel}.`,
@@ -33,7 +34,7 @@ const graph = buildGraph({
   path: "/contact",
   name: `${CAROUSEL_TARGETS.contact.title} | 일산한의원`,
   description:
-    `${CLINIC_ADDRESS_STREET} ${CLINIC.building}. ${CLINIC.transit}. ${CLINIC.parking}. 평일 ${CLINIC_HOURS_WEEKDAY}, 토일 ${CLINIC_HOURS_WEEKEND}. ${CLINIC.tel}.`,
+    `${CLINIC_ADDRESS_STREET} ${CLINIC.building}. ${CLINIC.transit}. ${CLINIC.parking}. 평일 ${CLINIC_HOURS_WEEKDAY}, ${CLINIC_WEEKEND_HOLIDAY_LABEL} ${CLINIC_HOURS_WEEKEND}. ${CLINIC.tel}.`,
   image: CAROUSEL_TARGETS.contact.hero.src,
 });
 
@@ -101,7 +102,9 @@ export default function ContactPage() {
                   <span className="text-text">{CLINIC_HOURS_WEEKDAY}</span>
                 </li>
                 <li className="flex justify-between">
-                  <span className="text-text-muted">토 · 일</span>
+                  <span className="text-text-muted">
+                    {CLINIC_WEEKEND_HOLIDAY_LABEL}
+                  </span>
                   <span className="text-text">{CLINIC_HOURS_WEEKEND}</span>
                 </li>
                 <li className="flex justify-between">

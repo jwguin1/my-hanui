@@ -45,7 +45,11 @@ import {
   validateSlug,
 } from "../src/lib/slug.ts";
 import { hasFaqSection, parsePostFaq } from "../src/lib/post-faq.ts";
-import { CLINIC } from "../src/lib/clinic.ts";
+import {
+  CLINIC,
+  CLINIC_HOLIDAY_TABLE_END,
+  CLINIC_WEEKEND_HOLIDAY_LABEL,
+} from "../src/lib/clinic.ts";
 import { DOCTOR_SLUGS } from "../src/lib/schema.ts";
 import {
   PAIN_GROUP_HUB,
@@ -344,6 +348,23 @@ function visibleText(html) {
  * 마크다운 표가 <table> 로 렌더되지 않고 파이프 문자 그대로 <p> 에 박힌다.
  * 그 상태에서도 금액 대조는 되어야 한다. GFM 을 붙인 뒤에는 1번으로 잡힌다.
  */
+/**
+ * 사람이 화면에서 읽는 텍스트만. ld+json 안의 문자열은 뺀다.
+ *
+ * visibleText() 는 JSON-LD 내용을 남긴다(금지어·실적 검사가 거기도 봐야 해서).
+ * 그런데 「화면에 이 표기가 있는가」를 볼 때 그걸 같이 세면,
+ * 스키마에만 있고 화면에는 없는 문구가 통과한다. 실제로 회귀 재현에서
+ * /contact 의 표기를 지웠는데도 JSON-LD description 때문에 통과했다.
+ */
+function bodyText(html) {
+  return html
+    .replace(/<script[\s\S]*?<\/script>/g, " ")
+    .replace(/<style[\s\S]*?<\/style>/g, " ")
+    .replace(/<[^>]+>/g, String.fromCharCode(10))
+    .replace(/&nbsp;/g, " ")
+    .replace(/\s+/g, " ");
+}
+
 function tableRows(html) {
   const rows = [];
   const trRe = /<tr\b[^>]*>([\s\S]*?)<\/tr>/g;
@@ -579,13 +600,18 @@ function validate(pagePath, html) {
 
     /* ── 진료시간 ── 「지금 진료하나요」류 질의에 직접 쓰이는 값이다 ── */
     const specs = clinic.openingHoursSpecification || [];
-    // clinic.ts 의 구간 정의를 그대로 순회한다. 평일은 점심을 비우느라 두 구간이다.
-    const WANT = Object.entries(CLINIC.hours).map(([key, h]) => ({
-      key,
-      days: [...h.days],
-      opens: h.opens,
-      closes: h.closes,
-    }));
+    /* clinic.ts 의 구간 정의를 그대로 순회한다. 평일은 점심을 비우느라 두 구간이다.
+       days 가 없는 구간(공휴일)은 **의도적으로** 뺀다 — 공휴일은 요일이 아니라
+       날짜로 정해져 schema.org 의 dayOfWeek 로 표현되지 않는다.
+       조용히 거르지 않고 건수를 아래 요약에 찍는다. */
+    const WANT = Object.entries(CLINIC.hours)
+      .filter(([, h]) => Array.isArray(h.days))
+      .map(([key, h]) => ({
+        key,
+        days: [...h.days],
+        opens: h.opens,
+        closes: h.closes,
+      }));
 
     /* dayOfWeek 값 검증 — 시각만 보고 요일을 안 보면 「일요일도 하나요」에
        틀린 답이 나간다. 좌표 검사와 같은 구조로 (표준값·중복·누락)까지 본다.
@@ -780,6 +806,21 @@ function validate(pagePath, html) {
         );
         break;
       }
+    }
+  }
+
+  {
+    /* 주말 진료시간을 띄우는 화면이면 공휴일도 함께 적혀 있어야 한다.
+       「토·일 16:00까지」만 있으면 공휴일은 휴진으로 읽힌다 — 여는 날인데. */
+    const screen = bodyText(html);
+    const weekendRange = `${CLINIC.hours.weekend.opens} – ${CLINIC.hours.weekend.closes}`;
+    const showsWeekend =
+      screen.includes(weekendRange) ||
+      screen.includes(`토·일 ${CLINIC.hours.weekend.closes}`);
+    if (showsWeekend && !screen.includes(CLINIC_WEEKEND_HOLIDAY_LABEL)) {
+      errors.push(
+        `주말 진료시간을 띄우면서 "${CLINIC_WEEKEND_HOLIDAY_LABEL}" 표기가 없다 — 공휴일이 휴진으로 읽힌다`
+      );
     }
   }
 
@@ -1271,6 +1312,60 @@ try {
     failures.push(
       `pain 그룹 불일치 — 배열에만 ${dangling.length} · 글에만 ${orphan.length} · 중복 ${dupes.length}`
     );
+  }
+}
+
+/* ── 공휴일 ────────────────────────────────────────────────
+   공휴일은 여는 날이다(10:00~16:00). 그런데 요일로만 판정하면 평일에 걸린
+   공휴일에 「20:00까지」가 뜨고, 그 안내를 보고 저녁에 오신 분은 닫힌 문을 만난다.
+   좌표·진료시간과 같은 자리다 — 값이 아니라 **환자가 보는 결과**로 확인한다.
+
+   두 가지를 본다.
+     ① 공휴일 시간이 주말 시간과 같은가 (정본 내부 정합)
+     ② 정적 표가 언제 떨어지는가 — 남은 날이 60일 미만이면 FAIL 로 재촉한다.
+        조용히 만료되면 그때부터 공휴일이 평일로 계산된다. */
+{
+  const w = CLINIC.hours.weekend;
+  const h = CLINIC.hours.holiday;
+  const dayless = Object.entries(CLINIC.hours).filter(
+    ([, x]) => !Array.isArray(x.days)
+  );
+  console.log(
+    `공휴일        표 ${CLINIC.holidays.length}일 · 마지막 ${CLINIC_HOLIDAY_TABLE_END} · ` +
+      `시간 ${h.opens}–${h.closes} · 표기 "${CLINIC_WEEKEND_HOLIDAY_LABEL}"`
+  );
+  console.log(
+    `  · openingHours 제외 ${dayless.length}구간 (${dayless
+      .map(([k]) => k)
+      .join(", ")}) — 요일로 표현되지 않아 JSON-LD 에 넣지 않는다`
+  );
+  if (h.opens !== w.opens || h.closes !== w.closes) {
+    failed += 1;
+    const msg = `공휴일 시간이 주말과 다르다 — 공휴일 ${h.opens}–${h.closes}, 주말 ${w.opens}–${w.closes}`;
+    console.log(`  ! ${msg}`);
+    failures.push(msg);
+  }
+  if (!CLINIC.holidays.length) {
+    failed += 1;
+    console.log("  ! 공휴일 표가 비어 있다");
+    failures.push("공휴일 표가 비어 있다");
+  } else {
+    /* 기준일은 인자로 받는다. Date.now() 를 쓰면 매일 결과가 달라져
+       「어제는 통과했는데 오늘 깨졌다」가 되고 원인을 찾기 어렵다. */
+    const today =
+      process.env.VALIDATE_TODAY || new Date().toISOString().slice(0, 10);
+    const left = Math.round(
+      (Date.parse(`${CLINIC_HOLIDAY_TABLE_END}T00:00:00Z`) -
+        Date.parse(`${today}T00:00:00Z`)) /
+        86_400_000
+    );
+    console.log(`  · 기준일 ${today} — 표 소진까지 ${left}일`);
+    if (left < 60) {
+      failed += 1;
+      const msg = `공휴일 표가 ${left}일 뒤 소진된다 — 다음 해 날짜를 확인해 clinic.ts 에 추가하라`;
+      console.log(`  ! ${msg}`);
+      failures.push(msg);
+    }
   }
 }
 
