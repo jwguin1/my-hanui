@@ -190,3 +190,97 @@ test("모든 그래프 노드는 @id 를 가진다", () => {
   const graph = buildGraph({ path: "/contact", name: "오시는 길" });
   assert.ok(graph.every((n) => typeof n["@id"] === "string"));
 });
+
+/* ── 진료시간 요일 ────────────────────────────────────────────────────────
+   시각 검증은 있었지만 dayOfWeek 검증이 없었다. 요일이 틀리면
+   「일요일도 진료하나요」에 그대로 틀린 답이 나간다 — 좌표와 같은 구조다.
+   여기서는 서버 없이 clinicNode() 출력만 본다. */
+
+const SCHEMA_DAYS = [
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+  "Sunday",
+];
+
+const openingDays = () =>
+  clinicNode().openingHoursSpecification.flatMap((s) => [].concat(s.dayOfWeek ?? []));
+
+test("진료시간: dayOfWeek 가 clinic.ts 정본과 일치한다", async () => {
+  const { CLINIC } = await import("../src/lib/clinic.ts");
+  const specs = clinicNode().openingHoursSpecification;
+
+  // 평일은 점심을 비우느라 오전·오후 두 구간이다. 같은 요일 구성이 둘이므로
+  // 시각까지 맞춰 찾아야 한다.
+  for (const [key, h] of Object.entries(CLINIC.hours)) {
+    const spec = specs.find((s) => s.opens === h.opens && s.closes === h.closes);
+    assert.ok(spec, `${key}(${h.opens}~${h.closes}) 항목이 없다`);
+    assert.deepEqual([].concat(spec.dayOfWeek), [...h.days], `${key} 요일 불일치`);
+  }
+});
+
+test("진료시간: 일요일이 주말 항목에 들어 있다 (실제로 일요일 진료함)", () => {
+  const specs = clinicNode().openingHoursSpecification;
+  const sunday = specs.find((s) => [].concat(s.dayOfWeek).includes("Sunday"));
+  assert.ok(sunday, "Sunday 가 어느 항목에도 없다 — 일요일이 휴진으로 읽힌다");
+  assert.equal(sunday.opens, "10:00");
+  assert.equal(sunday.closes, "16:00");
+});
+
+test("진료시간: dayOfWeek 값이 schema.org 표준 문자열이다", () => {
+  const days = openingDays();
+  const bad = days.filter((d) => !SCHEMA_DAYS.includes(d));
+  assert.deepEqual(bad, [], `표준이 아닌 요일 값: ${bad.join(", ")}`);
+});
+
+/**
+ * 한 요일이 여러 구간에 나오는 것은 **정상**이다 — 평일은 점심을 비우느라
+ * 오전·오후로 나뉜다. 문제는 구간이 **겹치는** 경우다.
+ * 겹치면 그 시각에 어느 쪽이 읽힐지 알 수 없다.
+ */
+test("진료시간: 같은 요일의 구간이 겹치지 않는다", () => {
+  const specs = clinicNode().openingHoursSpecification;
+  const toMin = (s) => {
+    const [h, m] = s.split(":").map(Number);
+    return h * 60 + m;
+  };
+  for (const day of SCHEMA_DAYS) {
+    const ranges = specs
+      .filter((s) => [].concat(s.dayOfWeek).includes(day))
+      .map((s) => [toMin(s.opens), toMin(s.closes)])
+      .sort((a, b) => a[0] - b[0]);
+    for (let i = 1; i < ranges.length; i += 1) {
+      assert.ok(
+        ranges[i][0] >= ranges[i - 1][1],
+        `${day} 구간 중첩: ${ranges[i - 1]} 과 ${ranges[i]}`
+      );
+    }
+  }
+});
+
+/** 점심시간(13:00~14:00)이 실제로 비어 있는가 — 「지금 진료하나요」의 핵심 */
+test("진료시간: 평일 점심시간이 어느 구간에도 속하지 않는다", async () => {
+  const { CLINIC } = await import("../src/lib/clinic.ts");
+  const lunchStart = CLINIC.hours.weekdayMorning.closes;
+  const specs = clinicNode().openingHoursSpecification;
+  const covering = specs.filter(
+    (s) =>
+      [].concat(s.dayOfWeek).includes("Monday") &&
+      s.opens <= lunchStart &&
+      s.closes > lunchStart
+  );
+  assert.deepEqual(
+    covering,
+    [],
+    `점심 시작(${lunchStart})이 진료 구간에 포함돼 있다 — 13시에도 진료중으로 읽힌다`
+  );
+});
+
+test("진료시간: 7요일이 빠짐없이 들어 있다", () => {
+  const days = openingDays();
+  const missing = SCHEMA_DAYS.filter((d) => !days.includes(d));
+  assert.deepEqual(missing, [], `빠진 요일(=휴진으로 읽힘): ${missing.join(", ")}`);
+});

@@ -235,13 +235,12 @@ export function clinicNode(): SchemaNode {
       latitude: CLINIC.geo.latitude,
       longitude: CLINIC.geo.longitude,
     },
-    areaServed: [
-      { "@type": "City", name: "고양시" },
-      { "@type": "AdministrativeArea", name: "일산동구" },
-      { "@type": "AdministrativeArea", name: "일산서구" },
-      { "@type": "AdministrativeArea", name: "덕양구" },
-      { "@type": "AdministrativeArea", name: "파주시 운정" },
-    ],
+    // 권역 목록은 lib/clinic.ts 가 정본이다. 여기에 문자열을 직접 쓰지 말 것 —
+    // 「파주시 운정」처럼 실재하지 않는 결합 문자열이 그렇게 들어왔다.
+    areaServed: CLINIC.areaServed.map((a) => ({
+      "@type": a.type,
+      name: a.name,
+    })),
     availableService: [
       { "@type": "MedicalTherapy", name: "침 치료" },
       { "@type": "MedicalTherapy", name: "추나요법" },
@@ -252,21 +251,25 @@ export function clinicNode(): SchemaNode {
       { "@type": "MedicalTest", name: "근골격계 초음파 진단" },
       { "@type": "MedicalTherapy", name: "피부 CO2 레이저" },
     ],
-    // 시간 값은 lib/clinic.ts 가 정본이다. 화면 표기도 같은 값에서 파생된다.
+    // 시간 값도 요일도 lib/clinic.ts 가 정본이다. 화면 표기도 같은 값에서 파생된다.
+    /**
+     * 평일이 두 항목인 것은 **점심시간(13:00~14:00)을 비우기 위해서**다.
+     * 10:00~20:00 한 덩어리로 두면 13시에도 진료중이라고 답하게 된다.
+     *
+     * 이마트 의무휴업일(2·4 수요일)은 **여기 넣지 않는다.** 조례가 자주 바뀌고
+     * 실제로는 대부분 문을 열어서, 닫는다고 못 박으면 열려 있는 날 환자를 잃는다.
+     * 안내는 화면 문구(CLINIC.closedNote)로만 하고 스키마는 정상 패턴을 유지한다.
+     */
     openingHoursSpecification: [
-      {
-        "@type": "OpeningHoursSpecification",
-        dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-        opens: CLINIC.hours.weekday.opens,
-        closes: CLINIC.hours.weekday.closes,
-      },
-      {
-        "@type": "OpeningHoursSpecification",
-        dayOfWeek: ["Saturday", "Sunday"],
-        opens: CLINIC.hours.weekend.opens,
-        closes: CLINIC.hours.weekend.closes,
-      },
-    ],
+      CLINIC.hours.weekdayMorning,
+      CLINIC.hours.weekdayAfternoon,
+      CLINIC.hours.weekend,
+    ].map((h) => ({
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: [...h.days],
+      opens: h.opens,
+      closes: h.closes,
+    })),
     // schema.org MedicalSpecialty 열거형으로만 쓴다 — 한글 자유텍스트는
     // INVALID_SCHEMA_ENUM_VALUE 오류를 낸다. 사람이 읽는 분과명과
     // 한의학 고유 시술명은 아래 knowsAbout 으로 옮겼다.

@@ -113,7 +113,7 @@ export default function ContactPage() {
                 주말·공휴일은 점심시간 없이 진료
               </p>
               <p className="mt-1 text-[0.8rem] text-text-muted">
-                매달 2·4번째 수요일 휴무 (이마트 풍산점 휴업일)
+                {CLINIC.closedNote}
               </p>
             </div>
           </div>

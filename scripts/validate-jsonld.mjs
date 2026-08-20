@@ -75,6 +75,20 @@ const GEO_BOUNDS = { latMin: 37.6, latMax: 37.72, lngMin: 126.72, lngMax: 126.92
  */
 const FORBIDDEN_IN_JSONLD = ["전문의", "인증의", "초음파사", "RMDS", "대학병원급"];
 
+/**
+ * schema.org 가 인정하는 요일 문자열. 이 목록에 없는 값(「Sun」·「일요일」 등)은
+ * 파서가 조용히 버린다 — 그러면 그 요일은 휴진으로 읽힌다.
+ */
+const SCHEMA_DAYS = [
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+  "Sunday",
+];
+
 /** "HH:MM" → 분. 형식이 아니면 null. */
 function toMinutes(hhmm) {
   const m = /^(\d{2}):(\d{2})$/.exec(hhmm ?? "");
@@ -339,18 +353,76 @@ function validate(pagePath, html) {
 
     /* ── 진료시간 ── 「지금 진료하나요」류 질의에 직접 쓰이는 값이다 ── */
     const specs = clinic.openingHoursSpecification || [];
-    const WANT = [
-      { key: "weekday", days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"] },
-      { key: "weekend", days: ["Saturday", "Sunday"] },
-    ];
-    for (const { key, days } of WANT) {
-      const spec = specs.find((s) =>
-        days.every((d) => [].concat(s.dayOfWeek || []).includes(d))
+    // clinic.ts 의 구간 정의를 그대로 순회한다. 평일은 점심을 비우느라 두 구간이다.
+    const WANT = Object.entries(CLINIC.hours).map(([key, h]) => ({
+      key,
+      days: [...h.days],
+      opens: h.opens,
+      closes: h.closes,
+    }));
+
+    /* dayOfWeek 값 검증 — 시각만 보고 요일을 안 보면 「일요일도 하나요」에
+       틀린 답이 나간다. 좌표 검사와 같은 구조로 (표준값·중복·누락)까지 본다.
+       요일 구성 자체는 clinic.ts 가 정본이다. */
+    const allDays = specs.flatMap((s) => [].concat(s.dayOfWeek || []));
+    if (specs.some((s) => [].concat(s.dayOfWeek || []).length === 0))
+      errors.push("openingHoursSpecification 항목에 dayOfWeek 가 비어 있다");
+
+    const nonStandard = allDays.filter((d) => !SCHEMA_DAYS.includes(d));
+    if (nonStandard.length)
+      errors.push(
+        `dayOfWeek 가 schema.org 표준 문자열이 아니다 — ${[...new Set(nonStandard)]
+          .map((d) => JSON.stringify(d))
+          .join(", ")} (허용: ${SCHEMA_DAYS.join(", ")})`
+      );
+
+    /* 한 요일이 여러 구간에 나오는 것은 정상이다 — 평일은 점심을 비우느라
+       오전·오후 두 구간으로 나뉜다. 문제가 되는 것은 **구간이 겹치는 경우**다.
+       겹치면 그 시각에 어느 쪽이 읽힐지 알 수 없다. */
+    for (const day of SCHEMA_DAYS) {
+      const ranges = specs
+        .filter((s) => [].concat(s.dayOfWeek || []).includes(day))
+        .map((s) => [toMinutes(s.opens), toMinutes(s.closes)])
+        .filter(([o, c]) => o !== null && c !== null)
+        .sort((a, b) => a[0] - b[0]);
+      for (let i = 1; i < ranges.length; i += 1) {
+        if (ranges[i][0] < ranges[i - 1][1]) {
+          errors.push(
+            `openingHours 구간이 겹친다 — ${day} 에 ${ranges[i - 1][0]}분~${ranges[i - 1][1]}분과 ${ranges[i][0]}분~${ranges[i][1]}분이 중첩`
+          );
+          break;
+        }
+      }
+    }
+
+    const missingDays = SCHEMA_DAYS.filter((d) => !allDays.includes(d));
+    if (missingDays.length)
+      errors.push(
+        `openingHoursSpecification 에 빠진 요일이 있다 — ${missingDays.join(", ")} (빠진 요일은 휴진으로 읽힌다)`
+      );
+
+    for (const { key, days, opens, closes } of WANT) {
+      // 같은 요일 구성이 둘(평일 오전·오후) 있으므로 시각까지 맞춰 찾는다
+      const spec = specs.find(
+        (s) =>
+          days.every((d) => [].concat(s.dayOfWeek || []).includes(d)) &&
+          s.opens === opens &&
+          s.closes === closes
       );
       if (!spec) {
-        errors.push(`openingHours 에 ${key}(${days[0]}…) 항목이 없다`);
+        errors.push(
+          `openingHours 에 ${key}(${days[0]}… ${opens}~${closes}) 항목이 없다`
+        );
         continue;
       }
+      // 요일 구성 정본 대조 — 정본에 없는 요일이 끼어든 경우까지 잡는다
+      const gotDays = [].concat(spec.dayOfWeek || []);
+      const extra = gotDays.filter((d) => !days.includes(d));
+      if (extra.length)
+        errors.push(
+          `openingHours(${key}) 에 정본에 없는 요일이 있다 — ${extra.join(", ")}, 정본 ${days.join(", ")}`
+        );
+
       const wantHours = CLINIC.hours[key];
       // 정본 대조
       if (spec.opens !== wantHours.opens || spec.closes !== wantHours.closes)
@@ -366,6 +438,48 @@ function validate(pagePath, html) {
         errors.push(`openingHours(${key}) 종료가 시작보다 빠르거나 같다 — ${spec.opens}~${spec.closes}`);
       else if (c - o > 24 * 60)
         errors.push(`openingHours(${key}) 진료시간이 24시간을 넘는다 — ${spec.opens}~${spec.closes}`);
+    }
+
+    /* ── 진료 권역 ──
+       「파주시 운정」 같은 시(市)+지구 결합 문자열은 실재하는 행정구역명이 아니라
+       장소 엔티티로 매칭되지 않는다. 2026-08-20 측정에서 파주 운정 질의만
+       ChatGPT·Gemini 양쪽 공통 X 였고, 그 표기가 원인 후보였다. */
+    const areas = clinic.areaServed || [];
+    if (areas.length !== CLINIC.areaServed.length)
+      errors.push(
+        `areaServed 가 ${areas.length}개 — clinic.ts 는 ${CLINIC.areaServed.length}개`
+      );
+    for (const want of CLINIC.areaServed) {
+      const got = areas.find((a) => a.name === want.name);
+      if (!got) {
+        errors.push(`areaServed 에 "${want.name}" 이 없다`);
+        continue;
+      }
+      if (got["@type"] !== want.type)
+        errors.push(
+          `areaServed "${want.name}" 의 타입이 ${got["@type"]} — clinic.ts 는 ${want.type}`
+        );
+    }
+    for (const a of areas) {
+      const name = a.name ?? "";
+      // 「시」로 끝나는 토큰 뒤에 다른 토큰이 붙으면 결합 문자열이다
+      if (/(시|군|구)\s+\S/.test(name))
+        errors.push(
+          `areaServed "${name}" 이 결합 문자열이다 — 실재하는 행정구역명 하나만 쓸 것`
+        );
+      /* 타당성 — 정본 대조만으로는 **정본 자체가 틀린 경우**를 못 잡는다.
+         (좌표에서 겪은 것과 같다: clinic.ts 와 출력이 사이좋게 틀려 있었다)
+         접미사로 기대되는 타입을 정해 두고 어긋나면 잡는다. */
+      // 「신도시」를 「시」보다 **먼저** 본다 — 운정신도시는 시(市)가 아니다
+      const wantType = /(신도시|구|동|읍|면)$/.test(name)
+        ? "AdministrativeArea"
+        : /시$/.test(name)
+          ? "City"
+          : null;
+      if (wantType && a["@type"] !== wantType)
+        errors.push(
+          `areaServed "${name}" 은 ${wantType} 여야 한다 — 지금 ${a["@type"]}`
+        );
     }
 
     /* ── 인원 ──
