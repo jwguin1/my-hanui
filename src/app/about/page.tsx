@@ -10,6 +10,7 @@ import PageHeader from "@/components/ui/PageHeader";
 import SectionBadge from "@/components/ui/SectionBadge";
 import TwoTone from "@/components/ui/TwoTone";
 import { Quote, Users } from "@/components/ui/icons";
+import { CLINIC } from "@/lib/clinic";
 
 export const metadata: Metadata = pageMetadata({
   path: "/about",
@@ -80,10 +81,15 @@ export default function AboutPage() {
               <div className="gold-divider mt-5" />
               <p className="body-text mt-5" style={{ lineHeight: 2 }}>
                 주관적인 감에만 의존하지 않습니다. 정밀한 한의학적 진단에
-                {/* 모델명은 장비 라벨 실물 확인 후 추가 — 임의로 채우지 않는다 */}
-                근골격계 초음파 3대와 혈액검사 장비를 더해 상태를 객관적으로
-                파악합니다. 명확한 데이터를 바탕으로, 수술 없이 일상을 지킬 수
-                있는 정교한 비수술 치료를 제공합니다.
+                {/* 모델명·대수는 clinic.ts 가 정본이다. 여기에 직접 적지 않는다 */}
+                근골격계 초음파 {CLINIC.ultrasound.count}대와 혈액검사 장비를
+                더해 상태를 객관적으로 파악합니다. 명확한 데이터를 바탕으로,
+                수술 없이 일상을 지킬 수 있는 정교한 비수술 치료를 제공합니다.
+              </p>
+              {/* 장비 상세는 원장 확정 문안 그대로. 「고사양」·「프리미엄」 같은
+                  제조사 마케팅 문구는 쓰지 않는다 — 인용하면 최상급 표현이 된다. */}
+              <p className="mt-3 text-[0.85rem] leading-relaxed text-muted">
+                {CLINIC.ultrasound.detail}
               </p>
             </div>
 

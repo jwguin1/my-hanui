@@ -216,8 +216,11 @@ export function clinicNode(): SchemaNode {
       // 실적 숫자에는 기간 기준과 산출 근거를 함께 적는다.
       // 화면(TRUST_STATS_SOURCE)에는 붙어 있었는데 여기만 빠져 있었고,
       // validate-jsonld 의 실적 숫자 검사가 그것을 잡아냈다.
-      "6인의 한의사가 4개 분과를 협진합니다. 근골격계, 자율신경, 다이어트, 피부레이저 특화. 개원 이래 누적 13,000명이 80,000회 내원, 한방 다이어트 처방 9,000건 이상 (원내 진료기록 기준).",
+      `6인의 한의사가 4개 분과를 협진합니다. 근골격계, 자율신경, 다이어트, 피부레이저 특화. ${CLINIC.foundingYear}년 개원 이래 누적 13,000명이 80,000회 내원, 한방 다이어트 처방 9,000건 이상 (원내 진료기록 기준).`,
     url: BASE_URL,
+    // 화면의 「2023년 개원 이래」와 같은 값에서 나온다 (clinic.ts).
+    // 검증기가 양쪽 일치를 대조한다 — 갈리면 FAIL.
+    foundingDate: String(CLINIC.foundingYear),
     logo: ref(LOGO_ID),
     image: `${BASE_URL}/og-image.jpg`,
     telephone: CLINIC.telIntl,
@@ -316,6 +319,11 @@ export function clinicNode(): SchemaNode {
       {
         "@type": "LocationFeatureSpecification",
         name: "초음파진단장비",
+        value: true,
+      },
+      {
+        "@type": "LocationFeatureSpecification",
+        name: CLINIC.ultrasound.name,
         value: true,
       },
       {

@@ -14,6 +14,12 @@ import { Microscope } from "@/components/ui/icons";
 import { CATEGORY_META } from "@/lib/categories";
 import { postImagePath } from "@/lib/og-image";
 import { postPath } from "@/lib/slug";
+import {
+  PAIN_GROUP_HUB,
+  PAIN_GROUP_ORDER,
+  PAIN_GROUP_POSTS,
+  painGroupSlugs,
+} from "@/lib/pain-groups";
 import JsonLd from "@/components/JsonLd";
 import {
   articleStub,
@@ -74,7 +80,37 @@ function formatDate(dateStr: string): string {
 export default function CategoryListPage({ category }: { category: Category }) {
   const label = CATEGORY_LABEL[category];
   const description = CATEGORY_DESCRIPTION[category];
-  const posts = getAllPosts(category);
+  const all = getAllPosts(category);
+
+  /* /pain 은 날짜순이 아니라 부위 그룹 순서로 늘어놓는다.
+     ItemList 도 같은 순서를 따른다 — 화면과 스키마가 갈리면 안 된다.
+     배열에 없는 글은 뒤에 그대로 붙인다. 조용히 사라지게 두지 않는다. */
+  const posts =
+    category === "pain"
+      ? (() => {
+          const order = painGroupSlugs();
+          const rank = new Map(order.map((slug, i) => [slug, i]));
+          return [...all].sort(
+            (a, b) =>
+              (rank.get(a.slug) ?? Number.MAX_SAFE_INTEGER) -
+              (rank.get(b.slug) ?? Number.MAX_SAFE_INTEGER)
+          );
+        })()
+      : all;
+
+  /* 그룹 렌더용 — 슬러그를 실제 글로 바꾸고, 없는 슬러그는 버린다.
+     (배열에만 있고 글이 없는 경우는 검증기가 FAIL 로 잡는다) */
+  const bySlug = new Map(posts.map((post) => [post.slug, post]));
+  const groups =
+    category === "pain"
+      ? PAIN_GROUP_ORDER.map((name) => ({
+          name,
+          hub: PAIN_GROUP_HUB[name],
+          items: (PAIN_GROUP_POSTS[name] ?? [])
+            .map((slug) => bySlug.get(slug))
+            .filter((post) => post !== undefined),
+        })).filter((g) => g.items.length > 0)
+      : [];
 
   const path = `/${category}`;
   const listNode = itemListNode(path, "post-list", `일산한의원 ${label}`, posts.map((post) => {
@@ -267,7 +303,58 @@ export default function CategoryListPage({ category }: { category: Category }) {
         </section>
       )}
 
+      {/* 부위별 목록 — /pain 만. 표시 순서는 lib/pain-groups.ts 의 명시 배열이고,
+          앵커는 글 제목 그대로 쓴다 (「자세히 보기」 금지).
+          카드 격자 대신 이걸 쓴다 — 25편을 날짜순 격자로 늘어놓으면
+          어느 부위 글인지 훑어서 알 수 없다. */}
+      {groups.length > 0 && (
+        <section className="section-padding !pt-8">
+          <div className="mx-auto max-w-3xl space-y-10">
+            {groups.map((group) => (
+              <SectionReveal key={group.name}>
+                <div>
+                  <div className="flex items-baseline justify-between gap-4 border-b border-line pb-3">
+                    <h2 className="font-serif text-[1.05rem] font-semibold leading-snug text-ink">
+                      {group.name}
+                    </h2>
+                    {group.hub && (
+                      <Link
+                        href={group.hub.href}
+                        className="shrink-0 text-[0.8rem] text-primary underline underline-offset-4"
+                      >
+                        {group.hub.label}
+                      </Link>
+                    )}
+                  </div>
+                  <ul className="mt-4 space-y-2.5">
+                    {group.items.map((post) => (
+                      <li key={post.slug}>
+                        <Link
+                          href={postPath(category, post.slug)}
+                          className="group flex items-center justify-between gap-3 rounded-xl border border-line px-4 py-3.5 transition-colors duration-200 hover:bg-surface"
+                        >
+                          <span className="min-w-0 text-[0.95rem] leading-snug text-ink transition-colors duration-200 group-hover:text-primary">
+                            {post.title}
+                          </span>
+                          <span
+                            aria-hidden="true"
+                            className="shrink-0 text-primary"
+                          >
+                            →
+                          </span>
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </SectionReveal>
+            ))}
+          </div>
+        </section>
+      )}
+
       {/* Posts */}
+      {groups.length === 0 && (
       <section className="section-padding !pt-8">
         {posts.length > 0 ? (
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
@@ -381,6 +468,7 @@ export default function CategoryListPage({ category }: { category: Category }) {
           </SectionReveal>
         )}
       </section>
+      )}
 
     </>
   );
