@@ -155,5 +155,13 @@ export const CLINIC_ADDRESS_STREET =
  */
 export const CLINIC_CTA_LINES: readonly string[] = [
   [CLINIC.name, CLINIC.building, CLINIC.transit].join(" · "),
-  [CLINIC.weekdayClose, CLINIC.parking, CLINIC.tel].join(" · "),
+  /* 주말 마감을 함께 적는다. 「주말에 하는 한의원」은 실제 검색 유형이고
+     (측정 문항 21·22), 평일만 적으면 주말 진료를 아예 안 하는 것으로 읽힌다.
+     원장이 직접 쓴 글 하단 문구에도 토·일 시간이 들어 있었다. */
+  [
+    CLINIC.weekdayClose,
+    `토·일 ${CLINIC.hours.weekend.closes}까지`,
+    CLINIC.parking,
+    CLINIC.tel,
+  ].join(" · "),
 ];
