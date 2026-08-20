@@ -54,6 +54,23 @@ export interface LocalBlogPost {
    * 비어 있으면 병원 노드(#clinic)로 폴백한다.
    */
   author?: string;
+  /**
+   * 심사 상태 (선택). `"under_review"` 면 **비공개 처리**한다.
+   *
+   * `published: false` 와 다르다 — published 는 글을 통째로 없애지만,
+   * under_review 는 **URL 을 200 으로 살려 둔 채 노출 경로만 끊는다.**
+   * (목록 · 사이트맵 · 관련 글 · 자동 내부링크에서 빠지고 noindex 가 붙는다)
+   *
+   * 이미 색인된 URL 을 404 로 만들면 크롤러가 재방문을 멈춰서
+   * noindex 를 읽지 못한다 — 그래서 살려 두고 noindex 를 읽히는 쪽을 택했다.
+   * 개별 심사가 끝나면 이 줄만 지우면 원래대로 돌아온다.
+   */
+  status?: string;
+}
+
+/** 노출 경로에서 빼야 하는 글인지 (URL 자체는 살아 있다) */
+export function isUnderReview(post: Pick<LocalBlogPost, "status">): boolean {
+  return post.status === "under_review";
 }
 
 function isCategory(value: string): value is Category {
@@ -91,6 +108,7 @@ function readPostFile(filePath: string, id: string, category: string): LocalBlog
     thumbnail: resolveThumbnail(data, content),
     tags: (data.tags as string[]) || [],
     published: data.published !== false,
+    status: ((data.status as string) || "").trim() || undefined,
     author: ((data.author as string) || "").trim() || undefined,
     content,
     category,
@@ -109,6 +127,13 @@ function listPostsInDir(dir: string, category: string): LocalBlogPost[] {
  * 모든 글 또는 특정 카테고리 글을 반환.
  * - category 미지정: blog(공지) + 모든 카테고리 폴더 종합 (아카이브용).
  * - category 지정: 해당 폴더만.
+ *
+ * **노출 경로의 단일 관문이다.** 목록 · 사이트맵 · RSS · 홈 · 관련 글 ·
+ * 자동 내부링크 · generateStaticParams 가 전부 이 함수를 지난다.
+ * 그래서 `under_review` 필터를 여기 한 줄만 넣으면 전 경로에 일괄 적용된다.
+ *
+ * 반대로 getPostBySlug() 는 이 함수를 거치지 않는다 — 의도된 것이다.
+ * 심사 중인 글도 URL 로 직접 오면 200 으로 열려야 한다.
  */
 export function getAllPosts(category?: Category): LocalBlogPost[] {
   let posts: LocalBlogPost[];
@@ -123,7 +148,7 @@ export function getAllPosts(category?: Category): LocalBlogPost[] {
     ];
   }
   return posts
-    .filter((p) => p.published)
+    .filter((p) => p.published && !isUnderReview(p))
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 }
 

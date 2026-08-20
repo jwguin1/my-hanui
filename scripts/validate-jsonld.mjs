@@ -99,6 +99,10 @@ function listPosts() {
         rawSlug,
         slug,
         published: data.published !== false,
+        // "under_review" 는 URL 을 살려 둔 채 노출만 끊은 상태다.
+        // published:false 와 달리 200 이므로 URL·JSON-LD 검사 대상에는 남고,
+        // 사이트맵에서는 빠지는 것이 정상이다.
+        status: typeof data.status === "string" ? data.status : "",
         path: postPath(category, slug),
         faqSection: hasFaqSection(content),
         faqCount: parsePostFaq(content).length,
@@ -562,9 +566,18 @@ try {
       (m) => new URL(m[1]).pathname.replace(/\/$/, "") || "/"
     )
   );
-  const missing = paths.filter((p) => !inSitemap.has(p));
+  // 심사 중인 글은 사이트맵에서 빠지는 것이 의도된 동작이다.
+  // 조용히 빼면 "사이트맵이 글을 빼먹는" 진짜 버그와 구분이 안 되므로,
+  // 몇 건을 왜 제외했는지 항상 함께 출력한다.
+  const underReview = new Set(
+    listPosts()
+      .filter((p) => p.published && p.status === "under_review")
+      .map((p) => p.path)
+  );
+  const missing = paths.filter((p) => !inSitemap.has(p) && !underReview.has(p));
   console.log(
-    `사이트맵      ${inSitemap.size}개 등재 / 검사 대상 ${paths.length}개`
+    `사이트맵      ${inSitemap.size}개 등재 / 검사 대상 ${paths.length}개` +
+      (underReview.size ? ` (심사중 ${underReview.size}건 제외)` : "")
   );
   if (missing.length) {
     failed += 1;

@@ -3,6 +3,7 @@ import {
   CATEGORY_LABEL,
   type Category,
   getPostBySlug,
+  isUnderReview,
 } from "@/lib/blog-local";
 import { CATEGORY_META, SITE_URL } from "@/lib/categories";
 import { OG_HEIGHT, OG_WIDTH, hasOgImage, postImagePath } from "@/lib/og-image";
@@ -45,9 +46,23 @@ export function categoryPostMetadata(
     ? { url: imageUrl, width: OG_WIDTH, height: OG_HEIGHT, alt: post.title }
     : { url: imageUrl, alt: post.title };
 
+  // 심사 중인 글은 URL 을 살려 둔 채 색인만 막는다.
+  // canonical 은 남긴다 — noindex 와 함께 두면 "이 URL 이 정본이지만
+  // 색인하지 말라"는 뜻이 되어, 중복 후보들이 엉뚱한 URL 로 합쳐지지 않는다.
+  const underReview = isUnderReview(post);
+
   return {
     title: { absolute: fullTitle },
     description: post.description,
+    ...(underReview
+      ? {
+          robots: {
+            index: false,
+            follow: false,
+            googleBot: { index: false, follow: false },
+          },
+        }
+      : {}),
     openGraph: {
       title: fullTitle,
       description: post.description,
