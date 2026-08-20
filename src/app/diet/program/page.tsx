@@ -129,7 +129,7 @@ export default function DietProgramPage() {
                 variant="solid"
                 className="w-full shrink-0 sm:w-auto"
               >
-                상담 신청하기 &rarr;
+                일산감비환 안내 보기 &rarr;
               </PillButton>
             </div>
 
@@ -254,7 +254,7 @@ export default function DietProgramPage() {
                   variant="solid"
                   className="w-full sm:w-auto"
                 >
-                  상담 신청하기 &rarr;
+                  일산감비환 상담 신청 &rarr;
                 </PillButton>
                 <PillButton
                   href={CLINIC.telHref}
