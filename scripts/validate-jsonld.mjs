@@ -47,6 +47,13 @@ import {
 import { hasFaqSection, parsePostFaq } from "../src/lib/post-faq.ts";
 import { CLINIC } from "../src/lib/clinic.ts";
 import { DOCTOR_SLUGS } from "../src/lib/schema.ts";
+import {
+  SPOT_PRICE_ROWS,
+  AFTERCARE_PRODUCTS,
+  allowedSkinAmounts,
+  perSpot,
+  won,
+} from "../src/lib/pricing.ts";
 
 /**
  * 좌표가 들어 있어야 할 범위 — 고양시를 넉넉히 감싼다.
@@ -234,6 +241,150 @@ function listPaths() {
     ...staticPaths,
     ...listPosts().filter((p) => p.published).map((p) => p.path),
   ];
+}
+
+/**
+ * ── 가격 일관성 ──────────────────────────────────────────────
+ *
+ * 좌표·NAP·진료시간에서 정본이 갈려 문제가 났던 것과 같은 구조를 막는다.
+ * 금액은 src/lib/pricing.ts 하나에서만 나온다. 페이지·블록은 거기서 파생하지만
+ * 마크다운 본문은 TS 를 import 할 수 없어 파생이 불가능하다 — 그래서 여기서
+ * 「환자가 실제로 보는 HTML」을 훑어 대조한다. 소스가 아니라 출력을 본다.
+ *
+ * 세 겹으로 본다.
+ *   A. 화이트리스트 — skin 페이지에 pricing.ts 에 없는 금액이 보이면 FAIL
+ *   B. 표 행 대조   — <tr> 첫 칸이 정본 항목명이면 나머지 칸이 정본과 일치해야 한다
+ *                     (마크다운 표도 <tr> 로 렌더되므로 본문 가격표가 여기 걸린다)
+ *   C. 문장 대조    — 항목명이 든 문장의 금액이 그 항목의 금액이어야 한다
+ *                     (「얼굴 전체 … 22만 원」 같은 뒤섞임을 잡는다)
+ */
+const PRICE_SCOPE_RE = /^\/skin(\/|$)/;
+
+/** "110,000원" / "1,100원" */
+const WON_COMMA_RE = /(\d{1,3}(?:,\d{3})+)\s*원/g;
+/** "11만 원", "16만 5천 원", "27만5천원" */
+const WON_KOREAN_RE = /(\d{1,4})\s*만(?:\s*(\d)\s*천)?\s*원/g;
+
+/** 텍스트에서 금액을 원 단위 숫자로 뽑는다 */
+function moneyTokens(text) {
+  const out = [];
+  let m;
+  WON_COMMA_RE.lastIndex = 0;
+  while ((m = WON_COMMA_RE.exec(text)) !== null) {
+    out.push({ raw: m[0], value: Number(m[1].replace(/,/g, "")) });
+  }
+  WON_KOREAN_RE.lastIndex = 0;
+  while ((m = WON_KOREAN_RE.exec(text)) !== null) {
+    const value = Number(m[1]) * 10000 + (m[2] ? Number(m[2]) * 1000 : 0);
+    out.push({ raw: m[0], value });
+  }
+  return out;
+}
+
+/** 태그를 줄바꿈으로 바꾼다 — 셀·문단이 서로 섞이지 않게 */
+function visibleText(html) {
+  return html
+    .replace(/<(script|style)[\s\S]*?<\/\1>/g, (block) =>
+      // ld+json 안의 FAQ 답변에도 금액이 있다. 태그만 걷어내고 내용은 남긴다
+      block.startsWith("<script type=\"application/ld+json\"") ? block.replace(/<[^>]+>/g, "\n") : "\n"
+    )
+    .replace(/<[^>]+>/g, "\n")
+    .replace(/&nbsp;/g, " ")
+    .replace(/&amp;/g, "&")
+    .replace(/\u[0-9a-fA-F]{4}/g, (esc) =>
+      String.fromCharCode(parseInt(esc.slice(2), 16))
+    );
+}
+
+/**
+ * 표의 행을 셀 배열로 뽑는다.
+ *
+ * 두 형태를 모두 본다.
+ *   1. <tr><td>…  — PriceTable 같은 컴포넌트 표
+ *   2. "| 얼굴 전체 | 110,000원 |" — 마크다운 파이프 표
+ *
+ * 2번을 굳이 보는 이유: 지금 react-markdown 에 remark-gfm 이 없어서
+ * 마크다운 표가 <table> 로 렌더되지 않고 파이프 문자 그대로 <p> 에 박힌다.
+ * 그 상태에서도 금액 대조는 되어야 한다. GFM 을 붙인 뒤에는 1번으로 잡힌다.
+ */
+function tableRows(html) {
+  const rows = [];
+  const trRe = /<tr\b[^>]*>([\s\S]*?)<\/tr>/g;
+  let m;
+  while ((m = trRe.exec(html)) !== null) {
+    const cells = [];
+    const cellRe = /<(td|th)\b[^>]*>([\s\S]*?)<\/\1>/g;
+    let c;
+    while ((c = cellRe.exec(m[1])) !== null) {
+      cells.push(c[2].replace(/<[^>]+>/g, "").replace(/\s+/g, " ").trim());
+    }
+    if (cells.length) rows.push(cells);
+  }
+  // 파이프 표 (미렌더 상태)
+  for (const line of visibleText(html).split(String.fromCharCode(10))) {
+    const t = line.trim();
+    if (!t.startsWith("|") || !t.endsWith("|")) continue;
+    const cells = t
+      .slice(1, -1)
+      .split("|")
+      .map((c) => c.replace(/\s+/g, " ").trim());
+    if (cells.some((c) => /^-+$/.test(c))) continue; // 구분선
+    if (cells.length) rows.push(cells);
+  }
+  return rows;
+}
+
+function checkPrices(pagePath, html, errors) {
+  if (!PRICE_SCOPE_RE.test(decodeURIComponent(pagePath))) return 0;
+
+  const allowed = new Set(allowedSkinAmounts());
+  const text = visibleText(html);
+  const tokens = moneyTokens(text);
+
+  // A. 화이트리스트
+  const seen = new Set();
+  for (const t of tokens) {
+    if (allowed.has(t.value) || seen.has(t.value)) continue;
+    seen.add(t.value);
+    errors.push(
+      `가격 정본에 없는 금액 "${t.raw}" — pricing.ts 허용치: ${allowedSkinAmounts()
+        .map((n) => won(n))
+        .join(", ")}`
+    );
+  }
+
+  // B. 표 행 대조
+  for (const cells of tableRows(html)) {
+    const row = SPOT_PRICE_ROWS.find((r) => cells[0] === r.name);
+    if (!row) continue;
+    const want = [won(row.upTo100), won(row.unlimited)];
+    const got = cells.slice(1);
+    if (got.length !== want.length || want.some((w, i) => got[i] !== w)) {
+      errors.push(
+        `가격표 "${row.name}" 행이 정본과 다르다 — 출력 [${got.join(", ")}], 정본 [${want.join(", ")}]`
+      );
+    }
+  }
+
+  // C. 문장 대조
+  for (const row of SPOT_PRICE_ROWS) {
+    const ok = new Set([row.upTo100, row.unlimited, perSpot(row)]);
+    for (const chunk of text.split(/[.!?\n]/)) {
+      if (!chunk.includes(row.name)) continue;
+      for (const t of moneyTokens(chunk)) {
+        if (ok.has(t.value)) continue;
+        errors.push(
+          `"${row.name}" 문장에 다른 항목의 금액 "${t.raw}" 이 섞였다 — 이 항목은 ${won(
+            row.upTo100
+          )} / ${won(row.unlimited)}`
+        );
+      }
+    }
+  }
+
+  // 제품 금액이 한 번이라도 어긋나면 A 에서 걸린다. 여기서는 존재만 세어 돌려준다.
+  void AFTERCARE_PRODUCTS;
+  return tokens.length;
 }
 
 const SCRIPT_RE =
@@ -620,6 +771,8 @@ function validate(pagePath, html) {
     [].concat(n["@type"]).includes("FAQPage")
   );
 
+  const priceTokens = checkPrices(pagePath, html, errors);
+
   return {
     errors,
     warnings,
@@ -629,6 +782,7 @@ function validate(pagePath, html) {
       refs: references.length,
       faq: faqPage ? (faqPage.mainEntity || []).length : 0,
       bytes: blocks[0].length,
+      priceTokens,
     },
   };
 }
@@ -641,6 +795,8 @@ let totalNodes = 0;
 let totalWithId = 0;
 let totalRefs = 0;
 let totalDangling = 0;
+let totalPriceTokens = 0;
+let pricePages = 0;
 const failures = [];
 
 console.log(`검증 대상 ${paths.length}개 URL — ${BASE}\n`);
@@ -681,6 +837,10 @@ for (const p of paths) {
     totalNodes += stats.nodes;
     totalWithId += stats.withId;
     totalRefs += stats.refs;
+    if (stats.priceTokens > 0) {
+      pricePages += 1;
+      totalPriceTokens += stats.priceTokens;
+    }
   }
   for (const e of errors) if (e.startsWith("끊긴 참조")) totalDangling += 1;
 
@@ -928,6 +1088,24 @@ try {
   }
 } catch (e) {
   console.log(`사이트맵      확인 실패 (${e.message})`);
+}
+
+/* 가격 정본 대조 결과. 건수만 찍으면 아무도 안 보므로 정본 표 자체를 같이 띄운다.
+   검사 대상이 0페이지면 스코프 정규식이 깨진 것이다 — 조용히 통과시키지 않는다. */
+console.log(
+  `가격 일관성    skin ${pricePages}페이지 · 금액 ${totalPriceTokens}건 대조 · 정본 ${SPOT_PRICE_ROWS.length}행`
+);
+for (const r of SPOT_PRICE_ROWS) {
+  console.log(`  · ${r.name} — 100개까지 ${won(r.upTo100)} / 무제한 ${won(r.unlimited)}`);
+}
+for (const p of AFTERCARE_PRODUCTS) {
+  console.log(`  · ${p.name} ${p.volume} — ${won(p.price)}`);
+}
+if (pricePages === 0) {
+  failed += 1;
+  const msg = "가격 검사가 한 페이지도 돌지 않았다 — PRICE_SCOPE_RE 를 확인하라";
+  console.log(`  ! ${msg}`);
+  failures.push(msg);
 }
 
 if (failed) {

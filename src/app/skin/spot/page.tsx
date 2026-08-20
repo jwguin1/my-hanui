@@ -33,6 +33,14 @@ import LocalBlock from "@/components/LocalBlock";
 import { LOCAL_BLOCKS, localFaqEntities } from "@/lib/local-blocks";
 import { CLINIC } from "@/lib/clinic";
 import { postPath } from "@/lib/slug";
+import {
+  SPOT_PRICE_ROWS,
+  SPOT_PRICE_HEADERS,
+  SPOT_PRICE_NOTE,
+  SPOT_ENTRY,
+  won,
+  wonDigits,
+} from "@/lib/pricing";
 
 export const metadata: Metadata = pageMetadata({
   path: "/skin/spot",
@@ -174,7 +182,11 @@ export default function SkinSpotPage() {
             </div>
 
             <div className="mx-auto mt-10 grid max-w-3xl grid-cols-1 gap-4 md:grid-cols-3">
-              <StatCard value="9,900" unit="원" label="개별 제거 1개" />
+              <StatCard
+                value={wonDigits(SPOT_ENTRY.upTo100)}
+                unit="원"
+                label={`${SPOT_ENTRY.name} 100개까지`}
+              />
               <StatCard value="1" unit="회" label="대부분 당일 완료" />
               <StatCard value="확대경" label="시술 전 확인" />
             </div>
@@ -275,30 +287,13 @@ export default function SkinSpotPage() {
             <div className="mx-auto mt-14 max-w-2xl">
               <PriceTable
                 caption="잡티 제거"
-                headers={["100개까지", "개수 제한 없음"]}
-                rows={[
-                  {
-                    name: "얼굴 1부위",
-                    price: "110,000원",
-                    price2: "165,000원",
-                  },
-                  {
-                    name: "얼굴 + 목 앞면",
-                    price: "165,000원",
-                    price2: "220,000원",
-                  },
-                  {
-                    name: "얼굴 + 목 앞·뒷면",
-                    price: "220,000원",
-                    price2: "275,000원",
-                  },
-                  {
-                    name: "개별 제거 (1개)",
-                    price: "9,900원",
-                    price2: "크기 제한 없음",
-                  },
-                ]}
-                note="전 항목 비급여이며 부가세 포함 금액입니다. 개수가 적으시면 개별 제거가 더 유리합니다. 시술 범위는 진료 후 함께 정합니다."
+                headers={SPOT_PRICE_HEADERS}
+                rows={SPOT_PRICE_ROWS.map((r) => ({
+                  name: r.name,
+                  price: won(r.upTo100),
+                  price2: won(r.unlimited),
+                }))}
+                note={SPOT_PRICE_NOTE}
               />
             </div>
           </SectionReveal>
