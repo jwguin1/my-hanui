@@ -15,16 +15,16 @@ export const metadata: Metadata = pageMetadata({
   path: "/about",
   title: CAROUSEL_TARGETS.about.title,
   description:
-    "건강보험 우선 진료, 대학병원급 초음파 진단, 비수술 치료. 과잉 진료 없이 정직하게, 환자 한 분 한 분의 이야기를 깊이 듣는 일산한의원입니다.",
+    "건강보험 우선 진료, 근골격계 초음파 진단, 비수술 치료. 과잉 진료 없이 정직하게, 환자 한 분 한 분의 이야기를 깊이 듣는 일산한의원입니다.",
   ogDescription:
-    "건강보험 우선 진료, 대학병원급 초음파 진단, 비수술 치료. 고양시 일산 이마트 풍산점 3층.",
+    "건강보험 우선 진료, 근골격계 초음파 진단, 비수술 치료. 고양시 일산 이마트 풍산점 3층.",
 });
 
 const graph = buildGraph({
   path: "/about",
   name: `${CAROUSEL_TARGETS.about.title} | 일산한의원`,
   description:
-    "건강보험 우선 진료, 대학병원급 초음파 진단, 비수술 치료. 과잉 진료 없이 정직하게, 환자 한 분 한 분의 이야기를 깊이 듣는 일산한의원입니다.",
+    "건강보험 우선 진료, 근골격계 초음파 진단, 비수술 치료. 과잉 진료 없이 정직하게, 환자 한 분 한 분의 이야기를 깊이 듣는 일산한의원입니다.",
   image: CAROUSEL_TARGETS.about.hero.src,
 });
 
@@ -80,7 +80,7 @@ export default function AboutPage() {
               <div className="gold-divider mt-5" />
               <p className="body-text mt-5" style={{ lineHeight: 2 }}>
                 주관적인 감에만 의존하지 않습니다. 정밀한 한의학적 진단에
-                대학병원급 초음파와 혈액검사 장비를 더해 상태를 객관적으로
+                GE Tortus 초음파 3대와 혈액검사 장비를 더해 상태를 객관적으로
                 파악합니다. 명확한 데이터를 바탕으로, 수술 없이 일상을 지킬 수
                 있는 정교한 비수술 치료를 제공합니다.
               </p>

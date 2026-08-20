@@ -5,12 +5,20 @@ import Image from "next/image";
 import DoctorCard from "./DoctorCard";
 import SectionReveal from "./SectionReveal";
 
+/** 국제 자격. 한국어 풀이를 붙이지 않는다 — app/doctor/page.tsx 의 주석 참조 */
+interface Credential {
+  abbr: string;
+  name: string;
+  issuer: string;
+  issuerFull: string;
+}
+
 interface Doctor {
   name: string;
   image: string;
   bio?: string[];
   school?: string;
-  credentials?: string[];
+  credentials?: Credential[];
   societies?: string[];
 }
 
@@ -101,11 +109,21 @@ export default function DoctorGrid({ doctors }: { doctors: Doctor[] }) {
                             자격
                           </dt>
                           <dd className="mt-2">
-                            <ul className="space-y-1.5 text-[0.9rem] leading-[1.7] text-text-muted">
+                            <ul className="space-y-2.5 text-[0.9rem] leading-[1.7] text-text-muted">
                               {selected.credentials.map((c) => (
-                                <li key={c} className="flex gap-2">
+                                <li key={c.abbr} className="flex gap-2">
                                   <span className="text-accent">·</span>
-                                  <span>{c}</span>
+                                  <span>
+                                    {/* 약칭 — 영문 정식명 — 발급기관.
+                                        한국어 직역을 넣지 않는다 (오인 표기가 된다) */}
+                                    <span className="text-text">
+                                      {c.abbr}
+                                    </span>{" "}
+                                    — {c.name}
+                                    <span className="mt-0.5 block text-[0.82rem]">
+                                      발급: {c.issuer} ({c.issuerFull})
+                                    </span>
+                                  </span>
                                 </li>
                               ))}
                             </ul>

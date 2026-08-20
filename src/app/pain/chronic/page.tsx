@@ -72,13 +72,29 @@ const QUESTIONS = [
   },
 ];
 
-const CONDITIONS = [
+/**
+ * href/linkLabel 은 선택 필드다.
+ *
+ * 지금은 링크가 걸린 항목이 하나도 없다 — 유일하게 있던
+ * 「석회성 건염 → 관련 연구 보기」가 심사 중인 글을 가리켜 제거했다.
+ * 타입을 명시하지 않으면 TS 가 두 필드를 없는 것으로 추론해서
+ * 아래 렌더링부(c.href)가 깨진다. 재공개 시 값만 되돌리면 되도록 남긴다.
+ */
+const CONDITIONS: Array<{
+  icon: React.ReactElement;
+  title: string;
+  body: string;
+  href?: string;
+  linkLabel?: string;
+}> = [
   {
     icon: <CircleDot />,
     title: "석회성 건염",
     body: "어깨 힘줄에 석회가 쌓여 갑자기 심한 통증이 생깁니다. 초음파로 위치와 크기를 확인합니다.",
-    href: "/pain/20260726-post-1",
-    linkLabel: "관련 연구 보기",
+    // 「관련 연구 보기」 → /pain/20260726-post-1 링크를 뺐다.
+    // 그 글은 심사 중(status: under_review)이라 목록·사이트맵에서 빠져 있다.
+    // URL 자체는 200 이지만, 도달 경로가 없는 글로 안내하지 않는다.
+    // 심사 후 재공개되면 이 두 줄을 되돌리면 된다.
   },
   {
     icon: <ArrowsUp />,

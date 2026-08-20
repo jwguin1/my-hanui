@@ -26,6 +26,36 @@ import {
 
 const SITE_URL = "https://www.ilsanhan.com";
 
+/**
+ * 글이 0편인 카테고리에서 대신 보낼 곳.
+ * 각 카테고리마다 **실제로 존재하는 진료 안내 페이지**가 하나씩 있다.
+ */
+const EMPTY_STATE_LINKS: Record<
+  Category,
+  { href: string; title: string; blurb: string }
+> = {
+  pain: {
+    href: "/pain/chronic",
+    title: "만성 통증 치료 안내",
+    blurb: "석회성 건염 · 오십견 · 디스크. 비용까지 공개했습니다.",
+  },
+  diet: {
+    href: "/diet/program",
+    title: "한방 다이어트 처방 안내",
+    blurb: "복용 방식과 확인해야 할 증상을 정리했습니다.",
+  },
+  skin: {
+    href: "/skin/spot",
+    title: "점 · 편평사마귀 · 쥐젖 제거 안내",
+    blurb: "부위별 비용과 시술 후 관리까지 정리했습니다.",
+  },
+  autonomic: {
+    href: "/autonomic/care",
+    title: "이명 · 어지럼 · 두통 치료 안내",
+    blurb: "증상별 치료 기준과 먼저 확인할 것을 정리했습니다.",
+  },
+};
+
 function toAbsoluteUrl(path: string): string {
   if (!path) return "";
   if (path.startsWith("http")) return path;
@@ -296,9 +326,59 @@ export default function CategoryListPage({ category }: { category: Category }) {
             ))}
           </div>
         ) : (
-          <div className="text-center py-20">
-            <p className="body-text">아직 작성된 글이 없습니다.</p>
-          </div>
+          /* 글이 0편일 때.
+             "아직 작성된 글이 없습니다" 한 줄은 비어 있는 게 아니라
+             **고장 난 것처럼** 보인다 — 사람도 크롤러도 그렇게 읽는다.
+             카테고리 인덱스는 글 목록이 없더라도 갈 곳을 주는
+             내비게이션 페이지 역할은 할 수 있으므로, 실제로 존재하는
+             진료 안내 · 다른 카테고리로 내보낸다. */
+          <SectionReveal>
+            <div className="card mx-auto max-w-3xl p-7 sm:p-9">
+              <SectionBadge label="준비 중" />
+              <h2 className="font-serif mt-2 text-[1.05rem] font-semibold leading-snug text-ink sm:text-[1.15rem]">
+                {label} 의학정보는 준비 중입니다
+              </h2>
+              <p className="mt-2 text-[0.85rem] leading-relaxed text-muted">
+                지금 보실 수 있는 안내를 모았습니다.
+              </p>
+
+              <div className="mt-6 grid gap-3">
+                <Link
+                  href={EMPTY_STATE_LINKS[category].href}
+                  className="group flex items-center justify-between gap-3 rounded-xl border border-line px-4 py-3.5 transition-colors duration-200 hover:bg-surface"
+                >
+                  <span className="min-w-0">
+                    <span className="block text-[0.95rem] font-semibold text-ink transition-colors duration-200 group-hover:text-primary">
+                      {EMPTY_STATE_LINKS[category].title}
+                    </span>
+                    <span className="mt-0.5 block text-[0.8rem] text-muted">
+                      {EMPTY_STATE_LINKS[category].blurb}
+                    </span>
+                  </span>
+                  <span aria-hidden="true" className="shrink-0 text-primary">
+                    →
+                  </span>
+                </Link>
+
+                <Link
+                  href="/pain"
+                  className="group flex items-center justify-between gap-3 rounded-xl border border-line px-4 py-3.5 transition-colors duration-200 hover:bg-surface"
+                >
+                  <span className="min-w-0">
+                    <span className="block text-[0.95rem] font-semibold text-ink transition-colors duration-200 group-hover:text-primary">
+                      통증 · 근골격 의학정보
+                    </span>
+                    <span className="mt-0.5 block text-[0.8rem] text-muted">
+                      환자분들이 자주 물으시는 질문에 답한 글 모음입니다.
+                    </span>
+                  </span>
+                  <span aria-hidden="true" className="shrink-0 text-primary">
+                    →
+                  </span>
+                </Link>
+              </div>
+            </div>
+          </SectionReveal>
         )}
       </section>
 

@@ -29,13 +29,27 @@ import {
   physicianStubs,
 } from "@/lib/schema";
 
+/**
+ * 진료 실적 수치.
+ *
+ * 숫자만 크게 띄우면 기간도 근거도 없는 광고 문구로 읽힌다.
+ * **산출 기준(개원 이래 · 원내 진료기록)은 TRUST_STATS_SOURCE 로 반드시 함께 노출한다.**
+ * 수치를 고칠 때 기준도 같이 확인할 것.
+ */
 const TRUST_STATS = [
-  { value: "13,000", unit: "명", label: "누적 내원 환자 수" },
-  { value: "80,000", unit: "회", label: "누적 내원 횟수" },
-  { value: "9,000", unit: "건", label: "누적 다이어트 처방 건수" },
+  // "명"은 연인원이 아니라 실인원이다 — 아래 80,000회(연인원)와 구분해서 읽혀야 한다
+  { value: "13,000", unit: "명", label: "내원 환자 수 (실인원)" },
+  { value: "80,000", unit: "회", label: "총 내원 횟수" },
+  { value: "9,000", unit: "건", label: "다이어트 처방 건수" },
   { value: "6", unit: "인", label: "한의사 협진 의료진" },
   { value: "20:00", unit: "까지", label: "평일 야간진료" },
 ];
+
+/**
+ * 위 수치의 산출 기준. 화면에서 TRUST_STATS 바로 아래에 함께 노출한다.
+ * 기간과 근거가 붙어야 과장 광고 소지가 사라지고, AI 가 인용할 수 있는 형태가 된다.
+ */
+const TRUST_STATS_SOURCE = "개원 이래 누적 · 원내 진료기록(EMR) 기준";
 
 const WHY_CARDS = [
   {
@@ -62,7 +76,7 @@ const PHILOSOPHY = [
   },
   {
     quote: "객관적이고 정교한 비수술 치료",
-    body: "대학병원급 초음파와 혈액검사 장비로 상태를 객관적으로 파악하고, 수술 없이 일상을 지킬 수 있는 치료를 제공합니다.",
+    body: "GE Tortus 초음파 3대와 혈액검사 장비로 상태를 객관적으로 파악하고, 수술 없이 일상을 지킬 수 있는 치료를 제공합니다.",
   },
   {
     quote: "내 몸에 꼭 맞는 해답을 찾는 동행",
@@ -202,6 +216,9 @@ export default async function Home() {
                 13,000명이 80,000번 찾아주셨습니다.
                 <br />
                 한 분이 평균 여섯 번 다시 오신 기록입니다.
+              </p>
+              <p className="mt-3 text-[12px] text-muted">
+                {TRUST_STATS_SOURCE}
               </p>
             </div>
 
