@@ -27,6 +27,7 @@ import {
   Zap,
 } from "@/components/ui/icons";
 import { SITE_URL } from "@/lib/categories";
+import { postPath } from "@/lib/slug";
 import { pageMetadata } from "@/lib/page-metadata";
 import JsonLd from "@/components/JsonLd";
 import { buildGraph } from "@/lib/schema";
@@ -41,7 +42,36 @@ export const metadata: Metadata = pageMetadata({
   routeOgImage: true,
 });
 
-const SYMPTOMS = [
+/**
+ * 내원 **전에** 다른 기관을 먼저 가야 하는 경우.
+ *
+ * 감별 가능한 것을 여기 넣지 않는다. 복사뼈 압통(Ottawa ankle rule 계열)은
+ * 진료실에서 초음파로 인대 손상인지 뼈 문제인지 가려내므로 red flag 가 아니라
+ * **진료 항목**이다 — SYMPTOMS 의 발목 카드 설명이 그 역할을 한다.
+ *
+ * 목록이 길어질수록 급한 신호가 묻힌다. 늘리지 말 것.
+ * 의학적 판단이 들어가는 문안이므로 원장 승인 없이 문장을 고치지 않는다.
+ */
+const RED_FLAGS = [
+  "발목을 접질린 뒤 네 걸음을 딛기 어렵다",
+  "관절이 눈에 띄게 어긋나 보인다",
+  "허리를 삐끗한 뒤 대소변 조절이 평소와 다르다",
+  "열이 나거나 체중이 갑자기 줄었다",
+];
+
+/**
+ * links 는 선택 필드다. 지금은 발목만 관련 글이 있다.
+ *
+ * 타입을 명시하지 않으면 TS 가 배열 리터럴에서 `links?: undefined` 를 끼워
+ * 우연히 통과시킨다 — 발목의 links 가 사라지는 순간 렌더링부가 깨진다.
+ * (pain/chronic 의 CONDITIONS 가 실제로 그렇게 깨졌다)
+ */
+const SYMPTOMS: Array<{
+  icon: React.ReactElement;
+  title: string;
+  body: string;
+  links?: Array<{ href: string; label: string }>;
+}> = [
   {
     icon: <Activity />,
     title: "담 결림",
@@ -55,7 +85,17 @@ const SYMPTOMS = [
   {
     icon: <Footprint />,
     title: "발목 접질림",
-    body: "계단이나 운동 중 발목이 꺾이고 부었나요?",
+    // 복사뼈 압통을 red flag 에서 뺀 근거를 여기 한 줄로 밝힌다 —
+    // 뺀 항목이 오히려 "여기서는 확인해 준다"는 근거가 된다.
+    body: "계단이나 운동 중 발목이 꺾이고 부었나요? 눌러서 아픈 위치를 초음파로 확인해 인대 손상인지 뼈 문제인지 가려냅니다.",
+    // 발목만 관련 글이 3편 있다. 새 페이지를 만들지 않고 기존 글로 보낸다.
+    // 경로는 반드시 postPath() 로 만든다 — lib/slug.ts 가 인코딩의 유일한 지점이고,
+    // 여기서 한글을 그대로 쓰면 사이트맵·canonical 과 문자열이 갈린다.
+    links: [
+      { href: postPath("pain", "발목-삐었을때-초기대처"), label: "냉찜질인가 온찜질인가" },
+      { href: postPath("pain", "발목염좌-오래가는이유"), label: "몇 주째 안 낫는 이유" },
+      { href: postPath("pain", "발목-자꾸-접질리는이유"), label: "자꾸 접질리는 이유" },
+    ],
   },
   {
     icon: <BodyScan />,
@@ -218,6 +258,51 @@ export default function AcutePainPage() {
         </div>
       </section>
 
+      {/* ── Red flag ──
+          위 DefinitionCard 는 "대부분 근육과 근막이 일시적으로 굳어 생기며
+          3~5회 안에 좋아진다"고 말한다. 그런데 바로 아래 증상 4개 중 하나가
+          발목 접질림이다 — 인대 손상이라 저 프레임에 들어가면 안 된다.
+          게다가 STAGES 의 재평가 게이트는 "3주 이상"에서 처음 작동하는데,
+          골절 감별에는 너무 늦다.
+
+          그래서 증상 목록 **앞에** 둔다. 순서가 곧 우선순위다.
+
+          담는 기준: **내원 전에 다른 기관을 먼저 가야 하는 경우만.**
+          복사뼈 압통처럼 진료실에서 초음파로 감별 가능한 것은 넣지 않는다 —
+          목록이 길어지면 진짜 급한 신호가 그 안에 묻힌다. */}
+      <section className="bg-[var(--bg)]">
+        <div className="section-padding !pt-0">
+          <SectionReveal>
+            <div className="mx-auto max-w-3xl rounded-2xl border border-primary/30 bg-surface p-6 sm:p-8">
+              <h2 className="font-serif text-[1.15rem] font-semibold leading-snug text-ink">
+                먼저 확인해야 할 신호
+              </h2>
+              <p className="mt-3 text-[0.95rem] leading-relaxed text-muted">
+                다음에 해당하면 침 치료보다 다른 검사나 진료가 먼저입니다.
+              </p>
+
+              <ul className="mt-5 space-y-2.5">
+                {RED_FLAGS.map((flag) => (
+                  <li
+                    key={flag}
+                    className="flex gap-3 text-[0.95rem] leading-[1.75] text-ink"
+                  >
+                    <span aria-hidden="true" className="shrink-0 text-primary">
+                      ·
+                    </span>
+                    <span>{flag}</span>
+                  </li>
+                ))}
+              </ul>
+
+              <p className="mt-6 border-t border-line pt-5 text-[0.9rem] leading-relaxed text-muted">
+                이 경우 영상 검사가 가능한 의료기관을 먼저 방문하시기 바랍니다.
+              </p>
+            </div>
+          </SectionReveal>
+        </div>
+      </section>
+
       {/* ── 증상 ── */}
       <section className="bg-[var(--surface)]">
         <div className="section-padding">
@@ -234,14 +319,28 @@ export default function AcutePainPage() {
 
             <div className="mx-auto mt-14 grid max-w-5xl gap-5 md:grid-cols-2 lg:grid-cols-4">
               {SYMPTOMS.map((s) => (
-                <div key={s.title} className="card p-6">
+                <div key={s.title} className="card flex flex-col p-6">
                   <IconTile icon={s.icon} />
                   <h3 className="mt-4 text-[16px] font-semibold text-ink">
                     {s.title}
                   </h3>
-                  <p className="mt-2 text-[14px] leading-[1.8] text-muted">
+                  <p className="mt-2 flex-1 text-[14px] leading-[1.8] text-muted">
                     {s.body}
                   </p>
+                  {s.links ? (
+                    <ul className="mt-4 space-y-1.5 border-t border-line pt-4">
+                      {s.links.map((l) => (
+                        <li key={l.href}>
+                          <Link
+                            href={l.href}
+                            className="text-[13px] font-medium text-primary transition-colors duration-200 hover:text-tan"
+                          >
+                            {l.label} &rarr;
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  ) : null}
                 </div>
               ))}
             </div>
