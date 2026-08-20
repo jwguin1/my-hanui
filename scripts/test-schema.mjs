@@ -222,14 +222,30 @@ test("진료시간: dayOfWeek 가 clinic.ts 정본과 일치한다", async () =>
     Array.isArray(h.days)
   );
   for (const [key, h] of dayBased) {
-    const spec = specs.find((s) => s.opens === h.opens && s.closes === h.closes);
+    // 같은 시각의 공휴일 항목을 집어 들지 않도록 dayOfWeek 가 있는 것만 본다
+    const spec = specs.find(
+      (s) =>
+        s.dayOfWeek !== undefined && s.opens === h.opens && s.closes === h.closes
+    );
     assert.ok(spec, `${key}(${h.opens}~${h.closes}) 항목이 없다`);
     assert.deepEqual([].concat(spec.dayOfWeek), [...h.days], `${key} 요일 불일치`);
   }
+  const weekly = specs.filter((x) => x.dayOfWeek !== undefined);
+  const dated = specs.filter((x) => x.validFrom !== undefined);
+  assert.equal(
+    weekly.length,
+    dayBased.length,
+    "요일 기반 openingHoursSpecification 개수가 clinic.ts 구간 수와 다르다"
+  );
+  assert.equal(
+    dated.length,
+    CLINIC.holidays.length,
+    "날짜 기반(공휴일) openingHoursSpecification 개수가 정적 표와 다르다"
+  );
   assert.equal(
     specs.length,
-    dayBased.length,
-    "openingHoursSpecification 개수가 요일 기반 구간 수와 다르다"
+    weekly.length + dated.length,
+    "요일도 날짜도 없는 openingHoursSpecification 항목이 있다"
   );
 });
 

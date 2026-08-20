@@ -322,7 +322,16 @@ function moneyTokens(text) {
   return out;
 }
 
-/** 태그를 줄바꿈으로 바꾼다 — 셀·문단이 서로 섞이지 않게 */
+/**
+ * 태그를 줄바꿈으로 바꾼다 — 셀·문단이 서로 섞이지 않게.
+ *
+ * **ld+json 내용을 남긴다.** 화면과 스키마를 **둘 다** 훑어야 하는 검사만
+ * 이걸 쓴다 (가격 화이트리스트 — 금액은 어느 쪽에 있든 정본이어야 한다).
+ *
+ * 「화면에 있어야 한다」·「화면에 없어야 한다」를 보는 검사는 **bodyText 를 쓴다.**
+ * 여기서 스키마 문자열이 섞여 들면 화면에 없는 문구가 통과한다 —
+ * 실제로 /contact 표기를 지웠는데 JSON-LD description 때문에 통과했다.
+ */
 function visibleText(html) {
   return html
     .replace(/<(script|style)[\s\S]*?<\/\1>/g, (block) =>
@@ -379,7 +388,8 @@ function tableRows(html) {
     if (cells.length) rows.push(cells);
   }
   // 파이프 표 (미렌더 상태)
-  for (const line of visibleText(html).split(String.fromCharCode(10))) {
+  // 파이프 표는 본문에만 있다 — ld+json 문자열이 섞이지 않게 bodyText 를 쓴다
+  for (const line of bodyText(html).split(" ")) {
     const t = line.trim();
     if (!t.startsWith("|") || !t.endsWith("|")) continue;
     const cells = t
@@ -599,7 +609,74 @@ function validate(pagePath, html) {
       );
 
     /* ── 진료시간 ── 「지금 진료하나요」류 질의에 직접 쓰이는 값이다 ── */
-    const specs = clinic.openingHoursSpecification || [];
+    const allSpecs = clinic.openingHoursSpecification || [];
+    /* 두 종류가 섞여 있다.
+         요일 기반 — dayOfWeek 가 있다 (평일 오전·오후, 주말)
+         날짜 기반 — validFrom/validThrough 가 있다 (공휴일 하루씩)
+       아래 요일 검사는 요일 기반만 대상이다. 날짜 기반을 섞으면
+       「주말 10:00~16:00」을 찾다가 같은 시각의 공휴일 항목을 집어 든다. */
+    const specs = allSpecs.filter((x) => x && x.dayOfWeek !== undefined);
+    const dateSpecs = allSpecs.filter(
+      (x) => x && x.dayOfWeek === undefined && x.validFrom !== undefined
+    );
+    const unknownSpecs = allSpecs.filter(
+      (x) => !x || (x.dayOfWeek === undefined && x.validFrom === undefined)
+    );
+    if (unknownSpecs.length)
+      errors.push(
+        `openingHoursSpecification 에 요일도 날짜도 없는 항목이 ${unknownSpecs.length}개 있다`
+      );
+
+    /* ── 공휴일(날짜 기반) 항목 ── 정적 표와 건수·날짜·시각을 전부 대조 ── */
+    {
+      const want = [...CLINIC.holidays].sort();
+      const got = dateSpecs
+        .map((x) => String(x.validFrom))
+        .slice()
+        .sort();
+      if (got.length !== want.length)
+        errors.push(
+          `공휴일 openingHours 건수가 정본과 다르다 — 출력 ${got.length}개, 정본 ${want.length}개`
+        );
+      const missing = want.filter((d) => !got.includes(d));
+      const extra = got.filter((d) => !want.includes(d));
+      if (missing.length)
+        errors.push(`공휴일 openingHours 에 빠진 날짜 — ${missing.join(", ")}`);
+      if (extra.length)
+        errors.push(`공휴일 openingHours 에 정본에 없는 날짜 — ${extra.join(", ")}`);
+      const dupes = got.filter((d, i) => got.indexOf(d) !== i);
+      if (dupes.length)
+        errors.push(
+          `공휴일 openingHours 에 중복 날짜 — ${[...new Set(dupes)].join(", ")}`
+        );
+
+      const hh = CLINIC.hours.holiday;
+      for (const spec of dateSpecs) {
+        if (spec.opens !== hh.opens || spec.closes !== hh.closes)
+          errors.push(
+            `공휴일 openingHours(${spec.validFrom}) 시각이 정본과 다르다 — 출력 ${spec.opens}~${spec.closes}, 정본 ${hh.opens}~${hh.closes}`
+          );
+        if (spec.validThrough !== spec.validFrom)
+          errors.push(
+            `공휴일 openingHours(${spec.validFrom}) 는 하루짜리여야 한다 — validThrough ${spec.validThrough}`
+          );
+        if (!/^\d{4}-\d{2}-\d{2}$/.test(String(spec.validFrom)))
+          errors.push(
+            `공휴일 openingHours 날짜 형식이 YYYY-MM-DD 가 아니다 — ${spec.validFrom}`
+          );
+      }
+
+      /* 지나간 날짜만 남는 상태는 「표 소진 60일 전 경고」와 **별개의 실패**다.
+         경고를 무시한 채 해가 바뀌면 스키마에는 과거 날짜 20개만 남는다 —
+         그 상태에서 크롤러가 읽으면 공휴일 정보가 통째로 무의미해진다. */
+      const today =
+        process.env.VALIDATE_TODAY || new Date().toISOString().slice(0, 10);
+      const future = want.filter((d) => d >= today);
+      if (want.length && future.length === 0)
+        errors.push(
+          `공휴일 openingHours 에 지나간 날짜만 남아 있다 (기준일 ${today}, 마지막 ${want.at(-1)}) — 다음 해 표를 넣어라`
+        );
+    }
     /* clinic.ts 의 구간 정의를 그대로 순회한다. 평일은 점심을 비우느라 두 구간이다.
        days 가 없는 구간(공휴일)은 **의도적으로** 뺀다 — 공휴일은 요일이 아니라
        날짜로 정해져 schema.org 의 dayOfWeek 로 표현되지 않는다.
@@ -767,9 +844,11 @@ function validate(pagePath, html) {
   }
 
   /* 화면에도 같은 잣대를 댄다. 장비 상세 문안처럼 JSON-LD 에 없고
-     화면에만 있는 문장이 있어서, 스키마만 보면 그냥 통과한다. */
+     화면에만 있는 문장이 있어서, 스키마만 보면 그냥 통과한다.
+     **bodyText 를 쓴다** — visibleText 는 ld+json 내용을 남기므로
+     스키마에만 있는 문자열이 화면 검사에 섞여 든다. */
   {
-    const screen = visibleText(html);
+    const screen = bodyText(html);
     for (const word of FORBIDDEN_ON_SCREEN) {
       if (screen.includes(word))
         errors.push(`화면에 금지 표현 "${word}" 가 있다`);
@@ -792,7 +871,7 @@ function validate(pagePath, html) {
   {
     /* 화면에 「개원 이래」를 쓰면서 연도를 안 붙인 곳이 있으면 잡는다.
        스키마에만 연도가 있고 화면에는 없으면 읽는 사람에게는 없는 것이다. */
-    const screen = visibleText(html).replace(/\s+/g, " ");
+    const screen = bodyText(html);
     const prefix = `${CLINIC.foundingYear}년 개원 이래`;
     let from = 0;
     for (;;) {
@@ -1335,9 +1414,11 @@ try {
       `시간 ${h.opens}–${h.closes} · 표기 "${CLINIC_WEEKEND_HOLIDAY_LABEL}"`
   );
   console.log(
-    `  · openingHours 제외 ${dayless.length}구간 (${dayless
+    `  · openingHours — 요일 기반 ${
+      Object.entries(CLINIC.hours).length - dayless.length
+    }구간 + 날짜 기반 ${CLINIC.holidays.length}건 (${dayless
       .map(([k]) => k)
-      .join(", ")}) — 요일로 표현되지 않아 JSON-LD 에 넣지 않는다`
+      .join(", ")}: dayOfWeek 없이 validFrom/validThrough 로 하루씩)`
   );
   if (h.opens !== w.opens || h.closes !== w.closes) {
     failed += 1;
