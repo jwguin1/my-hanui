@@ -45,6 +45,20 @@ import {
   validateSlug,
 } from "../src/lib/slug.ts";
 import { hasFaqSection, parsePostFaq } from "../src/lib/post-faq.ts";
+import { CLINIC } from "../src/lib/clinic.ts";
+
+/**
+ * 좌표가 들어 있어야 할 범위 — 고양시를 넉넉히 감싼다.
+ *
+ * **이 범위 검사가 핵심이다.** clinic.ts 값과 JSON-LD 출력을 대조하는 것만으로는
+ * clinic.ts 자체가 틀렸을 때 사이좋게 통과한다. 실제로 그런 일이 있었다 —
+ * 2026-03-29 에 들어온 37.7636/126.7735 가 실제 위치에서 10km 벗어난 채
+ * 144일간 살아 있었고, 그동안 이 검증기의 모든 검사가 통과였다.
+ *
+ * "출력이 존재하는가"가 아니라 "값이 맞는가"를 보는 검사가 없으면
+ * 구조화 데이터가 정교할수록 오류가 오래 살아남는다.
+ */
+const GEO_BOUNDS = { latMin: 37.6, latMax: 37.72, lngMin: 126.72, lngMax: 126.92 };
 
 const BASE = process.env.BASE || "http://localhost:3000";
 /**
@@ -257,6 +271,46 @@ function validate(pagePath, html) {
       if (!sameAs.includes(link)) errors.push(`sameAs 누락: ${link}`);
     if (sameAs.length !== 4)
       errors.push(`sameAs 가 ${sameAs.length}개 (4개여야 함)`);
+
+    /* ── NAP 값 대조 ── 존재 여부가 아니라 **값이 맞는가**를 본다 ── */
+
+    // (4) 좌표가 아예 없거나 숫자가 아니면 실패
+    const geo = clinic.geo;
+    if (!geo || typeof geo.latitude !== "number" || typeof geo.longitude !== "number") {
+      errors.push("병원 노드에 geo 좌표가 없거나 숫자가 아니다");
+    } else {
+      // (1) clinic.ts 정본과 출력이 일치하는가
+      if (geo.latitude !== CLINIC.geo.latitude || geo.longitude !== CLINIC.geo.longitude)
+        errors.push(
+          `좌표가 clinic.ts 와 다르다 — 출력 ${geo.latitude}/${geo.longitude}, 정본 ${CLINIC.geo.latitude}/${CLINIC.geo.longitude}`
+        );
+      // (2) 고양시 범위를 벗어나는가 — clinic.ts 자체가 틀린 경우를 잡는 유일한 검사
+      const { latMin, latMax, lngMin, lngMax } = GEO_BOUNDS;
+      if (
+        geo.latitude < latMin || geo.latitude > latMax ||
+        geo.longitude < lngMin || geo.longitude > lngMax
+      )
+        errors.push(
+          `좌표가 고양시 범위 밖이다 — ${geo.latitude}/${geo.longitude} (허용 ${latMin}~${latMax} / ${lngMin}~${lngMax})`
+        );
+    }
+
+    // (3) 주소·전화도 정본과 대조
+    const addr = clinic.address || {};
+    const expectedAddr = {
+      streetAddress: `${CLINIC.streetAddress}, ${CLINIC.building}`,
+      addressLocality: CLINIC.addressLocality,
+      addressRegion: CLINIC.addressRegion,
+      postalCode: CLINIC.postalCode,
+    };
+    for (const [k, want] of Object.entries(expectedAddr))
+      if (addr[k] !== want)
+        errors.push(`address.${k} 가 clinic.ts 와 다르다 — 출력 "${addr[k]}", 정본 "${want}"`);
+
+    if (clinic.telephone !== CLINIC.telIntl)
+      errors.push(
+        `telephone 이 clinic.ts 와 다르다 — 출력 "${clinic.telephone}", 정본 "${CLINIC.telIntl}"`
+      );
   }
 
   if (!graph.some((n) => n["@type"] === "WebSite"))
