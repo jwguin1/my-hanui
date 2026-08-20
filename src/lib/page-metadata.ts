@@ -15,7 +15,7 @@ import { OG_HEIGHT, OG_WIDTH } from "@/lib/og-image";
 
 /** 사이트 기본 OG 이미지 (public/og-image.jpg) */
 export const DEFAULT_OG_IMAGE = "/og-image.jpg";
-const DEFAULT_OG_IMAGE_SIZE = { width: 1280, height: 846 };
+const DEFAULT_OG_IMAGE_SIZE = { width: 1200, height: 630 };
 
 export interface PageMetadataInput {
   /** 사이트 루트 기준 경로 (`/about`). canonical 과 og:url 에 쓰인다. */

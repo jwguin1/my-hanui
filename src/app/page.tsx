@@ -122,55 +122,66 @@ const FAQS = [
 
 // "진료 범위" 섹션의 단일 소스 — 화면 카드와 아래 ItemList 노드가 이 배열에서 함께 생성된다.
 // 진료 페이지로 직접 보내는 카드 — 아카이브(/pain 등)는 하단 "의학정보" 섹션에만 둔다
+/**
+ * 카드 이미지는 **7개가 전부 달라야 한다.**
+ *
+ * 예전에는 카테고리 대표 OG 4장을 나눠 썼다 — `pain-og` 3회, `autonomic-og` 2회.
+ * 카드 7장 중 3장이 같은 그림이면 네이버가 캐러셀로 보지 않는다
+ * (경쟁사는 6개 전부 다른 이미지를 쓰고 캐러셀이 붙는다).
+ *
+ * 사진을 새로 찍는 대신 글 카드와 같은 방식의 제목 카드를 만들었다:
+ *   node scripts/generate-title-cards.mjs --clinic-cards
+ * 그 스크립트가 생성 직후 파일 해시를 대조해 중복이 없는지 확인한다.
+ */
 const CLINIC_CARDS = [
   {
     href: "/pain/acute",
     badge: "통증",
     heading: "급성 통증",
     blurb: "침·물리치료로 3~5회 안에",
-    ogImage: CATEGORY_META.pain.ogImage,
+    ogImage: "/images/cards/pain-acute.png",
   },
   {
     href: "/pain/chronic",
     badge: "통증",
     heading: "만성 통증",
     blurb: "추나·초음파약침, 비용 공개",
-    ogImage: CATEGORY_META.pain.ogImage,
+    ogImage: "/images/cards/pain-chronic.png",
   },
   {
     href: "/accident",
     badge: "통증",
     heading: "교통사고",
     blurb: "자동차보험 본인부담 없이",
-    ogImage: CATEGORY_META.pain.ogImage,
+    ogImage: "/images/cards/accident.png",
   },
   {
     href: "/internal/dyspepsia",
     badge: "내과",
     heading: "소화불량",
     blurb: "급체는 당일, 만성은 한약",
-    ogImage: CATEGORY_META.autonomic.ogImage,
+    ogImage: "/images/cards/internal-dyspepsia.png",
   },
   {
     href: "/autonomic/care",
     badge: "내과",
     heading: "이명·어지럼·두통",
     blurb: "침으로 먼저 반응 확인",
-    ogImage: CATEGORY_META.autonomic.ogImage,
+    ogImage: "/images/cards/autonomic-care.png",
   },
   {
     href: "/diet/program",
     badge: "대사",
     heading: "다이어트 처방",
     blurb: "식단을 지속하게 돕는 처방",
-    ogImage: CATEGORY_META.diet.ogImage,
+    ogImage: "/images/cards/diet-program.png",
   },
   {
     href: "/skin/spot",
     badge: "미용",
     heading: "잡티 제거",
     blurb: "점·편평사마귀·쥐젖, 비용 공개",
-    ogImage: CATEGORY_META.skin.ogImage,
+    ogImage: "/images/cards/skin-spot.png",
   },
 ] as const;
 

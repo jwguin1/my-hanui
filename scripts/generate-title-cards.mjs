@@ -58,6 +58,36 @@ const argv = process.argv.slice(2);
 const DRY_RUN = argv.includes("--dry-run");
 const FORCE = argv.includes("--force");
 const ONLY = argv.find((a) => a.startsWith("--only="))?.slice(7);
+/**
+ * 진료 안내 카드 모드 — 홈 `#treatment-list` ItemList 용.
+ *
+ * 홈의 진료 카드 7개가 카테고리 대표 OG 4장을 나눠 쓰고 있었다
+ * (pain-og 3회 · autonomic-og 2회 중복). 카드 7장 중 3장이 같은 그림이면
+ * 네이버가 캐러셀로 보지 않는다 — 경쟁사는 6개 전부 다른 이미지를 쓴다.
+ *
+ * 사진을 새로 찍는 대신 **글 카드와 같은 방식**으로 제목 카드를 만든다.
+ * Line B 21편 OG 가 이미 이 디자인이라 톤이 맞고, 중복 해소가 목적이라면
+ * 사진이 꼭 필요하지 않다.
+ *
+ *   node scripts/generate-title-cards.mjs --clinic-cards
+ *   → public/images/cards/{key}.png (+ .webp)
+ */
+const CLINIC_CARDS_MODE = argv.includes("--clinic-cards");
+
+/**
+ * src/app/page.tsx 의 CLINIC_CARDS 사본.
+ * .tsx 를 그대로 읽을 수 없어 heading 만 옮겨 둔다 —
+ * 어긋나면 아래 검증에서 파일 수가 맞지 않아 드러난다.
+ */
+const CLINIC_CARDS = [
+  { key: "pain-acute", heading: "급성 통증" },
+  { key: "pain-chronic", heading: "만성 통증" },
+  { key: "accident", heading: "교통사고" },
+  { key: "internal-dyspepsia", heading: "소화불량" },
+  { key: "autonomic-care", heading: "이명·어지럼·두통" },
+  { key: "diet-program", heading: "다이어트 처방" },
+  { key: "skin-spot", heading: "잡티 제거" },
+];
 
 /* ────────────────────────────────────────────────────────────
  * 레이아웃 계산
@@ -273,7 +303,76 @@ function collect() {
  * 실행
  * ────────────────────────────────────────────────────────── */
 
+/** 진료 안내 카드 7장. 글 카드와 같은 렌더러를 쓴다. */
+async function generateClinicCards() {
+  const outDir = path.join(PUBLIC_DIR, "images", "cards");
+  fs.mkdirSync(outDir, { recursive: true });
+
+  const mark = await buildLogoMark();
+  console.log(
+    "로고 마크 " + mark.width + "x" + mark.height + " (logo.png 에서 잘라냄)\n"
+  );
+
+  const pad = (s, n) => String(s).padEnd(n);
+  for (const c of CLINIC_CARDS) {
+    const png = path.join(outDir, c.key + ".png");
+    const webp = path.join(outDir, c.key + ".webp");
+    const exists = fs.existsSync(png);
+    if (exists && !FORCE) {
+      console.log("  " + pad("건너뜀", 8) + pad(c.key, 20) + "이미 있음 (--force 로 재생성)");
+      continue;
+    }
+    const buf = await renderCard(c.heading, mark);
+    fs.writeFileSync(png, buf);
+    await sharp(buf).webp({ quality: 82 }).toFile(webp);
+    console.log(
+      "  " + pad(exists ? "재생성" : "생성", 8) + pad(c.key, 20) +
+      c.heading + " · png " + Math.round(fs.statSync(png).size / 1024) + "KB"
+    );
+  }
+
+  /* 검증 — 쓴 파일을 다시 읽는다. 중복 제거가 목적이므로
+     **치수뿐 아니라 파일 내용이 서로 다른지**까지 본다. */
+  console.log("\n검증 (파일을 다시 읽어 확인)");
+  const hashes = new Map();
+  let bad = 0;
+  for (const c of CLINIC_CARDS) {
+    const png = path.join(outDir, c.key + ".png");
+    const webp = path.join(outDir, c.key + ".webp");
+    if (!fs.existsSync(png) || !fs.existsSync(webp)) {
+      console.log("  FAIL " + c.key + " — 쌍이 갖춰지지 않음");
+      bad += 1;
+      continue;
+    }
+    const m = await sharp(png).metadata();
+    const ok = m.width === WIDTH && m.height === HEIGHT;
+    if (!ok) bad += 1;
+    const hash = (await import("node:crypto"))
+      .createHash("sha1")
+      .update(fs.readFileSync(png))
+      .digest("hex")
+      .slice(0, 10);
+    if (hashes.has(hash)) {
+      console.log(`  FAIL ${c.key} — ${hashes.get(hash)} 와 내용이 같다 (중복)`);
+      bad += 1;
+    } else {
+      hashes.set(hash, c.key);
+    }
+    console.log(
+      "  " + (ok ? "PASS" : "FAIL") + " " + pad(c.key, 20) + m.width + "x" + m.height + " · " + hash
+    );
+  }
+  console.log(`\n고유 이미지 ${hashes.size}종 / ${CLINIC_CARDS.length}개`);
+  if (bad) {
+    console.error("검증 실패 " + bad + "건.");
+    process.exit(1);
+  }
+  console.log("전부 통과.");
+}
+
 async function main() {
+  if (CLINIC_CARDS_MODE) return generateClinicCards();
+
   let targets = collect();
   if (ONLY) targets = targets.filter((t) => t.id === ONLY);
   if (!targets.length) {

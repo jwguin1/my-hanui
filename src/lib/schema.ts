@@ -203,7 +203,7 @@ export function buildBreadcrumb(path: string, currentName?: string): SchemaNode 
  * (전역에 6인을 실으면 51개 페이지 용량만 늘고 /doctor 에서 중복된다).
  *
  * logo 와 image 는 역할이 다르다. logo 는 정사각 도장 로고(#logo, 512x512)를
- * 참조하고, image 는 대표 사진(og-image.jpg, 1280x846)을 그대로 둔다.
+ * 참조하고, image 는 대표 사진(og-image.jpg, 1200x630)을 그대로 둔다.
  * 단체사진을 로고로 선언하면 잘못된 값이고, 반대도 마찬가지다.
  */
 export function clinicNode(): SchemaNode {

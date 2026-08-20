@@ -226,6 +226,16 @@ for (const t of TARGETS) {
   }
 
   const skip = t.skip ?? [];
+  /* 건너뛴 검사를 **항상** 출력한다. 조용한 예외는 나중에 진짜 결함을 가린다 —
+     홈이 TARGETS 에 아예 없어서 캐러셀 결함이 안 보였던 것과 같은 종류의 위험이다.
+     ok:null 이라 PASS/FAIL 집계에는 들어가지 않고 로그에만 남는다. */
+  if (skip.length) {
+    results.push({
+      name: `${t.path} 검사 skip ${skip.length}건`,
+      ok: null,
+      detail: skip.join(", "),
+    });
+  }
   const imgs = parseImgs(html);
   const heroSrc = t.heroSrc ?? `/images/hero/${t.key}-hero.jpg`;
   const hero = imgs.find((i) => i.src === heroSrc);
