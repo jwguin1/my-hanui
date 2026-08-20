@@ -65,7 +65,28 @@ const FROZEN = {
  * .ts 를 그냥 import 할 수 없어 문자열만 옮겨 둔다 — 어긋나면 라벨 검사에서
  * 바로 FAIL 이 나므로 조용히 썩지 않는다.
  */
+/**
+ * 캐러셀 준비 상태를 검사할 페이지들.
+ *
+ * **홈(`/`)이 오래 빠져 있었다.** 그래서 홈 대표 이미지가 1916x479(비율 4.0)인
+ * 채로 73 PASS 가 나왔다 — 「일산한의원」 검색에서 우리만 캐러셀이 안 붙는데
+ * 검증기는 아무 말이 없었다. 좌표가 144일 살아남은 것과 같은 구조다.
+ *
+ * 홈은 title·canonical·푸터 앵커 규칙이 다른 페이지들과 다르고 그 세 가지는
+ * 아래 홈 전용 블록에서 이미 검사한다. 여기서 또 보면 규칙이 달라 **무관한
+ * FAIL 이 섞여** 진짜 문제를 가린다. 그래서 해당 검사는 `skip` 으로 끈다.
+ *
+ *   heroSrc  히어로 이미지 경로. 생략하면 `/images/hero/{key}-hero.jpg`
+ *   skip     이 타깃에서 건너뛸 검사 (title | footerAnchor | frozen)
+ */
 const TARGETS = [
+  {
+    key: "home",
+    path: "/",
+    // 홈 title 은 "…| 일산한의원" 형태가 아니고 FROZEN.homeTitle 로 따로 동결돼 있다.
+    // canonical·og:image 도 홈 전용 블록에서 본다. 푸터 캐러셀 6개에도 홈은 없다.
+    skip: ["title", "footerAnchor", "frozen"],
+  },
   { key: "pain", path: "/pain", title: "통증 · 근골격 – 추나, 초음파약침" },
   { key: "diet", path: "/diet", title: "다이어트 – 일산감비환 한방 체질 처방" },
   { key: "skin", path: "/skin", title: "피부 · 레이저 – CO₂, 점·편평사마귀" },
@@ -204,12 +225,24 @@ for (const t of TARGETS) {
     continue;
   }
 
+  const skip = t.skip ?? [];
   const imgs = parseImgs(html);
-  const heroSrc = `/images/hero/${t.key}-hero.jpg`;
+  const heroSrc = t.heroSrc ?? `/images/hero/${t.key}-hero.jpg`;
   const hero = imgs.find((i) => i.src === heroSrc);
 
   check(`${t.path} 히어로 <img> 존재`, !!hero, hero ? "" : heroSrc);
-  if (!hero) continue;
+  if (!hero) {
+    /* 히어로가 없으면 나머지 검사는 의미가 없다. 다만 그냥 넘어가면
+       「그럼 지금 대표 이미지가 뭔데」를 알 수 없다 — 캐러셀 썸네일은
+       본문 최상단 최대 이미지에서 나오므로 그것을 그대로 보여 준다. */
+    const first = imgs[0];
+    results.push({
+      name: `${t.path} 현재 본문 최상단 이미지`,
+      ok: null,
+      detail: first ? `${first.src} (${first.width ?? "?"}x${first.height ?? "?"})` : "이미지 없음",
+    });
+    continue;
+  }
 
   // next/image 로 변환되면 src 가 /_next/image?url=... 이 된다
   check(`${t.path} 일반 <img> (next/image 아님)`, !hero.src.includes("/_next/image"));
@@ -244,17 +277,24 @@ for (const t of TARGETS) {
   );
 
   // 라벨 일치: <title> = "{title} | 일산한의원", 푸터 앵커 = title 전체
-  const expectedTitle = `${t.title} | 일산한의원`;
-  check(`${t.path} title`, titleOf(html) === expectedTitle, titleOf(html) ?? "");
+  // 홈은 title 형식이 다르고(FROZEN.homeTitle) 푸터 캐러셀 6개에도 없어 건너뛴다.
+  if (!skip.includes("title")) {
+    const expectedTitle = `${t.title} | 일산한의원`;
+    check(`${t.path} title`, titleOf(html) === expectedTitle, titleOf(html) ?? "");
+  }
 
-  const anchors = anchorTexts(html, t.path);
-  check(
-    `${t.path} 푸터 앵커 = title`,
-    anchors.includes(t.title),
-    anchors.join(" / ")
-  );
+  if (!skip.includes("footerAnchor")) {
+    const anchors = anchorTexts(html, t.path);
+    check(
+      `${t.path} 푸터 앵커 = title`,
+      anchors.includes(t.title),
+      anchors.join(" / ")
+    );
+  }
 
-  // 순위 방어: canonical / og:image 불변
+  // 순위 방어: canonical / og:image 불변 — 홈은 아래 홈 전용 블록에서 본다
+  if (skip.includes("frozen")) continue;
+
   if (
     !check(
       `${t.path} canonical 불변`,
