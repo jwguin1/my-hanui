@@ -14,6 +14,7 @@ import {
 } from "@/lib/clinic";
 import JsonLd from "@/components/JsonLd";
 import { buildGraph } from "@/lib/schema";
+import ClinicMap from "@/components/ClinicMap";
 
 import PageHeader from "@/components/ui/PageHeader";
 import SectionBadge from "@/components/ui/SectionBadge";
@@ -129,18 +130,7 @@ export default function ContactPage() {
       {/* Naver Map */}
       <section className="section-padding !pt-0">
         <SectionReveal>
-          <div className="overflow-hidden rounded-[10px] border border-border">
-            <iframe
-              src="https://map.naver.com/p/entry/place/1040901343?placePath=%2Fhome"
-              width="100%"
-              height="400"
-              style={{ border: 0 }}
-              allowFullScreen
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              title="일산한의원 네이버 지도"
-            />
-          </div>
+          <ClinicMap />
           <div className="mt-6 flex flex-wrap justify-center gap-4">
             <a
               href="https://naver.me/IItclnGB"
