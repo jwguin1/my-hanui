@@ -88,14 +88,14 @@ export default function ClinicMap() {
       <div className="relative h-[400px] bg-surface">
         <div
           ref={container}
-          className="absolute inset-0"
+          className="h-full w-full"
           role="region"
           aria-label={`${CLINIC.name} 네이버 지도`}
           aria-hidden={!ready}
           style={{ visibility: ready ? "visible" : "hidden" }}
         />
         {!ready && (
-          <div className="relative flex h-full flex-col items-center justify-center px-5 text-center">
+          <div className="absolute inset-0 flex flex-col items-center justify-center px-5 text-center">
             <p className="text-sm font-medium text-accent">위치 안내</p>
             <h2 className="mt-3 font-serif text-2xl font-semibold text-text">
               {CLINIC.building}
