@@ -72,7 +72,9 @@ export default function ClinicMap() {
     if (!clientId) return;
     const previous = window.navermap_authFailure;
     window.navermap_authFailure = showDirections;
-    timer.current = setTimeout(showDirections, 15000);
+    // onReady can initialize the cached SDK before this effect on a revisit.
+    // Do not schedule a timeout that would tear down an already ready map.
+    if (!cleanup.current) timer.current = setTimeout(showDirections, 15000);
     // The SDK may already be cached after navigating away and back.
     initialize();
     return () => {
