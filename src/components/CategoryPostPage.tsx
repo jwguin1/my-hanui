@@ -11,6 +11,7 @@ import {
 import PostContent from "@/components/PostContent";
 import ClinicCta from "@/components/ClinicCta";
 import { painPostHub } from "@/lib/pain-groups";
+import { skinPostHub, PIGMENTATION_SLUGS } from "@/lib/skin-guides";
 import { CATEGORY_META } from "@/lib/categories";
 import { postImagePath } from "@/lib/og-image";
 import { postPath } from "@/lib/slug";
@@ -42,10 +43,13 @@ export default function CategoryPostPage({
 
   const label = CATEGORY_LABEL[category];
   // 이후로는 params 의 slug 가 아니라 정규화된 post.slug 만 쓴다
-  const linkedContent = autoLinkMarkdown(post.content, post.slug);
+  const isPigmentation = category === "skin" && PIGMENTATION_SLUGS.includes(post.slug);
+  // 새 글은 본문에 문맥에 맞는 링크를 직접 배치했다.
+  const linkedContent = isPigmentation ? post.content : autoLinkMarkdown(post.content, post.slug);
   const relatedPosts = getRelatedPosts(post.slug, 3, category);
   // 그룹 배열(lib/pain-groups.ts)이 정본이다. 글 쪽 프론트매터에 넣지 않는다.
-  const hub = category === "pain" ? painPostHub(post.slug) : undefined;
+  const hub = category === "pain" ? painPostHub(post.slug) : category === "skin" ? skinPostHub(post.slug) : undefined;
+  const headings = isPigmentation ? [...linkedContent.matchAll(/^## (.+)$/gm)].map((m) => m[1]) : [];
 
   // 파생 OG(1200x630) → 원본 썸네일 → 카테고리 대표 OG 순으로 폴백.
   // 폴더 키는 슬러그가 아니라 파일 ID 다.
@@ -77,6 +81,7 @@ export default function CategoryPostPage({
         headline: post.title,
         description: post.description,
         datePublished: toISO8601KST(post.date),
+        dateModified: toISO8601KST(post.updated ?? post.date),
         image: absoluteImage,
         author: post.author,
       }),
@@ -92,18 +97,18 @@ export default function CategoryPostPage({
       <section className="bg-[var(--surface)]">
         <div className="section-padding w-full !py-0 py-16 md:py-20">
           <Link
-            href={`/${category}`}
+            href={hub?.href ?? `/${category}`}
             className="text-[0.8rem] text-muted transition-colors hover:text-primary"
           >
-            &larr; {label} 목록
+            &larr; {hub?.label ?? `${label} 목록`}
           </Link>
           <h1 className="mt-5 text-[26px] font-bold leading-[1.35] tracking-[-0.02em] text-ink md:text-[38px]">
             {post.title}
           </h1>
-          <div className="mt-4 flex items-center gap-4 text-[0.8rem] text-muted">
-            <time>{formatDate(post.date)}</time>
+          <div className="mt-4 flex flex-wrap items-center gap-4 text-[0.8rem] text-muted">
+            <time dateTime={toISO8601KST(post.updated ?? post.date)}>{post.updated ? "최종 업데이트 " : ""}{formatDate(post.updated ?? post.date)}</time>
             {post.tags.length > 0 && (
-              <div className="flex gap-2">
+              <div className="flex flex-wrap gap-2">
                 {post.tags.map((tag) => (
                   <span key={tag} className="text-accent">
                     #{tag}
@@ -117,8 +122,12 @@ export default function CategoryPostPage({
 
       {/* Content */}
       <section className="section-padding">
+        {headings.length > 0 && <nav aria-label="이 글의 목차" className="mx-auto mb-8 max-w-3xl rounded-2xl border border-line bg-surface p-5">
+          <p className="text-sm font-semibold text-ink">이 글에서 확인할 내용</p>
+          <ol className="mt-3 space-y-2 text-sm text-primary">{headings.map((heading, i) => <li key={heading}><a href={`#section-${i + 1}`} className="underline underline-offset-4">{heading}</a></li>)}</ol>
+        </nav>}
         <article className="prose-custom mx-auto max-w-3xl">
-          <PostContent markdown={linkedContent} />
+          <PostContent markdown={linkedContent} headingAnchors={isPigmentation} />
         </article>
       </section>
 
@@ -149,6 +158,7 @@ export default function CategoryPostPage({
       )}
 
       <ClinicCta note={post.clinicNote} />
+      {isPigmentation && <div className="section-padding !pt-0 text-center"><Link href="/contact" className="text-sm font-medium text-primary underline underline-offset-4">일산한의원 오시는 길·진료시간</Link></div>}
 
       {/* Related posts */}
       {relatedPosts.length > 0 && (
@@ -186,8 +196,8 @@ export default function CategoryPostPage({
 
       {/* Bottom nav */}
       <section className="section-padding !pt-0 text-center">
-        <Link href={`/${category}`} className="btn-ghost">
-          목록으로 돌아가기
+        <Link href={hub?.href ?? `/${category}`} className="btn-ghost">
+          {isPigmentation ? "색소치료 질문 모음으로" : "목록으로 돌아가기"}
         </Link>
       </section>
 

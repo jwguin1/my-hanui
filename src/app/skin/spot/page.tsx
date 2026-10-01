@@ -390,6 +390,18 @@ export default function SkinSpotPage() {
 
       <LocalBlock {...LOCAL_BLOCKS["/skin/spot"]} />
 
+      <section className="section-padding">
+        <div className="mx-auto max-w-3xl rounded-2xl border border-line bg-surface p-6 sm:p-8">
+          <SectionBadge label="색소치료" />
+          <h2 className="mt-3 text-xl font-semibold text-ink">기미·주근깨·흑자가 고민이라면</h2>
+          <p className="mt-3 text-sm leading-relaxed text-muted">평평한 갈색 반점과 피부톤은 피코토닝·제네시스 색소치료 안내에서 확인하세요. 치료 차이와 비용, 시술 후 관리에 관한 질문을 모았습니다.</p>
+          <ul className="mt-5 space-y-3 text-sm font-medium text-primary">
+            <li><Link href="/skin/pigmentation" className="underline underline-offset-4">색소치료 · 피코토닝·제네시스 안내 →</Link></li>
+            <li><Link href={postPath("skin", "기미-주근깨-흑자-차이")} className="underline underline-offset-4">기미·주근깨·흑자, 어떻게 구분하나요? →</Link></li>
+          </ul>
+        </div>
+      </section>
+
       {/* ── CTA ── */}
       <section className="bg-[var(--surface)]">
         <div className="section-padding">

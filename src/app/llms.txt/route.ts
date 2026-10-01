@@ -6,6 +6,10 @@ import {
   CLINIC_HOURS_WEEKEND,
   CLINIC_WEEKEND_HOLIDAY_LABEL,
 } from "@/lib/clinic";
+import { getAllPosts } from "@/lib/blog-local";
+import { PIGMENTATION_SLUGS } from "@/lib/skin-guides";
+import { PIGMENTATION_PRICES, SHURINK_PRICES, won } from "@/lib/pricing";
+import { postPath } from "@/lib/slug";
 
 /**
  * llms.txt — AI 크롤러용 요약.
@@ -21,6 +25,11 @@ const BASE = "https://www.ilsanhan.com";
 function body(): string {
   const holidayLine = `- ${CLINIC_WEEKEND_HOLIDAY_LABEL}: ${CLINIC_HOURS_WEEKEND} (점심시간 없이 진료)`;
   const closedLine = `- ${CLINIC.holidayClosedNote}`;
+  const skinPosts = getAllPosts("skin");
+  const pigmentLinks = PIGMENTATION_SLUGS.flatMap((slug) => {
+    const post = skinPosts.find((p) => p.slug === slug);
+    return post ? [`- [${post.title}](${BASE}${postPath("skin", post.slug)})`] : [];
+  }).join("\n");
 
   return `# 일산한의원 (Ilsanhan Korean Medicine Clinic)
 
@@ -52,6 +61,8 @@ ${closedLine}
 - 근골격계 초음파 진단 (${CLINIC.ultrasound.name} ${CLINIC.ultrasound.count}대)
 - 체외충격파, 무중력 감압치료
 - 피부 CO2 레이저 (점·편평사마귀·쥐젖 제거)
+- 색소치료: 피코하이 피코토닝 · 엘리멘트 TL 제네시스
+- 슈링크 유니버스 리프팅
 
 ## 진료 안내 페이지
 
@@ -62,10 +73,21 @@ ${closedLine}
 - 이명·어지럼·두통: ${BASE}/autonomic/care
 - 다이어트 한약 처방: ${BASE}/diet/program
 - 잡티 제거 (점·편평사마귀·쥐젖): ${BASE}/skin/spot
+- 색소치료 (피코토닝·제네시스·기미·흑자): ${BASE}/skin/pigmentation
+
+## 색소치료 질문과 비용
+
+피코하이와 엘리멘트 TL을 사용합니다. 엘리멘트 TL은 532·755·1064nm 세 파장의 롱펄스 레이저입니다.
+2026-10-01 확인한 부가세 포함 가격:
+- ${PIGMENTATION_PRICES.name}: 1회 ${won(PIGMENTATION_PRICES.single)}, 10회 ${won(PIGMENTATION_PRICES.tenSessions)} (회당 ${won(PIGMENTATION_PRICES.perSession)})
+- ${SHURINK_PRICES.name}: 1회 ${won(SHURINK_PRICES.single)}, 3회 ${won(SHURINK_PRICES.threeSessions)}
+- 흑자 개별 치료 범위와 포함 여부는 상담 시 확인합니다.
+
+${pigmentLinks}
 
 ## 의학정보 아카이브
 
-진료 분야별로 논문·연구를 정리한 글 모음입니다.
+진료 분야별 질문과 치료 정보를 정리한 글 모음입니다.
 
 - 통증: ${BASE}/pain
 - 다이어트: ${BASE}/diet

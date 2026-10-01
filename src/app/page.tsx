@@ -184,6 +184,13 @@ const CLINIC_CARDS = [
     blurb: "점·편평사마귀·쥐젖, 비용 공개",
     ogImage: "/images/cards/skin-spot.png",
   },
+  {
+    href: "/skin/pigmentation",
+    badge: "미용",
+    heading: "색소치료",
+    blurb: "피코토닝·제네시스, 기미·흑자 질문",
+    ogImage: "/skin/pigmentation/opengraph-image",
+  },
 ] as const;
 
 // 네이버 사이트 컬렉션(카드 슬라이드) 노출용 — 화면 카드와 1:1 대응

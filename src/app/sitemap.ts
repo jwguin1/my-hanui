@@ -79,6 +79,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
     {
+      url: `${BASE_URL}/skin/pigmentation`,
+      lastModified: new Date("2026-10-01T00:00:00+09:00"),
+      changeFrequency: "monthly",
+      priority: 0.9,
+    },
+    {
       url: `${BASE_URL}/accident`,
       lastModified: new Date(),
       changeFrequency: "monthly",
@@ -121,7 +127,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // Next 의 sitemap 직렬화기는 URL 을 인코딩해 주지 않으므로(한글이 그대로 나간다)
     // 여기서 postPath() 를 거쳐 인코딩된 경로를 넘긴다.
     url: `${BASE_URL}${postPath(post.category, post.slug)}`,
-    lastModified: post.date ? new Date(post.date) : new Date(),
+    lastModified: new Date(post.updated || post.date),
     changeFrequency: "daily" as const,
     priority: 0.9,
   }));

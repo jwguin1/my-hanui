@@ -71,6 +71,7 @@ export function categoryPostMetadata(
       siteName: "일산한의원",
       locale: "ko_KR",
       publishedTime: post.date,
+      modifiedTime: post.updated ?? post.date,
       images: [image],
     },
     twitter: {

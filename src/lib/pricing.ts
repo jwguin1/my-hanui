@@ -58,6 +58,16 @@ export function wonDigits(amount: number): string {
 /** 진입 가격 = 가장 싼 행의 100개까지 금액 */
 export const SPOT_ENTRY: SpotPriceRow = SPOT_PRICE_ROWS[0];
 
+/** 2026-10-01 원장 확인. 모두 부가세 포함. */
+export const PIGMENTATION_PRICES = {
+  name: "피코 트리플 토닝 + 제네시스 혈관레이저",
+  single: 88000,
+  tenSessions: 660000,
+  perSession: 66000,
+} as const;
+
+export const SHURINK_PRICES = { name: "슈링크 유니버스 300샷", single: 99000, threeSessions: 264000 } as const;
+
 /** 100개 기준 개당 단가. 본문의 「개당 1,100원」이 여기서 나온다 */
 export function perSpot(row: SpotPriceRow): number {
   return Math.round(row.upTo100 / 100);
@@ -75,5 +85,6 @@ export function allowedSkinAmounts(): number[] {
     set.add(perSpot(r));
   }
   for (const p of AFTERCARE_PRODUCTS) set.add(p.price);
+  for (const amount of [PIGMENTATION_PRICES.single, PIGMENTATION_PRICES.tenSessions, PIGMENTATION_PRICES.perSession, SHURINK_PRICES.single, SHURINK_PRICES.threeSessions]) set.add(amount);
   return [...set].sort((a, b) => a - b);
 }

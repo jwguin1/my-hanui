@@ -32,6 +32,7 @@ export interface LatestPostCard {
   title: string;
   description: string;
   date: string;
+  updated?: string;
   /** 화면 <img> 용 상대경로. 파생 og.webp → og.png → 원본 썸네일 → 카테고리 대표 OG */
   imagePath: string;
   /** imagePath 파일의 실제 픽셀 크기 — <img width/height> 용 (CLS 방지) */
@@ -91,6 +92,7 @@ export function getLatestPostCards(limit: number = 5): LatestPostCard[] {
         title: post.title,
         description: post.description,
         date: post.date,
+        updated: post.updated,
         imagePath,
         imageWidth: size?.width ?? OG_WIDTH,
         imageHeight: size?.height ?? OG_HEIGHT,
@@ -118,6 +120,7 @@ export function latestPostsListNode(cards: LatestPostCard[]): SchemaNode {
       headline: card.title,
       description: card.description,
       datePublished: toISO8601KST(card.date),
+      dateModified: toISO8601KST(card.updated ?? card.date),
       image: card.image,
       author: card.author,
     }),

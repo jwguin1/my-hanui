@@ -13,12 +13,14 @@ export default function PriceTable({
   rows,
   note,
   headers,
+  rowLabel = "부위",
 }: {
   caption: string;
   rows: PriceRow[];
   note?: string;
   /** 지정하면 3열 모드 — [1열 금액 라벨, 2열 금액 라벨] */
   headers?: [string, string];
+  rowLabel?: string;
 }) {
   const threeCol = Boolean(headers);
 
@@ -34,7 +36,7 @@ export default function PriceTable({
             {/* 3열 모드 — sm 이상 */}
             <div className="hidden sm:block">
               <div className="flex items-center gap-4 border-b border-line bg-surface px-5 py-2.5">
-                <p className="min-w-0 flex-1 text-[13px] text-muted">부위</p>
+                <p className="min-w-0 flex-1 text-[13px] text-muted">{rowLabel}</p>
                 <p className="w-[112px] shrink-0 text-right text-[13px] text-muted">
                   {headers[0]}
                 </p>

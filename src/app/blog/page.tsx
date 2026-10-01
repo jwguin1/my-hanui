@@ -85,6 +85,7 @@ export default function BlogArchivePage() {
           headline: post.title,
           description: post.description,
           datePublished: toISO8601KST(post.date),
+          dateModified: toISO8601KST(post.updated ?? post.date),
           image,
           author: post.author,
         }),

@@ -2,6 +2,7 @@ import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 import { normalizeSlug, postPath, readSlugParam } from "@/lib/slug";
+import { SKIN_RELATED } from "@/lib/skin-guides";
 
 const CONTENT_DIR = path.join(process.cwd(), "content");
 
@@ -19,7 +20,7 @@ export const CATEGORY_DESCRIPTION: Record<Category, string> = {
   pain: "근골격계 통증, 신경포착증후군, 초음파 유도 치료 등 통증 관련 최신 의학정보를 다룹니다.",
   diet: "체중 관리, 대사 질환, 인크레틴 등 다이어트와 관련된 의학 연구를 소개합니다.",
   autonomic: "자율신경 기능, 스트레스, 수면 등 자율신경계 관련 건강정보를 전합니다.",
-  skin: "피부 질환, 피부 노화, 한의학적 접근 등 피부 관련 정보를 제공합니다.",
+  skin: "기미·주근깨·흑자, 피코토닝·제네시스, 점·편평사마귀·쥐젖에 관한 질문과 치료 정보를 모았습니다.",
 };
 
 export interface LocalBlogPost {
@@ -42,6 +43,7 @@ export interface LocalBlogPost {
   title: string;
   description: string;
   date: string;
+  updated?: string;
   thumbnail: string;
   tags: string[];
   published: boolean;
@@ -117,6 +119,7 @@ function readPostFile(filePath: string, id: string, category: string): LocalBlog
     title: (data.title as string) || id,
     description: (data.description as string) || "",
     date: (data.date as string) || "",
+    updated: (data.updated as string) || undefined,
     thumbnail: resolveThumbnail(data, content),
     tags: (data.tags as string[]) || [],
     published: data.published !== false,
@@ -212,6 +215,13 @@ export function getRelatedPosts(
   if (!current) return [];
 
   const others = all.filter((p) => p.slug !== slug);
+  const curated = current.category === "skin"
+    ? (SKIN_RELATED[slug] ?? []).flatMap((relatedSlug) => {
+        const post = others.find((p) => p.category === "skin" && p.slug === relatedSlug);
+        return post ? [post] : [];
+      })
+    : [];
+  if (curated.length >= maxCount) return curated.slice(0, maxCount);
   const currentTags = new Set(current.tags);
 
   const withOverlap = others
@@ -227,11 +237,12 @@ export function getRelatedPosts(
     )
     .map((s) => s.post);
 
-  if (withOverlap.length >= maxCount) return withOverlap.slice(0, maxCount);
+  const preferred = [...curated, ...withOverlap.filter((p) => !curated.some((c) => c.slug === p.slug))];
+  if (preferred.length >= maxCount) return preferred.slice(0, maxCount);
 
-  const picked = new Set(withOverlap.map((p) => p.slug));
+  const picked = new Set(preferred.map((p) => p.slug));
   const fillers = others.filter((p) => !picked.has(p.slug));
-  return [...withOverlap, ...fillers].slice(0, maxCount);
+  return [...preferred, ...fillers].slice(0, maxCount);
 }
 
 /**

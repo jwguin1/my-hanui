@@ -21,6 +21,7 @@ import {
   painGroupSlugs,
 } from "@/lib/pain-groups";
 import JsonLd from "@/components/JsonLd";
+import { PIGMENTATION_GROUPS, PIGMENTATION_SLUGS, PIGMENTATION_PATH } from "@/lib/skin-guides";
 import {
   articleStub,
   buildGraph,
@@ -86,9 +87,9 @@ export default function CategoryListPage({ category }: { category: Category }) {
      ItemList 도 같은 순서를 따른다 — 화면과 스키마가 갈리면 안 된다.
      배열에 없는 글은 뒤에 그대로 붙인다. 조용히 사라지게 두지 않는다. */
   const posts =
-    category === "pain"
+    category === "pain" || category === "skin"
       ? (() => {
-          const order = painGroupSlugs();
+          const order = category === "skin" ? PIGMENTATION_SLUGS : painGroupSlugs();
           const rank = new Map(order.map((slug, i) => [slug, i]));
           return [...all].sort(
             (a, b) =>
@@ -110,7 +111,10 @@ export default function CategoryListPage({ category }: { category: Category }) {
             .map((slug) => bySlug.get(slug))
             .filter((post) => post !== undefined),
         })).filter((g) => g.items.length > 0)
-      : [];
+      : category === "skin" ? [
+          ...PIGMENTATION_GROUPS.map((g) => ({ name: g.name, hub: { href: `${PIGMENTATION_PATH}#${g.id}`, label: "색소치료 안내" }, items: g.slugs.flatMap((slug) => { const post = bySlug.get(slug); return post ? [post] : []; }) })),
+          { name: "점·편평사마귀·쥐젖과 시술 후 관리", hub: { href: "/skin/spot", label: "잡티 제거 안내" }, items: posts.filter((p) => !PIGMENTATION_SLUGS.includes(p.slug)) },
+        ].filter((g) => g.items.length > 0) : [];
 
   const path = `/${category}`;
   const listNode = itemListNode(path, "post-list", `일산한의원 ${label}`, posts.map((post) => {
@@ -130,6 +134,7 @@ export default function CategoryListPage({ category }: { category: Category }) {
         headline: post.title,
         description: post.description,
         datePublished: toISO8601KST(post.date),
+        dateModified: toISO8601KST(post.updated ?? post.date),
         image,
         author: post.author,
       }),
@@ -163,6 +168,8 @@ export default function CategoryListPage({ category }: { category: Category }) {
       {/* 네이버 하위링크 카드용 대표이미지 — 본문 최상단의 첫 이미지이자 최대 이미지.
           /autonomic 은 이번 캐러셀 타깃이 아니라 배너를 두지 않는다. */}
       {category !== "autonomic" && <PageHeroBanner page={category} />}
+
+      {category === "skin" && <section className="section-padding !pb-0 !pt-8"><Link href={PIGMENTATION_PATH} className="card mx-auto block max-w-3xl p-6 transition-colors hover:border-primary"><SectionBadge label="색소치료" /><h2 className="mt-3 text-lg font-semibold text-ink">피코토닝 · 제네시스 치료와 비용 안내 →</h2><p className="mt-2 text-sm leading-relaxed text-muted">기미·주근깨·흑자, 피부결·홍조에 관한 질문 10개를 모았습니다.</p></Link></section>}
 
       {/* Diet / Skin / Autonomic 치료 안내 페이지 배너 */}
       {(category === "diet" ||

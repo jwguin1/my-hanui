@@ -2,8 +2,9 @@ import Image from "next/image";
 import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 
-export default function PostContent({ markdown }: { markdown: string }) {
+export default function PostContent({ markdown, headingAnchors = false }: { markdown: string; headingAnchors?: boolean }) {
   let imgIndex = 0;
+  let headingIndex = 0;
 
   return (
     <Markdown
@@ -16,6 +17,9 @@ export default function PostContent({ markdown }: { markdown: string }) {
          취소선이 된다 (해당 7줄 확인). 켜지 않는다. */
       remarkPlugins={[[remarkGfm, { singleTilde: false }]]}
       components={{
+        h2({ children }) {
+          return <h2 id={headingAnchors ? `section-${++headingIndex}` : undefined} className="scroll-mt-28">{children}</h2>;
+        },
         /* 표는 가로 스크롤 컨테이너로 감싼다 — 모바일에서 페이지 자체가
            옆으로 밀리면 안 된다. react-markdown 은 <table> 을 그대로 뱉으므로
            여기서 감싸주지 않으면 감쌀 곳이 없다. */
