@@ -21,7 +21,7 @@ import {
   painGroupSlugs,
 } from "@/lib/pain-groups";
 import JsonLd from "@/components/JsonLd";
-import { PIGMENTATION_GROUPS, PIGMENTATION_SLUGS, PIGMENTATION_PATH } from "@/lib/skin-guides";
+import { PIGMENTATION_GROUPS, SKIN_GUIDE_SLUGS, PIGMENTATION_PATH, LIFTING_PATH, LIFTING_SLUGS } from "@/lib/skin-guides";
 import {
   articleStub,
   buildGraph,
@@ -89,7 +89,7 @@ export default function CategoryListPage({ category }: { category: Category }) {
   const posts =
     category === "pain" || category === "skin"
       ? (() => {
-          const order = category === "skin" ? PIGMENTATION_SLUGS : painGroupSlugs();
+          const order = category === "skin" ? SKIN_GUIDE_SLUGS : painGroupSlugs();
           const rank = new Map(order.map((slug, i) => [slug, i]));
           return [...all].sort(
             (a, b) =>
@@ -113,7 +113,8 @@ export default function CategoryListPage({ category }: { category: Category }) {
         })).filter((g) => g.items.length > 0)
       : category === "skin" ? [
           ...PIGMENTATION_GROUPS.map((g) => ({ name: g.name, hub: { href: `${PIGMENTATION_PATH}#${g.id}`, label: "색소치료 안내" }, items: g.slugs.flatMap((slug) => { const post = bySlug.get(slug); return post ? [post] : []; }) })),
-          { name: "점·편평사마귀·쥐젖과 시술 후 관리", hub: { href: "/skin/spot", label: "잡티 제거 안내" }, items: posts.filter((p) => !PIGMENTATION_SLUGS.includes(p.slug)) },
+          { name: "슈링크 유니버스·리프팅", hub: { href: LIFTING_PATH, label: "리프팅 안내" }, items: LIFTING_SLUGS.flatMap((slug) => { const post = bySlug.get(slug); return post ? [post] : []; }) },
+          { name: "점·편평사마귀·쥐젖과 시술 후 관리", hub: { href: "/skin/spot", label: "잡티 제거 안내" }, items: posts.filter((p) => !SKIN_GUIDE_SLUGS.includes(p.slug)) },
         ].filter((g) => g.items.length > 0) : [];
 
   const path = `/${category}`;
@@ -169,7 +170,12 @@ export default function CategoryListPage({ category }: { category: Category }) {
           /autonomic 은 이번 캐러셀 타깃이 아니라 배너를 두지 않는다. */}
       {category !== "autonomic" && <PageHeroBanner page={category} />}
 
-      {category === "skin" && <section className="section-padding !pb-0 !pt-8"><Link href={PIGMENTATION_PATH} className="card mx-auto block max-w-3xl p-6 transition-colors hover:border-primary"><SectionBadge label="색소치료" /><h2 className="mt-3 text-lg font-semibold text-ink">피코토닝 · 제네시스 치료와 비용 안내 →</h2><p className="mt-2 text-sm leading-relaxed text-muted">기미·주근깨·흑자, 피부결·홍조에 관한 질문 10개를 모았습니다.</p></Link></section>}
+      {category === "skin" && <section className="section-padding !pb-0 !pt-8">
+        <div className="mx-auto grid max-w-3xl gap-4 sm:grid-cols-2">
+          <Link href={PIGMENTATION_PATH} className="card block p-6 transition-colors hover:border-primary"><SectionBadge label="색소치료" /><h2 className="mt-3 text-lg font-semibold text-ink">피코토닝·제네시스 안내 →</h2><p className="mt-2 text-sm leading-relaxed text-muted">기미·주근깨·흑자, 피부결·홍조에 관한 질문 10개를 모았습니다.</p></Link>
+          <Link href={LIFTING_PATH} className="card block p-6 transition-colors hover:border-primary"><SectionBadge label="리프팅" /><h2 className="mt-3 text-lg font-semibold text-ink">슈링크 유니버스 안내 →</h2><p className="mt-2 text-sm leading-relaxed text-muted">볼살·턱선, 300샷 비용과 시술 시간·주기를 확인하세요.</p></Link>
+        </div>
+      </section>}
 
       {/* Diet / Skin / Autonomic 치료 안내 페이지 배너 */}
       {(category === "diet" ||

@@ -52,6 +52,7 @@ export const SITE_NAV: NavGroup[] = [
           { href: "/diet/program", label: "다이어트 처방" },
           { href: "/skin/spot", label: "잡티 제거" },
           { href: "/skin/pigmentation", label: "색소치료" },
+          { href: "/skin/lifting", label: "리프팅" },
           { href: "/autonomic/care", label: "이명·어지럼·두통" },
         ],
       },
@@ -69,7 +70,7 @@ export const SITE_NAV: NavGroup[] = [
         // 발행된 질문 글이 있는 카테고리는 콘텐츠 목록으로도 연결한다.
         items: [
           { href: "/pain", label: CAROUSEL_TARGETS.pain.navLabel },
-          { href: "/skin", label: "피부 · 레이저 질문 모음" },
+          { href: "/skin", label: "피부 · 리프팅 질문 모음" },
         ],
       },
       {

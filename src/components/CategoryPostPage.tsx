@@ -11,7 +11,7 @@ import {
 import PostContent from "@/components/PostContent";
 import ClinicCta from "@/components/ClinicCta";
 import { painPostHub } from "@/lib/pain-groups";
-import { skinPostHub, PIGMENTATION_SLUGS } from "@/lib/skin-guides";
+import { skinPostHub, SKIN_GUIDE_SLUGS, LIFTING_SLUGS } from "@/lib/skin-guides";
 import { CATEGORY_META } from "@/lib/categories";
 import { postImagePath } from "@/lib/og-image";
 import { postPath } from "@/lib/slug";
@@ -43,13 +43,13 @@ export default function CategoryPostPage({
 
   const label = CATEGORY_LABEL[category];
   // 이후로는 params 의 slug 가 아니라 정규화된 post.slug 만 쓴다
-  const isPigmentation = category === "skin" && PIGMENTATION_SLUGS.includes(post.slug);
+  const isSkinGuide = category === "skin" && SKIN_GUIDE_SLUGS.includes(post.slug);
   // 새 글은 본문에 문맥에 맞는 링크를 직접 배치했다.
-  const linkedContent = isPigmentation ? post.content : autoLinkMarkdown(post.content, post.slug);
+  const linkedContent = isSkinGuide ? post.content : autoLinkMarkdown(post.content, post.slug);
   const relatedPosts = getRelatedPosts(post.slug, 3, category);
   // 그룹 배열(lib/pain-groups.ts)이 정본이다. 글 쪽 프론트매터에 넣지 않는다.
   const hub = category === "pain" ? painPostHub(post.slug) : category === "skin" ? skinPostHub(post.slug) : undefined;
-  const headings = isPigmentation ? [...linkedContent.matchAll(/^## (.+)$/gm)].map((m) => m[1]) : [];
+  const headings = isSkinGuide ? [...linkedContent.matchAll(/^## (.+)$/gm)].map((m) => m[1]) : [];
 
   // 파생 OG(1200x630) → 원본 썸네일 → 카테고리 대표 OG 순으로 폴백.
   // 폴더 키는 슬러그가 아니라 파일 ID 다.
@@ -127,7 +127,7 @@ export default function CategoryPostPage({
           <ol className="mt-3 space-y-2 text-sm text-primary">{headings.map((heading, i) => <li key={heading}><a href={`#section-${i + 1}`} className="underline underline-offset-4">{heading}</a></li>)}</ol>
         </nav>}
         <article className="prose-custom mx-auto max-w-3xl">
-          <PostContent markdown={linkedContent} headingAnchors={isPigmentation} />
+          <PostContent markdown={linkedContent} headingAnchors={isSkinGuide} />
         </article>
       </section>
 
@@ -158,7 +158,7 @@ export default function CategoryPostPage({
       )}
 
       <ClinicCta note={post.clinicNote} />
-      {isPigmentation && <div className="section-padding !pt-0 text-center"><Link href="/contact" className="text-sm font-medium text-primary underline underline-offset-4">일산한의원 오시는 길·진료시간</Link></div>}
+      {isSkinGuide && <div className="section-padding !pt-0 text-center"><Link href="/contact" className="text-sm font-medium text-primary underline underline-offset-4">일산한의원 오시는 길·진료시간</Link></div>}
 
       {/* Related posts */}
       {relatedPosts.length > 0 && (
@@ -197,7 +197,7 @@ export default function CategoryPostPage({
       {/* Bottom nav */}
       <section className="section-padding !pt-0 text-center">
         <Link href={hub?.href ?? `/${category}`} className="btn-ghost">
-          {isPigmentation ? "색소치료 질문 모음으로" : "목록으로 돌아가기"}
+          {isSkinGuide ? (LIFTING_SLUGS.includes(post.slug) ? "리프팅 질문 모음으로" : "색소치료 질문 모음으로") : "목록으로 돌아가기"}
         </Link>
       </section>
 

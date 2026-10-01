@@ -7,7 +7,7 @@ import {
   CLINIC_WEEKEND_HOLIDAY_LABEL,
 } from "@/lib/clinic";
 import { getAllPosts } from "@/lib/blog-local";
-import { PIGMENTATION_SLUGS } from "@/lib/skin-guides";
+import { PIGMENTATION_SLUGS, LIFTING_SLUGS, LIFTING_PATH, SHURINK_CARE } from "@/lib/skin-guides";
 import { PIGMENTATION_PRICES, SHURINK_PRICES, won } from "@/lib/pricing";
 import { postPath } from "@/lib/slug";
 
@@ -27,6 +27,10 @@ function body(): string {
   const closedLine = `- ${CLINIC.holidayClosedNote}`;
   const skinPosts = getAllPosts("skin");
   const pigmentLinks = PIGMENTATION_SLUGS.flatMap((slug) => {
+    const post = skinPosts.find((p) => p.slug === slug);
+    return post ? [`- [${post.title}](${BASE}${postPath("skin", post.slug)})`] : [];
+  }).join("\n");
+  const liftingLinks = LIFTING_SLUGS.flatMap((slug) => {
     const post = skinPosts.find((p) => p.slug === slug);
     return post ? [`- [${post.title}](${BASE}${postPath("skin", post.slug)})`] : [];
   }).join("\n");
@@ -74,16 +78,26 @@ ${closedLine}
 - 다이어트 한약 처방: ${BASE}/diet/program
 - 잡티 제거 (점·편평사마귀·쥐젖): ${BASE}/skin/spot
 - 색소치료 (피코토닝·제네시스·기미·흑자): ${BASE}/skin/pigmentation
+- 리프팅 (슈링크 유니버스·탄력·턱선): ${BASE}${LIFTING_PATH}
 
 ## 색소치료 질문과 비용
 
 피코하이와 엘리멘트 TL을 사용합니다. 엘리멘트 TL은 532·755·1064nm 세 파장의 롱펄스 레이저입니다.
 2026-10-01 확인한 부가세 포함 가격:
 - ${PIGMENTATION_PRICES.name}: 1회 ${won(PIGMENTATION_PRICES.single)}, 10회 ${won(PIGMENTATION_PRICES.tenSessions)} (회당 ${won(PIGMENTATION_PRICES.perSession)})
-- ${SHURINK_PRICES.name}: 1회 ${won(SHURINK_PRICES.single)}, 3회 ${won(SHURINK_PRICES.threeSessions)}
 - 흑자 개별 치료 범위와 포함 여부는 상담 시 확인합니다.
 
 ${pigmentLinks}
+
+## 리프팅 질문과 비용
+
+슈링크 유니버스를 사용합니다. 2026-10-01 확인한 부가세 포함 가격:
+- ${SHURINK_PRICES.name}: 1회 ${won(SHURINK_PRICES.single)}, 3회 ${won(SHURINK_PRICES.threeSessions)} (매회 300샷, 회당 ${won(SHURINK_PRICES.threeSessions / 3)})
+- 시술 과정: ${SHURINK_CARE.steps.map((step) => `${step.title} ${step.minutes}분`).join(" → ")} (총 약 ${SHURINK_CARE.totalMinutes}분, 초진 상담·접수 별도)
+- 원내 재시술 안내 간격: ${SHURINK_CARE.intervalWeeks}주
+- 피부 탄력과 처짐은 리프팅, 갈색 색소와 피부톤은 피코토닝, 붉은기와 피부결은 제네시스를 중심으로 상담합니다.
+
+${liftingLinks}
 
 ## 의학정보 아카이브
 

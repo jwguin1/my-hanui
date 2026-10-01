@@ -15,8 +15,8 @@ import JsonLd from "@/components/JsonLd";
 import { pageMetadata } from "@/lib/page-metadata";
 import { getAllPosts } from "@/lib/blog-local";
 import { buildGraph, faqEntities, itemListNode, absoluteUrl } from "@/lib/schema";
-import { PIGMENTATION_GROUPS, PIGMENTATION_PATH, PIGMENTATION_UPDATED } from "@/lib/skin-guides";
-import { PIGMENTATION_PRICES, SHURINK_PRICES, won, wonDigits } from "@/lib/pricing";
+import { PIGMENTATION_GROUPS, PIGMENTATION_PATH, PIGMENTATION_UPDATED, LIFTING_PATH } from "@/lib/skin-guides";
+import { PIGMENTATION_PRICES, won, wonDigits } from "@/lib/pricing";
 import { postPath } from "@/lib/slug";
 import { CLINIC } from "@/lib/clinic";
 
@@ -132,8 +132,12 @@ export default function PigmentationPage() {
         <div className="mx-auto max-w-3xl text-center"><SectionBadge icon={<ChartBar size={15} />} label="비용 안내" /><div className="mt-4"><TwoTone as="h2" lead="제네시스까지 " accent="포함한 비용" /></div></div>
         <div className="mx-auto mt-12 max-w-3xl space-y-6">
           <PriceTable rowLabel="시술" caption={PIGMENTATION_PRICES.name} headers={["1회", "10회"]} rows={[{ name: "피코·제네시스", price: won(PIGMENTATION_PRICES.single), price2: won(PIGMENTATION_PRICES.tenSessions) }]} note={`부가세 포함 · 10회 패키지 회당 ${won(PIGMENTATION_PRICES.perSession)}. 흑자 개별 치료 범위와 포함 여부는 상담 시 확인하세요.`} />
-          <PriceTable rowLabel="시술" caption="리프팅 비용 안내" headers={["1회", "3회"]} rows={[{ name: SHURINK_PRICES.name, price: won(SHURINK_PRICES.single), price2: won(SHURINK_PRICES.threeSessions) }]} note="부가세 포함 · 슈링크 유니버스를 사용합니다." />
           <Link href={postPath("skin", "피코토닝-가격-제네시스")} className="block text-sm font-medium text-primary underline underline-offset-4">피코토닝 가격과 시술 구성에서 확인할 것 →</Link>
+          <div className="card p-5">
+            <h3 className="font-semibold text-ink">탄력과 턱선도 고민이라면</h3>
+            <p className="mt-2 text-sm leading-relaxed text-muted">슈링크 유니버스의 300샷 비용, 30분 시술 과정과 12주 재시술 간격은 리프팅 안내에서 확인하세요.</p>
+            <Link href={LIFTING_PATH} className="mt-3 inline-block text-sm font-medium text-primary underline underline-offset-4">슈링크 유니버스 리프팅·비용 안내 →</Link>
+          </div>
         </div>
       </div>
     </section>

@@ -191,6 +191,13 @@ const CLINIC_CARDS = [
     blurb: "피코토닝·제네시스, 기미·흑자 질문",
     ogImage: "/skin/pigmentation/opengraph-image",
   },
+  {
+    href: "/skin/lifting",
+    badge: "미용",
+    heading: "리프팅",
+    blurb: "슈링크 유니버스, 탄력·턱선·300샷 비용",
+    ogImage: "/skin/lifting/opengraph-image",
+  },
 ] as const;
 
 // 네이버 사이트 컬렉션(카드 슬라이드) 노출용 — 화면 카드와 1:1 대응
