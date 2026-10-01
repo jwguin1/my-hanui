@@ -47,7 +47,7 @@ for (const path of [LIFTING_PATH, ...paths]) {
   if (path !== LIFTING_PATH) {
     const article = body.match(/<article\b[^>]*>([\s\S]*?)<\/article>/)?.[1];
     assert.ok(article && article.length > 500, `${path}: article HTML`);
-    assert.ok(!/href="https?:/.test(article), `${path}: external article link`);
+    assert.ok(!/href="https?:/.test(article.replaceAll('href="https://pf.kakao.com/_eXXun"', "")), `${path}: external reference link`);
     assert.ok(body.includes(`href="${LIFTING_PATH}"`), `${path}: hub backlink`);
     assert.ok(body.includes("리프팅 질문 모음으로"), `${path}: wrong return label`);
     assert.ok(body.includes("이 글의 목차") && body.includes("관련 글"), `${path}: reading navigation`);

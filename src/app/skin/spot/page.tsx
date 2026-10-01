@@ -1,3 +1,4 @@
+import ConsultationActions from "@/components/ConsultationActions";
 import type { Metadata } from "next";
 import Link from "next/link";
 import SectionReveal from "@/components/SectionReveal";
@@ -6,7 +7,6 @@ import SectionBadge from "@/components/ui/SectionBadge";
 import TwoTone from "@/components/ui/TwoTone";
 import IconTile from "@/components/ui/IconTile";
 import StatCard from "@/components/ui/StatCard";
-import PillButton from "@/components/ui/PillButton";
 import DefinitionCard from "@/components/ui/DefinitionCard";
 import NumberedStep from "@/components/ui/NumberedStep";
 import QARow from "@/components/ui/QARow";
@@ -19,9 +19,7 @@ import {
   Grain,
   HelpCircle,
   ListCheck,
-  MessageCircle,
   MoodSmile,
-  Phone,
   Point,
   Scan,
 } from "@/components/ui/icons";
@@ -31,7 +29,6 @@ import JsonLd from "@/components/JsonLd";
 import { buildGraph, faqEntities } from "@/lib/schema";
 import LocalBlock from "@/components/LocalBlock";
 import { LOCAL_BLOCKS, localFaqEntities } from "@/lib/local-blocks";
-import { CLINIC } from "@/lib/clinic";
 import { postPath } from "@/lib/slug";
 import {
   SPOT_PRICE_ROWS,
@@ -414,24 +411,7 @@ export default function SkinSpotPage() {
                 피부 관련 연구 보기 &rarr;
               </Link>
             </div>
-            <div className="mx-auto flex max-w-3xl flex-col items-center gap-3 sm:flex-row sm:justify-center">
-              <PillButton
-                href={CLINIC.telHref}
-                variant="solid"
-                icon={<Phone size={16} />}
-                className="w-full sm:w-auto"
-              >
-                전화 문의 {CLINIC.tel}
-              </PillButton>
-              <PillButton
-                href="https://pf.kakao.com/_eXXun"
-                variant="outline"
-                icon={<MessageCircle size={16} />}
-                className="w-full sm:w-auto"
-              >
-                카카오톡 상담
-              </PillButton>
-            </div>
+            <ConsultationActions className="mx-auto max-w-3xl" />
           </SectionReveal>
         </div>
       </section>

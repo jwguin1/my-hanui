@@ -1,3 +1,4 @@
+import ConsultationActions from "@/components/ConsultationActions";
 import type { Metadata } from "next";
 import SectionReveal from "@/components/SectionReveal";
 import PageHeroBanner from "@/components/PageHeroBanner";
@@ -58,10 +59,10 @@ export default function ContactPage() {
       <section className="section-padding">
         <SectionReveal>
           <div className="grid gap-5 md:grid-cols-3">
-            {/* 주소 & 전화 */}
+            {/* 주소 & 상담 */}
             <div className="card p-7">
               <p className="text-[0.8rem] font-medium tracking-wide text-accent">
-                주소 · 전화
+                주소 · 상담
               </p>
               <p className="mt-3 text-text">
                 {CLINIC_ADDRESS_CITY}
@@ -72,12 +73,7 @@ export default function ContactPage() {
               <p className="mt-1 text-[0.85rem] text-text-muted">
                 {CLINIC.building}
               </p>
-              <a
-                href={CLINIC.telHref}
-                className="mt-3 block text-[1.1rem] font-semibold text-text transition-colors hover:text-accent"
-              >
-                {CLINIC.tel}
-              </a>
+              <ConsultationActions className="mt-4 !flex-col [&>a]:w-full" />
             </div>
 
             {/* 교통 */}
@@ -131,38 +127,9 @@ export default function ContactPage() {
       <section className="section-padding !pt-0">
         <SectionReveal>
           <ClinicMap />
-          <div className="mt-6 flex flex-wrap justify-center gap-4">
-            <a
-              href="https://naver.me/IItclnGB"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-md bg-[#03C75A] px-7 py-3.5 text-[0.9rem] font-semibold text-white transition-opacity hover:opacity-90"
-            >
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-              >
-                <path d="M13.27 10.6L6.44 1H1v18h5.73V9.4L13.56 19H19V1h-5.73z" />
-              </svg>
-              네이버 플레이스 보기
-            </a>
-            <a
-              href="https://pf.kakao.com/_eXXun"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-md bg-[#FEE500] px-7 py-3.5 text-[0.9rem] font-semibold text-[#3C1E1E] transition-opacity hover:opacity-90"
-            >
-              💬 카카오톡 상담
-            </a>
-            <a
-              href={CLINIC.telHref}
-              className="inline-flex items-center gap-2 rounded-md border border-border px-7 py-3.5 text-[0.9rem] font-semibold text-text transition-all hover:border-accent hover:text-accent"
-            >
-              📞 전화 상담
-            </a>
-          </div>
+          <p className="mt-6 text-center text-sm text-muted">방문 전 궁금한 점은 카카오톡으로 편하게 남겨주세요.</p>
+          <ConsultationActions className="mt-4" />
+          <p className="mt-5 text-center"><a href="https://naver.me/IItclnGB" target="_blank" rel="noopener noreferrer" className="text-sm text-primary underline underline-offset-4">네이버 플레이스에서 위치 보기 →</a></p>
         </SectionReveal>
       </section>
 

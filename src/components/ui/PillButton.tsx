@@ -8,6 +8,7 @@ const VARIANT = {
   // 호버는 배경 명도만 변화 — 이동/그림자 효과 없음
   solid: "bg-primary text-white hover:bg-[#7d4f2e]",
   outline: "border border-line bg-card text-ink hover:bg-surface",
+  kakao: "bg-[#FEE500] text-[#3C1E1E] hover:bg-[#f2d900]",
 };
 
 export default function PillButton({
@@ -18,7 +19,7 @@ export default function PillButton({
   className = "",
 }: {
   href: string;
-  variant?: "solid" | "outline";
+  variant?: "solid" | "outline" | "kakao";
   icon?: ReactNode;
   children: ReactNode;
   className?: string;

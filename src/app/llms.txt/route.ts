@@ -43,6 +43,7 @@ function body(): string {
 
 - 웹사이트: ${BASE}
 - 주소: ${CLINIC_ADDRESS_FULL}
+- 상담·예약: [카카오톡 상담](${CLINIC.kakaoHref})으로 편하게 문의해 주세요.
 - 전화: ${CLINIC.tel}
 - 교통: ${CLINIC.transit}
 - 주차: ${CLINIC.parking}

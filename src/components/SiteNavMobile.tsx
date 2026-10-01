@@ -126,23 +126,11 @@ export default function SiteNavMobile() {
 
           {/* 하단 고정 CTA */}
           <div className="flex gap-2 border-t border-line bg-card px-6 py-4">
-            <a
-              href={CLINIC.telHref}
-              onClick={close}
-              className="inline-flex flex-1 items-center justify-center gap-2 rounded-full border border-line px-5 py-3 text-[14px] font-medium text-ink"
-            >
-              <Phone size={16} />
-              전화
+            <a href={CLINIC.kakaoHref} target="_blank" rel="noopener noreferrer" onClick={close} className="inline-flex flex-[2] items-center justify-center gap-2 rounded-full bg-[#FEE500] px-3 py-3 text-[14px] font-semibold text-[#3C1E1E]">
+              <MessageCircle size={16} />카카오톡 상담
             </a>
-            <a
-              href="https://pf.kakao.com/_eXXun"
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={close}
-              className="inline-flex flex-1 items-center justify-center gap-2 rounded-full bg-primary px-5 py-3 text-[14px] font-medium text-white"
-            >
-              <MessageCircle size={16} />
-              카카오톡 상담
+            <a href={CLINIC.telHref} onClick={close} className="inline-flex flex-1 items-center justify-center gap-2 rounded-full border border-line px-3 py-3 text-[14px] font-medium text-muted">
+              <Phone size={16} />전화
             </a>
           </div>
         </div>

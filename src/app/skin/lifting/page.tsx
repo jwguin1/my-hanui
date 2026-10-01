@@ -1,3 +1,4 @@
+import ConsultationActions from "@/components/ConsultationActions";
 import Link from "next/link";
 import PageHeader from "@/components/ui/PageHeader";
 import SectionBadge from "@/components/ui/SectionBadge";
@@ -8,7 +9,7 @@ import PriceTable from "@/components/ui/PriceTable";
 import QARow from "@/components/ui/QARow";
 import NumberedStep from "@/components/ui/NumberedStep";
 import PillButton from "@/components/ui/PillButton";
-import { Scan, HelpCircle, ChartBar, ListCheck, Phone } from "@/components/ui/icons";
+import { Scan, HelpCircle, ChartBar, ListCheck } from "@/components/ui/icons";
 import ClinicCta from "@/components/ClinicCta";
 import JsonLd from "@/components/JsonLd";
 import { pageMetadata } from "@/lib/page-metadata";
@@ -17,7 +18,6 @@ import { buildGraph, faqEntities, itemListNode, absoluteUrl } from "@/lib/schema
 import { LIFTING_PATH, LIFTING_SLUGS, LIFTING_UPDATED, PIGMENTATION_PATH, SHURINK_CARE } from "@/lib/skin-guides";
 import { SHURINK_PRICES, won, wonDigits } from "@/lib/pricing";
 import { postPath } from "@/lib/slug";
-import { CLINIC } from "@/lib/clinic";
 
 const DESCRIPTION = "일산한의원 슈링크 유니버스 리프팅. 300샷 1회 99,000원, 3회 264,000원, 부가세 포함. 마취·시술·LED와 진정팩까지 약 30분, 재시술 12주 간격. 볼살·턱선과 시술 선택에 관한 질문을 확인하세요.";
 
@@ -142,7 +142,8 @@ export default function LiftingPage() {
     <section className="section-padding bg-[var(--surface)]"><div className="mx-auto max-w-3xl text-center">
       <h2 className="font-serif text-xl font-semibold text-ink">일산한의원 리프팅 상담</h2>
       <p className="mt-4 text-sm leading-relaxed text-muted">가장 신경 쓰이는 부위와 이전 시술 이력을 알려주세요.<br />이마트 풍산점 3층에서 얼굴선과 탄력 상태를 함께 살펴봅니다.</p>
-      <div className="mt-6 flex flex-wrap justify-center gap-3"><PillButton href={CLINIC.telHref} variant="solid" icon={<Phone size={16} />}>전화 문의 {CLINIC.tel}</PillButton><PillButton href="/contact" variant="outline">오시는 길·진료시간</PillButton></div>
+      <p className="mt-4 text-sm text-muted">궁금한 점과 예약 문의는 카카오톡으로 편하게 남겨주세요.</p>
+      <ConsultationActions directions className="mt-6" />
       <Link href="/skin" className="mt-6 inline-block text-sm text-primary underline underline-offset-4">피부·레이저·리프팅 글 전체 보기</Link>
     </div></section>
     <ClinicCta />

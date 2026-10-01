@@ -1,3 +1,4 @@
+import ConsultationActions from "@/components/ConsultationActions";
 import type { Metadata } from "next";
 import SectionReveal from "@/components/SectionReveal";
 import { pageMetadata } from "@/lib/page-metadata";
@@ -116,18 +117,9 @@ export default function TreatmentPage() {
         <SectionReveal>
           <h2 className="heading-md">궁금한 점이 있으신가요?</h2>
           <p className="body-text mt-3">
-            네이버 플레이스 또는 카카오톡으로 편하게 문의해 주세요.
+            궁금한 점과 예약 문의는 카카오톡으로 편하게 남겨주세요.
           </p>
-          <div className="mt-8 flex flex-wrap justify-center gap-4">
-            <a
-              href="https://naver.me/IItclnGB"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-primary"
-            >
-              네이버 플레이스
-            </a>
-          </div>
+          <ConsultationActions className="mx-auto mt-8 max-w-xl" />
         </SectionReveal>
       </section>
     </>

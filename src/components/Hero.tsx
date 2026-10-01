@@ -1,3 +1,4 @@
+import { CLINIC } from "@/lib/clinic";
 import BrushUnderline from "@/components/ui/BrushUnderline";
 import PillButton from "@/components/ui/PillButton";
 import TwoTone from "@/components/ui/TwoTone";
@@ -109,20 +110,20 @@ export default function Hero() {
 
         <div className="mt-[30px] flex w-full flex-col justify-center gap-2.5 sm:w-auto sm:flex-row">
           <PillButton
-            href="/pain/acute"
-            variant="solid"
-            icon={<Stethoscope size={16} />}
-            className="w-full sm:w-auto"
-          >
-            진료 안내 보기
-          </PillButton>
-          <PillButton
-            href="https://pf.kakao.com/_eXXun"
-            variant="outline"
+            href={CLINIC.kakaoHref}
+            variant="kakao"
             icon={<MessageCircle size={16} />}
             className="w-full sm:w-auto"
           >
             카카오톡 상담
+          </PillButton>
+          <PillButton
+            href="/pain/acute"
+            variant="outline"
+            icon={<Stethoscope size={16} />}
+            className="w-full sm:w-auto"
+          >
+            진료 안내 보기
           </PillButton>
         </div>
       </div>

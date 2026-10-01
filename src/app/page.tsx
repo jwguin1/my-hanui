@@ -1,3 +1,4 @@
+import ConsultationActions from "@/components/ConsultationActions";
 import Link from "next/link";
 import Hero from "@/components/Hero";
 import SectionReveal from "@/components/SectionReveal";
@@ -490,7 +491,7 @@ export default async function Home() {
             </Link>
             <div className="flex flex-wrap justify-center gap-4">
               <a
-                href="https://pf.kakao.com/_eXXun"
+                href={CLINIC.kakaoHref}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 rounded-md bg-[#FEE500] px-7 py-3 text-[0.9rem] font-semibold text-[#3C1E1E] transition-opacity hover:opacity-90"
@@ -603,13 +604,9 @@ export default async function Home() {
                     <p className="text-ink">{CLINIC.building}</p>
                   </div>
                   <div>
-                    <p className="text-[0.8rem] text-primary">전화</p>
-                    <a
-                      href={CLINIC.telHref}
-                      className="mt-1 block text-[1.1rem] font-semibold text-ink transition-colors hover:text-primary"
-                    >
-                      {CLINIC.tel}
-                    </a>
+                    <p className="text-[0.8rem] text-primary">상담 · 예약</p>
+                    <p className="mt-2 text-sm text-muted">카카오톡으로 편하게 문의해 주세요.</p>
+                    <ConsultationActions className="mt-3 !justify-start" />
                   </div>
                   <div>
                     <p className="text-[0.8rem] text-primary">교통</p>

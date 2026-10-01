@@ -9,7 +9,7 @@ import { CLINIC } from "@/lib/clinic";
 export default function SiteHeader() {
   return (
     <header className="sticky top-0 z-[1000] border-b border-line bg-card">
-      <div className="mx-auto flex h-16 max-w-[1180px] items-center justify-between gap-3 px-6">
+      <div className="mx-auto flex h-16 max-w-[1180px] items-center justify-between gap-2 px-4 sm:gap-3 sm:px-6">
         {/* 좌: 로고 + 진료 상태 */}
         <div className="flex min-w-0 items-center gap-2.5">
           <Link
@@ -18,32 +18,20 @@ export default function SiteHeader() {
           >
             일산한의원
           </Link>
-          <ClinicStatusPill />
+          <span className="hidden sm:block"><ClinicStatusPill /></span>
         </div>
 
         {/* 중: 드롭다운 네비게이션 */}
         <SiteNavDesktop />
 
-        {/* 우: 전화 + 카카오톡 상담 */}
-        <div className="flex items-center gap-1.5">
-          <a
-            href={CLINIC.telHref}
-            aria-label={`일산한의원 전화 ${CLINIC.tel}`}
-            className="inline-flex h-9 w-9 items-center justify-center rounded-full text-primary transition-colors duration-200 hover:bg-surface"
-          >
+        {/* 카카오톡 상담을 모바일에서도 바로 찾을 수 있게 표시한다. */}
+        <div className="flex shrink-0 items-center gap-1.5">
+          <PillButton href={CLINIC.kakaoHref} variant="kakao" icon={<MessageCircle size={16} />} className="whitespace-nowrap !px-3 !py-2.5 lg:!px-5">
+            카카오톡 상담
+          </PillButton>
+          <a href={CLINIC.telHref} aria-label={`일산한의원 전화 ${CLINIC.tel}`} className="hidden h-9 w-9 items-center justify-center rounded-full text-muted transition-colors hover:bg-surface lg:inline-flex">
             <Phone size={20} />
           </a>
-          {/* PillButton 자체가 display 유틸을 갖고 있어, 숨김은 래퍼에서 처리한다 */}
-          <span className="hidden lg:block">
-            <PillButton
-              href="https://pf.kakao.com/_eXXun"
-              variant="solid"
-              icon={<MessageCircle size={16} />}
-              className="whitespace-nowrap"
-            >
-              카카오톡 상담
-            </PillButton>
-          </span>
           <SiteNavMobile />
         </div>
       </div>

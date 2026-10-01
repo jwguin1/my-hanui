@@ -1,3 +1,4 @@
+import ConsultationActions from "@/components/ConsultationActions";
 import type { Metadata } from "next";
 import Link from "next/link";
 import SectionReveal from "@/components/SectionReveal";
@@ -6,7 +7,6 @@ import SectionBadge from "@/components/ui/SectionBadge";
 import TwoTone from "@/components/ui/TwoTone";
 import IconTile from "@/components/ui/IconTile";
 import StatCard from "@/components/ui/StatCard";
-import PillButton from "@/components/ui/PillButton";
 import DefinitionCard from "@/components/ui/DefinitionCard";
 import NumberedStep from "@/components/ui/NumberedStep";
 import QARow from "@/components/ui/QARow";
@@ -20,9 +20,7 @@ import {
   Hands,
   HelpCircle,
   ListCheck,
-  MessageCircle,
   Needle,
-  Phone,
   Scan,
   Spine,
   Stairs,
@@ -36,7 +34,6 @@ import JsonLd from "@/components/JsonLd";
 import { buildGraph, faqEntities } from "@/lib/schema";
 import LocalBlock from "@/components/LocalBlock";
 import { LOCAL_BLOCKS, localFaqEntities } from "@/lib/local-blocks";
-import { CLINIC } from "@/lib/clinic";
 
 export const metadata: Metadata = pageMetadata({
   path: "/pain/chronic",
@@ -463,24 +460,7 @@ export default function ChronicPainPage() {
                 교통사고로 오셨나요? &rarr;
               </Link>
             </div>
-            <div className="mx-auto flex max-w-3xl flex-col items-center gap-3 sm:flex-row sm:justify-center">
-              <PillButton
-                href={CLINIC.telHref}
-                variant="solid"
-                icon={<Phone size={16} />}
-                className="w-full sm:w-auto"
-              >
-                전화 문의 {CLINIC.tel}
-              </PillButton>
-              <PillButton
-                href="https://pf.kakao.com/_eXXun"
-                variant="outline"
-                icon={<MessageCircle size={16} />}
-                className="w-full sm:w-auto"
-              >
-                카카오톡 상담
-              </PillButton>
-            </div>
+            <ConsultationActions className="mx-auto max-w-3xl" />
           </SectionReveal>
         </div>
       </section>

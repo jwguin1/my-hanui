@@ -1,3 +1,4 @@
+import ConsultationActions from "@/components/ConsultationActions";
 import Link from "next/link";
 import PageHeader from "@/components/ui/PageHeader";
 import SectionBadge from "@/components/ui/SectionBadge";
@@ -9,7 +10,7 @@ import PriceTable from "@/components/ui/PriceTable";
 import QARow from "@/components/ui/QARow";
 import NumberedStep from "@/components/ui/NumberedStep";
 import PillButton from "@/components/ui/PillButton";
-import { Scan, HelpCircle, ChartBar, Flame, ListCheck, Phone } from "@/components/ui/icons";
+import { Scan, HelpCircle, ChartBar, Flame, ListCheck } from "@/components/ui/icons";
 import ClinicCta from "@/components/ClinicCta";
 import JsonLd from "@/components/JsonLd";
 import { pageMetadata } from "@/lib/page-metadata";
@@ -18,7 +19,6 @@ import { buildGraph, faqEntities, itemListNode, absoluteUrl } from "@/lib/schema
 import { PIGMENTATION_GROUPS, PIGMENTATION_PATH, PIGMENTATION_UPDATED, LIFTING_PATH } from "@/lib/skin-guides";
 import { PIGMENTATION_PRICES, won, wonDigits } from "@/lib/pricing";
 import { postPath } from "@/lib/slug";
-import { CLINIC } from "@/lib/clinic";
 
 const DESCRIPTION = "일산한의원 색소치료. 피코하이·엘리멘트 TL로 기미·주근깨·흑자와 피부결·홍조를 상담합니다. 피코 트리플 토닝·제네시스 포함 1회 88,000원, 10회 660,000원. 부가세 포함.";
 
@@ -155,7 +155,8 @@ export default function PigmentationPage() {
     <section className="section-padding"><div className="mx-auto max-w-3xl text-center">
       <h2 className="font-serif text-xl font-semibold text-ink">일산한의원 피부·색소 상담</h2>
       <p className="mt-4 text-sm leading-relaxed text-muted">가장 신경 쓰이는 부위와 이전 시술 이력을 알려주세요.<br />이마트 풍산점 3층에서 피부 상태와 치료 방향을 함께 살펴봅니다.</p>
-      <div className="mt-6 flex flex-wrap justify-center gap-3"><PillButton href={CLINIC.telHref} variant="solid" icon={<Phone size={16} />}>전화 문의 {CLINIC.tel}</PillButton><PillButton href="/contact" variant="outline">오시는 길·진료시간</PillButton></div>
+      <p className="mt-4 text-sm text-muted">궁금한 점과 예약 문의는 카카오톡으로 편하게 남겨주세요.</p>
+      <ConsultationActions directions className="mt-6" />
       <Link href="/skin" className="mt-6 inline-block text-sm text-primary underline underline-offset-4">피부 · 레이저 글 전체 보기</Link>
     </div></section>
     <ClinicCta />

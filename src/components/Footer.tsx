@@ -1,3 +1,4 @@
+import ConsultationActions from "@/components/ConsultationActions";
 import Link from "next/link";
 import { CAROUSEL_ORDER, CAROUSEL_TARGETS } from "@/lib/carousel-targets";
 import { CLINIC, CLINIC_ADDRESS_STREET } from "@/lib/clinic";
@@ -12,6 +13,8 @@ export default function Footer() {
         <p className="mt-1 text-[0.82rem] text-text-muted">
           이마트 풍산점 3층
         </p>
+
+        <ConsultationActions className="mx-auto mt-6 max-w-xl" />
 
         {/* 사이트맵 — 네이버 하위링크 카드의 라벨 후보.
             네비는 폭 제약이 있어 짧게 걸고, 여기는 title 과 완전히 같은
@@ -64,12 +67,6 @@ export default function Footer() {
           >
             네이버 플레이스
           </Link>
-          <a
-            href={CLINIC.telHref}
-            className="text-[0.82rem] text-text-muted transition-colors duration-200 hover:text-accent"
-          >
-            {CLINIC.tel}
-          </a>
         </div>
 
         {/* NAP 표기는 lib/clinic.ts 가 정본이다 (네이버 플레이스 등록 정보 기준).

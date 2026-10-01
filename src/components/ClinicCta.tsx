@@ -1,3 +1,4 @@
+import ConsultationActions from "@/components/ConsultationActions";
 import { CLINIC, CLINIC_CTA_LINES } from "@/lib/clinic";
 
 /**
@@ -43,27 +44,12 @@ export default function ClinicCta({ note }: { note?: string }) {
         <address
           className={`${body ? "mt-6" : ""} space-y-1 text-[0.9rem] not-italic leading-[1.8] text-ink`}
         >
-          {CLINIC_CTA_LINES.map((line, i) => (
-            <p key={line}>
-              {/* 마지막 줄의 전화번호만 tel: 링크로 만든다.
-                  모바일에서 글을 다 읽은 직후가 전화가 가장 잘 눌리는 지점이다. */}
-              {i === CLINIC_CTA_LINES.length - 1 ? (
-                <>
-                  {line.replace(` · ${CLINIC.tel}`, "")}
-                  {" · "}
-                  <a
-                    href={CLINIC.telHref}
-                    className="font-semibold text-primary transition-colors duration-200 hover:text-tan"
-                  >
-                    {CLINIC.tel}
-                  </a>
-                </>
-              ) : (
-                line
-              )}
-            </p>
+          {CLINIC_CTA_LINES.map((line) => (
+            <p key={line}>{line.replace(` · ${CLINIC.tel}`, "")}</p>
           ))}
         </address>
+        <p className="mt-5 text-sm text-muted">궁금한 점과 예약 문의는 카카오톡으로 편하게 남겨주세요.</p>
+        <ConsultationActions className="mt-4" />
       </div>
     </section>
   );

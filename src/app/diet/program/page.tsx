@@ -1,3 +1,4 @@
+import ConsultationActions from "@/components/ConsultationActions";
 import type { Metadata } from "next";
 import Link from "next/link";
 import SectionReveal from "@/components/SectionReveal";
@@ -14,7 +15,6 @@ import {
   AlertTriangle,
   HelpCircle,
   ListCheck,
-  Phone,
 } from "@/components/ui/icons";
 import { SITE_URL } from "@/lib/categories";
 import { pageMetadata } from "@/lib/page-metadata";
@@ -22,7 +22,6 @@ import JsonLd from "@/components/JsonLd";
 import { buildGraph, faqEntities } from "@/lib/schema";
 import LocalBlock from "@/components/LocalBlock";
 import { LOCAL_BLOCKS, localFaqEntities } from "@/lib/local-blocks";
-import { CLINIC } from "@/lib/clinic";
 
 export const metadata: Metadata = pageMetadata({
   path: "/diet/program",
@@ -248,23 +247,8 @@ export default function DietProgramPage() {
                 </Link>
               </div>
 
-              <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
-                <PillButton
-                  href="https://diet.ilsanhan.com"
-                  variant="solid"
-                  className="w-full sm:w-auto"
-                >
-                  일산감비환 상담 신청 &rarr;
-                </PillButton>
-                <PillButton
-                  href={CLINIC.telHref}
-                  variant="outline"
-                  icon={<Phone size={16} />}
-                  className="w-full sm:w-auto"
-                >
-                  전화 문의 {CLINIC.tel}
-                </PillButton>
-              </div>
+              <ConsultationActions className="mt-8" />
+              <p className="mt-5"><a href="https://diet.ilsanhan.com" target="_blank" rel="noopener noreferrer" className="text-sm text-primary underline underline-offset-4">일산감비환 프로그램 자세히 보기 →</a></p>
             </div>
           </SectionReveal>
         </div>
