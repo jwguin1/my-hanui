@@ -1,5 +1,5 @@
 import ConsultationActions from "@/components/ConsultationActions";
-import { CLINIC, CLINIC_CTA_LINES } from "@/lib/clinic";
+import ClinicVisitInfo from "@/components/ClinicVisitInfo";
 
 /**
  * 글 하단 전환 블록.
@@ -41,15 +41,9 @@ export default function ClinicCta({ note }: { note?: string }) {
           </>
         ) : null}
 
-        <address
-          className={`${body ? "mt-6" : ""} space-y-1 text-[0.9rem] not-italic leading-[1.8] text-ink`}
-        >
-          {CLINIC_CTA_LINES.map((line) => (
-            <p key={line}>{line.replace(` · ${CLINIC.tel}`, "")}</p>
-          ))}
-        </address>
+        <ClinicVisitInfo className={body ? "mt-6" : ""} />
         <p className="mt-5 text-sm text-muted">궁금한 점과 예약 문의는 카카오톡으로 편하게 남겨주세요.</p>
-        <ConsultationActions className="mt-4" />
+        <ConsultationActions directions className="mt-4" />
       </div>
     </section>
   );

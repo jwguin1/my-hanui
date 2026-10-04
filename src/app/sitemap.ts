@@ -80,13 +80,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${BASE_URL}/skin/pigmentation`,
-      lastModified: new Date("2026-10-01T00:00:00+09:00"),
+      lastModified: new Date("2026-10-04T00:00:00+09:00"),
       changeFrequency: "monthly",
       priority: 0.9,
     },
     {
       url: `${BASE_URL}/skin/lifting`,
-      lastModified: new Date("2026-10-01T00:00:00+09:00"),
+      lastModified: new Date("2026-10-04T00:00:00+09:00"),
       changeFrequency: "monthly",
       priority: 0.9,
     },

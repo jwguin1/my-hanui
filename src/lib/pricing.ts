@@ -43,7 +43,7 @@ export const SPOT_PRICE_HEADERS: [string, string] = [
 ];
 
 export const SPOT_PRICE_NOTE =
-  "전 항목 비급여이며 부가세 포함 금액입니다. 시술 범위는 진료 후 함께 정합니다.";
+  "전 항목 비급여입니다. 시술 범위는 진료 후 함께 정합니다.";
 
 /** 110000 → "110,000원" */
 export function won(amount: number): string {

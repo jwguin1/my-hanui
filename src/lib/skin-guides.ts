@@ -1,8 +1,8 @@
 /** 피부 진료 안내와 관련 글의 표시 순서. 제목·요약은 실제 글에서 읽는다. */
 export const PIGMENTATION_PATH = "/skin/pigmentation";
-export const PIGMENTATION_UPDATED = "2026-10-01";
+export const PIGMENTATION_UPDATED = "2026-10-04";
 export const LIFTING_PATH = "/skin/lifting";
-export const LIFTING_UPDATED = "2026-10-01";
+export const LIFTING_UPDATED = "2026-10-04";
 export const LIFTING_SLUGS: readonly string[] = [
   "슈링크-시간-횟수-주기",
   "슈링크-효과-볼살-턱선",

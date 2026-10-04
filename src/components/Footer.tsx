@@ -1,4 +1,3 @@
-import ConsultationActions from "@/components/ConsultationActions";
 import Link from "next/link";
 import { CAROUSEL_ORDER, CAROUSEL_TARGETS } from "@/lib/carousel-targets";
 import { CLINIC, CLINIC_ADDRESS_STREET } from "@/lib/clinic";
@@ -14,7 +13,10 @@ export default function Footer() {
           이마트 풍산점 3층
         </p>
 
-        <ConsultationActions className="mx-auto mt-6 max-w-xl" />
+        <div className="mt-5 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-sm">
+          <a href={CLINIC.kakaoHref} target="_blank" rel="noopener noreferrer" className="font-semibold text-primary underline underline-offset-4">카카오톡 상담</a>
+          <a href={CLINIC.telHref} className="text-muted">전화 {CLINIC.tel}</a>
+        </div>
 
         {/* 사이트맵 — 네이버 하위링크 카드의 라벨 후보.
             네비는 폭 제약이 있어 짧게 걸고, 여기는 title 과 완전히 같은

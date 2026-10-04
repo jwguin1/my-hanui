@@ -84,7 +84,7 @@ ${closedLine}
 ## 색소치료 질문과 비용
 
 피코하이와 엘리멘트 TL을 사용합니다. 엘리멘트 TL은 532·755·1064nm 세 파장의 롱펄스 레이저입니다.
-2026-10-01 확인한 부가세 포함 가격:
+2026-10-01 확인한 가격:
 - ${PIGMENTATION_PRICES.name}: 1회 ${won(PIGMENTATION_PRICES.single)}, 10회 ${won(PIGMENTATION_PRICES.tenSessions)} (회당 ${won(PIGMENTATION_PRICES.perSession)})
 - 흑자 개별 치료 범위와 포함 여부는 상담 시 확인합니다.
 
@@ -92,7 +92,7 @@ ${pigmentLinks}
 
 ## 리프팅 질문과 비용
 
-슈링크 유니버스를 사용합니다. 2026-10-01 확인한 부가세 포함 가격:
+슈링크 유니버스를 사용합니다. 2026-10-01 확인한 가격:
 - ${SHURINK_PRICES.name}: 1회 ${won(SHURINK_PRICES.single)}, 3회 ${won(SHURINK_PRICES.threeSessions)} (매회 300샷, 회당 ${won(SHURINK_PRICES.threeSessions / 3)})
 - 시술 과정: ${SHURINK_CARE.steps.map((step) => `${step.title} ${step.minutes}분`).join(" → ")} (총 약 ${SHURINK_CARE.totalMinutes}분, 초진 상담·접수 별도)
 - 원내 재시술 안내 간격: ${SHURINK_CARE.intervalWeeks}주

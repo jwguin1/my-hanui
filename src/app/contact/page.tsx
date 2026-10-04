@@ -62,7 +62,7 @@ export default function ContactPage() {
             {/* 주소 & 상담 */}
             <div className="card p-7">
               <p className="text-[0.8rem] font-medium tracking-wide text-accent">
-                주소 · 상담
+                주소
               </p>
               <p className="mt-3 text-text">
                 {CLINIC_ADDRESS_CITY}
@@ -73,7 +73,7 @@ export default function ContactPage() {
               <p className="mt-1 text-[0.85rem] text-text-muted">
                 {CLINIC.building}
               </p>
-              <ConsultationActions className="mt-4 !flex-col [&>a]:w-full" />
+              <a href="#consultation" className="mt-4 inline-block text-sm text-primary underline underline-offset-4">카카오톡 상담·예약 안내 ↓</a>
             </div>
 
             {/* 교통 */}
@@ -128,7 +128,7 @@ export default function ContactPage() {
         <SectionReveal>
           <ClinicMap />
           <p className="mt-6 text-center text-sm text-muted">방문 전 궁금한 점은 카카오톡으로 편하게 남겨주세요.</p>
-          <ConsultationActions className="mt-4" />
+          <div id="consultation" className="scroll-mt-24"><ConsultationActions className="mt-4" /></div>
           <p className="mt-5 text-center"><a href="https://naver.me/IItclnGB" target="_blank" rel="noopener noreferrer" className="text-sm text-primary underline underline-offset-4">네이버 플레이스에서 위치 보기 →</a></p>
         </SectionReveal>
       </section>

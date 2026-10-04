@@ -158,7 +158,6 @@ export default function CategoryPostPage({
       )}
 
       <ClinicCta note={post.clinicNote} />
-      {isSkinGuide && <div className="section-padding !pt-0 text-center"><Link href="/contact" className="text-sm font-medium text-primary underline underline-offset-4">일산한의원 오시는 길·진료시간</Link></div>}
 
       {/* Related posts */}
       {relatedPosts.length > 0 && (

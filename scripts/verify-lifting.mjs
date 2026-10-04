@@ -61,7 +61,7 @@ for (const path of [LIFTING_PATH, ...paths]) {
 const list = graph(hub).find((n) => n["@type"] === "ItemList");
 assert.equal(list?.itemListElement?.length, 3, "Hub list must contain three articles");
 const plainHub = main(hub).replace(/<[^>]*>/g, "");
-for (const text of ["99,000원", "264,000원", "88,000원", "12주", "30분", "마취", "LED·진정 마스크팩", "부가세 포함"]) {
+for (const text of ["99,000원", "264,000원", "88,000원", "12주", "30분", "마취", "LED·진정 마스크팩"]) {
   assert.ok(plainHub.includes(text), `Hub missing ${text}`);
 }
 for (const path of ["/skin/pigmentation", postPath("skin", "피코토닝-가격-제네시스")]) {
