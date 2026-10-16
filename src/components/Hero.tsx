@@ -18,7 +18,7 @@ const META = [
 ];
 
 const QUICK_LINKS = [
-  { label: "통증 치료", detail: "목·허리·어깨·관절", href: "/pain/acute" },
+  { label: "통증 치료", detail: "초진·추나·약침 비용", href: "/pain/acute" },
   { label: "교통사고", detail: "사고 후 통증·불편", href: "/accident" },
   { label: "소화불량·한약", detail: "급체·반복되는 소화불량", href: "/internal/dyspepsia" },
   { label: "다이어트", detail: "처방·복용·비용 안내", href: "/diet/program" },

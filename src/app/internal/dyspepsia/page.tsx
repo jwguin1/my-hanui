@@ -1,3 +1,4 @@
+import { HerbalPrices, TreatmentPriceLink } from "@/components/TreatmentPrices";
 import ConsultationActions from "@/components/ConsultationActions";
 import type { Metadata } from "next";
 import SectionReveal from "@/components/SectionReveal";
@@ -180,6 +181,7 @@ export default function DyspepsiaPage() {
         accent="늘 더부룩한 건 다릅니다"
         stacked
       />
+      <TreatmentPriceLink herbal />
 
       {/* ── 정의 + 지표 ── */}
       <section className="bg-[var(--bg)]">
@@ -339,6 +341,8 @@ export default function DyspepsiaPage() {
           </SectionReveal>
         </div>
       </section>
+
+      <HerbalPrices />
 
       {/* ── 치료 과정 ── */}
       <section className="bg-[var(--bg)]">

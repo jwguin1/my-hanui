@@ -1,3 +1,4 @@
+import { PAIN_PRICE_FAQS, HERBAL_PRICE_FAQS } from "@/lib/visit-guide";
 import type { LocalFaq } from "@/components/LocalBlock";
 import { faqEntities, type FaqEntity } from "@/lib/schema";
 import { SPOT_PRICE_ROWS, SPOT_PRICE_NOTE, won } from "@/lib/pricing";
@@ -31,6 +32,7 @@ export const LOCAL_BLOCKS: Record<string, LocalBlockData> = {
       ACCESS,
     ],
     faqs: [
+      PAIN_PRICE_FAQS[0],
       {
         q: "일산에서 오늘 바로 침 치료가 되나요?",
         a: "예약 없이 오셔도 당일 침·물리치료가 가능합니다. 다친 직후일수록 빨리 오시는 편이 좋습니다.",
@@ -46,10 +48,7 @@ export const LOCAL_BLOCKS: Record<string, LocalBlockData> = {
       ACCESS,
     ],
     faqs: [
-      {
-        q: "일산에서 추나 비용은 얼마인가요?",
-        a: "추나요법은 건강보험 적용 항목이라 본인부담금 기준으로 안내드립니다. 단순추나는 3만원대, 복잡추나는 5만원대이며 정확한 금액은 자격에 따라 달라져 내원 시 말씀드립니다.",
-      },
+      ...PAIN_PRICE_FAQS,
       ...FAQ_ACCESS,
     ],
   },
@@ -76,6 +75,7 @@ export const LOCAL_BLOCKS: Record<string, LocalBlockData> = {
       ACCESS,
     ],
     faqs: [
+      ...HERBAL_PRICE_FAQS,
       {
         q: "일산에서 체했을 때 당일 진료가 되나요?",
         a: "예약 없이 오셔도 당일 침 치료와 한방 소화제로 진행합니다. 평일에는 20시까지 접수하실 수 있습니다.",

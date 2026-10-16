@@ -1,3 +1,4 @@
+import { PainPrices, TreatmentPriceLink } from "@/components/TreatmentPrices";
 import ConsultationActions from "@/components/ConsultationActions";
 import type { Metadata } from "next";
 import Link from "next/link";
@@ -230,6 +231,7 @@ export default function AcutePainPage() {
         accent="대개 몇 번이면 좋아집니다"
         stacked
       />
+      <TreatmentPriceLink />
 
       {/* ── 정의 + 지표 ── */}
       <section className="bg-[var(--bg)]">
@@ -431,6 +433,8 @@ export default function AcutePainPage() {
           </SectionReveal>
         </div>
       </section>
+
+      <PainPrices />
 
       {/* ── 치료 과정 ── */}
       <section className="bg-[var(--surface)]">

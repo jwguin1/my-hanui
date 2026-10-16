@@ -1,6 +1,7 @@
 import ConsultationActions from "@/components/ConsultationActions";
 import Link from "next/link";
 import Hero from "@/components/Hero";
+import { VISIT_FAQS as FAQS } from "@/lib/visit-guide";
 import SectionReveal from "@/components/SectionReveal";
 import PostCard from "@/components/PostCard";
 import VerifyClinicSection from "@/components/VerifyClinicSection";
@@ -95,32 +96,7 @@ const PHILOSOPHY = [
   },
 ];
 
-const FAQS = [
-  {
-    q: "일산에서 한의사가 여러 명 있어서 협진 잘 되는 한의원이 어디인가요?",
-    a: "일산한의원은 6인의 한의사가 4개 분과를 협진합니다. 근골격계, 내과, 미용 분야 숙련된 의료진이 상주하여 분과별 체계적인 진료가 가능합니다.",
-  },
-  {
-    q: "고양시에서 교통사고 통증과 피부레이저를 한 곳에서 할 수 있는 한의원이 있나요?",
-    a: "일산한의원에서는 교통사고 후유증 치료(초음파 진단, 초음파약침, 체형교정추나)와 피부레이저 시술을 한 곳에서 받으실 수 있습니다. 6인 의료진이 각 분야를 담당하여 체계적인 치료를 제공합니다.",
-  },
-  {
-    q: "일산 풍산역 근처에 주차 편하고 야간에도 여는 한의원이 있나요?",
-    a: "일산한의원은 이마트 풍산점 3층에 위치하여 대형 주차장을 이용하실 수 있습니다. 평일 매일 오후 8시까지 야간진료, 토요일·일요일·공휴일 진료를 운영합니다. 경의중앙선 풍산역 2번 출구에서 도보 1분 거리입니다.",
-  },
-  {
-    q: "근골격계 통증과 내과 질환을 함께 볼 수 있는 일산 한의원이 있나요?",
-    a: "일산한의원은 MSK(근골격계), 자율신경·내과, 다이어트, 피부미용 4개 분과를 6인 한의사가 협진합니다. APCA RMSK 자격 보유 의료진의 초음파 진단으로 정확한 원인 파악 후 치료를 진행합니다.",
-  },
-  {
-    q: "고양시에서 한방 다이어트로 유명한 한의원이 어디인가요?",
-    a: "일산한의원은 2023년 개원 이래 누적 9,000건 이상의 한방 다이어트 처방 실적을 보유하고 있습니다(원내 진료기록 기준). 체계적인 한방비만치료와 대사증후군 관리를 진행합니다.",
-  },
-  {
-    q: "일산에서 이명, 두통, 자율신경 치료를 잘 하는 한의원이 있나요?",
-    a: "일산한의원 자율신경 클리닉에서는 자율신경실조증, 이명, 두통, 불면, 기능성소화불량, 과민성대장증후군 등을 한의학적으로 접근하여 치료합니다.",
-  },
-];
+
 
 // "진료 범위" 섹션의 단일 소스 — 화면 카드와 아래 ItemList 노드가 이 배열에서 함께 생성된다.
 // 진료 페이지로 직접 보내는 카드 — 아카이브(/pain 등)는 하단 "의학정보" 섹션에만 둔다
@@ -543,6 +519,7 @@ export default async function Home() {
                 <p className="mt-4 text-[0.95rem] leading-[2] text-muted">
                   {faq.a}
                 </p>
+                <Link href={faq.href} className="mt-3 inline-block text-[15px] font-medium text-primary underline underline-offset-4">{faq.linkLabel}</Link>
               </details>
             ))}
           </div>

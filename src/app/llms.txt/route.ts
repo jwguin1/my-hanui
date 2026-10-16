@@ -8,7 +8,7 @@ import {
 } from "@/lib/clinic";
 import { getAllPosts } from "@/lib/blog-local";
 import { PIGMENTATION_SLUGS, LIFTING_SLUGS, LIFTING_PATH, SHURINK_CARE } from "@/lib/skin-guides";
-import { PIGMENTATION_PRICES, SHURINK_PRICES, won } from "@/lib/pricing";
+import { PIGMENTATION_PRICES, SHURINK_PRICES, PAIN_PRICES, HERBAL_PRICES, PAIN_INSURANCE_NOTE, PHARMACOPUNCTURE_NOTE, HERBAL_INSURANCE_CONDITIONS, HERBAL_INSURANCE_LIMIT, won } from "@/lib/pricing";
 import { postPath } from "@/lib/slug";
 
 /**
@@ -80,6 +80,21 @@ ${closedLine}
 - 잡티 제거 (점·편평사마귀·쥐젖): ${BASE}/skin/spot
 - 색소치료 (피코토닝·제네시스·기미·흑자): ${BASE}/skin/pigmentation
 - 리프팅 (슈링크 유니버스·탄력·턱선): ${BASE}${LIFTING_PATH}
+
+## 통증 치료와 한약 비용
+
+2026-10-16 원내 확인 금액:
+- 일반 근골격계 초진 진료비: ${won(PAIN_PRICES.firstVisit)}
+- 단순추나: ${won(PAIN_PRICES.simpleChuna)}, 복잡추나: ${won(PAIN_PRICES.complexChuna)}
+- 초진·추나 금액 기준: ${PAIN_INSURANCE_NOTE}
+- 초음파 유도 기본 통원약침(포도당 5%): ${won(PAIN_PRICES.dextrose)}
+- 초음파 유도 PDRN 약침: ${won(PAIN_PRICES.pdrn)}
+- 약침 금액 기준: ${PHARMACOPUNCTURE_NOTE}
+- 건강보험 한약 10일 본인부담금: ${HERBAL_PRICES.insuredTenDays}
+- 건강보험 한약 대상: ${HERBAL_INSURANCE_CONDITIONS.join("·")} 6개 질환. ${HERBAL_INSURANCE_LIMIT}
+- 한약 1개월: ${won(HERBAL_PRICES.oneMonth)}, 2개월: ${won(HERBAL_PRICES.twoMonths)}, 3개월: ${won(HERBAL_PRICES.threeMonths)}
+- 통증 치료 비용 안내: ${BASE}/pain/chronic#prices
+- 한약 비용과 약재 확인 안내: ${BASE}/internal/dyspepsia#herbal-prices
 
 ## 색소치료 질문과 비용
 

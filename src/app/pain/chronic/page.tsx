@@ -11,7 +11,7 @@ import DefinitionCard from "@/components/ui/DefinitionCard";
 import NumberedStep from "@/components/ui/NumberedStep";
 import QARow from "@/components/ui/QARow";
 import CompareTable from "@/components/ui/CompareTable";
-import PriceTable from "@/components/ui/PriceTable";
+import { PainPrices, TreatmentPriceLink } from "@/components/TreatmentPrices";
 import {
   ArrowsUp,
   CircleDot,
@@ -212,6 +212,7 @@ export default function ChronicPainPage() {
         accent="다른 곳을 봐야 합니다"
         stacked
       />
+      <TreatmentPriceLink />
 
       {/* ── 정의 + 지표 ── */}
       <section className="bg-[var(--bg)]">
@@ -369,50 +370,7 @@ export default function ChronicPainPage() {
         </div>
       </section>
 
-      {/* ── 비용 안내 ── */}
-      <section className="bg-[var(--surface)]">
-        <div className="section-padding">
-          <SectionReveal>
-            <div className="mx-auto max-w-3xl text-center">
-              <SectionBadge icon={<ListCheck size={15} />} label="비용 안내" />
-              <div className="mt-4">
-                <TwoTone as="h2" lead="비용을 " accent="먼저 공개합니다" />
-              </div>
-              <p className="mt-4 text-[14px] text-muted">
-                상담 후에 알려드리지 않습니다
-              </p>
-            </div>
-
-            <div className="mx-auto mt-14 flex max-w-2xl flex-col gap-8">
-              <PriceTable
-                caption="추나 프로그램"
-                rows={[
-                  {
-                    name: "단순추나",
-                    includes: "추나요법 + 체외충격파",
-                    price: "본인부담금 3만원대",
-                  },
-                  {
-                    name: "복잡추나",
-                    includes: "추나요법 + 체외충격파 + 무중력 감압치료",
-                    price: "본인부담금 5만원대",
-                  },
-                ]}
-                note="추나요법은 건강보험 적용 항목으로, 본인부담금은 환자분의 자격과 적용 기준에 따라 달라집니다. 추나는 연 20회까지 보험이 적용되며, 정확한 금액은 내원 시 안내드립니다."
-              />
-
-              <PriceTable
-                caption="초음파 약침"
-                rows={[
-                  { name: "일반 초음파 약침", price: "30,000원" },
-                  { name: "PDRN 초음파 약침", price: "60,000원" },
-                ]}
-                note="비급여 항목입니다. 상태에 따라 필요한 것만 권해드리며, 초음파 약침 없이 추나만 진행하는 경우도 많습니다."
-              />
-            </div>
-          </SectionReveal>
-        </div>
-      </section>
+      <PainPrices />
 
       {/* ── 치료 과정 ── */}
       <section className="bg-[var(--bg)]">

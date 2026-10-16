@@ -68,6 +68,33 @@ export const PIGMENTATION_PRICES = {
 
 export const SHURINK_PRICES = { name: "슈링크 유니버스 300샷", single: 99000, threeSessions: 264000 } as const;
 
+/** 2026-10-16 원장 확인: 일반 근골격계 진료·추나·초음파 유도 약침. */
+export const PAIN_PRICES = {
+  firstVisit: 13400,
+  simpleChuna: 28400,
+  complexChuna: 50800,
+  dextrose: 30000,
+  pdrn: 60000,
+} as const;
+
+export const PAIN_INSURANCE_NOTE = "건강보험 적용 후 본인부담금입니다. 추나 금액에는 기본 진료비가 포함되어 있습니다.";
+export const PHARMACOPUNCTURE_NOTE = "1회 비급여 비용이며, 보험 진료비는 별도로 추가됩니다.";
+
+/** 건강보험 한약은 안내받은 범위 그대로 표시한다. */
+export const HERBAL_PRICES = {
+  insuredTenDays: "4만원대",
+  oneMonth: 390000,
+  twoMonths: 690000,
+  threeMonths: 990000,
+} as const;
+
+// 원장 확인 및 한국한의약진흥원 2단계 시범사업 안내(2026-10-16 대조).
+export const HERBAL_INSURANCE_CONDITIONS = [
+  "기능성 소화불량", "요추추간판탈출증", "알레르기 비염",
+  "월경통", "안면신경마비", "뇌혈관질환 후유증",
+] as const;
+export const HERBAL_INSURANCE_LIMIT = "1인당 연간 2개 질환에 대해, 질환별 10일씩 2회(총 20일)까지 적용됩니다.";
+
 /** 100개 기준 개당 단가. 본문의 「개당 1,100원」이 여기서 나온다 */
 export function perSpot(row: SpotPriceRow): number {
   return Math.round(row.upTo100 / 100);
