@@ -43,8 +43,13 @@ export const SITE_NAV: NavGroup[] = [
         ],
       },
       {
-        label: "내과",
-        items: [{ href: "/internal/dyspepsia", label: "소화불량" }],
+        label: "한약 · 내과",
+        items: [
+          { href: "/herbal/insurance", label: "보험한약 · 6개 질환" },
+          { href: "/internal/dyspepsia", label: "소화불량" },
+          { href: "/herbal/tonic", label: "체질보약 · 비급여 한약" },
+          { href: "/autonomic/care", label: "이명·어지럼·두통" },
+        ],
       },
       {
         label: "미용 · 대사",
@@ -53,7 +58,6 @@ export const SITE_NAV: NavGroup[] = [
           { href: "/skin/spot", label: "잡티 제거" },
           { href: "/skin/pigmentation", label: "색소치료" },
           { href: "/skin/lifting", label: "리프팅" },
-          { href: "/autonomic/care", label: "이명·어지럼·두통" },
         ],
       },
     ],

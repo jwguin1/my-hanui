@@ -2,10 +2,13 @@ import type { MetadataRoute } from "next";
 import { CATEGORIES, getAllPosts } from "@/lib/blog-local";
 import { postPath } from "@/lib/slug";
 
+import { HERBAL_GUIDES, herbalPath } from "@/lib/herbal-guides";
+
 const BASE_URL = "https://www.ilsanhan.com";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticEntries: MetadataRoute.Sitemap = [
+    ...["/herbal/insurance", "/herbal/tonic", ...HERBAL_GUIDES.filter(g => !g.href).map(herbalPath)].map(path => ({ url: `${BASE_URL}${path}`, lastModified: new Date("2026-10-16T00:00:00+09:00"), changeFrequency: "monthly" as const, priority: 0.8 })),
     {
       url: BASE_URL,
       lastModified: new Date(),

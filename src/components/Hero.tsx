@@ -18,12 +18,12 @@ const META = [
 ];
 
 const QUICK_LINKS = [
-  { label: "통증 치료", detail: "초진·추나·약침 비용", href: "/pain/acute" },
+  { label: "통증치료", detail: "침·추나·약침·치료 비용", href: "/pain/acute" },
   { label: "교통사고", detail: "사고 후 통증·불편", href: "/accident" },
-  { label: "소화불량·한약", detail: "급체·반복되는 소화불량", href: "/internal/dyspepsia" },
+  { label: "보험한약", detail: "소화불량·생리통 등 6개 질환", href: "/herbal/insurance" },
+  { label: "체질보약", detail: "맞춤보약·두통·어지럼·갱년기", href: "/herbal/tonic" },
   { label: "다이어트", detail: "처방·복용·비용 안내", href: "/diet/program" },
-  { label: "색소치료", detail: "기미·잡티·피코토닝", href: "/skin/pigmentation" },
-  { label: "리프팅", detail: "슈링크 유니버스", href: "/skin/lifting" },
+  { label: "잡티제거", detail: "CO₂ · 색소치료 · 리프팅", href: "/skin/spot" },
 ];
 
 /**
@@ -123,7 +123,6 @@ export default function Hero() {
               </Link>
             </li>)}
           </ul>
-          <Link href="/skin/spot" className="mt-4 inline-block text-[14px] font-medium text-primary underline underline-offset-4">점·편평사마귀·쥐젖 제거 안내</Link>
         </nav>
       </div>
 

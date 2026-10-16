@@ -22,14 +22,14 @@ export const PAIN_PRICE_FAQS = [
 
 export const HERBAL_PRICE_FAQS = [
   {
-    q: "건강보험 한약과 1~3개월 한약 비용은 얼마인가요?",
-    a: `건강보험 적용 대상 질환의 한약은 10일 본인부담금 ${HERBAL_PRICES.insuredTenDays}입니다. 한약은 1개월 ${won(HERBAL_PRICES.oneMonth)}, 2개월 ${won(HERBAL_PRICES.twoMonths)}, 3개월 ${won(HERBAL_PRICES.threeMonths)}입니다.`,
-    href: "/internal/dyspepsia#herbal-prices", linkLabel: "한약 처방과 비용 보기",
+    q: "건강보험 한약 10일 비용은 얼마인가요?",
+    a: `건강보험 적용 대상 질환의 한약은 10일 본인부담금 ${HERBAL_PRICES.insuredTenDays}입니다. 진료에서 대상 질환과 올해 처방 이력을 확인해 적용 여부를 안내합니다.`,
+    href: "/herbal/insurance#herbal-prices", linkLabel: "한약 처방과 비용 보기",
   },
   {
     q: "건강보험 한약은 어떤 질환에, 몇 번까지 적용되나요?",
     a: `대상은 ${HERBAL_INSURANCE_CONDITIONS.join("·")} 6개 질환입니다. ${HERBAL_INSURANCE_LIMIT}`,
-    href: "/internal/dyspepsia#herbal-prices", linkLabel: "건강보험 한약 안내",
+    href: "/herbal/insurance#herbal-prices", linkLabel: "건강보험 한약 안내",
   },
 ];
 
@@ -37,7 +37,8 @@ export const VISIT_FAQS = [
   ...[PAIN_CARE_FAQS[0], PAIN_CARE_FAQS[2]].map((faq) => ({ ...faq, href: "/pain/acute#visit-guide", linkLabel: "진료 시간과 치료 구성 보기" })),
   ...PAIN_PRICE_FAQS,
   ...HERBAL_PRICE_FAQS,
-  ...HERBAL_CARE_FAQS.slice(0, 2).map((faq) => ({ ...faq, href: "/internal/dyspepsia#herbal-guide", linkLabel: "원내 조제·탕전 안내" })),
+  { q: "체질보약·비급여 한약 비용은 얼마인가요?", a: `비급여 한약은 1개월 ${won(HERBAL_PRICES.oneMonth)}, 2개월 ${won(HERBAL_PRICES.twoMonths)}, 3개월 ${won(HERBAL_PRICES.threeMonths)}입니다. 1개월은 60팩이며 체질맞춤보약·두통과 어지럼·갱년기 한약을 상담합니다.`, href: "/herbal/tonic#herbal-prices", linkLabel: "체질보약 비용 보기" },
+  ...HERBAL_CARE_FAQS.slice(0, 2).map((faq) => ({ ...faq, href: "/herbal/tonic#herbal-guide", linkLabel: "원내 조제·탕전 안내" })),
   {
     q: "예약 없이 오늘 바로 침 치료를 받을 수 있나요?",
     a: "예약 없이 방문하셔도 당일 침·물리치료가 가능합니다. 방문 전 카카오톡으로 아픈 부위와 오실 시간을 알려주시면 진료 안내를 받으실 수 있습니다.",

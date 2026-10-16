@@ -1,3 +1,4 @@
+import Link from "next/link";
 import ConsultationActions from "@/components/ConsultationActions";
 import type { Metadata } from "next";
 import SectionReveal from "@/components/SectionReveal";
@@ -82,6 +83,11 @@ export default function TreatmentPage() {
         accent="안내"
         description="환자의 체질과 상태를 정밀하게 파악하여 가장 적합한 치료를 제공합니다."
       />
+
+      <nav aria-label="한약 진료 분류" className="mx-auto grid max-w-4xl gap-4 px-6 py-8 sm:grid-cols-2">
+        <Link href="/herbal/insurance" className="card p-6"><h2 className="text-xl font-semibold text-ink">보험한약 →</h2><p className="mt-2 text-muted">소화불량·생리통 등 건강보험 6개 질환</p></Link>
+        <Link href="/herbal/tonic" className="card p-6"><h2 className="text-xl font-semibold text-ink">체질보약 →</h2><p className="mt-2 text-muted">비급여 맞춤보약·두통·어지럼·갱년기 한약</p></Link>
+      </nav>
 
       {/* Treatment Cards */}
       <section className="section-padding space-y-6">

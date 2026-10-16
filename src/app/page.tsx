@@ -100,81 +100,13 @@ const PHILOSOPHY = [
 
 // "진료 범위" 섹션의 단일 소스 — 화면 카드와 아래 ItemList 노드가 이 배열에서 함께 생성된다.
 // 진료 페이지로 직접 보내는 카드 — 아카이브(/pain 등)는 하단 "의학정보" 섹션에만 둔다
-/**
- * 카드 이미지는 **7개가 전부 달라야 한다.**
- *
- * 예전에는 카테고리 대표 OG 4장을 나눠 썼다 — `pain-og` 3회, `autonomic-og` 2회.
- * 카드 7장 중 3장이 같은 그림이면 네이버가 캐러셀로 보지 않는다
- * (경쟁사는 6개 전부 다른 이미지를 쓰고 캐러셀이 붙는다).
- *
- * 사진을 새로 찍는 대신 글 카드와 같은 방식의 제목 카드를 만들었다:
- *   node scripts/generate-title-cards.mjs --clinic-cards
- * 그 스크립트가 생성 직후 파일 해시를 대조해 중복이 없는지 확인한다.
- */
 const CLINIC_CARDS = [
-  {
-    href: "/pain/acute",
-    badge: "통증",
-    heading: "급성 통증",
-    blurb: "침·물리치료, 3회 후 경과 확인",
-    ogImage: "/images/cards/pain-acute.png",
-  },
-  {
-    href: "/pain/chronic",
-    badge: "통증",
-    heading: "만성 통증",
-    blurb: "추나·초음파약침, 비용 공개",
-    ogImage: "/images/cards/pain-chronic.png",
-  },
-  {
-    href: "/accident",
-    badge: "통증",
-    heading: "교통사고",
-    blurb: "자동차보험 본인부담 없이",
-    ogImage: "/images/cards/accident.png",
-  },
-  {
-    href: "/internal/dyspepsia",
-    badge: "내과",
-    heading: "소화불량",
-    blurb: "급체는 당일, 만성은 한약",
-    ogImage: "/images/cards/internal-dyspepsia.png",
-  },
-  {
-    href: "/autonomic/care",
-    badge: "내과",
-    heading: "이명·어지럼·두통",
-    blurb: "침으로 먼저 반응 확인",
-    ogImage: "/images/cards/autonomic-care.png",
-  },
-  {
-    href: "/diet/program",
-    badge: "대사",
-    heading: "다이어트 처방",
-    blurb: "식단을 지속하게 돕는 처방",
-    ogImage: "/images/cards/diet-program.png",
-  },
-  {
-    href: "/skin/spot",
-    badge: "미용",
-    heading: "잡티 제거",
-    blurb: "점·편평사마귀·쥐젖, 비용 공개",
-    ogImage: "/images/cards/skin-spot.png",
-  },
-  {
-    href: "/skin/pigmentation",
-    badge: "미용",
-    heading: "색소치료",
-    blurb: "피코토닝·제네시스, 기미·흑자 질문",
-    ogImage: "/skin/pigmentation/opengraph-image",
-  },
-  {
-    href: "/skin/lifting",
-    badge: "미용",
-    heading: "리프팅",
-    blurb: "슈링크 유니버스, 탄력·턱선·300샷 비용",
-    ogImage: "/skin/lifting/opengraph-image",
-  },
+  { href: "/pain/acute", badge: "통증", heading: "통증치료", blurb: "침·추나·약침, 치료 과정과 비용", ogImage: "/images/cards/pain-acute.png" },
+  { href: "/accident", badge: "자동차보험", heading: "교통사고", blurb: "사고 후 통증과 불편, 접수부터 치료까지", ogImage: "/images/cards/accident.png" },
+  { href: "/herbal/insurance", badge: "건강보험", heading: "보험한약", blurb: "소화불량·생리통 등 6개 질환, 10일 4만원대", ogImage: "/herbal/insurance/opengraph-image" },
+  { href: "/herbal/tonic", badge: "비급여 한약", heading: "체질보약", blurb: "체질맞춤·두통·어지럼·갱년기, 기간별 비용", ogImage: "/herbal/tonic/opengraph-image" },
+  { href: "/diet/program", badge: "체중 관리", heading: "다이어트", blurb: "처방·복용·식사 관리와 비용", ogImage: "/images/cards/diet-program.png" },
+  { href: "/skin/spot", badge: "피부 · 미용", heading: "잡티제거", blurb: "CO₂ 제거부터 색소치료·슈링크 리프팅까지", ogImage: "/images/cards/skin-spot.png" },
 ] as const;
 
 // 네이버 사이트 컬렉션(카드 슬라이드) 노출용 — 화면 카드와 1:1 대응

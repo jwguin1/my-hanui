@@ -125,6 +125,9 @@ const SEGMENT_LABELS: Record<string, string> = {
   acute: "급성 통증",
   chronic: "만성 통증",
   accident: "교통사고",
+  herbal: "한약",
+  insurance: "보험한약",
+  tonic: "체질보약",
   internal: "내과",
   dyspepsia: "소화불량",
   autonomic: "자율신경",
@@ -152,7 +155,7 @@ const SEGMENT_LABELS: Record<string, string> = {
  * `홈 > 소화불량` 으로 한 단계 줄인다.
  * (근본 해법은 /internal 인덱스 신설 — 이번 작업 범위 밖)
  */
-const NON_ROUTE_SEGMENTS = new Set(["internal"]);
+const NON_ROUTE_SEGMENTS = new Set(["internal", "herbal"]);
 
 /**
  * 경로에서 BreadcrumbList 를 만든다. 페이지마다 배열을 손으로 쓰지 않는다.

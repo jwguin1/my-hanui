@@ -1,3 +1,4 @@
+import { HERBAL_GUIDES, herbalPath } from "@/lib/herbal-guides";
 import { CARE_GUIDE } from "@/lib/care-guide";
 import {
   CLINIC,
@@ -69,6 +70,12 @@ ${closedLine}
 - 피부 CO2 레이저 (점·편평사마귀·쥐젖 제거)
 - 색소치료: 피코하이 피코토닝 · 엘리멘트 TL 제네시스
 - 슈링크 유니버스 리프팅
+
+## 보험한약과 체질보약
+
+- [보험한약 6개 질환](${BASE}/herbal/insurance): 10일 본인부담금 ${HERBAL_PRICES.insuredTenDays}. ${HERBAL_INSURANCE_LIMIT}
+- [체질보약 · 비급여 한약](${BASE}/herbal/tonic): 체질맞춤보약, 자율신경계 두통·어지럼, 갱년기. 1개월 ${won(HERBAL_PRICES.oneMonth)}, 2개월 ${won(HERBAL_PRICES.twoMonths)}, 3개월 ${won(HERBAL_PRICES.threeMonths)}.
+${HERBAL_GUIDES.map(g => `- [${g.title}](${BASE}${herbalPath(g)}): ${g.question}`).join("\n")}
 
 ## 진료 안내 페이지
 

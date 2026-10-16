@@ -197,6 +197,8 @@ export default function AutonomicCarePage() {
         stacked
       />
 
+      <nav aria-label="한약 진료 안내" className="border-y border-line px-6 py-5 text-center"><Link href="/herbal/tonic/autonomic" className="font-medium text-primary underline underline-offset-4">두통·어지럼의 한약 상담과 비급여 비용 보기 →</Link></nav>
+
       {/* ── 정의 + 지표 ── */}
       <section className="bg-[var(--bg)]">
         <div className="section-padding">

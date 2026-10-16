@@ -6,7 +6,7 @@ export function TreatmentPriceLink({ herbal = false }: { herbal?: boolean }) {
   return (
     <nav aria-label="진료 비용 바로가기" className="border-y border-line bg-card px-6 py-4 text-center">
       <Link href={herbal ? "#herbal-prices" : "#prices"} className="inline-block text-[16px] font-semibold text-primary underline underline-offset-4">
-        {herbal ? "건강보험 한약·1~3개월 한약 비용 보기" : "초진·추나·초음파 유도 약침 비용 보기"}
+        {herbal ? "건강보험 한약 비용·적용 조건 보기" : "초진·추나·초음파 유도 약침 비용 보기"}
       </Link>
     </nav>
   );
@@ -33,7 +33,7 @@ export function PainPrices() {
             ]} />
             <p className="text-[15px] font-medium leading-relaxed text-ink">{PHARMACOPUNCTURE_NOTE}</p>
           </div>
-          <p className="mt-6 text-center text-[15px]"><Link href="/internal/dyspepsia#herbal-prices" className="font-medium text-primary underline underline-offset-4">한약 처방 비용도 확인하기</Link></p>
+          <p className="mt-6 text-center text-[15px]"><Link href="/herbal/insurance#herbal-prices" className="font-medium text-primary underline underline-offset-4">한약 처방 비용도 확인하기</Link></p>
         </div>
       </div>
     </section>
@@ -46,7 +46,7 @@ export function HerbalPrices() {
       <div className="section-padding">
         <div className="mx-auto max-w-3xl">
           <p className="text-center text-sm font-semibold text-primary">한약 비용</p>
-          <h2 id="herbal-prices-title" className="mt-3 text-center font-serif text-3xl font-semibold text-ink">건강보험 한약과 기간별 한약 안내</h2>
+          <h2 id="herbal-prices-title" className="mt-3 text-center font-serif text-3xl font-semibold text-ink">건강보험 한약 · 10일 4만원대</h2>
           <div className="mt-8 space-y-6">
             <PriceTable caption="건강보험 한약" rows={[
               { name: "10일 처방", includes: "건강보험 적용 후 본인부담금", price: HERBAL_PRICES.insuredTenDays },
@@ -56,15 +56,27 @@ export function HerbalPrices() {
               <p className="mt-2">{HERBAL_INSURANCE_CONDITIONS.join(" · ")} 등 6개 질환이 대상입니다.</p>
               <p className="mt-2">{HERBAL_INSURANCE_LIMIT}</p>
             </div>
-            <PriceTable caption="한약 처방" rows={[
-              { name: "1개월", price: won(HERBAL_PRICES.oneMonth) },
-              { name: "2개월", price: won(HERBAL_PRICES.twoMonths) },
-              { name: "3개월", price: won(HERBAL_PRICES.threeMonths) },
-            ]} />
+
           </div>
-          <p className="mt-6 text-center text-[15px]"><Link href="/pain/chronic#prices" className="font-medium text-primary underline underline-offset-4">추나·초음파 유도 약침 비용 보기</Link></p>
+          <p className="mt-6 text-center text-[15px]"><Link href="/herbal/tonic#herbal-prices" className="font-medium text-primary underline underline-offset-4">체질보약·비급여 한약 가격 보기</Link></p>
         </div>
       </div>
     </section>
   );
+}
+
+export function TonicPrices() {
+  return <section id="herbal-prices" className="scroll-mt-24 bg-[var(--surface)] px-6 py-14">
+    <div className="mx-auto max-w-3xl">
+      <p className="text-center text-sm font-semibold text-primary">비급여 한약 비용</p>
+      <h2 className="mt-3 text-center font-serif text-3xl font-semibold text-ink">체질보약, 기간별로 확인하세요</h2>
+      <div className="mt-8"><PriceTable caption="체질맞춤보약 · 두통·어지럼 · 갱년기 한약" rows={[
+        { name: "1개월 · 60팩", price: won(HERBAL_PRICES.oneMonth) },
+        { name: "2개월", price: won(HERBAL_PRICES.twoMonths) },
+        { name: "3개월", price: won(HERBAL_PRICES.threeMonths) },
+      ]} /></div>
+      <p className="mt-5 text-[16px] leading-relaxed text-ink/80">현재 증상과 복용 목표를 살펴 기간을 상담합니다. 원내 조제·탕전에는 보통 1주일이 걸립니다.</p>
+      <p className="mt-5"><Link href="/herbal/insurance" className="text-primary underline underline-offset-4">소화불량·생리통 등 건강보험 대상 한약 확인하기 →</Link></p>
+    </div>
+  </section>;
 }

@@ -191,6 +191,17 @@ export default function SkinSpotPage() {
         </div>
       </section>
 
+      <section aria-labelledby="other-skin-title" className="border-y border-line bg-[var(--surface)] px-6 py-10">
+        <div className="mx-auto max-w-3xl">
+          <h2 id="other-skin-title" className="font-serif text-2xl font-semibold text-ink">기미·피부톤·탄력도 고민이라면</h2>
+          <p className="mt-3 text-[16px] leading-relaxed text-muted">점·편평사마귀·쥐젖은 CO₂ 제거 안내를 계속 읽어보세요. 색소와 탄력이 고민이라면 아래 진료에서 자세히 확인하실 수 있습니다.</p>
+          <div className="mt-6 grid gap-4 sm:grid-cols-2">
+            <Link href="/skin/pigmentation" className="rounded-xl border border-line bg-card p-5 hover:border-primary"><h3 className="text-lg font-semibold text-ink">색소치료 →</h3><p className="mt-2 text-[15px] leading-relaxed text-muted">기미·주근깨·흑자·피부톤<br />피코토닝·제네시스 질문과 비용</p></Link>
+            <Link href="/skin/lifting" className="rounded-xl border border-line bg-card p-5 hover:border-primary"><h3 className="text-lg font-semibold text-ink">리프팅 →</h3><p className="mt-2 text-[15px] leading-relaxed text-muted">턱선·볼 처짐·탄력<br />슈링크 유니버스 질문과 비용</p></Link>
+          </div>
+        </div>
+      </section>
+
       {/* ── 환자분들의 질문 ── */}
       <section className="bg-[var(--surface)]">
         <div className="section-padding">

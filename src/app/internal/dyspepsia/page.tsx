@@ -1,3 +1,6 @@
+import Link from "next/link";
+import { HerbalQuestions } from "@/components/HerbalPages";
+import { HERBAL_GUIDES } from "@/lib/herbal-guides";
 import CareGuide from "@/components/CareGuide";
 import { HERBAL_CARE_FAQS } from "@/lib/care-guide";
 import { HerbalPrices, TreatmentPriceLink } from "@/components/TreatmentPrices";
@@ -156,6 +159,8 @@ const PROCESS = [
   },
 ];
 
+const insuranceQuestions = HERBAL_GUIDES.find(g => g.slug === "dyspepsia")!.faqs;
+
 const graph = buildGraph({
   path: "/internal/dyspepsia",
   name: "소화불량 치료 – 일산한의원",
@@ -167,6 +172,7 @@ const graph = buildGraph({
     alternateName: ["급체", "기능성소화불량"],
   },
   faq: [
+    ...faqEntities(insuranceQuestions),
     ...faqEntities(HERBAL_CARE_FAQS),
     ...faqEntities(QUESTIONS.map((q) => ({ q: q.quote, a: q.answer }))),
     ...localFaqEntities("/internal/dyspepsia"),
@@ -178,13 +184,15 @@ export default function DyspepsiaPage() {
     <>
       <JsonLd graph={graph} />
       <PageHeader
-        badge="내과"
+        badge="보험한약 · 소화불량"
         icon={<Stethoscope size={15} />}
         lead="체한 건 며칠이면 낫는데,"
         accent="늘 더부룩한 건 다릅니다"
         stacked
       />
+      <nav aria-label="보험한약 안내" className="px-6 py-4 text-center text-primary"><Link href="/herbal/insurance" className="underline underline-offset-4">보험한약 6개 질환 전체 보기 →</Link></nav>
       <TreatmentPriceLink herbal />
+      <HerbalQuestions faqs={insuranceQuestions} title="소화불량 보험한약, 먼저 궁금한 점" id="insurance-questions" />
       <CareGuide herbal />
 
       {/* ── 정의 + 지표 ── */}
