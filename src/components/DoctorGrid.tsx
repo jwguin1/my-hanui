@@ -19,6 +19,7 @@ interface Doctor {
   bio?: string[];
   school?: string;
   credentials?: Credential[];
+  laserCertification?: string;
   societies?: string[];
 }
 
@@ -147,6 +148,12 @@ export default function DoctorGrid({ doctors }: { doctors: Doctor[] }) {
                               ))}
                             </ul>
                           </dd>
+                        </div>
+                      )}
+                      {selected.laserCertification && (
+                        <div>
+                          <dt className="text-[0.8rem] font-semibold text-text">피부레이저 학회 자격</dt>
+                          <dd className="mt-2 text-[0.9rem] leading-[1.8] text-text-muted">{selected.laserCertification}</dd>
                         </div>
                       )}
                     </dl>

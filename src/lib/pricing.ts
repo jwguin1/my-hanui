@@ -58,9 +58,9 @@ export function wonDigits(amount: number): string {
 /** 진입 가격 = 가장 싼 행의 100개까지 금액 */
 export const SPOT_ENTRY: SpotPriceRow = SPOT_PRICE_ROWS[0];
 
-/** 2026-10-01 원장 확인. 모두 부가세 포함. */
+/** 2026-10-16 원장 확인. 방문 시 피부 상태에 맞는 장비를 선택한다. */
 export const PIGMENTATION_PRICES = {
-  name: "피코 트리플 토닝 + 제네시스 혈관레이저",
+  name: "피코 트리플 토닝",
   single: 88000,
   tenSessions: 660000,
   perSession: 66000,

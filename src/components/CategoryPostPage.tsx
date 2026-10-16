@@ -131,10 +131,6 @@ export default function CategoryPostPage({
         </article>
       </section>
 
-      {/* 전환 블록 — 관련 글보다 **위**에 둔다.
-          글을 다 읽은 직후가 내원을 판단하는 지점이고, 관련 글 목록을 먼저
-          보여주면 그 지점을 지나쳐 다른 글로 새어 나간다.
-          clinicNote 가 비어 있어도 병원 정보 두 줄은 항상 출력된다. */}
       {/* 허브 역링크 — 이 글이 속한 그룹에 진료 안내 페이지가 있을 때만.
           전역 내비게이션의 링크는 모든 페이지에 똑같이 있어서 이 글과
           그 페이지가 이어져 있다는 신호가 되지 못한다. 여기서 따로 건다.
@@ -157,7 +153,7 @@ export default function CategoryPostPage({
         </section>
       )}
 
-      <ClinicCta note={post.clinicNote} />
+      {!isSkinGuide && <ClinicCta note={post.clinicNote} />}
 
       {/* Related posts */}
       {relatedPosts.length > 0 && (
@@ -192,6 +188,9 @@ export default function CategoryPostPage({
           </div>
         </section>
       )}
+
+      {/* 피부 안내 글은 관련 글을 읽은 뒤 상담으로 이어지며, 상담 블록은 한 번만 표시한다. */}
+      {isSkinGuide && <ClinicCta note={post.clinicNote} />}
 
       {/* Bottom nav */}
       <section className="section-padding !pt-0 text-center">

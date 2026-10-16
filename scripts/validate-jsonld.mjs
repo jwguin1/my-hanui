@@ -86,14 +86,14 @@ const GEO_BOUNDS = { latMin: 37.6, latMax: 37.72, lngMin: 126.72, lngMax: 126.92
  * 잡히지 않는다 — 좌표가 144일 살아남은 것과 같은 구조다.
  * 값 검사는 어렵지만 금지어 검사는 비용이 거의 없다.
  *
- *   전문의·인증의   일산한의원에 해당 자격 보유자가 없다 (의료법 제56조)
+ *   전문의          확인된 전문의 자격이 없다.
+ *   인증의          2026-10-16 원장 확인: 장경진 원장의 대한통합레이저의학회 인증의만 별도 검증한다.
  *   초음파사        RMSK 는 의사 자격이고 sonographer 등급은 ARDMS 의 RMSKS 다
  *   RMDS           APCA 가 발급하지 않는 조합 — 존재하지 않는 자격
  *   대학병원급      검증 불가능한 비교 표현
  */
 const FORBIDDEN_IN_JSONLD = [
   "전문의",
-  "인증의",
   "초음파사",
   "RMDS",
   "대학병원급",
@@ -844,6 +844,18 @@ function validate(pagePath, html) {
       errors.push(
         `numberOfEmployees(${empValue}) 가 /doctor 의 Physician ${physicians.length}명과 다르다`
       );
+    for (const physician of physicians) {
+      if (!physician.memberOf?.some((society) => society.name === "대한통합레이저의학회"))
+        errors.push(`${physician.name}: 확인된 대한통합레이저의학회 회원 정보 누락`);
+    }
+    const certificates = physicians.flatMap((physician) =>
+      (physician.hasCredential ?? []).filter((credential) => credential.name?.includes("인증의"))
+        .map((credential) => ({ physician, credential }))
+    );
+    if (certificates.length !== 1 || certificates[0].physician.name !== "장경진" ||
+        certificates[0].credential.name !== "대한통합레이저의학회 인증의" ||
+        certificates[0].credential.recognizedBy?.name !== "대한통합레이저의학회")
+      errors.push("피부레이저 인증의는 장경진 원장의 대한통합레이저의학회 인증의 1건이어야 한다");
   }
 
   /* ── 금지 문자열 ── 구조가 아니라 내용을 본다 ── */

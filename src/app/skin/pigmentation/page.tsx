@@ -16,11 +16,11 @@ import JsonLd from "@/components/JsonLd";
 import { pageMetadata } from "@/lib/page-metadata";
 import { getAllPosts } from "@/lib/blog-local";
 import { buildGraph, faqEntities, itemListNode, absoluteUrl } from "@/lib/schema";
-import { PIGMENTATION_GROUPS, PIGMENTATION_PATH, PIGMENTATION_UPDATED, LIFTING_PATH } from "@/lib/skin-guides";
+import { PIGMENTATION_GROUPS, PIGMENTATION_SLUGS, PIGMENTATION_PATH, PIGMENTATION_UPDATED, LIFTING_PATH } from "@/lib/skin-guides";
 import { PIGMENTATION_PRICES, won, wonDigits } from "@/lib/pricing";
 import { postPath } from "@/lib/slug";
 
-const DESCRIPTION = "일산한의원 색소치료. 피코하이·엘리멘트 TL로 기미·주근깨·흑자와 피부결·홍조를 상담합니다. 피코 트리플 토닝·제네시스 포함 1회 88,000원, 10회 660,000원.";
+const DESCRIPTION = "일산한의원 색소치료. 상담한 원장이 피코하이 또는 엘리멘트 TL을 선택해 시술합니다. 레이저 시술 20분 이내, 1회 88,000원·10회 660,000원. 담당 의료진과 방문 과정을 확인하세요.";
 
 export const metadata = pageMetadata({
   path: PIGMENTATION_PATH,
@@ -31,8 +31,8 @@ export const metadata = pageMetadata({
 
 const QUESTIONS = [
   { q: "기미와 흑자는 같은 치료를 받나요?", a: "넓게 퍼진 기미와 경계가 뚜렷한 흑자는 색소의 모습과 치료 범위를 살펴보고 접근합니다." },
-  { q: "피코토닝과 제네시스를 왜 함께 받나요?", a: "갈색 색소와 함께 붉은기·피부결이 고민일 때 각각의 치료 목표를 정해 병행을 고려합니다." },
-  { q: "토닝 비용에 제네시스도 포함되나요?", a: `${PIGMENTATION_PRICES.name}를 포함해 1회 ${won(PIGMENTATION_PRICES.single)}, 10회 ${won(PIGMENTATION_PRICES.tenSessions)}입니다.` },
+  { q: "피코토닝과 제네시스를 같은 날 받나요?", a: "일산한의원은 방문할 때마다 피부 상태와 치료 목표를 확인하고, 피코하이 또는 엘리멘트 TL 중 필요한 장비를 선택해 시술합니다." },
+  { q: "토닝 비용과 패키지 구성은 어떻게 되나요?", a: `${PIGMENTATION_PRICES.name}은 1회 ${won(PIGMENTATION_PRICES.single)}, 10회 ${won(PIGMENTATION_PRICES.tenSessions)}입니다. 10회 패키지에는 PDRN 스킨부스터가 포함됩니다.` },
   { q: "토닝 후 딱지가 없으면 효과가 없는 건가요?", a: "얼굴 전체 토닝과 특정 반점 치료는 회복 모습이 다릅니다. 같은 조명에서 색소 변화와 피부 회복 상태를 살펴봅니다." },
 ];
 
@@ -42,9 +42,9 @@ const DEVICES = [
 ];
 
 const STEPS = [
-  { title: "고민 부위 확인", body: "언제부터 생겼는지, 햇빛과 계절에 따라 어떻게 달라지는지 확인합니다." },
+  { title: "원장과 피부 고민 상담", body: "원장이 가장 신경 쓰이는 부위와 이전 시술 경험을 듣고 피부 상태를 살펴봅니다." },
   { title: "치료 목표와 비용 상담", body: "피부톤·반점·붉은기·피부결 중 가장 바꾸고 싶은 부분을 정하고 치료 범위와 비용을 살펴봅니다." },
-  { title: "피부 상태에 맞춘 시술", body: "이전 시술 이력과 현재 피부 반응을 고려해 장비와 조사 방식을 선택합니다." },
+  { title: "상담한 원장이 직접 시술", body: "피코하이 또는 엘리멘트 TL 중 필요한 장비를 선택합니다. 최소 2,000샷을 기준으로, 레이저 시술 자체는 20분 이내로 진행합니다." },
   { title: "경과와 다음 일정 확인", body: "색소 변화와 회복 상태를 확인하며 다음 시술 시점과 유지 관리 방향을 정합니다." },
 ];
 
@@ -64,7 +64,7 @@ export default function PigmentationPage() {
     description: DESCRIPTION,
     image: `${PIGMENTATION_PATH}/opengraph-image`,
     faq: faqEntities(QUESTIONS),
-    nodes: [itemListNode(PIGMENTATION_PATH, "questions", "색소치료 질문 10가지", groups.flatMap((g) => g.posts).map((post) => ({ url: absoluteUrl(postPath("skin", post.slug)), name: post.title })))],
+    nodes: [itemListNode(PIGMENTATION_PATH, "questions", "색소치료 질문과 방문 안내", groups.flatMap((g) => g.posts).map((post) => ({ url: absoluteUrl(postPath("skin", post.slug)), name: post.title })))],
   });
 
   return <>
@@ -77,16 +77,17 @@ export default function PigmentationPage() {
           <DefinitionCard title="색소치료란?" body="기미·주근깨·흑자 등 갈색 색소를 옅게 하고 피부톤을 고르게 만드는 치료입니다. 일산한의원에서는 피코하이와 엘리멘트 TL을 이용해 색소와 함께 붉은기·피부결 고민을 상담합니다." />
           <p className="mt-6 text-center text-[15px] leading-relaxed text-muted">얼굴 전체의 얼룩인지, 반점 하나인지.<br />가장 신경 쓰이는 부분부터 함께 살펴봅니다.</p>
           <div className="mt-10 grid gap-4 sm:grid-cols-3">
-            <StatCard value={wonDigits(PIGMENTATION_PRICES.single)} unit="원" label="피코·제네시스 포함 1회" />
+            <StatCard value={wonDigits(PIGMENTATION_PRICES.single)} unit="원" label="피코 트리플 토닝 1회" />
             <StatCard value={wonDigits(PIGMENTATION_PRICES.tenSessions)} unit="원" label="10회" />
-            <StatCard value="10" unit="가지" label="질문별로 읽는 치료 안내" />
+            <StatCard value={String(PIGMENTATION_SLUGS.length)} unit="가지" label="질문별로 읽는 치료 안내" />
           </div>
           <nav aria-label="색소치료 페이지 바로가기" className="mt-8 flex flex-wrap justify-center gap-3">
-            <PillButton href="#questions" variant="solid">궁금한 질문 찾기</PillButton>
+            <PillButton href="#first-visit" variant="solid">처음 방문 안내</PillButton>
+            <PillButton href="#questions" variant="outline">궁금한 질문 찾기</PillButton>
             <PillButton href="#prices" variant="outline">비용 안내</PillButton>
             <PillButton href="#devices" variant="outline">사용 장비</PillButton>
           </nav>
-          <p className="mt-5 text-center text-xs text-muted">최종 업데이트 <time dateTime={PIGMENTATION_UPDATED}>2026.10.04</time></p>
+          <p className="mt-5 text-center text-xs text-muted">최종 업데이트 <time dateTime={PIGMENTATION_UPDATED}>{PIGMENTATION_UPDATED.replaceAll("-", ".")}</time></p>
         </div>
       </div>
     </section>
@@ -129,10 +130,11 @@ export default function PigmentationPage() {
 
     <section id="prices" className="scroll-mt-28 bg-[var(--surface)]">
       <div className="section-padding">
-        <div className="mx-auto max-w-3xl text-center"><SectionBadge icon={<ChartBar size={15} />} label="비용 안내" /><div className="mt-4"><TwoTone as="h2" lead="제네시스까지 " accent="포함한 비용" /></div></div>
+        <div className="mx-auto max-w-3xl text-center"><SectionBadge icon={<ChartBar size={15} />} label="비용 안내" /><div className="mt-4"><TwoTone as="h2" lead="피코 트리플 토닝 " accent="구성과 비용" /></div></div>
         <div className="mx-auto mt-12 max-w-3xl space-y-6">
-          <PriceTable rowLabel="시술" caption={PIGMENTATION_PRICES.name} headers={["1회", "10회"]} rows={[{ name: "피코·제네시스", price: won(PIGMENTATION_PRICES.single), price2: won(PIGMENTATION_PRICES.tenSessions) }]} note={`10회 패키지 회당 ${won(PIGMENTATION_PRICES.perSession)}. 흑자 개별 치료 범위와 포함 여부는 상담 시 확인하세요.`} />
-          <Link href={postPath("skin", "피코토닝-가격-제네시스")} className="block text-sm font-medium text-primary underline underline-offset-4">피코토닝 가격과 시술 구성에서 확인할 것 →</Link>
+          <p className="text-sm leading-relaxed text-muted">상담한 원장이 피부 상태에 따라 피코하이 또는 엘리멘트 TL 중 필요한 장비를 선택해 시술합니다. 레이저 시술 시간은 20분 이내이며, 상담·준비 시간은 별도입니다.</p>
+          <PriceTable rowLabel="시술" caption={PIGMENTATION_PRICES.name} headers={["1회", "10회"]} rows={[{ name: "피코 트리플 토닝", price: won(PIGMENTATION_PRICES.single), price2: won(PIGMENTATION_PRICES.tenSessions) }]} note={`10회 패키지 회당 ${won(PIGMENTATION_PRICES.perSession)} · PDRN 스킨부스터 포함. 흑자 개별 치료 범위와 포함 여부는 상담 시 확인하세요.`} />
+          <Link href={postPath("skin", "피코토닝-가격-제네시스")} className="block text-sm font-medium text-primary underline underline-offset-4">한 번 방문하면 무엇을 받나요? 구성·시간·가격 안내 →</Link>
           <div className="card p-5">
             <h3 className="font-semibold text-ink">탄력과 턱선도 고민이라면</h3>
             <p className="mt-2 text-sm leading-relaxed text-muted">슈링크 유니버스의 300샷 비용, 30분 시술 과정과 12주 재시술 간격은 리프팅 안내에서 확인하세요.</p>

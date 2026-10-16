@@ -1,6 +1,6 @@
 /** 피부 진료 안내와 관련 글의 표시 순서. 제목·요약은 실제 글에서 읽는다. */
 export const PIGMENTATION_PATH = "/skin/pigmentation";
-export const PIGMENTATION_UPDATED = "2026-10-04";
+export const PIGMENTATION_UPDATED = "2026-10-16";
 export const LIFTING_PATH = "/skin/lifting";
 export const LIFTING_UPDATED = "2026-10-04";
 export const LIFTING_SLUGS: readonly string[] = [
@@ -19,21 +19,24 @@ export const SHURINK_CARE = {
 } as const;
 
 export const PIGMENTATION_GROUPS = [
+  { id: "first-visit", name: "토닝을 처음 알아보신다면", slugs: ["한의원-피코토닝-상담-시술", "피부레이저-담당-의료진", "피코토닝-가격-제네시스"] },
   { id: "pigment", name: "기미·잡티·흑자", slugs: ["피코토닝-효과-횟수", "흑자제거-피코레이저", "기미-주근깨-흑자-차이", "기미레이저-재발-관리"] },
   { id: "genesis", name: "제네시스·피부결·홍조", slugs: ["제네시스토닝-효과", "피코토닝-제네시스-차이", "피코토닝-피부톤-미백", "제네시스-피부장벽-민감피부"] },
-  { id: "cost-care", name: "비용·시술 후 관리", slugs: ["피코토닝-가격-제네시스", "토닝후-색소침착-딱지"] },
+  { id: "cost-care", name: "시술 후 관리", slugs: ["토닝후-색소침착-딱지"] },
 ] as const;
 
 export const PIGMENTATION_SLUGS: readonly string[] = PIGMENTATION_GROUPS.flatMap((g) => [...g.slugs]);
 export const SKIN_GUIDE_SLUGS: readonly string[] = [...PIGMENTATION_SLUGS, ...LIFTING_SLUGS];
 
 export const SKIN_RELATED: Record<string, readonly string[]> = {
+  "한의원-피코토닝-상담-시술": ["피부레이저-담당-의료진", "피코토닝-가격-제네시스", "피코토닝-효과-횟수"],
+  "피부레이저-담당-의료진": ["피코토닝-가격-제네시스", "한의원-피코토닝-상담-시술", "피코토닝-제네시스-차이"],
   "피코토닝-효과-횟수": ["피코토닝-가격-제네시스", "기미레이저-재발-관리", "흑자제거-피코레이저"],
   "흑자제거-피코레이저": ["기미-주근깨-흑자-차이", "피코토닝-가격-제네시스", "쥐젖-사마귀-검버섯-구분"],
   "기미-주근깨-흑자-차이": ["흑자제거-피코레이저", "피코토닝-효과-횟수", "쥐젖-사마귀-검버섯-구분"],
   "기미레이저-재발-관리": ["피코토닝-효과-횟수", "토닝후-색소침착-딱지", "피코토닝-제네시스-차이"],
   "제네시스토닝-효과": ["피코토닝-제네시스-차이", "제네시스-피부장벽-민감피부", "슈링크-피코토닝-제네시스-차이"],
-  "피코토닝-가격-제네시스": ["피코토닝-효과-횟수", "피코토닝-제네시스-차이", "잡티제거-개수와-비용"],
+  "피코토닝-가격-제네시스": ["피부레이저-담당-의료진", "한의원-피코토닝-상담-시술", "피코토닝-제네시스-차이"],
   "피코토닝-제네시스-차이": ["제네시스토닝-효과", "피코토닝-효과-횟수", "피코토닝-가격-제네시스"],
   "피코토닝-피부톤-미백": ["기미-주근깨-흑자-차이", "피코토닝-제네시스-차이", "토닝후-색소침착-딱지"],
   "제네시스-피부장벽-민감피부": ["제네시스토닝-효과", "토닝후-색소침착-딱지", "피코토닝-제네시스-차이"],

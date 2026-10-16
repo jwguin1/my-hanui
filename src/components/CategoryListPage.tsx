@@ -172,7 +172,7 @@ export default function CategoryListPage({ category }: { category: Category }) {
 
       {category === "skin" && <section className="section-padding !pb-0 !pt-8">
         <div className="mx-auto grid max-w-3xl gap-4 sm:grid-cols-2">
-          <Link href={PIGMENTATION_PATH} className="card block p-6 transition-colors hover:border-primary"><SectionBadge label="색소치료" /><h2 className="mt-3 text-lg font-semibold text-ink">피코토닝·제네시스 안내 →</h2><p className="mt-2 text-sm leading-relaxed text-muted">기미·주근깨·흑자, 피부결·홍조에 관한 질문 10개를 모았습니다.</p></Link>
+          <Link href={PIGMENTATION_PATH} className="card block p-6 transition-colors hover:border-primary"><SectionBadge label="색소치료" /><h2 className="mt-3 text-lg font-semibold text-ink">피코토닝·제네시스 안내 →</h2><p className="mt-2 text-sm leading-relaxed text-muted">기미·잡티·피부결에 관한 질문부터 담당 의료진, 방문 과정과 비용까지 확인하세요.</p></Link>
           <Link href={LIFTING_PATH} className="card block p-6 transition-colors hover:border-primary"><SectionBadge label="리프팅" /><h2 className="mt-3 text-lg font-semibold text-ink">슈링크 유니버스 안내 →</h2><p className="mt-2 text-sm leading-relaxed text-muted">볼살·턱선, 300샷 비용과 시술 시간·주기를 확인하세요.</p></Link>
         </div>
       </section>}
