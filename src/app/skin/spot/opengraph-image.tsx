@@ -6,7 +6,7 @@ export const alt = "점·편평사마귀·쥐젖을 CO2 레이저로 제거하�
 
 export default function Image() {
   return pageOgImage({
-    lead: "점, 빼기 전에",
+    lead: "잡티 빼기 전에",
     accent: "한 번 보고 결정합니다",
   });
 }

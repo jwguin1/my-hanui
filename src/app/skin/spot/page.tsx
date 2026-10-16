@@ -157,7 +157,7 @@ export default function SkinSpotPage() {
       <PageHeader
         badge="피부 · 미용"
         icon={<Scan size={15} />}
-        lead="점, 빼기 전에"
+        lead="잡티 빼기 전에"
         accent="한 번 보고 결정합니다"
         stacked
       />
