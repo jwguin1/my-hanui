@@ -1,5 +1,5 @@
 import { CARE_GUIDE, PAIN_CARE_FAQS, HERBAL_CARE_FAQS } from "@/lib/care-guide";
-import { CLINIC, CLINIC_HOURS_WEEKDAY, CLINIC_HOURS_WEEKEND } from "@/lib/clinic";
+import { CLINIC } from "@/lib/clinic";
 import { PAIN_PRICES, HERBAL_PRICES, HERBAL_INSURANCE_CONDITIONS, HERBAL_INSURANCE_LIMIT, PHARMACOPUNCTURE_NOTE, won } from "@/lib/pricing";
 
 export const PAIN_PRICE_FAQS = [
@@ -34,26 +34,17 @@ export const HERBAL_PRICE_FAQS = [
 ];
 
 export const VISIT_FAQS = [
-  ...[PAIN_CARE_FAQS[0], PAIN_CARE_FAQS[2]].map((faq) => ({ ...faq, href: "/pain/acute#visit-guide", linkLabel: "진료 시간과 치료 구성 보기" })),
-  ...PAIN_PRICE_FAQS,
-  ...HERBAL_PRICE_FAQS,
-  { q: "체질보약·비급여 한약 비용은 얼마인가요?", a: `비급여 한약은 1개월 ${won(HERBAL_PRICES.oneMonth)}, 2개월 ${won(HERBAL_PRICES.twoMonths)}, 3개월 ${won(HERBAL_PRICES.threeMonths)}입니다. 1개월은 60팩이며 체질맞춤보약·두통과 어지럼·갱년기 한약을 상담합니다.`, href: "/herbal/tonic#herbal-prices", linkLabel: "체질보약 비용 보기" },
-  ...HERBAL_CARE_FAQS.slice(0, 2).map((faq) => ({ ...faq, href: "/herbal/tonic#herbal-guide", linkLabel: "원내 조제·탕전 안내" })),
   {
     q: "예약 없이 오늘 바로 침 치료를 받을 수 있나요?",
     a: "예약 없이 방문하셔도 당일 침·물리치료가 가능합니다. 방문 전 카카오톡으로 아픈 부위와 오실 시간을 알려주시면 진료 안내를 받으실 수 있습니다.",
     href: "/pain/acute", linkLabel: "당일 통증 진료 안내",
   },
-  {
-    q: "퇴근 후나 주말에도 진료하나요?",
-    a: `평일은 ${CLINIC_HOURS_WEEKDAY}, 토·일·공휴일은 ${CLINIC_HOURS_WEEKEND} 진료합니다. 평일 점심시간은 13:00~14:00이며 주말·공휴일은 점심시간 없이 진료합니다. ${CLINIC.holidayClosedNote}`,
-    href: "/contact", linkLabel: "진료시간과 방문 안내",
-  },
-  {
-    q: "주차는 어디에 하고, 주차비는 얼마인가요?",
-    a: "이마트 풍산점 4·5·6·7층 주차장을 이용하시면 3시간 무료주차가 가능합니다. 주차 후 3층 일산한의원으로 오시면 됩니다. 풍산역 2번 출구에서는 도보 1분입니다.",
-    href: "/contact", linkLabel: "오시는 길 보기",
-  },
+  { ...PAIN_CARE_FAQS[0], href: "/pain/acute#visit-guide", linkLabel: "진료 시간과 치료 구성 보기" },
+  { ...PAIN_CARE_FAQS[5], href: "/pain/acute#visit-guide", linkLabel: "진료 준비와 치료 과정 보기" },
+  PAIN_PRICE_FAQS[0],
+  HERBAL_PRICE_FAQS[0],
+  { q: "체질보약·비급여 한약 비용은 얼마인가요?", a: `비급여 한약은 1개월 ${won(HERBAL_PRICES.oneMonth)}, 2개월 ${won(HERBAL_PRICES.twoMonths)}, 3개월 ${won(HERBAL_PRICES.threeMonths)}입니다. 1개월은 60팩이며 체질맞춤보약·두통과 어지럼·갱년기 한약을 상담합니다.`, href: "/herbal/tonic#herbal-prices", linkLabel: "체질보약 비용 보기" },
+  { ...HERBAL_CARE_FAQS[1], href: "/herbal/tonic#herbal-guide", linkLabel: "원내 조제·탕전 안내" },
   {
     q: "어떤 진료를 받아야 할지 모르겠는데 카카오톡으로 물어봐도 되나요?",
     a: CARE_GUIDE.consultation,

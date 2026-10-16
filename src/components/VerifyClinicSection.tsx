@@ -77,9 +77,9 @@ export default function VerifyClinicSection() {
         : "";
 
   return (
-    <section className="bg-[var(--surface)]">
+    <section id="clinic-verification" className="scroll-mt-24 bg-[var(--surface)]">
       {/* px-4 는 모바일 헤드라인 한 줄 유지를 위한 것 — px-6 로 되돌리지 않는다 */}
-      <div className="mx-auto max-w-[1100px] px-4 py-20 sm:px-6 md:px-8 lg:py-24">
+      <div className="mx-auto max-w-[1100px] px-4 py-10 sm:px-6 md:px-8 lg:py-14">
         <SectionReveal>
           <div className="mx-auto max-w-3xl text-center">
             <SectionBadge icon={<ListCheck size={15} />} label="의료기관 확인" />
@@ -106,13 +106,13 @@ export default function VerifyClinicSection() {
           </div>
 
           {/* 확인 경로 — 클릭하면 검색어를 복사하고 심평원을 새 탭으로 연다 */}
-          <div className="mx-auto mt-10 max-w-2xl">
+          <div className="mx-auto mt-6 max-w-2xl">
             <a
               href={HIRA_URL}
               target="_blank"
               rel="noopener noreferrer"
               onClick={handleCopy}
-              className="card group flex items-center justify-between gap-5 p-6 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--primary)] sm:p-7"
+              className="card group flex items-center justify-between gap-5 p-5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--primary)] sm:p-6"
             >
               <span className="min-w-0 flex-1 text-left">
                 <span className="block text-[0.78rem] font-medium tracking-wide text-[var(--tan)]">

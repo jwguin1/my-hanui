@@ -3,25 +3,20 @@ import Link from "next/link";
 import Hero from "@/components/Hero";
 import { VISIT_FAQS as FAQS } from "@/lib/visit-guide";
 import SectionReveal from "@/components/SectionReveal";
-import PostCard from "@/components/PostCard";
 import VerifyClinicSection from "@/components/VerifyClinicSection";
 import SectionBadge from "@/components/ui/SectionBadge";
-import StatCard from "@/components/ui/StatCard";
 import TwoTone from "@/components/ui/TwoTone";
 import {
-  ChartBar,
   Clock,
   HelpCircle,
   ListCheck,
   MapPin,
-  Microscope,
   PlayerPlay,
   Quote,
   Stethoscope,
 } from "@/components/ui/icons";
 import { fetchLatestVideos } from "@/lib/youtube";
-import { CATEGORY_META, SITE_URL } from "@/lib/categories";
-import { CAROUSEL_ORDER, CAROUSEL_TARGETS } from "@/lib/carousel-targets";
+import { SITE_URL } from "@/lib/categories";
 import {
   CLINIC,
   CLINIC_ADDRESS_STREET,
@@ -30,13 +25,13 @@ import {
   CLINIC_HOURS_WEEKEND,
   CLINIC_WEEKEND_HOLIDAY_LABEL,
 } from "@/lib/clinic";
-import { getLatestPostCards, latestPostsListNode } from "@/lib/latest-posts";
+import { HERBAL_GUIDES, herbalPath } from "@/lib/herbal-guides";
+import { CARE_GUIDE } from "@/lib/care-guide";
 import JsonLd from "@/components/JsonLd";
 import {
   buildGraph,
   faqEntities,
   itemListNode,
-  physicianStubs,
 } from "@/lib/schema";
 
 /**
@@ -47,12 +42,9 @@ import {
  * 수치를 고칠 때 기준도 같이 확인할 것.
  */
 const TRUST_STATS = [
-  // "명"은 연인원이 아니라 실인원이다 — 아래 80,000회(연인원)와 구분해서 읽혀야 한다
   { value: "13,000", unit: "명", label: "내원 환자 수 (실인원)" },
   { value: "80,000", unit: "회", label: "총 내원 횟수" },
   { value: "9,000", unit: "건+", label: "다이어트 처방 건수" },
-  { value: "6", unit: "인", label: "한의사 협진 의료진" },
-  { value: "20:00", unit: "까지", label: "평일 야간진료" },
 ];
 
 /**
@@ -62,44 +54,32 @@ const TRUST_STATS = [
 const TRUST_STATS_SOURCE = `${CLINIC.foundingYear}년 개원 이래 누적 · 원내 진료기록(EMR) 기준`;
 
 const WHY_CARDS = [
-  {
-    badge: "6인 협진",
-    heading: "6인 한의사 협진",
-    body: "6인의 한의사가 상주하며 근골격계, 내과, 미용 진료를 협진합니다. 분과별 숙련된 의료진이 체계적인 진료를 제공합니다.",
-  },
-  {
-    badge: "임상 경험",
-    heading: "누적 80,000회 내원, 9,000건 이상 다이어트 처방",
-    body: "누적 13,000명의 환자분이 80,000회 내원해 주셨습니다. 2023년 개원 이래 누적 9,000건 이상의 한방 다이어트 처방 경험. APCA RMSK(근골격계 초음파) 자격 보유 의료진이 초음파 진단으로 정확한 치료를 진행합니다.",
-  },
-  {
-    badge: "접근성",
-    heading: "야간·주말 진료, 풍산역 도보 1분",
-    body: "평일 매일 오후 8시까지 야간진료, 토·일·공휴일 진료 운영. 이마트 풍산점 3층 위치, 대형 주차장 완비. 경의중앙선 풍산역 2번 출구 도보 1분.",
-  },
+  { badge: "직접 확인", heading: "아픈 부위를 확인합니다", body: "근골격계 초음파로 필요한 부위를 살펴 진찰 결과와 함께 설명합니다. 다른 병원의 검사 결과도 현재 증상과 함께 확인합니다.", href: "/pain/chronic", linkLabel: "통증 진료 방식 보기" },
+  { badge: "6인 의료진", heading: "진료하는 의료진을 확인하세요", body: "6인의 한의사가 근골격계·내과·미용 진료를 나누어 담당합니다. 의료진 소개에서 각 원장의 경력과 진료 분야를 살펴보실 수 있습니다.", href: "/doctor", linkLabel: "의료진 소개 보기" },
+  { badge: "경과 확인", heading: "치료 후 변화를 다시 봅니다", body: "근육성 통증은 3회, 만성 통증은 5회 치료 후 경과를 다시 평가합니다. 통증과 움직임이 어떻게 달라졌는지 확인해 다음 치료를 상담합니다.", href: "/pain/acute#visit-guide", linkLabel: "치료 과정과 재평가 안내" },
 ];
 
 const PHILOSOPHY = [
-  {
-    quote: "진료비라는 무거운 짐을 얹어드리지 않겠습니다.",
-    body: "건강보험 진료를 우선하며, 오직 온전한 회복에만 집중할 수 있는 정직한 공간이 되겠습니다.",
-  },
-  {
-    quote: "객관적이고 정교한 비수술 치료",
-    // 모델명은 장비 라벨 실물 확인 전까지 넣지 않는다.
-    // 틀린 모델명은 모델명 없는 것보다 나쁘다 — 검증 가능한 "3대"만 쓴다.
-    body: "근골격계 초음파 3대와 혈액검사 장비로 상태를 객관적으로 파악하고, 수술 없이 일상을 지킬 수 있는 치료를 제공합니다.",
-  },
-  {
-    quote: "내 몸에 꼭 맞는 해답을 찾는 동행",
-    body: "아픔의 근본적인 원인을 살피고 깊이 공감하며, 함께 해결책을 찾아가는 든든한 동반자가 되겠습니다.",
-  },
+  { quote: "필요한 치료와 그 이유를 설명합니다.", body: "가장 불편한 증상을 듣고 진찰과 검사 결과를 함께 살펴봅니다. 어떤 치료가 필요한지, 지켜봐도 되는 부분은 무엇인지 말씀드립니다." },
+  { quote: "치료 과정과 비용을 먼저 안내합니다.", body: "건강보험 적용 여부와 추가 치료의 비용을 확인하고, 받으실 치료를 이해한 뒤 결정하실 수 있도록 안내합니다." },
+  { quote: "치료 후 변화를 확인하고 다음 계획을 정합니다.", body: "처음 불편했던 증상이 얼마나 달라졌는지 확인합니다. 치료 중 궁금한 점은 진료시간 내 카카오톡으로 의료진에게 물어보실 수 있습니다." },
 ];
 
-
+// 최신 발행일 대신 첫 방문자의 관심 분야를 기준으로 선택한다.
+// 화면과 ItemList는 같은 배열을 사용한다. 실제 질문 빈도 순위를 의미하지 않는다.
+const digestiveGuide = HERBAL_GUIDES.find(g => g.slug === "dyspepsia")!;
+const tonicGuide = HERBAL_GUIDES.find(g => g.slug === "constitution")!;
+const RECOMMENDED_READINGS = [
+  { category: "통증치료", title: "허리는 안 아픈데 다리만 저려요, 디스크일까요?", description: "다리 저림이 있을 때 확인할 증상과 진료 방향을 살펴보세요.", href: "/pain/다리만-저릴때-허리디스크" },
+  { category: "교통사고", title: "엑스레이는 정상이라는데 계속 아픕니다", description: "사고 후 남는 통증과 검사에서 확인하는 내용을 정리했습니다.", href: "/pain/교통사고-엑스레이-정상" },
+  { category: "보험한약", title: digestiveGuide.question, description: "반복되는 소화불량과 보험한약 적용·비용을 확인하세요.", href: herbalPath(digestiveGuide) },
+  { category: "체질보약", title: tonicGuide.question, description: "피로·소화·수면을 함께 살피는 맞춤 한약 상담을 안내합니다.", href: herbalPath(tonicGuide) },
+  { category: "다이어트", title: "다이어트 한약, 얼마나 먹어야 하고 비용은 어느 정도인가요?", description: "복용 기간과 비용을 먼저 확인하고 내 계획을 세워보세요.", href: "/diet/다이어트한약-기간과-비용" },
+  { category: "피부 · 미용", title: "한의원에서 피코토닝을 받아도 될까요?", description: "상담부터 시술까지, 의료기관을 선택할 때 확인할 내용을 안내합니다.", href: "/skin/한의원-피코토닝-상담-시술" },
+];
 
 // "진료 범위" 섹션의 단일 소스 — 화면 카드와 아래 ItemList 노드가 이 배열에서 함께 생성된다.
-// 진료 페이지로 직접 보내는 카드 — 아카이브(/pain 등)는 하단 "의학정보" 섹션에만 둔다
+// 상세 진료 안내로 직접 연결하고, 전체 글 목록은 하단과 푸터에서 안내한다.
 const CLINIC_CARDS = [
   { href: "/pain/acute", badge: "통증", heading: "통증치료", blurb: "침·추나·약침, 치료 과정과 비용", ogImage: "/images/cards/pain-acute.png" },
   { href: "/accident", badge: "자동차보험", heading: "교통사고", blurb: "사고 후 통증과 불편, 접수부터 치료까지", ogImage: "/images/cards/accident.png" },
@@ -122,8 +102,6 @@ const treatmentListNode = itemListNode(
 );
 
 export default async function Home() {
-  // 화면 카드와 ItemList JSON-LD 의 유일한 출처 (개수·순서·제목이 반드시 일치해야 함)
-  const postCards = getLatestPostCards(5);
   const videos = await fetchLatestVideos(3);
 
   const graph = buildGraph({
@@ -135,9 +113,7 @@ export default async function Home() {
     faq: faqEntities(FAQS),
     nodes: [
       treatmentListNode,
-      latestPostsListNode(postCards),
-      // 카드의 author 참조가 끊기지 않도록 Physician 스텁을 함께 싣는다
-      ...physicianStubs(postCards.map((c) => c.author)),
+      itemListNode("/", "patient-readings", "진료별 환자 질문 안내", RECOMMENDED_READINGS.map(item => ({ url: `${SITE_URL}${item.href}`, name: item.title }))),
     ],
   });
 
@@ -147,50 +123,50 @@ export default async function Home() {
       {/* ── Hero ── */}
       <Hero />
 
-      {/* ── Trust Indicators ── */}
-      <section className="bg-[var(--bg)]">
+      {/* ── 의료기관 확인 ── */}
+      <VerifyClinicSection />
+
+      {/* ── Philosophy ── */}
+      <section id="philosophy" className="scroll-mt-24 bg-[var(--bg)]">
         <div className="section-padding">
           <SectionReveal>
             <div className="mx-auto max-w-3xl text-center">
-              <SectionBadge icon={<ChartBar size={15} />} label="진료 실적" />
+              <SectionBadge icon={<Quote size={15} />} label="진료철학 · 세 가지 약속" />
               <div className="mt-4">
-                <TwoTone as="h2" lead="숫자로 보는 " accent="일산한의원" />
+                <TwoTone as="h2" lead="필요한 치료를 " accent="함께 정합니다" />
               </div>
-              <p className="mt-4 text-[14px] text-muted">
-                13,000명이 80,000번 찾아주셨습니다.
-                <br />
-                한 분이 평균 여섯 번 다시 오신 기록입니다.
-              </p>
-              <p className="mt-3 text-[12px] text-muted">
-                {TRUST_STATS_SOURCE}
-              </p>
             </div>
 
-            <div className="mx-auto mt-14 grid max-w-5xl grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
-              {TRUST_STATS.map((stat) => (
-                <StatCard
-                  key={stat.label}
-                  value={stat.value}
-                  unit={stat.unit}
-                  label={stat.label}
-                />
+            <div className="mx-auto mt-10 max-w-3xl space-y-7">
+              {PHILOSOPHY.map((item) => (
+                <div key={item.quote}>
+                  <p className="font-serif text-[1.15rem] font-semibold leading-relaxed text-ink">
+                    &ldquo;{item.quote}&rdquo;
+                  </p>
+                  <p className="mt-3 text-[0.95rem] leading-[2] text-muted">
+                    {item.body}
+                  </p>
+                </div>
               ))}
+            </div>
+
+            <div className="mt-10 text-center">
+              <Link href="/about" className="btn-ghost">
+                일산한의원 소개 보기
+              </Link>
             </div>
           </SectionReveal>
         </div>
       </section>
 
-      {/* ── 의료기관 확인 ── */}
-      <VerifyClinicSection />
-
       {/* ── Differentiation ── */}
-      <section className="bg-[var(--surface)]">
+      <section id="care-approach" className="scroll-mt-24 bg-[var(--surface)]">
         <div className="section-padding">
           <SectionReveal>
             <div className="mx-auto max-w-3xl text-center">
               <SectionBadge icon={<Stethoscope size={15} />} label="진료 방식" />
               <div className="mt-4">
-                <TwoTone as="h2" lead="일산한의원이 " accent="다른 이유" />
+                <TwoTone as="h2" lead="진료실에서는 " accent="이렇게 확인합니다" />
               </div>
             </div>
 
@@ -204,8 +180,19 @@ export default async function Home() {
                   <p className="mt-4 text-[0.95rem] leading-[1.9] text-muted">
                     {card.body}
                   </p>
+                  <Link href={card.href} className="mt-5 inline-block text-[15px] font-medium text-primary underline underline-offset-4">{card.linkLabel} →</Link>
                 </div>
               ))}
+            </div>
+            <div className="mx-auto mt-10 max-w-5xl border-t border-line pt-8">
+              <h3 className="text-center text-lg font-semibold text-ink">일산한의원이 쌓아온 진료 경험</h3>
+              <dl className="mt-5 grid gap-5 text-center sm:grid-cols-3">
+                {TRUST_STATS.map(stat => <div key={stat.label}>
+                  <dt className="text-sm text-muted">{stat.label}</dt>
+                  <dd className="mt-2 text-2xl font-semibold text-ink">{stat.value}<span className="ml-1 text-base font-medium">{stat.unit}</span></dd>
+                </div>)}
+              </dl>
+              <p className="mt-5 text-center text-[12px] text-muted">{TRUST_STATS_SOURCE}</p>
             </div>
           </SectionReveal>
         </div>
@@ -246,118 +233,67 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* ── 둘러보기 (네이버 하위링크 카드 후보 6개) ──
-          네이버가 웹사이트 결과 아래 거는 하위링크는 이 6개다.
-          홈 본문에서 6개를 한 블록으로 묶어 걸어 후보를 명확히 한다.
-          앵커 문구는 푸터 사이트맵·각 페이지 title 과 동일하다
-          (단일 소스: lib/carousel-targets.ts) */}
-      <section className="bg-[var(--bg)]">
-        {/* 바로 위 "진료 범위"와 같은 배경이라 pt 를 줄여 한 블록처럼 이어 붙인다 */}
-        <div className="section-padding !pt-4">
-          <SectionReveal>
-            <div className="mx-auto max-w-3xl text-center">
-              <SectionBadge icon={<ListCheck size={15} />} label="둘러보기" />
-              <div className="mt-4">
-                <TwoTone as="h2" lead="어디부터 " accent="보시겠어요?" />
-              </div>
+      {/* ── FAQ ── */}
+      <section id="first-visit" className="scroll-mt-24 bg-[var(--surface)]">
+        <div className="section-padding">
+        <SectionReveal>
+          <div className="mx-auto max-w-3xl text-center">
+            <SectionBadge icon={<HelpCircle size={15} />} label="처음 방문하시는 분께" />
+            <div className="mt-4">
+              <TwoTone as="h2" lead="시간과 비용, " accent="미리 확인하세요" />
             </div>
+          </div>
 
-            <nav
-              aria-label="주요 안내"
-              className="mx-auto mt-14 grid max-w-4xl gap-4 sm:grid-cols-2"
-            >
-              {CAROUSEL_ORDER.map((key) => {
-                const t = CAROUSEL_TARGETS[key];
-                return (
-                  <Link
-                    key={t.path}
-                    href={t.path}
-                    className="card group flex items-center justify-between gap-4 p-5"
-                  >
-                    <span className="min-w-0 text-[0.95rem] font-medium leading-snug text-ink transition-colors group-hover:text-primary">
-                      {t.title}
-                    </span>
-                    <span aria-hidden="true" className="shrink-0 text-primary">
-                      →
-                    </span>
-                  </Link>
-                );
-              })}
-            </nav>
-          </SectionReveal>
+          <div className="mx-auto mt-8 max-w-3xl space-y-3">
+            {FAQS.map((faq, i) => (
+              <details
+                key={i}
+                className="card group p-5 transition-colors open:border-primary/40"
+              >
+                <summary className="flex cursor-pointer items-start justify-between gap-4 list-none">
+                  <h3 className="font-serif text-[1rem] font-semibold leading-snug text-ink group-open:text-primary">
+                    Q. {faq.q}
+                  </h3>
+                  <span className="shrink-0 text-primary transition-transform group-open:rotate-45">
+                    +
+                  </span>
+                </summary>
+                <p className="mt-4 text-[0.95rem] leading-[2] text-muted">
+                  {faq.a}
+                </p>
+                <Link href={faq.href} className="mt-3 inline-block text-[15px] font-medium text-primary underline underline-offset-4">{faq.linkLabel}</Link>
+              </details>
+            ))}
+          </div>
+        </SectionReveal>
         </div>
       </section>
 
-      {/* ── Philosophy ── */}
-      <section className="bg-[var(--surface)]">
+      {/* ── 진료별 추천 질문 ── */}
+      <section id="patient-readings" className="scroll-mt-24 bg-[var(--bg)]">
         <div className="section-padding">
           <SectionReveal>
             <div className="mx-auto max-w-3xl text-center">
-              <SectionBadge icon={<Quote size={15} />} label="우리의 약속" />
-              <div className="mt-4">
-                <TwoTone as="h2" lead="저희의 " accent="진료 철학" />
-              </div>
+              <SectionBadge icon={<HelpCircle size={15} />} label="증상별 질문과 답" />
+              <div className="mt-4"><TwoTone as="h2" lead="내 고민과 닮은 " accent="질문을 읽어보세요" /></div>
+              <p className="mt-4 text-[16px] leading-relaxed text-muted">진료를 결정하기 전에 궁금한 내용부터 살펴보세요.</p>
             </div>
-
-            <div className="mx-auto mt-14 max-w-3xl space-y-10">
-              {PHILOSOPHY.map((item) => (
-                <div key={item.quote}>
-                  <p className="font-serif text-[1.05rem] font-semibold leading-relaxed text-ink">
-                    &ldquo;{item.quote}&rdquo;
-                  </p>
-                  <p className="mt-3 text-[0.95rem] leading-[2] text-muted">
-                    {item.body}
-                  </p>
-                </div>
-              ))}
+            <div className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+              {RECOMMENDED_READINGS.map(item => <Link key={item.href} href={item.href} className="card group flex flex-col p-6">
+                <p className="text-sm font-semibold text-primary">{item.category}</p>
+                <h3 className="mt-3 text-lg font-semibold leading-relaxed text-ink group-hover:text-primary">{item.title}</h3>
+                <p className="mt-3 flex-1 text-[15px] leading-[1.8] text-muted">{item.description}</p>
+                <span className="mt-5 text-[15px] font-medium text-primary">답변 읽기 →</span>
+              </Link>)}
             </div>
-
-            <div className="mt-10 text-center">
-              <Link href="/about" className="btn-ghost">
-                자세히 보기
-              </Link>
-            </div>
+            <div className="mt-8 text-center"><Link href="/blog" className="btn-ghost">질문과 글 전체 보기 →</Link></div>
           </SectionReveal>
         </div>
       </section>
-
-      {/* ── 최신 의학정보 (자사 상세글) ── */}
-      {postCards.length > 0 && (
-        <section className="bg-[var(--bg)]">
-          <div className="section-padding">
-            <SectionReveal>
-              <div className="text-center">
-                <SectionBadge icon={<Microscope size={15} />} label="의학정보" />
-                <div className="mt-4">
-                  <TwoTone as="h2" lead="근거를 " accent="함께 봅니다" />
-                </div>
-                <p className="mt-4 text-[14px] text-muted">
-                  진료 현장에서 마주한 사례와 최신 연구를 정리합니다
-                </p>
-              </div>
-
-              <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-                {postCards.map((post) => (
-                  <PostCard key={post.slug} post={post} />
-                ))}
-              </div>
-
-              <div className="mt-10 flex flex-wrap justify-center gap-4">
-                <Link href="/blog" className="btn-ghost">
-                  글 더보기
-                </Link>
-                <Link href="/column" className="btn-ghost">
-                  네이버 의학칼럼
-                </Link>
-              </div>
-            </SectionReveal>
-          </div>
-        </section>
-      )}
 
       {/* ── YouTube ── */}
-      <section className="bg-[var(--surface)]">
-        <div className="section-padding">
+      <section id="clinic-videos" className="border-t border-line bg-[var(--bg)]">
+        <div className="section-padding !pt-10">
         <SectionReveal>
           <div className="text-center">
             <SectionBadge icon={<PlayerPlay size={15} />} label="영상" />
@@ -380,6 +316,7 @@ export default async function Home() {
                     src={`https://www.youtube.com/embed/${v.id}`}
                     title={v.title}
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    loading="lazy"
                     allowFullScreen
                     className="absolute inset-0 h-full w-full pointer-events-none"
                   />
@@ -393,74 +330,13 @@ export default async function Home() {
             ))}
           </div>
 
-          <div className="mt-10 flex flex-col items-center gap-8">
-            <Link href="/media" className="btn-ghost">
-              영상 더보기
-            </Link>
-            <div className="flex flex-wrap justify-center gap-4">
-              <a
-                href={CLINIC.kakaoHref}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-md bg-[#FEE500] px-7 py-3 text-[0.9rem] font-semibold text-[#3C1E1E] transition-opacity hover:opacity-90"
-              >
-                💬 카카오톡 상담
-              </a>
-              <a
-                href="https://naver.me/IItclnGB"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-md bg-[#03C75A] px-7 py-3 text-[0.9rem] font-semibold text-white transition-opacity hover:opacity-90"
-              >
-                <svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor">
-                  <path d="M13.27 10.6L6.44 1H1v18h5.73V9.4L13.56 19H19V1h-5.73z" />
-                </svg>
-                네이버 플레이스 보기
-              </a>
-            </div>
-          </div>
-        </SectionReveal>
-        </div>
-      </section>
-
-      {/* ── FAQ ── */}
-      <section className="bg-[var(--bg)]">
-        <div className="section-padding">
-        <SectionReveal>
-          <div className="mx-auto max-w-3xl text-center">
-            <SectionBadge icon={<HelpCircle size={15} />} label="자주 묻는 질문" />
-            <div className="mt-4">
-              <TwoTone as="h2" lead="궁금하신 점, " accent="먼저 답해드립니다" />
-            </div>
-          </div>
-
-          <div className="mx-auto mt-14 max-w-3xl space-y-4">
-            {FAQS.map((faq, i) => (
-              <details
-                key={i}
-                className="card group p-6 transition-colors open:border-primary/40"
-              >
-                <summary className="flex cursor-pointer items-start justify-between gap-4 list-none">
-                  <h3 className="font-serif text-[1rem] font-semibold leading-snug text-ink group-open:text-primary">
-                    Q. {faq.q}
-                  </h3>
-                  <span className="shrink-0 text-primary transition-transform group-open:rotate-45">
-                    +
-                  </span>
-                </summary>
-                <p className="mt-4 text-[0.95rem] leading-[2] text-muted">
-                  {faq.a}
-                </p>
-                <Link href={faq.href} className="mt-3 inline-block text-[15px] font-medium text-primary underline underline-offset-4">{faq.linkLabel}</Link>
-              </details>
-            ))}
-          </div>
+          <div className="mt-8 text-center"><Link href="/media" className="btn-ghost">의료진 영상 더보기 →</Link></div>
         </SectionReveal>
         </div>
       </section>
 
       {/* ── Hours & Contact Summary ── */}
-      <section className="bg-[var(--surface)]">
+      <section id="visit-info" className="scroll-mt-24 bg-[var(--surface)]">
         <div className="section-padding">
           <SectionReveal>
             <div className="grid gap-10 md:grid-cols-2">
@@ -514,7 +390,7 @@ export default async function Home() {
                   </div>
                   <div>
                     <p className="text-[0.8rem] text-primary">상담 · 예약</p>
-                    <p className="mt-2 text-sm text-muted">카카오톡으로 편하게 문의해 주세요.</p>
+                    <p className="mt-2 text-sm text-muted">{CARE_GUIDE.consultation}</p>
                     <ConsultationActions className="mt-3 !justify-start" />
                   </div>
                   <div>
