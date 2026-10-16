@@ -1,7 +1,6 @@
 import { CLINIC } from "@/lib/clinic";
-import BrushUnderline from "@/components/ui/BrushUnderline";
+import Link from "next/link";
 import PillButton from "@/components/ui/PillButton";
-import TwoTone from "@/components/ui/TwoTone";
 import {
   Clock,
   HeartMonitor,
@@ -16,6 +15,15 @@ const META = [
   { icon: <HeartMonitor size={15} />, label: "초음파 진단" },
   { icon: <Clock size={15} />, label: "평일 야간 20시" },
   { icon: <MapPin size={15} />, label: "이마트 풍산점 3층" },
+];
+
+const QUICK_LINKS = [
+  { label: "통증 치료", detail: "목·허리·어깨·관절", href: "/pain/acute" },
+  { label: "교통사고", detail: "사고 후 통증·불편", href: "/accident" },
+  { label: "소화불량·한약", detail: "급체·반복되는 소화불량", href: "/internal/dyspepsia" },
+  { label: "다이어트", detail: "처방·복용·비용 안내", href: "/diet/program" },
+  { label: "색소치료", detail: "기미·잡티·피코토닝", href: "/skin/pigmentation" },
+  { label: "리프팅", detail: "슈링크 유니버스", href: "/skin/lifting" },
 ];
 
 /**
@@ -70,62 +78,53 @@ export default function Hero() {
         fetchPriority="high"
       />
 
-      {/* ── 카피 블록 (중앙 정렬) ── */}
-      <div className="mx-auto flex max-w-[1180px] flex-col items-center px-6 pb-8 pt-9 text-center lg:pb-10 lg:pt-[56px]">
-        {/* 모바일에서만 헤드라인 한 단계 축소 */}
-        <div className="w-fit [&_h1]:text-[28px] md:[&_h1]:text-[44px] lg:[&_h1]:text-[60px]">
-          <TwoTone
-            as="h1"
-            stacked
-            lead={'"이건 치료'}
-            accent={'안 하셔도 됩니다"'}
-          />
-          <div className="mt-[2px] flex justify-center">
-            <BrushUnderline />
-          </div>
-        </div>
+      <div className="mx-auto grid max-w-[1180px] gap-9 px-6 pb-8 pt-9 md:grid-cols-[1.15fr_1fr] md:items-center md:gap-10 lg:pb-10 lg:pt-14">
+        <div>
+          <p className="mb-5 text-[15px] font-semibold tracking-wide text-primary">이마트 풍산점 3층 · 일산한의원</p>
+          <h1 className="text-[clamp(30px,7.9vw,42px)] font-bold leading-[1.25] tracking-[-0.035em] text-ink md:text-[clamp(36px,4.4vw,54px)]">
+            <span className="block">“이건 치료 </span>
+            <span className="block text-primary">안 하셔도 됩니다”</span>
+          </h1>
+          <p className="mt-6 text-[17px] leading-[1.8] text-[#554b43]">저희가 진료실에서 자주 드리는 말씀입니다.</p>
+          <p className="mt-2 max-w-[29rem] text-[18px] font-medium leading-[1.8] text-ink">초음파로 직접 보면서 진단하니까,<br className="hidden lg:block" /> 필요한 치료만 남습니다.</p>
 
-        <p className="mt-[26px] text-[15px] text-muted">
-          저희가 진료실에서 자주 드리는 말씀입니다.
-        </p>
-        <p className="mt-2 text-[18px] font-medium leading-relaxed text-ink">
-          초음파로 직접 보면서 진단하니까, 필요한 치료만 남습니다.
-        </p>
-
-        <ul className="mt-[26px] flex flex-wrap items-center justify-center gap-x-2 gap-y-2 text-[13px] text-[#6B5B4B]">
-          {META.map((m, i) => (
-            <li key={m.label} className="flex items-center gap-2">
-              {i > 0 ? (
-                <span aria-hidden="true" className="hidden text-line sm:inline">
-                  ·
-                </span>
-              ) : null}
-              <span className="flex items-center gap-1.5">
-                <span className="text-tan-soft">{m.icon}</span>
-                {m.label}
-              </span>
-            </li>
-          ))}
-        </ul>
-
-        <div className="mt-[30px] flex w-full flex-col justify-center gap-2.5 sm:w-auto sm:flex-row">
+          <div className="mt-6 grid grid-cols-2 gap-2 sm:flex sm:flex-wrap sm:gap-3">
           <PillButton
             href={CLINIC.kakaoHref}
             variant="kakao"
             icon={<MessageCircle size={16} />}
-            className="w-full sm:w-auto"
+            className="!px-2 !text-[14px] sm:!px-[26px] sm:!text-[16px]"
           >
             카카오톡 상담
           </PillButton>
           <PillButton
-            href="/pain/acute"
+            href="#treatment-guide"
             variant="outline"
             icon={<Stethoscope size={16} />}
-            className="w-full sm:w-auto"
+            className="!px-2 !text-[14px] sm:!px-[26px] sm:!text-[16px]"
           >
-            진료 안내 보기
+            전체 진료 보기
           </PillButton>
+          </div>
+
+          <ul className="mt-6 grid grid-cols-2 gap-x-3 gap-y-2 text-[14px] font-medium text-[#554b43]">
+            {META.map((m) => <li key={m.label} className="flex items-center gap-2"><span aria-hidden="true" className="text-primary">{m.icon}</span>{m.label}</li>)}
+          </ul>
         </div>
+
+        <nav aria-label="첫 화면 진료 바로가기" className="rounded-2xl border border-line bg-white p-5 sm:p-6">
+          <h2 className="text-[21px] font-bold tracking-tight text-ink">어떤 진료를 찾으세요?</h2>
+          <p className="mt-2 text-[15px] leading-relaxed text-[#554b43]">궁금한 치료와 비용을 먼저 살펴보세요.</p>
+          <ul className="mt-5 grid grid-cols-2 gap-3">
+            {QUICK_LINKS.map((item) => <li key={item.href}>
+              <Link href={item.href} className="group flex h-full flex-col rounded-xl border border-line bg-[var(--bg)] px-3 py-3.5 transition-colors hover:border-primary hover:bg-surface focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary sm:px-4">
+                <span className="flex items-center justify-between gap-1 text-[16px] font-semibold text-ink">{item.label}<span aria-hidden="true" className="text-primary">↗</span></span>
+                <span className="mt-1.5 hidden text-[13px] leading-relaxed text-[#554b43] sm:block">{item.detail}</span>
+              </Link>
+            </li>)}
+          </ul>
+          <Link href="/skin/spot" className="mt-4 inline-block text-[14px] font-medium text-primary underline underline-offset-4">점·편평사마귀·쥐젖 제거 안내</Link>
+        </nav>
       </div>
 
       {/* ── 하단 풀블리드 단체사진 밴드 ──

@@ -234,7 +234,7 @@ export default async function Home() {
   });
 
   return (
-    <>
+    <div className="home-content">
       <JsonLd graph={graph} />
       {/* ── Hero ── */}
       <Hero />
@@ -303,8 +303,8 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* ── Treatment Scope (4 Clinics) ── */}
-      <section className="bg-[var(--bg)]">
+      {/* ── Treatment Scope ── */}
+      <section id="treatment-guide" className="scroll-mt-24 bg-[var(--bg)]">
         <div className="section-padding">
           <SectionReveal>
             <div className="mx-auto max-w-3xl text-center">
@@ -629,6 +629,6 @@ export default async function Home() {
           </SectionReveal>
         </div>
       </section>
-    </>
+    </div>
   );
 }
