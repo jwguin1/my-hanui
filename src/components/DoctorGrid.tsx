@@ -15,8 +15,8 @@ export default function DoctorGrid({ doctors }: { doctors: Doctor[] }) {
     <nav aria-label="의료진 소개 바로가기" className="mt-5 flex flex-wrap gap-3">{doctors.map(doc => <Link key={doc.name} href={`#${DOCTOR_SLUGS[doc.name]}`} className="rounded-full border border-line px-4 py-2 text-sm text-primary">{doc.name} 원장</Link>)}</nav>
     <div className="mt-8 grid items-start gap-6 md:grid-cols-2 lg:grid-cols-3">
       {doctors.map(doc => <article key={doc.name} id={DOCTOR_SLUGS[doc.name]} className="scroll-mt-28 overflow-hidden rounded-2xl border border-line bg-card">
-        {/* 원본마다 비율이 달라 contain으로 인물과 사진 가장자리를 모두 보존한다. */}
-        <div className="relative aspect-[3/4] bg-[#f1f1ef]"><Image src={doc.image} alt={`${doc.name} 원장`} fill sizes="(max-width: 767px) calc(100vw - 48px), (max-width: 1023px) calc((100vw - 72px) / 2), (max-width: 1151px) calc((100vw - 96px) / 3), 352px" className="doctor-portrait object-contain object-center" /></div>
+        {/* 동일한 세로 비율로 여백 없이 채우고, 머리 위 공간을 보존한다. */}
+        <div className="relative aspect-[3/4] overflow-hidden bg-[#f1f1ef]"><Image src={doc.image} alt={`${doc.name} 원장`} fill sizes="(max-width: 767px) calc(100vw - 48px), (max-width: 1023px) calc((100vw - 72px) / 2), (max-width: 1151px) calc((100vw - 96px) / 3), 352px" className="doctor-portrait object-cover object-top" /></div>
         <div className="p-5">
           <h3 className="font-serif text-xl font-semibold text-ink">{doc.name} 원장 · 한의사</h3>
           <p className="mt-3 text-sm leading-relaxed text-muted">{doc.school} 졸업</p>
