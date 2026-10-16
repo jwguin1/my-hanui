@@ -145,6 +145,7 @@ const SEGMENT_LABELS: Record<string, string> = {
   media: "유튜브",
   blog: "블로그",
   treatment: "진료 안내",
+  pricing: "진료비·시간 안내",
 };
 
 /**

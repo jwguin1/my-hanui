@@ -261,6 +261,7 @@ function listPaths() {
     "/media",
     "/treatment",
     "/aftercare",
+    "/pricing",
     "/contact",
     "/blog",
     "/pain",

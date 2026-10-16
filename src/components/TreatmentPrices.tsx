@@ -1,6 +1,6 @@
 import Link from "next/link";
 import PriceTable from "@/components/ui/PriceTable";
-import { PAIN_PRICES, HERBAL_PRICES, PAIN_INSURANCE_NOTE, PHARMACOPUNCTURE_NOTE, HERBAL_INSURANCE_CONDITIONS, HERBAL_INSURANCE_LIMIT, won } from "@/lib/pricing";
+import { PAIN_PRICES, HERBAL_PRICES, PAIN_INSURANCE_NOTE, PHARMACOPUNCTURE_NOTE, HERBAL_INSURANCE_CONDITIONS, HERBAL_INSURANCE_LIMIT, won, painWon } from "@/lib/pricing";
 
 export function TreatmentPriceLink({ herbal = false }: { herbal?: boolean }) {
   return (
@@ -8,6 +8,7 @@ export function TreatmentPriceLink({ herbal = false }: { herbal?: boolean }) {
       <Link href={herbal ? "#herbal-prices" : "#prices"} className="inline-block text-[16px] font-semibold text-primary underline underline-offset-4">
         {herbal ? "건강보험 한약 비용·적용 조건 보기" : "초진·추나·초음파 유도 약침 비용 보기"}
       </Link>
+      <Link href="/pricing" className="mt-2 block text-sm text-primary underline underline-offset-4">전체 진료비·소요 시간 보기</Link>
     </nav>
   );
 }
@@ -22,14 +23,14 @@ export function PainPrices() {
           <p className="mt-4 text-center text-[16px] leading-relaxed text-muted">받으실 치료의 비용을 미리 확인하세요.</p>
           <div className="mt-8 space-y-6">
             <PriceTable caption="일반 근골격계 진료·추나치료" rows={[
-              { name: "일반 근골격계 초진", price: won(PAIN_PRICES.firstVisit) },
-              { name: "단순추나", price: won(PAIN_PRICES.simpleChuna) },
-              { name: "복잡추나", price: won(PAIN_PRICES.complexChuna) },
+              { name: "일반 근골격계 초진", price: painWon(PAIN_PRICES.firstVisit) },
+              { name: "단순추나", price: painWon(PAIN_PRICES.simpleChuna) },
+              { name: "복잡추나", price: painWon(PAIN_PRICES.complexChuna) },
             ]} />
             <p className="text-[15px] leading-relaxed text-ink">{PAIN_INSURANCE_NOTE}</p>
             <PriceTable caption="초음파 유도 약침 · 1회" rows={[
-              { name: "기본 통원약침", includes: "포도당 5%", price: won(PAIN_PRICES.dextrose) },
-              { name: "PDRN 약침", price: won(PAIN_PRICES.pdrn) },
+              { name: "기본 통원약침", includes: "포도당 5%", price: painWon(PAIN_PRICES.dextrose) },
+              { name: "PDRN 약침", price: painWon(PAIN_PRICES.pdrn) },
             ]} />
             <p className="text-[15px] font-medium leading-relaxed text-ink">{PHARMACOPUNCTURE_NOTE}</p>
           </div>

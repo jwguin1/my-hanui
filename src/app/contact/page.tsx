@@ -1,3 +1,4 @@
+import { ClinicPhotoGallery } from "@/components/ClinicPhoto";
 import ConsultationActions from "@/components/ConsultationActions";
 import type { Metadata } from "next";
 import SectionReveal from "@/components/SectionReveal";
@@ -63,6 +64,7 @@ export default function ContactPage() {
         </div>
         <p className="mt-5 leading-relaxed text-muted">카카오톡에는 {CLINIC.consultationPrompt}</p>
       </section>
+      <ClinicPhotoGallery photos={["entrance", "reception"]} title="이 간판과 데스크를 찾아오세요" id="arrival-photos" />
 
       {/* Info Cards */}
       <section className="section-padding">

@@ -1,3 +1,4 @@
+import { ClinicPhotoGallery } from "@/components/ClinicPhoto";
 import CareGuide from "@/components/CareGuide";
 import { CARE_GUIDE, PAIN_CARE_FAQS } from "@/lib/care-guide";
 import { PainPrices, TreatmentPriceLink } from "@/components/TreatmentPrices";
@@ -235,6 +236,7 @@ export default function AcutePainPage() {
       />
       <TreatmentPriceLink />
       <CareGuide />
+      <ClinicPhotoGallery photos={["acupuncture", "ict"]} title="침과 기본 물리치료, 이렇게 진행합니다" id="treatment-photos" />
 
       {/* ── 정의 + 지표 ── */}
       <section className="bg-[var(--bg)]">

@@ -6,14 +6,14 @@ import JsonLd from "@/components/JsonLd";
 import { buildGraph } from "@/lib/schema";
 import { pageMetadata } from "@/lib/page-metadata";
 import { CARE_GUIDE } from "@/lib/care-guide";
-import { PAIN_PRICES, won } from "@/lib/pricing";
+import { PAIN_PRICES, painWon } from "@/lib/pricing";
 
 const description = "일산한의원의 기본 보험진료, 추나, 초음파 유도 약침, 원내 탕전 한약과 피부레이저 진료를 안내합니다. 치료 과정과 비용을 먼저 확인하세요.";
 export const metadata: Metadata = pageMetadata({ path: "/treatment", title: "진료 안내 | 기본 치료·추나·약침·한약", description });
 const treatments = [
-  { title: "기본 통증 치료", body: `${CARE_GUIDE.basic} ${CARE_GUIDE.time}`, note: `일반 근골격계 초진 본인부담금 ${won(PAIN_PRICES.firstVisit)}`, href: "/pain/acute", label: "통증 치료 과정과 비용" },
-  { title: "추나치료", body: CARE_GUIDE.selection, note: `단순추나 ${won(PAIN_PRICES.simpleChuna)} · 복잡추나 ${won(PAIN_PRICES.complexChuna)}. 건강보험 적용 후 본인부담금이며 기본 진료비가 포함됩니다.`, href: "/pain/chronic#prices", label: "추나·약침 비용 확인" },
-  { title: "초음파 유도 약침", body: "진찰과 초음파 검사로 필요한 부위를 확인하고 약침 치료를 계획합니다. 기본 통원약침은 포도당 5%를 사용하며, PDRN 약침도 시행합니다.", note: `1회 비급여 비용: 기본 통원약침 ${won(PAIN_PRICES.dextrose)} · PDRN 약침 ${won(PAIN_PRICES.pdrn)}. 보험 진료비는 별도입니다.`, href: "/pain/chronic", label: "초음파 진료와 치료 기준" },
+  { title: "기본 통증 치료", body: `${CARE_GUIDE.basic} ${CARE_GUIDE.time}`, note: `일반 근골격계 초진 본인부담금 ${painWon(PAIN_PRICES.firstVisit)}`, href: "/pain/acute", label: "통증 치료 과정과 비용" },
+  { title: "추나치료", body: CARE_GUIDE.selection, note: `단순추나 ${painWon(PAIN_PRICES.simpleChuna)} · 복잡추나 ${painWon(PAIN_PRICES.complexChuna)}. 건강보험 적용 후 본인부담금이며 기본 진료비가 포함됩니다.`, href: "/pain/chronic#prices", label: "추나·약침 비용 확인" },
+  { title: "초음파 유도 약침", body: "진찰과 초음파 검사로 필요한 부위를 확인하고 약침 치료를 계획합니다. 기본 통원약침은 포도당 5%를 사용하며, PDRN 약침도 시행합니다.", note: `1회 비급여 비용: 기본 통원약침 ${painWon(PAIN_PRICES.dextrose)} · PDRN 약침 ${painWon(PAIN_PRICES.pdrn)}. 보험 진료비는 별도입니다.`, href: "/pain/chronic", label: "초음파 진료와 치료 기준" },
   { title: "추가 물리치료실", body: CARE_GUIDE.extra, note: "추가 물리치료까지 받으시면 접수부터 전체 약 1시간 10분입니다.", href: "/pain/acute#visit-guide", label: "방문 시간과 이용 안내" },
   { title: "보험한약", body: "소화불량·생리통 등 건강보험 대상 6개 질환의 진단과 적용 여부를 확인해 처방합니다.", note: "10일 처방 본인부담금 4만원대", href: "/herbal/insurance", label: "6개 대상 질환과 보험 적용" },
   { title: "체질보약", body: `${CARE_GUIDE.herbalProcess} ${CARE_GUIDE.herbalTiming}`, note: "체질맞춤보약 · 두통·어지럼 · 갱년기 한약", href: "/herbal/tonic", label: "비급여 한약 구성과 가격" },

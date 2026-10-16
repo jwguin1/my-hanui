@@ -1,21 +1,21 @@
 import { CARE_GUIDE, PAIN_CARE_FAQS, HERBAL_CARE_FAQS } from "@/lib/care-guide";
 import { CLINIC } from "@/lib/clinic";
-import { PAIN_PRICES, HERBAL_PRICES, HERBAL_INSURANCE_CONDITIONS, HERBAL_INSURANCE_LIMIT, PHARMACOPUNCTURE_NOTE, won } from "@/lib/pricing";
+import { PAIN_PRICES, HERBAL_PRICES, HERBAL_INSURANCE_CONDITIONS, HERBAL_INSURANCE_LIMIT, PHARMACOPUNCTURE_NOTE, won, painWon } from "@/lib/pricing";
 
 export const PAIN_PRICE_FAQS = [
   {
     q: "목·허리·어깨 통증으로 처음 가면 진료비가 얼마인가요?",
-    a: `일산한의원의 일반 근골격계 초진 진료비는 건강보험 적용 후 본인부담금 ${won(PAIN_PRICES.firstVisit)}입니다. 추나와 초음파 유도 약침의 비용도 함께 확인하실 수 있습니다.`,
+    a: `일산한의원의 일반 근골격계 초진 진료비는 건강보험 적용 후 본인부담금 ${painWon(PAIN_PRICES.firstVisit)}입니다. 추나와 초음파 유도 약침의 비용도 함께 확인하실 수 있습니다.`,
     href: "/pain/acute#prices", linkLabel: "통증 치료 비용 보기",
   },
   {
     q: "단순추나와 복잡추나 비용은 각각 얼마인가요?",
-    a: `단순추나는 ${won(PAIN_PRICES.simpleChuna)}, 복잡추나는 ${won(PAIN_PRICES.complexChuna)}입니다. 건강보험 적용 후 본인부담금이며, 기본 진료비가 포함된 금액입니다.`,
+    a: `단순추나는 ${painWon(PAIN_PRICES.simpleChuna)}, 복잡추나는 ${painWon(PAIN_PRICES.complexChuna)}입니다. 건강보험 적용 후 본인부담금이며, 기본 진료비가 포함된 금액입니다.`,
     href: "/pain/chronic#prices", linkLabel: "추나 치료와 비용 보기",
   },
   {
     q: "초음파 유도 약침은 종류별로 얼마인가요?",
-    a: `초음파 유도 약침은 기본 통원약침(포도당 5%) ${won(PAIN_PRICES.dextrose)}, PDRN 약침 ${won(PAIN_PRICES.pdrn)}입니다. ${PHARMACOPUNCTURE_NOTE}`,
+    a: `초음파 유도 약침은 기본 통원약침(포도당 5%) ${painWon(PAIN_PRICES.dextrose)}, PDRN 약침 ${painWon(PAIN_PRICES.pdrn)}입니다. ${PHARMACOPUNCTURE_NOTE}`,
     href: "/pain/chronic#prices", linkLabel: "초음파 유도 약침 안내",
   },
 ];

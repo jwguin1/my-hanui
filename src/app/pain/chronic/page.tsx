@@ -1,3 +1,4 @@
+import { ClinicPhotoGallery } from "@/components/ClinicPhoto";
 import CareGuide from "@/components/CareGuide";
 import { CARE_GUIDE, PAIN_CARE_FAQS } from "@/lib/care-guide";
 import ConsultationActions from "@/components/ConsultationActions";
@@ -217,6 +218,7 @@ export default function ChronicPainPage() {
       />
       <TreatmentPriceLink />
       <CareGuide />
+      <ClinicPhotoGallery photos={["ultrasound", "chuna"]} title="초음파 유도 약침과 추나치료" id="treatment-photos" />
 
       {/* ── 정의 + 지표 ── */}
       <section className="bg-[var(--bg)]">

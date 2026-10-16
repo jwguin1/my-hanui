@@ -88,6 +88,7 @@ export const SITE_NAV: NavGroup[] = [
       },
     ],
   },
+  { label: "진료비·시간", href: "/pricing" },
   { label: CAROUSEL_TARGETS.contact.navLabel, href: "/contact" },
 ];
 

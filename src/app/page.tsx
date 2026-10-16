@@ -1,3 +1,4 @@
+import ClinicPhoto from "@/components/ClinicPhoto";
 import ConsultationActions from "@/components/ConsultationActions";
 import Link from "next/link";
 import Hero from "@/components/Hero";
@@ -54,9 +55,9 @@ const TRUST_STATS = [
 const TRUST_STATS_SOURCE = `${CLINIC.foundingYear}년 개원 이래 누적 · 원내 진료기록(EMR) 기준`;
 
 const WHY_CARDS = [
-  { badge: "직접 확인", heading: "아픈 부위를 확인합니다", body: "근골격계 초음파로 필요한 부위를 살펴 진찰 결과와 함께 설명합니다. 다른 병원의 검사 결과도 현재 증상과 함께 확인합니다.", href: "/pain/chronic", linkLabel: "통증 진료 방식 보기" },
-  { badge: "6인 의료진", heading: "진료하는 의료진을 확인하세요", body: "6인의 한의사가 근골격계·내과·미용 진료를 함께합니다. 의료진 소개에서 각 원장의 경력과 진료 분야를 살펴보실 수 있습니다.", href: "/doctor", linkLabel: "의료진 소개 보기" },
-  { badge: "경과 확인", heading: "치료 후 변화를 다시 봅니다", body: "근육성 통증은 3회, 만성 통증은 5회 치료 후 경과를 다시 평가합니다. 통증과 움직임이 어떻게 달라졌는지 확인해 다음 치료를 상담합니다.", href: "/pain/acute#visit-guide", linkLabel: "치료 과정과 재평가 안내" },
+  { photo: "ultrasound" as const, badge: "직접 확인", heading: "아픈 부위를 확인합니다", body: "근골격계 초음파로 필요한 부위를 살펴 진찰 결과와 함께 설명합니다. 다른 병원의 검사 결과도 현재 증상과 함께 확인합니다.", href: "/pain/chronic", linkLabel: "통증 진료 방식 보기" },
+  { photo: "chuna" as const, badge: "6인 의료진", heading: "진료하는 의료진을 확인하세요", body: "6인의 한의사가 근골격계·내과·미용 진료를 함께합니다. 의료진 소개에서 각 원장의 경력과 진료 분야를 살펴보실 수 있습니다.", href: "/doctor", linkLabel: "의료진 소개 보기" },
+  { photo: "ict" as const, badge: "경과 확인", heading: "치료 후 변화를 다시 봅니다", body: "근육성 통증은 3회, 만성 통증은 5회 치료 후 경과를 다시 평가합니다. 통증과 움직임이 어떻게 달라졌는지 확인해 다음 치료를 상담합니다.", href: "/pain/acute#visit-guide", linkLabel: "치료 과정과 재평가 안내" },
 ];
 
 const PHILOSOPHY = [
@@ -172,7 +173,9 @@ export default async function Home() {
 
             <div className="mx-auto mt-8 grid max-w-5xl gap-6 md:grid-cols-3">
               {WHY_CARDS.map((card) => (
-                <div key={card.badge} className="card p-5 md:p-7">
+                <div key={card.badge} className="card overflow-hidden">
+                  <ClinicPhoto photo={card.photo} caption={false} />
+                  <div className="p-5 md:p-7">
                   <SectionBadge label={card.badge} />
                   <h3 className="font-serif mt-3 text-[1.1rem] font-semibold text-ink">
                     {card.heading}
@@ -181,6 +184,7 @@ export default async function Home() {
                     {card.body}
                   </p>
                   <Link href={card.href} className="mt-5 inline-block text-[15px] font-medium text-primary underline underline-offset-4">{card.linkLabel} →</Link>
+                  </div>
                 </div>
               ))}
             </div>
@@ -242,6 +246,7 @@ export default async function Home() {
             <div className="mt-4">
               <TwoTone as="h2" lead="시간과 비용, " accent="미리 확인하세요" />
             </div>
+            <Link href="/pricing" className="mt-5 inline-block font-semibold text-primary underline underline-offset-4">전체 진료비·소요 시간 한눈에 보기 →</Link>
           </div>
 
           <div className="mx-auto mt-8 max-w-3xl space-y-3">

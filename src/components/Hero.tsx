@@ -123,6 +123,7 @@ export default function Hero() {
               </Link>
             </li>)}
           </ul>
+          <Link href="/pricing" className="mt-5 block border-t border-line pt-4 text-center text-[15px] font-semibold text-primary underline underline-offset-4">진료비·소요 시간 한눈에 보기 →</Link>
         </nav>
       </div>
 

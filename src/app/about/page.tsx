@@ -1,3 +1,4 @@
+import { ClinicPhotoGallery } from "@/components/ClinicPhoto";
 import type { Metadata } from "next";
 import SectionReveal from "@/components/SectionReveal";
 import PageHeroBanner from "@/components/PageHeroBanner";
@@ -43,6 +44,7 @@ export default function AboutPage() {
       />
 
       <PageHeroBanner page="about" />
+      <ClinicPhotoGallery photos={["entrance", "reception", "room"]} title="처음 오시기 전, 진료 공간을 둘러보세요" id="spaces" />
 
       {/* Philosophy */}
       <section className="section-padding">

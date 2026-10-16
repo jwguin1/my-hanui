@@ -50,6 +50,12 @@ export function won(amount: number): string {
   return wonDigits(amount) + "원";
 }
 
+/** 통증 진료비는 원 단위 숫자로 표시한다. 한약·미용 가격은 기존 won 표기 유지. */
+export function painWon(amount: number): string {
+  if (!Number.isSafeInteger(amount) || amount < 0) throw new RangeError("금액은 0 이상의 정수여야 합니다.");
+  return `${amount.toLocaleString("ko-KR")}원`;
+}
+
 /** 원 단위를 따로 붙이는 StatCard에서도 같은 금액 표기를 쓴다. */
 export function wonDigits(amount: number): string {
   if (!Number.isSafeInteger(amount) || amount < 0) throw new RangeError("금액은 0 이상의 정수여야 합니다.");

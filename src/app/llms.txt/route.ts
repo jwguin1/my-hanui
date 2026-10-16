@@ -10,7 +10,7 @@ import {
 } from "@/lib/clinic";
 import { getAllPosts } from "@/lib/blog-local";
 import { PIGMENTATION_SLUGS, LIFTING_SLUGS, LIFTING_PATH, SHURINK_CARE } from "@/lib/skin-guides";
-import { PIGMENTATION_PRICES, SHURINK_PRICES, PAIN_PRICES, HERBAL_PRICES, PAIN_INSURANCE_NOTE, PHARMACOPUNCTURE_NOTE, HERBAL_INSURANCE_CONDITIONS, HERBAL_INSURANCE_LIMIT, won } from "@/lib/pricing";
+import { PIGMENTATION_PRICES, SHURINK_PRICES, PAIN_PRICES, HERBAL_PRICES, PAIN_INSURANCE_NOTE, PHARMACOPUNCTURE_NOTE, HERBAL_INSURANCE_CONDITIONS, HERBAL_INSURANCE_LIMIT, won, painWon } from "@/lib/pricing";
 import { postPath } from "@/lib/slug";
 
 /**
@@ -62,6 +62,7 @@ ${closedLine}
 
 ## 방문과 관리 안내
 
+- [진료비·소요 시간 안내](${BASE}/pricing)
 - [환자 질문 검색](${BASE}/blog)
 - [오늘 방문·접수 마감](${BASE}/contact#before-visit)
 - [치료 후 관리](${BASE}/aftercare)
@@ -112,11 +113,11 @@ ${HERBAL_GUIDES.map(g => `- [${g.title}](${BASE}${herbalPath(g)}): ${g.question}
 ## 통증 치료와 한약 비용
 
 2026-10-16 원내 확인 금액:
-- 일반 근골격계 초진 진료비: ${won(PAIN_PRICES.firstVisit)}
-- 단순추나: ${won(PAIN_PRICES.simpleChuna)}, 복잡추나: ${won(PAIN_PRICES.complexChuna)}
+- 일반 근골격계 초진 진료비: ${painWon(PAIN_PRICES.firstVisit)}
+- 단순추나: ${painWon(PAIN_PRICES.simpleChuna)}, 복잡추나: ${painWon(PAIN_PRICES.complexChuna)}
 - 초진·추나 금액 기준: ${PAIN_INSURANCE_NOTE}
-- 초음파 유도 기본 통원약침(포도당 5%): ${won(PAIN_PRICES.dextrose)}
-- 초음파 유도 PDRN 약침: ${won(PAIN_PRICES.pdrn)}
+- 초음파 유도 기본 통원약침(포도당 5%): ${painWon(PAIN_PRICES.dextrose)}
+- 초음파 유도 PDRN 약침: ${painWon(PAIN_PRICES.pdrn)}
 - 약침 금액 기준: ${PHARMACOPUNCTURE_NOTE}
 - 건강보험 한약 10일 본인부담금: ${HERBAL_PRICES.insuredTenDays}
 - 건강보험 한약 대상: ${HERBAL_INSURANCE_CONDITIONS.join("·")} 6개 질환. ${HERBAL_INSURANCE_LIMIT}
