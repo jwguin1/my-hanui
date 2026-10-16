@@ -324,12 +324,13 @@
    inline style 로 width/height 를 박아도 max-height 가 적용되도록
    `!important` 강제. PostContent.tsx 가 출력하는 클래스를 1차로,
    다른 마크다운 렌더 경로(article img, .prose img) 도 함께 커버.
+   의료진 카드의 fill 이미지는 본문용 크기·여백 규칙에서 제외한다.
    ────────────────────────────────────────────────────────────── */
 .article-img,
 .article-img-wrapper img,
 .prose-custom .article-img,
 .prose-custom .article-img-wrapper img,
-article img:not(.logo):not(.icon) {
+article img:not(.logo):not(.icon):not(.doctor-portrait) {
   display: block !important;
   width: auto !important;
   height: auto !important;
@@ -349,7 +350,7 @@ article img:not(.logo):not(.icon) {
   .article-img-wrapper img,
   .prose-custom .article-img,
   .prose-custom .article-img-wrapper img,
-  article img:not(.logo):not(.icon) {
+  article img:not(.logo):not(.icon):not(.doctor-portrait) {
     max-height: 320px !important;
   }
 }
