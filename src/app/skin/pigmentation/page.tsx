@@ -31,8 +31,8 @@ export const metadata = pageMetadata({
 
 const QUESTIONS = [
   { q: "기미와 흑자는 같은 치료를 받나요?", a: "넓게 퍼진 기미와 경계가 뚜렷한 흑자는 색소의 모습과 치료 범위를 살펴보고 접근합니다." },
-  { q: "피코토닝과 제네시스를 같은 날 받나요?", a: "일산한의원은 방문할 때마다 피부 상태와 치료 목표를 확인하고, 피코하이 또는 엘리멘트 TL 중 필요한 장비를 선택해 시술합니다." },
-  { q: "토닝 비용과 패키지 구성은 어떻게 되나요?", a: `${PIGMENTATION_PRICES.name}은 1회 ${won(PIGMENTATION_PRICES.single)}, 10회 ${won(PIGMENTATION_PRICES.tenSessions)}입니다. 10회 패키지에는 PDRN 스킨부스터가 포함됩니다.` },
+  { q: "피코토닝과 제네시스를 같은 날 받나요?", a: PIGMENTATION_PRICES.selection },
+  { q: "토닝 비용과 패키지 구성은 어떻게 되나요?", a: `${PIGMENTATION_PRICES.name}은 1회 ${won(PIGMENTATION_PRICES.single)}, 10회 ${won(PIGMENTATION_PRICES.tenSessions)}입니다. ${PIGMENTATION_PRICES.booster}` },
   { q: "토닝 후 딱지가 없으면 효과가 없는 건가요?", a: "얼굴 전체 토닝과 특정 반점 치료는 회복 모습이 다릅니다. 같은 조명에서 색소 변화와 피부 회복 상태를 살펴봅니다." },
 ];
 
@@ -133,7 +133,7 @@ export default function PigmentationPage() {
         <div className="mx-auto max-w-3xl text-center"><SectionBadge icon={<ChartBar size={15} />} label="비용 안내" /><div className="mt-4"><TwoTone as="h2" lead="피코 트리플 토닝 " accent="구성과 비용" /></div></div>
         <div className="mx-auto mt-12 max-w-3xl space-y-6">
           <p className="text-sm leading-relaxed text-muted">상담한 원장이 피부 상태에 따라 피코하이 또는 엘리멘트 TL 중 필요한 장비를 선택해 시술합니다. 레이저 시술 시간은 20분 이내이며, 상담·준비 시간은 별도입니다.</p>
-          <PriceTable rowLabel="시술" caption={PIGMENTATION_PRICES.name} headers={["1회", "10회"]} rows={[{ name: "피코 트리플 토닝", price: won(PIGMENTATION_PRICES.single), price2: won(PIGMENTATION_PRICES.tenSessions) }]} note={`10회 패키지 회당 ${won(PIGMENTATION_PRICES.perSession)} · PDRN 스킨부스터 포함. 흑자 개별 치료 범위와 포함 여부는 상담 시 확인하세요.`} />
+          <PriceTable rowLabel="시술" caption={PIGMENTATION_PRICES.name} headers={["1회", "10회"]} rows={[{ name: "피코 트리플 토닝", price: won(PIGMENTATION_PRICES.single), price2: won(PIGMENTATION_PRICES.tenSessions) }]} note={`10회 패키지 회당 ${won(PIGMENTATION_PRICES.perSession)} · ${PIGMENTATION_PRICES.booster} 흑자 개별 치료 범위와 포함 여부는 상담 시 확인하세요.`} />
           <Link href={postPath("skin", "피코토닝-가격-제네시스")} className="block text-sm font-medium text-primary underline underline-offset-4">한 번 방문하면 무엇을 받나요? 구성·시간·가격 안내 →</Link>
           <div className="card p-5">
             <h3 className="font-semibold text-ink">탄력과 턱선도 고민이라면</h3>

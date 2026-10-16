@@ -25,7 +25,7 @@ export function HerbalQuestions({ faqs, title = "진료 전 궁금한 질문", i
 function HerbalConsultation() {
   return <section className="bg-[var(--surface)] px-6 py-14 text-center">
     <h2 className="font-serif text-2xl font-semibold text-ink">내 증상부터 편하게 이야기해 주세요</h2>
-    <p className="mx-auto mt-4 max-w-xl text-[16px] leading-relaxed text-muted">가장 불편한 증상과 복용 중인 약을 카카오톡으로 남겨주세요.<br />진료시간 내 의료진이 직접 상담합니다.</p>
+    <p className="mx-auto mt-4 max-w-xl text-[16px] leading-relaxed text-muted">가장 불편한 증상과 복용 중인 약, 방문 희망일을 카카오톡으로 남겨주세요.<br />진료시간 내 의료진이 직접 상담합니다.</p>
     <ConsultationActions directions className="mx-auto mt-7 max-w-3xl" />
   </section>;
 }

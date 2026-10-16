@@ -1,3 +1,5 @@
+import { DIET_PRICES, won } from "@/lib/pricing";
+import PriceTable from "@/components/ui/PriceTable";
 import ConsultationActions from "@/components/ConsultationActions";
 import type { Metadata } from "next";
 import Link from "next/link";
@@ -109,6 +111,14 @@ export default function DietProgramPage() {
         stacked
       />
 
+      <section id="prices" className="scroll-mt-24 mx-auto max-w-4xl px-6 py-10">
+        <h2 className="font-serif text-2xl font-semibold text-ink">첫 상담과 일산감비환 비용</h2>
+        <p className="mt-4 text-base leading-relaxed text-muted">첫 상담은 약 {DIET_PRICES.consultationMinutes}분입니다. 체중 변화, 식사·수면 패턴과 복용 중인 약을 확인하고 처방을 상담합니다. 접수나 추가 검사 시간은 별도입니다.</p>
+        <div className="mt-6"><PriceTable caption="일산감비환 · 1상자 100포" rows={[{ name: "노랑", price: won(DIET_PRICES.yellow) }, { name: "핑크", price: won(DIET_PRICES.pink) }]} /></div>
+        <p className="mt-4 text-base leading-relaxed text-muted">1상자 100포는 하루 1포 기준 100일, 하루 2포 기준 50일 분량입니다. 복용량은 진료 후 정합니다.</p>
+        <Link href="/diet/다이어트한약-기간과-비용" className="mt-4 inline-block text-primary underline underline-offset-4">복용 기간과 비용 자세히 보기 →</Link>
+      </section>
+
       {/* ── 정의 + 지표 ── */}
       <section className="bg-[var(--bg)]">
         <div className="section-padding">
@@ -120,7 +130,7 @@ export default function DietProgramPage() {
                   일산감비환 상담 신청
                 </p>
                 <p className="mt-1 text-[13px] leading-relaxed text-muted">
-                  처방 구성과 비용은 전용 페이지에서 확인하실 수 있습니다
+                  성분과 자세한 복용 안내는 전용 페이지에서 확인하실 수 있습니다
                 </p>
               </div>
               <PillButton

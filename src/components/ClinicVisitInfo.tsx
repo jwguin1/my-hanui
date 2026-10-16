@@ -6,6 +6,7 @@ export default function ClinicVisitInfo({ className = "" }: { className?: string
       {CLINIC_CTA_LINES.map((line) => (
         <p key={line}>{line.replace(` · ${CLINIC.tel}`, "")}</p>
       ))}
+      <p>{CLINIC.receptionNote}</p>
     </address>
   );
 }

@@ -1,196 +1,37 @@
-"use client";
-
-import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
-import DoctorCard from "./DoctorCard";
-import SectionReveal from "./SectionReveal";
-
-/** 국제 자격. 한국어 풀이를 붙이지 않는다 — app/doctor/page.tsx 의 주석 참조 */
-interface Credential {
-  abbr: string;
-  name: string;
-  issuer: string;
-  issuerFull: string;
-}
+import Link from "next/link";
+import { DOCTOR_SLUGS } from "@/lib/schema";
 
 interface Doctor {
-  name: string;
-  image: string;
-  bio?: string[];
-  school?: string;
-  credentials?: Credential[];
-  laserCertification?: string;
-  societies?: string[];
+  name: string; image: string; bio?: string[]; school?: string;
+  credentials?: { abbr: string; name: string; issuer: string; issuerFull: string }[];
+  laserCertification?: string; societies?: string[];
 }
 
 export default function DoctorGrid({ doctors }: { doctors: Doctor[] }) {
-  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
-  const detailRef = useRef<HTMLDivElement>(null);
-  const selected = selectedIndex !== null ? doctors[selectedIndex] : null;
-
-  useEffect(() => {
-    if (selectedIndex !== null && detailRef.current) {
-      detailRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
-  }, [selectedIndex]);
-
-  const handleSelect = (i: number) => {
-    setSelectedIndex(selectedIndex === i ? null : i);
-  };
-
-  const others = selectedIndex !== null
-    ? doctors.filter((_, i) => i !== selectedIndex)
-    : doctors;
-
-  return (
-    <>
-      {/* Selected Doctor Detail */}
-      {selected && (
-        <section className="section-padding" ref={detailRef}>
-          <div className="card overflow-hidden p-0">
-            <div className="grid md:grid-cols-[1fr_1.8fr]">
-              {/* Photo */}
-              <div className="relative aspect-[3/4] md:aspect-auto md:min-h-[500px]">
-                <Image
-                  src={selected.image}
-                  alt={`${selected.name} 원장`}
-                  fill
-                  sizes="(max-width: 768px) 100vw, 40vw"
-                  className="object-cover"
-                />
-              </div>
-
-              {/* Bio */}
-              <div className="flex flex-col justify-center p-8 md:p-12">
-                <p className="text-[0.8rem] text-accent tracking-wide">
-                  원장 소개
-                </p>
-                <h3 className="mt-2 font-serif text-[1.6rem] font-bold text-text">
-                  {selected.name}
-                </h3>
-                <div className="gold-divider mt-5" />
-                {selected.bio ? (
-                  <div className="mt-6 space-y-4">
-                    {selected.bio.map((p, i) => (
-                      <p
-                        key={i}
-                        className="text-[0.92rem] leading-[2] text-text-muted"
-                      >
-                        {p}
-                      </p>
-                    ))}
-                  </div>
-                ) : (
-                  <p className="mt-6 text-[0.92rem] leading-[2] text-text-muted">
-                    소개글이 준비 중입니다.
-                  </p>
-                )}
-
-                {(selected.school ||
-                  selected.credentials?.length ||
-                  selected.societies?.length) && (
-                  <div className="mt-10 border-t border-white/10 pt-8">
-                    <p className="text-[0.8rem] text-accent tracking-wide">
-                      약력
-                    </p>
-                    <dl className="mt-4 space-y-5">
-                      {selected.school && (
-                        <div>
-                          <dt className="text-[0.8rem] font-semibold text-text">
-                            학력
-                          </dt>
-                          <dd className="mt-2 text-[0.9rem] leading-[1.8] text-text-muted">
-                            {selected.school} 졸업
-                          </dd>
-                        </div>
-                      )}
-                      {selected.credentials && selected.credentials.length > 0 && (
-                        <div>
-                          <dt className="text-[0.8rem] font-semibold text-text">
-                            자격
-                          </dt>
-                          <dd className="mt-2">
-                            <ul className="space-y-2.5 text-[0.9rem] leading-[1.7] text-text-muted">
-                              {selected.credentials.map((c) => (
-                                <li key={c.abbr} className="flex gap-2">
-                                  <span className="text-accent">·</span>
-                                  <span>
-                                    {/* 약칭 — 영문 정식명 — 발급기관.
-                                        한국어 직역을 넣지 않는다 (오인 표기가 된다) */}
-                                    <span className="text-text">
-                                      {c.abbr}
-                                    </span>{" "}
-                                    — {c.name}
-                                    <span className="mt-0.5 block text-[0.82rem]">
-                                      발급: {c.issuer} ({c.issuerFull})
-                                    </span>
-                                  </span>
-                                </li>
-                              ))}
-                            </ul>
-                          </dd>
-                        </div>
-                      )}
-                      {selected.societies && selected.societies.length > 0 && (
-                        <div>
-                          <dt className="text-[0.8rem] font-semibold text-text">
-                            학회 활동
-                          </dt>
-                          <dd className="mt-2">
-                            <ul className="flex flex-wrap gap-x-2 gap-y-1.5 text-[0.85rem] text-text-muted">
-                              {selected.societies.map((s, i) => (
-                                <li key={s} className="flex items-center gap-2">
-                                  <span>{s}</span>
-                                  {i < selected.societies!.length - 1 && (
-                                    <span className="text-white/20">|</span>
-                                  )}
-                                </li>
-                              ))}
-                            </ul>
-                          </dd>
-                        </div>
-                      )}
-                      {selected.laserCertification && (
-                        <div>
-                          <dt className="text-[0.8rem] font-semibold text-text">피부레이저 학회 자격</dt>
-                          <dd className="mt-2 text-[0.9rem] leading-[1.8] text-text-muted">{selected.laserCertification}</dd>
-                        </div>
-                      )}
-                    </dl>
-                  </div>
-                )}
-
-                <button
-                  onClick={() => setSelectedIndex(null)}
-                  className="btn-ghost mt-8 w-fit text-[0.82rem]"
-                >
-                  목록으로 돌아가기
-                </button>
-              </div>
-            </div>
-          </div>
-        </section>
-      )}
-
-      {/* Other Doctors Grid */}
-      <section className="section-padding !pt-0">
-        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {(selectedIndex !== null ? others : doctors).map((doc) => {
-            const originalIndex = doctors.findIndex((d) => d.name === doc.name);
-            return (
-              <SectionReveal key={doc.name}>
-                <DoctorCard
-                  name={doc.name}
-                  image={doc.image}
-                  bio={doc.bio}
-                  selected={false}
-                  onSelect={() => handleSelect(originalIndex)}
-                />
-              </SectionReveal>
-            );
-          })}
+  return <section className="mx-auto max-w-6xl px-6 py-10">
+    <h2 className="font-serif text-2xl font-semibold text-ink">진료하는 의료진을 만나보세요</h2>
+    <p className="mt-3 text-base leading-relaxed text-muted">6명의 한의사가 통증·한약·피부레이저 진료를 함께합니다. 원하는 원장이 있으시면 카카오톡으로 방문 희망일을 알려주세요.</p>
+    <nav aria-label="의료진 소개 바로가기" className="mt-5 flex flex-wrap gap-3">{doctors.map(doc => <Link key={doc.name} href={`#${DOCTOR_SLUGS[doc.name]}`} className="rounded-full border border-line px-4 py-2 text-sm text-primary">{doc.name} 원장</Link>)}</nav>
+    <div className="mt-8 grid items-start gap-6 md:grid-cols-2 lg:grid-cols-3">
+      {doctors.map(doc => <article key={doc.name} id={DOCTOR_SLUGS[doc.name]} className="scroll-mt-28 overflow-hidden rounded-2xl border border-line bg-card">
+        <div className="relative aspect-[4/3]"><Image src={doc.image} alt={`${doc.name} 원장`} fill sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw" className="object-cover object-top" /></div>
+        <div className="p-5">
+          <h3 className="font-serif text-xl font-semibold text-ink">{doc.name} 원장 · 한의사</h3>
+          <p className="mt-3 text-sm leading-relaxed text-muted">{doc.school} 졸업</p>
+          <ul className="mt-3 space-y-2 text-sm leading-relaxed text-ink">
+            {doc.credentials?.map(c => <li key={c.abbr}>{c.abbr} — {c.name}<span className="block text-muted">발급: {c.issuer} ({c.issuerFull})</span></li>)}
+            <li>대한통합레이저의학회 정회원</li>
+            {doc.laserCertification && <li>{doc.laserCertification}</li>}
+          </ul>
+          <details className="mt-5 border-t border-line pt-4">
+            <summary className="cursor-pointer font-medium text-primary">원장의 진료 이야기·학회 활동</summary>
+            <div className="mt-4 space-y-4 text-[15px] leading-[1.9] text-muted">{doc.bio?.map((p, i) => <p key={i}>{p}</p>)}</div>
+            <p className="mt-5 text-sm font-semibold text-ink">학회 활동</p>
+            <ul className="mt-2 space-y-1 text-sm leading-relaxed text-muted">{doc.societies?.map(s => <li key={s}>{s}</li>)}</ul>
+          </details>
         </div>
-      </section>
-    </>
-  );
+      </article>)}
+    </div>
+  </section>;
 }

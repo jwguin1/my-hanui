@@ -54,6 +54,15 @@ export default function ContactPage() {
       />
 
       <PageHeroBanner page="contact" />
+      <section id="before-visit" className="scroll-mt-24 mx-auto max-w-5xl px-6 py-10">
+        <h2 className="font-serif text-2xl font-semibold text-ink">오늘 방문하시기 전에</h2>
+        <div className="mt-5 grid gap-4 md:grid-cols-3">
+          <div className="rounded-xl border border-line bg-card p-5"><h3 className="font-semibold text-ink">접수 마감</h3><p className="mt-3 leading-relaxed text-muted">{CLINIC.receptionNote}</p><p className="mt-2 text-sm text-muted">진료 종료는 평일 오후 8시, 토·일·공휴일 오후 4시입니다.</p></div>
+          <div className="rounded-xl border border-line bg-card p-5"><h3 className="font-semibold text-ink">당일 진료·원장 예약</h3><p className="mt-3 leading-relaxed text-muted">침 치료는 예약 없이 당일 방문하실 수 있습니다. 피부 시술이나 특정 원장의 진료를 원하시면 카카오톡으로 희망 시간을 알려주세요.</p></div>
+          <div className="rounded-xl border border-line bg-card p-5"><h3 className="font-semibold text-ink">미리 챙겨오세요</h3><p className="mt-3 leading-relaxed text-muted">다른 병원 검사 결과와 복용 중인 약을 알려주시면 진료에 도움이 됩니다.</p></div>
+        </div>
+        <p className="mt-5 leading-relaxed text-muted">카카오톡에는 {CLINIC.consultationPrompt}</p>
+      </section>
 
       {/* Info Cards */}
       <section className="section-padding">

@@ -73,6 +73,8 @@ export const PIGMENTATION_PRICES = {
   single: 88000,
   tenSessions: 660000,
   perSession: 66000,
+  selection: "피부 상태와 치료 목표에 따라 피코하이 또는 엘리멘트 TL을 선택해 진행합니다.",
+  booster: "10회 패키지에 PDRN 스킨부스터 총 1회 · 4cc · MTS 방식 도포가 포함됩니다.",
 } as const;
 
 export const SHURINK_PRICES = { name: "슈링크 유니버스 300샷", single: 99000, threeSessions: 264000 } as const;
@@ -124,3 +126,6 @@ export function allowedSkinAmounts(): number[] {
   for (const amount of [PIGMENTATION_PRICES.single, PIGMENTATION_PRICES.tenSessions, PIGMENTATION_PRICES.perSession, SHURINK_PRICES.single, SHURINK_PRICES.threeSessions]) set.add(amount);
   return [...set].sort((a, b) => a - b);
 }
+
+/** 일산감비환 공개 가격표 대조: 2026-10-16. */
+export const DIET_PRICES = { yellow: 90000, pink: 110000, sachets: 100, consultationMinutes: 10 } as const;

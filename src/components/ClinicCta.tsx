@@ -1,3 +1,5 @@
+import Link from "next/link";
+import { CLINIC } from "@/lib/clinic";
 import ConsultationActions from "@/components/ConsultationActions";
 import ClinicVisitInfo from "@/components/ClinicVisitInfo";
 
@@ -42,8 +44,9 @@ export default function ClinicCta({ note }: { note?: string }) {
         ) : null}
 
         <ClinicVisitInfo className={body ? "mt-6" : ""} />
-        <p className="mt-5 text-sm text-muted">궁금한 점과 예약 문의는 카카오톡으로 편하게 남겨주세요.</p>
+        <p className="mt-5 text-sm text-muted">{CLINIC.consultationPrompt}</p>
         <ConsultationActions directions className="mt-4" />
+        <p className="mt-4 text-center text-sm"><Link href="/aftercare" className="text-primary underline underline-offset-4">치료 후 관리 안내</Link></p>
       </div>
     </section>
   );

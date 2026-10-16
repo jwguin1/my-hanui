@@ -73,8 +73,10 @@ export const SITE_NAV: NavGroup[] = [
         //
         // 발행된 질문 글이 있는 카테고리는 콘텐츠 목록으로도 연결한다.
         items: [
+          { href: "/blog", label: "전체 진료 질문 검색" },
           { href: "/pain", label: CAROUSEL_TARGETS.pain.navLabel },
           { href: "/skin", label: "피부 · 리프팅 질문 모음" },
+          { href: "/aftercare", label: "치료 후 관리" },
         ],
       },
       {
@@ -82,7 +84,6 @@ export const SITE_NAV: NavGroup[] = [
         items: [
           { href: "/column", label: "의학칼럼" },
           { href: "/media", label: "유튜브" },
-          { href: "/blog", label: "블로그 전체" },
         ],
       },
     ],

@@ -86,7 +86,7 @@ export default function Hero() {
             <span className="block text-primary">안 하셔도 됩니다”</span>
           </h1>
           <p className="mt-6 text-[17px] leading-[1.8] text-[#554b43]">저희가 진료실에서 자주 드리는 말씀입니다.</p>
-          <p className="mt-2 max-w-[29rem] text-[18px] font-medium leading-[1.8] text-ink">초음파로 직접 보면서 진단하니까,<br className="hidden lg:block" /> 필요한 치료만 남습니다.</p>
+          <p className="mt-2 max-w-[29rem] text-[18px] font-medium leading-[1.8] text-ink">불편한 증상을 듣고, 필요한 검사를 함께 살펴봅니다.<br className="hidden lg:block" /> 치료가 필요한 부분과 지켜봐도 되는 부분을 설명드립니다.</p>
 
           <div className="mt-6 grid grid-cols-2 gap-2 sm:flex sm:flex-wrap sm:gap-3">
           <PillButton

@@ -260,6 +260,7 @@ function listPaths() {
     "/column",
     "/media",
     "/treatment",
+    "/aftercare",
     "/contact",
     "/blog",
     "/pain",

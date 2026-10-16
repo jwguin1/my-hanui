@@ -40,7 +40,7 @@ function body(): string {
   return `# 일산한의원 (Ilsanhan Korean Medicine Clinic)
 
 경기도 고양시 일산동구에 있는 한의원입니다. 6인의 한의사가 근골격계·내과·미용
-분과를 나눠 진료합니다. 근골격계 초음파로 확인한 뒤 필요한 치료만 권하는 것을
+진료를 함께합니다. 근골격계 초음파로 확인한 뒤 필요한 치료만 권하는 것을
 진료 원칙으로 삼습니다.
 
 - 웹사이트: ${BASE}
@@ -57,7 +57,14 @@ function body(): string {
 - 월~금: ${CLINIC_HOURS_WEEKDAY} (점심 ${CLINIC_HOURS_LUNCH})
 ${holidayLine}
 ${closedLine}
+- ${CLINIC.receptionNote}
 - ${CLINIC.closedNote}
+
+## 방문과 관리 안내
+
+- [환자 질문 검색](${BASE}/blog)
+- [오늘 방문·접수 마감](${BASE}/contact#before-visit)
+- [치료 후 관리](${BASE}/aftercare)
 
 ## 진료 항목
 
@@ -126,7 +133,7 @@ ${HERBAL_GUIDES.map(g => `- [${g.title}](${BASE}${herbalPath(g)}): ${g.question}
 
 2026-10-16 확인한 가격과 구성:
 - ${PIGMENTATION_PRICES.name}: 1회 ${won(PIGMENTATION_PRICES.single)}, 10회 ${won(PIGMENTATION_PRICES.tenSessions)} (회당 ${won(PIGMENTATION_PRICES.perSession)})
-- 10회 패키지에는 PDRN 스킨부스터가 포함됩니다.
+- ${PIGMENTATION_PRICES.booster}
 - 흑자 개별 치료 범위와 포함 여부는 상담 시 확인합니다.
 
 ${pigmentLinks}

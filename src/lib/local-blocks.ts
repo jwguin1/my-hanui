@@ -1,3 +1,4 @@
+import { CLINIC } from "./clinic";
 import { PAIN_PRICE_FAQS, HERBAL_PRICE_FAQS } from "@/lib/visit-guide";
 import type { LocalFaq } from "@/components/LocalBlock";
 import { faqEntities, type FaqEntity } from "@/lib/schema";
@@ -15,7 +16,7 @@ const ACCESS =
 const FAQ_ACCESS: LocalFaq[] = [
   {
     q: "풍산역에서 얼마나 걸리나요?",
-    a: "경의중앙선 풍산역 2번 출구에서 도보 1분입니다. 이마트 풍산점 3층에 있어 비 오는 날에도 실내로 이동하실 수 있습니다.",
+    a: "경의중앙선 풍산역 2번 출구에서 도보 1분입니다. 이마트 풍산점 3층에 있어",
   },
   {
     q: "주차가 가능한가요?",
@@ -78,7 +79,7 @@ export const LOCAL_BLOCKS: Record<string, LocalBlockData> = {
       ...HERBAL_PRICE_FAQS,
       {
         q: "일산에서 체했을 때 당일 진료가 되나요?",
-        a: "예약 없이 오셔도 당일 침 치료와 한방 소화제로 진행합니다. 평일에는 20시까지 접수하실 수 있습니다.",
+        a: `예약 없이 오셔도 당일 진료가 가능합니다. ${CLINIC.receptionNote}`,
       },
       ...FAQ_ACCESS,
     ],
@@ -108,7 +109,7 @@ export const LOCAL_BLOCKS: Record<string, LocalBlockData> = {
     faqs: [
       {
         q: "일산에서 다이어트 한약 상담은 얼마나 걸리나요?",
-        a: "첫 상담은 체질과 대사 상태 확인을 포함해 진행합니다. 필요하면 혈액검사로 대사 상태를 함께 봅니다.",
+        a: "첫 상담은 약 10분입니다. 체중 변화, 식사·수면 패턴과 복용 중인 약을 확인합니다. 접수나 추가 검사 시간은 별도입니다.",
       },
       ...FAQ_ACCESS,
     ],

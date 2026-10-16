@@ -36,7 +36,7 @@ export const HERBAL_PRICE_FAQS = [
 export const VISIT_FAQS = [
   {
     q: "예약 없이 오늘 바로 침 치료를 받을 수 있나요?",
-    a: "예약 없이 방문하셔도 당일 침·물리치료가 가능합니다. 방문 전 카카오톡으로 아픈 부위와 오실 시간을 알려주시면 진료 안내를 받으실 수 있습니다.",
+    a: `예약 없이 방문하셔도 당일 침·물리치료가 가능합니다. ${CLINIC.receptionNote} 방문 전 카카오톡으로 아픈 부위와 오실 시간을 알려주세요.`,
     href: "/pain/acute", linkLabel: "당일 통증 진료 안내",
   },
   { ...PAIN_CARE_FAQS[0], href: "/pain/acute#visit-guide", linkLabel: "진료 시간과 치료 구성 보기" },

@@ -86,6 +86,8 @@ export const CLINIC = {
        opens 와 closes 를 같은 값으로 두는 것이다. 화면에는 쓰지 않는다. */
     closed: { opens: "00:00", closes: "00:00" },
   },
+  receptionNote: "접수 마감은 평일 오후 7시 30분, 토·일·공휴일 오후 3시 30분입니다.",
+  consultationPrompt: "불편한 부위와 증상이 시작된 시기, 방문 희망일을 남겨주세요. 원하는 원장이 있으시면 함께 말씀해주세요.",
   weekdayClose: "평일 20:00까지",
 
   /**

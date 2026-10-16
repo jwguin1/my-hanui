@@ -56,7 +56,7 @@ export default function Footer() {
             href="/blog"
             className="text-[0.82rem] text-text-muted transition-colors duration-200 hover:text-accent"
           >
-            블로그
+            환자 질문 모음
           </Link>
           <a
             href="https://diet.ilsanhan.com"

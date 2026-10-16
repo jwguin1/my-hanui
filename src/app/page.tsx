@@ -55,7 +55,7 @@ const TRUST_STATS_SOURCE = `${CLINIC.foundingYear}년 개원 이래 누적 · �
 
 const WHY_CARDS = [
   { badge: "직접 확인", heading: "아픈 부위를 확인합니다", body: "근골격계 초음파로 필요한 부위를 살펴 진찰 결과와 함께 설명합니다. 다른 병원의 검사 결과도 현재 증상과 함께 확인합니다.", href: "/pain/chronic", linkLabel: "통증 진료 방식 보기" },
-  { badge: "6인 의료진", heading: "진료하는 의료진을 확인하세요", body: "6인의 한의사가 근골격계·내과·미용 진료를 나누어 담당합니다. 의료진 소개에서 각 원장의 경력과 진료 분야를 살펴보실 수 있습니다.", href: "/doctor", linkLabel: "의료진 소개 보기" },
+  { badge: "6인 의료진", heading: "진료하는 의료진을 확인하세요", body: "6인의 한의사가 근골격계·내과·미용 진료를 함께합니다. 의료진 소개에서 각 원장의 경력과 진료 분야를 살펴보실 수 있습니다.", href: "/doctor", linkLabel: "의료진 소개 보기" },
   { badge: "경과 확인", heading: "치료 후 변화를 다시 봅니다", body: "근육성 통증은 3회, 만성 통증은 5회 치료 후 경과를 다시 평가합니다. 통증과 움직임이 어떻게 달라졌는지 확인해 다음 치료를 상담합니다.", href: "/pain/acute#visit-guide", linkLabel: "치료 과정과 재평가 안내" },
 ];
 
@@ -128,7 +128,7 @@ export default async function Home() {
 
       {/* ── Philosophy ── */}
       <section id="philosophy" className="scroll-mt-24 bg-[var(--bg)]">
-        <div className="section-padding">
+        <div className="section-padding !py-10 md:!py-16">
           <SectionReveal>
             <div className="mx-auto max-w-3xl text-center">
               <SectionBadge icon={<Quote size={15} />} label="진료철학 · 세 가지 약속" />
@@ -161,7 +161,7 @@ export default async function Home() {
 
       {/* ── Differentiation ── */}
       <section id="care-approach" className="scroll-mt-24 bg-[var(--surface)]">
-        <div className="section-padding">
+        <div className="section-padding !py-10 md:!py-16">
           <SectionReveal>
             <div className="mx-auto max-w-3xl text-center">
               <SectionBadge icon={<Stethoscope size={15} />} label="진료 방식" />
@@ -170,9 +170,9 @@ export default async function Home() {
               </div>
             </div>
 
-            <div className="mx-auto mt-14 grid max-w-5xl gap-6 md:grid-cols-3">
+            <div className="mx-auto mt-8 grid max-w-5xl gap-6 md:grid-cols-3">
               {WHY_CARDS.map((card) => (
-                <div key={card.badge} className="card p-7">
+                <div key={card.badge} className="card p-5 md:p-7">
                   <SectionBadge label={card.badge} />
                   <h3 className="font-serif mt-3 text-[1.1rem] font-semibold text-ink">
                     {card.heading}
@@ -200,7 +200,7 @@ export default async function Home() {
 
       {/* ── Treatment Scope ── */}
       <section id="treatment-guide" className="scroll-mt-24 bg-[var(--bg)]">
-        <div className="section-padding">
+        <div className="section-padding !py-10 md:!py-16">
           <SectionReveal>
             <div className="mx-auto max-w-3xl text-center">
               <SectionBadge icon={<ListCheck size={15} />} label="진료 범위" />
@@ -208,16 +208,16 @@ export default async function Home() {
                 <TwoTone as="h2" lead="어떤 치료가 " accent="필요하신가요?" />
               </div>
               <p className="mt-4 text-[14px] text-muted">
-                증상별 치료 안내입니다. 6인 한의사가 분과를 나눠 진료합니다
+                증상별 치료 과정과 비용을 확인하세요.
               </p>
             </div>
 
-            <div className="mx-auto mt-14 grid max-w-5xl gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="mx-auto mt-8 grid max-w-5xl gap-5 sm:grid-cols-2 lg:grid-cols-3">
               {CLINIC_CARDS.map((card) => (
                 <Link
                   key={card.href}
                   href={card.href}
-                  className="card group block p-7"
+                  className="card group block p-5 md:p-7"
                 >
                   <SectionBadge label={card.badge} />
                   <h3 className="font-serif mt-2 text-[1.15rem] font-semibold text-ink transition-colors group-hover:text-primary">
@@ -235,7 +235,7 @@ export default async function Home() {
 
       {/* ── FAQ ── */}
       <section id="first-visit" className="scroll-mt-24 bg-[var(--surface)]">
-        <div className="section-padding">
+        <div className="section-padding !py-10 md:!py-16">
         <SectionReveal>
           <div className="mx-auto max-w-3xl text-center">
             <SectionBadge icon={<HelpCircle size={15} />} label="처음 방문하시는 분께" />
@@ -271,7 +271,7 @@ export default async function Home() {
 
       {/* ── 진료별 추천 질문 ── */}
       <section id="patient-readings" className="scroll-mt-24 bg-[var(--bg)]">
-        <div className="section-padding">
+        <div className="section-padding !py-10 md:!py-16">
           <SectionReveal>
             <div className="mx-auto max-w-3xl text-center">
               <SectionBadge icon={<HelpCircle size={15} />} label="증상별 질문과 답" />
@@ -279,11 +279,11 @@ export default async function Home() {
               <p className="mt-4 text-[16px] leading-relaxed text-muted">진료를 결정하기 전에 궁금한 내용부터 살펴보세요.</p>
             </div>
             <div className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-              {RECOMMENDED_READINGS.map(item => <Link key={item.href} href={item.href} className="card group flex flex-col p-6">
+              {RECOMMENDED_READINGS.map(item => <Link key={item.href} href={item.href} className="card group flex flex-col p-5 md:p-6">
                 <p className="text-sm font-semibold text-primary">{item.category}</p>
                 <h3 className="mt-3 text-lg font-semibold leading-relaxed text-ink group-hover:text-primary">{item.title}</h3>
-                <p className="mt-3 flex-1 text-[15px] leading-[1.8] text-muted">{item.description}</p>
-                <span className="mt-5 text-[15px] font-medium text-primary">답변 읽기 →</span>
+                <p className="mt-2 flex-1 text-[15px] leading-[1.8] text-muted">{item.description}</p>
+                <span className="mt-3 text-[15px] font-medium text-primary">답변 읽기 →</span>
               </Link>)}
             </div>
             <div className="mt-8 text-center"><Link href="/blog" className="btn-ghost">질문과 글 전체 보기 →</Link></div>
@@ -302,7 +302,7 @@ export default async function Home() {
             </div>
           </div>
 
-          <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {videos.map((v) => (
               <a
                 key={v.id}
@@ -337,7 +337,7 @@ export default async function Home() {
 
       {/* ── Hours & Contact Summary ── */}
       <section id="visit-info" className="scroll-mt-24 bg-[var(--surface)]">
-        <div className="section-padding">
+        <div className="section-padding !py-10 md:!py-16">
           <SectionReveal>
             <div className="grid gap-10 md:grid-cols-2">
               <div>
@@ -372,6 +372,7 @@ export default async function Home() {
                 <p className="mt-1 text-[0.82rem] text-muted">
                   {CLINIC.closedNote}
                 </p>
+                <p className="mt-3 text-sm font-medium text-ink">{CLINIC.receptionNote}</p>
               </div>
 
               <div>

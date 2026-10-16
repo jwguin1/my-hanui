@@ -299,19 +299,16 @@ export default function DoctorPage() {
 
       <PageHeroBanner page="doctor" />
 
+      <DoctorGrid doctors={doctors} />
+
       <section id="skin-laser" aria-labelledby="skin-laser-title" className="scroll-mt-28 bg-[var(--surface)]">
         <div className="section-padding">
           <div className="mx-auto max-w-3xl">
             <h2 id="skin-laser-title" className="font-serif text-2xl font-semibold text-ink">피부레이저, 상담한 원장이 직접 시술합니다</h2>
             <p className="mt-5 text-[15px] leading-[1.9] text-muted">일산한의원 한의사 6명 모두 피부레이저 상담과 시술을 담당합니다. 피부 고민을 듣고 치료 방향을 설명한 원장이 직접 시술까지 진행합니다.</p>
             <p className="mt-3 text-[15px] leading-[1.9] text-muted">의료진 모두 대한통합레이저의학회 정회원이며, 장경진 원장은 같은 학회의 인증의입니다.</p>
-            <ul className="mt-6 grid gap-3 sm:grid-cols-2">
-              {doctors.map((doc) => <li key={doc.name} className="rounded-xl border border-line bg-[var(--bg)] p-4">
-                <h3 className="font-semibold text-ink">{doc.name} 원장 · 한의사</h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted">대한통합레이저의학회 정회원{doc.laserCertification ? " · 인증의" : ""}</p>
-              </li>)}
-            </ul>
-            <p className="mt-6 text-sm leading-relaxed text-muted">특정 원장의 상담을 원하시면 예약할 때 말씀해주세요. 진료 일정을 안내해드립니다. 아래 의료진 사진을 선택하면 각 원장의 자세한 약력을 볼 수 있습니다.</p>
+
+            <p className="mt-6 text-sm leading-relaxed text-muted">특정 원장의 상담을 원하시면 예약할 때 말씀해주세요. 진료 일정을 안내해드립니다. 각 의료진 카드에서 약력과 진료 이야기를 확인하실 수 있습니다.</p>
             <nav aria-label="피부레이저 진료 안내" className="mt-5 flex flex-wrap gap-x-6 gap-y-3 text-sm text-primary">
               <Link href={postPath("skin", "피부레이저-담당-의료진")} className="underline underline-offset-4">피부레이저 상담·시술 담당 안내</Link>
               <Link href={postPath("skin", "피코토닝-가격-제네시스")} className="underline underline-offset-4">토닝 방문 과정·시간·비용</Link>
@@ -321,7 +318,6 @@ export default function DoctorPage() {
         </div>
       </section>
 
-      <DoctorGrid doctors={doctors} />
 
       {/* 장비 표기. 의료진 본인 문장(bio) 안에 끼워 넣지 않는다 —
           남의 말을 고쳐 쓰는 셈이 된다. 별도 줄로 둔다.
