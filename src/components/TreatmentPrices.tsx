@@ -62,11 +62,6 @@ export function HerbalPrices() {
               { name: "3개월", price: won(HERBAL_PRICES.threeMonths) },
             ]} />
           </div>
-          <div className="mt-8 rounded-2xl border border-line bg-card p-6">
-            <h3 className="text-lg font-semibold text-ink">내 한약에 들어가는 약재도 확인하세요</h3>
-            <p className="mt-3 text-[16px] leading-relaxed text-muted">일산한의원은 처방전과 실제 사용된 약재 사진을 보내드립니다. 복용 중 궁금한 내용은 카카오톡으로 문의하실 수 있습니다.</p>
-            <Link href="/doctor" className="mt-4 inline-block font-medium text-primary underline underline-offset-4">한약을 처방하는 의료진 보기</Link>
-          </div>
           <p className="mt-6 text-center text-[15px]"><Link href="/pain/chronic#prices" className="font-medium text-primary underline underline-offset-4">추나·초음파 유도 약침 비용 보기</Link></p>
         </div>
       </div>

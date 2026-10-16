@@ -45,14 +45,23 @@ export const SPOT_PRICE_HEADERS: [string, string] = [
 export const SPOT_PRICE_NOTE =
   "전 항목 비급여입니다. 시술 범위는 진료 후 함께 정합니다.";
 
-/** 110000 → "110,000원" */
+/** 읽기 쉬운 원화 표기: 88000 → "8만8천원", 13400 → "1만3천4백원". */
 export function won(amount: number): string {
-  return amount.toLocaleString("ko-KR") + "원";
+  return wonDigits(amount) + "원";
 }
 
-/** 110000 → "110,000" (단위를 따로 붙이는 StatCard 용) */
+/** 원 단위를 따로 붙이는 StatCard에서도 같은 금액 표기를 쓴다. */
 export function wonDigits(amount: number): string {
-  return amount.toLocaleString("ko-KR");
+  if (!Number.isSafeInteger(amount) || amount < 0) throw new RangeError("금액은 0 이상의 정수여야 합니다.");
+  if (amount === 0) return "0";
+  let remainder = amount;
+  let label = "";
+  for (const [unit, suffix] of [[10000, "만"], [1000, "천"], [100, "백"], [10, "십"], [1, ""]] as const) {
+    const count = Math.floor(remainder / unit);
+    if (count) label += `${count}${suffix}`;
+    remainder %= unit;
+  }
+  return label;
 }
 
 /** 진입 가격 = 가장 싼 행의 100개까지 금액 */
@@ -95,7 +104,7 @@ export const HERBAL_INSURANCE_CONDITIONS = [
 ] as const;
 export const HERBAL_INSURANCE_LIMIT = "1인당 연간 2개 질환에 대해, 질환별 10일씩 2회(총 20일)까지 적용됩니다.";
 
-/** 100개 기준 개당 단가. 본문의 「개당 1,100원」이 여기서 나온다 */
+/** 100개 기준 개당 단가. 본문의 「개당 1천1백원」이 여기서 나온다 */
 export function perSpot(row: SpotPriceRow): number {
   return Math.round(row.upTo100 / 100);
 }

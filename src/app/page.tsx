@@ -116,7 +116,7 @@ const CLINIC_CARDS = [
     href: "/pain/acute",
     badge: "통증",
     heading: "급성 통증",
-    blurb: "침·물리치료로 3~5회 안에",
+    blurb: "침·물리치료, 3회 후 경과 확인",
     ogImage: "/images/cards/pain-acute.png",
   },
   {

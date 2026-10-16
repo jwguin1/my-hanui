@@ -1,3 +1,5 @@
+import CareGuide from "@/components/CareGuide";
+import { HERBAL_CARE_FAQS } from "@/lib/care-guide";
 import { HerbalPrices, TreatmentPriceLink } from "@/components/TreatmentPrices";
 import ConsultationActions from "@/components/ConsultationActions";
 import type { Metadata } from "next";
@@ -165,6 +167,7 @@ const graph = buildGraph({
     alternateName: ["급체", "기능성소화불량"],
   },
   faq: [
+    ...faqEntities(HERBAL_CARE_FAQS),
     ...faqEntities(QUESTIONS.map((q) => ({ q: q.quote, a: q.answer }))),
     ...localFaqEntities("/internal/dyspepsia"),
   ],
@@ -182,6 +185,7 @@ export default function DyspepsiaPage() {
         stacked
       />
       <TreatmentPriceLink herbal />
+      <CareGuide herbal />
 
       {/* ── 정의 + 지표 ── */}
       <section className="bg-[var(--bg)]">

@@ -306,8 +306,8 @@ const PRICE_SCOPE_RE = /^\/skin(\/|$)/;
 
 /** "110,000원" / "1,100원" */
 const WON_COMMA_RE = /(\d{1,3}(?:,\d{3})+)\s*원/g;
-/** "11만 원", "16만 5천 원", "27만5천원" */
-const WON_KOREAN_RE = /(\d{1,4})\s*만(?:\s*(\d)\s*천)?\s*원/g;
+/** "11만원", "1만6천5백원", "1천1백원" — 천·백 단위도 가격 검증에서 빠뜨리지 않는다. */
+const WON_KOREAN_RE = /(?<![\d,])((?:\d+\s*[만천백십]\s*)+)(\d+)?\s*원/g;
 
 /** 텍스트에서 금액을 원 단위 숫자로 뽑는다 */
 function moneyTokens(text) {
@@ -319,7 +319,9 @@ function moneyTokens(text) {
   }
   WON_KOREAN_RE.lastIndex = 0;
   while ((m = WON_KOREAN_RE.exec(text)) !== null) {
-    const value = Number(m[1]) * 10000 + (m[2] ? Number(m[2]) * 1000 : 0);
+    const units = { 만: 10000, 천: 1000, 백: 100, 십: 10 };
+    const value = [...m[1].matchAll(/(\d+)\s*([만천백십])/g)]
+      .reduce((sum, part) => sum + Number(part[1]) * units[part[2]], Number(m[2] || 0));
     out.push({ raw: m[0], value });
   }
   return out;

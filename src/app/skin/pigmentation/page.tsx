@@ -20,7 +20,7 @@ import { PIGMENTATION_GROUPS, PIGMENTATION_SLUGS, PIGMENTATION_PATH, PIGMENTATIO
 import { PIGMENTATION_PRICES, won, wonDigits } from "@/lib/pricing";
 import { postPath } from "@/lib/slug";
 
-const DESCRIPTION = "일산한의원 색소치료. 상담한 원장이 피코하이 또는 엘리멘트 TL을 선택해 시술합니다. 레이저 시술 20분 이내, 1회 88,000원·10회 660,000원. 담당 의료진과 방문 과정을 확인하세요.";
+const DESCRIPTION = "일산한의원 색소치료. 상담한 원장이 피코하이 또는 엘리멘트 TL을 선택해 시술합니다. 레이저 시술 20분 이내, 1회 8만8천원·10회 66만원. 담당 의료진과 방문 과정을 확인하세요.";
 
 export const metadata = pageMetadata({
   path: PIGMENTATION_PATH,

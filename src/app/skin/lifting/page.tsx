@@ -19,7 +19,7 @@ import { LIFTING_PATH, LIFTING_SLUGS, LIFTING_UPDATED, PIGMENTATION_PATH, SHURIN
 import { SHURINK_PRICES, won, wonDigits } from "@/lib/pricing";
 import { postPath } from "@/lib/slug";
 
-const DESCRIPTION = "일산한의원 슈링크 유니버스 리프팅. 300샷 1회 99,000원, 3회 264,000원. 마취·시술·LED와 진정팩까지 약 30분, 재시술 12주 간격. 볼살·턱선과 시술 선택에 관한 질문을 확인하세요.";
+const DESCRIPTION = "일산한의원 슈링크 유니버스 리프팅. 300샷 1회 9만9천원, 3회 26만4천원. 마취·시술·LED와 진정팩까지 약 30분, 재시술 12주 간격. 볼살·턱선과 시술 선택에 관한 질문을 확인하세요.";
 
 export const metadata = pageMetadata({
   path: LIFTING_PATH,

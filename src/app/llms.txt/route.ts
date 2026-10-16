@@ -1,3 +1,4 @@
+import { CARE_GUIDE } from "@/lib/care-guide";
 import {
   CLINIC,
   CLINIC_ADDRESS_FULL,
@@ -80,6 +81,19 @@ ${closedLine}
 - 잡티 제거 (점·편평사마귀·쥐젖): ${BASE}/skin/spot
 - 색소치료 (피코토닝·제네시스·기미·흑자): ${BASE}/skin/pigmentation
 - 리프팅 (슈링크 유니버스·탄력·턱선): ${BASE}${LIFTING_PATH}
+
+## 방문 시간·치료 과정·한약 조제
+
+- ${CARE_GUIDE.time}
+- ${CARE_GUIDE.basic}
+- ${CARE_GUIDE.extra}
+- ${CARE_GUIDE.selection}
+- ${CARE_GUIDE.acuteReview}
+- ${CARE_GUIDE.chronicReview}
+- ${CARE_GUIDE.records}
+- ${CARE_GUIDE.herbalProcess}
+- ${CARE_GUIDE.herbalTiming}
+- ${CARE_GUIDE.consultation}
 
 ## 통증 치료와 한약 비용
 

@@ -1,3 +1,5 @@
+import CareGuide from "@/components/CareGuide";
+import { CARE_GUIDE, PAIN_CARE_FAQS } from "@/lib/care-guide";
 import { PainPrices, TreatmentPriceLink } from "@/components/TreatmentPrices";
 import ConsultationActions from "@/components/ConsultationActions";
 import type { Metadata } from "next";
@@ -29,7 +31,7 @@ import { SITE_URL } from "@/lib/categories";
 import { postPath } from "@/lib/slug";
 import { pageMetadata } from "@/lib/page-metadata";
 import JsonLd from "@/components/JsonLd";
-import { buildGraph } from "@/lib/schema";
+import { buildGraph, faqEntities } from "@/lib/schema";
 import LocalBlock from "@/components/LocalBlock";
 import { LOCAL_BLOCKS, localFaqEntities } from "@/lib/local-blocks";
 
@@ -170,7 +172,7 @@ const REASONS = [
   {
     no: "02",
     title: "반응이 없으면 확인합니다",
-    body: "3~5회에 변화가 없으면 초음파로 원인을 다시 봅니다.",
+    body: "3회 치료 후 변화를 확인하고, 호전이 없으면 초음파로 원인을 다시 봅니다.",
   },
   {
     no: "03",
@@ -198,8 +200,8 @@ const PROCESS = [
     body: "침·물리치료·부항을 그날 바로 진행합니다.",
   },
   {
-    title: "3~5회 시점 재평가",
-    body: "좋아지는 속도를 확인합니다.",
+    title: "3회 치료 후 재평가",
+    body: CARE_GUIDE.acuteReview,
   },
   {
     title: "종결 또는 정밀 확인",
@@ -217,7 +219,7 @@ const graph = buildGraph({
     name: "급성 근골격계 통증",
     alternateName: ["담 결림", "급성 요추 염좌", "발목 염좌"],
   },
-  faq: localFaqEntities("/pain/acute"),
+  faq: [...faqEntities(PAIN_CARE_FAQS), ...localFaqEntities("/pain/acute")],
 });
 
 export default function AcutePainPage() {
@@ -232,6 +234,7 @@ export default function AcutePainPage() {
         stacked
       />
       <TreatmentPriceLink />
+      <CareGuide />
 
       {/* ── 정의 + 지표 ── */}
       <section className="bg-[var(--bg)]">
@@ -240,7 +243,7 @@ export default function AcutePainPage() {
             <div className="mx-auto max-w-3xl">
               <DefinitionCard
                 title="급성 통증이란?"
-                body="자고 일어나 목이 안 돌아가거나, 무거운 걸 들다 허리가 꺾이는 통증입니다. 대부분 근육과 근막이 일시적으로 굳어 생기며, 침과 물리치료로 3~5회 안에 좋아지는 경우가 많습니다. 이 단계에서는 추나나 약침이 필요하지 않습니다."
+                body="자고 일어나 목이 안 돌아가거나, 무거운 걸 들다 허리가 꺾이는 통증입니다. 근육과 근막의 상태를 살피고 침·물리치료로 접근합니다. 처음 3일은 매일 치료를 안내하며, 3회 치료 후 통증과 움직임의 변화를 확인합니다."
               />
 
               <div className="mt-8 text-center text-[15px] leading-relaxed text-muted">
@@ -250,7 +253,7 @@ export default function AcutePainPage() {
             </div>
 
             <div className="mx-auto mt-10 grid max-w-3xl grid-cols-1 gap-4 md:grid-cols-3">
-              <StatCard value="3~5" unit="회" label="평균 치료 횟수" />
+              <StatCard value="3" unit="회" label="치료 후 경과 재평가" />
               <StatCard value="당일" label="내원 즉시 시술" />
               <StatCard value="건강보험" label="우선 적용" />
             </div>

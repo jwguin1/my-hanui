@@ -1,3 +1,4 @@
+import { CARE_GUIDE, PAIN_CARE_FAQS, HERBAL_CARE_FAQS } from "@/lib/care-guide";
 import { CLINIC, CLINIC_HOURS_WEEKDAY, CLINIC_HOURS_WEEKEND } from "@/lib/clinic";
 import { PAIN_PRICES, HERBAL_PRICES, HERBAL_INSURANCE_CONDITIONS, HERBAL_INSURANCE_LIMIT, PHARMACOPUNCTURE_NOTE, won } from "@/lib/pricing";
 
@@ -30,16 +31,13 @@ export const HERBAL_PRICE_FAQS = [
     a: `대상은 ${HERBAL_INSURANCE_CONDITIONS.join("·")} 6개 질환입니다. ${HERBAL_INSURANCE_LIMIT}`,
     href: "/internal/dyspepsia#herbal-prices", linkLabel: "건강보험 한약 안내",
   },
-  {
-    q: "내 한약에 어떤 약재가 들어가는지 확인할 수 있나요?",
-    a: "일산한의원에서는 처방전과 실제 사용된 약재 사진을 보내드립니다. 복용 중 궁금한 내용은 카카오톡으로 문의해 주세요.",
-    href: "/doctor", linkLabel: "한약을 처방하는 의료진 보기",
-  },
 ];
 
 export const VISIT_FAQS = [
+  ...[PAIN_CARE_FAQS[0], PAIN_CARE_FAQS[2]].map((faq) => ({ ...faq, href: "/pain/acute#visit-guide", linkLabel: "진료 시간과 치료 구성 보기" })),
   ...PAIN_PRICE_FAQS,
   ...HERBAL_PRICE_FAQS,
+  ...HERBAL_CARE_FAQS.slice(0, 2).map((faq) => ({ ...faq, href: "/internal/dyspepsia#herbal-guide", linkLabel: "원내 조제·탕전 안내" })),
   {
     q: "예약 없이 오늘 바로 침 치료를 받을 수 있나요?",
     a: "예약 없이 방문하셔도 당일 침·물리치료가 가능합니다. 방문 전 카카오톡으로 아픈 부위와 오실 시간을 알려주시면 진료 안내를 받으실 수 있습니다.",
@@ -57,7 +55,7 @@ export const VISIT_FAQS = [
   },
   {
     q: "어떤 진료를 받아야 할지 모르겠는데 카카오톡으로 물어봐도 되나요?",
-    a: "네. 가장 불편한 증상과 언제부터 시작됐는지, 방문을 원하는 시간을 남겨주세요. 예약과 진료 안내는 카카오톡으로 편하게 문의하실 수 있습니다.",
+    a: CARE_GUIDE.consultation,
     href: CLINIC.kakaoHref, linkLabel: "카카오톡 상담",
   },
 ];

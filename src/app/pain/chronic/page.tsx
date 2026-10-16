@@ -1,3 +1,5 @@
+import CareGuide from "@/components/CareGuide";
+import { CARE_GUIDE, PAIN_CARE_FAQS } from "@/lib/care-guide";
 import ConsultationActions from "@/components/ConsultationActions";
 import type { Metadata } from "next";
 import Link from "next/link";
@@ -145,7 +147,7 @@ const COMPARE_ROWS = [
   },
   { label: "확인", left: "문진과 이학검사", right: "초음파로 직접 확인" },
   { label: "치료", left: "침 · 물리치료 · 부항", right: "추나 · 초음파 약침" },
-  { label: "횟수", left: "3~5회", right: "상태에 따라 안내" },
+  { label: "경과 확인", left: "3회 치료 후 재평가", right: "주 1~2회, 5회 치료 후 재평가" },
 ];
 
 const TREATMENTS = [
@@ -178,7 +180,7 @@ const PROCESS = [
     body: "무엇이 문제인지, 몇 회가 필요한지, 비용은 얼마인지 먼저 말씀드립니다.",
   },
   { title: "추나·약침 시작", body: "상태에 맞는 조합으로 진행합니다." },
-  { title: "4~6회 시점 재평가", body: "초음파로 다시 확인합니다." },
+  { title: "5회 치료 후 재평가", body: CARE_GUIDE.chronicReview },
   {
     title: "종결 또는 상급 의뢰",
     body: "변화가 없으면 영상 검사나 수술 상담을 권해드립니다.",
@@ -196,6 +198,7 @@ const graph = buildGraph({
     alternateName: ["석회성 건염", "오십견", "척추관 협착증"],
   },
   faq: [
+    ...faqEntities(PAIN_CARE_FAQS),
     ...faqEntities(QUESTIONS.map((q) => ({ q: q.quote, a: q.answer }))),
     ...localFaqEntities("/pain/chronic"),
   ],
@@ -213,6 +216,7 @@ export default function ChronicPainPage() {
         stacked
       />
       <TreatmentPriceLink />
+      <CareGuide />
 
       {/* ── 정의 + 지표 ── */}
       <section className="bg-[var(--bg)]">
@@ -221,7 +225,7 @@ export default function ChronicPainPage() {
             <div className="mx-auto max-w-3xl">
               <DefinitionCard
                 title="만성 통증이란?"
-                body="침과 물리치료를 3~5회 받아도 변화가 없거나, 좋아졌다가 같은 자리가 반복해서 아픈 경우입니다. 이때는 근육이 아니라 힘줄·인대·관절·신경에 원인이 남아 있는 경우가 많습니다. 눈으로 보이지 않으니 초음파로 확인한 뒤 치료 방향을 정합니다."
+                body="침과 물리치료를 3회 받아도 변화가 없거나, 좋아졌다가 같은 자리가 반복해서 아픈 경우입니다. 이때는 근육이 아니라 힘줄·인대·관절·신경에 원인이 남아 있는 경우가 많습니다. 눈으로 보이지 않으니 초음파로 확인한 뒤 치료 방향을 정합니다."
               />
 
               <div className="mt-8 text-center text-[15px] leading-relaxed text-muted">
