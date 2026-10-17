@@ -84,7 +84,7 @@ const RECOMMENDED_READINGS = [
 const CLINIC_CARDS = [
   { href: "/pain/acute", badge: "통증", heading: "통증치료", blurb: "침·추나·약침, 치료 과정과 비용", ogImage: "/images/cards/pain-acute.png" },
   { href: "/accident", badge: "자동차보험", heading: "교통사고", blurb: "사고 후 통증과 불편, 접수부터 치료까지", ogImage: "/images/cards/accident.png" },
-  { href: "/herbal", badge: "맞춤 한약", heading: "보험한약·체질보약", blurb: "건강보험 6개 질환과 몸 상태에 맞춘 보약", ogImage: "/herbal/insurance/opengraph-image" },
+  { href: "/herbal", badge: "맞춤 한약", heading: "보험한약/보약", blurb: "건강보험 6개 질환과 몸 상태에 맞춘 보약", ogImage: "/herbal/insurance/opengraph-image" },
   { href: "/herbs", badge: "원내 조제", heading: "오늘의 한약", blurb: "약재 사진과 원장이 전하는 나를 위한 복약편지", ogImage: "/herbal/tonic/opengraph-image" },
   { href: "/diet/program", badge: "체중 관리", heading: "다이어트", blurb: "처방·복용·식사 관리와 비용", ogImage: "/images/cards/diet-program.png" },
   { href: "/skin/spot", badge: "피부 · 미용", heading: "잡티제거", blurb: "CO₂ 제거부터 색소치료·슈링크 리프팅까지", ogImage: "/images/cards/skin-spot.png" },
