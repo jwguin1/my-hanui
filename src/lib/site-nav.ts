@@ -45,6 +45,7 @@ export const SITE_NAV: NavGroup[] = [
       {
         label: "한약 · 내과",
         items: [
+          { href: "/herbs", label: "오늘의 한약 · 복약편지" },
           { href: "/herbal/insurance", label: "보험한약 · 6개 질환" },
           { href: "/internal/dyspepsia", label: "소화불량" },
           { href: "/herbal/tonic", label: "체질보약 · 비급여 한약" },

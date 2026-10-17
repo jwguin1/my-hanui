@@ -10,7 +10,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const staticEntries: MetadataRoute.Sitemap = [
     { url: `${BASE_URL}/pricing`, lastModified: new Date("2026-10-16T00:00:00+09:00"), changeFrequency: "monthly", priority: 0.9 },
     { url: `${BASE_URL}/aftercare`, lastModified: new Date("2026-10-16T00:00:00+09:00"), changeFrequency: "monthly", priority: 0.7 },
-    ...["/herbal/insurance", "/herbal/tonic", ...HERBAL_GUIDES.filter(g => !g.href).map(herbalPath)].map(path => ({ url: `${BASE_URL}${path}`, lastModified: new Date("2026-10-16T00:00:00+09:00"), changeFrequency: "monthly" as const, priority: 0.8 })),
+    ...["/herbal", "/herbs", "/herbal/insurance", "/herbal/tonic", ...HERBAL_GUIDES.filter(g => !g.href).map(herbalPath)].map(path => ({ url: `${BASE_URL}${path}`, lastModified: new Date("2026-10-16T00:00:00+09:00"), changeFrequency: "monthly" as const, priority: 0.8 })),
     {
       url: BASE_URL,
       lastModified: new Date(),
