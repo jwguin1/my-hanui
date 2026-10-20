@@ -6,7 +6,8 @@ import { HERBAL_GUIDES, herbalPath } from "@/lib/herbal-guides";
 
 const BASE_URL = "https://www.ilsanhan.com";
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export const dynamic = "force-dynamic";
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticEntries: MetadataRoute.Sitemap = [
     { url: `${BASE_URL}/pricing`, lastModified: new Date("2026-10-16T00:00:00+09:00"), changeFrequency: "monthly", priority: 0.9 },
     { url: `${BASE_URL}/aftercare`, lastModified: new Date("2026-10-16T00:00:00+09:00"), changeFrequency: "monthly", priority: 0.7 },
@@ -143,5 +144,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.9,
   }));
 
-  return [...staticEntries, ...categoryEntries, ...postEntries];
+  const origin=process.env.MEDICATION_PUBLIC_API_ORIGIN||"https://lab.jwguin.uk";
+  const response=await fetch(`${origin}/api/public/medication/sitemap`,{cache:"no-store",signal:AbortSignal.timeout(10000)});
+  if(!response.ok)throw new Error("복약지 사이트맵을 불러오지 못했습니다.");
+  const data: {letters:{token:string;publishedAt:string}[]}=await response.json();
+  const letters:MetadataRoute.Sitemap=data.letters.filter(l=>/^[a-f0-9-]{36}$/.test(l.token)).map(l=>({url:`${BASE_URL}/herbs/${l.token}`,lastModified:new Date(l.publishedAt),changeFrequency:"monthly",priority:0.6}));
+  return [...staticEntries, ...categoryEntries, ...postEntries, ...letters];
 }
