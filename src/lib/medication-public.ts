@@ -1,5 +1,5 @@
 import {cache} from "react";
-export type PublicLetter = {token:string;title:string;narrative:string;doctorName:string;publishedAt:string};
+export type PublicLetter = {token:string;title:string;narrative:string;doctorName:string;publishedAt:string;listed?:boolean};
 const origin=process.env.MEDICATION_PUBLIC_API_ORIGIN||"https://lab.jwguin.uk";
 export function publicLetterPhotoUrl(token:string,size:"thumb"|"web"){
   return `${origin}/api/public/medication/letters/${token}/photo?size=${size}`;
