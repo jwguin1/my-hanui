@@ -41,7 +41,7 @@ export default function HomeVisitPage() {
           <h2 className="mt-2 font-serif text-2xl font-semibold text-ink">세 가지만 먼저 확인하세요</h2>
           <dl className="mt-6 divide-y divide-line">
             <div className="pb-5"><dt className="flex items-center gap-2 font-semibold text-ink"><Stethoscope size={19} /> 누구에게 필요한가요?</dt><dd className="mt-2 text-base leading-relaxed text-muted">거동이 불편해 한의원에 오기 어려운 분<br />환자 본인·보호자 모두 상담 가능</dd></div>
-            <div className="py-5"><dt className="flex items-center gap-2 font-semibold text-ink"><MapPin size={19} /> 어디까지 방문하나요?</dt><dd className="mt-2 text-base leading-relaxed text-muted">서울·경기 · 차량 약 1시간 이내<br /><span className="text-sm">풍산역·이마트 풍산점 출발 기준</span></dd></div>
+            <div className="py-5"><dt className="flex items-center gap-2 font-semibold text-ink"><MapPin size={19} /> 어디까지 방문하나요?</dt><dd className="mt-2 text-base leading-relaxed text-muted">{HOME_VISIT.area}<br /><span className="text-sm">주소·이동 시간·진료 일정 확인 후 안내</span></dd></div>
             <div className="pt-5"><dt className="flex items-center gap-2 font-semibold text-ink"><Clock size={19} /> 언제 받을 수 있나요?</dt><dd className="mt-2 text-base leading-relaxed text-muted">월~일 진료시간 내 상담 후 일정 확정</dd></div>
           </dl>
           <Link href="#cost" className="mt-6 block border-t border-line pt-5 font-semibold text-primary underline underline-offset-4">건강보험·의료급여 비용 확인 →</Link>
@@ -99,7 +99,7 @@ export default function HomeVisitPage() {
 
     <section id="area" className="scroll-mt-24 border-y border-line bg-white px-6 py-14 md:py-20">
       <div className="mx-auto grid max-w-5xl gap-10 md:grid-cols-2">
-        <div><p className="text-sm font-semibold text-primary">방문 가능 지역</p><h2 className="mt-3 font-serif text-3xl font-semibold text-ink">서울·경기,<br />차량 약 1시간 이내</h2><p className="mt-5 text-base leading-[1.85] text-muted">풍산역·이마트 풍산점에 있는 일산한의원에서 출발합니다. {HOME_VISIT.areaNote}</p><p className="mt-4 font-medium text-primary">신청서에 시·구·동을 남겨주시면 확인해 드립니다.</p></div>
+        <div><p className="text-sm font-semibold text-primary">방문 가능 지역</p><h2 className="mt-3 font-serif text-3xl font-semibold text-ink">서울·경기도<br />전 지역</h2><p className="mt-5 text-base leading-[1.85] text-muted">풍산역·이마트 풍산점에 있는 일산한의원에서 출발합니다. {HOME_VISIT.areaNote}</p><p className="mt-4 font-medium text-primary">신청서에 시·구·동을 남겨주시면 확인해 드립니다.</p></div>
         <div><p className="text-sm font-semibold text-primary">상담·방문 일정</p><h2 className="mt-3 font-serif text-3xl font-semibold text-ink">월요일부터 일요일까지</h2><dl className="mt-5 divide-y divide-line text-base"><div className="flex flex-wrap justify-between gap-2 py-3"><dt>평일</dt><dd className="font-semibold">{CLINIC_HOURS_WEEKDAY}</dd></div><div className="flex flex-wrap justify-between gap-2 py-3"><dt>토·일·공휴일</dt><dd className="font-semibold">{CLINIC_HOURS_WEEKEND}</dd></div><div className="flex flex-wrap justify-between gap-2 py-3"><dt>평일 점심시간</dt><dd>{CLINIC_HOURS_LUNCH}</dd></div></dl><p className="mt-4 text-sm leading-relaxed text-muted">위 진료시간 안에서 방문 날짜와 시간을 상담 후 정합니다. {CLINIC.holidayClosedNote}</p></div>
       </div>
     </section>

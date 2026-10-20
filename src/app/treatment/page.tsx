@@ -11,7 +11,7 @@ import { PAIN_PRICES, painWon } from "@/lib/pricing";
 const description = "일산한의원의 기본 보험진료, 추나, 초음파 유도 약침, 원내 탕전 한약과 피부레이저 진료를 안내합니다. 치료 과정과 비용을 먼저 확인하세요.";
 export const metadata: Metadata = pageMetadata({ path: "/treatment", title: "진료 안내 | 기본 치료·추나·약침·한약", description });
 const treatments = [
-  { title: "방문진료", body: "거동이 불편해 한의원에 오기 어려운 분을 위해 한의사가 집으로 찾아갑니다. 서울·경기 중 풍산역에서 차량 약 1시간 이내 지역의 방문 가능 여부를 상담합니다.", note: "한의 방문진료 시범사업 참여기관 · 건강보험·의료급여 적용", href: "/home-visit", label: "방문 대상·비용·상담 신청" },
+  { title: "방문진료", body: "거동이 불편해 한의원에 오기 어려운 분을 위해 한의사가 집으로 찾아갑니다. 서울·경기도 전 지역에서 신청하실 수 있습니다. 정확한 주소와 이동 시간, 당일 진료 일정을 확인해 방문 여부를 안내합니다.", note: "한의 방문진료 시범사업 참여기관 · 건강보험·의료급여 적용", href: "/home-visit", label: "방문 대상·비용·상담 신청" },
   { title: "기본 통증 치료", body: `${CARE_GUIDE.basic} ${CARE_GUIDE.time}`, note: `일반 근골격계 초진 본인부담금 ${painWon(PAIN_PRICES.firstVisit)}`, href: "/pain/acute", label: "통증 치료 과정과 비용" },
   { title: "추나치료", body: CARE_GUIDE.selection, note: `단순추나 ${painWon(PAIN_PRICES.simpleChuna)} · 복잡추나 ${painWon(PAIN_PRICES.complexChuna)}. 건강보험 적용 후 본인부담금이며 기본 진료비가 포함됩니다.`, href: "/pain/chronic#prices", label: "추나·약침 비용 확인" },
   { title: "초음파 유도 약침", body: "진찰과 초음파 검사로 필요한 부위를 확인하고 약침 치료를 계획합니다. 기본 통원약침은 포도당 5%를 사용하며, PDRN 약침도 시행합니다.", note: `1회 비급여 비용: 기본 통원약침 ${painWon(PAIN_PRICES.dextrose)} · PDRN 약침 ${painWon(PAIN_PRICES.pdrn)}. 보험 진료비는 별도입니다.`, href: "/pain/chronic", label: "초음파 진료와 치료 기준" },
