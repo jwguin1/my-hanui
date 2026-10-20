@@ -1,5 +1,6 @@
 import Link from "next/link";
 import JsonLd from "@/components/JsonLd";
+import HomeVisitMap from "@/components/HomeVisitMap";
 import PillButton from "@/components/ui/PillButton";
 import { MessageCircle, Stethoscope, MapPin, Clock } from "@/components/ui/icons";
 import { CLINIC, CLINIC_HOURS_WEEKDAY, CLINIC_HOURS_WEEKEND, CLINIC_HOURS_LUNCH } from "@/lib/clinic";
@@ -13,7 +14,7 @@ const steps = [
   { title: "편한 방법으로 문의", body: "구글 신청서나 카카오톡으로 연락처와 희망 지역을 남겨주세요. 보호자가 대신 신청하셔도 됩니다." },
   { title: "상태·비용·일정 상담", body: "한의원에서 연락드려 이동이 어려운 이유와 필요한 진료를 확인하고, 본인부담금과 방문 일정을 안내합니다." },
   { title: "집으로 찾아가는 진료", body: "약속한 시간에 한의사가 방문합니다. 현재 상태와 복용약을 살피고 진찰 결과에 맞춰 치료합니다." },
-  { title: "진료 후 생활 안내", body: "집에서 살펴볼 변화와 생활관리 방법을 알려드립니다. 이후 방문 간격은 경과에 맞춰 상의합니다." },
+  { title: "진료 후 생활 안내", body: "집에서 살펴볼 변화와 생활관리 방법을 알려드립니다. 환자분이 동의하시면 보호자에게도 진료 내용을 설명하고, 다음 방문 간격을 상의합니다." },
 ];
 
 function ApplyButtons() {
@@ -102,6 +103,7 @@ export default function HomeVisitPage() {
         <div><p className="text-sm font-semibold text-primary">방문 가능 지역</p><h2 className="mt-3 font-serif text-3xl font-semibold text-ink">서울·경기도<br />전 지역</h2><p className="mt-5 text-base leading-[1.85] text-muted">풍산역·이마트 풍산점에 있는 일산한의원에서 출발합니다. {HOME_VISIT.areaNote}</p><p className="mt-4 font-medium text-primary">신청서에 시·구·동을 남겨주시면 확인해 드립니다.</p></div>
         <div><p className="text-sm font-semibold text-primary">상담·방문 일정</p><h2 className="mt-3 font-serif text-3xl font-semibold text-ink">월요일부터 일요일까지</h2><dl className="mt-5 divide-y divide-line text-base"><div className="flex flex-wrap justify-between gap-2 py-3"><dt>평일</dt><dd className="font-semibold">{CLINIC_HOURS_WEEKDAY}</dd></div><div className="flex flex-wrap justify-between gap-2 py-3"><dt>토·일·공휴일</dt><dd className="font-semibold">{CLINIC_HOURS_WEEKEND}</dd></div><div className="flex flex-wrap justify-between gap-2 py-3"><dt>평일 점심시간</dt><dd>{CLINIC_HOURS_LUNCH}</dd></div></dl><p className="mt-4 text-sm leading-relaxed text-muted">위 진료시간 안에서 방문 날짜와 시간을 상담 후 정합니다. {CLINIC.holidayClosedNote}</p></div>
       </div>
+      <HomeVisitMap />
     </section>
 
     <section id="process" className="scroll-mt-24 px-6 py-14 md:py-20">
@@ -121,10 +123,9 @@ export default function HomeVisitPage() {
     <section id="apply" className="scroll-mt-24 px-6 py-14 md:py-20">
       <div className="mx-auto max-w-3xl rounded-2xl border border-line bg-white p-6 md:p-10">
         <p className="text-sm font-semibold text-primary">일산한의원 방문진료 상담</p><h2 className="mt-3 font-serif text-3xl font-semibold leading-snug text-ink">먼저 이야기해 주세요.<br />방문 방법을 함께 찾겠습니다.</h2>
-        <p className="mb-7 mt-5 text-base leading-[1.85] text-muted">짧은 신청서에 성함·연락처·희망 지역을 남겨주세요. 한의원에서 연락드려 필요한 진료와 일정을 상담합니다. 폼 응답은 홈페이지에 공개되지 않습니다.</p>
+        <p className="mb-7 mt-5 text-base leading-[1.85] text-muted">짧은 신청서에 성함·연락처·희망 지역을 남겨주세요. 한의원에서 연락드려 필요한 진료와 일정을 상담합니다.</p>
         <ApplyButtons />
         <p className="mt-5 text-base text-ink">문의·회신 연락처 <a href={CLINIC.telHref} className="font-semibold underline underline-offset-4">{CLINIC.tel}</a></p>
-        <p className="mt-4 text-sm leading-relaxed text-muted">신청 후 상담을 거쳐 예약이 확정됩니다. 응급 상황에서는 방문 예약을 기다리지 말고 119에 연락해 주세요.</p>
       </div>
       <nav aria-label="관련 진료 안내" className="mx-auto mt-8 flex max-w-3xl flex-wrap justify-center gap-x-6 gap-y-3 text-sm text-primary"><Link href="/doctor">의료진 소개 →</Link><Link href="/pain/chronic">통증·추나·약침 →</Link><Link href="/herbal/insurance">보험한약 →</Link><Link href="/herbal/tonic">체질보약 →</Link><Link href="/pricing">원내 진료비 안내 →</Link></nav>
     </section>
