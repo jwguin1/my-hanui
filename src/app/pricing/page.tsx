@@ -16,7 +16,7 @@ import {
   PIGMENTATION_PRICES, SHURINK_PRICES, painWon, won,
 } from "@/lib/pricing";
 
-const description = "일산한의원 초진 13,400원, 단순추나 28,400원, 복잡추나 50,800원. 보험한약·체질보약·다이어트·피부 시술 비용과 방문 소요 시간을 한눈에 확인하세요.";
+const description = `일산한의원 초진 ${painWon(PAIN_PRICES.firstVisit)}, 단순추나 ${painWon(PAIN_PRICES.simpleChuna)}, 복잡추나 ${painWon(PAIN_PRICES.complexChuna)}. 보험한약·체질보약·다이어트·피부 시술 비용과 방문 소요 시간을 한눈에 확인하세요.`;
 export const metadata = pageMetadata({ path: "/pricing", title: "진료비·시간 안내 | 통증·한약·피부 치료 비용", description });
 
 function PriceSection({ id, title, children }: { id: string; title: string; children: ReactNode }) {

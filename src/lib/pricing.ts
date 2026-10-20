@@ -45,7 +45,7 @@ export const SPOT_PRICE_HEADERS: [string, string] = [
 export const SPOT_PRICE_NOTE =
   "전 항목 비급여입니다. 시술 범위는 진료 후 함께 정합니다.";
 
-/** 읽기 쉬운 원화 표기: 88000 → "8만8천원", 13400 → "1만3천4백원". */
+/** 읽기 쉬운 원화 표기: 88000 → "8만8천원", 14300 → "1만4천3백원". */
 export function won(amount: number): string {
   return wonDigits(amount) + "원";
 }
@@ -87,7 +87,7 @@ export const SHURINK_PRICES = { name: "슈링크 유니버스 300샷", single: 9
 
 /** 2026-10-16 원장 확인: 일반 근골격계 진료·추나·초음파 유도 약침. */
 export const PAIN_PRICES = {
-  firstVisit: 13400,
+  firstVisit: 14300, // 2026-10-20 원장 확인
   simpleChuna: 28400,
   complexChuna: 50800,
   dextrose: 30000,
