@@ -40,6 +40,7 @@ export const SITE_NAV: NavGroup[] = [
           { href: "/pain/acute", label: "급성 통증" },
           { href: "/pain/chronic", label: "만성 통증" },
           { href: "/accident", label: "교통사고" },
+          { href: "/home-visit", label: "방문진료 · 집으로 찾아가는 한의사" },
         ],
       },
       {

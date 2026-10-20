@@ -1,5 +1,6 @@
 import { HERBAL_GUIDES, herbalPath } from "@/lib/herbal-guides";
 import { CARE_GUIDE } from "@/lib/care-guide";
+import { HOME_VISIT, HOME_VISIT_FAQS, HOME_VISIT_PRICES } from "@/lib/home-visit";
 import {
   CLINIC,
   CLINIC_ADDRESS_FULL,
@@ -84,6 +85,17 @@ ${closedLine}
 - [보험한약 6개 질환](${BASE}/herbal/insurance): 10일 본인부담금 ${HERBAL_PRICES.insuredTenDays}. ${HERBAL_INSURANCE_LIMIT}
 - [체질보약 · 비급여 한약](${BASE}/herbal/tonic): 체질맞춤보약, 자율신경계 두통·어지럼, 갱년기. 1개월 ${won(HERBAL_PRICES.oneMonth)}, 2개월 ${won(HERBAL_PRICES.twoMonths)}, 3개월 ${won(HERBAL_PRICES.threeMonths)}.
 ${HERBAL_GUIDES.map(g => `- [${g.title}](${BASE}${herbalPath(g)}): ${g.question}`).join("\n")}
+
+## 방문진료
+
+- [일산·고양 방문진료 안내](${BASE}${HOME_VISIT.path})
+- 일산한의원은 일차의료 한의 방문진료 수가 시범사업 참여기관입니다. 한의사가 집으로 찾아가는 방문진료를 운영하며, 재택의료센터 서비스는 아닙니다.
+- 대상: 질병·부상 등으로 거동이 불편해 내원이 어려운 환자. 보호자도 신청할 수 있습니다.
+- 지역: ${HOME_VISIT.area}. ${HOME_VISIT.areaNote}
+- 비용: ${HOME_VISIT_PRICES.map(p => `${p.label} ${p.price} (${p.rate})`).join("; ")}.
+- 비용 기준: ${HOME_VISIT.costNote}
+- 상담 신청: ${HOME_VISIT.formUrl}
+${HOME_VISIT_FAQS.map(f => `- [${f.q}](${BASE}${HOME_VISIT.path}#question-${f.id}): ${f.a}`).join("\n")}
 
 ## 진료 안내 페이지
 

@@ -20,10 +20,12 @@ const META = [
 const QUICK_LINKS = [
   { label: "통증치료", detail: "침·추나·약침·치료 비용", href: "/pain/acute" },
   { label: "교통사고", detail: "사고 후 통증·불편", href: "/accident" },
-  { label: "보험한약/보약", detail: "건강보험 한약·체질맞춤 보약", href: "/herbal" },
-  { label: "오늘의 한약", detail: "약재 사진과 나를 위한 복약편지", href: "/herbs" },
+  { label: "보험한약", detail: "건강보험 6개 질환·비용", href: "/herbal/insurance" },
+  { label: "체질보약", detail: "몸 상태에 맞춘 한약·비용", href: "/herbal/tonic" },
   { label: "다이어트", detail: "처방·복용·비용 안내", href: "/diet/program" },
   { label: "잡티제거", detail: "CO₂ · 색소치료 · 리프팅", href: "/skin/spot" },
+  { label: "방문진료", detail: "집으로 찾아가는 한의사", href: "/home-visit" },
+  { label: "오늘의 한약", detail: "약재 사진과 복약편지", href: "/herbs" },
 ];
 
 /**

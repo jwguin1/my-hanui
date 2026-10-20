@@ -145,6 +145,7 @@ const SEGMENT_LABELS: Record<string, string> = {
   media: "유튜브",
   blog: "블로그",
   treatment: "진료 안내",
+  "home-visit": "방문진료",
   pricing: "진료비·시간 안내",
 };
 
@@ -429,6 +430,7 @@ export function siteNavigationNode(): SchemaNode {
       "병원 소개",
       "의료진",
       "통증 · 근골격",
+      "방문진료",
       "한방 다이어트",
       "자율신경",
       "피부 · 레이저",
@@ -440,6 +442,7 @@ export function siteNavigationNode(): SchemaNode {
       `${BASE_URL}/about`,
       `${BASE_URL}/doctor`,
       `${BASE_URL}/pain`,
+      `${BASE_URL}/home-visit`,
       `${BASE_URL}/diet`,
       `${BASE_URL}/autonomic`,
       `${BASE_URL}/skin`,
@@ -478,7 +481,7 @@ export function pageTypeFor(path: string): string {
   if (p === "/about") return "AboutPage";
   if (p === "/contact") return "ContactPage";
   if (COLLECTION_PATHS.has(p)) return "CollectionPage";
-  if (p === "/accident") return "MedicalWebPage";
+  if (p === "/accident" || p === "/home-visit") return "MedicalWebPage";
   if (MEDICAL_PREFIXES.some((prefix) => p.startsWith(prefix)))
     return "MedicalWebPage";
   return "WebPage";

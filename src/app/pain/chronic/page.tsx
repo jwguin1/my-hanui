@@ -425,6 +425,7 @@ export default function ChronicPainPage() {
               </Link>
             </div>
             <ConsultationActions className="mx-auto max-w-3xl" />
+            <p className="mt-6 text-center text-sm text-primary"><Link href="/home-visit" className="underline underline-offset-4">거동이 불편해 내원이 어려우신가요? 방문진료 안내 →</Link></p>
           </SectionReveal>
         </div>
       </section>

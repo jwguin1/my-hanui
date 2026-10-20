@@ -8,6 +8,7 @@ import { buildGraph } from "@/lib/schema";
 import { pageMetadata } from "@/lib/page-metadata";
 import { CLINIC, CLINIC_HOURS_WEEKDAY, CLINIC_HOURS_WEEKEND, CLINIC_HOURS_LUNCH } from "@/lib/clinic";
 import { CARE_GUIDE } from "@/lib/care-guide";
+import { HOME_VISIT, HOME_VISIT_PRICES } from "@/lib/home-visit";
 import { SHURINK_CARE } from "@/lib/skin-guides";
 import {
   PAIN_PRICES, PAIN_INSURANCE_NOTE, PHARMACOPUNCTURE_NOTE,
@@ -34,7 +35,7 @@ export default function PricingPage() {
     <JsonLd graph={buildGraph({ path: "/pricing", name: "진료비·시간 안내 – 일산한의원", description })} />
     <PageHeader badge="방문 전 안내" lead="진료비와 소요 시간," accent="미리 확인하세요" stacked description="받으실 치료의 비용과 포함 항목을 살펴보고, 방문 일정을 편하게 정하세요." />
     <nav aria-label="진료비 안내 항목" className="flex flex-wrap justify-center gap-3 border-y border-line bg-card px-6 py-5">
-      {[["pain", "통증·추나·약침"], ["herbal", "보험한약·체질보약"], ["diet", "다이어트"], ["skin", "잡티·토닝·리프팅"], ["hours", "진료·접수 시간"]].map(([id, label]) => <Link key={id} href={`#${id}`} className="rounded-full border border-line px-4 py-2 text-sm font-medium text-primary">{label}</Link>)}
+      {[["pain", "통증·추나·약침"], ["home-visit", "방문진료"], ["herbal", "보험한약·체질보약"], ["diet", "다이어트"], ["skin", "잡티·토닝·리프팅"], ["hours", "진료·접수 시간"]].map(([id, label]) => <Link key={id} href={`#${id}`} className="rounded-full border border-line px-4 py-2 text-sm font-medium text-primary">{label}</Link>)}
     </nav>
     <div className="mx-auto max-w-4xl px-6">
       <PriceSection id="pain" title="통증치료 · 추나 · 초음파 유도 약침">
@@ -56,6 +57,12 @@ export default function PricingPage() {
           <p className="mt-3">{CARE_GUIDE.extra}</p>
         </div>
         <div className="flex flex-wrap gap-5"><DetailLink href="/pain/acute#visit-guide">통증 치료 과정</DetailLink><DetailLink href="/pain/chronic#treatment-photos">추나·약침 치료 모습</DetailLink><DetailLink href="/accident">교통사고 자동차보험 안내</DetailLink></div>
+      </PriceSection>
+      <PriceSection id="home-visit" title="집으로 찾아가는 방문진료">
+        <p>거동이 불편해 내원이 어려운 분을 위한 한의 방문진료 시범사업 비용입니다.</p>
+        <PriceTable caption="방문진료 · 본인부담금" rows={HOME_VISIT_PRICES.map(p => ({ name: p.label, includes: p.rate, price: p.price }))} />
+        <p>{HOME_VISIT.costNote} 장기요양 1·2등급은 와상 여부를 확인하며, 산소치료·인공호흡기 요양비 급여 대상자도 15%가 적용됩니다.</p>
+        <DetailLink href="/home-visit#cost">보험 적용 기준·포함 비용·방문 신청</DetailLink>
       </PriceSection>
       <PriceSection id="herbal" title="보험한약 · 체질보약">
         <PriceTable caption="건강보험 한약" rows={[{ name: "10일 처방", includes: "건강보험 적용 후 본인부담금", price: HERBAL_PRICES.insuredTenDays }]} />
