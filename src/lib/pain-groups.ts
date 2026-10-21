@@ -22,6 +22,11 @@ export const PAIN_GROUP_ORDER: string[] = [
   "교통사고",
 ];
 
+export const PAIN_GROUP_IDS: Record<string, string> = {
+  허리: "back", "목·팔저림": "neck", 어깨: "shoulder", 무릎: "knee",
+  발목: "ankle", "손목·손": "hand", 팔꿈치: "elbow", 교통사고: "accident",
+};
+
 export const PAIN_GROUP_POSTS: Record<string, string[]> = {
   허리: [
     "다리만-저릴때-허리디스크",

@@ -5,7 +5,8 @@ import PageHeader from "@/components/ui/PageHeader";
 import PriceTable from "@/components/ui/PriceTable";
 import ConsultationActions from "@/components/ConsultationActions";
 import JsonLd from "@/components/JsonLd";
-import { buildGraph } from "@/lib/schema";
+import { buildGraph, faqEntities } from "@/lib/schema";
+import { PRICING_VISIT_FAQS } from "@/lib/visit-guide";
 import { pageMetadata } from "@/lib/page-metadata";
 import { CLINIC, CLINIC_HOURS_WEEKDAY, CLINIC_HOURS_WEEKEND, CLINIC_HOURS_LUNCH } from "@/lib/clinic";
 import { CARE_GUIDE } from "@/lib/care-guide";
@@ -33,9 +34,9 @@ function DetailLink({ href, children }: { href: string; children: ReactNode }) {
 
 export default function PricingPage() {
   return <>
-    <JsonLd graph={buildGraph({ path: "/pricing", name: "진료비·시간 안내 – 일산한의원", description })} />
+    <JsonLd graph={buildGraph({ path: "/pricing", name: "진료비·시간 안내 – 일산한의원", description, faq: faqEntities(PRICING_VISIT_FAQS) })} />
     <PageHeader badge="방문 전 안내" lead="진료비와 소요 시간," accent="미리 확인하세요" stacked description="받으실 치료의 비용과 포함 항목을 살펴보고, 방문 일정을 편하게 정하세요." />
-    <SectionJumpNav label="진료비 안내 항목" items={[["pain", "통증·추나·약침"], ["home-visit", "방문진료"], ["herbal", "보험한약·체질보약"], ["diet", "다이어트"], ["skin", "잡티·토닝·리프팅"], ["hours", "진료·접수 시간"]]} />
+    <SectionJumpNav label="진료비 안내 항목" items={[["pain", "통증·추나·약침"], ["questions", "추가 비용·이용 질문"], ["home-visit", "방문진료"], ["herbal", "보험한약·체질보약"], ["diet", "다이어트"], ["skin", "잡티·토닝·리프팅"], ["hours", "진료·접수 시간"]]} />
     <div className="mx-auto max-w-4xl px-6">
       <PriceSection id="pain" title="통증치료 · 추나 · 초음파 유도 약침">
         <PriceTable caption="건강보험 진료 · 본인부담금" rows={[
@@ -55,7 +56,10 @@ export default function PricingPage() {
           <p className="mt-3">{CARE_GUIDE.basic}</p>
           <p className="mt-3">{CARE_GUIDE.extra}</p>
         </div>
-        <div className="flex flex-wrap gap-5"><DetailLink href="/pain/acute#visit-guide">통증 치료 과정</DetailLink><DetailLink href="/pain/chronic#treatment-photos">추나·약침 치료 모습</DetailLink><DetailLink href="/accident">교통사고 자동차보험 안내</DetailLink></div>
+        <div className="flex flex-wrap gap-5"><DetailLink href="/pain/acute#visit-guide">통증 치료 과정</DetailLink><DetailLink href="/pain/acute#physical-therapy">추가 물리치료실 이용</DetailLink><DetailLink href="/pain/chronic#treatment-photos">추나·약침 치료 모습</DetailLink><DetailLink href="/accident">교통사고 자동차보험 안내</DetailLink></div>
+      </PriceSection>
+      <PriceSection id="questions" title="가격표를 보면서 궁금했던 점">
+        <div className="space-y-3">{PRICING_VISIT_FAQS.map(faq => <details key={faq.q} className="group rounded-xl border border-line bg-white p-5"><summary className="flex cursor-pointer list-none items-start justify-between gap-3 text-base font-semibold text-ink [&::-webkit-details-marker]:hidden">{faq.q}<span aria-hidden="true" className="shrink-0 group-open:rotate-45">＋</span></summary><p className="mt-4 text-base leading-[1.9] text-muted">{faq.a}</p></details>)}</div>
       </PriceSection>
       <PriceSection id="home-visit" title="집으로 찾아가는 방문진료">
         <p>거동이 불편해 내원이 어려운 분을 위한 한의 방문진료 시범사업 비용입니다.</p>

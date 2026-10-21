@@ -1,4 +1,5 @@
 import ClinicPhoto from "@/components/ClinicPhoto";
+import { PainBodyLinks } from "@/components/PainSymptomFinder";
 import ConsultationActions from "@/components/ConsultationActions";
 import Link from "next/link";
 import Hero from "@/components/Hero";
@@ -82,7 +83,7 @@ const RECOMMENDED_READINGS = [
 // "진료 범위" 섹션의 단일 소스 — 화면 카드와 아래 ItemList 노드가 이 배열에서 함께 생성된다.
 // 상세 진료 안내로 직접 연결하고, 전체 글 목록은 하단과 푸터에서 안내한다.
 const CLINIC_CARDS = [
-  { href: "/pain/acute", badge: "통증", heading: "통증치료", blurb: "침·추나·약침, 치료 과정과 비용", ogImage: "/images/cards/pain-acute.png" },
+  { href: "/pain", badge: "통증", heading: "통증치료", blurb: "침·추나·약침, 치료 과정과 비용", ogImage: "/images/cards/pain-acute.png" },
   { href: "/accident", badge: "자동차보험", heading: "교통사고", blurb: "사고 후 통증과 불편, 접수부터 치료까지", ogImage: "/images/cards/accident.png" },
   { href: "/herbal/insurance", badge: "건강보험", heading: "보험한약", blurb: "건강보험 대상 6개 질환과 적용·비용 안내", ogImage: "/herbal/insurance/opengraph-image" },
   { href: "/herbal/tonic", badge: "맞춤 한약", heading: "체질보약", blurb: "몸 상태에 맞춘 비급여 한약과 비용", ogImage: "/herbal/tonic/opengraph-image" },
@@ -249,6 +250,7 @@ export default async function Home() {
               <TwoTone as="h2" lead="시간과 비용, " accent="미리 확인하세요" />
             </div>
             <Link href="/pricing" className="mt-5 inline-block font-semibold text-primary underline underline-offset-4">전체 진료비·소요 시간 한눈에 보기 →</Link>
+            <div className="mt-4 flex flex-wrap justify-center gap-x-6 gap-y-2 text-base font-medium text-primary"><Link href="/pain/acute#visit-guide" className="py-2 underline underline-offset-4">첫 방문 진료 과정 →</Link><Link href="/pain/acute#physical-therapy" className="py-2 underline underline-offset-4">무료 추가 물리치료 안내 →</Link></div>
           </div>
 
           <div className="mx-auto mt-8 max-w-3xl space-y-3">
@@ -285,7 +287,8 @@ export default async function Home() {
               <div className="mt-4"><TwoTone as="h2" lead="내 고민과 닮은 " accent="질문을 읽어보세요" /></div>
               <p className="mt-4 text-[16px] leading-relaxed text-muted">진료를 결정하기 전에 궁금한 내용부터 살펴보세요.</p>
             </div>
-            <div className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            <div className="mt-7 rounded-2xl bg-surface p-5"><h3 className="mb-3 text-lg font-semibold text-ink">통증이 있다면, 아픈 부위부터 찾아보세요</h3><PainBodyLinks /></div>
+            <div className="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
               {RECOMMENDED_READINGS.map(item => <Link key={item.href} href={item.href} className="card group flex flex-col p-5 md:p-6">
                 <p className="text-sm font-semibold text-primary">{item.category}</p>
                 <h3 className="mt-3 text-lg font-semibold leading-relaxed text-ink group-hover:text-primary">{item.title}</h3>

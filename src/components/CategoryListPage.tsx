@@ -1,4 +1,5 @@
 import Link from "next/link";
+import PainSymptomFinder from "@/components/PainSymptomFinder";
 import {
   CATEGORY_DESCRIPTION,
   CATEGORY_LABEL,
@@ -16,6 +17,7 @@ import { postImagePath } from "@/lib/og-image";
 import { postPath } from "@/lib/slug";
 import {
   PAIN_GROUP_HUB,
+  PAIN_GROUP_IDS,
   PAIN_GROUP_ORDER,
   PAIN_GROUP_POSTS,
   painGroupSlugs,
@@ -158,17 +160,17 @@ export default function CategoryListPage({ category }: { category: Category }) {
   return (
     <>
       <JsonLd graph={graph} />
-      {/* Hero — 이 페이지들은 진료 안내가 아니라 논문·연구 아카이브다 */}
+      {/* 통증은 증상별 진료 안내와 환자 질문을 함께 제공한다. */}
       <PageHeader
-        badge="의학정보"
+        badge={category === "pain" ? "통증 진료·환자 질문" : "의학정보"}
         icon={<Microscope size={15} />}
         lead={label}
-        description={description}
+        description={category === "pain" ? "불편한 증상에 맞는 진료와 질문을 찾아보세요. 처음 오시는 분을 위한 치료 과정과 비용도 함께 안내합니다." : description}
       />
 
       {/* 네이버 하위링크 카드용 대표이미지 — 본문 최상단의 첫 이미지이자 최대 이미지.
           /autonomic 은 이번 캐러셀 타깃이 아니라 배너를 두지 않는다. */}
-      {category !== "autonomic" && <PageHeroBanner page={category} />}
+      {category !== "autonomic" && category !== "pain" && <PageHeroBanner page={category} />}
 
       {category === "skin" && <section className="section-padding !pb-0 !pt-8">
         <div className="mx-auto grid max-w-3xl gap-4 sm:grid-cols-2">
@@ -221,58 +223,7 @@ export default function CategoryListPage({ category }: { category: Category }) {
         </section>
       )}
 
-      {/* Pain 치료 안내 페이지 배너 */}
-      {category === "pain" && (
-        <section className="section-padding !pb-4 !pt-8">
-          <SectionReveal>
-            <div className="card mx-auto max-w-3xl p-6 sm:p-7">
-              <SectionBadge label="치료 안내" />
-              <h2 className="font-serif mt-2 text-[1.05rem] font-semibold leading-snug text-ink sm:text-[1.15rem]">
-                삐끗한 허리·담 결림, 먼저 여기부터 보세요
-              </h2>
-              <p className="mt-2 text-[0.85rem] leading-relaxed text-muted">
-                다친 지 얼마나 됐는지에 따라 치료가 달라집니다.
-              </p>
-
-              <div className="mt-5 grid gap-3 sm:grid-cols-2">
-                <Link
-                  href="/pain/acute"
-                  className="group flex items-center justify-between gap-3 rounded-xl border border-line px-4 py-3.5 transition-colors duration-200 hover:bg-surface"
-                >
-                  <span className="min-w-0">
-                    <span className="block text-[0.95rem] font-semibold text-ink transition-colors duration-200 group-hover:text-primary">
-                      급성 통증
-                    </span>
-                    <span className="mt-0.5 block text-[0.8rem] text-muted">
-                      담 결림 · 삐끗 · 발목 접질림
-                    </span>
-                  </span>
-                  <span aria-hidden="true" className="shrink-0 text-primary">
-                    →
-                  </span>
-                </Link>
-
-                <Link
-                  href="/pain/chronic"
-                  className="group flex items-center justify-between gap-3 rounded-xl border border-line px-4 py-3.5 transition-colors duration-200 hover:bg-surface"
-                >
-                  <span className="min-w-0">
-                    <span className="block text-[0.95rem] font-semibold text-ink transition-colors duration-200 group-hover:text-primary">
-                      만성 통증
-                    </span>
-                    <span className="mt-0.5 block text-[0.8rem] text-muted">
-                      석회성 건염 · 오십견 · 디스크
-                    </span>
-                  </span>
-                  <span aria-hidden="true" className="shrink-0 text-primary">
-                    →
-                  </span>
-                </Link>
-              </div>
-            </div>
-          </SectionReveal>
-        </section>
-      )}
+      {category === "pain" && <><PainSymptomFinder /><PageHeroBanner page="pain" /></>}
 
       {/* Diet 전문 페이지 배너 */}
       {category === "diet" && (
@@ -325,7 +276,7 @@ export default function CategoryListPage({ category }: { category: Category }) {
           <div className="mx-auto max-w-3xl space-y-10">
             {groups.map((group) => (
               <SectionReveal key={group.name}>
-                <div>
+                <div id={category === "pain" ? PAIN_GROUP_IDS[group.name] : undefined} className="scroll-mt-24">
                   <div className="flex items-baseline justify-between gap-4 border-b border-line pb-3">
                     <h2 className="font-serif text-[1.05rem] font-semibold leading-snug text-ink">
                       {group.name}

@@ -8,7 +8,10 @@ export function TreatmentPriceLink({ herbal = false }: { herbal?: boolean }) {
       <Link href={herbal ? "#herbal-prices" : "#prices"} className="inline-block text-[16px] font-semibold text-primary underline underline-offset-4">
         {herbal ? "건강보험 한약 비용·적용 조건 보기" : "초진·추나·초음파 유도 약침 비용 보기"}
       </Link>
-      <Link href="/pricing" className="mt-2 block text-sm text-primary underline underline-offset-4">전체 진료비·소요 시간 보기</Link>
+      <div className="mt-2 flex flex-wrap justify-center gap-x-5 gap-y-1 text-base text-primary">
+        <Link href="/pricing" className="py-2 underline underline-offset-4">전체 진료비·소요 시간</Link>
+        {!herbal && <><Link href="/pain#symptom-finder" className="py-2 underline underline-offset-4">내 증상으로 질문 찾기</Link><Link href="#physical-therapy" className="py-2 underline underline-offset-4">물리치료실 이용 안내</Link></>}
+      </div>
     </nav>
   );
 }

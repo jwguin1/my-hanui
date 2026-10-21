@@ -33,6 +33,14 @@ export const HERBAL_PRICE_FAQS = [
   },
 ];
 
+/** 가격표 옆에서 실제 결제 구성과 이용 조건을 이해하기 위한 질문. */
+export const PRICING_VISIT_FAQS = [
+  { q: "추나 비용에 기본 진료비를 또 더하나요?", a: `단순추나 ${painWon(PAIN_PRICES.simpleChuna)}, 복잡추나 ${painWon(PAIN_PRICES.complexChuna)}에는 기본 진료비가 포함돼 있습니다. 추나 금액에 기본 진료비를 다시 더하지 않습니다.` },
+  { q: "약침을 받으면 진료비는 어떻게 계산하나요?", a: `초음파 유도 약침은 보험 진료비에 비급여 약침 비용이 추가됩니다. 기본 통원약침(포도당 5%)은 1회 ${painWon(PAIN_PRICES.dextrose)}, PDRN 약침은 1회 ${painWon(PAIN_PRICES.pdrn)}입니다. 받으실 약침과 보험 진료비를 함께 확인해 주세요.` },
+  { q: "물침대나 세라젬을 이용하면 추가 비용이 있나요?", a: `${CARE_GUIDE.extra} 추가 물리치료까지 받으면 접수부터 전체 약 1시간 10분이 소요됩니다.` },
+  { q: "초진과 재진 비용은 같은가요?", a: `안내된 ${painWon(PAIN_PRICES.firstVisit)}은 일반 근골격계 초진의 건강보험 적용 후 본인부담금입니다. 재진 비용이 궁금하시면 받으실 진료 내용을 카카오톡으로 남겨주세요. 원내 기준에 맞춰 안내해드립니다.` },
+];
+
 export const VISIT_FAQS = [
   {
     q: "예약 없이 오늘 바로 침 치료를 받을 수 있나요?",

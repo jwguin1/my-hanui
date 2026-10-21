@@ -18,7 +18,7 @@ const META = [
 ];
 
 const QUICK_LINKS = [
-  { label: "통증치료", detail: "침·추나·약침·치료 비용", href: "/pain/acute" },
+  { label: "통증치료", detail: "침·추나·약침·치료 비용", href: "/pain" },
   { label: "교통사고", detail: "사고 후 통증·불편", href: "/accident" },
   { label: "보험한약", detail: "건강보험 6개 질환·비용", href: "/herbal/insurance" },
   { label: "체질보약", detail: "몸 상태에 맞춘 한약·비용", href: "/herbal/tonic" },
