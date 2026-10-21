@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import Link from "next/link";
+import SectionJumpNav from "@/components/SectionJumpNav";
 import PageHeader from "@/components/ui/PageHeader";
 import PriceTable from "@/components/ui/PriceTable";
 import ConsultationActions from "@/components/ConsultationActions";
@@ -21,9 +22,9 @@ const description = `일산한의원 초진 ${painWon(PAIN_PRICES.firstVisit)}, 
 export const metadata = pageMetadata({ path: "/pricing", title: "진료비·시간 안내 | 통증·한약·피부 치료 비용", description });
 
 function PriceSection({ id, title, children }: { id: string; title: string; children: ReactNode }) {
-  return <section id={id} className="scroll-mt-24 border-b border-line py-10 last:border-0">
+  return <section id={id} className="scroll-mt-36 border-b border-line py-10 last:border-0 md:scroll-mt-24">
     <h2 className="font-serif text-2xl font-semibold text-ink">{title}</h2>
-    <div className="mt-6 space-y-5 text-[15px] leading-relaxed text-muted">{children}</div>
+    <div className="mt-6 space-y-5 text-base leading-relaxed text-muted md:text-[15px]">{children}</div>
   </section>;
 }
 function DetailLink({ href, children }: { href: string; children: ReactNode }) {
@@ -34,9 +35,7 @@ export default function PricingPage() {
   return <>
     <JsonLd graph={buildGraph({ path: "/pricing", name: "진료비·시간 안내 – 일산한의원", description })} />
     <PageHeader badge="방문 전 안내" lead="진료비와 소요 시간," accent="미리 확인하세요" stacked description="받으실 치료의 비용과 포함 항목을 살펴보고, 방문 일정을 편하게 정하세요." />
-    <nav aria-label="진료비 안내 항목" className="flex flex-wrap justify-center gap-3 border-y border-line bg-card px-6 py-5">
-      {[["pain", "통증·추나·약침"], ["home-visit", "방문진료"], ["herbal", "보험한약·체질보약"], ["diet", "다이어트"], ["skin", "잡티·토닝·리프팅"], ["hours", "진료·접수 시간"]].map(([id, label]) => <Link key={id} href={`#${id}`} className="rounded-full border border-line px-4 py-2 text-sm font-medium text-primary">{label}</Link>)}
-    </nav>
+    <SectionJumpNav label="진료비 안내 항목" items={[["pain", "통증·추나·약침"], ["home-visit", "방문진료"], ["herbal", "보험한약·체질보약"], ["diet", "다이어트"], ["skin", "잡티·토닝·리프팅"], ["hours", "진료·접수 시간"]]} />
     <div className="mx-auto max-w-4xl px-6">
       <PriceSection id="pain" title="통증치료 · 추나 · 초음파 유도 약침">
         <PriceTable caption="건강보험 진료 · 본인부담금" rows={[

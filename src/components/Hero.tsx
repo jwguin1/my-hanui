@@ -80,17 +80,18 @@ export default function Hero() {
         fetchPriority="high"
       />
 
-      <div className="mx-auto grid max-w-[1180px] gap-9 px-6 pb-8 pt-9 md:grid-cols-[1.15fr_1fr] md:items-center md:gap-10 lg:pb-10 lg:pt-14">
+      <div className="mx-auto grid max-w-[1180px] gap-6 px-5 pb-8 pt-6 md:grid-cols-[1.15fr_1fr] md:items-center md:gap-10 md:px-6 md:pt-9 lg:pb-10 lg:pt-14">
         <div>
           <p className="mb-5 text-[15px] font-semibold tracking-wide text-primary">이마트 풍산점 3층 · 일산한의원</p>
           <h1 className="text-[clamp(30px,7.9vw,42px)] font-bold leading-[1.25] tracking-[-0.035em] text-ink md:text-[clamp(36px,4.4vw,54px)]">
             <span className="block">“이건 치료 </span>
             <span className="block text-primary">안 하셔도 됩니다”</span>
           </h1>
-          <p className="mt-6 text-[17px] leading-[1.8] text-[#554b43]">저희가 진료실에서 자주 드리는 말씀입니다.</p>
-          <p className="mt-2 max-w-[29rem] text-[18px] font-medium leading-[1.8] text-ink">불편한 증상을 듣고, 필요한 검사를 함께 살펴봅니다.<br className="hidden lg:block" /> 치료가 필요한 부분과 지켜봐도 되는 부분을 설명드립니다.</p>
+          <p className="mt-4 text-base leading-relaxed text-[#554b43] md:hidden">불편한 증상을 듣고,<br />필요한 치료를 함께 정합니다.</p>
+          <p className="mt-6 hidden text-[17px] leading-[1.8] text-[#554b43] md:block">저희가 진료실에서 자주 드리는 말씀입니다.</p>
+          <p className="mt-2 hidden max-w-[29rem] text-[18px] font-medium leading-[1.8] text-ink md:block">불편한 증상을 듣고, 필요한 검사를 함께 살펴봅니다.<br className="hidden lg:block" /> 치료가 필요한 부분과 지켜봐도 되는 부분을 설명드립니다.</p>
 
-          <div className="mt-6 grid grid-cols-2 gap-2 sm:flex sm:flex-wrap sm:gap-3">
+          <div className="mt-6 hidden gap-3 md:flex md:flex-wrap">
           <PillButton
             href={CLINIC.kakaoHref}
             variant="kakao"
@@ -109,7 +110,7 @@ export default function Hero() {
           </PillButton>
           </div>
 
-          <ul className="mt-6 grid grid-cols-2 gap-x-3 gap-y-2 text-[14px] font-medium text-[#554b43]">
+          <ul className="mt-6 hidden grid-cols-2 gap-x-3 gap-y-2 text-[14px] font-medium text-[#554b43] md:grid">
             {META.map((m) => <li key={m.label} className="flex items-center gap-2"><span aria-hidden="true" className="text-primary">{m.icon}</span>{m.label}</li>)}
           </ul>
         </div>

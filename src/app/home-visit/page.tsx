@@ -1,4 +1,5 @@
 import Link from "next/link";
+import SectionJumpNav from "@/components/SectionJumpNav";
 import JsonLd from "@/components/JsonLd";
 import HomeVisitMap from "@/components/HomeVisitMap";
 import PillButton from "@/components/ui/PillButton";
@@ -49,11 +50,7 @@ export default function HomeVisitPage() {
         </aside>
       </div>
     </section>
-    <nav aria-label="방문진료 페이지 목차" className="border-b border-line bg-white px-5 py-4">
-      <div className="mx-auto flex max-w-5xl flex-wrap justify-center gap-x-6 gap-y-3 text-sm font-medium text-primary">
-        {[["who", "방문 대상"], ["care", "받을 수 있는 진료"], ["cost", "비용·보험"], ["area", "지역·시간"], ["process", "이용 과정"], ["questions", "궁금한 질문"], ["apply", "상담 신청"]].map(([id, text]) => <Link key={id} href={`#${id}`} className="underline-offset-4 hover:underline">{text}</Link>)}
-      </div>
-    </nav>
+    <SectionJumpNav label="방문진료 페이지 목차" items={[["who", "방문 대상"], ["care", "받을 수 있는 진료"], ["cost", "비용·보험"], ["area", "지역·시간"], ["process", "이용 과정"], ["questions", "궁금한 질문"], ["apply", "상담 신청"]]} />
 
     <section id="who" className="scroll-mt-24 px-6 py-14 md:py-20">
       <div className="mx-auto max-w-5xl">

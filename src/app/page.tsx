@@ -218,18 +218,18 @@ export default async function Home() {
               </p>
             </div>
 
-            <div className="mx-auto mt-8 grid max-w-5xl gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="mx-auto mt-6 grid max-w-5xl grid-cols-2 gap-3 md:mt-8 md:gap-5 lg:grid-cols-3">
               {CLINIC_CARDS.map((card) => (
                 <Link
                   key={card.href}
                   href={card.href}
-                  className="card group block p-5 md:p-7"
+                  className="card group block p-4 md:p-7"
                 >
-                  <SectionBadge label={card.badge} />
-                  <h3 className="font-serif mt-2 text-[1.15rem] font-semibold text-ink transition-colors group-hover:text-primary">
+                  <span className="hidden md:inline"><SectionBadge label={card.badge} /></span>
+                  <h3 className="text-base font-semibold text-ink transition-colors group-hover:text-primary md:mt-2 md:font-serif md:text-[1.15rem]">
                     {card.heading}
                   </h3>
-                  <p className="mt-3 text-[0.95rem] leading-[1.9] text-muted">
+                  <p className="mt-3 hidden text-[0.95rem] leading-[1.9] text-muted md:block">
                     {card.blurb}
                   </p>
                 </Link>

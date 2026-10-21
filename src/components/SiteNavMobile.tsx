@@ -23,7 +23,7 @@ export default function SiteNavMobile() {
       <button
         type="button"
         onClick={() => setOpen(!open)}
-        className="inline-flex h-9 w-9 items-center justify-center text-ink lg:hidden"
+        className="inline-flex h-11 w-11 items-center justify-center text-ink lg:hidden"
         aria-label={open ? "메뉴 닫기" : "메뉴 열기"}
         aria-expanded={open}
       >
@@ -125,7 +125,7 @@ export default function SiteNavMobile() {
           </div>
 
           {/* 하단 고정 CTA */}
-          <div className="flex gap-2 border-t border-line bg-card px-6 py-4">
+          <div className="flex gap-2 border-t border-line bg-card px-6 pt-4 pb-[max(1rem,env(safe-area-inset-bottom))]">
             <a href={CLINIC.kakaoHref} target="_blank" rel="noopener noreferrer" onClick={close} className="inline-flex flex-[2] items-center justify-center gap-2 rounded-full bg-[#FEE500] px-3 py-3 text-[14px] font-semibold text-[#3C1E1E]">
               <MessageCircle size={16} />카카오톡 상담
             </a>

@@ -27,7 +27,7 @@ export default function PriceTable({
   return (
     <div>
       <div className="overflow-hidden rounded-2xl border border-line bg-card">
-        <p className="border-b border-line bg-surface px-5 py-3.5 text-[14px] font-semibold text-ink">
+        <p className="border-b border-line bg-surface px-5 py-3.5 text-base font-semibold text-ink md:text-[14px]">
           {caption}
         </p>
 
@@ -69,17 +69,17 @@ export default function PriceTable({
                   key={row.name}
                   className="border-b border-line px-5 py-4 last:border-b-0"
                 >
-                  <p className="text-[15px] font-medium text-ink">{row.name}</p>
+                  <p className="text-base font-medium text-ink">{row.name}</p>
                   <dl className="mt-2.5 space-y-1.5">
                     <div className="flex items-baseline justify-between gap-3">
-                      <dt className="text-[13px] text-muted">{headers[0]}</dt>
-                      <dd className="whitespace-nowrap text-[15px] font-semibold text-primary">
+                      <dt className="text-base text-muted">{headers[0]}</dt>
+                      <dd className="whitespace-nowrap text-base font-semibold text-primary">
                         {row.price}
                       </dd>
                     </div>
                     <div className="flex items-baseline justify-between gap-3">
-                      <dt className="text-[13px] text-muted">{headers[1]}</dt>
-                      <dd className="whitespace-nowrap text-[15px] font-semibold text-primary">
+                      <dt className="text-base text-muted">{headers[1]}</dt>
+                      <dd className="whitespace-nowrap text-base font-semibold text-primary">
                         {row.price2}
                       </dd>
                     </div>
@@ -98,7 +98,7 @@ export default function PriceTable({
                 <div className="min-w-0">
                   <p className="text-[15px] font-medium text-ink">{row.name}</p>
                   {row.includes ? (
-                    <p className="mt-1 text-[13px] leading-relaxed text-muted">
+                    <p className="mt-1 text-base leading-relaxed text-muted md:text-[13px]">
                       {row.includes}
                     </p>
                   ) : null}
@@ -113,7 +113,7 @@ export default function PriceTable({
       </div>
 
       {note ? (
-        <p className="mt-3 text-[12px] leading-relaxed text-muted">{note}</p>
+        <p className="mt-3 text-base leading-relaxed text-muted md:text-[12px]">{note}</p>
       ) : null}
     </div>
   );

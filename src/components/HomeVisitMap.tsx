@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import { CLINIC } from "@/lib/clinic";
 import { HOME_VISIT_REGION_GROUPS } from "@/lib/home-visit";
 import map from "@/lib/home-visit-map.json";
@@ -32,11 +35,17 @@ const LABELS: [string, number, number, number, number][] = [
 ];
 
 export default function HomeVisitMap() {
+  const [zoomed, setZoomed] = useState(false);
   const [x, y] = project(CLINIC.geo.longitude, CLINIC.geo.latitude);
   return <figure id="visit-coverage-map" className="mx-auto mt-10 max-w-5xl scroll-mt-24 overflow-hidden rounded-2xl border border-line bg-[var(--bg)]">
     <div className="grid lg:grid-cols-[1.35fr_1fr]">
-      <div className="bg-[#f0f5f3]">
-        <svg viewBox="0 0 640 610" role="img" aria-labelledby="visit-map-title visit-map-desc" className="block h-auto w-full">
+      <div className="min-w-0 bg-[#f0f5f3]">
+        <div className="flex items-center justify-between gap-3 px-4 pt-4 lg:hidden">
+          <p className="text-sm text-ink">{zoomed ? "좌우로 밀어 지역을 확인하세요" : "지명을 더 크게 볼 수 있어요"}</p>
+          <button type="button" aria-pressed={zoomed} aria-controls="visit-map-scroll" onClick={() => setZoomed(!zoomed)} className="min-h-11 shrink-0 rounded-full border border-primary px-4 py-2 text-sm font-semibold text-primary">{zoomed ? "전체 지도" : "지도 확대"}</button>
+        </div>
+        <div id="visit-map-scroll" tabIndex={0} role="region" aria-label="방문진료 지도. 확대 시 좌우로 이동할 수 있습니다." className="overflow-x-auto focus-visible:outline-2 focus-visible:outline-primary">
+        <svg viewBox="0 0 640 610" role="img" aria-labelledby="visit-map-title visit-map-desc" className={`block h-auto w-full ${zoomed ? "min-w-[640px] lg:min-w-0" : ""}`}>
           <title id="visit-map-title">풍산역 일산한의원에서 출발하는 방문진료 권역</title>
           <desc id="visit-map-desc">북쪽 파주·의정부·동두천·포천·양주, 남쪽 시흥·안산·군포·안양·과천, 서쪽 강화·영종도·김포, 동쪽 남양주·하남을 둘러싼 권역과 그 안쪽 지역을 표시한 안내도입니다. 출발점은 고양시 일산동구 풍산역의 일산한의원입니다.</desc>
           <defs>
@@ -67,6 +76,7 @@ export default function HomeVisitMap() {
             <text x="320" y="580" textAnchor="middle" fontSize="25" fontWeight="600" fill="#216b55">점선으로 둘러싼 권역 안쪽을 방문합니다</text>
           </g>
         </svg>
+        </div>
       </div>
       <div className="p-5 md:p-8 lg:self-center">
         <p className="text-sm font-semibold text-primary">방문 권역 한눈에 보기</p>

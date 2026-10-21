@@ -6,7 +6,7 @@ export default function KakaoButton() {
       href={CLINIC.kakaoHref}
       target="_blank"
       rel="noopener noreferrer"
-      className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 flex h-12 items-center justify-center gap-2 px-4 text-sm font-semibold text-[#3C1E1E] rounded-full bg-[#FEE500] shadow-lg transition-transform duration-200 hover:scale-110 active:scale-95"
+      className="fixed bottom-6 right-6 z-50 hidden h-12 items-center justify-center gap-2 px-4 text-sm font-semibold text-[#3C1E1E] rounded-full bg-[#FEE500] shadow-lg transition-transform duration-200 hover:scale-110 active:scale-95 lg:flex"
       aria-label="카카오톡 상담"
     >
       <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none">

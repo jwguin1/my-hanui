@@ -313,6 +313,24 @@
 }
 
 @media (max-width: 768px) {
+  :root {
+    --color-muted: #665b50;
+    --color-text-muted: #665b50;
+    --muted: #665b50;
+  }
+  .prose-custom {
+    font-size: 1.0625rem;
+  }
+  .body-text,
+  main p[class~="text-[0.95rem]"],
+  main p[class~="text-[15px]"],
+  main p[class~="text-[14px]"],
+  main p[class~="text-sm"] {
+    font-size: 1rem;
+  }
+  main section[id] {
+    scroll-margin-top: 9rem;
+  }
   .prose-custom .article-img {
     max-height: 320px !important;
   }

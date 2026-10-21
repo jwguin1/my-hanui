@@ -24,7 +24,7 @@ export default function PageHeader({
 }) {
   return (
     <section className="bg-[var(--surface)]">
-      <div className="mx-auto max-w-[1100px] px-6 py-16 text-center md:px-8 md:py-20">
+      <div className="mx-auto max-w-[1100px] px-5 py-8 text-center md:px-8 md:py-20">
         <SectionBadge icon={icon} label={badge} />
         <div className="mt-4">
           <TwoTone as="h1" lead={lead} accent={accent} stacked={stacked} />
