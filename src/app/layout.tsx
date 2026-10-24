@@ -85,6 +85,8 @@ export default function RootLayout({
   return (
     <html lang="ko" className={notoSerifKR.variable}>
       <head>
+        <link rel="alternate" type="application/rss+xml" title="일산한의원 새 글" href="/rss.xml" />
+        <link rel="help" type="text/plain" title="일산한의원 정보와 안내 페이지" href="/llms.txt" />
         <meta name="naver-site-verification" content="aab70373e7135bf4cc9a612bc491f5f1a662f675" />
         <link rel="preconnect" href="https://cdn.jsdelivr.net" crossOrigin="anonymous" />
         <link

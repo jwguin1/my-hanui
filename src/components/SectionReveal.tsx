@@ -10,11 +10,15 @@ export default function SectionReveal({
   className?: string;
 }) {
   const ref = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
+  // Server-rendered content stays readable before hydration and without JavaScript.
+  const [visible, setVisible] = useState(true);
 
   useEffect(() => {
     const el = ref.current;
-    if (!el) return;
+    if (!el || !("IntersectionObserver" in window)
+      || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    // Only animate content that starts outside the viewport; never hide visible text.
+    if (el.getBoundingClientRect().top >= window.innerHeight) setVisible(false);
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -22,7 +26,7 @@ export default function SectionReveal({
           observer.unobserve(el);
         }
       },
-      { threshold: 0.15 }
+      { threshold: 0.05 }
     );
     observer.observe(el);
     return () => observer.disconnect();

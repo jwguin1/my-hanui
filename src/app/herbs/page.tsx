@@ -1,10 +1,14 @@
 import Link from "next/link";
 import {publicLetters,publicLetterPhotoUrl} from "@/lib/medication-public";
 import {pageMetadata} from "@/lib/page-metadata";
+import {publicationPage} from "@/lib/publication-sitemap";
 export const dynamic="force-dynamic";
-export const metadata=pageMetadata({path:"/herbs",title:"오늘의 한약 · 나를 위한 복약편지",description:"일산한의원에서 환자 한 분 한 분의 상태를 살펴 처방하고 원내에서 준비한 한약, 약재 사진과 담당 원장의 복약편지를 만나보세요."});
+export async function generateMetadata({searchParams}:{searchParams:Promise<{page?:string}>}){
+  const page=publicationPage((await searchParams).page);
+  return pageMetadata({path:page===1?"/herbs":`/herbs?page=${page}`,title:`오늘의 한약 · 나를 위한 복약편지${page>1?` · ${page}페이지`:""}`,description:"일산한의원에서 환자 한 분 한 분의 상태를 살펴 처방하고 원내에서 준비한 한약, 약재 사진과 담당 원장의 복약편지를 만나보세요."});
+}
 export default async function Page({searchParams}:{searchParams:Promise<{page?:string}>}){
-  const query=await searchParams;const page=Math.max(1,Math.min(10000,Number(query.page)||1));const data=await publicLetters((Math.floor(page)-1)*12);
+  const query=await searchParams;const page=publicationPage(query.page);const data=await publicLetters((page-1)*12);
   return <div className="bg-[#f7f6f0] pb-20">
     <header className="mx-auto max-w-5xl px-6 pb-10 pt-16 md:pt-24"><p className="text-sm tracking-widest text-[#576e5b]">일산한의원 · 원내 한약 조제</p><h1 className="mt-4 font-serif text-4xl font-semibold text-[#233f32] md:text-5xl">오늘의 한약</h1><p className="mt-5 max-w-2xl text-lg leading-8 text-muted">한 분의 이야기를 듣고,<br/>그분을 위한 한약과 편지를 준비합니다.</p><p className="mt-4 max-w-2xl text-base leading-7 text-muted">증상과 진찰·검사 결과를 살펴 원장이 직접 처방합니다. 원내에서 준비하는 약재 사진과 치료 방향을 담은 복약편지를 만나보세요.</p><Link href="/herbal" className="mt-5 inline-block text-sm underline underline-offset-4">보험한약·체질보약 진료 안내 →</Link></header>
     <section aria-label="복약편지 목록" className="mx-auto max-w-5xl px-6"><div className="mb-6 flex items-end justify-between border-b border-[#d9dfd5] pb-4"><h2 className="font-serif text-2xl text-[#233f32]">나를 위한 복약편지</h2></div>

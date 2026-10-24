@@ -8,6 +8,9 @@ export default function robots(): MetadataRoute.Robots {
         allow: "/",
       },
     ],
-    sitemap: "https://www.ilsanhan.com/sitemap.xml",
+    sitemap: [
+      "https://www.ilsanhan.com/sitemap.xml",
+      "https://www.ilsanhan.com/herbs/sitemap.xml",
+    ],
   };
 }

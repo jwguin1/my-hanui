@@ -187,6 +187,8 @@ ${liftingLinks}
 ## 참고
 
 - sitemap: ${BASE}/sitemap.xml
+- 공개 복약편지 sitemap: ${BASE}/herbs/sitemap.xml
+- 새 글 RSS: ${BASE}/rss.xml
 - 이 사이트에는 환자 후기나 치료 전후 사진을 게시하지 않습니다.
   의료광고 규정에 따라 치료 효과를 단정하는 표현을 쓰지 않습니다.
 `;
