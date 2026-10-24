@@ -1,0 +1,2 @@
+# Research evidence is hashed as downloaded; preserve its exact line endings.
+public/research-assets/**/source.xml -text

@@ -1,0 +1,216 @@
+[
+  {
+    "slug": "pmid-38693474",
+    "category": "pain",
+    "status": "published",
+    "publishedAt": "2026-10-24T08:29:28.843Z",
+    "updatedAt": "2026-10-24T08:51:22.827Z",
+    "lastSourceCheck": "2026-10-24T08:43:13.761Z",
+    "title": "허리 통증, 전 세계 진료지침은 어떤 치료를 권고할까요?",
+    "summary": "허리가 아플 때 쉬어야 할까요, 움직여야 할까요? 15개국의 진료지침 22개를 비교한 연구에서 운동·침·도수치료의 권고와 차이를 살펴봅니다.",
+    "question": "허리 통증이 생겼을 때 전 세계 의료 지침들은 어떤 치료를 권고하고 있으며, 지침마다 차이가 있나요?",
+    "answer": "결론부터 말씀드리면, 전 세계 주요 요통 진료지침들은 '누워서 쉬는 것보다 몸을 움직이는 능동적 치료'를 공통적으로 강조합니다. 급성·아급성 요통에는 소염진통제, 운동치료, 활동 유지, 척추 도수치료가 가장 많은 지침에서 권고되었고, 만성 요통(12주 초과)에는 운동치료와 소염진통제에 더해 침 치료와 인지행동치료(CBT)가 폭넓게 권고되었습니다. 다만 침 치료, 냉온열 치료, 전기치료 등 일부 항목은 지침마다 권고 여부가 달라, 어떤 근거를 우선시하느냐에 따라 결론이 갈렸습니다.",
+    "population": "18세 이상 성인의 비특이적 요통(특정 병리 없이 발생하는 허리 통증)을 대상으로 한 2017~2022년 발표 임상진료지침. 15개국·22개 지침이 포함되었으며, 미국(6개), 캐나다·네덜란드(각 2개) 등 북미·유럽 중심이었습니다. 방사통(신경근병증) 등 특정 병리를 다룬 지침은 제외되었습니다.",
+    "methods": "MEDLINE, EMBASE, CINAHL, PEDro 등 의학 데이터베이스와 WHO·NICE 등 8개 지침 기관 데이터베이스를 체계적으로 검색했습니다. 검색은 2017~2021년 대상으로 2022년 3월에 1차 수행하고, 2022년 발표 지침을 포함하기 위해 2023년 1월에 추가 검색을 실시했습니다. 지침의 방법론적 질은 AGREE II 도구(23개 항목, 6개 영역, 7점 척도)로 평가했으며, 평균 75%를 넘거나 전반적 평점 6점 이상인 경우 '질이 높은' 지침으로 분류했습니다. 각 치료 권고는 '권고(Agreement)', '비권고(Disagreement)', '근거 불충분(No evidence)', '언급 없음(Not mentioned)' 네 가지로 분류해 요통 지속 기간별로 정리했습니다.",
+    "results": "총 22개 지침의 AGREE II 평균 점수는 42~86%로 다양했고, 7개 지침(덴마크·미국 AOPT·ICSI·VA/DoD·ACP·벨기에·영국)이 질이 높은 지침으로 분류되었습니다. 질이 낮다고 분류된 지침은 없었습니다.\n\n급성 요통을 다룬 13개 지침 중 소염진통제는 12개, 운동치료와 활동 유지는 각 9개, 척추 도수치료는 8개, 침 치료는 6개 지침에서 권고되었습니다.\n\n아급성 요통을 다룬 11개 지침에서는 소염진통제가 11개 전부, 활동 유지·운동치료·척추 도수치료가 각 7개 지침에서 권고되었습니다.\n\n만성 요통을 다룬 14개 지침에서는 운동치료와 소염진통제가 각 13개, 침 치료와 척추 도수치료가 각 11개, 인지행동치료(CBT)가 10개, 다학제 치료가 9개 지침에서 권고되었습니다.\n\n오피오이드(마약성 진통제)는 급성 요통 지침 8개, 만성 요통 지침 6개에서 권고되었으나, 위장 장애·신체 의존 등 부작용 우려로 권고 수준이 지침마다 달랐습니다. 레이저 치료는 일부 지침에서 권고되었지만, 코크란 리뷰에서 통계적으로 유의하나 임상적으로는 중요하지 않은 수준의 통증 감소만 확인되었다고 본 연구는 지적합니다.",
+    "meaning": "이 연구는 전 세계 요통 진료지침이 '침상 안정 지양, 능동적 치료 우선'이라는 큰 방향에서 일치하고 있음을 보여줍니다. 특히 만성 요통을 다룬 14개 지침 중 11개가 침 치료를 권고 항목으로 포함했다는 점은 주목할 만합니다. 다만 이 연구는 지침들이 침 치료를 권고했다는 사실을 집계한 것이며, 침 치료의 임상적 효능을 직접 입증한 연구가 아닙니다. 지침마다 권고 여부가 다른 이유는 어떤 비교 기준(위약 대비 효능 vs. 일반 치료 대비 효과)을 사용했느냐에 따라 결론이 달라지기 때문입니다. 따라서 개별 환자의 상태와 선호도를 고려한 맞춤 접근이 중요하며, 신체적 치료뿐 아니라 심리·사회적 요인을 함께 다루는 생물심리사회적 모델이 강조되고 있습니다.",
+    "limitations": "포함된 지침의 대부분이 북미·유럽 출신이어서 아시아·아프리카 등 다양한 의료 문화권의 관점이 충분히 반영되지 않았습니다. 또한 AGREE II 평가를 1인 주평가자가 수행해 평가 신뢰도에 제한이 있으며, 지침 발표 시점과 근거 검색 종료 시점 사이에 최대 32개월의 간격이 있어 일부 권고가 출판 당시 이미 최신 근거를 반영하지 못했을 가능성이 있습니다. 동양 문화권의 침 치료 전통과 서양의 약물 중심 치료 관행 등 의료 문화 차이도 지침 간 이견의 원인이 될 수 있으나, 이 연구에서는 그 영향을 완전히 분리해 분석하지 못했습니다.",
+    "consultation": "허리 통증이 몇 주째 이어지거나 치료 후에도 같은 불편이 반복된다면, 언제 어떤 동작에서 아픈지와 이전 치료 경험을 알려주세요. 일산한의원에서는 통증의 기간·부위와 움직임을 살펴보고 침·추나 등 치료와 일상 관리 방향을 함께 상의합니다. 검사 결과가 있다면 가져오시고, 내원 전 궁금한 점은 카카오톡으로 편하게 남겨주세요.",
+    "tags": [
+      "요통",
+      "허리통증",
+      "임상진료지침",
+      "침치료",
+      "운동치료",
+      "도수치료",
+      "만성요통",
+      "통증·근골격"
+    ],
+    "evidence": [
+      {
+        "claim": "요통은 전 세계적으로 장애 보정 생존연수(YLD)의 주요 원인이며, 1990년 4,250만 명에서 2017년 6,490만 명으로 증가했고, 시점 유병률은 최대 18%에 달한다.",
+        "quote": "Low back pain (LBP) is one of the most common musculoskeletal conditions globally. According to the Global Burden of Disease Study, LBP continues to be the leading cause of years lived with disability [ 1 ], increasing from 42.5 million to 64.9 million globally between 1990 and 2017 [ 2 ]. The point prevalence of LBP has been estimated to be as high as 18%, resulting in increased activity limitation and absenteeism from work [ 2 ]. LBP not only affects individuals’ daily lives but also imposes a heavy social burden and economic cost, representing a huge challenge to healthcare systems. This is now as apparent in low-income countries as it is in the more affluent and developed countries across the world [ 3 ]. Given the prevalence of LBP, healthcare professionals managing LBP need access to up-to-date, evidence-based information to assist them in treatment decision-making [ 4 ]. To standardise the management of LBP, professional bodies have developed an increasing number of clinical practice guidelines (CPGs), providing recommendations for diagnosis and management [ 4 ]."
+      },
+      {
+        "claim": "22개 지침의 AGREE II 평균 점수는 42~86%로 다양했으며, 덴마크·미국 AOPT·ICSI·VA/DoD·ACP·벨기에·영국 등 7개 지침이 고질 지침으로 분류되었고, 저질 지침은 없었다.",
+        "quote": "Table 1 presents average scaled scores and overall assessments for each CPG from AGREE II. The overall quality of CPGs was moderately variable, with mean scaled scores ranging from 42 to 86%. The average overall assessment score of the selected guidelines was 5.0, ranging from 3 to 7. Seven guidelines scored 75% on average or overall personal rating ≥ 6 points were deemed high quality, including Denmark [ 19 ], US-AOPT [ 25 ], USA-ICSI [ 22 ], USA-VA/DoD [ 21 ], USA-ACP [ 20 ], Belgium [ 33 ], and the UK [ 34 ]. No guideline was deemed to be of low quality."
+      },
+      {
+        "claim": "급성 요통을 다룬 13개 지침 중 소염진통제는 12개, 운동치료와 활동 유지는 각 9개, 척추 도수치료는 8개, 침 치료는 6개 지침에서 권고되었다.",
+        "quote": "Thirteen CPGs discussed the management of acute LBP. They recommended non-steroidal anti-inflammatory drugs (NSAIDs) ( n = 12) [ 19 – 24 , 26 – 28 , 30 – 32 ], therapeutic exercise ( n = 9) [ 19 , 21 – 23 , 25 , 27 , 30 – 32 ], staying active ( n = 9) [ 19 , 22 – 26 , 28 , 31 , 32 ], spinal manipulation ( n = 8) [ 20 , 22 – 24 , 27 , 30 – 32 ], opioids ( n = 8) [ 19 , 23 , 26 – 28 , 30 – 32 ], heat therapy ( n = 7) [ 20 , 22 , 24 , 27 , 28 , 30 , 31 ], massage ( n = 7) [ 20 , 23 , 25 , 27 , 30 – 32 ], acupuncture ( n = 6) [ 19 , 20 , 22 , 27 , 30 , 31 ] muscle relaxants ( n = 6) [ 20 , 22 , 26 , 27 , 31 , 32 ], spinal mobilisation ( n = 6) [ 19 , 25 , 27 , 30 – 32 ], self-management ( n = 5) [ 19 , 22 , 25 , 28 , 32 ], paracetamol ( n = 5) [ 19 , 22 , 28 , 31 , 32 ], returning to work ( n = 3) [ 22 , 28 , 32 ], progressive muscle relaxation ( n = 3) [ 27 , 30 , 32 ], reassurance ( n = 3) [ 19 , 22 , 28 ], fear-avoidance belief training ( n = 3) [ 23 , 24 , 28 ], Cognitive Behavioural Therapy (CBT) ( n = 2) [ 19 , 32 ], postural therapy ( n = 2) [ 23 , 31 ], laser therapy ( n = 2) [ 20 , 31 ], shortwave diathermy ( n = 2) [ 27 , 31 ], cold therapy ( n = 2) [ 22 , 31 ], antidepressants ( n = 2) [ 23 , 31 ]. One CPG recommended mindfulness-based stress reduction [ 32 ], transcutaneous electrical nerve stimulation (TENS) [ 27 ], lumbar supports [ 31 ], back school [ 31 ], interferential current therapy [ 31 ], electrical muscle stimulation [ 20 ], antiepileptic drugs [ 31 ], herbal medicine [ 31 ], shockwave diathermy [ 31 ], back school [ 31 ], and multidisciplinary treatment [ 25 ] (Fig. 2 )."
+      },
+      {
+        "claim": "만성 요통을 다룬 14개 지침에서 운동치료와 소염진통제가 각 13개, 침 치료와 척추 도수치료가 각 11개, 인지행동치료(CBT)가 10개, 다학제 치료가 9개 지침에서 권고되었다.",
+        "quote": "Fourteen CPGs focused on the management of chronic LBP. They recommended therapeutic exercise ( n = 13) [ 20 , 21 , 23 , 25 , 27 – 32 , 38 – 40 ], NSAIDS ( n = 13) [ 20 , 21 , 23 , 24 , 27 – 32 , 38 – 40 ], acupuncture ( n = 11) [ 20 , 21 , 23 , 25 , 27 , 28 , 30 , 31 , 38 – 40 ], spinal manipulation ( n = 11) [ 21 , 23 , 24 , 20 , 27 , 29 – 32 , 38 , 40 ], CBT ( n = 10) [ 20 , 21 , 27 – 30 , 32 , 38 – 40 ], massage ( n = 9) [ 23 , 25 , 27 , 28 , 30 – 32 , 38 , 40 ], staying active ( n = 9) [ 23 – 25 , 28 , 29 , 31 , 32 , 39 , 40 ], multidisciplinary treatment ( n = 9) [ 20 , 21 , 25 , 27 , 28 , 32 , 38 – 40 ], progressive muscle relaxation ( n = 7) [ 20 , 27 , 28 , 30 , 32 , 38 , 40 ], spinal mobilisation ( n = 7) [ 21 , 25 , 27 , 30 – 32 , 40 ], opioids ( n = 6) [ 20 , 24 , 27 , 30 , 31 , 40 ], antidepressants ( n = 6) [ 23 , 27 , 28 , 30 , 31 , 38 ], mindfulness-based stress reduction ( n = 6) [ 20 , 29 , 32 , 38 – 40 ], muscle relaxants ( n = 5) [ 27 , 28 , 31 , 32 , 38 ], back school ( n = 5) [ 24 , 27 , 30 , 31 , 38 ], laser therapy ( n = 4) [ 20 , 27 , 31 , 40 ], paracetamol ( n = 4) [ 31 , 32 , 39 , 40 ], fear-avoidance belief training ( n = 3) [ 23 , 24 , 28 ], self-management ( n = 3) [ 28 , 32 , 40 ], TENS ( n = 3) [ 23 , 27 , 40 ], antiepileptic drugs ( n = 3) [ 31 , 39 , 40 ], herbal medicine ( n = 3) [ 28 , 31 , 39 ], postural therapy ( n = 2) [ 23 , 31 ], ultrasound ( n = 2) [ 27 , 31 ], and interferential current therapy ( n = 2) [ 27 , 31 ]. One CPG recommended returning to work [ 32 ], shortwave diathermy [ 27 ], shockwave diathermy [ 31 ], electrical muscle stimulation [ 27 ], and heat therapy [ 30 ] (Fig. 4 )."
+      },
+      {
+        "claim": "현행 지침들은 전반적으로 침상 안정과 수동적 치료에서 벗어나 능동적 치료(교육, 운동, 활동 유지, 자기관리)를 우선하는 방향으로 수렴하고 있다.",
+        "quote": "This study included 22 relevant CPGs on the management of non-specific LBP from the last six years. Recommendations from these guidelines addressed most non-pharmacological and pharmacological treatments used in the management of acute, subacute, and chronic LBP. Key recommendations are placed on active treatments, including education, exercise, staying active, avoiding bed rest, and self-management. Guidelines also encourage treatments targeting psychosocial factors. The findings of this review are consistent with recommendations in The Lancet back pain series, which advocated the use of non-pharmacological approaches to manage low back pain [ 41 ]. The treatment options identified in this study are also similar to two recent systematic reviews of clinical practice guidelines for LBP. They summarised that current CPGs place greater emphasis on self-management, advice and education, physical and psychological treatments, and less emphasis on pharmacological and surgical options [ 11 , 42 ]."
+      },
+      {
+        "claim": "침 치료 권고 여부는 지침마다 달랐는데, 이는 위약(가짜 침) 대비 효능 근거를 우선시하느냐, 일반 치료 대비 효과 근거를 우선시하느냐에 따라 결론이 달라지기 때문이다.",
+        "quote": "The underlying conflicting evidence may arise from guideline development groups prioritizing evidence of clinically important efficacy (vs. sham treatments) or effectiveness (vs. usual care). Efficacy can be defined as the performance of an intervention under ideal and controlled circumstances, whereas effectiveness refers to its performance under ‘real-world’ conditions [ 48 ]. Notably, the transition from efficacy in controlled trials to effectiveness in clinical practice involves several critical steps, including adjustments for patient adherence, variability in population, clinician expertise, and resource availability. These factors can lead to an overestimation of intervention effects observed in efficacy trials when applied in everyday clinical settings [ 49 ]. In this review, some guidelines recommended acupuncture [ 20 , 22 , 31 ] as a therapeutic option, while others do not [ 32 , 34 ]. Guidelines recommending acupuncture may have prioritised evidence compared to sham or placebo therapy rather than usual care [ 50 ]."
+      },
+      {
+        "claim": "오피오이드·파라세타몰·근이완제·항우울제 등 약물 권고는 지침마다 크게 달랐으며, 위장 장애·신체 의존 등 부작용과 편익 간의 복잡한 상충 관계가 그 원인으로 지적되었다.",
+        "quote": "Recommendations about the prescription of NSAIDs remain consistent, and most guidelines recommend it as the first or second option. Further recommendations about other drugs like paracetamol, opioids, muscle relaxants and antidepressants vary considerably. Part of the variation in recommendations regarding pharmacological options might reflect different medical practices across countries. The inconsistent recommendations in pharmacological interventions from USA-VA/DoD [ 21 ], Austria [ 27 ], Canada [ 28 ], Germany [ 30 ], and the UK [ 34 ] might also be attributable to the small benefit on the management of LBP as well as potential side effects, such as gastric disturbance or physical dependence [ 54 , 55 ]. A review also found insufficient evidence to identify one medication as offering a clear overall net advantage because of complex tradeoffs between benefits and harms [ 56 ]. Thus, medication recommendations are likely to depend on how guideline development groups prioritise the importance of these benefits and harms."
+      },
+      {
+        "claim": "척추 도수치료(고속 관절 기법)와 척추 가동화(저속 반복 기법)는 서로 다른 기법임에도 대부분의 지침이 이를 명확히 구분하지 않고 권고했다.",
+        "quote": "In addition, spinal manipulation and spinal mobilization were often used interchangeably. Spinal manipulation is a high-velocity end-range technique with accurate movement performed to enhance joint mobility, and is more associated with chiropractic and osteopathy approaches [ 59 ]. In contrast, spinal mobilisation refers to a passive, slow-velocity technique with smooth and repeated movements used for flexibility improvement, and is more associated with physiotherapy practice [ 60 ]. However, most guidelines failed to clearly describe which one they recommend for managing LBP [ 19 , 20 , 22 – 24 , 35 , 39 ]."
+      }
+    ],
+    "figures": [
+      {
+        "id": "Fig1",
+        "label": "Fig. 1",
+        "caption": "Flow chart of guideline selection process",
+        "images": [
+          {
+            "src": "/research-assets/PMC11061926/Fig1-1.webp",
+            "preview": "/research-assets/PMC11061926/preview-Fig1-1.webp",
+            "width": 669,
+            "height": 810,
+            "originalHash": "c5f8ce5a7633bbc56e70400203f4838fbd96ed2224eee3da244553570e20fb2f"
+          }
+        ],
+        "explanation": "지침 선정 과정을 두 갈래로 나누어 보여주는 PRISMA 흐름도입니다. 왼쪽 흐름은 2017~2021년 검색으로, 데이터베이스 1,134건과 기타 출처 91건(합계 1,225건)이 확인되었고, 중복 389건 제거 후 836건의 제목·초록 검토를 거쳐 90건의 전문을 검토한 뒤 최종 21개 지침이 선정되었습니다. 오른쪽 흐름은 2022년 추가 검색으로, 데이터베이스 226건과 기타 출처 13건(합계 239건)이 확인되었고, 중복 81건 제거 후 158건 검토, 29건 전문 검토를 거쳐 2개 지침이 추가 선정되었습니다. 두 흐름에서 선정된 지침을 합산하면 23개이며, 이 중 이전 버전 지침 1개를 제외하여 최종 22개 지침이 검토에 포함되었습니다.",
+        "alt": "요통 임상진료지침 선정 과정 PRISMA 흐름도: 2017~2021년 검색(21개)과 2022년 검색(2개)의 두 갈래 흐름이 합산 23개로 모이고, 이전 버전 1개 제외 후 최종 22개 확정"
+      },
+      {
+        "id": "Fig2",
+        "label": "Fig. 2",
+        "caption": "The commonality of therapeutic recommendations for patients with acute LBP",
+        "images": [
+          {
+            "src": "/research-assets/PMC11061926/Fig2-1.webp",
+            "preview": "/research-assets/PMC11061926/preview-Fig2-1.webp",
+            "width": 669,
+            "height": 241,
+            "originalHash": "a986523f8b1f18f2be942fba53c3720ee77c2f52ccbe11f9ec52c45262dba6e6"
+          }
+        ],
+        "explanation": "급성 요통에 대한 각 치료법의 권고 일치도를 나타낸 누적 막대그래프입니다. 범례는 파란색(Agreement·권고), 빨간색(Disagreement·비권고), 노란색/연두색(No evidence·근거 불충분), 보라색(Not mentioned·언급 없음)으로 구성됩니다. 소염진통제·운동치료·활동 유지 항목에서 파란색(권고) 비율이 높게 나타납니다. 척추 도수치료 항목은 파란색 비율이 상당하지만 보라색(언급 없음)도 적지 않은 비중을 차지합니다. 침상 안정 항목에서는 빨간색(비권고) 비율이 두드러집니다.",
+        "alt": "급성 요통 치료 권고 일치도 누적 막대그래프: 항목별 권고·비권고·근거불충분·언급없음 비율, 파란색=권고, 빨간색=비권고, 노란색=근거불충분, 보라색=언급없음"
+      },
+      {
+        "id": "Fig3",
+        "label": "Fig. 3",
+        "caption": "The commonality of therapeutic recommendations for patients with subacute LBP",
+        "images": [
+          {
+            "src": "/research-assets/PMC11061926/Fig3-1.webp",
+            "preview": "/research-assets/PMC11061926/preview-Fig3-1.webp",
+            "width": 669,
+            "height": 288,
+            "originalHash": "a0334194360bf173b128bf76aebc5857ba197f164676e460a9f511e84dd7b7e0"
+          }
+        ],
+        "explanation": "아급성 요통에 대한 치료법별 권고 일치도 누적 막대그래프입니다. Fig2와 동일한 색상 체계(파란색=권고, 빨간색=비권고, 노란색/연두색=근거 불충분, 보라색=언급 없음)를 사용합니다. 소염진통제·활동 유지·운동치료·척추 도수치료에서 파란색(권고) 비율이 높게 나타납니다. 침 치료는 일부 지침에서만 권고되어 파란색 비율이 상대적으로 낮으며, 보라색(언급 없음) 비율이 상당 부분을 차지하는 항목들도 많습니다.",
+        "alt": "아급성 요통 치료 권고 일치도 누적 막대그래프: 항목별 권고·비권고·근거불충분·언급없음 비율, 파란색=권고, 빨간색=비권고, 노란색=근거불충분, 보라색=언급없음"
+      },
+      {
+        "id": "Fig4",
+        "label": "Fig. 4",
+        "caption": "The commonality of therapeutic recommendations for patients with chronic LBP",
+        "images": [
+          {
+            "src": "/research-assets/PMC11061926/Fig4-1.webp",
+            "preview": "/research-assets/PMC11061926/preview-Fig4-1.webp",
+            "width": 669,
+            "height": 307,
+            "originalHash": "f8e513b9e8276cea94cb81b4e6cffed238ea9e72d84321c8bf63326d65b2be3c"
+          }
+        ],
+        "explanation": "만성 요통에 대한 치료법별 권고 일치도 누적 막대그래프입니다. Fig2·3과 동일한 색상 체계를 사용합니다. 운동치료·소염진통제·침 치료·척추 도수치료·인지행동치료(CBT)·다학제 치료 항목에서 파란색(권고) 비율이 높습니다. 급성 요통 그래프에 비해 침 치료와 CBT의 파란색(권고) 비율이 눈에 띄게 높아진 점이 특징입니다. 침상 안정 항목은 빨간색(비권고) 비율이 두드러집니다.",
+        "alt": "만성 요통 치료 권고 일치도 누적 막대그래프: 항목별 권고·비권고·근거불충분·언급없음 비율, 파란색=권고, 빨간색=비권고, 노란색=근거불충분, 보라색=언급없음"
+      },
+      {
+        "id": "Fig5",
+        "label": "Fig. 5",
+        "caption": "The commonality of therapeutic recommendations for patients with unspecified duration LBP",
+        "images": [
+          {
+            "src": "/research-assets/PMC11061926/Fig5-1.webp",
+            "preview": "/research-assets/PMC11061926/preview-Fig5-1.webp",
+            "width": 669,
+            "height": 266,
+            "originalHash": "1203a7008e2c5d2920b63a9140ccfbd13e68c4827476e2facd9b25eaca79b824"
+          }
+        ],
+        "explanation": "기간을 특정하지 않은 요통에 대한 치료법별 권고 일치도 누적 막대그래프입니다. Fig2~4와 동일한 색상 체계를 사용합니다. 활동 유지·자기관리·소염진통제·운동치료·척추 도수치료·척추 가동화·CBT 항목에서 파란색(권고) 비율이 상대적으로 높습니다. 전반적으로 대부분의 항목에서 보라색(언급 없음) 비율이 상당 부분을 차지하는데, 이는 기간 미특정 지침의 수(5개)가 적어 언급 자체가 없는 경우가 많기 때문입니다.",
+        "alt": "기간 미특정 요통 치료 권고 일치도 누적 막대그래프: 항목별 권고·비권고·근거불충분·언급없음 비율, 파란색=권고, 빨간색=비권고, 노란색=근거불충분, 보라색=언급없음"
+      },
+      {
+        "id": "Fig6",
+        "label": "Fig. 6",
+        "caption": "Mind map of self-management and its components. The different colour codes represent a hierarchical classification of interventions (yellow > green > blue). The dotted lines represent the possible overlap between the two interventions",
+        "images": [
+          {
+            "src": "/research-assets/PMC11061926/Fig6-1.webp",
+            "preview": "/research-assets/PMC11061926/preview-Fig6-1.webp",
+            "width": 669,
+            "height": 401,
+            "originalHash": "5326954411b59b074618cc73140e2b7c6e9ed6e8e3403c603136d3dbc01a72f8"
+          }
+        ],
+        "explanation": "자기관리와 그 구성 요소를 계층적으로 정리한 마인드맵입니다. 중심의 노란색 '자기관리(Self-management)' 노드에서 초록색의 세 가지 중간 범주가 뻗어 나옵니다. 첫째 '치료적 운동(Therapeutic exercise)'에는 코어 안정화 운동·스트레칭·강화 운동·태극권·필라테스·요가·균형 운동·맥켄지 운동·유산소 운동·수중 운동 등이 파란색 노드로 연결됩니다. 둘째 '교육(Education)'에는 침상 안정 회피·활동 유지·직장 복귀·공포 회피 훈련·안심 교육·자세 치료 등이 포함됩니다. 셋째 '심리적 중재(Psychological interventions)'에는 인지행동치료(CBT)·마음챙김 기반 스트레스 감소·점진적 근이완 등이 연결되며, 별도로 '일반의약품(Over-the-counter medication)' 범주에 소염진통제 등이 포함됩니다. 점선은 서로 다른 범주 간 개념 중복 가능성(예: 공포 회피 훈련과 CBT의 중복)을 나타냅니다.",
+        "alt": "요통 자기관리 구성 요소 마인드맵: 치료적 운동·교육·심리적 중재·일반의약품의 계층 구조와 항목 간 중복 관계를 점선으로 표시"
+      }
+    ],
+    "faq": [
+      {
+        "question": "허리가 아플 때 무조건 누워서 쉬어야 하지 않나요?",
+        "answer": "이번 연구의 핵심은 오래 누워 쉬기보다 통증이 허용하는 범위에서 활동을 유지하고, 상태에 맞는 운동과 치료를 함께 계획하자는 것입니다. 다리 힘이 떨어지거나 저림이 심해지는 등 새로운 증상이 있다면 먼저 진료를 통해 상태를 확인하세요."
+      },
+      {
+        "question": "만성 허리 통증에 침 치료가 효과가 있다는 근거가 있나요?",
+        "answer": "이 연구에서 만성 요통을 다룬 14개 지침 중 11개가 침 치료를 권고 항목으로 포함했습니다. 다만 이 연구는 지침들이 침 치료를 권고했다는 사실을 집계한 것이며, 침 치료의 임상적 효능을 직접 입증한 연구가 아닙니다. 지침마다 권고 여부가 다른 이유는, 어떤 지침은 가짜 침(위약) 대비 효능 연구를 근거로 삼고, 다른 지침은 일반 치료 대비 효과 연구를 기준으로 삼기 때문입니다. 개인의 상태와 이전 치료 반응을 고려해 결정하는 것이 중요합니다."
+      }
+    ],
+    "paper": {
+      "doi": "10.1186/s12891-024-07468-0",
+      "pmcid": "PMC11061926",
+      "pmid": "38693474",
+      "date": "2024-05-01",
+      "types": [
+        "Journal Article",
+        "Comparative Study"
+      ],
+      "title": "Recent clinical practice guidelines for the management of low back pain: a global comparison.",
+      "citations": 164,
+      "citationSource": "Crossref",
+      "checkedAt": "2026-10-24T08:29:31.964Z",
+      "authors": [
+        "Zhou Tianyu",
+        "Salman David",
+        "McGregor Alison. H."
+      ],
+      "journal": "BMC Musculoskeletal Disorders",
+      "volume": "25",
+      "issue": "",
+      "pages": "344",
+      "abstract": "Background Low back pain (LBP) is a significant health problem worldwide, with a lifetime prevalence of 84% in the general adult population. To rationalise the management of LBP, clinical practice guidelines (CPGs) have been issued in various countries around the world. This study aims to identify and compare the recommendations of recent CPGs for the management of LBP across the world. Methods MEDLINE, EMBASE, CINAHL, PEDro, and major guideline databases were searched from 2017 to 2022 to identify CPGs. CPGs focusing on information regarding the management and/or treatment of non-specific LBP were considered eligible. The quality of included guidelines was evaluated using the Appraisal of Guidelines for Research and Evaluation (AGREE) II instrument. Results Our analysis identified a total of 22 CPGs that met the inclusion criteria, and were of middle and high methodological quality as assessed by the AGREE II tool. The guidelines exhibited heterogeneity in their recommendations, particularly in the approach to different stages of LBP. For acute LBP, the guidelines recommended the use of non-steroidal anti-inflammatory drugs (NSAIDs), therapeutic exercise, staying active, and spinal manipulation. For subacute LBP, the guidelines recommended the use of NSAIDs, therapeutic exercise, staying active, and spinal manipulation. For chronic LBP, the guidelines recommended therapeutic exercise, the use of NSAIDs, spinal manipulation, and acupuncture. Conclusions Current CPGs provide recommendations for almost all major aspects of the management of LBP, but there is marked heterogeneity between them. Some recommendations lack clarity and overlap with other treatments within the guidelines. Supplementary Information The online version contains supplementary material available at 10.1186/s12891-024-07468-0.",
+      "conclusion": "Conclusion This review identified 22 CPGs published between 2017 and 2022 that provide recommendations for all significant aspects of the management of LBP. Methods for conducting these CPGs varied, but most were of middle and high methodological quality. Across a global sample, current CPGs generally had similar recommendations for moving from passive bed rest and medication to active therapies. However, some heterogeneities were found among the recommendations in the CPGs of LBP due to the different approaches used in their construction.",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "licenseText": "https://creativecommons.org/licenses/by/4.0/ Open Access This article is licensed under a Creative Commons Attribution 4.0 International License, which permits use, sharing, adaptation, distribution and reproduction in any medium or format, as long as you give appropriate credit to the original author(s) and the source, provide a link to the Creative Commons licence, and indicate if changes were made. The images or other third party material in this article are included in the article’s Creative Commons licence, unless indicated otherwise in a credit line to the material. If material is not included in the article’s Creative Commons licence and your intended use is not permitted by statutory regulation or exceeds the permitted use, you will need to obtain permission directly from the copyright holder. To view a copy of this licence, visit http://creativecommons.org/licenses/by/4.0/ . The Creative Commons Public Domain Dedication waiver ( http://creativecommons.org/publicdomain/zero/1.0/ ) applies to the data made available in this article, unless otherwise stated in a credit line to the data.",
+      "sourceUrl": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11061926/fullTextXML",
+      "sourceHash": "fe7f6cdf225920632ac53c72d54c5c656aedf21ef0b83bc6225d790fbd219298",
+      "figureCount": 6
+    },
+    "verification": {
+      "type": "automated",
+      "model": "claude-sonnet-4-6",
+      "checkedAt": "2026-10-24T08:34:14.270Z",
+      "checks": {
+        "numbers": true,
+        "methods": true,
+        "causality": true,
+        "clinicalRelevance": true,
+        "figures": true,
+        "noPatientIdentifyingImages": true,
+        "noInventedCredentials": true
+      }
+    }
+  }
+]

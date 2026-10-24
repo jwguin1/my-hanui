@@ -1,6 +1,6 @@
 import fs from "fs";
 import path from "path";
-import sharp from "sharp";
+import sharp, { type PngOptions } from "sharp";
 import {
   OG_HEIGHT,
   OG_WIDTH,
@@ -65,7 +65,7 @@ export async function renderOgImage(
   ]);
 
   // 300KB 예산: 무손실 PNG → 팔레트 양자화 → 색상수 축소 순으로 단계적 재인코딩
-  const tiers: Array<[string, sharp.PngOptions]> = [
+  const tiers: Array<[string, PngOptions]> = [
     ["png", { compressionLevel: 9 }],
     ["png(palette)", { compressionLevel: 9, palette: true, quality: 85, effort: 10 }],
     [

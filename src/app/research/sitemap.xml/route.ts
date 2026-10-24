@@ -1,0 +1,3 @@
+import {getResearchArticles,RESEARCH_ORIGIN,RESEARCH_CATEGORIES,researchUrl} from '@/lib/research';
+export const dynamic='force-dynamic';
+export function GET(){const escape=(s:string)=>s.replace(/&/g,'&amp;').replace(/</g,'&lt;');const entries=[{url:RESEARCH_ORIGIN},{url:`${RESEARCH_ORIGIN}/editorial`},...Object.keys(RESEARCH_CATEGORIES).map(c=>({url:`${RESEARCH_ORIGIN}/category/${c}`})),...getResearchArticles().map(a=>({url:researchUrl(a),updated:a.updatedAt}))];return new Response(`<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">${entries.map(e=>`<url><loc>${escape(e.url)}</loc>${'updated'in e?`<lastmod>${e.updated}</lastmod>`:''}</url>`).join('')}</urlset>`,{headers:{'Content-Type':'application/xml; charset=utf-8'}})}

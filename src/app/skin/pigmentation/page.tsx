@@ -161,6 +161,7 @@ export default function PigmentationPage() {
       <ClinicVisitInfo className="mt-5" />
       <ConsultationActions directions className="mt-6" />
       <Link href="/skin" className="mt-6 inline-block text-sm text-primary underline underline-offset-4">피부 · 레이저 글 전체 보기</Link>
+      <a href="https://research.ilsanhan.com/category/skin" className="mt-4 block text-sm text-primary underline underline-offset-4">피부·미용 치료의 논문 해설 읽기 →</a>
     </div></section>
   </>;
 }

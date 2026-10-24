@@ -1,0 +1,6 @@
+import {notFound} from 'next/navigation';
+import {getResearchArticles,RESEARCH_CATEGORIES,RESEARCH_ORIGIN,ResearchCategory} from '@/lib/research';
+import ResearchCards from '@/components/ResearchCards';
+export const dynamic='force-dynamic';
+export async function generateMetadata({params}:{params:Promise<{category:string}>}){const {category}=await params;const c=RESEARCH_CATEGORIES[category as ResearchCategory];if(!c)return {};return {title:`${c.label} 연구노트`,description:c.description,alternates:{canonical:`${RESEARCH_ORIGIN}/category/${category}`},openGraph:{title:`${c.label} 연구노트`,description:c.description,url:`${RESEARCH_ORIGIN}/category/${category}`,images:['https://www.ilsanhan.com/og-image.jpg']}};}
+export default async function Category({params}:{params:Promise<{category:string}>}){const {category}=await params;const c=RESEARCH_CATEGORIES[category as ResearchCategory];if(!c)notFound();const articles=getResearchArticles(category as ResearchCategory);return <div className="research-wrap"><header className="research-category-header"><p>{c.day}에 읽는 논문</p><h1>{c.label} 연구노트</h1><p>{c.description}</p></header>{articles.length?<ResearchCards articles={articles}/>:<p className="research-empty">연구노트를 준비하고 있습니다.</p>}</div>}

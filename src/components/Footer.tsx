@@ -44,6 +44,7 @@ export default function Footer() {
           <Link href="/herbal/tonic">체질보약 · 비급여 한약 비용</Link>
         </nav>
         <div className="mt-8 flex flex-wrap items-center justify-center gap-5">
+          <a href="https://research.ilsanhan.com" className="text-sm text-primary">연구노트 · 통증·피부·한약 논문 해설</a>
           <Link href="/home-visit" className="text-sm text-primary">방문진료 · 대상·비용·신청</Link>
           <Link href="/pricing" className="text-sm text-primary">진료비·시간 안내</Link>
           {/* /about · /doctor 는 위 사이트맵으로 옮겼다 — 같은 URL 에

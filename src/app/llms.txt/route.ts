@@ -173,6 +173,10 @@ ${liftingLinks}
 
 ## 그 외
 
+- 연구노트 · 최근 10년 통증·피부·한의학 논문 해설: https://research.ilsanhan.com
+- 연구노트 원문·그림·검증 기준: https://research.ilsanhan.com/editorial
+- 연구노트 사이트맵: https://research.ilsanhan.com/sitemap.xml
+
 - 병원 소개: ${BASE}/about
 - 의료진 (6인): ${BASE}/doctor
 - 오시는 길·진료시간: ${BASE}/contact

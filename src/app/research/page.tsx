@@ -1,0 +1,11 @@
+import type {Metadata} from 'next';
+import {getResearchArticles,RESEARCH_CATEGORIES,RESEARCH_ORIGIN} from '@/lib/research';
+import ResearchCards from '@/components/ResearchCards';
+export const dynamic='force-dynamic';
+export const metadata:Metadata={title:'연구노트 | 통증·피부·한약 논문 해설',description:'최근 10년의 의학 논문을 환자의 질문으로 풀어 읽습니다. 연구 대상·방법·결과와 그림, 일산한의원 진료에서의 의미를 함께 확인하세요.',alternates:{canonical:RESEARCH_ORIGIN,types:{'application/rss+xml':`${RESEARCH_ORIGIN}/feed.xml`}},openGraph:{title:'일산한의원 연구노트',description:'환자의 질문에서 시작하는 통증·피부·한약 논문 해설',url:RESEARCH_ORIGIN,type:'website',images:['https://www.ilsanhan.com/og-image.jpg']}};
+export default async function ResearchHome({searchParams}:{searchParams:Promise<{q?:string}>}){const q=((await searchParams).q||'').trim().slice(0,100);const all=getResearchArticles();const articles=q?all.filter(a=>[a.title,a.summary,...a.tags,a.paper.title].join(' ').toLowerCase().includes(q.toLowerCase())):all;
+return <div className="research-wrap"><section className="research-hero"><span className="research-eyebrow">ILSAN CLINIC · RESEARCH NOTES</span><h1>논문 속 근거를,<br/><em>내 건강의 언어로.</em></h1><p>치료를 고민할 때 떠오르는 질문들.<br/>통증·피부·한약 연구의 결과와 그림을 함께 읽고,<br className="research-desktop"/> 진료에서 어떤 의미가 있는지 살펴봅니다.</p><div className="research-schedule">월 통증 · 수 피부 · 금 한의학 <span>최근 10년 논문 중심</span></div></section>
+<div className="research-category-grid">{Object.entries(RESEARCH_CATEGORIES).map(([key,c])=><a key={key} href={`${RESEARCH_ORIGIN}/category/${key}`}><span>{c.day}</span><h2>{c.label} ↗</h2><p>{c.description}</p></a>)}</div>
+<section aria-labelledby="research-latest"><div className="research-section-heading"><h2 id="research-latest">{q?'검색한 연구노트':'최근 연구노트'}</h2><form action={RESEARCH_ORIGIN} method="get" role="search"><label className="sr-only" htmlFor="research-search">연구노트 검색</label><input id="research-search" name="q" defaultValue={q} placeholder="증상·치료·논문 검색" maxLength={100}/><button type="submit">검색</button></form></div>{articles.length?<ResearchCards articles={articles}/>:<p className="research-empty">{q?'검색어와 일치하는 글이 없습니다. 다른 증상이나 치료명으로 찾아보세요.':'본문과 그림의 근거를 확인한 연구노트를 준비하고 있습니다.'}</p>}</section>
+</div>}
+

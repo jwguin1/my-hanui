@@ -1,0 +1,79 @@
+name: Research notes — collect, verify and publish
+on:
+  schedule:
+    # Prepare the next unfilled M/W/F slot daily at 06:17 KST, up to 6 queued posts.
+    # Public pages become visible only on their scheduled M/W/F date at 09:00 KST.
+    - cron: '17 21 * * *'
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 'validate = check existing posts only; publish = prepare the selected date'
+        type: choice
+        options: [validate, publish]
+        default: validate
+      category:
+        type: choice
+        options: [pain, skin, korean]
+        default: pain
+      publication_date:
+        description: 'Publication date YYYY-MM-DD (Korea time, at 09:00); required for manual publish'
+        type: string
+permissions:
+  contents: write
+concurrency:
+  group: research-publishing
+  cancel-in-progress: false
+jobs:
+  research:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 2
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - run: node --test scripts/research/core.test.mjs
+      - name: Collect, write and independently verify
+        if: github.event_name == 'schedule' || inputs.mode == 'publish'
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.RESEARCH_ANTHROPIC_API_KEY }}
+          MANUAL_CATEGORY: ${{ inputs.category }}
+          MANUAL_DATE: ${{ inputs.publication_date }}
+          EVENT_NAME: ${{ github.event_name }}
+        run: |
+          if [ "$EVENT_NAME" = "schedule" ]; then
+            node scripts/research/run.mjs
+          else
+            if ! [[ "$MANUAL_DATE" =~ ^[0-9]{4}-[0-9]{2}-[0-9]{2}$ ]]; then
+              echo 'A valid publication_date is required'; exit 1
+            fi
+            node scripts/research/run.mjs --category "$MANUAL_CATEGORY" --publish-at "${MANUAL_DATE}T09:00:00+09:00"
+          fi
+      - name: Verify licensed source and all figure files
+        id: validate
+        if: success() || failure()
+        run: node scripts/research/validate.mjs
+      - name: Save verified content and trigger website deployment
+        if: always() && steps.validate.outcome == 'success'
+        run: |
+          git config user.name "$(git log -1 --format=%an)"
+          git config user.email "$(git log -1 --format=%ae)"
+          git add src/data/research-articles.json public/research-assets
+          if ! git diff --cached --quiet; then
+            git commit -m "Publish verified research note"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
+      - name: Keep aggregate run diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: research-run
+          path: output/research/last-run.json
+          retention-days: 30
+          if-no-files-found: ignore

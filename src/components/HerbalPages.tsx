@@ -65,6 +65,7 @@ export function HerbalHub({ category }: { category: HerbalCategory }) {
     {insurance ? <HerbalPrices /> : <TonicPrices />}
     <HerbalQuestions faqs={HERBAL_HUB_FAQS[category]} title={insurance ? "보험 적용과 비용, 먼저 확인하세요" : "보약을 처음 고민할 때 궁금한 점"} />
     <CareGuide herbal />
+    <p className="px-6 py-6 text-center text-sm text-primary"><a href="https://research.ilsanhan.com/category/korean" className="underline underline-offset-4">한약·침 치료의 논문 해설 읽기 →</a></p>
     <HerbalConsultation />
   </>;
 }
