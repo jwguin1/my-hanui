@@ -65,7 +65,7 @@
 
 @layer components {
   /* 홈의 작은 안내문도 크림 배경에서 충분히 구분되도록 대비를 높인다. */
-  .home-content {
+  .home-content, .skin-treatment {
     --color-muted: #665b50;
     --muted: #665b50;
     --color-text-muted: #665b50;
@@ -348,7 +348,7 @@
 .article-img-wrapper img,
 .prose-custom .article-img,
 .prose-custom .article-img-wrapper img,
-article img:not(.logo):not(.icon):not(.doctor-portrait) {
+article img:not(.logo):not(.icon):not(.doctor-portrait):not(.research-figure-image) {
   display: block !important;
   width: auto !important;
   height: auto !important;
@@ -368,7 +368,7 @@ article img:not(.logo):not(.icon):not(.doctor-portrait) {
   .article-img-wrapper img,
   .prose-custom .article-img,
   .prose-custom .article-img-wrapper img,
-  article img:not(.logo):not(.icon):not(.doctor-portrait) {
+  article img:not(.logo):not(.icon):not(.doctor-portrait):not(.research-figure-image) {
     max-height: 320px !important;
   }
 }

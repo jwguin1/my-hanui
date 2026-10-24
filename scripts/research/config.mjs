@@ -20,7 +20,7 @@ export const categories = {
     '((melasma OR pigmentation) AND (Q-switched OR picosecond OR long pulsed laser))',
     '((skin rejuvenation OR acne scars) AND (fractional carbon dioxide OR microneedling OR radiofrequency))',
     '((skin tightening OR facial rejuvenation) AND (HIFU OR microfocused ultrasound OR monopolar radiofrequency OR skin booster))',
-  ], links: [{href:'/skin/pigmentation',label:'피코·제네시스 색소치료'}, {href:'/skin/lifting',label:'슈링크 유니버스 리프팅'}, {href:'/skin/spot',label:'CO₂ 잡티제거'}] },
+  ], links: [{href:'/skin/pigmentation',label:'피코·제네시스 색소치료'}, {href:'/skin/lifting',label:'슈링크·볼뉴머 리프팅'}, {href:'/skin/hair-removal',label:'엘리멘트 TL 얼굴 제모'}, {href:'/skin/spot',label:'CO₂ 잡티제거'}] },
   korean: { label: '한의학·한약', day: 5, treatment: '/herbal', topics: [
     '((functional dyspepsia) AND (Chinese herbal medicine OR Korean medicine OR acupuncture))',
     '((insomnia OR fatigue OR menopause) AND (Chinese herbal medicine OR Korean medicine OR acupuncture))',

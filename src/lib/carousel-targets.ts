@@ -50,7 +50,7 @@ export const CAROUSEL_TARGETS = {
   },
   skin: {
     path: "/skin",
-    // 슈링크(HIFU)는 실제 진료 항목이 아니라 문구에 넣지 않는다.
+    // 상세 진료는 잡티제거·색소치료·리프팅·제모 페이지에서 안내한다.
     title: "피부 · 레이저 – CO₂, 점·편평사마귀",
     navLabel: "피부 · 레이저",
     hero: {

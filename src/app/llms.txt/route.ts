@@ -11,7 +11,7 @@ import {
 } from "@/lib/clinic";
 import { getAllPosts } from "@/lib/blog-local";
 import { PIGMENTATION_SLUGS, LIFTING_SLUGS, LIFTING_PATH, SHURINK_CARE } from "@/lib/skin-guides";
-import { PIGMENTATION_PRICES, SHURINK_PRICES, PAIN_PRICES, HERBAL_PRICES, PAIN_INSURANCE_NOTE, PHARMACOPUNCTURE_NOTE, HERBAL_INSURANCE_CONDITIONS, HERBAL_INSURANCE_LIMIT, won, painWon } from "@/lib/pricing";
+import { PIGMENTATION_PRICES, SHURINK_PRICES, VOLNEWMER_PRICES, LIFTING_PACKAGE, HAIR_REMOVAL_PRICES, skinPrice, PAIN_PRICES, HERBAL_PRICES, PAIN_INSURANCE_NOTE, PHARMACOPUNCTURE_NOTE, HERBAL_INSURANCE_CONDITIONS, HERBAL_INSURANCE_LIMIT, won, painWon } from "@/lib/pricing";
 import { postPath } from "@/lib/slug";
 
 /**
@@ -78,7 +78,8 @@ ${closedLine}
 - 체외충격파, 무중력 감압치료
 - 피부 CO2 레이저 (점·편평사마귀·쥐젖 제거)
 - 색소치료: 피코하이 피코토닝 · 엘리멘트 TL 제네시스
-- 슈링크 유니버스 리프팅
+- 슈링크 유니버스·볼뉴머 리프팅
+- 엘리멘트 TL 얼굴·수염 제모
 
 ## 보험한약과 체질보약
 
@@ -107,7 +108,7 @@ ${HOME_VISIT_FAQS.map(f => `- [${f.q}](${BASE}${HOME_VISIT.path}#question-${f.id
 - 다이어트 한약 처방: ${BASE}/diet/program
 - 잡티 제거 (점·편평사마귀·쥐젖): ${BASE}/skin/spot
 - 색소치료 (피코토닝·제네시스·기미·흑자): ${BASE}/skin/pigmentation
-- 리프팅 (슈링크 유니버스·탄력·턱선): ${BASE}${LIFTING_PATH}
+- 리프팅 (슈링크 유니버스·볼뉴머·탄력·턱선): ${BASE}${LIFTING_PATH}
 
 ## 방문 시간·치료 과정·한약 조제
 
@@ -153,13 +154,25 @@ ${pigmentLinks}
 
 ## 리프팅 질문과 비용
 
-슈링크 유니버스를 사용합니다. 2026-10-01 확인한 가격:
-- ${SHURINK_PRICES.name}: 1회 ${won(SHURINK_PRICES.single)}, 3회 ${won(SHURINK_PRICES.threeSessions)} (매회 300샷, 회당 ${won(SHURINK_PRICES.threeSessions / 3)})
-- 시술 과정: ${SHURINK_CARE.steps.map((step) => `${step.title} ${step.minutes}분`).join(" → ")} (총 약 ${SHURINK_CARE.totalMinutes}분, 초진 상담·접수 별도)
-- 원내 재시술 안내 간격: ${SHURINK_CARE.intervalWeeks}주
-- 피부 탄력과 처짐은 리프팅, 갈색 색소와 피부톤은 피코토닝, 붉은기와 피부결은 제네시스를 중심으로 상담합니다.
+슈링크 유니버스와 볼뉴머를 사용합니다. 2026-10-24 원장 확인 가격:
+- 슈링크 1회: 300샷 ${skinPrice(SHURINK_PRICES.single)}, 600샷 ${skinPrice(SHURINK_PRICES.shots600)}
+- 볼뉴머 1회: 300샷 ${skinPrice(VOLNEWMER_PRICES.single)}, 600샷 ${skinPrice(VOLNEWMER_PRICES.shots600)}
+- ${LIFTING_PACKAGE.name}: 매회 각 300샷 ${skinPrice(LIFTING_PACKAGE.shots300)}, 매회 각 600샷 ${skinPrice(LIFTING_PACKAGE.shots600)}
+- 리프팅은 마취·비타민 쿨링팩·LED 포함. 모든 가격은 부가세 포함.
+- 슈링크 300샷 시술 과정: ${SHURINK_CARE.steps.map((step) => `${step.title} ${step.minutes}분`).join(" → ")} (총 약 ${SHURINK_CARE.totalMinutes}분, 초진 상담·접수 별도)
+- 원내 시술 간격: 슈링크 2~3개월, 볼뉴머 4~6개월
 
 ${liftingLinks}
+
+## 얼굴 레이저 제모
+
+- 안내: ${BASE}/skin/hair-removal
+- 장비: 엘리멘트 TL. 남녀 공통, 얼굴전체는 이마 제외.
+${HAIR_REMOVAL_PRICES.map(r => `- ${r.area} ${r.option}: 1회 ${skinPrice(r.single)}, 5회 ${skinPrice(r.five)}, 1년 무제한 ${skinPrice(r.annual)}`).join("\n")}
+- 케어 포함 구성은 마취·비타민 쿨링팩·LED 포함. 모든 가격은 부가세 포함.
+- 최소 4주 간격, 1년권은 첫 시술일부터 1년간 적용.
+- 피부 탄력과 처짐은 리프팅, 갈색 색소와 피부톤은 피코토닝, 붉은기와 피부결은 제네시스를 중심으로 상담합니다.
+
 
 ## 의학정보 아카이브
 

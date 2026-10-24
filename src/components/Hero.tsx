@@ -23,7 +23,7 @@ const QUICK_LINKS = [
   { label: "보험한약", detail: "건강보험 6개 질환·비용", href: "/herbal/insurance" },
   { label: "체질보약", detail: "몸 상태에 맞춘 한약·비용", href: "/herbal/tonic" },
   { label: "다이어트", detail: "처방·복용·비용 안내", href: "/diet/program" },
-  { label: "잡티제거", detail: "CO₂ · 색소치료 · 리프팅", href: "/skin/spot" },
+  { label: "잡티제거", detail: "CO₂ · 색소 · 제모 · 리프팅", href: "/skin/spot" },
   { label: "방문진료", detail: "집으로 찾아가는 한의사", href: "/home-visit" },
   { label: "오늘의 한약", detail: "약재 사진과 복약편지", href: "/herbs" },
 ];

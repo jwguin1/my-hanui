@@ -8,9 +8,10 @@ const BASE_URL = "https://www.ilsanhan.com";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticEntries: MetadataRoute.Sitemap = [
+    { url: `${BASE_URL}/skin/hair-removal`, lastModified: new Date("2026-10-24T00:00:00+09:00"), changeFrequency: "monthly", priority: 0.9 },
     { url: `${BASE_URL}/home-visit`, lastModified: new Date("2026-10-20T00:00:00+09:00"), changeFrequency: "monthly", priority: 0.9 },
-    { url: `${BASE_URL}/pricing`, lastModified: new Date("2026-10-16T00:00:00+09:00"), changeFrequency: "monthly", priority: 0.9 },
-    { url: `${BASE_URL}/aftercare`, lastModified: new Date("2026-10-16T00:00:00+09:00"), changeFrequency: "monthly", priority: 0.7 },
+    { url: `${BASE_URL}/pricing`, lastModified: new Date("2026-10-24T00:00:00+09:00"), changeFrequency: "monthly", priority: 0.9 },
+    { url: `${BASE_URL}/aftercare`, lastModified: new Date("2026-10-24T00:00:00+09:00"), changeFrequency: "monthly", priority: 0.7 },
     ...["/herbal", "/herbs", "/herbal/insurance", "/herbal/tonic", ...HERBAL_GUIDES.filter(g => !g.href).map(herbalPath)].map(path => ({ url: `${BASE_URL}${path}`, lastModified: new Date("2026-10-16T00:00:00+09:00"), changeFrequency: "monthly" as const, priority: 0.8 })),
     {
       url: BASE_URL,
@@ -80,7 +81,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
     {
       url: `${BASE_URL}/skin/lifting`,
-      lastModified: new Date("2026-10-04T00:00:00+09:00"),
+      lastModified: new Date("2026-10-24T00:00:00+09:00"),
       changeFrequency: "monthly",
       priority: 0.9,
     },

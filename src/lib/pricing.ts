@@ -83,7 +83,18 @@ export const PIGMENTATION_PRICES = {
   booster: "10회 패키지에 PDRN 스킨부스터 총 1회 · 4cc · MTS 방식 도포가 포함됩니다.",
 } as const;
 
-export const SHURINK_PRICES = { name: "슈링크 유니버스 300샷", single: 99000, threeSessions: 264000 } as const;
+/** 2026-10-24 원장 확인. 슈링크 3회 단독 구성은 종료. */
+export const SHURINK_PRICES = { name: "슈링크 유니버스", single: 99000, shots600: 176000 } as const;
+export const VOLNEWMER_PRICES = { name: "볼뉴머", single: 299000, shots600: 549000 } as const;
+export const LIFTING_PACKAGE = { name: "슈링크 3회＋볼뉴머 1회", shots300: 539000, shots600: 969000 } as const;
+export const HAIR_REMOVAL_PRICES = [
+  { area: "인중＋앞턱", option: "기본", single: 17000, five: 74000, annual: 154000 },
+  { area: "인중＋앞턱", option: "케어 포함", single: 22000, five: 99000, annual: 209000 },
+  { area: "얼굴전체", option: "기본", single: 39000, five: 164000, annual: 294000 },
+  { area: "얼굴전체", option: "케어 포함", single: 44000, five: 189000, annual: 349000 },
+] as const;
+export const SKIN_CARE_INCLUDED = "마취·비타민 쿨링팩·LED 포함";
+export function skinPrice(amount: number): string { return `${amount / 10000}만원`; }
 
 /** 2026-10-16 원장 확인: 일반 근골격계 진료·추나·초음파 유도 약침. */
 export const PAIN_PRICES = {
@@ -129,7 +140,8 @@ export function allowedSkinAmounts(): number[] {
     set.add(perSpot(r));
   }
   for (const p of AFTERCARE_PRODUCTS) set.add(p.price);
-  for (const amount of [PIGMENTATION_PRICES.single, PIGMENTATION_PRICES.tenSessions, PIGMENTATION_PRICES.perSession, SHURINK_PRICES.single, SHURINK_PRICES.threeSessions]) set.add(amount);
+  for (const amount of [PIGMENTATION_PRICES.single, PIGMENTATION_PRICES.tenSessions, PIGMENTATION_PRICES.perSession, SHURINK_PRICES.single, SHURINK_PRICES.shots600, VOLNEWMER_PRICES.single, VOLNEWMER_PRICES.shots600, LIFTING_PACKAGE.shots300, LIFTING_PACKAGE.shots600]) set.add(amount);
+  for (const row of HAIR_REMOVAL_PRICES) for (const amount of [row.single, row.five, row.annual]) set.add(amount);
   return [...set].sort((a, b) => a - b);
 }
 

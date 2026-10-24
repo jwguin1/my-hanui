@@ -11,12 +11,12 @@ import { pageMetadata } from "@/lib/page-metadata";
 import { CLINIC, CLINIC_HOURS_WEEKDAY, CLINIC_HOURS_WEEKEND, CLINIC_HOURS_LUNCH } from "@/lib/clinic";
 import { CARE_GUIDE } from "@/lib/care-guide";
 import { HOME_VISIT, HOME_VISIT_PRICES } from "@/lib/home-visit";
-import { SHURINK_CARE } from "@/lib/skin-guides";
+import { LiftingPrices, HairRemovalPrices } from "@/components/SkinPrices";
 import {
   PAIN_PRICES, PAIN_INSURANCE_NOTE, PHARMACOPUNCTURE_NOTE,
   HERBAL_PRICES, HERBAL_INSURANCE_CONDITIONS, HERBAL_INSURANCE_LIMIT,
   DIET_PRICES, SPOT_PRICE_ROWS, SPOT_PRICE_HEADERS, AFTERCARE_PRODUCTS,
-  PIGMENTATION_PRICES, SHURINK_PRICES, painWon, won,
+  PIGMENTATION_PRICES, painWon, won,
 } from "@/lib/pricing";
 
 const description = `일산한의원 초진 ${painWon(PAIN_PRICES.firstVisit)}, 단순추나 ${painWon(PAIN_PRICES.simpleChuna)}, 복잡추나 ${painWon(PAIN_PRICES.complexChuna)}. 보험한약·체질보약·다이어트·피부 시술 비용과 방문 소요 시간을 한눈에 확인하세요.`;
@@ -36,7 +36,7 @@ export default function PricingPage() {
   return <>
     <JsonLd graph={buildGraph({ path: "/pricing", name: "진료비·시간 안내 – 일산한의원", description, faq: faqEntities(PRICING_VISIT_FAQS) })} />
     <PageHeader badge="방문 전 안내" lead="진료비와 소요 시간," accent="미리 확인하세요" stacked description="받으실 치료의 비용과 포함 항목을 살펴보고, 방문 일정을 편하게 정하세요." />
-    <SectionJumpNav label="진료비 안내 항목" items={[["pain", "통증·추나·약침"], ["questions", "추가 비용·이용 질문"], ["home-visit", "방문진료"], ["herbal", "보험한약·체질보약"], ["diet", "다이어트"], ["skin", "잡티·토닝·리프팅"], ["hours", "진료·접수 시간"]]} />
+    <SectionJumpNav label="진료비 안내 항목" items={[["pain", "통증·추나·약침"], ["questions", "추가 비용·이용 질문"], ["home-visit", "방문진료"], ["herbal", "보험한약·체질보약"], ["diet", "다이어트"], ["skin", "피부·제모·리프팅"], ["hours", "진료·접수 시간"]]} />
     <div className="mx-auto max-w-4xl px-6">
       <PriceSection id="pain" title="통증치료 · 추나 · 초음파 유도 약침">
         <PriceTable caption="건강보험 진료 · 본인부담금" rows={[
@@ -88,7 +88,7 @@ export default function PricingPage() {
         <p>100포는 하루 1포 기준 100일, 하루 2포 기준 50일 분량입니다. 복용량은 진료 후 정합니다.</p>
         <DetailLink href="/diet/program">다이어트 처방과 복용 안내</DetailLink>
       </PriceSection>
-      <PriceSection id="skin" title="잡티제거 · 색소치료 · 리프팅">
+      <PriceSection id="skin" title="잡티제거 · 색소치료 · 리프팅 · 제모">
         <PriceTable caption="CO₂ 레이저 잡티제거 · 비급여" headers={SPOT_PRICE_HEADERS} rows={SPOT_PRICE_ROWS.map(row => ({ name: row.name, price: won(row.upTo100), price2: won(row.unlimited) }))} />
         <p>점·편평사마귀·쥐젖을 살펴보고 치료 범위를 정합니다. 시술 시간은 부위와 개수에 따라 방문 전 안내해드립니다.</p>
         <p>재생크림은 별도 구매입니다. {AFTERCARE_PRODUCTS.map(p => `${p.name} ${p.volume} ${won(p.price)}`).join(" · ")}.</p>
@@ -100,12 +100,12 @@ export default function PricingPage() {
         <p>{PIGMENTATION_PRICES.selection} {PIGMENTATION_PRICES.booster}</p>
         <p>레이저 시술 시간은 20분 이내이며, 상담·준비 시간은 별도입니다.</p>
         <DetailLink href="/skin/pigmentation">피코토닝·제네시스 질문과 답</DetailLink>
-        <PriceTable caption="슈링크 유니버스 · 1회 300샷 · 비급여" rows={[
-          { name: "1회", price: won(SHURINK_PRICES.single) },
-          { name: "3회", price: won(SHURINK_PRICES.threeSessions) },
-        ]} />
-        <p>{SHURINK_CARE.steps.map(s => `${s.title} ${s.minutes}분`).join(" → ")}. 전체 약 {SHURINK_CARE.totalMinutes}분이며, 재시술은 {SHURINK_CARE.intervalWeeks}주 간격으로 안내합니다.</p>
-        <DetailLink href="/skin/lifting">슈링크 효과·시간·횟수 안내</DetailLink>
+        <h3 className="pt-6 text-xl font-bold text-ink">슈링크·볼뉴머 리프팅</h3>
+        <LiftingPrices />
+        <DetailLink href="/skin/lifting">리프팅 장비·샷 수·시술 간격 안내</DetailLink>
+        <h3 className="pt-6 text-xl font-bold text-ink">남녀 공통 얼굴 제모</h3>
+        <HairRemovalPrices />
+        <DetailLink href="/skin/hair-removal">엘리멘트 TL 제모·면도·관리 안내</DetailLink>
       </PriceSection>
       <PriceSection id="hours" title="진료시간과 접수 마감">
         <dl className="space-y-3 text-base text-ink">

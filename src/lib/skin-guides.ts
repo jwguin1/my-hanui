@@ -2,19 +2,19 @@
 export const PIGMENTATION_PATH = "/skin/pigmentation";
 export const PIGMENTATION_UPDATED = "2026-10-16";
 export const LIFTING_PATH = "/skin/lifting";
-export const LIFTING_UPDATED = "2026-10-04";
+export const LIFTING_UPDATED = "2026-10-24";
 export const LIFTING_SLUGS: readonly string[] = [
   "슈링크-시간-횟수-주기",
   "슈링크-효과-볼살-턱선",
   "슈링크-피코토닝-제네시스-차이",
 ];
 export const SHURINK_CARE = {
-  intervalWeeks: 12,
+  intervalMonths: "2~3",
   totalMinutes: 30,
   steps: [
     { title: "마취", minutes: 10, body: "시술 부위를 확인하고 마취를 진행합니다." },
     { title: "슈링크 유니버스 300샷", minutes: 10, body: "피부 상태와 고민 부위에 맞춰 초음파를 조사합니다." },
-    { title: "LED·진정 마스크팩", minutes: 10, body: "시술 후 피부를 진정시키고 관리 방법을 안내합니다." },
+    { title: "비타민 쿨링팩·LED", minutes: 10, body: "시술 후 피부를 진정시키고 관리 방법을 안내합니다." },
   ],
 } as const;
 
@@ -50,7 +50,7 @@ export const SKIN_RELATED: Record<string, readonly string[]> = {
 };
 
 export function skinPostHub(slug: string) {
-  if (LIFTING_SLUGS.includes(slug)) return { href: LIFTING_PATH, label: "리프팅 · 슈링크 유니버스 안내" };
+  if (LIFTING_SLUGS.includes(slug)) return { href: LIFTING_PATH, label: "리프팅 · 슈링크·볼뉴머 안내" };
   return PIGMENTATION_SLUGS.includes(slug)
     ? { href: PIGMENTATION_PATH, label: "색소치료 · 피코토닝·제네시스 안내" }
     : { href: "/skin/spot", label: "잡티 제거 · 점·편평사마귀·쥐젖 안내" };

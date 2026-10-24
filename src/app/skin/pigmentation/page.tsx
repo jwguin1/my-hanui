@@ -137,8 +137,8 @@ export default function PigmentationPage() {
           <Link href={postPath("skin", "피코토닝-가격-제네시스")} className="block text-sm font-medium text-primary underline underline-offset-4">한 번 방문하면 무엇을 받나요? 구성·시간·가격 안내 →</Link>
           <div className="card p-5">
             <h3 className="font-semibold text-ink">탄력과 턱선도 고민이라면</h3>
-            <p className="mt-2 text-sm leading-relaxed text-muted">슈링크 유니버스의 300샷 비용, 30분 시술 과정과 12주 재시술 간격은 리프팅 안내에서 확인하세요.</p>
-            <Link href={LIFTING_PATH} className="mt-3 inline-block text-sm font-medium text-primary underline underline-offset-4">슈링크 유니버스 리프팅·비용 안내 →</Link>
+            <p className="mt-2 text-sm leading-relaxed text-muted">슈링크·볼뉴머의 300·600샷 비용과 함께 받는 패키지, 시술 간격을 리프팅 안내에서 확인하세요.</p>
+            <Link href={LIFTING_PATH} className="mt-3 inline-block text-sm font-medium text-primary underline underline-offset-4">슈링크·볼뉴머 리프팅·비용 안내 →</Link>
           </div>
         </div>
       </div>

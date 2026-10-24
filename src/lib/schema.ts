@@ -138,6 +138,7 @@ const SEGMENT_LABELS: Record<string, string> = {
   spot: "잡티 제거",
   pigmentation: "색소치료",
   lifting: "리프팅",
+  "hair-removal": "얼굴 제모",
   about: "병원 소개",
   doctor: "의료진",
   contact: "오시는 길",

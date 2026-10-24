@@ -115,7 +115,7 @@ export default function CategoryListPage({ category }: { category: Category }) {
         })).filter((g) => g.items.length > 0)
       : category === "skin" ? [
           ...PIGMENTATION_GROUPS.map((g) => ({ name: g.name, hub: { href: `${PIGMENTATION_PATH}#${g.id}`, label: "색소치료 안내" }, items: g.slugs.flatMap((slug) => { const post = bySlug.get(slug); return post ? [post] : []; }) })),
-          { name: "슈링크 유니버스·리프팅", hub: { href: LIFTING_PATH, label: "리프팅 안내" }, items: LIFTING_SLUGS.flatMap((slug) => { const post = bySlug.get(slug); return post ? [post] : []; }) },
+          { name: "슈링크·볼뉴머 리프팅", hub: { href: LIFTING_PATH, label: "리프팅 안내" }, items: LIFTING_SLUGS.flatMap((slug) => { const post = bySlug.get(slug); return post ? [post] : []; }) },
           { name: "점·편평사마귀·쥐젖과 시술 후 관리", hub: { href: "/skin/spot", label: "잡티 제거 안내" }, items: posts.filter((p) => !SKIN_GUIDE_SLUGS.includes(p.slug)) },
         ].filter((g) => g.items.length > 0) : [];
 
@@ -175,7 +175,8 @@ export default function CategoryListPage({ category }: { category: Category }) {
       {category === "skin" && <section className="section-padding !pb-0 !pt-8">
         <div className="mx-auto grid max-w-3xl gap-4 sm:grid-cols-2">
           <Link href={PIGMENTATION_PATH} className="card block p-6 transition-colors hover:border-primary"><SectionBadge label="색소치료" /><h2 className="mt-3 text-lg font-semibold text-ink">피코토닝·제네시스 안내 →</h2><p className="mt-2 text-sm leading-relaxed text-muted">기미·잡티·피부결에 관한 질문부터 담당 의료진, 방문 과정과 비용까지 확인하세요.</p></Link>
-          <Link href={LIFTING_PATH} className="card block p-6 transition-colors hover:border-primary"><SectionBadge label="리프팅" /><h2 className="mt-3 text-lg font-semibold text-ink">슈링크 유니버스 안내 →</h2><p className="mt-2 text-sm leading-relaxed text-muted">볼살·턱선, 300샷 비용과 시술 시간·주기를 확인하세요.</p></Link>
+          <Link href="/skin/hair-removal" className="card block p-6 transition-colors hover:border-primary"><SectionBadge label="얼굴 제모" /><h2 className="mt-3 text-lg font-semibold text-ink">엘리멘트 TL 제모 안내 →</h2><p className="mt-2 text-base leading-relaxed text-muted">남녀 공통, 인중＋앞턱·얼굴전체의 가격과 면도·관리 질문을 확인하세요.</p></Link>
+          <Link href={LIFTING_PATH} className="card block p-6 transition-colors hover:border-primary"><SectionBadge label="리프팅" /><h2 className="mt-3 text-lg font-semibold text-ink">슈링크·볼뉴머 안내 →</h2><p className="mt-2 text-sm leading-relaxed text-muted">턱선·탄력, 300·600샷 비용과 패키지·시술 간격을 확인하세요.</p></Link>
         </div>
       </section>}
 

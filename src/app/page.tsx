@@ -88,7 +88,7 @@ const CLINIC_CARDS = [
   { href: "/herbal/insurance", badge: "건강보험", heading: "보험한약", blurb: "건강보험 대상 6개 질환과 적용·비용 안내", ogImage: "/herbal/insurance/opengraph-image" },
   { href: "/herbal/tonic", badge: "맞춤 한약", heading: "체질보약", blurb: "몸 상태에 맞춘 비급여 한약과 비용", ogImage: "/herbal/tonic/opengraph-image" },
   { href: "/diet/program", badge: "체중 관리", heading: "다이어트", blurb: "처방·복용·식사 관리와 비용", ogImage: "/images/cards/diet-program.png" },
-  { href: "/skin/spot", badge: "피부 · 미용", heading: "잡티제거", blurb: "CO₂ 제거부터 색소치료·슈링크 리프팅까지", ogImage: "/images/cards/skin-spot.png" },
+  { href: "/skin/spot", badge: "피부 · 미용", heading: "잡티제거", blurb: "CO₂ 제거부터 색소·제모·슈링크·볼뉴머까지", ogImage: "/images/cards/skin-spot.png" },
   { href: "/home-visit", badge: "집에서 받는 진료", heading: "방문진료", blurb: "거동이 불편한 분을 위한 방문 대상·지역·비용", ogImage: "/home-visit/opengraph-image" },
   { href: "/herbs", badge: "원내 조제", heading: "오늘의 한약", blurb: "약재 사진과 원장이 전하는 나를 위한 복약편지", ogImage: "/herbal/tonic/opengraph-image" },
 ] as const;
