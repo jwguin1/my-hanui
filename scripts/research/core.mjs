@@ -49,17 +49,17 @@ export function parsePaper(xml) {
   });
   const ids=Object.fromEntries(elements(meta,'article-id').map(n=>[n.getAttribute('pub-id-type'),plain(n)]));
   const authors=elements(meta,'contrib').filter(n=>n.getAttribute('contrib-type')==='author').map(n=>plain(first(n,'name'))||plain(first(n,'collab'))).filter(Boolean);
-  const excerpts=elements(body,'p').map(plain).filter(t=>t.length>40&&t.length<3500).map((text,index)=>({sourceId:index+1,text}));
+  const excerpts=[...elements(body,'p'),...elements(body,'tr')].map(plain).filter(t=>t.length>40&&t.length<3500).map((text,index)=>({sourceId:index+1,text}));
   return {title:plain(first(meta,'article-title')),ids,authors,journal:plain(first(doc,'journal-title')),volume:plain(first(meta,'volume')),issue:plain(first(meta,'issue')),pages:plain(first(meta,'fpage'))||plain(first(meta,'elocation-id')),abstract,conclusion,methods,results,fullText:plain(body),excerpts,licenseUrl,licenseText:licenseNodes.map(plain).join(' '),figures,sourceHash:sha256(xml)};
 }
 const text=z.string().trim().min(10);
 export const DraftSchema=z.object({
-  title:z.string().min(10).max(110), summary:text.max(600), question:text,
-  answer:text, population:text, methods:text, results:text, meaning:text,
-  limitations:text, consultation:text,
+  title:z.string().min(10).max(110), summary:text.max(220), question:text.max(250),
+  answer:text.max(600), population:text.max(450), methods:text.max(700), results:text.max(1300), meaning:text.max(750),
+  limitations:text.max(500), consultation:text.max(450),
   tags:z.array(z.string().min(1).max(30)).min(2).max(8),
   evidence:z.array(z.object({claim:text,quote:text})).min(3).max(12),
-  figures:z.array(z.object({id:z.string(),explanation:text,alt:z.string().min(5).max(200)})),
+  figures:z.array(z.object({id:z.string(),explanation:text.max(1000),alt:z.string().min(5).max(200)})),
   faq:z.array(z.object({question:text,answer:text})).min(2).max(4),
 });
 export const ReviewSchema=z.object({

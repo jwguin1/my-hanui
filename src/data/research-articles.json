@@ -4,16 +4,16 @@
     "category": "pain",
     "status": "published",
     "publishedAt": "2026-10-24T08:29:28.843Z",
-    "updatedAt": "2026-10-24T08:51:22.827Z",
+    "updatedAt": "2026-10-24T08:59:21.741Z",
     "lastSourceCheck": "2026-10-24T08:43:13.761Z",
     "title": "허리 통증, 전 세계 진료지침은 어떤 치료를 권고할까요?",
     "summary": "허리가 아플 때 쉬어야 할까요, 움직여야 할까요? 15개국의 진료지침 22개를 비교한 연구에서 운동·침·도수치료의 권고와 차이를 살펴봅니다.",
     "question": "허리 통증이 생겼을 때 전 세계 의료 지침들은 어떤 치료를 권고하고 있으며, 지침마다 차이가 있나요?",
-    "answer": "결론부터 말씀드리면, 전 세계 주요 요통 진료지침들은 '누워서 쉬는 것보다 몸을 움직이는 능동적 치료'를 공통적으로 강조합니다. 급성·아급성 요통에는 소염진통제, 운동치료, 활동 유지, 척추 도수치료가 가장 많은 지침에서 권고되었고, 만성 요통(12주 초과)에는 운동치료와 소염진통제에 더해 침 치료와 인지행동치료(CBT)가 폭넓게 권고되었습니다. 다만 침 치료, 냉온열 치료, 전기치료 등 일부 항목은 지침마다 권고 여부가 달라, 어떤 근거를 우선시하느냐에 따라 결론이 갈렸습니다.",
-    "population": "18세 이상 성인의 비특이적 요통(특정 병리 없이 발생하는 허리 통증)을 대상으로 한 2017~2022년 발표 임상진료지침. 15개국·22개 지침이 포함되었으며, 미국(6개), 캐나다·네덜란드(각 2개) 등 북미·유럽 중심이었습니다. 방사통(신경근병증) 등 특정 병리를 다룬 지침은 제외되었습니다.",
+    "answer": "결론부터 말씀드리면, 전 세계 주요 요통 진료지침들은 '누워서 쉬는 것보다 몸을 움직이는 능동적 치료'를 공통적으로 강조합니다. 급성·아급성 요통에는 소염진통제, 운동치료, 활동 유지, 척추 도수치료가 가장 많은 지침에서 권고되었고, 만성 요통(12주 초과)에는 운동치료와 소염진통제에 더해 침 치료와 인지행동치료(CBT)가 폭넓게 권고되었습니다. 다만 침 치료, 냉온열 치료, 전기치료 등 일부 항목은 지침마다 권고 여부가 달라, 연구진은 비교 대상과 근거를 평가하는 방식이 차이의 한 원인일 수 있다고 설명합니다.",
+    "population": "18세 이상 성인의 비특이적 요통(특정 병리 없이 발생하는 허리 통증)을 대상으로 한 2017~2022년 발표 임상진료지침. 15개국·22개 지침이 포함되었으며, 북미·유럽 지역의 지침이 중심이었습니다. 방사통(신경근병증) 등 특정 병리를 다룬 지침은 제외되었습니다.",
     "methods": "MEDLINE, EMBASE, CINAHL, PEDro 등 의학 데이터베이스와 WHO·NICE 등 8개 지침 기관 데이터베이스를 체계적으로 검색했습니다. 검색은 2017~2021년 대상으로 2022년 3월에 1차 수행하고, 2022년 발표 지침을 포함하기 위해 2023년 1월에 추가 검색을 실시했습니다. 지침의 방법론적 질은 AGREE II 도구(23개 항목, 6개 영역, 7점 척도)로 평가했으며, 평균 75%를 넘거나 전반적 평점 6점 이상인 경우 '질이 높은' 지침으로 분류했습니다. 각 치료 권고는 '권고(Agreement)', '비권고(Disagreement)', '근거 불충분(No evidence)', '언급 없음(Not mentioned)' 네 가지로 분류해 요통 지속 기간별로 정리했습니다.",
-    "results": "총 22개 지침의 AGREE II 평균 점수는 42~86%로 다양했고, 7개 지침(덴마크·미국 AOPT·ICSI·VA/DoD·ACP·벨기에·영국)이 질이 높은 지침으로 분류되었습니다. 질이 낮다고 분류된 지침은 없었습니다.\n\n급성 요통을 다룬 13개 지침 중 소염진통제는 12개, 운동치료와 활동 유지는 각 9개, 척추 도수치료는 8개, 침 치료는 6개 지침에서 권고되었습니다.\n\n아급성 요통을 다룬 11개 지침에서는 소염진통제가 11개 전부, 활동 유지·운동치료·척추 도수치료가 각 7개 지침에서 권고되었습니다.\n\n만성 요통을 다룬 14개 지침에서는 운동치료와 소염진통제가 각 13개, 침 치료와 척추 도수치료가 각 11개, 인지행동치료(CBT)가 10개, 다학제 치료가 9개 지침에서 권고되었습니다.\n\n오피오이드(마약성 진통제)는 급성 요통 지침 8개, 만성 요통 지침 6개에서 권고되었으나, 위장 장애·신체 의존 등 부작용 우려로 권고 수준이 지침마다 달랐습니다. 레이저 치료는 일부 지침에서 권고되었지만, 코크란 리뷰에서 통계적으로 유의하나 임상적으로는 중요하지 않은 수준의 통증 감소만 확인되었다고 본 연구는 지적합니다.",
-    "meaning": "이 연구는 전 세계 요통 진료지침이 '침상 안정 지양, 능동적 치료 우선'이라는 큰 방향에서 일치하고 있음을 보여줍니다. 특히 만성 요통을 다룬 14개 지침 중 11개가 침 치료를 권고 항목으로 포함했다는 점은 주목할 만합니다. 다만 이 연구는 지침들이 침 치료를 권고했다는 사실을 집계한 것이며, 침 치료의 임상적 효능을 직접 입증한 연구가 아닙니다. 지침마다 권고 여부가 다른 이유는 어떤 비교 기준(위약 대비 효능 vs. 일반 치료 대비 효과)을 사용했느냐에 따라 결론이 달라지기 때문입니다. 따라서 개별 환자의 상태와 선호도를 고려한 맞춤 접근이 중요하며, 신체적 치료뿐 아니라 심리·사회적 요인을 함께 다루는 생물심리사회적 모델이 강조되고 있습니다.",
+    "results": "총 22개 지침의 AGREE II 평균 점수는 42~86%로 다양했고, 7개 지침(덴마크·미국 AOPT·ICSI·VA/DoD·ACP·벨기에·영국)이 질이 높은 지침으로 분류되었습니다. 질이 낮다고 분류된 지침은 없었습니다.\n\n급성 요통을 다룬 13개 지침 중 소염진통제는 12개, 운동치료와 활동 유지는 각 9개, 척추 도수치료는 8개, 침 치료는 6개 지침에서 권고되었습니다.\n\n아급성 요통을 다룬 11개 지침에서는 소염진통제가 11개 전부, 활동 유지·운동치료·척추 도수치료가 각 7개 지침에서 권고되었습니다.\n\n만성 요통을 다룬 14개 지침에서는 운동치료와 소염진통제가 각 13개, 침 치료와 척추 도수치료가 각 11개, 인지행동치료(CBT)가 10개, 다학제 치료가 9개 지침에서 권고되었습니다.",
+    "meaning": "이 연구에서 반복적으로 권고된 방향은 오래 누워 쉬기보다 상태에 맞게 활동과 운동을 이어가는 것입니다. 만성 요통을 다룬 14개 지침 중 11개가 침 치료를 권고 항목에 포함했지만, 이는 치료 효과를 새로 측정한 결과가 아니라 지침의 권고를 집계한 수치입니다.\n\n지침 간 차이는 위약 대비 효능과 일반 치료 대비 효과 중 어떤 근거를 우선했는지와 관련될 수 있다고 연구진은 설명합니다. 또한 신체·심리·사회적 요인을 함께 다루는 접근이 권장되어 왔지만, 실제 지침에서는 여러 요소를 통합한 관리가 충분히 드러나지 않는다고 지적합니다.",
     "limitations": "포함된 지침의 대부분이 북미·유럽 출신이어서 아시아·아프리카 등 다양한 의료 문화권의 관점이 충분히 반영되지 않았습니다. 또한 AGREE II 평가를 1인 주평가자가 수행해 평가 신뢰도에 제한이 있으며, 지침 발표 시점과 근거 검색 종료 시점 사이에 최대 32개월의 간격이 있어 일부 권고가 출판 당시 이미 최신 근거를 반영하지 못했을 가능성이 있습니다. 동양 문화권의 침 치료 전통과 서양의 약물 중심 치료 관행 등 의료 문화 차이도 지침 간 이견의 원인이 될 수 있으나, 이 연구에서는 그 영향을 완전히 분리해 분석하지 못했습니다.",
     "consultation": "허리 통증이 몇 주째 이어지거나 치료 후에도 같은 불편이 반복된다면, 언제 어떤 동작에서 아픈지와 이전 치료 경험을 알려주세요. 일산한의원에서는 통증의 기간·부위와 움직임을 살펴보고 침·추나 등 치료와 일상 관리 방향을 함께 상의합니다. 검사 결과가 있다면 가져오시고, 내원 전 궁금한 점은 카카오톡으로 편하게 남겨주세요.",
     "tags": [
@@ -27,10 +27,6 @@
       "통증·근골격"
     ],
     "evidence": [
-      {
-        "claim": "요통은 전 세계적으로 장애 보정 생존연수(YLD)의 주요 원인이며, 1990년 4,250만 명에서 2017년 6,490만 명으로 증가했고, 시점 유병률은 최대 18%에 달한다.",
-        "quote": "Low back pain (LBP) is one of the most common musculoskeletal conditions globally. According to the Global Burden of Disease Study, LBP continues to be the leading cause of years lived with disability [ 1 ], increasing from 42.5 million to 64.9 million globally between 1990 and 2017 [ 2 ]. The point prevalence of LBP has been estimated to be as high as 18%, resulting in increased activity limitation and absenteeism from work [ 2 ]. LBP not only affects individuals’ daily lives but also imposes a heavy social burden and economic cost, representing a huge challenge to healthcare systems. This is now as apparent in low-income countries as it is in the more affluent and developed countries across the world [ 3 ]. Given the prevalence of LBP, healthcare professionals managing LBP need access to up-to-date, evidence-based information to assist them in treatment decision-making [ 4 ]. To standardise the management of LBP, professional bodies have developed an increasing number of clinical practice guidelines (CPGs), providing recommendations for diagnosis and management [ 4 ]."
-      },
       {
         "claim": "22개 지침의 AGREE II 평균 점수는 42~86%로 다양했으며, 덴마크·미국 AOPT·ICSI·VA/DoD·ACP·벨기에·영국 등 7개 지침이 고질 지침으로 분류되었고, 저질 지침은 없었다.",
         "quote": "Table 1 presents average scaled scores and overall assessments for each CPG from AGREE II. The overall quality of CPGs was moderately variable, with mean scaled scores ranging from 42 to 86%. The average overall assessment score of the selected guidelines was 5.0, ranging from 3 to 7. Seven guidelines scored 75% on average or overall personal rating ≥ 6 points were deemed high quality, including Denmark [ 19 ], US-AOPT [ 25 ], USA-ICSI [ 22 ], USA-VA/DoD [ 21 ], USA-ACP [ 20 ], Belgium [ 33 ], and the UK [ 34 ]. No guideline was deemed to be of low quality."
@@ -48,11 +44,11 @@
         "quote": "This study included 22 relevant CPGs on the management of non-specific LBP from the last six years. Recommendations from these guidelines addressed most non-pharmacological and pharmacological treatments used in the management of acute, subacute, and chronic LBP. Key recommendations are placed on active treatments, including education, exercise, staying active, avoiding bed rest, and self-management. Guidelines also encourage treatments targeting psychosocial factors. The findings of this review are consistent with recommendations in The Lancet back pain series, which advocated the use of non-pharmacological approaches to manage low back pain [ 41 ]. The treatment options identified in this study are also similar to two recent systematic reviews of clinical practice guidelines for LBP. They summarised that current CPGs place greater emphasis on self-management, advice and education, physical and psychological treatments, and less emphasis on pharmacological and surgical options [ 11 , 42 ]."
       },
       {
-        "claim": "침 치료 권고 여부는 지침마다 달랐는데, 이는 위약(가짜 침) 대비 효능 근거를 우선시하느냐, 일반 치료 대비 효과 근거를 우선시하느냐에 따라 결론이 달라지기 때문이다.",
+        "claim": "침 치료 권고 여부는 지침마다 달랐는데, 이는 위약(가짜 침) 대비 효능 근거를 우선시하느냐, 일반 치료 대비 효과 근거를 우선시하느냐에 따라 결론이 달라질 수 있다고 연구진은 설명한다.",
         "quote": "The underlying conflicting evidence may arise from guideline development groups prioritizing evidence of clinically important efficacy (vs. sham treatments) or effectiveness (vs. usual care). Efficacy can be defined as the performance of an intervention under ideal and controlled circumstances, whereas effectiveness refers to its performance under ‘real-world’ conditions [ 48 ]. Notably, the transition from efficacy in controlled trials to effectiveness in clinical practice involves several critical steps, including adjustments for patient adherence, variability in population, clinician expertise, and resource availability. These factors can lead to an overestimation of intervention effects observed in efficacy trials when applied in everyday clinical settings [ 49 ]. In this review, some guidelines recommended acupuncture [ 20 , 22 , 31 ] as a therapeutic option, while others do not [ 32 , 34 ]. Guidelines recommending acupuncture may have prioritised evidence compared to sham or placebo therapy rather than usual care [ 50 ]."
       },
       {
-        "claim": "오피오이드·파라세타몰·근이완제·항우울제 등 약물 권고는 지침마다 크게 달랐으며, 위장 장애·신체 의존 등 부작용과 편익 간의 복잡한 상충 관계가 그 원인으로 지적되었다.",
+        "claim": "오피오이드·파라세타몰·근이완제·항우울제 등 약물 권고는 지침마다 크게 달랐으며, 위장 장애·신체 의존 등 부작용과 편익 간의 복잡한 상충 관계가 관련될 수 있는 요인으로 제시되었다.",
         "quote": "Recommendations about the prescription of NSAIDs remain consistent, and most guidelines recommend it as the first or second option. Further recommendations about other drugs like paracetamol, opioids, muscle relaxants and antidepressants vary considerably. Part of the variation in recommendations regarding pharmacological options might reflect different medical practices across countries. The inconsistent recommendations in pharmacological interventions from USA-VA/DoD [ 21 ], Austria [ 27 ], Canada [ 28 ], Germany [ 30 ], and the UK [ 34 ] might also be attributable to the small benefit on the management of LBP as well as potential side effects, such as gastric disturbance or physical dependence [ 54 , 55 ]. A review also found insufficient evidence to identify one medication as offering a clear overall net advantage because of complex tradeoffs between benefits and harms [ 56 ]. Thus, medication recommendations are likely to depend on how guideline development groups prioritise the importance of these benefits and harms."
       },
       {
@@ -154,7 +150,7 @@
             "originalHash": "5326954411b59b074618cc73140e2b7c6e9ed6e8e3403c603136d3dbc01a72f8"
           }
         ],
-        "explanation": "자기관리와 그 구성 요소를 계층적으로 정리한 마인드맵입니다. 중심의 노란색 '자기관리(Self-management)' 노드에서 초록색의 세 가지 중간 범주가 뻗어 나옵니다. 첫째 '치료적 운동(Therapeutic exercise)'에는 코어 안정화 운동·스트레칭·강화 운동·태극권·필라테스·요가·균형 운동·맥켄지 운동·유산소 운동·수중 운동 등이 파란색 노드로 연결됩니다. 둘째 '교육(Education)'에는 침상 안정 회피·활동 유지·직장 복귀·공포 회피 훈련·안심 교육·자세 치료 등이 포함됩니다. 셋째 '심리적 중재(Psychological interventions)'에는 인지행동치료(CBT)·마음챙김 기반 스트레스 감소·점진적 근이완 등이 연결되며, 별도로 '일반의약품(Over-the-counter medication)' 범주에 소염진통제 등이 포함됩니다. 점선은 서로 다른 범주 간 개념 중복 가능성(예: 공포 회피 훈련과 CBT의 중복)을 나타냅니다.",
+        "explanation": "요통 자기관리를 구성하는 활동을 정리한 그림입니다. 운동, 교육, 심리적 중재, 일반의약품으로 나누어 각 범주에 해당하는 항목을 보여줍니다. 운동에는 근력·스트레칭·유산소·코어 안정화 등 다양한 접근이, 교육에는 침상 안정 피하기와 활동 유지 등이 포함됩니다. 점선은 서로 다른 중재의 개념이 겹칠 수 있음을 나타냅니다. 환자에게는 통증 치료와 함께 일상 활동·움직임·통증에 대한 걱정도 함께 살펴보자는 의미로 읽을 수 있습니다.",
         "alt": "요통 자기관리 구성 요소 마인드맵: 치료적 운동·교육·심리적 중재·일반의약품의 계층 구조와 항목 간 중복 관계를 점선으로 표시"
       }
     ],
@@ -165,7 +161,7 @@
       },
       {
         "question": "만성 허리 통증에 침 치료가 효과가 있다는 근거가 있나요?",
-        "answer": "이 연구에서 만성 요통을 다룬 14개 지침 중 11개가 침 치료를 권고 항목으로 포함했습니다. 다만 이 연구는 지침들이 침 치료를 권고했다는 사실을 집계한 것이며, 침 치료의 임상적 효능을 직접 입증한 연구가 아닙니다. 지침마다 권고 여부가 다른 이유는, 어떤 지침은 가짜 침(위약) 대비 효능 연구를 근거로 삼고, 다른 지침은 일반 치료 대비 효과 연구를 기준으로 삼기 때문입니다. 개인의 상태와 이전 치료 반응을 고려해 결정하는 것이 중요합니다."
+        "answer": "만성 요통을 다룬 14개 지침 중 11개가 침 치료를 권고 항목으로 포함했습니다. 이 수치는 지침의 권고를 집계한 것이며, 침 치료의 효과 크기를 새로 측정한 결과는 아닙니다. 연구진은 가짜 침 또는 일반 치료 중 무엇과 비교한 근거를 우선하는지에 따라 지침의 결론이 달라질 수 있다고 설명합니다."
       }
     ],
     "paper": {
@@ -200,8 +196,246 @@
     },
     "verification": {
       "type": "automated",
-      "model": "claude-sonnet-4-6",
-      "checkedAt": "2026-10-24T08:34:14.270Z",
+      "model": "claude-opus-5-5",
+      "checkedAt": "2026-10-24T08:59:41.263Z",
+      "checks": {
+        "numbers": true,
+        "methods": true,
+        "causality": true,
+        "clinicalRelevance": true,
+        "figures": true,
+        "noPatientIdentifyingImages": true,
+        "noInventedCredentials": true
+      }
+    }
+  },
+  {
+    "slug": "pmid-30521155",
+    "category": "korean",
+    "status": "published",
+    "publishedAt": "2026-10-24T08:54:20.207Z",
+    "updatedAt": "2026-10-24T09:03:20.640Z",
+    "lastSourceCheck": "2026-10-24T08:54:20.207Z",
+    "title": "매달 반복되는 생리통, 침·지압과 약용식물 연구는 무엇을 보여줄까요?",
+    "summary": "2019년 문헌고찰은 생리통 치료 연구 17편을 살펴봤습니다. 침·지압과 약용식물의 가능성, 진료를 선택할 때 확인할 점을 정리합니다.",
+    "question": "진통제 외에 침·지압이나 약용식물도 생리통 치료의 선택지가 될까요?",
+    "answer": "연구진은 약용식물과 지압 등이 생리통을 줄일 가능성이 있다고 해석했습니다. 다만 치료마다 연구 수와 방법이 달라, 어느 방법이 가장 좋다고 순위를 매긴 연구는 아닙니다. 이 글은 2019년에 발표된 문헌고찰을 통해 어떤 치료가 연구되었고 상담 전에 무엇을 확인하면 좋을지 살펴봅니다.",
+    "population": "원발성 월경통을 다룬 연구 17편입니다. 개별 연구의 참여자는 24~303명이었고, 연구표에는 학생과 여학생 대상 연구가 다수 포함되어 있습니다.",
+    "methods": "PubMed, Web of Science, Scopus, Iran Medex, SID에서 2018년 3월까지의 영어·페르시아어 논문을 검색했습니다. 두 검토자가 초록을 읽고 포함·제외 기준에 따라 골랐으며, 이견은 함께 조정했습니다. 연구마다 대상자 수, 치료 방법, 비교군, 치료 기간과 결과를 정리한 체계적 문헌고찰입니다.",
+    "results": "최종 17편 가운데 보완의학을 다룬 연구가 10편, 약물 연구가 3편, 침·지압 연구가 4편이었습니다. 치료 기간은 1~6개월이었고, 주로 시각적 통증 척도(VAS)와 임상 유효율을 살폈습니다.\n\n약용식물 연구에서는 회향, 캐모마일, 자타리아 멀티플로라 등이 다뤄졌습니다. 연구진은 여러 치료가 통증을 줄일 가능성을 제시했지만, 모든 치료의 효과를 하나의 수치로 합산하거나 같은 조건에서 우열을 비교하지는 않았습니다.\n\n검토된 연구 전반에서 위장관 증상, 구역·구토, 설사·복통, 간·신장 관련 이상 등이 보고되었다고 정리했습니다. 어떤 치료에 어느 정도 위험이 있는지 정확히 판단하려면 더 큰 규모와 긴 기간의 연구가 필요하다는 것이 저자들의 결론입니다.",
+    "meaning": "이 논문은 생리통 진료에서 약물 외의 치료도 연구되고 있다는 점을 보여줍니다. 그러나 회향이나 캐모마일 같은 특정 약용식물의 결과를 한약 전체의 효과로 바꾸어 읽을 수는 없습니다.\n\n진료에서는 통증이 매달 언제 시작되고 얼마나 지속되는지, 약을 먹었을 때 얼마나 편해지는지, 속 불편함 같은 문제가 있는지를 함께 살펴보는 것이 유용합니다. 치료의 목표도 통증 점수뿐 아니라 결석·결근이나 일상생활의 불편을 줄이는 데 두고 상담해 보세요.",
+    "limitations": "치료법마다 연구 수가 적고 대상자·비교군·치료 기간이 서로 달랐습니다. 이 문헌고찰은 2018년 3월까지의 자료를 검토했으므로 이후 연구를 모두 반영한 최신 결론은 아닙니다. 저자들은 효과와 안전성을 확인할 더 큰 장기 연구가 필요하다고 밝혔습니다.",
+    "consultation": "생리통 때문에 매달 일정이나 외출이 걱정된다면, 통증 시기·지속 시간과 복용한 약을 정리해 오세요. 일산한의원에서는 현재 증상과 이전 치료 반응을 살펴보고 침 치료와 한약 진료를 함께 상담합니다. 건강보험 한약 적용과 내원 일정이 궁금하시면 카카오톡으로 편하게 문의해 주세요.",
+    "tags": [
+      "생리통",
+      "원발성월경통",
+      "한약",
+      "침치료",
+      "지압",
+      "회향",
+      "캐모마일",
+      "프로스타글란딘"
+    ],
+    "evidence": [
+      {
+        "claim": "검토된 연구는 17편으로 보완의학 10편, 약물 3편, 침·지압 4편이었다.",
+        "quote": "A total of 17 papers were included, ten of which on complementary medicine, three on chemical drugs, and four on acupuncture and acupressure ( Tables 1 and 2 )."
+      },
+      {
+        "claim": "연구의 치료 기간은 1~6개월이었고 통증 척도와 임상 유효율을 주로 측정했다.",
+        "quote": "Length of treatment ranged from one to six months and the measures most commonly used in the studies were the visual analogue scale and clinical efficacy. Reported complications included gastrointestinal events, nausea, vomiting, diarrhea, abdominal pain, and liver and kidney disorders."
+      },
+      {
+        "claim": "저자들은 치료의 효과와 안전성을 확인할 더 큰 장기 연구가 필요하다고 결론 내렸다.",
+        "quote": "Medicinal plants, drugs, and acupressure seem to suppress pain by reducing the level of prostaglandins, mediating nitric oxide, increasing beta-endorphin levels, blocking the calcium channel, and enhancing circulatory flow through the uterine pathway. Further trials with larger populations, longer durations, featuring comparisons with safe drugs and accurate descriptions of the involved molecular mechanisms are required to confirm the benefits of the procedures described and ensure the absence of complications. The conclusions presented herein are also affected by the fact that some of the methods were analyzed by only a handful of studies."
+      }
+    ],
+    "figures": [],
+    "faq": [
+      {
+        "question": "이 연구만 보면 침이 진통제보다 낫다고 할 수 있나요?",
+        "answer": "그렇게 말하기는 어렵습니다. 서로 다른 치료와 비교군을 가진 연구들을 정리했으며, 침과 진통제의 우열을 명확한 통합 수치로 보여준 연구는 아닙니다. 본인의 통증 양상과 이전 치료 반응을 기준으로 진료를 상담하는 데 활용할 수 있습니다."
+      },
+      {
+        "question": "캐모마일이나 회향을 직접 먹으면 연구와 같은 효과를 기대할 수 있나요?",
+        "answer": "논문에서 사용한 제제·섭취량·기간은 일상적인 차나 식품 섭취와 다를 수 있습니다. 연구된 특정 식물의 결과가 모든 제품이나 한약 처방에 적용되는 것은 아니므로, 복용 중인 약과 증상을 알려주고 상담하세요."
+      }
+    ],
+    "paper": {
+      "pmcid": "PMC6364281",
+      "pmid": "30521155",
+      "doi": "10.5935/1518-0557.20180083",
+      "title": "An update and systematic review on the treatment of primary dysmenorrhea",
+      "date": "2019-01-31",
+      "types": [
+        "Systematic Review"
+      ],
+      "citations": 57,
+      "citationSource": "Crossref",
+      "checkedAt": "2026-10-24T08:51:37.889Z",
+      "authors": [
+        "Sharghi Maedeh",
+        "Mansurkhani Shabnam Malekpour",
+        "Larky Damoon Ashtary",
+        "Kooti Wesam",
+        "Niksefat Mehdi",
+        "Firoozbakht Mohammad",
+        "Behzadifar Masoud",
+        "Azami Milad",
+        "Servatyari Karo",
+        "Jouybari Leila"
+      ],
+      "journal": "JBRA Assisted Reproduction",
+      "volume": "23",
+      "issue": "1",
+      "pages": "51",
+      "abstract": "Objectives: Primary dysmenorrhea is a painful uterine contraction caused by endometrial laceration. Drug therapies and complementary medicine have been used to treat dysmenorrhea . The aim of this study was to investigate and offer an updated perspective on the treatments for dysmenorrhea. Methods: The present study was conducted in accordance with the PRISMA checklist for systematic reviews and meta-analyses. The required information was collected based on searches for the following keywords: treatment, primary dysmenorrhea , medicinal plants, chemical drugs, and herbs. Searches were performed on databases Pubmed, Web of Sciences, Scopus, Iran medex, and SID by March 2018 to find literature in the English and Persian languages on this subject without a time limit. Results: This review included 17 papers, 10 of which on complementary medicine, three on drug therapies, and four on acupuncture and acupressure. The largest and smallest samples had 303 and 24 patients, respectively. Length of treatment ranged from one to six months and the measures most commonly used in the studies were the visual analogue scale and clinical efficacy. Reported complications included gastrointestinal events, nausea, vomiting, diarrhea, abdominal pain, and liver and kidney disorders. Conclusion: Medicinal plants, drugs, and acupressure seem to suppress pain by reducing the level of prostaglandins, mediating nitric oxide, increasing beta-endorphin levels, blocking the calcium channel, and enhancing circulatory flow through the uterine pathway. Further trials are required to confirm the benefits of the procedures described and ensure the absence of complications.",
+      "conclusion": "CONCLUSION Medicinal plants, drugs, and acupressure seem to suppress pain by reducing the level of prostaglandins, mediating nitric oxide, increasing beta-endorphin levels, blocking the calcium channel, and enhancing circulatory flow through the uterine pathway. Further trials with larger populations, longer durations, featuring comparisons with safe drugs and accurate descriptions of the involved molecular mechanisms are required to confirm the benefits of the procedures described and ensure the absence of complications. The conclusions presented herein are also affected by the fact that some of the methods were analyzed by only a handful of studies.",
+      "licenseUrl": "http://creativecommons.org/licenses/by/4.0/",
+      "licenseText": "https://creativecommons.org/licenses/by/4.0/ This is an Open Access article distributed under the terms of the Creative Commons Attribution License, which permits unrestricted use, distribution, and reproduction in any medium, provided the original work is properly cited.",
+      "sourceUrl": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC6364281/fullTextXML",
+      "sourceHash": "007b1cbe8fddeba624313022bebb5d05877d7bb4eaf091e09dff99920d32c80d",
+      "figureCount": 0
+    },
+    "verification": {
+      "type": "automated",
+      "model": "claude-opus-5-5",
+      "checkedAt": "2026-10-24T09:03:28.289Z",
+      "checks": {
+        "numbers": true,
+        "methods": true,
+        "causality": true,
+        "clinicalRelevance": true,
+        "figures": true,
+        "noPatientIdentifyingImages": true,
+        "noInventedCredentials": true
+      }
+    }
+  },
+  {
+    "slug": "pmid-36674277",
+    "category": "skin",
+    "status": "published",
+    "publishedAt": "2026-10-24T09:00:43.027Z",
+    "updatedAt": "2026-10-24T09:03:20.642Z",
+    "lastSourceCheck": "2026-10-24T09:00:43.027Z",
+    "title": "얼굴 처짐에 초음파 리프팅(MFU)을 1회 받으면 얼마나 좋아지고, 어떤 이상반응이 있을까요?",
+    "summary": "16개 연구를 종합하니 1회 시술 90일 뒤 전문가 평가로 92%에서 탄력 개선이 있었지만 대부분 약간~중간 정도였고, 처짐이 심하거나 BMI가 30을 넘으면 효과가 줄었습니다.",
+    "question": "초음파 리프팅(MFU)을 한 번 받으면 얼굴 피부 처짐이 실제로 얼마나 개선되고, 어떤 불편이나 이상반응이 생길 수 있나요?",
+    "answer": "16개 연구를 종합한 결과, 1회 시술 90일 뒤 전문가 평가에서 환자의 92%가 탄력이나 주름이 조금이라도 나아진 것으로 평가되었습니다. 다만 대부분 '약간~중간 정도' 개선이었고 환자 본인이 매긴 점수는 더 낮았습니다. 처짐이 심하거나 BMI 30 초과이면 효과가 떨어지는 경향이 있었습니다. 대상은 대부분 여성이었고, 1년을 넘는 장기 자료는 없습니다.",
+    "population": "PubMed와 Embase에서 찾은 693편 중 기준을 충족한 연구 16편입니다. 연구마다 10명 이상이 참여했고 1회 시술 후 3개월 이상 추적했습니다. 논문 요약에는 모든 연구가 여성 대상이라고 적혀 있고, 본문에는 90% 넘게 성인 여성이라고 되어 있습니다. 대체로 처짐이 약하거나 중간 정도인 사람이 대상이었고, 일부 연구는 심한 처짐이나 BMI 30 초과를 제외했습니다.",
+    "methods": "체계적 문헌고찰 보고 지침(PRISMA)에 따라 2019년 6월 처음 검색하고 2021년 6월에 갱신했습니다. 한 번의 MFU 시술로 피부 처짐, 탄력, 주름이 달라졌는지가 주요 결과였고 이상반응은 보조 결과였습니다. 두 명이 논문을 고르고, 한 명이 자료를 뽑은 뒤 다른 한 명이 확인했습니다. 연구 방식이 제각각이어서 합산 가능한 항목만 모아 기술통계로 정리했습니다. 평가는 사진으로 잰 눈썹·턱밑 변화 같은 객관 지표와, 의료진과 환자가 점수로 매긴 주관 지표를 모두 살폈습니다.",
+    "results": "객관 지표를 보면 눈썹 올라감은 연구별로 0.47~1.7mm였고, 1.7mm는 3개월 시점 값입니다. 턱밑 면적은 한 연구에서 3개월에 평균 45mm² 줄었고, 78명 중 56명에서 리프팅이 보였습니다. 아시아인 대상 연구에서는 3개월 26mm², 6개월 14mm² 감소로 시간이 지나며 줄었습니다.\n\n전문가 평가(IGAIS)를 합산하면 90일(337명)에 92%가 개선됐고, 변화 없음은 7%, 악화는 1%였습니다. 180일(249명)에는 중간 정도 개선이 36%에서 52%로 늘었고, 변화 없음은 5%, 악화는 0%였습니다.\n\n환자 자가 평가(SGAIS)는 더 보수적이었습니다. 90일(81명)에는 약간 개선 42%, 변화 없음 25%였고, 360일(19명)에는 약간 개선 53%, 변화 없음 5%였습니다. 360일 자료는 19명뿐이라 해석에 주의가 필요합니다. 한 연구에서는 43명 중 약간 처진 9명만 3개월에 개선되었고, 나머지 34명은 효과가 없었습니다.\n\n불편감은 13개 연구 565명에서 0~10점 통증 평균이 3.8점(범위 2.5~6.1)이었고, 마취 연고나 진통제를 쓴 뒤의 점수입니다. 눈 주위와 턱 아래가 더 아팠습니다. 일시적 붉어짐과 부기는 거의 모든 환자에서 나타났습니다. 멍, 감각 이상, 화상, 흰 줄무늬 등은 573명 중 14명(2%)에서 보고되었습니다.",
+    "meaning": "이 결과는 처짐이 심하지 않은 얼굴에 초음파 열 자극을 주면 대체로 약간~중간 정도의 탄력 개선을 기대할 수 있다는 뜻입니다. 시술 직후보다 몇 달에 걸쳐 평가가 좋아지는 경향도 있었습니다. 반면 사진상 몇 mm 올라갔다고 눈으로 확연히 보이는 것은 아니라고 논문도 짚습니다. 처짐이 심한 경우에는 효과가 떨어져 수술적 방법이 더 적합할 수 있다고 했고, BMI 30 초과 환자 11명 중 개선은 3명이었습니다. 이런 차이는 연관성이며 원인이 확정된 것은 아닙니다.",
+    "limitations": "연구마다 기기, 에너지, 평가 방법이 달랐고 사진과 점수에 의존해 주관이 개입될 수 있습니다. 본문에서 개별 연구의 비뚤림 위험을 따로 평가한 내용은 확인되지 않으며, 1년 자료는 소수이고 1년 넘는 추적과 남성 자료가 없습니다. 논문에서 쓴 기기와 원내 장비의 결과를 같다고 볼 수 없습니다.",
+    "consultation": "턱선이나 볼 처짐이 신경 쓰이지만 시술로 충분할지 막막하다면, 본인 처짐 정도와 체형을 먼저 확인하는 것이 출발점입니다. 일산한의원(이마트 풍산점 3층, 풍산역 2번 출구 도보 1분)에 이전 시술 이력, 최근 정면·측면 사진, 불편했던 경험을 가져오시면 슈링크 유니버스를 포함한 상담이 가능합니다. 카카오톡으로 먼저 문의하셔도 됩니다.",
+    "tags": [
+      "초음파 리프팅",
+      "MFU",
+      "피부 탄력",
+      "피부 처짐",
+      "체계적 문헌고찰",
+      "이상반응"
+    ],
+    "evidence": [
+      {
+        "claim": "전문가 합산 평가(IGAIS, 90일, 337명)에서 92%가 탄력 개선을 보였고 변화 없음이나 악화는 소수(7% 미만)였다.",
+        "quote": "In the pooled IGAIS (n = 337), a total of 92% of the patients demonstrated an improvement at day 90; the ‘mild improvement’ category was greater (47%) than the ‘moderate improvement’ category (36%) ( Table 4 ). A shift was observed after the 180-day evaluation: Although the majority of patients still had ‘mild’ and ‘moderate’ improvement scores, the moderate category had increased (52%). ‘No change’ or ‘worsening’ was only present in a minority of patients (<7%). The patients could also self-evaluate the effect of the MFU treatment using the 4-point Subject Global Aesthetic Improvement Scale (SGAIS) ( Table 5 ). The pooled SGAIS (n = 81) was predominantly ‘mild improvement’, which increased from 42 to 53% in the period 90 to 360 days post-treatment. The ‘moderate improvement’ category also increased from 13 to 32% between the different time intervals. Worsening did not occur, whereas the ‘no change’ category decreased with time from 25% at 90 days to 5% at 360 days. Of note is that Fabi et al. [ 24 ] reported a significantly higher SGAIS score among patients with a BMI of ≤25 kg/m 2 . Oni et al. [ 10 ] reported less improvement in subjects with a BMI exceeding 30 kg/m 2 . Out of the 11 patients whose BMI exceeded 30 kg/m 2 , only three showed improvement."
+      },
+      {
+        "claim": "환자 자가 평가(SGAIS)는 약간 개선이 90일 42%에서 360일 53%로 늘고 변화 없음은 25%에서 5%로 줄었으나 360일은 19명뿐이다.",
+        "quote": "In the pooled IGAIS (n = 337), a total of 92% of the patients demonstrated an improvement at day 90; the ‘mild improvement’ category was greater (47%) than the ‘moderate improvement’ category (36%) ( Table 4 ). A shift was observed after the 180-day evaluation: Although the majority of patients still had ‘mild’ and ‘moderate’ improvement scores, the moderate category had increased (52%). ‘No change’ or ‘worsening’ was only present in a minority of patients (<7%). The patients could also self-evaluate the effect of the MFU treatment using the 4-point Subject Global Aesthetic Improvement Scale (SGAIS) ( Table 5 ). The pooled SGAIS (n = 81) was predominantly ‘mild improvement’, which increased from 42 to 53% in the period 90 to 360 days post-treatment. The ‘moderate improvement’ category also increased from 13 to 32% between the different time intervals. Worsening did not occur, whereas the ‘no change’ category decreased with time from 25% at 90 days to 5% at 360 days. Of note is that Fabi et al. [ 24 ] reported a significantly higher SGAIS score among patients with a BMI of ≤25 kg/m 2 . Oni et al. [ 10 ] reported less improvement in subjects with a BMI exceeding 30 kg/m 2 . Out of the 11 patients whose BMI exceeded 30 kg/m 2 , only three showed improvement."
+      },
+      {
+        "claim": "눈썹 올라감은 연구별 0.47~1.7mm였고, 한 연구에서는 0.5mm 넘게 올라간 사람의 비율이 3개월 35%, 6개월 45%, 1년 39%였다.",
+        "quote": "The absolute brow lifts varied from 0.47 mm ( p < 0.02) [ 14 ] to 1.25 mm ( p < 0.00) [ 22 ] and 1.7 mm at 3 months [ 17 ] post-treatment. Only one study gave 6-month results (1.22 mm) [ 22 ]. Sasaki et al. [ 18 ] depicted the distance between the baseline and brow edges as a percentage and reported a brow lift of 5.6–7.2% 6 months after applying the MFU treatment lines in a superolateral direction and a brow lift of 1–3.7% after applying the treatment lines in a horizontal direction. Werschler and Werschler [ 12 ] reported a percentage of patients with a brow lift of >0.5 mm. At 3 months, 35% of the subjects had a brow lift of more than 0.5 mm, and this had increased to 45% after 6 months but then decreased to 39% by the 1-year follow-up."
+      },
+      {
+        "claim": "턱밑 면적은 한 연구에서 3개월 평균 45mm² 감소했고, 아시아인 대상 연구에서는 3개월 26mm²에서 6개월 14mm²로 줄었다.",
+        "quote": "When treating the submental area, skin tightening may decrease the laxity of the submental tissues leading to a ‘lift’ of this area. In lateral photographs, the submental area appears smaller. Oni et al. [ 10 ] measured an average reduction of 45 mm 2 at 3 months. A lift could be seen in 56 of the 78 treated Caucasian patients. A double pass technique was used to treat the skin at two different depths (3.0 mm and 4.0 mm). Lu et al. [ 14 ] used the same method and found a reduction of 26 mm 2 after 3 months and 14 mm 2 after 6 months in Asian patients. Sasaki et al. [ 18 ] measured the displacement of the marionette lines 3 months after an MFU treatment. The lift varied between the treatment regimens from 2.4 to 3.8% along a line from the inferior tragal notch to the midpoint of the marionette line."
+      },
+      {
+        "claim": "통증은 565명에서 평균 3.8점이었고 붉어짐·부기는 거의 모두에서, 그 외 이상반응은 573명 중 14명(2%)에서 나타났다.",
+        "quote": "Eleven studies used the Ulthera system (Ulthera, Mesa, Arizona, USA) [ 8 , 12 , 13 , 14 , 17 , 18 , 21 , 24 ] and two used the Ultraformer system (Classys Inc., Seoul, Republic of Korea) [ 9 , 22 ]. The UTIMS A1 (Korust Co., Ltd., Seoul, South Korea) [ 16 ], the Doublo IFUS (Hironic, Yongin-si, Republic of Korea) [ 20 ] and the Microson (Microson, Cosmoplus Co., Sungnam, Republic of Korea) [ 19 ] devices were each evaluated once. An MFU treatment regimen consists of the systematic treatment of an area of skin area along different parallel treatment lines so that the multiple ‘shots’ are evenly distributed along these treatment lines in a specific area. The treatment can be performed at different tissue depths, typically 1.5 mm (dermal), 3 mm (subdermal) and 4.5 mm (the SMAS layer). The frequency of the ultrasound transducers ranges from 2 to 10 MHz, but the 4 and 7 MHz probes are used the most. The higher the MHz, the shorter the wavelength and the less deep the skin can be penetrated. The energy that accumulates in one spot (TIZ) ranges from 0.25 Joules (J) to 1.2 Joules, with the majority of settings ranging between 0.3–0.9 J. Multiple passes can be performed at different depths and directions. The total delivered energies can go up to 7200 J for full face treatment and 4600 J for the neck [ 18 ]. A total of 565 patients from 13 studies reported pain in all areas and at all device settings. Pain is rated on a 0–10 visual analog scale (VAS) or a numeric rating scale (NRS). The average reported pain score was in the 3.8 [2.5–6.1] range. The periorbital region and submandibular region treatments were more painful with higher VAS scores [ 10 , 18 ]. It should be noted that the pain was scored after applying topical anaesthetic ointment and/or systemic analgesics. Other side effects than pain were evaluated in a total of 573 patients. Transient erythema with or without oedema occurred in almost all the patients [ 13 , 14 , 18 , 22 , 23 ]. More uncommon were ecchymosis/bruising in four cases [ 9 , 11 ], transient dysesthesia in four cases [ 18 , 19 ], a wheal on the cheek in one case [ 10 ], skin burns in two cases [ 14 ], white linear striae of the neck in two cases [ 17 ] and one case of dermal white papules on the neck [ 24 ]. These uncommon adverse effects were noted in 2% of the total number of treated patients (14/573)."
+      },
+      {
+        "claim": "처짐이 심할수록 개선이 줄었고, BMI 30 초과에서 효과가 낮은 경향이 보고되었다.",
+        "quote": "First, the presence of excessive skin laxity was an explicitly mentioned exclusion criterion [ 8 , 10 , 12 , 20 ]. Three studies measured skin laxity severity and demonstrated that improvement declined with increased baseline skin [ 10 , 18 , 20 ]. This suggests that MFU treatment is not so effective in more severe skin laxity cases, and a surgical approach would be the best option for them. Secondly, the included patients were mostly adult females (>90%), and it would be interesting to know if the results can be reproduced in men since male skin is different from female [ 28 , 29 ]. Thirdly, the presence of excessive subcutaneous fat [ 10 , 12 ] or a high BMI > 30 [ 12 ] was often taken as exclusion criteria. Two studies [ 10 , 24 ] concluded that lower BMI values positively influence the outcomes. Fabi et al. [ 24 ] reported a significantly higher SGAIS for patients with a BMI of ≤25 kg/m 2 . Oni et al. [ 10 ] reported less improvement in subjects with a BMI exceeding 30 kg/m 2 . In a later study, Werschler et al. [ 12 ] excluded all patients with a BMI exceeding 30 kg/m 2 , enforcing the implicated negative influence of a high BMI on treatment outcomes. A reason why a higher BMI leads to less therapeutic effect may be that the skin tension of such cases may be higher due to more facial volume. This higher tension would then counteract the skin shrinkage following MFU."
+      },
+      {
+        "claim": "한 연구에서 43명 중 약간 처진 9명만 3개월에 개선됐고 나머지는 효과가 없었다.",
+        "quote": "Friedman et al. [ 20 ] treated lower face and neck laxity with ultrasound in 43 patients. Based on a global grading scale from 0 (exacerbation) to 5 (75–100% improvement), at three months, an improvement was seen in nine patients who had only slight sagging. The others showed no effect."
+      },
+      {
+        "claim": "결론은 경도~중등도 처짐에서 효과적이며, 남성 대상 연구와 객관적 평가 방법이 더 필요하다는 것이다.",
+        "quote": "In conclusion, MFU treatment seems to be effective for tightening the skin of patients with mild-to-moderate skin laxity. It may be less for those with a BMI > 30. This could be corroborated by future studies that should also focus on male patients, on optimising treatment regimens and on ways to score treatment outcomes more objectively."
+      }
+    ],
+    "figures": [
+      {
+        "id": "ijerph-20-01522-f0A1",
+        "label": "Figure A1",
+        "caption": "Flow chart.",
+        "images": [
+          {
+            "src": "/research-assets/PMC9861614/ijerph-20-01522-f0A1-1.webp",
+            "preview": "/research-assets/PMC9861614/preview-ijerph-20-01522-f0A1-1.webp",
+            "width": 750,
+            "height": 770,
+            "originalHash": "c111bedf337432ac7163edfccf2fcbe4cfc807b0fa5b40a6d63c04653534c096"
+          }
+        ],
+        "explanation": "어떤 과정을 거쳐 분석할 연구를 골랐는지 보여주는 흐름도입니다. PubMed와 Embase의 검색 결과에서 중복을 제거하고, 제목·초록과 전문을 순서대로 검토했습니다. 갱신 검색에서 추가한 연구를 포함해 최종 16편이 분석에 들어갔습니다. 치료 부위·참여자 수·추적 기간 등 정해진 기준을 적용한 결과라는 점을 확인할 수 있습니다.",
+        "alt": "문헌 검색부터 최종 16편 포함까지의 선별 과정을 보여주는 흐름도"
+      }
+    ],
+    "faq": [
+      {
+        "question": "초음파 리프팅 효과는 한 번 받으면 1년 이상 유지되나요?",
+        "answer": "이 논문에서는 1년까지의 자료만 있고 1년을 넘는 장기 결과는 확인되지 않았습니다. 360일 평가는 19명 자료라 확정적으로 말하기 어렵습니다. 한 연구에서 눈썹이 0.5mm 넘게 올라간 사람의 비율이 3개월 35%, 6개월 45%, 1년 39%였고, 턱밑 면적 감소는 3개월보다 6개월에 줄었습니다."
+      },
+      {
+        "question": "어떤 사람은 효과가 적을 수 있나요?",
+        "answer": "처짐이 심한 경우와 BMI 30 초과인 경우 효과가 떨어지는 경향이 있었습니다. 예를 들어 BMI 30 초과 11명 중 3명만 개선되었습니다. 다만 소규모 연구 자료이므로 본인 상태에 맞는 방법은 직접 평가를 받아 정하는 것이 좋습니다."
+      }
+    ],
+    "paper": {
+      "pmcid": "PMC9861614",
+      "pmid": "36674277",
+      "doi": "10.3390/ijerph20021522",
+      "title": "A Systematic Review of the Efficacy of Microfocused Ultrasound for Facial Skin Tightening",
+      "date": "2023-01-13",
+      "types": [
+        "Systematic Review"
+      ],
+      "citations": 79,
+      "citationSource": "Crossref",
+      "checkedAt": "2026-10-24T08:58:38.138Z",
+      "authors": [
+        "Contini Mark",
+        "Hollander Marijke H. J.",
+        "Vissink Arjan",
+        "Schepers Rutger H.",
+        "Jansma Johan",
+        "Schortinghuis Jurjen"
+      ],
+      "journal": "International Journal of Environmental Research and Public Health",
+      "volume": "20",
+      "issue": "2",
+      "pages": "1522",
+      "abstract": "Objective: to systematically review the efficacy of microfocused ultrasound (MFU) for facial skin tightening. Methods: A systematic search was performed (Pubmed, Embase) to assess the efficacy of single MFU treatments for facial skin tightening. Eligible studies included randomised controlled trials, controlled trials, cohort studies and case series (n ≥ 10). Objective and subjective outcomes were assessed. Results: A total of 693 studies were identified of which 16 studies were eligible. All the studies involved female patients. MFU is capable of tightening the skin, as observed in studies measuring the results of brow lifts (0.47–1.7 mm) and submental lifts (measured as a 26–45 mm 2 reduction in the submental area on lateral photographs). Data from the Global Aesthetic Improvement Scale (GAIS) were pooled, and the day 90 pooled subjective investigator reported scores (IGAIS) (n = 337) showed that 92% of the patients demonstrated an improvement in skin tightening and/or in wrinkle reduction which continued up to one year. Longer-term follow-up data are not available. The patient-reported pooled scores (SGAIS) (n = 81) showed that the skin improvements were mild and continued to increase from 42% (90 days) to 53% (360 days) post-treatment. The MFU treatment was moderately painful and caused transient erythema with or without oedema. Other adverse effects were rare (2%), including dysesthesia (numbness or hypersensitivity), bruising and stinging, mandibular burns, striations and contact dermatitis. Various device settings, treatment protocols and energies were applied. Excessive skin laxity and a BMI > 30 were posed as relative contraindications for MFU treatment because positive results declined with an increase in laxity and BMI. Conclusions: MFU treatment is effective in tightening female patients’ mildly to moderately lax facial skin. Future studies should focus on objective treatment outcomes, optimising treatment regimens and male patients.",
+      "conclusion": "MFU treatment is effective in tightening female patients’ mildly to moderately lax facial skin. Future studies should focus on objective treatment outcomes, optimising treatment regimens and male patients.",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "licenseText": "https://creativecommons.org/licenses/by/4.0/ Licensee MDPI, Basel, Switzerland. This article is an open access article distributed under the terms and conditions of the Creative Commons Attribution (CC BY) license ( https://creativecommons.org/licenses/by/4.0/ ).",
+      "sourceUrl": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC9861614/fullTextXML",
+      "sourceHash": "051ca9b2fb23a28093a4a384c52a09c446f3bda26c9ccdc750541646b5ddaa6f",
+      "figureCount": 1
+    },
+    "verification": {
+      "type": "automated",
+      "model": "claude-opus-5-5",
+      "writerModel": "claude-sonnet-5-5",
+      "checkedAt": "2026-10-24T09:03:40.364Z",
       "checks": {
         "numbers": true,
         "methods": true,

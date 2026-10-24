@@ -7,7 +7,11 @@ const origin=process.env.RESEARCH_SMOKE_ORIGIN||'https://research.ilsanhan.com';
 const articles=JSON.parse(await fs.readFile('src/data/research-articles.json','utf8'));
 function get(path){return new Promise((resolve,reject)=>{
   const url=new URL(path,origin);
-  const req=(url.protocol==='https:'?https:http).get(url,{headers:{Host:'research.ilsanhan.com'}},r=>{
+  // Optional address from a verified public DNS lookup while a local resolver
+  // still caches NXDOMAIN. HTTPS certificate/hostname validation remains on.
+  const ip=process.env.RESEARCH_SMOKE_IP;
+  const options={headers:{Host:'research.ilsanhan.com'},...(ip?{lookup:(_host,opts,done)=>opts.all?done(null,[{address:ip,family:4}]):done(null,ip,4)}:{})};
+  const req=(url.protocol==='https:'?https:http).get(url,options,r=>{
     const chunks=[];r.on('data',c=>chunks.push(c));r.on('end',()=>resolve({status:r.statusCode,headers:r.headers,body:Buffer.concat(chunks).toString()}));
   });req.on('error',reject);req.setTimeout(45000,()=>req.destroy(Error('HTTP timeout')));
 });}

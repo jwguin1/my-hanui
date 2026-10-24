@@ -8,4 +8,3 @@ return <div className="research-wrap"><section className="research-hero"><span c
 <div className="research-category-grid">{Object.entries(RESEARCH_CATEGORIES).map(([key,c])=><a key={key} href={`${RESEARCH_ORIGIN}/category/${key}`}><span>{c.day}</span><h2>{c.label} ↗</h2><p>{c.description}</p></a>)}</div>
 <section aria-labelledby="research-latest"><div className="research-section-heading"><h2 id="research-latest">{q?'검색한 연구노트':'최근 연구노트'}</h2><form action={RESEARCH_ORIGIN} method="get" role="search"><label className="sr-only" htmlFor="research-search">연구노트 검색</label><input id="research-search" name="q" defaultValue={q} placeholder="증상·치료·논문 검색" maxLength={100}/><button type="submit">검색</button></form></div>{articles.length?<ResearchCards articles={articles}/>:<p className="research-empty">{q?'검색어와 일치하는 글이 없습니다. 다른 증상이나 치료명으로 찾아보세요.':'본문과 그림의 근거를 확인한 연구노트를 준비하고 있습니다.'}</p>}</section>
 </div>}
-

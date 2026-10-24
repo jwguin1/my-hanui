@@ -62,4 +62,3 @@ export async function checkPubMedNotice(pmid) {
   const record=(await request(`https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&id=${pmid}&retmode=xml`)).toString();
   if(/RefType="(?:RetractionIn|RetractionOf|ErratumIn|ExpressionOfConcernIn)"|<PublicationType[^>]*>Retracted Publication</i.test(record))throw Error('PubMed update requires review');
 }
-

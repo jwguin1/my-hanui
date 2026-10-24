@@ -1,6 +1,7 @@
 export const config = {
   years: 10,
-  model: process.env.RESEARCH_MODEL || 'claude-sonnet-4-6',
+  model: process.env.RESEARCH_MODEL || 'claude-sonnet-5-5',
+  reviewModel: process.env.RESEARCH_REVIEW_MODEL || 'claude-opus-5-5',
   origin: 'https://research.ilsanhan.com',
   maxCandidates: 50,
   maxAttempts: 3,
