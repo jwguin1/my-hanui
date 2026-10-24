@@ -9,9 +9,9 @@ export async function generateMetadata({params}:Props){const a=getResearchArticl
 function Paragraphs({text,figure=false}:{text:string;figure?:boolean}){
   const paragraphs=text.split(/\n\s*\n/).filter(Boolean).flatMap(p=>{
     if(!figure||p.length<240)return [p];
-    const sentences=p.match(/[^.!?]+[.!?](?:\s+|$)|[^.!?]+$/g)||[p];
+    const sentences=p.split(/(?<=[.!?])\s+/);
     const chunks:string[]=[];let current="";
-    for(const sentence of sentences){current+=sentence;if(current.length>=180){chunks.push(current.trim());current="";}}
+    for(const sentence of sentences){current+=(current?" ":"")+sentence;if(current.length>=180){chunks.push(current.trim());current="";}}
     if(current.trim())chunks.push(current.trim());return chunks;
   });
   return <>{paragraphs.map((p,i)=><p key={i}>{p}</p>)}</>;
