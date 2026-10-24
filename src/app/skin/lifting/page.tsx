@@ -5,7 +5,7 @@ import { LiftingPrices } from "@/components/SkinPrices";
 import { pageMetadata } from "@/lib/page-metadata";
 import { buildGraph, faqEntities } from "@/lib/schema";
 import { LIFTING_FAQS } from "@/lib/skin-treatment";
-import { LIFTING_SLUGS } from "@/lib/skin-guides";
+import { LIFTING_SLUGS, VOLNEWMER_SLUGS } from "@/lib/skin-guides";
 import { getAllPosts } from "@/lib/blog-local";
 import { postPath } from "@/lib/slug";
 
@@ -25,6 +25,9 @@ export default function LiftingPage() {
         <p>슈링크 300샷은 약 30분을 기준으로 안내합니다. 볼뉴머·600샷 구성은 예약할 때 필요한 시간을 안내해드립니다.</p>
       </SkinSection>
       <SkinSection id="questions" title="리프팅 전에 많이 궁금한 질문"><SkinFaq items={LIFTING_FAQS}/></SkinSection>
-      <SkinSection id="guides" title="조금 더 자세히 읽고 싶다면"><div className="grid gap-3">{posts.map(p=><Link key={p.slug} href={postPath("skin",p.slug)} className="rounded-xl border border-line bg-white p-5 font-semibold text-primary">{p.title} →</Link>)}<a href="https://research.ilsanhan.com/articles/pmid-36674277" className="rounded-xl border border-line bg-white p-5 font-semibold text-primary">연구노트 · 초음파 리프팅 연구의 결과와 해석 →</a></div></SkinSection>
+      <SkinSection id="guides" title="볼뉴머와 슈링크, 궁금한 내용부터 읽어보세요">
+        {[{title:"볼뉴머 질문 3가지",slugs:VOLNEWMER_SLUGS},{title:"슈링크 질문 3가지",slugs:LIFTING_SLUGS.filter(s=>!VOLNEWMER_SLUGS.includes(s))}].map(group=><div key={group.title}><h3 className="mb-4 text-xl font-bold text-ink">{group.title}</h3><div className="grid gap-3">{group.slugs.flatMap(slug=>{const p=posts.find(p=>p.slug===slug);return p?[<Link key={p.slug} href={postPath("skin",p.slug)} className="rounded-xl border border-line bg-white p-5"><h4 className="font-bold text-primary">{p.title} →</h4><p className="mt-2 text-base text-muted">{p.description}</p></Link>]:[];})}</div></div>)}
+        <a href="https://research.ilsanhan.com/articles/pmid-36674277" className="block rounded-xl border border-line bg-white p-5 font-semibold text-primary">연구노트 · 초음파 리프팅 연구의 결과와 해석 →</a>
+      </SkinSection>
     </SkinTreatmentLayout></>;
 }

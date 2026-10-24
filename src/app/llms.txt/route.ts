@@ -10,7 +10,7 @@ import {
   CLINIC_WEEKEND_HOLIDAY_LABEL,
 } from "@/lib/clinic";
 import { getAllPosts } from "@/lib/blog-local";
-import { PIGMENTATION_SLUGS, LIFTING_SLUGS, LIFTING_PATH, SHURINK_CARE } from "@/lib/skin-guides";
+import { PIGMENTATION_SLUGS, LIFTING_SLUGS, LIFTING_PATH, SHURINK_CARE, HAIR_REMOVAL_SLUGS } from "@/lib/skin-guides";
 import { PIGMENTATION_PRICES, SHURINK_PRICES, VOLNEWMER_PRICES, LIFTING_PACKAGE, HAIR_REMOVAL_PRICES, skinPrice, PAIN_PRICES, HERBAL_PRICES, PAIN_INSURANCE_NOTE, PHARMACOPUNCTURE_NOTE, HERBAL_INSURANCE_CONDITIONS, HERBAL_INSURANCE_LIMIT, won, painWon } from "@/lib/pricing";
 import { postPath } from "@/lib/slug";
 
@@ -29,6 +29,10 @@ function body(): string {
   const holidayLine = `- ${CLINIC_WEEKEND_HOLIDAY_LABEL}: ${CLINIC_HOURS_WEEKEND} (점심시간 없이 진료)`;
   const closedLine = `- ${CLINIC.holidayClosedNote}`;
   const skinPosts = getAllPosts("skin");
+  const hairLinks = HAIR_REMOVAL_SLUGS.flatMap(slug => {
+    const post = skinPosts.find(p => p.slug === slug);
+    return post ? [`- [${post.title}](${BASE}${postPath("skin", post.slug)})`] : [];
+  }).join("\n");
   const pigmentLinks = PIGMENTATION_SLUGS.flatMap((slug) => {
     const post = skinPosts.find((p) => p.slug === slug);
     return post ? [`- [${post.title}](${BASE}${postPath("skin", post.slug)})`] : [];
@@ -171,6 +175,7 @@ ${liftingLinks}
 ${HAIR_REMOVAL_PRICES.map(r => `- ${r.area} ${r.option}: 1회 ${skinPrice(r.single)}, 5회 ${skinPrice(r.five)}, 1년 무제한 ${skinPrice(r.annual)}`).join("\n")}
 - 케어 포함 구성은 마취·비타민 쿨링팩·LED 포함. 모든 가격은 부가세 포함.
 - 최소 4주 간격, 1년권은 첫 시술일부터 1년간 적용.
+${hairLinks}
 - 피부 탄력과 처짐은 리프팅, 갈색 색소와 피부톤은 피코토닝, 붉은기와 피부결은 제네시스를 중심으로 상담합니다.
 
 

@@ -3,7 +3,19 @@ export const PIGMENTATION_PATH = "/skin/pigmentation";
 export const PIGMENTATION_UPDATED = "2026-10-16";
 export const LIFTING_PATH = "/skin/lifting";
 export const LIFTING_UPDATED = "2026-10-24";
+export const VOLNEWMER_SLUGS: readonly string[] = [
+  "볼뉴머-효과-슈링크-차이",
+  "볼뉴머-300샷-600샷-가격",
+  "볼뉴머-통증-시술후-관리",
+];
+export const HAIR_REMOVAL_PATH = "/skin/hair-removal";
+export const HAIR_REMOVAL_SLUGS: readonly string[] = [
+  "수염제모-횟수-간격-1년권",
+  "얼굴제모-가격-부위-케어",
+  "제모전-면도-통증-관리",
+];
 export const LIFTING_SLUGS: readonly string[] = [
+  ...VOLNEWMER_SLUGS,
   "슈링크-시간-횟수-주기",
   "슈링크-효과-볼살-턱선",
   "슈링크-피코토닝-제네시스-차이",
@@ -26,9 +38,15 @@ export const PIGMENTATION_GROUPS = [
 ] as const;
 
 export const PIGMENTATION_SLUGS: readonly string[] = PIGMENTATION_GROUPS.flatMap((g) => [...g.slugs]);
-export const SKIN_GUIDE_SLUGS: readonly string[] = [...PIGMENTATION_SLUGS, ...LIFTING_SLUGS];
+export const SKIN_GUIDE_SLUGS: readonly string[] = [...PIGMENTATION_SLUGS, ...LIFTING_SLUGS, ...HAIR_REMOVAL_SLUGS];
 
 export const SKIN_RELATED: Record<string, readonly string[]> = {
+  "볼뉴머-효과-슈링크-차이": ["볼뉴머-300샷-600샷-가격", "볼뉴머-통증-시술후-관리", "슈링크-효과-볼살-턱선"],
+  "볼뉴머-300샷-600샷-가격": ["볼뉴머-효과-슈링크-차이", "볼뉴머-통증-시술후-관리", "슈링크-시간-횟수-주기"],
+  "볼뉴머-통증-시술후-관리": ["볼뉴머-효과-슈링크-차이", "볼뉴머-300샷-600샷-가격", "슈링크-시간-횟수-주기"],
+  "수염제모-횟수-간격-1년권": ["얼굴제모-가격-부위-케어", "제모전-면도-통증-관리", "피부레이저-담당-의료진"],
+  "얼굴제모-가격-부위-케어": ["수염제모-횟수-간격-1년권", "제모전-면도-통증-관리", "피부레이저-담당-의료진"],
+  "제모전-면도-통증-관리": ["수염제모-횟수-간격-1년권", "얼굴제모-가격-부위-케어", "피부레이저-담당-의료진"],
   "한의원-피코토닝-상담-시술": ["피부레이저-담당-의료진", "피코토닝-가격-제네시스", "피코토닝-효과-횟수"],
   "피부레이저-담당-의료진": ["피코토닝-가격-제네시스", "한의원-피코토닝-상담-시술", "피코토닝-제네시스-차이"],
   "피코토닝-효과-횟수": ["피코토닝-가격-제네시스", "기미레이저-재발-관리", "흑자제거-피코레이저"],
@@ -50,6 +68,7 @@ export const SKIN_RELATED: Record<string, readonly string[]> = {
 };
 
 export function skinPostHub(slug: string) {
+  if (HAIR_REMOVAL_SLUGS.includes(slug)) return { href: HAIR_REMOVAL_PATH, label: "얼굴·수염 제모 · 엘리멘트 TL 안내" };
   if (LIFTING_SLUGS.includes(slug)) return { href: LIFTING_PATH, label: "리프팅 · 슈링크·볼뉴머 안내" };
   return PIGMENTATION_SLUGS.includes(slug)
     ? { href: PIGMENTATION_PATH, label: "색소치료 · 피코토닝·제네시스 안내" }

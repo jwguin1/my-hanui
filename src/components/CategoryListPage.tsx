@@ -23,7 +23,7 @@ import {
   painGroupSlugs,
 } from "@/lib/pain-groups";
 import JsonLd from "@/components/JsonLd";
-import { PIGMENTATION_GROUPS, SKIN_GUIDE_SLUGS, PIGMENTATION_PATH, LIFTING_PATH, LIFTING_SLUGS } from "@/lib/skin-guides";
+import { PIGMENTATION_GROUPS, SKIN_GUIDE_SLUGS, PIGMENTATION_PATH, LIFTING_PATH, LIFTING_SLUGS, HAIR_REMOVAL_PATH, HAIR_REMOVAL_SLUGS } from "@/lib/skin-guides";
 import {
   articleStub,
   buildGraph,
@@ -116,6 +116,7 @@ export default function CategoryListPage({ category }: { category: Category }) {
       : category === "skin" ? [
           ...PIGMENTATION_GROUPS.map((g) => ({ name: g.name, hub: { href: `${PIGMENTATION_PATH}#${g.id}`, label: "색소치료 안내" }, items: g.slugs.flatMap((slug) => { const post = bySlug.get(slug); return post ? [post] : []; }) })),
           { name: "슈링크·볼뉴머 리프팅", hub: { href: LIFTING_PATH, label: "리프팅 안내" }, items: LIFTING_SLUGS.flatMap((slug) => { const post = bySlug.get(slug); return post ? [post] : []; }) },
+          { name: "얼굴·수염 제모", hub: { href: HAIR_REMOVAL_PATH, label: "제모 안내" }, items: HAIR_REMOVAL_SLUGS.flatMap((slug) => { const post = bySlug.get(slug); return post ? [post] : []; }) },
           { name: "점·편평사마귀·쥐젖과 시술 후 관리", hub: { href: "/skin/spot", label: "잡티 제거 안내" }, items: posts.filter((p) => !SKIN_GUIDE_SLUGS.includes(p.slug)) },
         ].filter((g) => g.items.length > 0) : [];
 

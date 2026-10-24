@@ -261,6 +261,14 @@
     border-bottom: 0;
   }
 
+  @media (max-width: 480px) {
+    .skin-guide th,
+    .skin-guide td {
+      padding-left: 0.5rem;
+      padding-right: 0.5rem;
+    }
+  }
+
   /* Article body images: centered, capped, dark-mode friendly.
      Patch 5: lower max-height + cap max-width so a single image doesn't
      fill the screen, and hide the markdown alt text from rendering as
