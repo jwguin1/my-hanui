@@ -5,7 +5,7 @@
     "status": "published",
     "publishedAt": "2026-10-24T08:29:28.843Z",
     "updatedAt": "2026-10-24T08:59:21.741Z",
-    "lastSourceCheck": "2026-10-24T08:43:13.761Z",
+    "lastSourceCheck": "2026-10-24T09:04:50.712Z",
     "title": "허리 통증, 전 세계 진료지침은 어떤 치료를 권고할까요?",
     "summary": "허리가 아플 때 쉬어야 할까요, 움직여야 할까요? 15개국의 진료지침 22개를 비교한 연구에서 운동·침·도수치료의 권고와 차이를 살펴봅니다.",
     "question": "허리 통증이 생겼을 때 전 세계 의료 지침들은 어떤 치료를 권고하고 있으며, 지침마다 차이가 있나요?",
@@ -215,7 +215,7 @@
     "status": "published",
     "publishedAt": "2026-10-24T08:54:20.207Z",
     "updatedAt": "2026-10-24T09:03:20.640Z",
-    "lastSourceCheck": "2026-10-24T08:54:20.207Z",
+    "lastSourceCheck": "2026-10-24T09:04:50.893Z",
     "title": "매달 반복되는 생리통, 침·지압과 약용식물 연구는 무엇을 보여줄까요?",
     "summary": "2019년 문헌고찰은 생리통 치료 연구 17편을 살펴봤습니다. 침·지압과 약용식물의 가능성, 진료를 선택할 때 확인할 점을 정리합니다.",
     "question": "진통제 외에 침·지압이나 약용식물도 생리통 치료의 선택지가 될까요?",
@@ -318,7 +318,7 @@
     "status": "published",
     "publishedAt": "2026-10-24T09:00:43.027Z",
     "updatedAt": "2026-10-24T09:03:20.642Z",
-    "lastSourceCheck": "2026-10-24T09:00:43.027Z",
+    "lastSourceCheck": "2026-10-24T09:04:51.070Z",
     "title": "얼굴 처짐에 초음파 리프팅(MFU)을 1회 받으면 얼마나 좋아지고, 어떤 이상반응이 있을까요?",
     "summary": "16개 연구를 종합하니 1회 시술 90일 뒤 전문가 평가로 92%에서 탄력 개선이 있었지만 대부분 약간~중간 정도였고, 처짐이 심하거나 BMI가 30을 넘으면 효과가 줄었습니다.",
     "question": "초음파 리프팅(MFU)을 한 번 받으면 얼굴 피부 처짐이 실제로 얼마나 개선되고, 어떤 불편이나 이상반응이 생길 수 있나요?",
@@ -436,6 +436,137 @@
       "model": "claude-opus-5-5",
       "writerModel": "claude-sonnet-5-5",
       "checkedAt": "2026-10-24T09:03:40.364Z",
+      "checks": {
+        "numbers": true,
+        "methods": true,
+        "causality": true,
+        "clinicalRelevance": true,
+        "figures": true,
+        "noPatientIdentifyingImages": true,
+        "noInventedCredentials": true
+      }
+    }
+  },
+  {
+    "slug": "pmid-32723399",
+    "category": "pain",
+    "status": "published",
+    "publishedAt": "2026-10-26T09:00:00+09:00",
+    "updatedAt": "2026-10-26T09:00:00+09:00",
+    "lastSourceCheck": "2026-10-24T09:06:00.670Z",
+    "title": "만성 목 통증, 수기치료와 목 운동 중 무엇이 더 빨리 도움이 될까요?",
+    "summary": "만성 목 통증 성인 69명을 3군으로 나눠 12주간 비교했습니다. 수기치료와 운동 모두 가짜 치료보다 나았고, 두 치료의 4·12주 차이는 없었으며 속도에서만 차이가 있었습니다.",
+    "question": "오래된 목 통증에는 수기(도수)치료와 목 운동 중 어느 쪽이 더 효과적이고, 효과는 언제 나타날까요?",
+    "answer": "이 연구에서는 수기치료와 목 운동 모두 가짜 치료군보다 통증과 목 기능 장애 점수가 더 좋아졌습니다. 두 치료 사이에는 4주와 12주 시점에 통계적 차이가 없었습니다. 다만 수기치료는 통증 관련 지표가 조금 더 빨리 좋아지는 경향이, 운동은 치료 1주 시점에 일상 기능 장애 점수가 더 빨리 좋아지는 경향이 있었습니다.",
+    "population": "스페인 세비야대학교 물리치료학과에서 진행된 연구입니다. 만 18~50세이고 목 통증이 12주 이상 이어진 비특이성 만성 목 통증 성인 69명이 무작위 배정되었고, 참가자의 약 77%가 여성이었습니다. 팔로 뻗치는 통증, 어지럼, 골다공증, 골절, 종양, 목 수술력, 위험 신호, 최근 3개월 내 물리치료를 받은 사람은 제외되었습니다.",
+    "methods": "참가자는 수기치료, 목 운동, 가짜 치료 세 군에 23명씩 무작위로 나뉘었고, 평가자와 참가자는 배정을 모르는 상태였습니다. 수기치료군은 주 1회씩 3회, 등 위쪽 척추 조작, 목뼈 관절 가동술, 뒤통수 아래 근육 압박을 받았습니다. 운동군은 3주간 매일 목 깊은 근육 운동을 하되, 치료사가 3번 지도했습니다. 가짜 치료군은 치료 의도 없이 손만 대는 처치를 받았습니다. 통증 크기(100mm 통증 척도), 눌렀을 때 아픈 압력(압통 역치), 목 기능 장애 설문(NDI)을 치료 전과 1주, 4주, 12주에 비교했습니다.",
+    "results": "69명 중 65명(94%)이 끝까지 참여했습니다. 이탈은 수기치료군 1명, 가짜 치료군 3명이었습니다.\n\n통증 척도는 치료 전보다 4주 시점에 수기치료군 41.95mm에서 15.82mm로, 운동군 48.17mm에서 17.83mm로 낮아졌습니다. 가짜 치료군은 49.80mm에서 50.55mm로 거의 변화가 없었습니다. 12주 시점에도 수기치료군 18.23mm, 운동군 24.43mm, 가짜 치료군 48.75mm였고, 두 치료군은 가짜 치료군과 통계적으로 차이가 났습니다. 다만 치료 1주 시점 통증 척도는 어느 치료군도 가짜 치료군과 차이가 없었습니다.\n\n목 기능 장애 점수는 1주 시점에 운동군이 수기치료군보다 더 크게 좋아졌습니다(P=0.031). 4주 시점은 수기치료군 11.82%, 운동군 9.87%, 가짜 치료군 31.20%였고, 두 치료군 사이에는 차이가 없었습니다. 12주 시점은 수기치료군 11.23%, 운동군 13.09%, 가짜 치료군 29.90%였습니다.\n\n압통 역치는 4주 시점에 수기치료군만 가짜 치료군보다 높았고(운동군은 차이 없음), 12주 시점에는 두 치료군 모두 높았습니다. 수기치료와 운동을 직접 비교한 압통 역치 차이는 없었습니다.",
+    "meaning": "수기치료와 운동은 12주 안에서 서로 우열이 뚜렷하지 않았고, 빠르게 좋아지는 영역이 달랐다는 정도로 이해하시면 됩니다. 무작위 대조 설계라 가짜 치료와의 차이는 우연보다 치료 영향일 가능성을 시사하지만, 가짜 치료군에서도 기대 효과가 있을 수 있습니다. 압통 역치는 통증을 간접적으로 보는 지표이고, 통증 척도와 목 기능 장애 설문은 환자가 직접 느끼는 증상과 일상 기능을 보는 지표입니다. 저자들은 수기치료, 운동, 통증 교육을 함께 쓰는 접근이 도움이 될 수 있다고 제안했지만, 이 연구가 병합 치료를 직접 검증한 것은 아닙니다.",
+    "limitations": "표본이 작고 추적이 12주까지여서 장기 효과는 알 수 없습니다. 집에서 하는 운동을 실제로 얼마나 했는지는 매일 했는지 묻는 정도로만 확인되었습니다. 이상반응에 대한 결과는 원문에서 확인되지 않았고, 끝까지 참여한 사람 위주로 분석되었습니다.",
+    "consultation": "목 통증이 3개월 넘게 이어지면서 수기치료를 받을지 운동을 할지 고민되신다면, 통증 위치, 힘든 동작, 이전 치료와 영상검사 결과를 정리해 오세요. 일산한의원(이마트 풍산점 3층, 풍산역 2번 출구 도보 1분)에서는 상태를 평가한 뒤 침·부항·전기침, 추나, 초음파 유도 약침 등 필요한 진료를 설명드릴 수 있습니다. 연구에 쓰인 방법과 원내 치료는 같지 않으니 기대 효과는 상담에서 함께 조율하시고, 카카오톡으로도 문의하실 수 있습니다.",
+    "tags": [
+      "만성 목 통증",
+      "수기치료",
+      "목 운동",
+      "비특이성 경부통",
+      "무작위 대조시험",
+      "경추 장애 지수"
+    ],
+    "evidence": [
+      {
+        "claim": "After conducting 81 evaluations, 69 subjects started the study, which completed 65 the trial (94%).",
+        "quote": "After conducting 81 evaluations, 69 subjects started the study, which completed 65 the trial (94%). There were four losses of follow-up, one of them in manual therapy group (4% of the group) and three in control group (13% of the group). The CONSORT flow diagram can be seen in Fig. 1 . Fig. 1 CONSORT flow diagram"
+      },
+      {
+        "claim": "The results obtained by the two experimental treatments with respect to the control showed a clear efficacy of these in subjects with nonspecific chronic neck pain",
+        "quote": "The results obtained by the two experimental treatments with respect to the control showed a clear efficacy of these in subjects with nonspecific chronic neck pain, which showed statistically significant improvements and very high effect sizes in the short and medium terms in disability and perceived pain."
+      },
+      {
+        "claim": "In the last evaluation (week 12), the experimental groups show differences with respect to the control in all the variables, VAS, NDI, and PPT.",
+        "quote": "Intergroup analysis shows that in the first evaluation (after 1 week of treatment), only significant differences are observed between groups in the NDI, where there are greater improvements in the therapeutic exercise group when compared to the manual therapy group. Both treatments achieve improvements when compared to control. For VAS and PPT, no group shows statistically significant differences in the first week. In the second evaluation (week 4), the experimental groups show significant differences with respect to the control in VAS and NDI, without appreciating differences between them. However, for PPT only, the MT group achieves superior results to the control. The statistical analysis does not show significant differences between the experimental groups, but its P value (0.072) borders on the statistical significance. In the last evaluation (week 12), the experimental groups show differences with respect to the control in all the variables, VAS, NDI, and PPT. They do not reflect differences between experimental treatments for any of the variables studied. The values of statistical significance between groups are shown in Table 3 . Table 3 Intergroup analysis. Statistical significance between groups Variable P Week 1 Post-hoc P P Week 4 Post-hoc P P Week 12 Post-hoc P VAS 0.067 a MT – C 0.329 c 0.001* a MT – C 0.001* c 0.003* a MT – C 0.008* c TE – C 0.070 c TE – C 0.001* c TE – C 0.007* c MT – TE 1.000 c MT – TE 1.000 c MT – TE 1.000 c NDI 0.001* b MT – C 0.001* d 0.001* b MT – C 0.001* d 0.001* a MT – C 0.001* c TE – C 0.001* d TE – C 0.001* d TE – C 0.001* c MT – TE 0.031* d MT – TE 0.356 d MT – TE 1.000 c PPT 0.853 b MT – C 0.743 d 0.002* a MT – C 0.001* c 0.001* b MT – C 0.012* d TE – C 0.991 d TE – C 0.415 c TE – C 0.001* d MT – TE 0.532 d MT – TE 0.072 c MT – TE 0.674 d C control group, MT manual therapy group, TE therapeutic exercise group, P statistical significance a ANOVA b Kruskal-Wallis H c Bonferroni d Mann-Whitney U *Statistically significant differences between groups ( P < 0.05)"
+      },
+      {
+        "claim": "The therapeutic exercise group reduces cervical disability before manual therapy group does.",
+        "quote": "Both experimental treatments, manual therapy and therapeutic exercise, produce statistically significant and clinically relevant changes with respect to the control group. There are no statistically significant differences between the experimental groups in the short and medium terms. The therapeutic exercise group reduces cervical disability before manual therapy group does. The manual therapy group reduces pain perception before than therapeutic exercise group does."
+      },
+      {
+        "claim": "This protocol was taught to patients in the first session and was performed once a day during the 3 weeks of treatment, 21 sessions in total.",
+        "quote": "“Therapeutic exercise” protocol: this protocol is based on a progression in load composed of different phases: at first, activation and recruitment of deep cervical flexors [ 16 ]; secondly, isometric exercise deep and superficial flexors co-contraction [ 16 ], and finally, eccentric recruitment of flexors and extensors [ 16 – 18 ]. This protocol, as far as we know, has not been studied, but activation of this musculature during similar tasks to those of our protocol has been observed [ 16 – 18 ]. This protocol was taught to patients in the first session and was performed once a day during the 3 weeks of treatment, 21 sessions in total. It was reinforced by the physiotherapist in each of the three individual sessions."
+      },
+      {
+        "claim": "the physiotherapist placed his hands without therapeutic intention on the patient’s neck for 3 min.",
+        "quote": "For the “control” protocol, the patients were placed in the supine position, while the physiotherapist placed his hands without therapeutic intention on the patient’s neck for 3 min. The physiotherapist simulated the technique of suboccipital inhibition [ 14 ]. Later, with the laser pointer off, patients were contacted without exerting pressure for 10 s. Patients assigned to the control group received treatment 1 or 2 after completing the study."
+      },
+      {
+        "claim": "our study did not analyze long-term changes, this being an important limitation in subjects with chronic pain.",
+        "quote": "Our results obtained overall improvements in disability and pain perceived following the two experimental treatments in the short and medium terms, manual therapy and therapeutic exercise for the neck. The latest systematic reviews rate the effect of these interventions as moderate [ 8 , 9 ]. However, our study did not analyze long-term changes, this being an important limitation in subjects with chronic pain. In addition and as main limitations, our study does not have a large sample size, so a larger sample size could refute our findings with greater determination. No method has been followed that guarantees compliance with home exercises by patients assigned to the therapeutic exercise group; they were only asked if they had done it daily."
+      }
+    ],
+    "figures": [
+      {
+        "id": "Fig1",
+        "label": "Fig. 1",
+        "caption": "CONSORT flow diagram",
+        "images": [
+          {
+            "src": "/research-assets/PMC7385865/Fig1-1.webp",
+            "preview": "/research-assets/PMC7385865/preview-Fig1-1.webp",
+            "width": 779,
+            "height": 715,
+            "originalHash": "869aa80185cb03a8cdbad08f5bc69d4bbf4f103759e87175a5dc932d9070810a"
+          }
+        ],
+        "explanation": "참가자 흐름도입니다. 81명을 평가해 12명이 제외(기준 미충족 10명, 참여 거부 1명, 기타 1명)되었고 69명이 무작위로 배정되었습니다. 세 군에 23명씩 배정되어 모두 배정된 치료를 받았습니다. 추적 중 수기치료군 1명, 가짜 치료군 3명이 약속에 오지 않아 빠졌고 운동군은 이탈이 없었습니다. 최종 분석은 수기치료군 22명, 운동군 23명, 가짜 치료군 20명이었습니다. 군별 이탈 수가 달라 결과를 볼 때 이 점을 함께 고려해야 합니다.",
+        "alt": "무작위 배정부터 최종 분석까지 참가자 수를 보여주는 CONSORT 흐름도"
+      }
+    ],
+    "faq": [
+      {
+        "question": "이 연구를 보면 수기치료와 운동 중 하나만 하면 되나요?",
+        "answer": "이 연구는 두 치료 중 하나가 낫다고 결론 내리지 않았습니다. 12주까지 두 치료의 차이는 없었고, 수기치료는 통증 지표가, 운동은 일상 기능 점수가 더 빨리 좋아지는 경향만 있었습니다. 어떤 방식이 맞는지는 증상과 생활 패턴에 따라 달라질 수 있습니다."
+      },
+      {
+        "question": "가짜 치료군과 비교했다는 점이 왜 중요한가요?",
+        "answer": "통증은 치료받는다는 기대만으로도 달라질 수 있어 가짜 치료와 비교해야 실제 치료 영향을 가늠할 수 있습니다. 이 연구에서는 두 치료군이 가짜 치료군보다 통증 척도와 기능 점수가 더 좋아졌습니다. 다만 치료 1주 시점의 통증 척도는 차이가 뚜렷하지 않았습니다."
+      }
+    ],
+    "paper": {
+      "doi": "10.1186/s13063-020-04610-w",
+      "pmcid": "PMC7385865",
+      "pmid": "32723399",
+      "date": "2020-07-28",
+      "types": [
+        "Comparative Study",
+        "Journal Article",
+        "Randomized Controlled Trial"
+      ],
+      "title": "Manual therapy versus therapeutic exercise in non-specific chronic neck pain: a randomized controlled trial.",
+      "citations": 95,
+      "citationSource": "Crossref",
+      "checkedAt": "2026-10-24T09:04:56.693Z",
+      "authors": [
+        "Bernal-Utrera Carlos",
+        "Gonzalez-Gerez Juan Jose",
+        "Anarte-Lazo Ernesto",
+        "Rodriguez-Blanco Cleofas"
+      ],
+      "journal": "Trials",
+      "volume": "21",
+      "issue": "",
+      "pages": "682",
+      "abstract": "Background Nonspecific chronic neck pain is a fairly common disorder that causes a great impact, and it is greatly influenced by psychosocial factors. Among a number of treatment modalities described for its management, the most common approach is based on manual therapy and specific therapeutic exercise, which have shown a moderate effect on subjects with chronic non-specific neck pain. However, the effect times of these treatments have not been accurately detailed. Our study aims to break down and compare the effects of two experimental treatments based on manual therapy and therapeutic exercise. Methods The short-term and mid-term changes produced by different therapies on subjects with non-specific chronic neck pain were studied. The sample was randomized divided into three groups: manual therapy, therapeutic exercise, and placebo. As dependent variables of our research, we studied (a) pain, based on the visual analog scale and the pressure pain threshold, and (b) cervical disability, through the Neck Disability Index (NDI). Outcomes were registered on week 1, week 4, and week 12. The findings were analyzed statistically considering a 5% significance level ( P ≤ 0.05). Results No statistically significant differences ( P 0.05) were obtained between the experimental groups, if they exist against the control group. Nonetheless, we found that manual therapy improved perceived pain before than therapeutic exercise, while therapeutic exercise reduced cervical disability before than manual therapy. Effect size ( R 2 ) shows medium and large effects for both experimental treatments. Conclusion There are no differences between groups in short and medium terms. Manual therapy achieves a faster reduction in pain perception than therapeutic exercise. Therapeutic exercise reduces disability faster than manual therapy. Clinical improvement could potentially be influenced by central processes. Trial registration Brazilian Clinical Trial Registry, RBR-2vj7sw. Registered on 28 November 2018.",
+      "conclusion": "Conclusion Both experimental treatments, manual therapy and therapeutic exercise, produce statistically significant and clinically relevant changes with respect to the control group. There are no statistically significant differences between the experimental groups in the short and medium terms. The therapeutic exercise group reduces cervical disability before manual therapy group does. The manual therapy group reduces pain perception before than therapeutic exercise group does.",
+      "licenseUrl": "http://creativecommons.org/licenses/by/4.0/",
+      "licenseText": "https://creativecommons.org/licenses/by/4.0/ Open Access This article is licensed under a Creative Commons Attribution 4.0 International License, which permits use, sharing, adaptation, distribution and reproduction in any medium or format, as long as you give appropriate credit to the original author(s) and the source, provide a link to the Creative Commons licence, and indicate if changes were made. The images or other third party material in this article are included in the article's Creative Commons licence, unless indicated otherwise in a credit line to the material. If material is not included in the article's Creative Commons licence and your intended use is not permitted by statutory regulation or exceeds the permitted use, you will need to obtain permission directly from the copyright holder. To view a copy of this licence, visit http://creativecommons.org/licenses/by/4.0/ . The Creative Commons Public Domain Dedication waiver ( http://creativecommons.org/publicdomain/zero/1.0/ ) applies to the data made available in this article, unless otherwise stated in a credit line to the data.",
+      "sourceUrl": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC7385865/fullTextXML",
+      "sourceHash": "fc85aa5bd386d662728a2c8578f9a9a8076fa6a1d6c6f7a2908097410e9343e9",
+      "figureCount": 1
+    },
+    "verification": {
+      "type": "automated",
+      "model": "claude-opus-5-5",
+      "writerModel": "claude-sonnet-5-5",
+      "checkedAt": "2026-10-24T09:06:00.670Z",
       "checks": {
         "numbers": true,
         "methods": true,
