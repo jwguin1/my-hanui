@@ -20,4 +20,4 @@ export function getResearchArticles(category?:ResearchCategory){return (raw as R
 export function getResearchArticle(slug:string){return getResearchArticles().find(a=>a.slug===slug);}
 export function researchUrl(a:ResearchArticle){return `${RESEARCH_ORIGIN}/articles/${a.slug}`;}
 export function displayDate(date:string){return new Intl.DateTimeFormat('ko-KR',{year:'numeric',month:'long',day:'numeric',timeZone:'Asia/Seoul'}).format(new Date(date));}
-export function reference(a:ResearchArticle){const p=a.paper;return `${p.authors.slice(0,6).map(n=>n.replace(/[.]+$/,'')).join(', ')}${p.authors.length>6?', et al.':''}. ${p.title} ${p.journal}. ${p.date.slice(0,4)};${p.volume}${p.issue?`(${p.issue})`:''}${p.pages?`:${p.pages}`:''}. doi:${p.doi}.`;}
+export function reference(a:ResearchArticle){const p=a.paper;return `${p.authors.slice(0,6).map(n=>n.replace(/[.]+$/,'')).join(', ')}${p.authors.length>6?', et al.':''}. ${p.title.replace(/[.]+$/,'')}. ${p.journal}. ${p.date.slice(0,4)};${p.volume}${p.issue?`(${p.issue})`:''}${p.pages?`:${p.pages}`:''}. doi:${p.doi}.`;}
