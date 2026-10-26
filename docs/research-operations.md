@@ -18,11 +18,13 @@ Only explicit CC BY (2.0–4.0) or CC0 licenses pass. Source DOI, full methods/r
 
 ## Operate / pause / correct
 
-Open https://github.com/jwguin1/my-hanui/actions/workflows/research-publish.yml in the clinic's GitHub account. Run workflow → validate checks existing content without generating or publishing. Publish requires category and publication date. Disable workflow pauses automatic generation. Re-enable to resume; do not create a duplicate schedule.
+Open https://github.com/jwguin1/my-hanui/actions/workflows/research-publish.yml in the clinic's GitHub account. Run workflow → validate checks existing content without generating or publishing. Prepare resumes the same automatic queue selection as the daily schedule, without overriding a date or category. Publish requires category and publication date. Disable workflow pauses automatic generation. Re-enable to resume; do not create a duplicate schedule.
 
 For an article correction, edit its object in src/data/research-articles.json and update updatedAt. Set status to draft or withdrawn to remove it from rendered pages, listing, sitemap and RSS; scheduled entries only appear at publishedAt. A licensed original remains in version history. Delete no shared assets without checking references. Human review is added only after actual review, as humanReview: {name, date}. This is optional and never AI-generated.
 
-Tests: node --test scripts/research/core.test.mjs; node scripts/research/validate.mjs; npx tsc --noEmit --incremental false; npm run build. Check deployed root/category/article/sitemap/feed, correct canonical hostname, mobile readability and full-size figures. Full-site deployment failure must be fixed before considering a scheduled article published.
+Tests: node --test scripts/research/*.test.mjs; node scripts/research/validate.mjs; npx tsc --noEmit --incremental false; npm run build. Check deployed root/category/article/sitemap/feed, correct canonical hostname, mobile readability and full-size figures. Full-site deployment failure must be fixed before considering a scheduled article published.
+
+The writer receives the complete source body once, with evidence paragraph IDs embedded as markers. Revision and independent review use the same IDs instead of repeating long quotes; stored evidence still contains the exact original paragraph. Writer evidence stays within 3–8 items in both initial and revision requests. A schema violation permits one bounded format repair, still charged to the existing run budget and followed by the normal source and independent-review checks. Budget exhaustion stops further candidate processing. No source, license, figure, or review gate is relaxed.
 
 ## Launch verification — 2026-10-24
 

@@ -45,7 +45,7 @@ console.log('Ranked candidates',category,candidates.length);
       const figures=await saveAssets(paper,images);
       articles.push({slug:`pmid-${c.pmid}`,category,status:'published',publishedAt,updatedAt:publishedAt,lastSourceCheck:new Date().toISOString(),...draft,figures:figures.map(f=>({...f,...draft.figures.find(d=>d.id===f.id)})),paper:{...c,authors:paper.authors,journal:paper.journal,volume:paper.volume,issue:paper.issue,pages:paper.pages,abstract:paper.abstract,conclusion:paper.conclusion,licenseUrl:paper.licenseUrl,licenseText:paper.licenseText,sourceUrl:paper.sourceUrl,sourceHash:paper.sourceHash,figureCount:paper.figures.length},verification:{type:'automated',model:config.reviewModel,writerModel:config.model,checkedAt:new Date().toISOString(),checks:review.checks}});
       success=true;break;
-    }catch(e){failures.push({pmcid:c.pmcid,reason:e.message.slice(0,700)});console.log('Held',c.pmcid,e.message.slice(0,250));}
+    }catch(e){failures.push({pmcid:c.pmcid,reason:e.message.slice(0,700)});console.log('Held',c.pmcid,e.message.slice(0,250));if(e.message==='Run AI usage budget reached')break;}
   }
 }
 // Reload before saving so an independent local seed run cannot replace another category.

@@ -7,9 +7,9 @@ on:
   workflow_dispatch:
     inputs:
       mode:
-        description: 'validate = check existing posts only; publish = prepare the selected date'
+        description: 'validate = check only; prepare = resume automatic queue; publish = selected date'
         type: choice
-        options: [validate, publish]
+        options: [validate, prepare, publish]
         default: validate
       category:
         type: choice
@@ -37,16 +37,17 @@ jobs:
           node-version: '22'
           cache: npm
       - run: npm ci
-      - run: node --test scripts/research/core.test.mjs
+      - run: node --test scripts/research/*.test.mjs
       - name: Collect, write and independently verify
-        if: github.event_name == 'schedule' || inputs.mode == 'publish'
+        if: github.event_name == 'schedule' || inputs.mode == 'publish' || inputs.mode == 'prepare'
         env:
           ANTHROPIC_API_KEY: ${{ secrets.RESEARCH_ANTHROPIC_API_KEY }}
           MANUAL_CATEGORY: ${{ inputs.category }}
           MANUAL_DATE: ${{ inputs.publication_date }}
           EVENT_NAME: ${{ github.event_name }}
+          RUN_MODE: ${{ inputs.mode }}
         run: |
-          if [ "$EVENT_NAME" = "schedule" ]; then
+          if [ "$EVENT_NAME" = "schedule" ] || [ "$RUN_MODE" = "prepare" ]; then
             node scripts/research/run.mjs
           else
             if ! [[ "$MANUAL_DATE" =~ ^[0-9]{4}-[0-9]{2}-[0-9]{2}$ ]]; then
