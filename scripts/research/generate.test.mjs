@@ -84,6 +84,6 @@ test('format repair cannot bypass evidence validation or independent medical rev
 test('budget exhaustion prevents another paid call including a format repair',async t=>{
   const requests=provider(t,[]);
   usage.input=config.maxRunInputTokens;
-  await assert.rejects(()=>generate(paper,'skin',[]),/usage budget reached/);
+  await assert.rejects(()=>generate(paper,'skin',[]),/remaining budget/);
   assert.equal(requests.length,0);
 });

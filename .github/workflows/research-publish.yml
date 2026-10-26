@@ -64,7 +64,7 @@ jobs:
         run: |
           git config user.name "$(git log -1 --format=%an)"
           git config user.email "$(git log -1 --format=%ae)"
-          git add src/data/research-articles.json public/research-assets
+          git add src/data/research-articles.json src/data/research-attempts.json public/research-assets
           if ! git diff --cached --quiet; then
             git commit -m "Publish verified research note"
             git pull --rebase origin main

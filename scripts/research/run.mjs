@@ -3,8 +3,11 @@ import {config,categories} from './config.mjs';
 import {nextPublicationSlot,rankCandidate} from './core.mjs';
 import {discover,getPaper,crossref,checkPubMedNotice} from './sources.mjs';
 import {prepareFigures,generate,saveAssets,usage} from './generate.mjs';
+import {isCandidateHeld,holdCandidate} from './attempt-state.mjs';
 const file='src/data/research-articles.json';
 const articles=JSON.parse(await fs.readFile(file,'utf8'));
+const stateFile='src/data/research-attempts.json';
+let attemptState=JSON.parse(await fs.readFile(stateFile,'utf8'));
 async function persist(){
   const latest=JSON.parse(await fs.readFile(file,'utf8'));
   const merged=new Map(latest.map(a=>[a.slug,a]));
@@ -36,6 +39,7 @@ console.log('Ranked candidates',category,candidates.length);
 {
   for(const c of candidates){
     if(attempts>=config.maxAttempts)break;
+    if(isCandidateHeld(attemptState,c.pmcid)){console.log('Previously held',c.pmcid);continue;}
     try{
       const paper=await getPaper(c);
       if(category==='korean'&&!/acupunct|Chinese (?:herbal )?medicine|Korean medicine|Kampo|moxibustion/i.test(paper.title+' '+paper.abstract))throw Error('Outside Korean medicine clinical scope');
@@ -45,7 +49,12 @@ console.log('Ranked candidates',category,candidates.length);
       const figures=await saveAssets(paper,images);
       articles.push({slug:`pmid-${c.pmid}`,category,status:'published',publishedAt,updatedAt:publishedAt,lastSourceCheck:new Date().toISOString(),...draft,figures:figures.map(f=>({...f,...draft.figures.find(d=>d.id===f.id)})),paper:{...c,authors:paper.authors,journal:paper.journal,volume:paper.volume,issue:paper.issue,pages:paper.pages,abstract:paper.abstract,conclusion:paper.conclusion,licenseUrl:paper.licenseUrl,licenseText:paper.licenseText,sourceUrl:paper.sourceUrl,sourceHash:paper.sourceHash,figureCount:paper.figures.length},verification:{type:'automated',model:config.reviewModel,writerModel:config.model,checkedAt:new Date().toISOString(),checks:review.checks}});
       success=true;break;
-    }catch(e){failures.push({pmcid:c.pmcid,reason:e.message.slice(0,700)});console.log('Held',c.pmcid,e.message.slice(0,250));if(e.message==='Run AI usage budget reached')break;}
+    }catch(e){
+      failures.push({pmcid:c.pmcid,reason:e.message.slice(0,700)});console.log('Held',c.pmcid,e.message.slice(0,250));
+      attemptState=holdCandidate(attemptState,c.pmcid,category,e);
+      await fs.writeFile(stateFile,JSON.stringify(attemptState,null,2)+'\n');
+      if(e.message==='Run AI usage budget reached')break;
+    }
   }
 }
 // Reload before saving so an independent local seed run cannot replace another category.
