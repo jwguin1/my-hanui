@@ -5,7 +5,7 @@
     "status": "published",
     "publishedAt": "2026-10-24T08:29:28.843Z",
     "updatedAt": "2026-10-24T08:59:21.741Z",
-    "lastSourceCheck": "2026-10-26T00:19:20.725Z",
+    "lastSourceCheck": "2026-10-26T00:25:29.296Z",
     "title": "허리 통증, 전 세계 진료지침은 어떤 치료를 권고할까요?",
     "summary": "허리가 아플 때 쉬어야 할까요, 움직여야 할까요? 15개국의 진료지침 22개를 비교한 연구에서 운동·침·도수치료의 권고와 차이를 살펴봅니다.",
     "question": "허리 통증이 생겼을 때 전 세계 의료 지침들은 어떤 치료를 권고하고 있으며, 지침마다 차이가 있나요?",
@@ -215,7 +215,7 @@
     "status": "published",
     "publishedAt": "2026-10-24T08:54:20.207Z",
     "updatedAt": "2026-10-24T09:03:20.640Z",
-    "lastSourceCheck": "2026-10-26T00:19:21.002Z",
+    "lastSourceCheck": "2026-10-26T00:25:29.539Z",
     "title": "매달 반복되는 생리통, 침·지압과 약용식물 연구는 무엇을 보여줄까요?",
     "summary": "2019년 문헌고찰은 생리통 치료 연구 17편을 살펴봤습니다. 침·지압과 약용식물의 가능성, 진료를 선택할 때 확인할 점을 정리합니다.",
     "question": "진통제 외에 침·지압이나 약용식물도 생리통 치료의 선택지가 될까요?",
@@ -318,7 +318,7 @@
     "status": "published",
     "publishedAt": "2026-10-24T09:00:43.027Z",
     "updatedAt": "2026-10-24T09:03:20.642Z",
-    "lastSourceCheck": "2026-10-26T00:19:21.241Z",
+    "lastSourceCheck": "2026-10-26T00:25:29.721Z",
     "title": "얼굴 처짐에 초음파 리프팅(MFU)을 1회 받으면 얼마나 좋아지고, 어떤 이상반응이 있을까요?",
     "summary": "16개 연구를 종합하니 1회 시술 90일 뒤 전문가 평가로 92%에서 탄력 개선이 있었지만 대부분 약간~중간 정도였고, 처짐이 심하거나 BMI가 30을 넘으면 효과가 줄었습니다.",
     "question": "초음파 리프팅(MFU)을 한 번 받으면 얼굴 피부 처짐이 실제로 얼마나 개선되고, 어떤 불편이나 이상반응이 생길 수 있나요?",
@@ -453,7 +453,7 @@
     "status": "published",
     "publishedAt": "2026-10-26T09:00:00+09:00",
     "updatedAt": "2026-10-26T09:00:00+09:00",
-    "lastSourceCheck": "2026-10-26T00:19:23.131Z",
+    "lastSourceCheck": "2026-10-26T00:25:31.514Z",
     "title": "만성 목 통증, 수기치료와 목 운동 중 무엇이 더 빨리 도움이 될까요?",
     "summary": "만성 목 통증 성인 69명을 3군으로 나눠 12주간 비교했습니다. 수기치료와 운동 모두 가짜 치료보다 나았고, 두 치료의 4·12주 차이는 없었으며 속도에서만 차이가 있었습니다.",
     "question": "오래된 목 통증에는 수기(도수)치료와 목 운동 중 어느 쪽이 더 효과적이고, 효과는 언제 나타날까요?",
@@ -567,6 +567,227 @@
       "model": "claude-opus-5-5",
       "writerModel": "claude-sonnet-5-5",
       "checkedAt": "2026-10-24T09:06:00.670Z",
+      "checks": {
+        "numbers": true,
+        "methods": true,
+        "causality": true,
+        "clinicalRelevance": true,
+        "figures": true,
+        "noPatientIdentifyingImages": true,
+        "noInventedCredentials": true
+      }
+    }
+  },
+  {
+    "slug": "pmid-39540440",
+    "category": "skin",
+    "status": "published",
+    "publishedAt": "2026-10-28T09:00:00+09:00",
+    "updatedAt": "2026-10-28T09:00:00+09:00",
+    "lastSourceCheck": "2026-10-26T00:26:38.015Z",
+    "title": "초음파 리프팅(MFU-V)은 처짐과 탄력 개선에 도움이 될까? 42개 연구 종합 분석",
+    "summary": "42개 연구를 종합하니 시술 후 전반적 개선은 의료진 평가 89%, 환자 평가 84%였습니다. 다만 대조군 없는 연구가 많고 통증은 중등도였으며, 중립 응답 여부에 따라 만족도가 달라졌습니다.",
+    "question": "미세집속초음파(MFU-V) 리프팅을 받으면 실제로 얼마나 좋아지고, 통증이나 이상반응은 어떤가요?",
+    "answer": "42개 연구를 종합한 결과, 시술 전과 비교해 어느 정도 개선됐다고 평가한 비율은 의료진 기준 89%, 환자 기준 84%였습니다. 통증은 0~10점 중 평균 4.85점으로 중등도였고, 붉어짐·부기·멍·압통이 흔했지만 대부분 경증~중등도였습니다. 다만 대조군이 없는 연구가 많아 효과가 다소 과대평가됐을 수 있습니다.",
+    "population": "성인(18세 이상) 대상 MFU-V 단독 시술 연구 42편이 포함되었습니다. 대조 임상시험 2편, 관찰연구 9편, 시술 전후 비교 연구 31편이었습니다. 얼굴·목이 중심이었고 데콜테, 팔, 복부, 엉덩이, 무릎 등도 있었습니다. 대부분 여성이었고 추적기간은 즉시 평가부터 최대 약 365일까지, 약 80%는 6개월 이내였습니다.",
+    "methods": "연구팀은 5개 데이터베이스를 2023년 8월까지 검색해 4019건의 문헌을 검토했습니다. 두 명 이상이 독립적으로 선별했고 비뚤림 위험도 평가했습니다. 개선도, 만족도, 통증 점수는 연구 간 차이를 고려하는 무작위효과모형으로 합쳤습니다. 무작위 시험도 MFU-V 시술군의 시술 전후 자료만 사용했습니다.",
+    "results": "전반적 미용 개선은 의료진 평가에서 411명 중 89%(95% CI 81~94%), 환자 평가에서 312명 중 84%(73~91%)가 시술 전보다 어느 정도 나아졌다고 했습니다. 만족도는 326명 기준 84%(61~94%)였지만, 중립 응답 선택지가 있던 연구에서는 62%(37~82%, 172명)로 낮아졌고 선택지가 없던 연구는 91%였습니다. 얼굴·목 시술의 만족도는 93%, 그 외 부위는 63%였습니다.\n\n통증은 785명 기준 평균 4.85점(4.35~5.35)으로 중등도였습니다. 얼굴·목은 4.62점, 그 외 부위는 5.58점이었습니다. 이상반응은 붉어짐, 부기, 멍, 압통이 흔했고 대부분 경증~중등도였습니다. 포함 연구들은 신경·근육 기능 이상, 흉터, 궤양, 색소 변화 같은 장기 후유증을 보고하지 않았습니다. 주름과 탄력 지표도 대체로 좋아졌다고 보고됐으나 측정법이 제각각이라 하나로 합치지는 못했습니다.",
+    "meaning": "MFU-V는 시술 후 일정 기간 안에 많은 사람이 개선을 느끼거나 평가받았고 중대한 문제도 두드러지지 않았습니다. 그러나 이 수치는 같은 사람의 시술 전후 비교라서, 시술 자체의 순수한 효과를 확정한 것은 아닙니다. 기대치와 부위에 따라 만족도가 달라질 수 있고, 시술 중 통증도 감안해야 합니다.",
+    "limitations": "대조군이 없거나 무작위 배정과 눈가림이 없는 연구가 많아 효과가 과대평가됐을 수 있습니다. 중립 응답이 만족으로 분류됐을 가능성이 있고, 일부 분석에서는 출판 편향이 시사됐습니다. 연구비는 제조사 관련 기업이 지원했으며 대부분 6개월 이내 추적이어서 장기 효과는 불확실합니다.",
+    "consultation": "얼굴선 처짐이나 턱밑 탄력 저하가 고민이라면, 이전에 받은 리프팅 시술 이력과 사진, 시술 때 통증을 어떻게 견뎠는지 정리해 오세요. 일산한의원(이마트 풍산점 3층, 풍산역 2번 출구 도보 1분)에서는 초음파 계열 시술인 슈링크 유니버스를 진료하고 있어 피부 상태를 보고 적합 여부를 상담할 수 있습니다. 다만 이 연구는 주로 다른 기기(Ulthera)를 다뤘으므로 원내 시술 효과와 같다고 볼 수 없습니다. 카카오톡으로도 문의하실 수 있습니다.",
+    "tags": [
+      "초음파리프팅",
+      "MFU-V",
+      "피부탄력",
+      "메타분석",
+      "피부처짐",
+      "시술통증",
+      "환자만족도"
+    ],
+    "evidence": [
+      {
+        "claim": "4019건의 문헌을 검토해 42개 연구가 포함되었다.",
+        "quote": "Among 4019 identified references, 42 studies were included. Of these, 23 reported on global/overall aesthetic improvement as scored by investigators and 21 as scored by patients, 18 reported on patient satisfaction, and 33 reported on pain scores following MFU-V treatment. Eleven studies reported on wrinkles, 18 reported on skin firmness and elasticity, and 10 described other skin quality parameters like roughness, texture, and pigmentation. Additionally, 4 studies reported on on eyebrow height in facial regions. For the quantitative analysis, 13 studies were part of the meta-analysis of global/overall aesthetic improvement scored by investigators and 13 scored by patients, 10 for patient satisfaction scores, and 18 for pain scores. The remaining findings contributed to the narrative synthesis ( Figure 1 )."
+      },
+      {
+        "claim": "의료진 평가에서 411명의 89%, 환자 평가에서 312명의 84%가 시술 후 어느 정도 개선을 보였다.",
+        "quote": "Pooled results of overall aesthetic improvement in 411 patients, as assessed by investigators, showed that 89% (95% CI: 81%-94%; I 2 : 63%, Figure 3A ) of patients were determined to have experienced some level of improvement following MFU-V treatment. Pooled estimates of self-reported overall aesthetic improvement by 312 patients indicated that 84% (95% CI: 73%-91%; I 2 : 64%, Figure 3B ) experienced some degree of improvement following treatment. Similar findings were obtained upon analysis by treated areas, including the facial and neck regions and other treated sites ( Figure 4A, B )."
+      },
+      {
+        "claim": "만족도는 326명 기준 84%였고 얼굴·목 93%, 그 외 부위 63%였다.",
+        "quote": "The meta-analysis, including 326 patients, showed that 84% (95% CI: 61-94%; I 2 : 52%, Figure 3C ) expressed satisfaction with the results. The satisfaction was more prominent for patients receiving treatment in the facial and neck regions (pooled estimate: 93% (95% CI: 61%-99%); I 2 : 69%, n = 153, Figure 4C ) than in other regions (pooled estimate: 63% (95% CI: 51%-74%); I 2 : 0.0%, n = 173, Figure 4C )."
+      },
+      {
+        "claim": "중립 응답이 선택지에 있던 연구에서 만족도는 62%, 없던 연구는 91%였다.",
+        "quote": "The analysis by study location did not show any significant differences by country, except for the meta-analysis on patient satisfaction, which showed more satisfaction for studies conducted in countries other than the USA ( Supplemental Figures 1, 2 , located online at https://doi.org/10.1093/asj/sjae228 ). Similarly, the patient satisfaction analysis showed that among studies in which a neutral response was included, 62% (95% CI: 37%-82%; I 2 : 3%, n = 172) of participants were satisfied with the results; in contrast to 91% (95% CI: 46%-99%; I 2 : 24%, n = 136) in studies that did not include a neutral response ( Supplemental Figure 1D )."
+      },
+      {
+        "claim": "785명 기준 평균 통증 점수는 0~10점 중 4.85점이었다.",
+        "quote": "Our meta-analysis, including 785 patients, over a range 0-10 (0 no pain, 10 severe pain), showed a mean pain score of 4.85 (95% CI: 4.35, 5.35; I 2 : 97%, Figure 3D ) following MFU-V treatment. Stratifying by treated sites, patients treated in the facial and neck regions reported a mean pain score of 4.62 (95% CI: 4.01, 5.24; I 2 : 97%, n = 536, Figure 4D ), whereas those treated in other regions reported a mean score of 5.58 (95% CI: 5.01, 6.16; I 2 : 77%, n = 249, Figure 4D )."
+      },
+      {
+        "claim": "흔한 이상반응은 붉어짐, 부기, 멍, 압통이며 대부분 경증~중등도였고 장기 후유증은 보고되지 않았다.",
+        "quote": "Erythema, edema, and swelling followed by bruising and tenderness were among the most reported adverse events, all mild or moderate in severity. All studies reported no acute skin damage or long-term sequelae such as nerve or muscle dysfunction, scarring, ulceration, hypopigmentation, or hyperpigmentation ( Supplemental Table 10 , located online at https://doi.org/10.1093/asj/sjae228 )."
+      },
+      {
+        "claim": "비무작위 연구는 모두 교란 비뚤림 위험이 있었고 대부분 결과 측정에서도 비뚤림이 있었다.",
+        "quote": "In nonrandomized studies, which include nonrandomized clinical trials, pre/post interventional studies, and observational research, all were subject to confounding bias, and the majority exhibited bias in outcome measurement. Among randomized clinical trials, most concerns arose from the randomization process, deviation in intended intervention, and bias in outcome measurement ( Figure 2A, 2B , and Supplemental Tables 4, 5 located online at https://doi.org/10.1093/asj/sjae228 )."
+      },
+      {
+        "claim": "대조군 부재와 무작위·눈가림 부족으로 효과 결론에 한계가 있었다.",
+        "quote": "Nevertheless, there also were some limitations. Many studies lacked control groups, hindering robust comparisons and conclusions about MFU-V effectiveness. Additionally, the absence of randomization and blinding procedures in numerous studies raised concerns about measurement biases and confounding factors. Insufficient reporting of participant ethnicity limited our assessment of demographic influences on outcomes. Due to variations in assessment tools and reported estimates, we were unable to include all studies in the analysis of overall aesthetic improvement scores, satisfaction, and pain. However, the findings from these studies were summarized and found to be consistent with the results of the meta-analysis. Furthermore, the heterogeneity in pain management approaches, particularly in medication type, application methods, and dosages, prevented us from conducting a subgroup analysis based on anesthetic usage. Additionally, few studies accounted for confounders, with only a subset conducting multivariable regression or providing correlations between outcomes and relevant variables. The severity of skin laxity of the patients at the beginning of a study may influence the effectiveness of the therapy. 31 , 58 It can also reduce the perceived improvement following MFU-V. Additionally, body mass index (BMI) can impact the therapeutic effect of cosmetic procedures. However, among the included studies, only 2 studies reported on the influence of BMI. 22 , 31 Such factors should be assessed at study entry and monitored throughout the research period, and their potential impact on study outcomes should be explored."
+      }
+    ],
+    "figures": [
+      {
+        "id": "sjae228-F1",
+        "label": "Figure 1.",
+        "caption": "Flowchart of identification, screening, eligibility, inclusion, and exclusion of retrieved studies.",
+        "images": [
+          {
+            "src": "/research-assets/PMC11834976/sjae228-F1-1.webp",
+            "preview": "/research-assets/PMC11834976/preview-sjae228-F1-1.webp",
+            "width": 694,
+            "height": 931,
+            "originalHash": "b2e94dd2c6d4a30b790a24016337fe4c573a5e8cb94b2ed010dbec8cd4ffbe7e"
+          },
+          {
+            "src": "/research-assets/PMC11834976/sjae228-F1-2.webp",
+            "preview": "/research-assets/PMC11834976/preview-sjae228-F1-2.webp",
+            "width": 100,
+            "height": 134,
+            "originalHash": "244a2612dbd45f471c5a20e96a3bf92d5e0f355ca7fa50211cb3dfef76ed0b40"
+          }
+        ],
+        "explanation": "문헌 검색부터 최종 포함까지의 흐름도입니다. 약 7,900여 건에서 중복을 제거하고 4019건을 검토해 최종 연구를 골랐습니다. 다른 시술과 병행한 연구와 학회 초록 등은 제외되었습니다. 결과의 바탕이 된 연구가 어떻게 선별됐는지 보여줍니다.",
+        "alt": "연구 선별 과정을 보여주는 PRISMA 흐름도"
+      },
+      {
+        "id": "sjae228-F2",
+        "label": "Figure 2.",
+        "caption": "Risk of bias summary of (A) included nonrandomized studies using risk of bias in nonrandomized studies (ROBINS-I) and (B) randomized controlled studies using Cochrane Collaboration's Tool Risk of Bias 2 (ROB2). The shaded regions in (A) indicate “no information” for assessing the corresponding domain in certain studies.",
+        "images": [
+          {
+            "src": "/research-assets/PMC11834976/sjae228-F2-1.webp",
+            "preview": "/research-assets/PMC11834976/preview-sjae228-F2-1.webp",
+            "width": 696,
+            "height": 870,
+            "originalHash": "ab5de791f83c0467fc2bb2d09b9c28db0ed79806d570f456d767791b5af5cdfe"
+          },
+          {
+            "src": "/research-assets/PMC11834976/sjae228-F2-2.webp",
+            "preview": "/research-assets/PMC11834976/preview-sjae228-F2-2.webp",
+            "width": 100,
+            "height": 125,
+            "originalHash": "a50a5f55957295561675bb466aae629468e96725eb4a74c9bd45461b3f7795fb"
+          }
+        ],
+        "explanation": "포함된 연구의 비뚤림 위험을 색으로 나타낸 그림입니다. 비무작위 연구(A)는 교란 요인 항목이 모두 높은 위험으로 표시됐고 결과 측정 항목도 대부분 높은 위험이었습니다. 무작위 시험(B)도 배정 과정과 결과 측정에서 우려가 있었습니다. 즉 좋은 결과를 해석할 때 주의가 필요하다는 뜻입니다.",
+        "alt": "비무작위 연구와 무작위 시험의 비뚤림 위험 요약 막대그래프"
+      },
+      {
+        "id": "sjae228-F3",
+        "label": "Figure 3.",
+        "caption": "Summary proportions and pooled estimates of (A) investigator global aesthetic improvement, (B) patient global aesthetic improvement, (C) patient satisfaction, and (D) pain following MFU-V treatment. MFU-V, microfocused ultrasound with visualization.",
+        "images": [
+          {
+            "src": "/research-assets/PMC11834976/sjae228-F3-1.webp",
+            "preview": "/research-assets/PMC11834976/preview-sjae228-F3-1.webp",
+            "width": 788,
+            "height": 891,
+            "originalHash": "128f352ac98b2154f1097de25a09b96f88155a8953f4b2d534f13905dec79b7f"
+          },
+          {
+            "src": "/research-assets/PMC11834976/sjae228-F3-2.webp",
+            "preview": "/research-assets/PMC11834976/preview-sjae228-F3-2.webp",
+            "width": 100,
+            "height": 113,
+            "originalHash": "cdd1011184c39ff3379867a6310c109c356df53ec730981e8dbf7a047992d0c1"
+          }
+        ],
+        "explanation": "연구별 결과와 합친 추정치를 보여주는 숲 그림입니다. A와 B는 의료진·환자가 평가한 전반적 개선 비율이며 각각 89%, 84%입니다. C는 만족도 84%, D는 통증 평균 4.85점입니다. 연구마다 결과 폭이 달라(특히 통증) 개인차와 연구 방법 차이가 크다는 점을 알려줍니다.",
+        "alt": "개선도, 만족도, 통증 점수를 연구별로 합친 숲 그림"
+      },
+      {
+        "id": "sjae228-F4",
+        "label": "Figure 4.",
+        "caption": "Summary proportions and pooled estimates of (A) investigator global aesthetic improvement, (B) patient global aesthetic improvement, (C) patient satisfaction, and (D) pain following MFU-V treatment per treated site. MFU-V, microfocused ultrasound with visualization.",
+        "images": [
+          {
+            "src": "/research-assets/PMC11834976/sjae228-F4-1.webp",
+            "preview": "/research-assets/PMC11834976/preview-sjae228-F4-1.webp",
+            "width": 788,
+            "height": 648,
+            "originalHash": "80f870eff8aadee5f56472ae2753192c24525b1d7df27e4448ea77757c058f99"
+          },
+          {
+            "src": "/research-assets/PMC11834976/sjae228-F4-2.webp",
+            "preview": "/research-assets/PMC11834976/preview-sjae228-F4-2.webp",
+            "width": 100,
+            "height": 82,
+            "originalHash": "0aebf205c974828bb309edae93f0c2125259fe540bb15c74fe90b96c215187d5"
+          },
+          {
+            "src": "/research-assets/PMC11834976/sjae228-F4-3.webp",
+            "preview": "/research-assets/PMC11834976/preview-sjae228-F4-3.webp",
+            "width": 788,
+            "height": 596,
+            "originalHash": "0cddbd766df7b9b0373bb926181b8fb9fcf40bb04c7bbc0945cfe3d18b2fc239"
+          },
+          {
+            "src": "/research-assets/PMC11834976/sjae228-F4-4.webp",
+            "preview": "/research-assets/PMC11834976/preview-sjae228-F4-4.webp",
+            "width": 105,
+            "height": 79,
+            "originalHash": "2596cb35a8fdd6aab362f1e3131b84d1afa2829f54ee6265e05fc6e4656fa040"
+          }
+        ],
+        "explanation": "Figure 3의 결과를 얼굴·목과 그 외 부위로 나누어 비교한 그림입니다. 개선도는 두 부위가 비슷했지만, 만족도는 얼굴·목 93%, 그 외 부위 63%로 차이가 컸습니다. 통증은 얼굴·목 4.62점, 그 외 5.58점이었습니다. 시술 부위에 따라 기대할 수 있는 만족도와 통증이 다를 수 있음을 보여줍니다.",
+        "alt": "시술 부위별 개선도, 만족도, 통증 점수 하위분석 숲 그림"
+      }
+    ],
+    "faq": [
+      {
+        "question": "초음파 리프팅 결과가 좋다는 비율이 80%가 넘으면 대부분 효과를 본다고 이해해도 되나요?",
+        "answer": "그렇게 단정하기는 어렵습니다. 이 수치는 시술 전과 비교해 어느 정도라도 나아졌다는 응답을 합친 것이고 대조군이 없는 연구가 많았습니다. 중립 응답을 선택지로 준 연구에서는 만족도가 62%로 낮아졌습니다."
+      },
+      {
+        "question": "시술 중 통증과 시술 후 이상반응은 어느 정도인가요?",
+        "answer": "통증은 0~10점 중 평균 4.85점으로 중등도였습니다. 붉어짐, 부기, 멍, 압통이 흔했고 대부분 경증~중등도였습니다. 포함 연구에서는 신경 기능 이상이나 흉터 같은 장기 후유증이 보고되지 않았지만, 개인에 따라 다를 수 있습니다."
+      }
+    ],
+    "paper": {
+      "doi": "10.1093/asj/sjae228",
+      "pmcid": "PMC11834976",
+      "pmid": "39540440",
+      "date": "2025-02-18",
+      "types": [
+        "Journal Article",
+        "Systematic Review",
+        "Meta-Analysis"
+      ],
+      "title": "Microfocused Ultrasound With Visualization (MFU-V) Effectiveness and Safety: A Systematic Review and Meta-Analysis.",
+      "citations": 14,
+      "citationSource": "Crossref",
+      "checkedAt": "2026-10-26T00:25:34.567Z",
+      "authors": [],
+      "journal": "Aesthetic Surgery Journal",
+      "volume": "45",
+      "issue": "3",
+      "pages": "NP86",
+      "abstract": "Abstract Microfocused ultrasound with visualization (MFU-V) is an advanced, noninvasive cosmetic procedure widely performed for skin lifting and tightening. We performed a systematic review and meta-analysis to evaluate the aesthetic effectiveness, patient satisfaction, skin quality, and safety profile of MFU-V treatment. A comprehensive search of 5 bibliographic databases up to 2023 was conducted. Pooled effect estimates with random effects models and corresponding 95% confidence intervals were calculated. Out of 4019 references, 42 studies were included. Meta-analysis showed 89% of patients (95% CI: 81%-94%; I 2 : 63%, n = 411) demonstrated some degree of global aesthetic improvement, as assessed by investigators. Similarly, 84% of patients (95% CI: 73%-91%; I 2 : 64%, n = 312) reported improvement following treatment. Satisfaction of any level was reported by 84% of patients (95% CI: 61%-94%; I²: 52%, n = 326), and 62% (95% CI: 37%-82%; I²: 3%, n = 172) when “neutral” as a response option was provided for patients. Skin quality (eg, wrinkles, texture) also improved. Patients reported a pooled mean pain score of 4.85 (95% CI: 4.35, 5.35; I 2 : 97%, n = 785), indicating moderate pain. Common adverse events included erythema, edema, swelling, bruising, and tenderness, all of which were generally mild to moderate in severity. Overall, our analysis demonstrated a notable increase in global aesthetic improvement and patient satisfaction following MFU-V treatment, accompanied by moderate pain and a generally favorable safety profile. However, the potential misclassification of neutral responses as positive may result in an overestimation of the treatment's efficacy. These findings highlight the need for well-designed trials to further explore MFU-V's clinical applications. Level of Evidence: 3 (Therapeutic)",
+      "conclusion": "CONCLUSIONS Our analysis demonstrated an enhancement in global aesthetic score and patient satisfaction, accompanied by a moderate pain score, following MFU-V treatment. The evidence showed that skin quality parameters aligned with these outcomes and suggested a generally favorable safety profile. However, future studies should address the gaps identified in the current research, including the role of participant characteristics, confounders, and variability in assessment tools. Well-designed, controlled trials are needed to further explore MFU-V's efficacy and safety, with attention to these factors to refine and optimize its clinical applications.",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "licenseText": "This is an Open Access article distributed under the terms of the Creative Commons Attribution License ( https://creativecommons.org/licenses/by/4.0/ ), which permits unrestricted reuse, distribution, and reproduction in any medium, provided the original work is properly cited.",
+      "sourceUrl": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11834976/fullTextXML",
+      "sourceHash": "592f33c6da79b2edc8721e585c194eacfea3fcb4aa68ca793743a3c1b2efc98e",
+      "figureCount": 4
+    },
+    "verification": {
+      "type": "automated",
+      "model": "claude-opus-5-5",
+      "writerModel": "claude-sonnet-5-5",
+      "checkedAt": "2026-10-26T00:26:38.015Z",
       "checks": {
         "numbers": true,
         "methods": true,
