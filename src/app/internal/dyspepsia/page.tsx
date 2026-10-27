@@ -25,6 +25,7 @@ export default function DyspepsiaPage() {
       <h2 className="font-serif text-2xl font-semibold text-ink">어떤 불편이 이어지고 있나요?</h2>
       <div className="mt-6 grid gap-4 sm:grid-cols-2">{["조금만 먹어도 더부룩하고 오래 남는 느낌", "식후 명치가 답답하고 잦은 트림", "검사는 정상이지만 반복되는 소화불량", "긴장하거나 신경 쓸 때 심해지는 불편"].map(t => <p key={t} className="rounded-xl border border-line bg-card p-5 text-base text-ink">{t}</p>)}</div>
       <p className="mt-6 text-base leading-relaxed text-muted">갑자기 생긴 급체인지, 몇 달째 반복되는 불편인지부터 구분합니다. 내시경 결과와 복용 중인 약이 있다면 가져와 주세요.</p>
+      <Link href="/blog/체했을때-한의원-내과" className="mt-6 block rounded-xl border border-line bg-surface p-5 text-primary underline underline-offset-4">체했을 때 한의원과 내과, 어디로 가야 하나요? 위험 증상과 방문 전 준비 확인하기</Link>
     </section>
     <section id="process" className="scroll-mt-24 bg-[var(--surface)] px-6 py-12"><div className="mx-auto max-w-4xl">
       <h2 className="font-serif text-2xl font-semibold text-ink">첫 상담부터 경과 확인까지</h2>
