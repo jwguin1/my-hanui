@@ -5,7 +5,7 @@
     "status": "published",
     "publishedAt": "2026-10-24T08:29:28.843Z",
     "updatedAt": "2026-10-24T08:59:21.741Z",
-    "lastSourceCheck": "2026-10-26T00:25:29.296Z",
+    "lastSourceCheck": "2026-10-27T00:24:56.871Z",
     "title": "허리 통증, 전 세계 진료지침은 어떤 치료를 권고할까요?",
     "summary": "허리가 아플 때 쉬어야 할까요, 움직여야 할까요? 15개국의 진료지침 22개를 비교한 연구에서 운동·침·도수치료의 권고와 차이를 살펴봅니다.",
     "question": "허리 통증이 생겼을 때 전 세계 의료 지침들은 어떤 치료를 권고하고 있으며, 지침마다 차이가 있나요?",
@@ -215,7 +215,7 @@
     "status": "published",
     "publishedAt": "2026-10-24T08:54:20.207Z",
     "updatedAt": "2026-10-24T09:03:20.640Z",
-    "lastSourceCheck": "2026-10-26T00:25:29.539Z",
+    "lastSourceCheck": "2026-10-27T00:24:57.347Z",
     "title": "매달 반복되는 생리통, 침·지압과 약용식물 연구는 무엇을 보여줄까요?",
     "summary": "2019년 문헌고찰은 생리통 치료 연구 17편을 살펴봤습니다. 침·지압과 약용식물의 가능성, 진료를 선택할 때 확인할 점을 정리합니다.",
     "question": "진통제 외에 침·지압이나 약용식물도 생리통 치료의 선택지가 될까요?",
@@ -318,7 +318,7 @@
     "status": "published",
     "publishedAt": "2026-10-24T09:00:43.027Z",
     "updatedAt": "2026-10-24T09:03:20.642Z",
-    "lastSourceCheck": "2026-10-26T00:25:29.721Z",
+    "lastSourceCheck": "2026-10-27T00:24:57.649Z",
     "title": "얼굴 처짐에 초음파 리프팅(MFU)을 1회 받으면 얼마나 좋아지고, 어떤 이상반응이 있을까요?",
     "summary": "16개 연구를 종합하니 1회 시술 90일 뒤 전문가 평가로 92%에서 탄력 개선이 있었지만 대부분 약간~중간 정도였고, 처짐이 심하거나 BMI가 30을 넘으면 효과가 줄었습니다.",
     "question": "초음파 리프팅(MFU)을 한 번 받으면 얼굴 피부 처짐이 실제로 얼마나 개선되고, 어떤 불편이나 이상반응이 생길 수 있나요?",
@@ -453,7 +453,7 @@
     "status": "published",
     "publishedAt": "2026-10-26T09:00:00+09:00",
     "updatedAt": "2026-10-26T09:00:00+09:00",
-    "lastSourceCheck": "2026-10-26T00:25:31.514Z",
+    "lastSourceCheck": "2026-10-27T00:24:58.042Z",
     "title": "만성 목 통증, 수기치료와 목 운동 중 무엇이 더 빨리 도움이 될까요?",
     "summary": "만성 목 통증 성인 69명을 3군으로 나눠 12주간 비교했습니다. 수기치료와 운동 모두 가짜 치료보다 나았고, 두 치료의 4·12주 차이는 없었으며 속도에서만 차이가 있었습니다.",
     "question": "오래된 목 통증에는 수기(도수)치료와 목 운동 중 어느 쪽이 더 효과적이고, 효과는 언제 나타날까요?",
@@ -584,7 +584,7 @@
     "status": "published",
     "publishedAt": "2026-10-28T09:00:00+09:00",
     "updatedAt": "2026-10-28T09:00:00+09:00",
-    "lastSourceCheck": "2026-10-26T00:26:38.015Z",
+    "lastSourceCheck": "2026-10-27T00:24:58.449Z",
     "title": "초음파 리프팅(MFU-V)은 처짐과 탄력 개선에 도움이 될까? 42개 연구 종합 분석",
     "summary": "42개 연구를 종합하니 시술 후 전반적 개선은 의료진 평가 89%, 환자 평가 84%였습니다. 다만 대조군 없는 연구가 많고 통증은 중등도였으며, 중립 응답 여부에 따라 만족도가 달라졌습니다.",
     "question": "미세집속초음파(MFU-V) 리프팅을 받으면 실제로 얼마나 좋아지고, 통증이나 이상반응은 어떤가요?",
@@ -788,6 +788,233 @@
       "model": "claude-opus-5-5",
       "writerModel": "claude-sonnet-5-5",
       "checkedAt": "2026-10-26T00:26:38.015Z",
+      "checks": {
+        "numbers": true,
+        "methods": true,
+        "causality": true,
+        "clinicalRelevance": true,
+        "figures": true,
+        "noPatientIdentifyingImages": true,
+        "noInventedCredentials": true
+      }
+    }
+  },
+  {
+    "slug": "pmid-35462555",
+    "category": "korean",
+    "status": "published",
+    "publishedAt": "2026-10-30T09:00:00+09:00",
+    "updatedAt": "2026-10-30T09:00:00+09:00",
+    "lastSourceCheck": "2026-10-27T00:26:46.380Z",
+    "title": "알레르기 비염에 침 치료가 도움이 될까? 항히스타민제와 비교한 임상시험 30편 분석",
+    "summary": "성인 알레르기 비염에서 침은 무치료나 가짜 침보다 코 증상과 삶의 질에서 나았지만, 세티리진·로라타딘과는 뚜렷한 차이가 없었습니다. 다만 근거의 안정성은 약했습니다.",
+    "question": "알레르기 비염 증상을 줄이기 위해 침 치료를 받아볼 만한가요? 항히스타민제와 비교하면 어떤가요?",
+    "answer": "이 분석에 따르면 성인 알레르기 비염에서 침은 치료를 받지 않은 경우나 가짜 침보다 코 증상과 삶의 질이 더 좋았습니다. 세티리진·로라타딘과 비교했을 때는 임상 반응에서 뚜렷한 차이가 없어 효과가 비슷할 수 있다는 정도로 해석됩니다. 다만 추가 분석(TSA)에서 이 결과들은 견고하지 않았고, 어린이는 자료가 부족해 결론을 내기 어렵습니다.",
+    "population": "무작위 대조시험 30편, 총 4,413명이 포함되었습니다. 알레르기 비염으로 진단된 사람이 대상이었고 대부분 성인이었습니다. 시험은 중국 22편(2,360명), 호주 3편, 독일 3편, 한국 1편, 스웨덴 1편에서 이뤄졌고 치료 기간은 2~12주였습니다. 어린이 대상은 2편뿐이었습니다.",
+    "methods": "여러 의학 데이터베이스를 2018년 2월에 검색해 침을 무치료, 가짜 침, 항히스타민제 등과 비교한 시험을 골랐습니다. 두 명의 검토자가 독립적으로 선별하고 자료를 추출했으며 코크란 방법으로 편향 위험을 평가했습니다. 결과는 대조군 종류별로 나누어 합쳤고, 결과가 충분히 단단한지 알아보는 순차분석(TSA)도 시행했습니다. 평가 지표는 코 증상 점수(TNSS), 삶의 질 설문(RQLQ), 임상 반응, 이상반응이었습니다.",
+    "results": "침과 무치료(대기자)를 비교한 3편(1,112명)에서 삶의 질 점수는 침 쪽이 더 좋았습니다(SMD −0.95, 95% CI −1.17~−0.73).\n\n침과 가짜 침을 비교하면, 치료 후 RQLQ 코 증상 점수는 2편 489명에서 침 쪽이 0.60점 낮았고(95% CI −1.16~−0.04), 삶의 질은 3편 436명에서 SMD −0.26(−0.44~−0.07)이었습니다. 차이는 크지 않고 신뢰구간이 0에 가깝습니다. 4주나 8주 같은 시점별 분석에서는 결과가 엇갈렸습니다.\n\n침과 세티리진의 임상 반응은 588명에서 RR 1.10(0.96~1.26)으로 차이가 없었고, 로라타딘도 333명에서 RR 1.15(0.98~1.37)로 차이가 없었습니다. 본문에 따르면 TNSS 25% 이상 감소한 비율은 침 91.2%, 세티리진 90.6%였습니다. 두 비교 모두 TSA에서 견고하지 않다고 해석되었습니다.\n\n이상반응은 대기자 비교 시험에서 약 3%가량 가벼운 멍과 일시적 통증 등이 있었고, 다른 시험에서는 2명이 발진·가려움·피하출혈을 호소했습니다. 가짜 침 비교에서는 가벼운 불편감, 두통, 어지러움 등이 있었으나 두 군 사이에 뚜렷한 차이는 없었습니다. 어린이 시험에서는 가짜 침과의 차이가 확인되지 않았습니다(72명, MD −1.76, 95% CI −3.59~0.07).",
+    "meaning": "약을 먹기 부담스럽거나 비약물 치료를 함께 고려하는 성인에게는 침이 선택지가 될 수 있다는 근거입니다. 하지만 항히스타민제보다 낫다는 뜻은 아니며, 비슷할 가능성이 있다는 정도입니다. 침과 약을 함께 쓴 시험에서는 임상 반응이 더 높았다는 보고도 있으나 시험 수가 적었습니다. 증상 점수와 설문으로 평가한 결과이며, 면역 수치(IgE 등) 변화는 일관되지 않아 확정하기 어렵습니다.",
+    "limitations": "침 방법(일반 침, 전기침, 온침)과 혈자리, 횟수가 시험마다 달라 결과를 단순 비교하기 어렵습니다. 약과 비교한 시험은 모두 중국에서 이뤄졌고 편향 위험이 컸으며, 참가자와 시술자를 가리는 맹검이 어려운 시험이 많았습니다. 어린이 자료는 매우 부족했습니다.",
+    "consultation": "봄·가을마다 재채기와 코막힘이 반복되는데 약 때문에 졸리거나 약을 줄이고 싶다면, 복용 중인 약 이름과 기간, 알레르기 검사 결과, 증상이 심한 시기를 메모해 오시면 좋습니다. 일산한의원(이마트 풍산점 3층, 풍산역 2번 출구 도보 1분)에서는 증상 양상과 이전 치료 경과를 확인한 뒤 침·전기침 등 적용 여부를 상담할 수 있으며, 카카오톡으로도 문의하실 수 있습니다.",
+    "tags": [
+      "알레르기비염",
+      "침치료",
+      "메타분석",
+      "항히스타민제",
+      "한의학",
+      "삶의질"
+    ],
+    "evidence": [
+      {
+        "claim": "침은 대기자(무치료) 대조군보다 삶의 질(RQLQ)을 더 개선했다(3편, 1,112명, SMD −0.95).",
+        "quote": "Three trials from seven companion reports compared acupuncture with no intervention control [ 11 , 26 , 31 , 42 , 43 , 47 , 77 ]. Choi 2012 [ 31 , 42 , 43 , 47 , 77 ] found that compared to no intervention control, acupuncture relieved the severity of total nasal symptoms score on TNSS scale (Additional file 3 : 1.1). Data pooled from three studies also showed that acupuncture improved the life quality of patients, measured by Rhinoconjunctivitis Quality of Life Questionnaire (RQLQ) or Mini RQLQ ( n = 1112, SMD − 0.95, 95% CI − 1.17, − 0.73, Fig. 3 A). Subgroup analyses showed this beneficial effect of acupuncture was observed in all time points of outcome measurement (4 weeks, 8 weeks and 3 months) and in different countries (Germany, China, Korea and Australia) (Additional file 4 : 1.1 and 1.2). Two studies reported adverse events relevant to acupuncture. One study reported two patients complaining of papules, pruritus, ocular pruritus and subcutaneous bleeding in the acupuncture group, while no adverse events occurred in the wait-list group [ 31 ]. The other study reported approximately a 3% incidence rate of adverse events in the acupuncture group. These included slight bruising, acute transitory pain upon needle insertion, acute transitory pain and pins, soreness, itching, swelling and tingling [ 11 ]. With regard to immune responses, data from a single study concluded that there was no difference in serum IgE level between acupuncture and no-intervention control (Additional file 3 : 1.2). This study also concluded that the levels of testing cytokines, neuropeptides and neurotrophins had no difference between acupuncture and no intervention control after 12 weeks of intervention. Due to insufficient data, the subgroup analysis for adverse events was not applicable. Fig. 3 Acupuncture compared to distinct controls. A Acupuncture vs. no treatment QOL; B acupuncture vs. sham acupuncture nasal symptoms (RQLQ); C acupuncture vs. sham acupuncture nasal symptoms (TNSS); D acupuncture vs. sham acupuncture QOL"
+      },
+      {
+        "claim": "침은 가짜 침보다 RQLQ 코 증상 점수가 낮았다(489명, MD −0.60, 95% CI −1.16~−0.04).",
+        "quote": "Four trials in 9 companion reports compared acupuncture with sham acupuncture [ 11 , 26 , 31 , 42 , 43 , 48 , 69 , 70 , 77 ]. Sham acupuncture refers to a shallow needling technique in which needles were inserted 10 to 15 mm away from the actual acupuncture points. The post-intervention nasal symptoms score was lower in the acupuncture group than in the sham acupuncture group (RQLQ nasal symptom subscale: n = 489, MD − 0.60, 95% CI − 1.16 to − 0.04, Fig. 3 B). Subgroup analysis showed that this beneficial effect of acupuncture was observed after 8 weeks of intervention and in participants recruited from Germany. However, this effect was not observed after 4 weeks of intervention and in participants recruited from Australia (Additional file 4 : 2.1 and 2.2). Choi [ 31 , 42 , 43 , 48 , 77 ] and Xue [ 69 , 70 ] used a daily TNSS score and a weekly mean TNSS score to test the nasal symptoms post-intervention. Both studies showed that nasal symptoms were significantly improved in the acupuncture group than the sham acupuncture group (daily TNSS: n = 188, MD − 1.09, 95% CI − 2.15 to − 0.03; weekly mean TNSS: n = 80, MD − 13.54, 95% CI − 22.9 to − 4.17, Fig. 3 C). Due to insufficient data, subgroup analysis for this outcome was not applicable."
+      },
+      {
+        "claim": "침은 가짜 침보다 삶의 질이 더 좋았다(436명, SMD −0.26, 95% CI −0.44~−0.07).",
+        "quote": "Evidence from three trials demonstrated that the acupuncture group had significantly improved life quality (RQLQ) compared to the sham acupuncture group ( n = 436, SMD − 0.26 95% CI − 0.44, − 0.07, Fig. 3 D). Subgroup analysis showed that this beneficial effect of acupuncture was observed after 4 weeks of intervention and in participants recruited from Australia. This effect, however, was not observed after 8 weeks of intervention and in participants recruited from Korea and China (Additional file 4 : 2.3 and 2.4). The adverse events of acupuncture included mild discomfort, mild headache, dizziness, pain in needling area, feeling tired after needling among others. Due to the low incidence of these adverse events, no clear difference was found between the acupuncture and the sham acupuncture group for this outcome (Additional file 3 : 2.1). The subgroup analysis for this outcome was not applicable due to insufficient data."
+      },
+      {
+        "claim": "침과 세티리진의 임상 반응은 차이가 없었고(RR 1.10, 95% CI 0.96~1.26) TSA상 견고하지 않았다.",
+        "quote": "Six trials compared acupuncture with cetirizine. All trials were conducted in China. The studies used different definitions of clinical responses. There was no difference for clinical response between these two groups ( n = 588, RR 1.10 95% CI 0.96, 1.26, Fig. 4 ). Subgroup analysis showed that no difference for the above outcomes between two groups was observed after both 4 weeks and 8 weeks of intervention (Additional file 4 : 3.1). As revealed by the TSA result, this finding was not robust and, therefore, further trials are needed (Fig. 5 ). No difference was found between the two groups for nasal symptoms ( n = 214, MD − 0.77, 95% CI − 1.67 to 0.12, Additional file 3 : 3.1). Subgroup analysis showed that nasal symptoms were improved in acupuncture group after 8 weeks, but not after 4 weeks (Additional file 4 : 3.2). The difference in the quality of life between two groups was inconsistent. Two studies [ 29 , 65 ] found the acupuncture group having a better quality of life while another study found the opposite result [ 61 ]. Due to insufficient data, the subgroup analysis for this outcome was not applicable. Acupuncture reduced IgE levels in serum more than cetirizine. However, this difference was not found for other immune molecules including IL-4 and INF gamma (Additional file 3 : 3.2). Due to insufficient data, the subgroup analysis for this outcome was not applicable. One study also measured serum neuropeptides such as, vasoactive intestinal peptide (VIP) and substance P in the acupuncture and cetirizine groups after 1 month of intervention. Results showed that there was no difference between the two groups for neuropeptides [ 73 ]. Due to insufficient data, the subgroup analysis for this outcome was not applicable. Fig. 4 Acupuncture vs. cetirizine: clinical response Fig. 5 TSA for clinical response—acupuncture vs. cetirizine"
+      },
+      {
+        "claim": "침과 로라타딘의 임상 반응도 차이가 없었고(RR 1.15, 95% CI 0.98~1.37) TSA상 견고하지 않았다.",
+        "quote": "Six trials compared acupuncture with loratadine. No difference was found between the two groups for clinical response ( n = 333, RR1.15 95% CI 0.98, 1.37, Fig. 6 ). As revealed by the TSA result, this finding was not robust and, therefore, more trials are needed (Fig. 7 ). Subgroup analysis showed that there was no difference for the above outcomes between groups after 2 weeks, 4 weeks and 6 weeks of intervention and in participants recruited from Germany and China (Additional file 4 : 4.1 and 4.2). Compared to loratadine, acupuncture improved nasal symptoms and reduced the risk of nasal symptoms and relapse at 1 year (Additional file 3 : 4.1 and 4.2). Fig. 6 Acupuncture vs. loratadine: clinical response Fig. 7 TSA for clinical response—acupuncture vs. loratadine"
+      },
+      {
+        "claim": "참여 시험 다수에서 참가자·시술자 맹검이 어려워 편향 위험이 높았다.",
+        "quote": "Of the 30 trials included in this study, 20 provided sufficient information on randomization and were rated as low risk of selection bias. The methods of randomization included central randomization (5 trials), random number table (8 trials), and computer generated random number sequence (7 trials). One trial enrolled only 32 participants and used a coin toss to assign participants. This trial was rated as high risk of bias [ 48 ]. Nearly two-thirds of the trials did not report procedures to conceal the allocation scheme and 67% of the included trials were rated as high risk of bias in blindness of participants and personnel enrolled. Only 17% of the included trials stated that the outcome assessors were blinded. Other studies did not report such information. Four studies were rated as high risk of bias because of incomplete data. The judgment was based on the facts that the participants dropped out from the trials due to either low efficiency, adverse events, or high attrition rate and imbalance between groups. Selective report was rated as an unclear risk of bias for all included studies, as it was not possible to obtain the protocols of these studies (Fig. 2 ). Fig. 2 Risk of bias graph"
+      },
+      {
+        "claim": "약과 비교한 시험은 모두 중국에서 이뤄졌고 편향 위험이 컸으며 어린이 자료는 매우 적었다.",
+        "quote": "By combining the data with different controls separately, our review reduced the clinical heterogeneity in the control groups. Meanwhile, we used TSA to test the robustness of evidence, which demonstrates the power of our findings. Similar to other studies, this review does have some limitations. Firstly, the clinical heterogeneity in the intervention group is significant. The techniques of acupuncture (such as manual acupuncture, electroacupuncture, or warm needling) and acupuncture points used in individual trials vary as well as the treatment frequency and duration (from 7 days to 12 weeks). All these factors may influence the effect measurement while introducing statistical heterogeneity. Secondly, only few studies assessed the effect of acupuncture on children with AR, which greatly limited the applicability of the evidence. Thirdly, all trials contributing data for acupuncture versus western medication were conducted in China and were with serious risk of bias. These findings should be interpreted very cautiously."
+      }
+    ],
+    "figures": [
+      {
+        "id": "Fig1",
+        "label": "Fig. 1",
+        "caption": "Study flow diagram",
+        "images": [
+          {
+            "src": "/research-assets/PMC9036742/Fig1-1.webp",
+            "preview": "/research-assets/PMC9036742/preview-Fig1-1.webp",
+            "width": 767,
+            "height": 886,
+            "originalHash": "11260a1b1d2d1c2bd98a6a32c1c6f4508d446c4bc0d834e912cf6bd3af56cec2"
+          }
+        ],
+        "explanation": "논문 선별 과정을 보여주는 흐름도입니다. 868건의 문헌에서 중복을 제거한 791건을 검토했고, 101건의 전문을 확인해 최종 30편(보고서 55건)이 포함되었습니다. 이 중 27편이 메타분석에 사용되었습니다. 전문 확인 단계에서 제외된 것 중 전문을 구하지 못한 경우가 22건으로 가장 많았습니다.",
+        "alt": "문헌 검색부터 최종 포함까지 보여주는 연구 선별 흐름도"
+      },
+      {
+        "id": "Fig2",
+        "label": "Fig. 2",
+        "caption": "Risk of bias graph",
+        "images": [
+          {
+            "src": "/research-assets/PMC9036742/Fig2-1.webp",
+            "preview": "/research-assets/PMC9036742/preview-Fig2-1.webp",
+            "width": 660,
+            "height": 680,
+            "originalHash": "ff2eb90490cb1f86f07ccd2c572ff950a4ee667e20c4b8e74322cb1dd6e9bc63"
+          }
+        ],
+        "explanation": "각 시험의 편향 위험을 항목별로 색으로 표시한 그림입니다. 녹색은 낮음, 노랑은 불확실, 빨강은 높음을 뜻합니다. 본문에 따르면 많은 시험에서 참가자와 시술자 맹검이 이뤄지지 않았고 결과 평가자 맹검 정보도 부족했습니다. 그래서 결과를 해석할 때 주의가 필요합니다.",
+        "alt": "시험별 편향 위험을 색으로 나타낸 표"
+      },
+      {
+        "id": "Fig3",
+        "label": "Fig. 3",
+        "caption": "Acupuncture compared to distinct controls. A Acupuncture vs. no treatment QOL; B acupuncture vs. sham acupuncture nasal symptoms (RQLQ); C acupuncture vs. sham acupuncture nasal symptoms (TNSS); D acupuncture vs. sham acupuncture QOL",
+        "images": [
+          {
+            "src": "/research-assets/PMC9036742/Fig3-1.webp",
+            "preview": "/research-assets/PMC9036742/preview-Fig3-1.webp",
+            "width": 783,
+            "height": 546,
+            "originalHash": "156abe149308e85b7af20f47f92fb106a8adfa116b2a59cb5591d49292bf95f8"
+          }
+        ],
+        "explanation": "침과 무치료 또는 가짜 침을 비교한 숲 그림입니다. A는 무치료와 비교한 삶의 질, B와 C는 가짜 침과 비교한 코 증상, D는 가짜 침과 비교한 삶의 질입니다. 합친 결과의 마름모가 침 쪽에 위치해 이점이 시사되지만, 가짜 침 비교는 효과 크기가 작고 일부 개별 시험의 신뢰구간은 0을 포함합니다.",
+        "alt": "침과 무치료·가짜 침 비교 결과를 보여주는 숲 그림 4개 패널"
+      },
+      {
+        "id": "Fig4",
+        "label": "Fig. 4",
+        "caption": "Acupuncture vs. cetirizine: clinical response",
+        "images": [
+          {
+            "src": "/research-assets/PMC9036742/Fig4-1.webp",
+            "preview": "/research-assets/PMC9036742/preview-Fig4-1.webp",
+            "width": 784,
+            "height": 462,
+            "originalHash": "e130abbd153ae289bf1d2248b8d484338c37dd7c7009a1e883e93ad7273e9b6f"
+          }
+        ],
+        "explanation": "침과 세티리진의 임상 반응을 비교한 숲 그림입니다. 전체 결과는 RR 1.10(95% CI 0.96~1.26)으로 신뢰구간이 1을 포함해 두 치료의 차이를 확인하지 못했습니다. 시험마다 반응 기준이 달랐고 시험 간 결과 차이도 컸습니다.",
+        "alt": "침과 세티리진의 임상 반응 비교 숲 그림"
+      },
+      {
+        "id": "Fig5",
+        "label": "Fig. 5",
+        "caption": "TSA for clinical response—acupuncture vs. cetirizine",
+        "images": [
+          {
+            "src": "/research-assets/PMC9036742/Fig5-1.webp",
+            "preview": "/research-assets/PMC9036742/preview-Fig5-1.webp",
+            "width": 660,
+            "height": 500,
+            "originalHash": "94df32700ddee80637372b161c325b720a63a8860e9d3af0df489be4d9ecddc0"
+          }
+        ],
+        "explanation": "침과 세티리진 비교에 대한 순차분석(TSA) 그래프입니다. 시험이 쌓일수록 결과가 충분히 확실해졌는지를 가늠하는 도구입니다. 본문은 이 결과가 견고하지 않아 더 많은 시험이 필요하다고 설명합니다. 즉 차이가 없다는 결론도 확정이 아닙니다.",
+        "alt": "침과 세티리진 비교의 순차분석 그래프"
+      },
+      {
+        "id": "Fig6",
+        "label": "Fig. 6",
+        "caption": "Acupuncture vs. loratadine: clinical response",
+        "images": [
+          {
+            "src": "/research-assets/PMC9036742/Fig6-1.webp",
+            "preview": "/research-assets/PMC9036742/preview-Fig6-1.webp",
+            "width": 784,
+            "height": 452,
+            "originalHash": "8dbe29e360f87cbba88b8719dae808a193626bb0f4c6ba7e3a163833401bd959"
+          }
+        ],
+        "explanation": "침과 로라타딘의 임상 반응을 비교한 숲 그림입니다. 전체 결과는 RR 1.15(95% CI 0.98~1.37)로 신뢰구간이 1을 포함해 뚜렷한 차이가 없었습니다. 반응을 정의한 기준에 따라 일부 개별 시험의 결과는 다르게 보이며, 시험 간 결과 차이도 있었습니다.",
+        "alt": "침과 로라타딘의 임상 반응 비교 숲 그림"
+      },
+      {
+        "id": "Fig7",
+        "label": "Fig. 7",
+        "caption": "TSA for clinical response—acupuncture vs. loratadine",
+        "images": [
+          {
+            "src": "/research-assets/PMC9036742/Fig7-1.webp",
+            "preview": "/research-assets/PMC9036742/preview-Fig7-1.webp",
+            "width": 660,
+            "height": 479,
+            "originalHash": "15ea8b5d0517c7aafe100e342f84dc511ae2e9290187b3270a2a556c716a0c09"
+          }
+        ],
+        "explanation": "침과 로라타딘 비교에 대한 순차분석(TSA) 그래프입니다. 본문은 이 결과 역시 견고하지 않아 더 많은 시험이 필요하다고 해석합니다. 그래프만으로 침의 우위나 열세를 단정하기보다 근거가 아직 부족하다고 이해하시면 됩니다.",
+        "alt": "침과 로라타딘 비교의 순차분석 그래프"
+      }
+    ],
+    "faq": [
+      {
+        "question": "침이 항히스타민제를 대신할 수 있나요?",
+        "answer": "이 분석에서는 침과 세티리진·로라타딘의 임상 반응에 뚜렷한 차이가 없었습니다. 그러나 결과가 견고하지 않았고 약과의 비교 시험은 모두 중국에서 이뤄졌습니다. 복용 중인 약을 임의로 중단하지 말고 상담 후 조정 여부를 결정하세요."
+      },
+      {
+        "question": "아이의 알레르기 비염에도 침이 효과가 있나요?",
+        "answer": "어린이 대상 시험은 2편뿐이었습니다. 한 시험에서 가짜 침과 코 증상의 차이가 확인되지 않았고 자료가 매우 제한적이어서, 이 연구로는 어린이에게 효과가 있다고 말하기 어렵습니다."
+      }
+    ],
+    "paper": {
+      "doi": "10.1186/s40001-022-00682-3",
+      "pmcid": "PMC9036742",
+      "pmid": "35462555",
+      "date": "2022-04-25",
+      "types": [
+        "Journal Article",
+        "Meta-Analysis",
+        "Systematic Review"
+      ],
+      "title": "Acupuncture for allergic rhinitis: a systematic review and meta-analysis.",
+      "citations": 33,
+      "citationSource": "Crossref",
+      "checkedAt": "2026-10-27T00:25:05.683Z",
+      "authors": [
+        "He Min",
+        "Qin Weishan",
+        "Qin Zongshi",
+        "Zhao Changqing"
+      ],
+      "journal": "European Journal of Medical Research",
+      "volume": "27",
+      "issue": "",
+      "pages": "58",
+      "abstract": "Background In this study, we attempted to assess the efficacy and safety of acupuncture for allergic rhinitis (AR), and to test the robustness of the estimated effects. Methods The Cochrane methodology standard was followed to conduct this systematic review. Randomized controlled trials (RCTs) comparing acupuncture with other therapies for AR were included. Furthermore, trial sequential analysis was conducted to test the robustness of pooled results. Thirty trials with 4413 participants were included. Results Acupuncture improved the nasal symptoms on Total Nasal Symptom Score (TNSS) and quality of life measured by Rhinoconjunctivitis Quality of Life Questionnaire (RQLQ) in adults with AR, compared to acupuncture with no intervention. Acupuncture was also shown to be more effective than sham acupuncture for nasal symptom (RQLQ subscale, n = 489, MD − 0.60, 95% CI − 1.16 to − 0.04) and quality of life (RQLQ, n = 248, − 8.47 95% CI − 14.91, − 2.03). No clear difference was observed between acupuncture and cetirizine or loratadine. Interestingly, trial sequential analysis (TSA) failed to confirm the aforementioned results. The effect of acupuncture for children/adolescents with AR remains unclear due to insufficient data. The performance bias and attrition bias are serious in most studies that were included. Selection bias may also have affected the quality of the evidence. Conclusion Acupuncture may have an advantage over no intervention and sham acupuncture in improving nasal symptoms and quality of life for adults with AR. The effect of acupuncture and cetirizine or loratadine for AR may be similar. Additional trials are necessary to confirm these results. Supplementary Information The online version contains supplementary material available at 10.1186/s40001-022-00682-3.",
+      "conclusion": "Conclusion For adults with AR, acupuncture is superior to no intervention and sham acupuncture in lowering the severity of nasal symptoms and improving the life quality of patients. The effect of acupuncture and cetirizine/loratadine may be similar. Whether acupuncture can decrease the serum level of immune response molecules is still uncertain. The effect of acupuncture on children with AR remains unclear. Future trials with well-randomized assignments are required. More trials are indeed required to evaluate the effect of acupuncture on children with AR. Further trials are also needed to evaluate the difference between real acupuncture and sham acupuncture for AR, as the data are insufficient at present. When measuring the clinical response, investigators of future trials should utilize objective definitions with a unified minimal clinical importance threshold value. Future studies should aim to explore whether different treatment durations of acupuncture influence the treatment effect and whether the effect of acupuncture varies in patients from different countries.",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "licenseText": "https://creativecommons.org/licenses/by/4.0/ Open Access This article is licensed under a Creative Commons Attribution 4.0 International License, which permits use, sharing, adaptation, distribution and reproduction in any medium or format, as long as you give appropriate credit to the original author(s) and the source, provide a link to the Creative Commons licence, and indicate if changes were made. The images or other third party material in this article are included in the article's Creative Commons licence, unless indicated otherwise in a credit line to the material. If material is not included in the article's Creative Commons licence and your intended use is not permitted by statutory regulation or exceeds the permitted use, you will need to obtain permission directly from the copyright holder. To view a copy of this licence, visit http://creativecommons.org/licenses/by/4.0/ . The Creative Commons Public Domain Dedication waiver ( http://creativecommons.org/publicdomain/zero/1.0/ ) applies to the data made available in this article, unless otherwise stated in a credit line to the data.",
+      "sourceUrl": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC9036742/fullTextXML",
+      "sourceHash": "e7d3718c344ecfdd74dd1462cddb1cf4fa9b6e67b1ed84b36942ea3ee99d8e9b",
+      "figureCount": 7
+    },
+    "verification": {
+      "type": "automated",
+      "model": "claude-opus-5-5",
+      "writerModel": "claude-sonnet-5-5",
+      "checkedAt": "2026-10-27T00:26:46.381Z",
       "checks": {
         "numbers": true,
         "methods": true,
