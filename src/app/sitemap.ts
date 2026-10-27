@@ -15,6 +15,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...["/herbal", "/herbs", "/herbal/insurance", "/herbal/tonic", ...HERBAL_GUIDES.filter(g => !g.href).map(herbalPath)].map(path => ({ url: `${BASE_URL}${path}`, lastModified: new Date("2026-10-16T00:00:00+09:00"), changeFrequency: "monthly" as const, priority: 0.8 })),
     {
       url: BASE_URL,
+      lastModified: new Date("2026-10-27T00:00:00+09:00"),
       changeFrequency: "weekly",
       priority: 1,
     },
@@ -65,6 +66,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
     {
       url: `${BASE_URL}/diet/program`,
+      lastModified: new Date("2026-10-27T00:00:00+09:00"),
       changeFrequency: "monthly",
       priority: 0.9,
     },
@@ -104,6 +106,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const categoryEntries: MetadataRoute.Sitemap = CATEGORIES.map((cat) => ({
     url: `${BASE_URL}/${cat}`,
+    ...(cat === "diet" ? { lastModified: new Date("2026-10-27T00:00:00+09:00") } : {}),
     changeFrequency: "daily" as const,
     priority: 0.9,
   }));

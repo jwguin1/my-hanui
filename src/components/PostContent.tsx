@@ -17,6 +17,10 @@ export default function PostContent({ markdown, headingAnchors = false }: { mark
          취소선이 된다 (해당 7줄 확인). 켜지 않는다. */
       remarkPlugins={[[remarkGfm, { singleTilde: false }]]}
       components={{
+        // 페이지 헤더가 문서의 H1을 맡는다. 이전 원고의 # 제목은 본문 제목으로 표시한다.
+        h1({ children }) {
+          return <h2 className="scroll-mt-28">{children}</h2>;
+        },
         h2({ children }) {
           return <h2 id={headingAnchors ? `section-${++headingIndex}` : undefined} className="scroll-mt-28">{children}</h2>;
         },

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import type { Category } from "@/lib/blog-local";
 import { CAROUSEL_TARGETS } from "@/lib/carousel-targets";
+import { DIET_PRICES, won } from "@/lib/pricing";
 
 // blog-local 의 Category 는 type-only import 이므로 이 모듈은 fs 의존성이 없다.
 // (서버/클라이언트 어디서나 안전하게 import 가능)
@@ -38,7 +39,7 @@ export const CATEGORY_META: Record<Category, CategoryMeta> = {
     label: "다이어트",
     fullLabel: "한방비만 · 다이어트",
     description:
-      "한방비만치료, 체중감량, 대사증후군 관리. 2023년 개원 이래 누적 9,000건 이상 처방, 일산한의원 다이어트 정보입니다.",
+      `일산감비환 가격은 1상자 ${DIET_PRICES.sachets}포 기준 노랑 ${won(DIET_PRICES.yellow)}, 핑크 ${won(DIET_PRICES.pink)}. 다이어트 한약 비용·복용 기간·두근거림·요요와 치료 방법 비교를 질문별로 확인하세요. 이마트 풍산점 3층 일산한의원.`,
     ogImage: "/images/diet-og.jpg",
   },
   skin: {

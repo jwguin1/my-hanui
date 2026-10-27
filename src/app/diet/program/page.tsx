@@ -1,4 +1,6 @@
 import { DIET_PRICES, won } from "@/lib/pricing";
+import { DIET_COST_ANSWER } from "@/lib/diet-questions";
+import DietQuestionGuide from "@/components/DietQuestionGuide";
 import PriceTable from "@/components/ui/PriceTable";
 import ConsultationActions from "@/components/ConsultationActions";
 import type { Metadata } from "next";
@@ -27,13 +29,17 @@ import { LOCAL_BLOCKS, localFaqEntities } from "@/lib/local-blocks";
 
 export const metadata: Metadata = pageMetadata({
   path: "/diet/program",
-  title: "일산 다이어트 한약 | 한방 다이어트 처방",
+  title: "일산감비환 가격·복용 안내 | 다이어트 한약 상담",
   description:
-    "고양시 일산한의원 한방 다이어트. 식단을 지속할 수 있도록 돕는 처방과 진료 기반 용량 조절. 2023년 개원 이래 누적 9,000건 이상 처방. 이마트 풍산점 3층, 평일 20시까지.",
+    `일산감비환 1상자 ${DIET_PRICES.sachets}포, 노랑 ${won(DIET_PRICES.yellow)}·핑크 ${won(DIET_PRICES.pink)}. 복용 기간과 두근거림·요요 등 상담 전 질문을 안내합니다. 이마트 풍산점 3층 일산한의원, 첫 상담 약 ${DIET_PRICES.consultationMinutes}분.`,
   routeOgImage: true,
 });
 
 const QUESTIONS = [
+  {
+    quote: "일산감비환 가격과 한 상자 복용 기간은 어떻게 되나요?",
+    answer: DIET_COST_ANSWER,
+  },
   {
     quote: "굶어서 뺐더니 금방 다시 쪄요",
     answer: "식단을 지속할 수 있는 상태를 만드는 게 먼저입니다",
@@ -106,8 +112,9 @@ export default function DietProgramPage() {
       <PageHeader
         badge="다이어트"
         icon={<Activity size={15} />}
-        lead="굶어서 뺀 살은,"
-        accent="굶는 걸 멈추면 돌아옵니다"
+        lead="일산감비환,"
+        accent="가격부터 복용 상담까지"
+        description="다이어트 한약을 시작하기 전, 비용과 복용 기간을 확인하고 현재 몸 상태에 맞는 처방을 상담하세요."
         stacked
       />
 
@@ -118,6 +125,8 @@ export default function DietProgramPage() {
         <p className="mt-4 text-base leading-relaxed text-muted">1상자 100포는 하루 1포 기준 100일, 하루 2포 기준 50일 분량입니다. 복용량은 진료 후 정합니다.</p>
         <Link href="/diet/다이어트한약-기간과-비용" className="mt-4 inline-block text-primary underline underline-offset-4">복용 기간과 비용 자세히 보기 →</Link>
       </section>
+
+      <DietQuestionGuide />
 
       {/* ── 정의 + 지표 ── */}
       <section className="bg-[var(--bg)]">

@@ -73,11 +73,11 @@ const digestiveGuide = HERBAL_GUIDES.find(g => g.slug === "dyspepsia")!;
 const tonicGuide = HERBAL_GUIDES.find(g => g.slug === "constitution")!;
 const RECOMMENDED_READINGS = [
   { category: "통증치료", title: "허리는 안 아픈데 다리만 저려요, 디스크일까요?", description: "다리 저림이 있을 때 확인할 증상과 진료 방향을 살펴보세요.", href: "/pain/다리만-저릴때-허리디스크" },
-  { category: "교통사고", title: "엑스레이는 정상이라는데 계속 아픕니다", description: "사고 후 남는 통증과 검사에서 확인하는 내용을 정리했습니다.", href: "/pain/교통사고-엑스레이-정상" },
+  { category: "교통사고", title: "교통사고 후 병원과 한의원을 같이 다녀도 되나요?", description: "정형외과·한의원 병행 진료와 자동차보험 접수 전 확인할 내용을 안내합니다.", href: "/pain/교통사고-병원-한의원-병행" },
   { category: "보험한약", title: digestiveGuide.question, description: "반복되는 소화불량과 보험한약 적용·비용을 확인하세요.", href: herbalPath(digestiveGuide) },
   { category: "체질보약", title: tonicGuide.question, description: "피로·소화·수면을 함께 살피는 맞춤 한약 상담을 안내합니다.", href: herbalPath(tonicGuide) },
   { category: "다이어트", title: "다이어트 한약, 얼마나 먹어야 하고 비용은 어느 정도인가요?", description: "복용 기간과 비용을 먼저 확인하고 내 계획을 세워보세요.", href: "/diet/다이어트한약-기간과-비용" },
-  { category: "피부 · 미용", title: "한의원에서 피코토닝을 받아도 될까요?", description: "상담부터 시술까지, 의료기관을 선택할 때 확인할 내용을 안내합니다.", href: "/skin/한의원-피코토닝-상담-시술" },
+  { category: "피부 · 미용", title: "피코토닝과 제네시스는 어떻게 다른가요?", description: "색소·피부결 등 고민에 따라 치료를 선택할 때 확인할 내용을 안내합니다.", href: "/skin/피코토닝-제네시스-차이" },
 ];
 
 // "진료 범위" 섹션의 단일 소스 — 화면 카드와 아래 ItemList 노드가 이 배열에서 함께 생성된다.

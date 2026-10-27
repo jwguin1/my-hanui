@@ -280,6 +280,7 @@ function listPaths() {
     "/skin/spot",
     "/skin/pigmentation",
     "/skin/lifting",
+    "/skin/hair-removal",
   ];
 
   // 발행된 글만 — published:false 는 404 가 정상이라 검사 대상이 아니다.
@@ -312,7 +313,7 @@ const PRICE_SCOPE_RE = /^\/skin(\/|$)/;
 /** "110,000원" / "1,100원" */
 const WON_COMMA_RE = /(\d{1,3}(?:,\d{3})+)\s*원/g;
 /** "11만원", "1만6천5백원", "1천1백원" — 천·백 단위도 가격 검증에서 빠뜨리지 않는다. */
-const WON_KOREAN_RE = /(?<![\d,])((?:\d+\s*[만천백십]\s*)+)(\d+)?\s*원/g;
+const WON_KOREAN_RE = /(?<![\d,.])((?:\d+(?:\.\d+)?\s*[만천백십]\s*)+)(\d+)?\s*원/g;
 
 /** 텍스트에서 금액을 원 단위 숫자로 뽑는다 */
 function moneyTokens(text) {
@@ -325,9 +326,10 @@ function moneyTokens(text) {
   WON_KOREAN_RE.lastIndex = 0;
   while ((m = WON_KOREAN_RE.exec(text)) !== null) {
     const units = { 만: 10000, 천: 1000, 백: 100, 십: 10 };
-    const value = [...m[1].matchAll(/(\d+)\s*([만천백십])/g)]
+    // 9.9만원을 9만원으로 부분 매칭하지 않는다. skinPrice()의 소수 단위를 지원한다.
+    const value = [...m[1].matchAll(/(\d+(?:\.\d+)?)\s*([만천백십])/g)]
       .reduce((sum, part) => sum + Number(part[1]) * units[part[2]], Number(m[2] || 0));
-    out.push({ raw: m[0], value });
+    out.push({ raw: m[0], value: Math.round(value) });
   }
   return out;
 }
@@ -1070,6 +1072,10 @@ for (const p of paths) {
   }
 
   const { errors, warnings, stats } = validate(p, html);
+
+  // 페이지 제목과 마크다운 # 제목이 함께 H1으로 출력되는 회귀를 잡는다.
+  const h1Count = [...html.matchAll(/<h1(?:\s|>)/gi)].length;
+  if (h1Count !== 1) errors.push(`H1은 페이지당 하나여야 한다 (현재 ${h1Count}개)`);
 
   /* 원문에 표가 있으면 렌더 결과에도 <table> 이 있어야 한다.
      remark-gfm 이 빠지면 여기서 걸린다. */

@@ -1,5 +1,7 @@
 import Link from "next/link";
 import PainSymptomFinder from "@/components/PainSymptomFinder";
+import DietQuestionGuide from "@/components/DietQuestionGuide";
+import { DIET_QUESTIONS } from "@/lib/diet-questions";
 import {
   CATEGORY_DESCRIPTION,
   CATEGORY_LABEL,
@@ -154,7 +156,9 @@ export default function CategoryListPage({ category }: { category: Category }) {
     nodes:
       posts.length > 0
         ? // 목록 카드의 author 참조가 끊기지 않도록 Physician 스텁을 함께 싣는다
-          [listNode, ...physicianStubs(posts.map((p) => p.author))]
+          [listNode, ...physicianStubs(posts.map((p) => p.author)),
+            ...(category === "diet" ? [itemListNode(path, "patient-questions", "다이어트 한약 환자 질문", DIET_QUESTIONS.map(question => ({ url: `${SITE_URL}${question.href}`, name: question.title })))] : []),
+          ]
         : [],
   });
 
@@ -171,6 +175,7 @@ export default function CategoryListPage({ category }: { category: Category }) {
 
       {/* 네이버 하위링크 카드용 대표이미지 — 본문 최상단의 첫 이미지이자 최대 이미지.
           /autonomic 은 이번 캐러셀 타깃이 아니라 배너를 두지 않는다. */}
+      {category === "diet" && <DietQuestionGuide showCost />}
       {category !== "autonomic" && category !== "pain" && <PageHeroBanner page={category} />}
 
       {category === "skin" && <section className="section-padding !pb-0 !pt-8">
