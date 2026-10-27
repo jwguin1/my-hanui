@@ -329,6 +329,15 @@
   .prose-custom {
     font-size: 1.0625rem;
   }
+  .prose-custom table {
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+  .prose-custom th,
+  .prose-custom td {
+    padding-left: 0.625rem;
+    padding-right: 0.625rem;
+  }
   .body-text,
   main p[class~="text-[0.95rem]"],
   main p[class~="text-[15px]"],

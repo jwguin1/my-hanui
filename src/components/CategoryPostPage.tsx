@@ -9,6 +9,7 @@ import {
   toISO8601KST,
 } from "@/lib/blog-local";
 import PostContent from "@/components/PostContent";
+import ArticleContents from "@/components/ArticleContents";
 import ClinicCta from "@/components/ClinicCta";
 import { painPostHub } from "@/lib/pain-groups";
 import { skinPostHub, SKIN_GUIDE_SLUGS, LIFTING_SLUGS, HAIR_REMOVAL_SLUGS } from "@/lib/skin-guides";
@@ -50,7 +51,7 @@ export default function CategoryPostPage({
   const relatedPosts = getRelatedPosts(post.slug, 3, category);
   // 그룹 배열(lib/pain-groups.ts)이 정본이다. 글 쪽 프론트매터에 넣지 않는다.
   const hub = category === "pain" ? painPostHub(post.slug) : category === "skin" ? skinPostHub(post.slug) : undefined;
-  const headings = isSkinGuide ? [...linkedContent.matchAll(/^## (.+)$/gm)].map((m) => m[1]) : [];
+  const headings = [...linkedContent.matchAll(/^## (.+)$/gm)].map((m) => m[1]);
 
   // 파생 OG(1200x630) → 원본 썸네일 → 카테고리 대표 OG 순으로 폴백.
   // 폴더 키는 슬러그가 아니라 파일 ID 다.
@@ -108,6 +109,7 @@ export default function CategoryPostPage({
           </h1>
           <div className="mt-4 flex flex-wrap items-center gap-4 text-[0.8rem] text-muted">
             <time dateTime={toISO8601KST(post.updated ?? post.date)}>{post.updated ? "최종 업데이트 " : ""}{formatDate(post.updated ?? post.date)}</time>
+            <Link href={post.author ? "/doctor" : "/about"} className="underline underline-offset-4">{post.author ? `작성 ${post.author} 한의사` : "일산한의원 건강정보"}</Link>
             {post.tags.length > 0 && (
               <div className="flex flex-wrap gap-2">
                 {post.tags.map((tag) => (
@@ -123,12 +125,9 @@ export default function CategoryPostPage({
 
       {/* Content */}
       <section className="section-padding">
-        {headings.length > 0 && <nav aria-label="이 글의 목차" className="mx-auto mb-8 max-w-3xl rounded-2xl border border-line bg-surface p-5">
-          <p className="text-sm font-semibold text-ink">이 글에서 확인할 내용</p>
-          <ol className="mt-3 space-y-2 text-sm text-primary">{headings.map((heading, i) => <li key={heading}><a href={`#section-${i + 1}`} className="underline underline-offset-4">{heading}</a></li>)}</ol>
-        </nav>}
+        <ArticleContents headings={headings} />
         <article className={`prose-custom mx-auto max-w-3xl${isSkinGuide ? " skin-guide" : ""}`}>
-          <PostContent markdown={linkedContent} headingAnchors={isSkinGuide} />
+          <PostContent markdown={linkedContent} headingAnchors />
         </article>
       </section>
 

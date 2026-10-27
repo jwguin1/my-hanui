@@ -8,6 +8,8 @@ import {
   toISO8601KST,
 } from "@/lib/blog-local";
 import PostContent from "@/components/PostContent";
+import ArticleContents from "@/components/ArticleContents";
+import { postImagePath } from "@/lib/og-image";
 import JsonLd from "@/components/JsonLd";
 import { articleNode, buildGraph, faqEntities, physicianStub } from "@/lib/schema";
 import { parsePostFaq } from "@/lib/post-faq";
@@ -47,6 +49,8 @@ export function generateMetadata({
       : `${post.title} | 일산한의원`;
     // 정규 URL 은 카테고리 경로다. 미분류(blog)만 /blog/{slug} 가 정규다.
     const canonical = `${SITE_URL}${postPath(post.category, post.slug)}`;
+    const imagePath = postImagePath(post.id, post.thumbnail, "/og-image.jpg");
+    const image = imagePath.startsWith("http") ? imagePath : `${SITE_URL}${imagePath}`;
     return {
       title: { absolute: fullTitle },
       description: post.description,
@@ -55,8 +59,11 @@ export function generateMetadata({
         description: post.description,
         type: "article",
         url: canonical,
-        ...(post.thumbnail ? { images: [{ url: post.thumbnail }] } : {}),
+        publishedTime: toISO8601KST(post.date),
+        modifiedTime: toISO8601KST(post.updated ?? post.date),
+        images: [{ url: image, alt: post.title }],
       },
+      twitter: { card: "summary_large_image", title: fullTitle, description: post.description, images: [image] },
       alternates: { canonical },
     };
   });
@@ -86,11 +93,9 @@ export default async function BlogPostPage({
   }
 
   const linkedContent = autoLinkMarkdown(post.content, post.slug);
-  const absoluteImage = post.thumbnail
-    ? post.thumbnail.startsWith("http")
-      ? post.thumbnail
-      : `${SITE_URL}${post.thumbnail.startsWith("/") ? "" : "/"}${post.thumbnail}`
-    : "";
+  const headings = [...linkedContent.matchAll(/^## (.+)$/gm)].map((m) => m[1]);
+  const imagePath = postImagePath(post.id, post.thumbnail, "/og-image.jpg");
+  const absoluteImage = imagePath.startsWith("http") ? imagePath : `${SITE_URL}${imagePath}`;
 
   // 카테고리 글과 같은 규칙 — 본문 FAQ 섹션을 FAQPage 로 올린다
   const faq = faqEntities(parsePostFaq(linkedContent));
@@ -109,6 +114,7 @@ export default async function BlogPostPage({
         headline: post.title,
         description: post.description,
         datePublished: toISO8601KST(post.date),
+        dateModified: toISO8601KST(post.updated ?? post.date),
         image: absoluteImage || undefined,
         author: post.author,
       }),
@@ -131,10 +137,11 @@ export default async function BlogPostPage({
           <h1 className="mt-5 text-[26px] font-bold leading-[1.35] tracking-[-0.02em] text-ink md:text-[38px]">
             {post.title}
           </h1>
-          <div className="mt-4 flex items-center gap-4 text-[0.8rem] text-muted">
-            <time>{formatDate(post.date)}</time>
+          <div className="mt-4 flex flex-wrap items-center gap-4 text-[0.8rem] text-muted">
+            <time dateTime={toISO8601KST(post.updated ?? post.date)}>{post.updated ? "최종 업데이트 " : ""}{formatDate(post.updated ?? post.date)}</time>
+            <Link href={post.author ? "/doctor" : "/about"} className="underline underline-offset-4">{post.author ? `작성 ${post.author} 한의사` : "일산한의원 건강정보"}</Link>
             {post.tags.length > 0 && (
-              <div className="flex gap-2">
+              <div className="flex flex-wrap gap-2">
                 {post.tags.map((tag) => (
                   <span key={tag} className="text-accent">
                     #{tag}
@@ -147,8 +154,9 @@ export default async function BlogPostPage({
       </section>
 
       <section className="section-padding">
+        <ArticleContents headings={headings} />
         <article className="prose-custom mx-auto max-w-3xl">
-          <PostContent markdown={linkedContent} />
+          <PostContent markdown={linkedContent} headingAnchors />
         </article>
       </section>
 
