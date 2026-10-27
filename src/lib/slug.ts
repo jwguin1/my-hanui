@@ -60,7 +60,7 @@ export const RESERVED_SLUGS: readonly string[] = [
 export const RESERVED_BY_CATEGORY: Record<string, readonly string[]> = {
   pain: ["acute", "chronic"],
   diet: ["program"],
-  skin: ["spot", "pigmentation", "lifting", "hair-removal"],
+  skin: ["spot", "pigmentation", "lifting", "hair-removal", "questions"],
   autonomic: ["care"],
   blog: [],
 };

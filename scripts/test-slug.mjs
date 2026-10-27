@@ -27,6 +27,18 @@ const {
 
 const { absoluteUrl, pageId } = await import("../src/lib/schema.ts");
 
+test("카테고리의 고정 페이지 주소는 글 슬러그와 충돌하지 않도록 예약한다", () => {
+  for (const category of Object.keys(RESERVED_BY_CATEGORY)) {
+    const dir = path.join("src", "app", category);
+    if (!fs.existsSync(dir)) continue;
+    for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+      if (!entry.isDirectory() || entry.name.startsWith("[") || entry.name.startsWith("(")) continue;
+      if (!["page.tsx", "page.ts", "page.jsx", "page.js"].some(file => fs.existsSync(path.join(dir, entry.name, file)))) continue;
+      assert.ok(validateSlug(entry.name, { category }).some(problem => problem.code === "reserved"), `/${category}/${entry.name} must be reserved`);
+    }
+  }
+});
+
 /* ── 회귀: 기존 URL 불변 ────────────────────────────────────────── */
 
 test("기존 ASCII 슬러그는 인코딩을 거쳐도 값이 변하지 않는다", () => {

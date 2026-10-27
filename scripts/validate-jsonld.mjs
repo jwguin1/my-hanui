@@ -281,6 +281,7 @@ function listPaths() {
     "/skin/pigmentation",
     "/skin/lifting",
     "/skin/hair-removal",
+    "/skin/questions",
   ];
 
   // 발행된 글만 — published:false 는 404 가 정상이라 검사 대상이 아니다.
