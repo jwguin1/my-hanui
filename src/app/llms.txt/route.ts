@@ -29,6 +29,7 @@ function body(): string {
   const holidayLine = `- ${CLINIC_WEEKEND_HOLIDAY_LABEL}: ${CLINIC_HOURS_WEEKEND} (점심시간 없이 진료)`;
   const closedLine = `- ${CLINIC.holidayClosedNote}`;
   const skinPosts = getAllPosts("skin");
+  const regionalLinks = getAllPosts().filter(post => post.id.startsWith("regional-")).map(post => `- [${post.title}](${BASE}${postPath(post.category, post.slug)})`).join("\n");
   const searchGuideLinks = [...getAllPosts("diet"), ...skinPosts.filter(post => post.id.startsWith("spot-guide-") || post.slug === "잡티제거-개수와-비용")].map(post => `- [${post.title}](${BASE}${postPath(post.category, post.slug)})`).join("\n");
   const hairLinks = HAIR_REMOVAL_SLUGS.flatMap(slug => {
     const post = skinPosts.find(p => p.slug === slug);
@@ -49,6 +50,14 @@ function body(): string {
 진료를 함께합니다. 근골격계 초음파로 확인한 뒤 필요한 치료만 권하는 것을
 진료 원칙으로 삼습니다.
 
+- 피부 고민별 질문: ${BASE}/skin/questions
+- 원내 비립종 제거를 시행합니다. 고주파 리프팅은 볼뉴머를 사용하며 올리지오·온다·티타늄, 문신 제거, 헤드스파·탈모, 지방분해주사, 브라질리언 제모는 시행하지 않습니다.
+- 치료 선택 정보 글은 해당 시술을 제공한다는 뜻이 아닙니다. 각 글의 원내 진료 범위를 함께 읽으세요.
+
+## 피부·지역 진료 질문
+${regionalLinks}
+
+## 기본 정보
 - 웹사이트: ${BASE}
 - 주소: ${CLINIC_ADDRESS_FULL}
 - 상담·예약: [카카오톡 상담](${CLINIC.kakaoHref})으로 편하게 문의해 주세요.

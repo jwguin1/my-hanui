@@ -351,6 +351,13 @@ export default function SkinSpotPage() {
         </div>
       </section>
 
+      <section className="section-padding !pb-0">
+        <div className="mx-auto max-w-3xl rounded-xl border border-line bg-surface p-6">
+          <h2 className="text-xl font-semibold text-ink">눈가·볼의 비립종도 상담합니다</h2>
+          <p className="mt-3 leading-7 text-muted">일산한의원은 비립종 제거를 시행합니다. 하얀 알갱이를 여드름·편평사마귀 등과 구분하고, 위치와 개수에 맞춰 제거 범위·비용·회복 관리를 안내합니다.</p>
+          <Link href="/skin/일산-비립종-제거-압출" className="mt-4 inline-block py-2 font-semibold text-primary underline underline-offset-4">비립종 제거·압출 질문과 답 →</Link>
+        </div>
+      </section>
       <SpotQuestionGuide />
       <LocalBlock {...LOCAL_BLOCKS["/skin/spot"]} />
 

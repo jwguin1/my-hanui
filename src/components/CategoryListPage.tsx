@@ -1,3 +1,4 @@
+import { CONSULTATION_GUIDE_SLUGS } from "@/lib/regional-guides";
 import Link from "next/link";
 import PainSymptomFinder from "@/components/PainSymptomFinder";
 import DietQuestionGuide from "@/components/DietQuestionGuide";
@@ -119,7 +120,8 @@ export default function CategoryListPage({ category }: { category: Category }) {
           ...PIGMENTATION_GROUPS.map((g) => ({ name: g.name, hub: { href: `${PIGMENTATION_PATH}#${g.id}`, label: "색소치료 안내" }, items: g.slugs.flatMap((slug) => { const post = bySlug.get(slug); return post ? [post] : []; }) })),
           { name: "슈링크·볼뉴머 리프팅", hub: { href: LIFTING_PATH, label: "리프팅 안내" }, items: LIFTING_SLUGS.flatMap((slug) => { const post = bySlug.get(slug); return post ? [post] : []; }) },
           { name: "얼굴·수염 제모", hub: { href: HAIR_REMOVAL_PATH, label: "제모 안내" }, items: HAIR_REMOVAL_SLUGS.flatMap((slug) => { const post = bySlug.get(slug); return post ? [post] : []; }) },
-          { name: "점·편평사마귀·쥐젖과 시술 후 관리", hub: { href: "/skin/spot", label: "잡티 제거 안내" }, items: posts.filter((p) => !SKIN_GUIDE_SLUGS.includes(p.slug)) },
+          { name: "피부 고민과 치료 선택", hub: { href: "/skin/questions", label: "고민별 질문 모음" }, items: posts.filter(p => CONSULTATION_GUIDE_SLUGS.includes(p.slug)) },
+          { name: "점·편평사마귀·쥐젖·비립종과 시술 후 관리", hub: { href: "/skin/spot", label: "잡티 제거 안내" }, items: posts.filter((p) => !SKIN_GUIDE_SLUGS.includes(p.slug)) },
         ].filter((g) => g.items.length > 0) : [];
 
   const path = `/${category}`;
@@ -165,6 +167,7 @@ export default function CategoryListPage({ category }: { category: Category }) {
   return (
     <>
       <JsonLd graph={graph} />
+      {category === "skin" && <nav aria-label="피부 고민별 질문" className="mx-auto max-w-5xl px-6 pt-8"><Link href="/skin/questions" className="block rounded-xl border border-line bg-surface p-5 font-semibold text-primary">내 고민에 맞는 피부 진료·질문 찾아보기 →</Link></nav>}
       {/* 통증은 증상별 진료 안내와 환자 질문을 함께 제공한다. */}
       <PageHeader
         badge={category === "pain" ? "통증 진료·환자 질문" : category === "diet" ? "일산한의원 · 감비환 안내" : "의학정보"}

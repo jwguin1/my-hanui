@@ -4,6 +4,8 @@ import { DIET_PRICES, won } from "./pricing";
 export const DIET_COST_ANSWER = `일산감비환은 1상자 ${DIET_PRICES.sachets}포 기준 노랑 ${won(DIET_PRICES.yellow)}, 핑크 ${won(DIET_PRICES.pink)}입니다. 하루 1포를 복용하는 경우 ${DIET_PRICES.sachets}일, 하루 2포인 경우 ${DIET_PRICES.sachets / 2}일 분량이며, 실제 복용량은 진료 후 정합니다.`;
 
 export const DIET_QUESTIONS = [
+  { href: "/diet/일산-다이어트약-비만클리닉", title: "일산 다이어트약·비만클리닉, 감비환 상담에서 무엇을 보나요?", description: "식사·수면·복용약과 체중 변화를 살피고 처방·유지 계획을 세우는 과정입니다." },
+  { href: "/diet/일산-지방분해주사-감비환-차이", title: "지방분해주사와 감비환, 체형·체중 관리의 차이", description: "국소 시술과 체중 관리의 목적을 구분합니다. 원내는 지방분해주사를 시행하지 않습니다." },
   { href: "/diet/감비환", title: "감비환이란? 일산감비환과 처방 확인법", description: "이름이 비슷한 감비환을 구분하고 진료 전에 준비할 내용을 확인하세요." },
   { href: "/diet/감비환-효과", title: "감비환 효과, 언제부터 판단하나요?", description: "체중뿐 아니라 식사·수면·불편한 증상까지 함께 살펴보는 방법입니다." },
   { href: "/diet/감비환-복용법", title: "감비환 복용법: 식전·식후, 횟수와 빠뜨렸을 때", description: "본인 처방을 확인하고 임의로 복용량을 바꾸지 않아야 하는 이유를 안내합니다." },

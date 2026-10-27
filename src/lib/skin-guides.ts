@@ -1,8 +1,9 @@
+import { CONSULTATION_GUIDE_SLUGS } from "./regional-guides";
 /** 피부 진료 안내와 관련 글의 표시 순서. 제목·요약은 실제 글에서 읽는다. */
 export const PIGMENTATION_PATH = "/skin/pigmentation";
-export const PIGMENTATION_UPDATED = "2026-10-16";
+export const PIGMENTATION_UPDATED = "2026-10-27";
 export const LIFTING_PATH = "/skin/lifting";
-export const LIFTING_UPDATED = "2026-10-24";
+export const LIFTING_UPDATED = "2026-10-27";
 export const VOLNEWMER_SLUGS: readonly string[] = [
   "볼뉴머-효과-슈링크-차이",
   "볼뉴머-300샷-600샷-가격",
@@ -16,6 +17,7 @@ export const HAIR_REMOVAL_SLUGS: readonly string[] = [
 ];
 export const LIFTING_SLUGS: readonly string[] = [
   ...VOLNEWMER_SLUGS,
+  "일산-올리지오-볼뉴머-고주파",
   "슈링크-시간-횟수-주기",
   "슈링크-효과-볼살-턱선",
   "슈링크-피코토닝-제네시스-차이",
@@ -31,14 +33,14 @@ export const SHURINK_CARE = {
 } as const;
 
 export const PIGMENTATION_GROUPS = [
-  { id: "first-visit", name: "토닝을 처음 알아보신다면", slugs: ["한의원-피코토닝-상담-시술", "피부레이저-담당-의료진", "피코토닝-가격-제네시스"] },
+  { id: "first-visit", name: "토닝을 처음 알아보신다면", slugs: ["한의원-피코토닝-상담-시술", "피부레이저-담당-의료진", "피코토닝-가격-제네시스", "일산-스킨부스터-리쥬란-쥬베룩"] },
   { id: "pigment", name: "기미·잡티·흑자", slugs: ["피코토닝-효과-횟수", "흑자제거-피코레이저", "기미-주근깨-흑자-차이", "기미레이저-재발-관리"] },
   { id: "genesis", name: "제네시스·피부결·홍조", slugs: ["제네시스토닝-효과", "피코토닝-제네시스-차이", "피코토닝-피부톤-미백", "제네시스-피부장벽-민감피부"] },
   { id: "cost-care", name: "시술 후 관리", slugs: ["토닝후-색소침착-딱지"] },
 ] as const;
 
 export const PIGMENTATION_SLUGS: readonly string[] = PIGMENTATION_GROUPS.flatMap((g) => [...g.slugs]);
-export const SKIN_GUIDE_SLUGS: readonly string[] = [...PIGMENTATION_SLUGS, ...LIFTING_SLUGS, ...HAIR_REMOVAL_SLUGS];
+export const SKIN_GUIDE_SLUGS: readonly string[] = [...PIGMENTATION_SLUGS, ...LIFTING_SLUGS, ...HAIR_REMOVAL_SLUGS, ...CONSULTATION_GUIDE_SLUGS];
 
 export const SKIN_RELATED: Record<string, readonly string[]> = {
   "일산-편평사마귀-제거": ["일산-편평사마귀-가격", "편평사마귀-여드름-차이", "점뺀후-딱지없음-재생테이프"],
@@ -76,9 +78,10 @@ export const SKIN_RELATED: Record<string, readonly string[]> = {
 };
 
 export function skinPostHub(slug: string) {
+  if (CONSULTATION_GUIDE_SLUGS.includes(slug)) return { href: "/skin/questions", label: "피부 고민·치료 선택 질문 모음" };
   if (HAIR_REMOVAL_SLUGS.includes(slug)) return { href: HAIR_REMOVAL_PATH, label: "얼굴·수염 제모 · 엘리멘트 TL 안내" };
   if (LIFTING_SLUGS.includes(slug)) return { href: LIFTING_PATH, label: "리프팅 · 슈링크·볼뉴머 안내" };
   return PIGMENTATION_SLUGS.includes(slug)
     ? { href: PIGMENTATION_PATH, label: "색소치료 · 피코토닝·제네시스 안내" }
-    : { href: "/skin/spot", label: "잡티 제거 · 점·편평사마귀·쥐젖 안내" };
+    : { href: "/skin/spot", label: "잡티 제거 · 점·편평사마귀·쥐젖·비립종 안내" };
 }

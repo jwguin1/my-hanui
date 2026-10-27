@@ -81,6 +81,7 @@ export const SITE_NAV: NavGroup[] = [
           { href: "/pain", label: CAROUSEL_TARGETS.pain.navLabel },
           { href: "/diet", label: "일산감비환 · 복용 질문" },
           { href: "/skin", label: "피부 · 리프팅 질문 모음" },
+          { href: "/skin/questions", label: "피부 고민별 치료 선택" },
           { href: "/aftercare", label: "치료 후 관리" },
         ],
       },

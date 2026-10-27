@@ -26,7 +26,7 @@ export default function LiftingPage() {
       </SkinSection>
       <SkinSection id="questions" title="리프팅 전에 많이 궁금한 질문"><SkinFaq items={LIFTING_FAQS}/></SkinSection>
       <SkinSection id="guides" title="볼뉴머와 슈링크, 궁금한 내용부터 읽어보세요">
-        {[{title:"볼뉴머 질문 3가지",slugs:VOLNEWMER_SLUGS},{title:"슈링크 질문 3가지",slugs:LIFTING_SLUGS.filter(s=>!VOLNEWMER_SLUGS.includes(s))}].map(group=><div key={group.title}><h3 className="mb-4 text-xl font-bold text-ink">{group.title}</h3><div className="grid gap-3">{group.slugs.flatMap(slug=>{const p=posts.find(p=>p.slug===slug);return p?[<Link key={p.slug} href={postPath("skin",p.slug)} className="rounded-xl border border-line bg-white p-5"><h4 className="font-bold text-primary">{p.title} →</h4><p className="mt-2 text-base text-muted">{p.description}</p></Link>]:[];})}</div></div>)}
+        {[{title:"볼뉴머 질문 3가지",slugs:VOLNEWMER_SLUGS},{title:"슈링크·고주파 비교 질문",slugs:LIFTING_SLUGS.filter(s=>!VOLNEWMER_SLUGS.includes(s))}].map(group=><div key={group.title}><h3 className="mb-4 text-xl font-bold text-ink">{group.title}</h3><div className="grid gap-3">{group.slugs.flatMap(slug=>{const p=posts.find(p=>p.slug===slug);return p?[<Link key={p.slug} href={postPath("skin",p.slug)} className="rounded-xl border border-line bg-white p-5"><h4 className="font-bold text-primary">{p.title} →</h4><p className="mt-2 text-base text-muted">{p.description}</p></Link>]:[];})}</div></div>)}
         <a href="https://research.ilsanhan.com/articles/pmid-36674277" className="block rounded-xl border border-line bg-white p-5 font-semibold text-primary">연구노트 · 초음파 리프팅 연구의 결과와 해석 →</a>
       </SkinSection>
     </SkinTreatmentLayout></>;
