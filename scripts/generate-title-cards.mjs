@@ -85,7 +85,7 @@ const CLINIC_CARDS = [
   { key: "accident", heading: "교통사고" },
   { key: "internal-dyspepsia", heading: "소화불량" },
   { key: "autonomic-care", heading: "이명·어지럼·두통" },
-  { key: "diet-program", heading: "다이어트 처방" },
+  { key: "diet-program", heading: "일산감비환 · 다이어트" },
   { key: "skin-spot", heading: "잡티 제거" },
 ];
 
@@ -315,6 +315,7 @@ async function generateClinicCards() {
 
   const pad = (s, n) => String(s).padEnd(n);
   for (const c of CLINIC_CARDS) {
+    if (ONLY && c.key !== ONLY) continue;
     const png = path.join(outDir, c.key + ".png");
     const webp = path.join(outDir, c.key + ".webp");
     const exists = fs.existsSync(png);

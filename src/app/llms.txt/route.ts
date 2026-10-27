@@ -29,6 +29,7 @@ function body(): string {
   const holidayLine = `- ${CLINIC_WEEKEND_HOLIDAY_LABEL}: ${CLINIC_HOURS_WEEKEND} (점심시간 없이 진료)`;
   const closedLine = `- ${CLINIC.holidayClosedNote}`;
   const skinPosts = getAllPosts("skin");
+  const searchGuideLinks = [...getAllPosts("diet"), ...skinPosts.filter(post => post.id.startsWith("spot-guide-") || post.slug === "잡티제거-개수와-비용")].map(post => `- [${post.title}](${BASE}${postPath(post.category, post.slug)})`).join("\n");
   const hairLinks = HAIR_REMOVAL_SLUGS.flatMap(slug => {
     const post = skinPosts.find(p => p.slug === slug);
     return post ? [`- [${post.title}](${BASE}${postPath("skin", post.slug)})`] : [];
@@ -102,6 +103,10 @@ ${HERBAL_GUIDES.map(g => `- [${g.title}](${BASE}${herbalPath(g)}): ${g.question}
 - 상담 신청: ${HOME_VISIT.formUrl}
 ${HOME_VISIT_FAQS.map(f => `- [${f.q}](${BASE}${HOME_VISIT.path}#question-${f.id}): ${f.a}`).join("\n")}
 
+## 일산감비환·잡티 제거 질문별 안내
+
+${searchGuideLinks}
+
 ## 진료 안내 페이지
 
 - 급성 통증 (담 결림·허리 삐끗·발목 염좌): ${BASE}/pain/acute
@@ -109,7 +114,7 @@ ${HOME_VISIT_FAQS.map(f => `- [${f.q}](${BASE}${HOME_VISIT.path}#question-${f.id
 - 교통사고 후유증 (자동차보험): ${BASE}/accident
 - 소화불량 (급체·기능성소화불량): ${BASE}/internal/dyspepsia
 - 이명·어지럼·두통: ${BASE}/autonomic/care
-- 다이어트 한약 처방: ${BASE}/diet/program
+- 일산감비환 · 다이어트 한약 처방: ${BASE}/diet/program
 - 잡티 제거 (점·편평사마귀·쥐젖): ${BASE}/skin/spot
 - 색소치료 (피코토닝·제네시스·기미·흑자): ${BASE}/skin/pigmentation
 - 리프팅 (슈링크 유니버스·볼뉴머·탄력·턱선): ${BASE}${LIFTING_PATH}
@@ -184,7 +189,7 @@ ${hairLinks}
 진료 분야별 질문과 치료 정보를 정리한 글 모음입니다.
 
 - 통증: ${BASE}/pain
-- 다이어트: ${BASE}/diet
+- 일산감비환 · 감비환 복용 질문: ${BASE}/diet
 - 피부: ${BASE}/skin
 - 자율신경: ${BASE}/autonomic
 - 전체 글: ${BASE}/blog
@@ -200,7 +205,7 @@ ${hairLinks}
 - 오시는 길·진료시간: ${BASE}/contact
 - 의학칼럼: ${BASE}/column
 - 유튜브: ${BASE}/media
-- 다이어트 전문 사이트: https://diet.ilsanhan.com
+- 일산감비환 다이어트 전문 사이트: https://diet.ilsanhan.com
 
 ## 참고
 

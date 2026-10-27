@@ -36,7 +36,7 @@ export default function PricingPage() {
   return <>
     <JsonLd graph={buildGraph({ path: "/pricing", name: "진료비·시간 안내 – 일산한의원", description, faq: faqEntities(PRICING_VISIT_FAQS) })} />
     <PageHeader badge="방문 전 안내" lead="진료비와 소요 시간," accent="미리 확인하세요" stacked description="받으실 치료의 비용과 포함 항목을 살펴보고, 방문 일정을 편하게 정하세요." />
-    <SectionJumpNav label="진료비 안내 항목" items={[["pain", "통증·추나·약침"], ["questions", "추가 비용·이용 질문"], ["home-visit", "방문진료"], ["herbal", "보험한약·체질보약"], ["diet", "다이어트"], ["skin", "피부·제모·리프팅"], ["hours", "진료·접수 시간"]]} />
+    <SectionJumpNav label="진료비 안내 항목" items={[["pain", "통증·추나·약침"], ["questions", "추가 비용·이용 질문"], ["home-visit", "방문진료"], ["herbal", "보험한약·체질보약"], ["diet", "일산감비환"], ["skin", "피부·제모·리프팅"], ["hours", "진료·접수 시간"]]} />
     <div className="mx-auto max-w-4xl px-6">
       <PriceSection id="pain" title="통증치료 · 추나 · 초음파 유도 약침">
         <PriceTable caption="건강보험 진료 · 본인부담금" rows={[
@@ -79,14 +79,14 @@ export default function PricingPage() {
         <p>{CARE_GUIDE.herbalProcess} {CARE_GUIDE.herbalTiming}</p>
         <DetailLink href="/herbal/tonic">체질맞춤·두통·어지럼·갱년기 한약</DetailLink>
       </PriceSection>
-      <PriceSection id="diet" title="다이어트 처방">
+      <PriceSection id="diet" title="일산감비환 · 다이어트">
         <PriceTable caption="일산감비환 · 1상자 100포" rows={[
           { name: "노랑 감비환", price: won(DIET_PRICES.yellow) },
           { name: "분홍 감비환", price: won(DIET_PRICES.pink) },
         ]} />
         <p>첫 상담은 약 {DIET_PRICES.consultationMinutes}분입니다. 식사·수면 패턴과 복용 중인 약을 확인하고 처방을 상담합니다. 접수나 추가 검사 시간은 별도입니다.</p>
         <p>100포는 하루 1포 기준 100일, 하루 2포 기준 50일 분량입니다. 복용량은 진료 후 정합니다.</p>
-        <DetailLink href="/diet/program">다이어트 처방과 복용 안내</DetailLink>
+        <DetailLink href="/diet/program">일산감비환 처방과 복용 안내</DetailLink>
       </PriceSection>
       <PriceSection id="skin" title="잡티제거 · 색소치료 · 리프팅 · 제모">
         <PriceTable caption="CO₂ 레이저 잡티제거 · 비급여" headers={SPOT_PRICE_HEADERS} rows={SPOT_PRICE_ROWS.map(row => ({ name: row.name, price: won(row.upTo100), price2: won(row.unlimited) }))} />

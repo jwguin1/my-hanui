@@ -134,17 +134,17 @@ export const CLINIC = {
    *    컴포넌트라 네트워크 호출이 더 나쁘다.
    *  → 확인된 날짜만 적고, 표가 떨어지기 전에 **검증기가 FAIL 로 알린다.**
    *
-   * 넣지 않은 것
-   *  - 근로자의 날(5/1) — 「근로자의 날 제정에 관한 법률」상 유급휴일이지
-   *    관공서 공휴일이 아니다. 평일 20:00 까지로 계산된다.
+   * 노동절(5/1)은 2026년부터 관공서 공휴일에 포함된다.
    *
    * 제헌절(7/17)은 **공휴일이다.** 2008년에 빠졌다가 2026-05-11 시행으로
    * 18년 만에 재지정됐다 (공휴일에 관한 법률 개정 + 관공서의 공휴일에 관한
    * 규정 개정). 대체공휴일 적용 대상에도 포함됐다.
    * 처음에 「2008년부터 제외」로 잘못 적어 2026-07-17 이 빠져 있었다.
    *
-   * 2026년분만 싣는다. 2027년분은 확인 후 추가한다 — 틀린 날짜를 넣으면
-   * 여는 날 시간이 어긋나 그대로 환자를 돌려보낸다.
+   * 2027년까지 확인. 우주항공청 2026-06-29 발표와 한국천문연구원 날짜표 대조:
+   * https://www.kasa.go.kr/prog/plcyBrf/brief/kor/sub01_01_04/view.do?plcyBrfNo=431
+   * https://astro.kasi.re.kr/kor/life/post/calendarData?search_year=2027
+   * 기존 진료 기준(설·추석 당일만 휴진)을 각 연도 날짜에 적용한다.
    */
   holidays: [
     { date: "2026-01-01", name: "신정", open: true },
@@ -153,6 +153,7 @@ export const CLINIC = {
     { date: "2026-02-18", name: "설날 연휴", open: true },
     { date: "2026-03-01", name: "삼일절", open: true },
     { date: "2026-03-02", name: "삼일절 대체공휴일", open: true },
+    { date: "2026-05-01", name: "노동절", open: true },
     { date: "2026-05-05", name: "어린이날", open: true },
     { date: "2026-05-24", name: "부처님오신날", open: true },
     { date: "2026-05-25", name: "부처님오신날 대체공휴일", open: true },
@@ -168,6 +169,30 @@ export const CLINIC = {
     { date: "2026-10-05", name: "개천절 대체공휴일", open: true },
     { date: "2026-10-09", name: "한글날", open: true },
     { date: "2026-12-25", name: "성탄절", open: true },
+    { date: "2027-01-01", name: "신정", open: true },
+    { date: "2027-02-06", name: "설날 연휴", open: true },
+    { date: "2027-02-07", name: "설날", open: false },
+    { date: "2027-02-08", name: "설날 연휴", open: true },
+    { date: "2027-02-09", name: "설날 대체공휴일", open: true },
+    { date: "2027-03-01", name: "삼일절", open: true },
+    { date: "2027-05-01", name: "노동절", open: true },
+    { date: "2027-05-03", name: "노동절 대체공휴일", open: true },
+    { date: "2027-05-05", name: "어린이날", open: true },
+    { date: "2027-05-13", name: "부처님오신날", open: true },
+    { date: "2027-06-06", name: "현충일", open: true },
+    { date: "2027-07-17", name: "제헌절", open: true },
+    { date: "2027-07-19", name: "제헌절 대체공휴일", open: true },
+    { date: "2027-08-15", name: "광복절", open: true },
+    { date: "2027-08-16", name: "광복절 대체공휴일", open: true },
+    { date: "2027-09-14", name: "추석 연휴", open: true },
+    { date: "2027-09-15", name: "추석", open: false },
+    { date: "2027-09-16", name: "추석 연휴", open: true },
+    { date: "2027-10-03", name: "개천절", open: true },
+    { date: "2027-10-04", name: "개천절 대체공휴일", open: true },
+    { date: "2027-10-09", name: "한글날", open: true },
+    { date: "2027-10-11", name: "한글날 대체공휴일", open: true },
+    { date: "2027-12-25", name: "성탄절", open: true },
+    { date: "2027-12-27", name: "성탄절 대체공휴일", open: true },
   ] as readonly { date: string; name: string; open: boolean }[],
 
   /**

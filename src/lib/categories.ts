@@ -36,10 +36,10 @@ export const CATEGORY_META: Record<Category, CategoryMeta> = {
     ogImage: "/images/autonomic-og.jpg",
   },
   diet: {
-    label: "다이어트",
-    fullLabel: "한방비만 · 다이어트",
+    label: "일산감비환",
+    fullLabel: "일산감비환 · 다이어트",
     description:
-      `일산감비환 가격은 1상자 ${DIET_PRICES.sachets}포 기준 노랑 ${won(DIET_PRICES.yellow)}, 핑크 ${won(DIET_PRICES.pink)}. 다이어트 한약 비용·복용 기간·두근거림·요요와 치료 방법 비교를 질문별로 확인하세요. 이마트 풍산점 3층 일산한의원.`,
+      `감비환을 알아보신다면 일산한의원의 일산감비환을 확인하세요. 1상자 ${DIET_PRICES.sachets}포 기준 노랑 ${won(DIET_PRICES.yellow)}, 핑크 ${won(DIET_PRICES.pink)}. 다이어트 한약의 가격·복용 기간·두근거림·요요와 상담 전 질문을 안내합니다.`,
     ogImage: "/images/diet-og.jpg",
   },
   skin: {
@@ -71,8 +71,8 @@ export const DOCTOR_META = {
  *   - openGraph/twitter title 은 풀타이틀을 직접 지정 (OG title 엔 template 미적용)
  *
  * 네이버 캐러셀 타깃(pain/diet/skin)은 라벨 일치를 위해 carousel-targets.ts 의
- * title 을 쓴다. 기존 첫 단어(통증·다이어트·피부)는 그대로 두고 설명만 덧붙인
- * 문구다 — 교체가 아니라 삽입. 타깃이 아닌 autonomic 은 meta.label 그대로.
+ * title 을 쓴다. 메뉴·대표이미지·검색 제목의 주제를 함께 맞춘다.
+ * 타깃이 아닌 autonomic 은 meta.label 그대로.
  */
 export function categoryMetadata(category: Category): Metadata {
   const meta = CATEGORY_META[category];

@@ -76,7 +76,7 @@ const RECOMMENDED_READINGS = [
   { category: "교통사고", title: "교통사고 후 병원과 한의원을 같이 다녀도 되나요?", description: "정형외과·한의원 병행 진료와 자동차보험 접수 전 확인할 내용을 안내합니다.", href: "/pain/교통사고-병원-한의원-병행" },
   { category: "보험한약", title: digestiveGuide.question, description: "반복되는 소화불량과 보험한약 적용·비용을 확인하세요.", href: herbalPath(digestiveGuide) },
   { category: "체질보약", title: tonicGuide.question, description: "피로·소화·수면을 함께 살피는 맞춤 한약 상담을 안내합니다.", href: herbalPath(tonicGuide) },
-  { category: "다이어트", title: "다이어트 한약, 얼마나 먹어야 하고 비용은 어느 정도인가요?", description: "복용 기간과 비용을 먼저 확인하고 내 계획을 세워보세요.", href: "/diet/다이어트한약-기간과-비용" },
+  { category: "일산감비환", title: "일산감비환, 얼마나 먹어야 하고 비용은 어느 정도인가요?", description: "다이어트 한약의 복용 기간과 비용을 먼저 확인하세요.", href: "/diet/다이어트한약-기간과-비용" },
   { category: "피부 · 미용", title: "피코토닝과 제네시스는 어떻게 다른가요?", description: "색소·피부결 등 고민에 따라 치료를 선택할 때 확인할 내용을 안내합니다.", href: "/skin/피코토닝-제네시스-차이" },
 ];
 
@@ -87,7 +87,7 @@ const CLINIC_CARDS = [
   { href: "/accident", badge: "자동차보험", heading: "교통사고", blurb: "사고 후 통증과 불편, 접수부터 치료까지", ogImage: "/images/cards/accident.png" },
   { href: "/herbal/insurance", badge: "건강보험", heading: "보험한약", blurb: "건강보험 대상 6개 질환과 적용·비용 안내", ogImage: "/herbal/insurance/opengraph-image" },
   { href: "/herbal/tonic", badge: "맞춤 한약", heading: "체질보약", blurb: "몸 상태에 맞춘 비급여 한약과 비용", ogImage: "/herbal/tonic/opengraph-image" },
-  { href: "/diet/program", badge: "체중 관리", heading: "다이어트", blurb: "처방·복용·식사 관리와 비용", ogImage: "/images/cards/diet-program.png" },
+  { href: "/diet/program", badge: "다이어트", heading: "일산감비환", blurb: "감비환 가격·처방·복용과 식사 관리", ogImage: "/images/cards/diet-program.png" },
   { href: "/skin/spot", badge: "피부 · 미용", heading: "잡티제거", blurb: "CO₂ 제거부터 색소·제모·슈링크·볼뉴머까지", ogImage: "/images/cards/skin-spot.png" },
   { href: "/home-visit", badge: "집에서 받는 진료", heading: "방문진료", blurb: "거동이 불편한 분을 위한 방문 대상·지역·비용", ogImage: "/home-visit/opengraph-image" },
   { href: "/herbs", badge: "원내 조제", heading: "오늘의 한약", blurb: "약재 사진과 원장이 전하는 나를 위한 복약편지", ogImage: "/herbal/tonic/opengraph-image" },

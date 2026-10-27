@@ -13,6 +13,7 @@ export default function PageHeader({
   lead,
   accent = "",
   stacked = false,
+  subtitle,
   description,
 }: {
   badge: string;
@@ -20,14 +21,16 @@ export default function PageHeader({
   lead: string;
   accent?: string;
   stacked?: boolean;
+  subtitle?: string;
   description?: string;
 }) {
   return (
     <section className="bg-[var(--surface)]">
       <div className="mx-auto max-w-[1100px] px-5 py-8 text-center md:px-8 md:py-20">
         <SectionBadge icon={icon} label={badge} />
-        <div className="mt-4">
+        <div className={subtitle ? "mt-4 flex flex-wrap items-baseline justify-center gap-x-3 gap-y-2" : "mt-4"}>
           <TwoTone as="h1" lead={lead} accent={accent} stacked={stacked} />
+          {subtitle && <p className="text-base font-medium text-muted md:text-xl">{subtitle}</p>}
         </div>
         {description ? (
           <p className="mx-auto mt-4 max-w-md text-[14px] leading-relaxed text-muted">

@@ -31,7 +31,7 @@ export default function DyspepsiaPage() {
       <h2 className="font-serif text-2xl font-semibold text-ink">첫 상담부터 경과 확인까지</h2>
       <ol className="mt-6 grid gap-4 md:grid-cols-3">{[
         ["1. 증상과 검사 결과 확인", "식사량, 불편한 시간대, 배변·수면 상태와 복용 중인 약을 살펴봅니다. 검사가 먼저 필요한 경우에는 해당 진료를 안내합니다."],
-        ["2. 필요한 치료 상담", "급체는 침 치료와 한방 소화제 등을 상담합니다. 반복되는 불편은 한약·침 치료를 살펴보고, 기능성 소화불량에 해당하면 보험한약 적용을 확인합니다."],
+        ["2. 몸 상태에 맞는 치료 안내", "진찰 결과에 따라 침 치료·한방 소화제·한약 가운데 필요한 치료를 설명합니다. 기능성 소화불량에 해당하면 보험한약 적용과 비용도 안내합니다."],
         ["3. 식후 불편의 변화 확인", "먹을 수 있는 양, 더부룩함이 이어지는 시간, 소화제를 찾는 빈도를 확인해 다음 치료와 처방을 정합니다."],
       ].map(([title, body]) => <li key={title} className="rounded-xl border border-line bg-card p-5"><h3 className="font-semibold text-ink">{title}</h3><p className="mt-3 text-base leading-relaxed text-muted">{body}</p></li>)}</ol>
       <p className="mt-6 text-sm leading-relaxed text-muted">이유 없는 체중 감소, 삼킴 곤란, 검은 변·혈변, 심한 빈혈이 있으면 검사를 먼저 받으세요. 갑자기 심한 복통이나 가슴 통증이 생기면 지체하지 말고 진료받으세요.</p>

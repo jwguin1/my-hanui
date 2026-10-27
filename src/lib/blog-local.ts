@@ -11,14 +11,14 @@ export type Category = (typeof CATEGORIES)[number];
 
 export const CATEGORY_LABEL: Record<Category, string> = {
   pain: "통증",
-  diet: "다이어트",
+  diet: "일산감비환",
   autonomic: "자율신경",
   skin: "피부",
 };
 
 export const CATEGORY_DESCRIPTION: Record<Category, string> = {
   pain: "근골격계 통증, 신경포착증후군, 초음파 유도 치료 등 통증 관련 최신 의학정보를 다룹니다.",
-  diet: "체중 관리, 대사 질환, 인크레틴 등 다이어트와 관련된 의학 연구를 소개합니다.",
+  diet: "일산감비환은 일산한의원에서 상담·처방하는 다이어트 한약입니다. 감비환 가격과 복용 기간, 두근거림·요요·커피 등 궁금한 내용을 확인하세요.",
   autonomic: "자율신경 기능, 스트레스, 수면 등 자율신경계 관련 건강정보를 전합니다.",
   skin: "기미·흑자와 피코토닝·제네시스, 슈링크·볼뉴머 리프팅과 얼굴 제모, 점·편평사마귀·쥐젖에 관한 질문과 치료 정보를 모았습니다.",
 };
@@ -297,6 +297,8 @@ export function autoLinkMarkdown(
         next = next.replace(re, `[${keyword}](${postPath(category, slug)})`);
         linkedKeywords.add(keyword);
         linked++;
+        // 새로 만든 링크 안의 짧은 태그(일산감비환 → 감비환)를 다시 링크하지 않는다.
+        break;
       }
     }
     return next;

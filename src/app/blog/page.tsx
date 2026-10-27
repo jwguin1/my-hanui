@@ -9,13 +9,13 @@ import JsonLd from "@/components/JsonLd";
 import PageHeader from "@/components/ui/PageHeader";
 import QuestionDirectory, { type QuestionEntry } from "@/components/QuestionDirectory";
 
-const description = "통증치료·교통사고·보험한약·체질보약·다이어트·잡티제거의 질문과 답을 찾아보세요. 치료 과정, 비용, 시술 후 관리를 진료별로 모았습니다.";
+const description = "통증치료·교통사고·보험한약·체질보약·일산감비환·잡티제거의 질문과 답을 찾아보세요. 치료 과정, 비용, 시술 후 관리를 진료별로 모았습니다.";
 export const metadata: Metadata = pageMetadata({ path: "/blog", title: "환자 질문 모음 | 증상·치료·비용 검색", description });
 
 export default function BlogArchivePage() {
   const entries: QuestionEntry[] = [
     ...HERBAL_GUIDES.map(g => ({ title: g.question, description: g.summary, href: herbalPath(g), group: g.category === "insurance" ? "보험한약" : "체질보약", keywords: `${g.title} ${g.faqs.map(f => f.q).join(" ")}` })),
-    ...getAllPosts().map(p => ({ title: p.title, description: p.description, href: postPath(p.category, p.slug), group: p.category === "pain" ? (/교통사고/.test(`${p.title} ${p.tags.join(" ")}`) ? "교통사고" : "통증치료") : p.category === "skin" ? "잡티제거" : p.category === "diet" ? "다이어트" : p.category === "autonomic" ? "체질보약" : "한의원 소식", keywords: p.tags.join(" ") })),
+    ...getAllPosts().map(p => ({ title: p.title, description: p.description, href: postPath(p.category, p.slug), group: p.category === "pain" ? (/교통사고/.test(`${p.title} ${p.tags.join(" ")}`) ? "교통사고" : "통증치료") : p.category === "skin" ? "잡티제거" : p.category === "diet" ? "일산감비환" : p.category === "autonomic" ? "체질보약" : "한의원 소식", keywords: `${p.tags.join(" ")} ${p.category === "diet" ? "감비환 일산감비환 일산한의원 다이어트" : ""}` })),
   ];
   const list = itemListNode("/blog", "post-list", "환자 질문과 진료 안내", entries.map(e => ({ url: `https://www.ilsanhan.com${e.href}`, name: e.title })));
   return <>

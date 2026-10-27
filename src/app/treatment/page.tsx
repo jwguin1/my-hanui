@@ -26,7 +26,7 @@ export default function TreatmentPage() {
     <JsonLd graph={buildGraph({ path: "/treatment", name: "진료 안내 – 일산한의원", description })} />
     <PageHeader badge="진료 안내" lead="내 증상에 맞는 치료와" accent="비용을 확인하세요" stacked description={description} />
     <div className="mx-auto grid max-w-5xl gap-5 px-6 py-10 md:grid-cols-2">{treatments.map(t => <section key={t.title} className="rounded-2xl border border-line bg-card p-6"><h2 className="font-serif text-xl font-semibold text-ink">{t.title}</h2><p className="mt-4 text-base leading-relaxed text-muted">{t.body}</p><p className="mt-4 text-sm font-medium leading-relaxed text-ink">{t.note}</p><Link href={t.href} className="mt-5 inline-block text-primary underline underline-offset-4">{t.label} →</Link></section>)}</div>
-    <nav aria-label="다른 진료 안내" className="mx-auto flex max-w-5xl flex-wrap gap-5 px-6 pb-10 text-primary"><Link href="/accident">교통사고 →</Link><Link href="/diet/program">다이어트 →</Link><Link href="/skin/spot">잡티제거·색소치료·제모·리프팅 →</Link><Link href="/aftercare">치료 후 관리 →</Link></nav>
+    <nav aria-label="다른 진료 안내" className="mx-auto flex max-w-5xl flex-wrap gap-5 px-6 pb-10 text-primary"><Link href="/accident">교통사고 →</Link><Link href="/diet/program">일산감비환 · 다이어트 →</Link><Link href="/skin/spot">잡티제거·색소치료·제모·리프팅 →</Link><Link href="/aftercare">치료 후 관리 →</Link></nav>
     <section className="bg-[var(--surface)] px-6 py-12 text-center"><h2 className="text-xl font-semibold text-ink">어떤 진료가 필요한지 편하게 물어보세요</h2><p className="mx-auto mt-3 max-w-xl text-base leading-relaxed text-muted">불편한 부위와 증상이 시작된 시기, 방문 희망일을 남겨주세요. 진료시간 내 의료진이 직접 상담합니다.</p><ConsultationActions directions className="mt-6" /></section>
   </>;
 }

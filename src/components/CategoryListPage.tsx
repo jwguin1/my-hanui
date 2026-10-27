@@ -52,7 +52,7 @@ const EMPTY_STATE_LINKS: Record<
   },
   diet: {
     href: "/diet/program",
-    title: "한방 다이어트 처방 안내",
+    title: "일산감비환 처방 안내",
     blurb: "복용 방식과 확인해야 할 증상을 정리했습니다.",
   },
   skin: {
@@ -157,7 +157,7 @@ export default function CategoryListPage({ category }: { category: Category }) {
       posts.length > 0
         ? // 목록 카드의 author 참조가 끊기지 않도록 Physician 스텁을 함께 싣는다
           [listNode, ...physicianStubs(posts.map((p) => p.author)),
-            ...(category === "diet" ? [itemListNode(path, "patient-questions", "다이어트 한약 환자 질문", DIET_QUESTIONS.map(question => ({ url: `${SITE_URL}${question.href}`, name: question.title })))] : []),
+            ...(category === "diet" ? [itemListNode(path, "patient-questions", "일산감비환 복용 질문", DIET_QUESTIONS.map(question => ({ url: `${SITE_URL}${question.href}`, name: question.title })))] : []),
           ]
         : [],
   });
@@ -167,9 +167,10 @@ export default function CategoryListPage({ category }: { category: Category }) {
       <JsonLd graph={graph} />
       {/* 통증은 증상별 진료 안내와 환자 질문을 함께 제공한다. */}
       <PageHeader
-        badge={category === "pain" ? "통증 진료·환자 질문" : "의학정보"}
+        badge={category === "pain" ? "통증 진료·환자 질문" : category === "diet" ? "일산한의원 · 감비환 안내" : "의학정보"}
         icon={<Microscope size={15} />}
         lead={label}
+        subtitle={category === "diet" ? "다이어트" : undefined}
         description={category === "pain" ? "불편한 증상에 맞는 진료와 질문을 찾아보세요. 처음 오시는 분을 위한 치료 과정과 비용도 함께 안내합니다." : description}
       />
 
@@ -206,7 +207,7 @@ export default function CategoryListPage({ category }: { category: Category }) {
                 <SectionBadge label="치료 안내" />
                 <h2 className="font-serif mt-2 text-[1.05rem] font-semibold leading-snug text-ink transition-colors duration-200 group-hover:text-primary sm:text-[1.15rem]">
                   {category === "diet"
-                    ? "한약 처방이 어떻게 진행되는지 보기"
+                    ? "일산감비환 상담과 처방 과정 보기"
                     : category === "skin"
                       ? "점·편평사마귀·쥐젖 제거 안내 보기"
                       : "이명·어지럼·두통 치료 안내 보기"}
@@ -245,7 +246,7 @@ export default function CategoryListPage({ category }: { category: Category }) {
               <div className="min-w-0 flex-1">
                 <SectionBadge label="전문 페이지" />
                 <h2 className="font-serif mt-2 text-[1.05rem] font-semibold leading-snug text-text group-hover:text-accent transition-colors duration-200 sm:text-[1.15rem]">
-                  일산한의원 다이어트 전문 페이지
+                  일산감비환 전문 페이지
                 </h2>
                 <p className="mt-2 text-[0.85rem] leading-relaxed text-text-muted">
                   처방 사례, 비용 안내, 상담 예약까지 한 곳에서 확인하세요.

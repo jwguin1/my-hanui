@@ -7,7 +7,7 @@ const links: { href: string; label: string; external?: boolean }[] = [
   { href: "/about", label: "일산한의원" },
   { href: "/doctor", label: "의료진" },
   { href: "/pain", label: "통증" },
-  { href: "/diet", label: "다이어트" },
+  { href: "/diet", label: "일산감비환" },
   { href: "/autonomic", label: "자율신경" },
   { href: "/skin", label: "피부" },
   { href: "/column", label: "의학칼럼" },

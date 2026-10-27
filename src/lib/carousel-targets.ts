@@ -41,11 +41,11 @@ export const CAROUSEL_TARGETS = {
   },
   diet: {
     path: "/diet",
-    title: "다이어트 – 일산감비환 한방 체질 처방",
-    navLabel: "한방 다이어트",
+    title: "일산감비환 · 다이어트 한약 안내",
+    navLabel: "일산감비환 · 다이어트",
     hero: {
       src: "/images/hero/diet-hero.jpg",
-      alt: "일산한의원 한방 다이어트 – 일산감비환, 체질 처방",
+      alt: "일산감비환 – 일산한의원 감비환·다이어트 한약 안내",
     },
   },
   skin: {

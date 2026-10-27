@@ -56,7 +56,7 @@ export const SITE_NAV: NavGroup[] = [
       {
         label: "미용 · 대사",
         items: [
-          { href: "/diet/program", label: "다이어트 처방" },
+          { href: "/diet/program", label: "일산감비환 · 다이어트" },
           { href: "/skin/spot", label: "잡티 제거" },
           { href: "/skin/pigmentation", label: "색소치료" },
           { href: "/skin/lifting", label: "리프팅 · 슈링크·볼뉴머" },
@@ -79,6 +79,7 @@ export const SITE_NAV: NavGroup[] = [
           { href: "/blog", label: "전체 진료 질문 검색" },
           { href: "https://research.ilsanhan.com", label: "연구노트 · 논문으로 읽는 진료" },
           { href: "/pain", label: CAROUSEL_TARGETS.pain.navLabel },
+          { href: "/diet", label: "일산감비환 · 복용 질문" },
           { href: "/skin", label: "피부 · 리프팅 질문 모음" },
           { href: "/aftercare", label: "치료 후 관리" },
         ],

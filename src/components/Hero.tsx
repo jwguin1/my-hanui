@@ -22,7 +22,7 @@ const QUICK_LINKS = [
   { label: "교통사고", detail: "사고 후 통증·불편", href: "/accident" },
   { label: "보험한약", detail: "건강보험 6개 질환·비용", href: "/herbal/insurance" },
   { label: "체질보약", detail: "몸 상태에 맞춘 한약·비용", href: "/herbal/tonic" },
-  { label: "다이어트", detail: "처방·복용·비용 안내", href: "/diet/program" },
+  { label: "일산감비환", detail: "다이어트 · 가격·복용 안내", href: "/diet/program" },
   { label: "잡티제거", detail: "CO₂ · 색소 · 제모 · 리프팅", href: "/skin/spot" },
   { label: "방문진료", detail: "집으로 찾아가는 한의사", href: "/home-visit" },
   { label: "오늘의 한약", detail: "약재 사진과 복약편지", href: "/herbs" },
@@ -122,7 +122,7 @@ export default function Hero() {
             {QUICK_LINKS.map((item) => <li key={item.href}>
               <Link href={item.href} className="group flex h-full flex-col rounded-xl border border-line bg-[var(--bg)] px-3 py-3.5 transition-colors hover:border-primary hover:bg-surface focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary sm:px-4">
                 <span className="flex items-center justify-between gap-1 text-[16px] font-semibold text-ink">{item.label}<span aria-hidden="true" className="text-primary">↗</span></span>
-                <span className="mt-1.5 hidden text-[13px] leading-relaxed text-[#554b43] sm:block">{item.detail}</span>
+                <span className={`mt-1.5 text-[13px] leading-relaxed text-[#554b43] ${item.href === "/diet/program" ? "block" : "hidden sm:block"}`}>{item.detail}</span>
               </Link>
             </li>)}
           </ul>

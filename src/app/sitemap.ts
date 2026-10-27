@@ -72,6 +72,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
     {
       url: `${BASE_URL}/skin/spot`,
+      lastModified: new Date("2026-10-27T00:00:00+09:00"),
       changeFrequency: "monthly",
       priority: 0.9,
     },

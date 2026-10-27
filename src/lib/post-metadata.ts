@@ -23,10 +23,11 @@ export function categoryPostMetadata(
   if (!post) return { title: "글을 찾을 수 없습니다" };
 
   const label = CATEGORY_LABEL[category];
+  const titleLabel = category === "diet" ? "다이어트" : label;
   // 글 제목에 이미 브랜드명이 들어 있으면 접미사를 붙이지 않는다 (title 내 중복 방지)
   const fullTitle = post.title.includes("일산한의원")
-    ? `${post.title} | ${label}`
-    : `${post.title} | 일산한의원 ${label}`;
+    ? `${post.title} | ${titleLabel}`
+    : `${post.title} | 일산한의원 ${titleLabel}`;
   // canonical · og:url · JSON-LD @id 가 같은 문자열이 되도록 postPath() 하나만 쓴다
   const url = `${SITE_URL}${postPath(category, post.slug)}`;
 

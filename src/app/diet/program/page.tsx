@@ -29,9 +29,10 @@ import { LOCAL_BLOCKS, localFaqEntities } from "@/lib/local-blocks";
 
 export const metadata: Metadata = pageMetadata({
   path: "/diet/program",
-  title: "일산감비환 가격·복용 안내 | 다이어트 한약 상담",
+  title: "일산감비환 가격·상담 | 다이어트 한약",
+  ogTitle: "일산감비환 가격·상담 | 일산한의원 다이어트",
   description:
-    `일산감비환 1상자 ${DIET_PRICES.sachets}포, 노랑 ${won(DIET_PRICES.yellow)}·핑크 ${won(DIET_PRICES.pink)}. 복용 기간과 두근거림·요요 등 상담 전 질문을 안내합니다. 이마트 풍산점 3층 일산한의원, 첫 상담 약 ${DIET_PRICES.consultationMinutes}분.`,
+    `감비환 가격과 처방을 알아보신다면 일산감비환을 확인하세요. 1상자 ${DIET_PRICES.sachets}포, 노랑 ${won(DIET_PRICES.yellow)}·핑크 ${won(DIET_PRICES.pink)}. 일산한의원 다이어트 상담과 복용 안내, 첫 상담 약 ${DIET_PRICES.consultationMinutes}분.`,
   routeOgImage: true,
 });
 
@@ -95,9 +96,9 @@ const STAGES = [
 
 const graph = buildGraph({
   path: "/diet/program",
-  name: "한방 다이어트 처방 – 일산한의원",
+  name: "일산감비환 가격·상담 | 일산한의원 다이어트",
   description:
-    "식단을 지속할 수 있도록 돕는 한방 다이어트 처방. 복용량은 진료를 통해 조절합니다.",
+    "일산한의원의 일산감비환 가격·복용·다이어트 상담 안내. 감비환 복용량은 진료를 통해 정합니다.",
   about: { "@type": "MedicalCondition", name: "비만" },
   faq: [
     ...faqEntities(QUESTIONS.map((q) => ({ q: q.quote, a: q.answer }))),
@@ -110,12 +111,11 @@ export default function DietProgramPage() {
     <>
       <JsonLd graph={graph} />
       <PageHeader
-        badge="다이어트"
+        badge="일산한의원 · 감비환 상담"
         icon={<Activity size={15} />}
-        lead="일산감비환,"
-        accent="가격부터 복용 상담까지"
-        description="다이어트 한약을 시작하기 전, 비용과 복용 기간을 확인하고 현재 몸 상태에 맞는 처방을 상담하세요."
-        stacked
+        lead="일산감비환"
+        subtitle="다이어트"
+        description="일산감비환은 일산한의원에서 상담·처방하는 다이어트 한약입니다. 감비환 가격과 복용 기간을 확인하고 현재 몸 상태에 맞는 처방을 상담하세요."
       />
 
       <section id="prices" className="scroll-mt-24 mx-auto max-w-4xl px-6 py-10">
@@ -153,7 +153,7 @@ export default function DietProgramPage() {
 
             <div className="mx-auto max-w-3xl">
               <DefinitionCard
-                title="일산한의원 다이어트 한약이란?"
+                title="일산감비환은 어떤 다이어트 한약인가요?"
                 body="식욕과 대사에 관여하는 약재 위주로 구성을 단순화한 처방입니다. 부가 약재를 줄여 복용 부담과 비용을 낮췄고, 식단을 지속할 수 있도록 돕는 데 초점을 맞췄습니다. 복용량은 진행 상황에 따라 진료를 통해 조절합니다."
               />
 

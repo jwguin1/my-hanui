@@ -1,4 +1,5 @@
 import ConsultationActions from "@/components/ConsultationActions";
+import SpotQuestionGuide from "@/components/SpotQuestionGuide";
 import type { Metadata } from "next";
 import Link from "next/link";
 import SectionReveal from "@/components/SectionReveal";
@@ -41,7 +42,7 @@ import {
 
 export const metadata: Metadata = pageMetadata({
   path: "/skin/spot",
-  title: "일산 점빼기 | 편평사마귀·쥐젖 CO2 레이저",
+  title: "일산 점제거·점빼기 | 편평사마귀 제거·가격",
   description:
     "고양시 일산한의원 잡티 제거. 점, 편평사마귀, 쥐젖을 CO2 레이저로 제거합니다. 부위별 비용 전체 공개. 이마트 풍산점 3층, 평일 20시까지.",
   routeOgImage: true,
@@ -62,7 +63,7 @@ const QUESTIONS = [
   },
   {
     quote: "자국이 남을까 걱정돼요",
-    answer: "열 확산을 줄인 장비로 주변 조직 손상을 낮췄습니다",
+    answer: "병변 깊이와 피부 상태에 따라 흉터·색소 변화가 생길 수 있어 회복 계획을 함께 안내합니다",
   },
   {
     quote: "많이 아픈가요?",
@@ -70,7 +71,7 @@ const QUESTIONS = [
   },
   {
     quote: "몇 번 와야 하나요?",
-    answer: "대부분 1회, 깊은 것은 재시술이 필요할 수 있습니다",
+    answer: "진단과 병변의 깊이·범위에 따라 달라지며, 나누어 시술하거나 재시술이 필요할 수 있습니다",
   },
 ];
 
@@ -102,19 +103,6 @@ const DEVICE = [
     icon: <MoodSmile />,
     title: "시술 중 부담 감소",
     body: "마취 연고를 충분히 바른 뒤 진행합니다.",
-  },
-];
-
-// 앵커 텍스트는 글 제목 그대로 쓴다 — 「자세히 보기」 금지.
-// 경로는 postPath() 로만 만든다 (lib/slug.ts 가 인코딩의 유일한 지점).
-const RELATED_POSTS: { slug: string; title: string }[] = [
-  {
-    slug: "잡티제거-개수와-비용",
-    title: "얼굴에 여러 개인데 한 번에 다 뺄 수 있나요? 비용은요?",
-  },
-  {
-    slug: "쥐젖-사마귀-검버섯-구분",
-    title: "쥐젖, 사마귀, 검버섯 — 뭐가 다르고 어떻게 구분하나요?",
   },
 ];
 
@@ -184,7 +172,7 @@ export default function SkinSpotPage() {
                 unit="원"
                 label={`${SPOT_ENTRY.name} 100개까지`}
               />
-              <StatCard value="1" unit="회" label="대부분 당일 완료" />
+              <StatCard value="관리" label="시술 후 보호재·세안 안내" />
               <StatCard value="확대경" label="시술 전 확인" />
             </div>
           </SectionReveal>
@@ -363,40 +351,7 @@ export default function SkinSpotPage() {
         </div>
       </section>
 
-      {/* 질문형 글로 보낸다 — 설명을 여기 옮겨 적지 않는다.
-          같은 내용을 두 곳에 두면 갈리고, 이 페이지는 진료 안내가 역할이다.
-          「큰 점」 계열 검색어(네이버 101 클릭)가 이 페이지로 들어오는데
-          페이지 본문에 그 말이 없다 — 아래 두 글이 그 질문에 답한다. */}
-      <section className="bg-[var(--bg)]">
-        <div className="section-padding">
-          <SectionReveal>
-            <div className="mx-auto max-w-3xl">
-              <SectionBadge icon={<HelpCircle size={15} />} label="자주 묻는 것" />
-              <h2 className="font-serif mt-3 text-[1.15rem] font-semibold leading-snug text-ink">
-                이런 걸 많이 물어보십니다
-              </h2>
-              <ul className="mt-6 space-y-2.5">
-                {RELATED_POSTS.map((p) => (
-                  <li key={p.slug}>
-                    <Link
-                      href={postPath("skin", p.slug)}
-                      className="group flex items-center justify-between gap-3 rounded-xl border border-line px-4 py-3.5 transition-colors duration-200 hover:bg-surface"
-                    >
-                      <span className="min-w-0 text-[0.95rem] leading-snug text-ink transition-colors duration-200 group-hover:text-primary">
-                        {p.title}
-                      </span>
-                      <span aria-hidden="true" className="shrink-0 text-primary">
-                        →
-                      </span>
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </SectionReveal>
-        </div>
-      </section>
-
+      <SpotQuestionGuide />
       <LocalBlock {...LOCAL_BLOCKS["/skin/spot"]} />
 
       <section className="section-padding">
