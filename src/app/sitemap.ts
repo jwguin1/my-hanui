@@ -8,6 +8,7 @@ const BASE_URL = "https://www.ilsanhan.com";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticEntries: MetadataRoute.Sitemap = [
+    { url: `${BASE_URL}/conditions`, lastModified: new Date("2026-10-28T00:00:00+09:00"), changeFrequency: "monthly", priority: 0.8 },
     { url: `${BASE_URL}/skin/questions`, lastModified: new Date("2026-10-27T00:00:00+09:00"), changeFrequency: "monthly", priority: 0.8 },
     { url: `${BASE_URL}/skin/hair-removal`, lastModified: new Date("2026-10-27T00:00:00+09:00"), changeFrequency: "monthly", priority: 0.9 },
     { url: `${BASE_URL}/home-visit`, lastModified: new Date("2026-10-20T00:00:00+09:00"), changeFrequency: "monthly", priority: 0.9 },

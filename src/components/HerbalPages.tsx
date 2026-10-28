@@ -44,7 +44,7 @@ export function HerbalHub({ category }: { category: HerbalCategory }) {
     <JsonLd graph={buildGraph({ path: `/herbal/${category}`, name: meta.title, description: meta.description, faq: faqEntities([...HERBAL_HUB_FAQS[category], ...HERBAL_CARE_FAQS]) })} />
     <PageHeader badge={insurance ? "건강보험 한약" : "비급여 한약"} lead={insurance ? "내 증상에 맞는" : "지금 내 몸에 맞는"} accent={insurance ? "보험한약을 찾아보세요" : "체질보약을 상담하세요"} stacked description={insurance ? "소화불량부터 생리통까지, 6개 대상 질환을 질문과 답으로 안내합니다." : "체질맞춤보약 · 자율신경계 두통·어지럼 · 갱년기질환"} />
     <nav aria-label={`${label} 바로가기`} className="flex flex-wrap justify-center gap-5 border-y border-line px-6 py-5 text-[15px] font-medium text-primary">
-      <Link href="#conditions" className="underline underline-offset-4">{insurance ? "6개 대상 질환" : "3개 진료 분야"}</Link>
+      <Link href="#conditions" className="underline underline-offset-4">{insurance ? "6개 대상 질환" : "증상별 한약 진료"}</Link>
       <Link href="#herbal-prices" className="underline underline-offset-4">비용 확인</Link>
       <Link href="#herbal-guide" className="underline underline-offset-4">원내 탕전·복용 상담</Link>
       <Link href={insurance ? "/herbal/tonic" : "/herbal/insurance"} className="underline underline-offset-4">{insurance ? "비급여 체질보약 안내" : "건강보험 한약 안내"}</Link>
@@ -62,6 +62,19 @@ export function HerbalHub({ category }: { category: HerbalCategory }) {
         </div>
       </div>
     </section>
+    {!insurance && <section className="mx-auto max-w-5xl px-6 pb-12" aria-label="산후·임신 준비·성장·공진단 진료">
+      <h2 className="text-2xl font-semibold leading-relaxed text-ink">생애주기에 맞춰 상담하는 한약</h2>
+      <p className="mt-3 leading-8 text-muted">산후·유산 후 회복, 난임·임신 준비, 소아 성장과 공진단도 일산한의원에서 진료합니다. 검사 결과와 복용 약, 현재 불편을 함께 살펴 처방과 기간·비용을 안내합니다.</p>
+      <div className="mt-5 grid gap-4 md:grid-cols-2">
+        {[
+          ["일산-산후보약-유산후보약", "산후·유산 후 보약", "수유·출혈·피로와 회복 상태를 함께 살핍니다."],
+          ["일산-난임-시험관-임신준비", "난임·임신 준비", "주기·검사와 현재 치료 일정을 확인합니다."],
+          ["일산-성장클리닉-성조숙증", "소아 성장", "성장 기록·발달과 식사·수면을 함께 봅니다."],
+          ["일산-한약-공진단-상담", "공진단·맞춤 한약", "복용 목적과 병력·약을 살펴 처방합니다."],
+        ].map(([slug, title, text]) => <Link key={slug} href={`/blog/${slug}`} className="rounded-xl border border-line bg-card p-5"><h3 className="font-semibold text-ink">{title}</h3><p className="mt-2 leading-7 text-muted">{text}</p><span className="mt-3 inline-block text-primary">질문과 답 읽기 →</span></Link>)}
+      </div>
+      <p className="mt-4 text-sm leading-7 text-muted">공진단 등 개별 처방은 구성과 복용 기간에 따라 비용을 별도로 안내합니다.</p>
+    </section>}
     {insurance ? <HerbalPrices /> : <TonicPrices />}
     <HerbalQuestions faqs={HERBAL_HUB_FAQS[category]} title={insurance ? "보험 적용과 비용, 먼저 확인하세요" : "보약을 처음 고민할 때 궁금한 점"} />
     <CareGuide herbal />

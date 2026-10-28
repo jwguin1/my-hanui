@@ -46,6 +46,7 @@ export const RESERVED_SLUGS: readonly string[] = [
   "doctor",
   "contact",
   "treatment",
+  "conditions",
 ];
 
 /**

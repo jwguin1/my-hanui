@@ -21,6 +21,7 @@ export default function SkinQuestionsPage() {
   return <>
     <JsonLd graph={buildGraph({ path: "/skin/questions", name: "일산 피부 진료·치료 선택 질문 모음", description, mainEntity: ref(pageId("/skin/questions", "question-list")), nodes: [list] })} />
     <PageHeader badge="고민별 질문과 답" lead="내 피부 고민," accent="무엇부터 알아볼까요?" stacked description="병변을 구분하고, 치료와 비용을 이해하고, 방문을 준비하는 순서로 읽어보세요." />
+    <p className="mx-auto max-w-5xl px-6 pb-6"><Link href="/conditions" className="text-primary underline underline-offset-4">피부질환·새 시술 비교를 포함한 증상별 질문 더 보기</Link></p>
     <nav aria-label="질문 분야 바로가기" className="mx-auto flex max-w-5xl flex-wrap gap-3 px-6 pb-8">
       {groups.map((g, i) => <a key={g.name} href={`#guide-${i}`} className="rounded-full border border-line px-4 py-3 text-sm font-medium text-primary">{g.name}</a>)}
     </nav>

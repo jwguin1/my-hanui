@@ -1,4 +1,5 @@
 import Link from "next/link";
+import DiseaseGuideLinks from "@/components/DiseaseGuideLinks";
 import type { Metadata } from "next";
 import PageHeader from "@/components/ui/PageHeader";
 import ConsultationActions from "@/components/ConsultationActions";
@@ -40,5 +41,6 @@ export default function DyspepsiaPage() {
     <HerbalQuestions faqs={faqs} id="insurance-questions" title="소화불량 진료, 궁금한 점" />
     <CareGuide herbal />
     <section className="bg-[var(--surface)] px-6 py-12 text-center"><h2 className="font-serif text-2xl font-semibold text-ink">어떤 때 소화가 불편한지 알려주세요</h2><p className="mx-auto mt-4 max-w-2xl text-base leading-relaxed text-muted">{CLINIC.consultationPrompt}</p><ConsultationActions directions className="mt-6" /><div className="mt-6 flex flex-wrap justify-center gap-5 text-primary"><Link href="/herbal/tonic/autonomic" className="underline underline-offset-4">긴장할 때 두통·어지럼도 함께 있다면</Link><Link href="/blog" className="underline underline-offset-4">다른 환자 질문 보기</Link></div></section>
-  </>;
+  <DiseaseGuideLinks group="소화·내과" />
+    </>;
 }

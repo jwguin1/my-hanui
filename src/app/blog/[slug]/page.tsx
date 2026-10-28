@@ -92,7 +92,7 @@ export default async function BlogPostPage({
     permanentRedirect(postPath(post.category, post.slug));
   }
 
-  const linkedContent = autoLinkMarkdown(post.content, post.slug);
+  const linkedContent = post.id.startsWith("disease-") ? post.content : autoLinkMarkdown(post.content, post.slug);
   const headings = [...linkedContent.matchAll(/^## (.+)$/gm)].map((m) => m[1]);
   const imagePath = postImagePath(post.id, post.thumbnail, "/og-image.jpg");
   const absoluteImage = imagePath.startsWith("http") ? imagePath : `${SITE_URL}${imagePath}`;

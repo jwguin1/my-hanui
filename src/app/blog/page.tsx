@@ -1,3 +1,4 @@
+import { diseaseGuide } from "@/lib/disease-guides";
 import { CONSULTATION_GUIDE_SLUGS } from "@/lib/regional-guides";
 import type { Metadata } from "next";
 import Link from "next/link";
@@ -16,13 +17,13 @@ export const metadata: Metadata = pageMetadata({ path: "/blog", title: "환자 �
 export default function BlogArchivePage() {
   const entries: QuestionEntry[] = [
     ...HERBAL_GUIDES.map(g => ({ title: g.question, description: g.summary, href: herbalPath(g), group: g.category === "insurance" ? "보험한약" : "체질보약", keywords: `${g.title} ${g.faqs.map(f => f.q).join(" ")}` })),
-    ...getAllPosts().map(p => ({ title: p.title, description: p.description, href: postPath(p.category, p.slug), group: p.category === "pain" ? (/교통사고/.test(`${p.title} ${p.tags.join(" ")}`) ? "교통사고" : "통증치료") : p.category === "skin" ? (CONSULTATION_GUIDE_SLUGS.includes(p.slug) ? "치료선택" : "잡티제거") : p.category === "diet" ? "일산감비환" : p.category === "autonomic" ? "체질보약" : (p.id.startsWith("regional-") ? "방문준비" : "한의원 소식"), keywords: `${p.tags.join(" ")} ${p.category === "diet" ? "감비환 일산감비환 일산한의원 다이어트" : ""}` })),
+    ...getAllPosts().map(p => ({ title: p.title, description: p.description, href: postPath(p.category, p.slug), group: (p.id.startsWith("disease-") ? diseaseGuide(p.category, p.slug)?.group : undefined) ?? (p.category === "pain" ? (/교통사고/.test(`${p.title} ${p.tags.join(" ")}`) ? "교통사고" : "통증치료") : p.category === "skin" ? (CONSULTATION_GUIDE_SLUGS.includes(p.slug) ? "치료선택" : "잡티제거") : p.category === "diet" ? "일산감비환" : p.category === "autonomic" ? "체질보약" : (p.id.startsWith("regional-") ? "방문준비" : "한의원 소식")), keywords: `${diseaseGuide(p.category, p.slug)?.keywords ?? ""} ${p.tags.join(" ")} ${p.category === "diet" ? "감비환 일산감비환 일산한의원 다이어트" : ""}` })),
   ];
   const list = itemListNode("/blog", "post-list", "환자 질문과 진료 안내", entries.map(e => ({ url: `https://www.ilsanhan.com${e.href}`, name: e.title })));
   return <>
     <JsonLd graph={buildGraph({ path: "/blog", name: "환자 질문 모음 – 일산한의원", description, mainEntity: ref(pageId("/blog", "post-list")), nodes: [list] })} />
     <PageHeader badge="진료별 질문과 답" lead="내 고민과 닮은" accent="질문을 찾아보세요" stacked description={description} />
-    <nav aria-label="방문과 치료 후 안내" className="flex flex-wrap justify-center gap-5 px-6 text-primary"><Link href="/contact#before-visit" className="underline underline-offset-4">오늘 방문 안내</Link><Link href="/skin/questions" className="underline underline-offset-4">피부 고민별 질문</Link><Link href="/aftercare" className="underline underline-offset-4">치료 후 관리 모음</Link></nav>
+    <nav aria-label="방문과 치료 후 안내" className="flex flex-wrap justify-center gap-5 px-6 text-primary"><Link href="/contact#before-visit" className="underline underline-offset-4">오늘 방문 안내</Link><Link href="/conditions" className="underline underline-offset-4">증상·검사별 진료 선택</Link><Link href="/skin/questions" className="underline underline-offset-4">피부 고민별 질문</Link><Link href="/aftercare" className="underline underline-offset-4">치료 후 관리 모음</Link></nav>
     <QuestionDirectory entries={entries} />
   </>;
 }

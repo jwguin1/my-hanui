@@ -4,6 +4,7 @@ import { CARE_GUIDE, PAIN_CARE_FAQS } from "@/lib/care-guide";
 import ConsultationActions from "@/components/ConsultationActions";
 import type { Metadata } from "next";
 import Link from "next/link";
+import DiseaseGuideLinks from "@/components/DiseaseGuideLinks";
 import SectionReveal from "@/components/SectionReveal";
 import PageHeader from "@/components/ui/PageHeader";
 import SectionBadge from "@/components/ui/SectionBadge";
@@ -430,6 +431,12 @@ export default function ChronicPainPage() {
         </div>
       </section>
 
+    <section className="mx-auto max-w-5xl px-6 py-8">
+      <h2 className="text-xl font-semibold text-ink">침·약침·봉침, 내 상태에 맞춰 상담합니다</h2>
+      <p className="mt-3 leading-8 text-muted">일산한의원에서는 통증 부위와 진찰 소견, 복용 약을 확인해 치료를 정합니다. 봉침은 벌독 알레르기와 과거 반응을 먼저 확인하고 적합성과 주의사항을 설명합니다.</p>
+      <Link href="/blog/일산-침치료-봉침-약침" className="mt-3 inline-block text-primary underline underline-offset-4">침·약침·봉침의 차이와 진료 전 준비 읽기 →</Link>
+    </section>
+    <DiseaseGuideLinks group="통증·재활" />
     </>
   );
 }

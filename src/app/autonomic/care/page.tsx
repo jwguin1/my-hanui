@@ -1,6 +1,7 @@
 import ConsultationActions from "@/components/ConsultationActions";
 import type { Metadata } from "next";
 import Link from "next/link";
+import DiseaseGuideLinks from "@/components/DiseaseGuideLinks";
 import SectionReveal from "@/components/SectionReveal";
 import PageHeader from "@/components/ui/PageHeader";
 import SectionBadge from "@/components/ui/SectionBadge";
@@ -409,6 +410,7 @@ export default function AutonomicCarePage() {
         </div>
       </section>
 
+    <DiseaseGuideLinks group="수면·신경·마음" />
     </>
   );
 }

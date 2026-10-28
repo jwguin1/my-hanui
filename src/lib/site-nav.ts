@@ -77,6 +77,7 @@ export const SITE_NAV: NavGroup[] = [
         // 발행된 질문 글이 있는 카테고리는 콘텐츠 목록으로도 연결한다.
         items: [
           { href: "/blog", label: "전체 진료 질문 검색" },
+          { href: "/conditions", label: "증상·검사별 진료 선택" },
           { href: "https://research.ilsanhan.com", label: "연구노트 · 논문으로 읽는 진료" },
           { href: "/pain", label: CAROUSEL_TARGETS.pain.navLabel },
           { href: "/diet", label: "일산감비환 · 복용 질문" },
