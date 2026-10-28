@@ -5,7 +5,7 @@
     "status": "published",
     "publishedAt": "2026-10-24T08:29:28.843Z",
     "updatedAt": "2026-10-24T08:59:21.741Z",
-    "lastSourceCheck": "2026-10-27T00:24:56.871Z",
+    "lastSourceCheck": "2026-10-28T00:30:34.383Z",
     "title": "허리 통증, 전 세계 진료지침은 어떤 치료를 권고할까요?",
     "summary": "허리가 아플 때 쉬어야 할까요, 움직여야 할까요? 15개국의 진료지침 22개를 비교한 연구에서 운동·침·도수치료의 권고와 차이를 살펴봅니다.",
     "question": "허리 통증이 생겼을 때 전 세계 의료 지침들은 어떤 치료를 권고하고 있으며, 지침마다 차이가 있나요?",
@@ -215,7 +215,7 @@
     "status": "published",
     "publishedAt": "2026-10-24T08:54:20.207Z",
     "updatedAt": "2026-10-24T09:03:20.640Z",
-    "lastSourceCheck": "2026-10-27T00:24:57.347Z",
+    "lastSourceCheck": "2026-10-28T00:30:34.524Z",
     "title": "매달 반복되는 생리통, 침·지압과 약용식물 연구는 무엇을 보여줄까요?",
     "summary": "2019년 문헌고찰은 생리통 치료 연구 17편을 살펴봤습니다. 침·지압과 약용식물의 가능성, 진료를 선택할 때 확인할 점을 정리합니다.",
     "question": "진통제 외에 침·지압이나 약용식물도 생리통 치료의 선택지가 될까요?",
@@ -318,7 +318,7 @@
     "status": "published",
     "publishedAt": "2026-10-24T09:00:43.027Z",
     "updatedAt": "2026-10-24T09:03:20.642Z",
-    "lastSourceCheck": "2026-10-27T00:24:57.649Z",
+    "lastSourceCheck": "2026-10-28T00:30:34.671Z",
     "title": "얼굴 처짐에 초음파 리프팅(MFU)을 1회 받으면 얼마나 좋아지고, 어떤 이상반응이 있을까요?",
     "summary": "16개 연구를 종합하니 1회 시술 90일 뒤 전문가 평가로 92%에서 탄력 개선이 있었지만 대부분 약간~중간 정도였고, 처짐이 심하거나 BMI가 30을 넘으면 효과가 줄었습니다.",
     "question": "초음파 리프팅(MFU)을 한 번 받으면 얼굴 피부 처짐이 실제로 얼마나 개선되고, 어떤 불편이나 이상반응이 생길 수 있나요?",
@@ -453,7 +453,7 @@
     "status": "published",
     "publishedAt": "2026-10-26T09:00:00+09:00",
     "updatedAt": "2026-10-26T09:00:00+09:00",
-    "lastSourceCheck": "2026-10-27T00:24:58.042Z",
+    "lastSourceCheck": "2026-10-28T00:30:36.367Z",
     "title": "만성 목 통증, 수기치료와 목 운동 중 무엇이 더 빨리 도움이 될까요?",
     "summary": "만성 목 통증 성인 69명을 3군으로 나눠 12주간 비교했습니다. 수기치료와 운동 모두 가짜 치료보다 나았고, 두 치료의 4·12주 차이는 없었으며 속도에서만 차이가 있었습니다.",
     "question": "오래된 목 통증에는 수기(도수)치료와 목 운동 중 어느 쪽이 더 효과적이고, 효과는 언제 나타날까요?",
@@ -584,7 +584,7 @@
     "status": "published",
     "publishedAt": "2026-10-28T09:00:00+09:00",
     "updatedAt": "2026-10-28T09:00:00+09:00",
-    "lastSourceCheck": "2026-10-27T00:24:58.449Z",
+    "lastSourceCheck": "2026-10-28T00:30:36.535Z",
     "title": "초음파 리프팅(MFU-V)은 처짐과 탄력 개선에 도움이 될까? 42개 연구 종합 분석",
     "summary": "42개 연구를 종합하니 시술 후 전반적 개선은 의료진 평가 89%, 환자 평가 84%였습니다. 다만 대조군 없는 연구가 많고 통증은 중등도였으며, 중립 응답 여부에 따라 만족도가 달라졌습니다.",
     "question": "미세집속초음파(MFU-V) 리프팅을 받으면 실제로 얼마나 좋아지고, 통증이나 이상반응은 어떤가요?",
@@ -805,7 +805,7 @@
     "status": "published",
     "publishedAt": "2026-10-30T09:00:00+09:00",
     "updatedAt": "2026-10-30T09:00:00+09:00",
-    "lastSourceCheck": "2026-10-27T00:26:46.380Z",
+    "lastSourceCheck": "2026-10-28T00:30:36.955Z",
     "title": "알레르기 비염에 침 치료가 도움이 될까? 항히스타민제와 비교한 임상시험 30편 분석",
     "summary": "성인 알레르기 비염에서 침은 무치료나 가짜 침보다 코 증상과 삶의 질에서 나았지만, 세티리진·로라타딘과는 뚜렷한 차이가 없었습니다. 다만 근거의 안정성은 약했습니다.",
     "question": "알레르기 비염 증상을 줄이기 위해 침 치료를 받아볼 만한가요? 항히스타민제와 비교하면 어떤가요?",
@@ -1015,6 +1015,181 @@
       "model": "claude-opus-5-5",
       "writerModel": "claude-sonnet-5-5",
       "checkedAt": "2026-10-27T00:26:46.381Z",
+      "checks": {
+        "numbers": true,
+        "methods": true,
+        "causality": true,
+        "clinicalRelevance": true,
+        "figures": true,
+        "noPatientIdentifyingImages": true,
+        "noInventedCredentials": true
+      }
+    }
+  },
+  {
+    "slug": "pmid-35725480",
+    "category": "pain",
+    "status": "published",
+    "publishedAt": "2026-11-02T09:00:00+09:00",
+    "updatedAt": "2026-11-02T09:00:00+09:00",
+    "lastSourceCheck": "2026-10-28T00:32:52.457Z",
+    "title": "만성 허리통증에 침 치료는 가짜 침보다 나을까요? 어떤 방식이 더 효과적일까요?",
+    "summary": "만성 비특이적 요통 무작위시험 44개를 비교한 분석에서 진짜 침은 가짜 침보다 낫게 나왔고, 개별 맞춤 침과 표준 침+TENS가 가장 큰 개선을 보였습니다.",
+    "question": "오래 지속되는 원인 불명의 허리통증에서 침 치료는 가짜 침보다 효과가 있고, 침 방식 중 무엇이 가장 나을까요?",
+    "answer": "이 분석에서는 만성 비특이적 요통에서 진짜 침이 가짜 침(sham)보다 통증과 일상 기능 개선에서 더 나은 것으로 나타났습니다. 진짜 침 중에서는 환자마다 혈자리를 다르게 고르는 개별 맞춤 침과, 같은 방식으로 놓는 표준 침에 전기자극(TENS)을 더한 방식이 가장 큰 개선을 보였습니다. 다만 시험마다 침 방식이 제각각이어서 어느 방식이 확실히 최선이라고 단정하기는 어렵습니다.",
+    "population": "성인(18~75세) 만성 비특이적 요통 환자를 대상으로 한 무작위 대조시험 44개가 포함됐습니다. 비특이적 요통이란 뚜렷한 구조적 원인이 발견되지 않는 허리통증입니다. 증상이 최소 1.5개월 지속됐거나 지난 1년간 3회 이상 있었던 경우였고, 신경학적 이상이나 다리로 뻗치는 방사통이 주된 증상인 경우는 제외됐습니다. 평균 나이는 48세, 여성은 56%, 평균 체질량지수는 26.3이었습니다.",
+    "methods": "연구진은 PubMed, Google Scholar, Embase, Scopus를 검색해 침 방식을 둘 이상 비교한 시험을 모았습니다. 비교한 방식은 표준 침, 표준 침+TENS, 전기침, 개별 맞춤 침, 귀침, 가짜 침입니다. 이 시험들을 베이지안 네트워크 메타분석으로 묶어, 직접 비교되지 않은 방식끼리도 간접적으로 순위를 매겼습니다. 평가 지표는 통증 시각통증척도(VAS)와 로랜드-모리스 장애 설문(RMQ)입니다. 두 명이 독립적으로 자료를 추출하고 비뚤림 위험도 평가했습니다.",
+    "results": "검색된 817편 중 최종 44개 시험이 분석에 포함됐습니다. 비뚤림 위험은 낮음에서 중간 수준으로 평가됐습니다.\n\n기능 장애 설문(RMQ)에서는 개별 맞춤 침(SMD 5.00, 95% CI 2.02~7.98)과 표준 침+TENS(SMD 5.00, 95% CI 2.03~7.97)가 가장 큰 개선을 보였습니다. 그림에는 표준 침 4.80, 전기침 4.10, 귀침 2.55, 가짜 침 1.10 순으로 표시되지만 신뢰구간이 넓고 많이 겹칩니다.\n\n통증(VAS)에서는 표준 침+TENS가 가장 좋았고(SMD 3.92, 95% CI 3.28~4.56), 개별 맞춤 침 2.92, 표준 침 1.75, 귀침 -0.10, 가짜 침 -2.09 순이었습니다. 저자들은 진짜 침이 가짜 침보다 낫다고 해석했습니다. 네트워크 비교에서 통계적으로 유의한 불일치는 발견되지 않았습니다. 이 수치들은 시험마다 다른 추적 시점의 결과를 합친 값이며, 논문은 이를 하나의 시점으로 제시하지 않았습니다.",
+    "meaning": "침 치료가 가짜 침보다 낫다는 결과는 약물 외 방법을 찾는 만성 요통 환자에게 참고가 됩니다. 물리치료만으로 충분하지 않거나 약을 오래 쓰기 부담스러운 경우에 선택지가 될 수 있습니다. 개별 맞춤 침이 표준 침보다 나아 보인 점은 환자 상태에 맞춰 혈자리를 고르는 진료가 중요할 수 있음을 시사합니다. 다만 이 결과는 시험들을 통계적으로 합친 해석이며, 개인의 통증이 얼마나 줄어드는지를 약속하는 것은 아닙니다. 순위가 높은 방식이라도 신뢰구간이 겹쳐 방식 간 차이가 확정적이지는 않습니다.",
+    "limitations": "가장 큰 한계는 시험마다 침 방식, 횟수, 기간이 달라 이질성이 크다는 점입니다. 일부 시험은 환자나 시술자 눈가림이 되지 않아 편향 가능성이 있고, 기존 치료 이력과 통증 유형 정보도 부족했습니다. 뜸, 부항, 두피침은 제외됐고 75세 초과 연령은 분석하기 어려웠습니다. 이상반응 자료도 추출했으나 본문에서 해석하지 않아 안전성은 이 논문만으로 판단할 수 없습니다.",
+    "consultation": "'몇 달째 허리가 아픈데 영상검사에서는 뚜렷한 원인이 없다고 들었다'거나 약과 물리치료만으로 만족스럽지 않다면, 지금까지의 검사 결과와 복용약, 받아본 치료를 정리해 오시면 평가에 도움이 됩니다. 일산한의원(이마트 풍산점 3층, 풍산역 2번 출구 도보 1분)에서는 통증 양상과 움직임을 살펴 침·전기침, 추나 등 적용 가능한 진료를 함께 의논할 수 있습니다. 방문 전 카카오톡으로 증상을 간단히 남겨 주셔도 됩니다.",
+    "tags": [
+      "만성 요통",
+      "침 치료",
+      "전기자극 TENS",
+      "네트워크 메타분석",
+      "비특이적 허리통증",
+      "개별 맞춤 침"
+    ],
+    "evidence": [
+      {
+        "claim": "44개 무작위 대조시험(8,338건의 치료 자료)이 분석에 포함됐고 평균 연령 48세, 여성 56%였다.",
+        "quote": "Data from 8338 procedures were retrieved. 56% of patients were women. The mean age of the patients was 48 ± 10.6 years. The mean BMI was 26.3 ± 2.2 kg/m 2 . The ANOVA test found moderate baseline comparability in symptoms duration ( P > 0.05). Patient demographics are shown in Table 1 ."
+      },
+      {
+        "claim": "검색된 817편 중 최종 44개의 무작위 시험이 정량 분석에 포함됐다.",
+        "quote": "The literature search resulted in 817 RCTs. Four hundred and seven were excluded as they were duplicates. A further 330 studies were incompatible with the eligibility criteria: type of study ( N = 89), not matching the topic of interest ( N = 193), acupressure or percutaneous electrical nerve stimulation ( N = 15), acute LBP ( N = 11), concerning cervicothoracic segments ( N = 5), presence of severe neurologic impairment or spine deformities ( N = 3), acute setting ( N = 2), old age ( N = 1), language limitations ( N = 2), other ( N = 9). Another 13 studies were excluded as they did not report quantitative data under the outcomes of interest. This left 44 RCTs for the present study. The literature search results are shown in Fig. 1 ."
+      },
+      {
+        "claim": "RMQ에서 개별 맞춤 침과 표준 침+TENS가 가장 큰 개선을 보였고(SMD 5.00), 통증 VAS는 표준 침+TENS에서 가장 좋았다(SMD 3.92).",
+        "quote": "The individual group (SMD 5.00; 95% CI 2.02, 7.98) and the standard combined with TENS (SMD 5.00; 95% CI 2.03, 7.97) demonstrated the highest improvement of RMQ. The VAS score was lower in the standard combined with TENS group (SMD 3.92; 95% CI 3.28, 4.56). Considering the standard acupuncture group, different studies utilized similar protocols and acupuncture points and the results could thus be compared. The equation for global linearity did not find any statistically significant inconsistency in any of the network comparisons. Edge, interval, and funnel plots are shown in Fig. 3 ."
+      },
+      {
+        "claim": "진짜 침이 가짜 침보다 나았고, 개별 맞춤 침과 표준 침+TENS가 통증과 기능에서 가장 큰 개선을 보인 방식이라고 결론지었다.",
+        "quote": "According to the main findings of the present Bayesian network meta-analysis, individualized acupuncture and the standard protocol with TENS may represent the most effective acupuncture strategies for the management of chronic aspecific LBP. These two treatment protocols showed the highest improvements of VAS and RMQ. As verum acupuncture scored better than sham treatment, the present study points to the efficacy of acupuncture in the management of aspecific chronic LBP. This finding further supports current guidelines which recommend acupuncture as one of the possible first-line, non-pharmacological management modality for aspecific chronic LBP [ 6 ]."
+      },
+      {
+        "claim": "포함 시험의 비뚤림 위험은 낮음에서 중간 수준이었고, 평가자 눈가림은 44개 중 33개에서 시행됐으나 방법에 편향이 많았다.",
+        "quote": "Given the randomized design of the included studies, the risk of selection bias was low. Assessor blinding was performed in 75% (33 of 44) studies; however, the blinding methods were often biased, and the overall risk of detection bias was moderate. The risk of attrition and reporting biases were low to moderate, as was the risk of other bias. Concluding, the methodological quality assessment showed low to moderate risk of bias (Fig. 2 )."
+      },
+      {
+        "claim": "가장 큰 한계는 침 프로토콜의 이질성이며, 일부 시험에서 눈가림이 부족했고 75세 초과 연령은 분석하기 어려웠다.",
+        "quote": "This study has several limitations. The most important limitation is the heterogeneous protocols used. Given the randomized design of patient allocation, the risk of selection bias was low. However, some studies did not perform patients or personnel blinding, thus increasing the risk of detection and performance biases, respectively. General health measures were seldom reported, as were also information about the duration of previous symptoms, and type of pain (e.g., central sensitization). Previous conservative strategies were barely reported. Given the lack of quantitative data, the ethnicity of the patients was not analyzed separately. Given the heterogeneity of the protocols used, it was not possible to analyze the effects of the associations of acupuncture with other treatments such as pharmacological management and physio- and psychotherapy. Also, some acupuncture techniques such as moxibustion, cupping or scalp acupuncture were excluded from the study as the available data were not sufficient to grant inclusion. As a multimodal approach is often advisable to tackle the different organic and psychosocial aspects of chronic LBP [ 6 , 65 – 68 ], further studies will be required to investigate the efficacy of different treatment associations and protocols. Furthermore, the available studies only allowed for a precise analysis of the effects of acupuncture in the population < 75 years old: targeted studies for this segment of the population will be required to investigate the efficacy of acupuncture in the elderly."
+      }
+    ],
+    "figures": [
+      {
+        "id": "Fig1",
+        "label": "Fig. 1",
+        "caption": "Flowchart of the literature search",
+        "images": [
+          {
+            "src": "/research-assets/PMC9208133/Fig1-1.webp",
+            "preview": "/research-assets/PMC9208133/preview-Fig1-1.webp",
+            "width": 710,
+            "height": 808,
+            "originalHash": "49bb3fae589c8a1000ad9507d362760d10076bd4e54769c34a1f5cf2834041d3"
+          },
+          {
+            "src": "/research-assets/PMC9208133/Fig1-2.webp",
+            "preview": "/research-assets/PMC9208133/preview-Fig1-2.webp",
+            "width": 100,
+            "height": 114,
+            "originalHash": "38cd9884ea06fad79d3cff844b3950dc87a45e50d005f4dfa36cefb1af73df5c"
+          }
+        ],
+        "explanation": "논문 선정 과정을 보여주는 흐름도입니다. 검색된 817편에서 중복 407편이 제거됐고, 부적합한 330편을 걸러 전문을 검토한 57편 중 정량 자료가 없는 13편을 뺀 44편이 최종 분석에 들어갔습니다. 기준에 맞는 시험만 골라 모은 결과임을 보여줍니다.",
+        "alt": "문헌 검색과 44개 시험 선정 과정을 보여주는 흐름도"
+      },
+      {
+        "id": "Fig2",
+        "label": "Fig. 2",
+        "caption": "Methodological quality assessment",
+        "images": [
+          {
+            "src": "/research-assets/PMC9208133/Fig2-1.webp",
+            "preview": "/research-assets/PMC9208133/preview-Fig2-1.webp",
+            "width": 800,
+            "height": 326,
+            "originalHash": "c56e2fa3a74efbbc800bc8588536ff1735053d485634973259a3f05412fd8bb4"
+          },
+          {
+            "src": "/research-assets/PMC9208133/Fig2-2.webp",
+            "preview": "/research-assets/PMC9208133/preview-Fig2-2.webp",
+            "width": 196,
+            "height": 80,
+            "originalHash": "8df1e29cbb833d89084d24d486933de3f3e6b3f2f0ccb3d9a178cc4533981647"
+          }
+        ],
+        "explanation": "포함된 시험들의 비뚤림 위험을 항목별 막대로 요약한 그림입니다. 무작위 순서 생성과 배정 은폐 같은 선택 편향은 대부분 낮은 위험이었습니다. 반면 평가자 눈가림, 불완전한 결과 자료, 기타 편향 항목에서는 불확실하거나 높은 위험의 비중이 절반을 넘고, 선택적 보고 항목도 절반 가까이가 불확실하거나 높은 위험입니다. 따라서 결과를 해석할 때 연구 질에 한계가 있음을 감안해야 합니다.",
+        "alt": "비뚤림 위험 항목별 낮음, 불확실, 높음 비율을 보여주는 막대그래프"
+      },
+      {
+        "id": "Fig3",
+        "label": "Fig. 3",
+        "caption": "Results of the network comparisons",
+        "images": [
+          {
+            "src": "/research-assets/PMC9208133/Fig3-1.webp",
+            "preview": "/research-assets/PMC9208133/preview-Fig3-1.webp",
+            "width": 787,
+            "height": 597,
+            "originalHash": "d6d62bf257a1dd898bfb0f6310266620d50cfa5130848a070b629edd65bd5371"
+          },
+          {
+            "src": "/research-assets/PMC9208133/Fig3-2.webp",
+            "preview": "/research-assets/PMC9208133/preview-Fig3-2.webp",
+            "width": 105,
+            "height": 80,
+            "originalHash": "c752f9b8708cc4f8b7a51dd19c208d51306a5fc2f5449d209605ab5970799e17"
+          }
+        ],
+        "explanation": "침 방식 간 비교 결과를 보여주는 그림입니다. 선과 원은 어떤 방식끼리 직접 비교됐는지, 가운데 그래프는 방식별 효과 순위와 신뢰구간, 오른쪽 그래프는 출판 편향 가능성을 확인하는 것입니다. 통증과 기능 모두 표준 침+TENS와 개별 맞춤 침이 상위였고, 신뢰구간이 넓고 겹쳐 순위 차이는 조심해서 봐야 합니다. 이상반응 그림도 있으나 본문에 해석이 없어 안전성 결론은 내릴 수 없습니다.",
+        "alt": "통증, 장애, 이상반응별 비교 연결도, 효과 구간, 깔때기 그림"
+      }
+    ],
+    "faq": [
+      {
+        "question": "개별 맞춤 침이 표준 침보다 확실히 더 좋은가요?",
+        "answer": "이 분석에서는 개별 맞춤 침이 표준 침 단독보다 높은 개선 값을 보였습니다. 하지만 신뢰구간이 넓고 시험별 방식이 달라 차이가 확정적이라고 보기는 어렵습니다. 저자들은 증상에 맞게 혈자리를 고르는 과정이 중요할 수 있다고 해석했습니다."
+      },
+      {
+        "question": "이 결과를 보면 침을 맞으면 허리통증이 사라지나요?",
+        "answer": "그렇게 해석하면 안 됩니다. 이 연구는 여러 시험을 합친 평균적 경향을 보여줄 뿐이며, 개인별 효과나 지속 기간을 보장하지 않습니다. 통증 양상과 이전 치료 경과에 따라 반응은 달라질 수 있어 개별 평가가 필요합니다."
+      }
+    ],
+    "paper": {
+      "doi": "10.1186/s13018-022-03212-3",
+      "pmcid": "PMC9208133",
+      "pmid": "35725480",
+      "date": "2022-06-20",
+      "types": [
+        "Systematic Review",
+        "Journal Article",
+        "Network Meta-Analysis"
+      ],
+      "title": "Acupuncture in chronic aspecific low back pain: a Bayesian network meta-analysis.",
+      "citations": 49,
+      "citationSource": "Crossref",
+      "checkedAt": "2026-10-28T00:30:43.785Z",
+      "authors": [],
+      "journal": "Journal of Orthopaedic Surgery and Research",
+      "volume": "17",
+      "issue": "",
+      "pages": "319",
+      "abstract": "Abstract Background This Bayesian network meta-analysis investigated the available randomized control trials (RCTs) to point out which acupuncture protocol is the most effective for chronic aspecific low back pain (LBP). Efficacy was measured in terms of pain (Visual Analogic Scale, VAS) and disability (Roland Morris Disability Questionnaire, RMQ), Transcutaneous Electrical Nerve Stimulation (TENS). Methods PubMed, Google scholar, Embase, and Scopus were accessed in March 2022. All the RCTs comparing two or more acupuncture modalities for aspecific chronic LBP were accessed. Only studies which investigated the efficacy of acupuncture on patients with symptoms lasting a minimum of 1.5 months, or with at least three episodes in the previous 12 months, were considered eligible. The Review Manager Software (The Nordic Cochrane Collaboration, Copenhagen) was used for the methodological quality assessment. The STATA Software/MP, Version 14.1 (StataCorporation, College Station, Texas, USA), was used for the statistical analyses. The NMA was performed through the STATA routine for Bayesian hierarchical random-effects model analysis. Results Data from 44 RCTs (8338 procedures) were retrieved. 56% of patients were women. The mean age of the patients was 48 ± 10.6 years. The mean BMI was 26.3 ± 2.2 kg/m 2 . The individual group (95% confidence interval (CI) 2.02, 7.98) and the standard combined with TENS (95% CI 2.03, 7.97) demonstrated the highest improvement of the RMQ. The VAS score was lower in the standard combined with TENS group (95% CI 3.28, 4.56). Considering the standard acupuncture group, different studies used similar protocols and acupuncture points and the results could thus be compared. The equation for global linearity did not find any statistically significant inconsistency in any of the network comparison. Conclusion Verum acupuncture is more effective than sham treatment for the non-pharmacological management of LBP. Among the verum protocols, individualized acupuncture and standard acupuncture with TENS were the protocols that resulted in the highest improvement in pain and quality of life. Level of Evidence Level I, Bayesian network meta-analysis of RCTs. Keywords: Acupuncture, Low back pain, Verum acupuncture, Individualized acupuncture, Sham acupuncture",
+      "conclusion": "Conclusion Verum acupuncture is more efficient than sham treatment for the non-pharmacological management of LBP. Among verum protocols, individualized acupuncture and standard acupuncture with TENS were the protocols that allowed for the highest improvement in pain and quality of life.",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "licenseText": "Open Access This article is licensed under a Creative Commons Attribution 4.0 International License, which permits use, sharing, adaptation, distribution and reproduction in any medium or format, as long as you give appropriate credit to the original author(s) and the source, provide a link to the Creative Commons licence, and indicate if changes were made. The images or other third party material in this article are included in the article's Creative Commons licence, unless indicated otherwise in a credit line to the material. If material is not included in the article's Creative Commons licence and your intended use is not permitted by statutory regulation or exceeds the permitted use, you will need to obtain permission directly from the copyright holder. To view a copy of this licence, visit http://creativecommons.org/licenses/by/4.0/ . The Creative Commons Public Domain Dedication waiver ( http://creativecommons.org/publicdomain/zero/1.0/ ) applies to the data made available in this article, unless otherwise stated in a credit line to the data.",
+      "sourceUrl": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC9208133/fullTextXML",
+      "sourceHash": "e54d3e172fbb83e36bfa883d0eb41a385d4ff860f45f5d3a69eed1e406b6bd3b",
+      "figureCount": 3
+    },
+    "verification": {
+      "type": "automated",
+      "model": "claude-opus-5-5",
+      "writerModel": "claude-sonnet-5-5",
+      "checkedAt": "2026-10-28T00:32:52.457Z",
       "checks": {
         "numbers": true,
         "methods": true,
