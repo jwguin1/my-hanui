@@ -52,6 +52,7 @@ import {
   CLINIC_WEEKEND_HOLIDAY_LABEL,
 } from "../src/lib/clinic.ts";
 import { DOCTOR_SLUGS } from "../src/lib/schema.ts";
+import { DISEASE_GUIDES } from "../src/lib/disease-guides.ts";
 import {
   PAIN_GROUP_HUB,
   PAIN_GROUP_ORDER,
@@ -1567,6 +1568,22 @@ if (pricePages === 0) {
   const msg = "가격 검사가 한 페이지도 돌지 않았다 — PRICE_SCOPE_RE 를 확인하라";
   console.log(`  ! ${msg}`);
   failures.push(msg);
+}
+
+// 실제 응답을 검사해 public 파일과 Route Handler가 서로 다른 내용을 내는 회귀를 잡는다.
+try {
+  const response = await fetch(`${BASE}/llms.txt`);
+  if (!response.ok) throw new Error(`HTTP ${response.status}`);
+  const text = await response.text();
+  const missing = DISEASE_GUIDES.filter(g => !text.includes(`https://www.ilsanhan.com${postPath(g.category, g.slug)}`));
+  if (missing.length) throw new Error(`진료 질문 링크 ${missing.length}개 누락: ${missing.map(g => g.slug).join(", ")}`);
+  for (const service of ["산후·유산 후 보약", "난임·임신 준비", "소아 성장", "봉침", "공진단"]) {
+    if (!text.includes(service)) throw new Error(`확인된 진료 항목 누락: ${service}`);
+  }
+  console.log(`AI 요약 응답    /llms.txt · 질문 링크 ${DISEASE_GUIDES.length}개 · 확인된 진료 항목 통과`);
+} catch (error) {
+  failed += 1;
+  failures.push(`AI 요약 응답: ${error.message}`);
 }
 
 if (failed) {

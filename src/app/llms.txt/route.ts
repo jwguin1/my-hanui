@@ -10,6 +10,7 @@ import {
   CLINIC_WEEKEND_HOLIDAY_LABEL,
 } from "@/lib/clinic";
 import { getAllPosts } from "@/lib/blog-local";
+import { DISEASE_GUIDES } from "@/lib/disease-guides";
 import { PIGMENTATION_SLUGS, LIFTING_SLUGS, LIFTING_PATH, SHURINK_CARE, HAIR_REMOVAL_SLUGS } from "@/lib/skin-guides";
 import { PIGMENTATION_PRICES, SHURINK_PRICES, VOLNEWMER_PRICES, LIFTING_PACKAGE, HAIR_REMOVAL_PRICES, skinPrice, PAIN_PRICES, HERBAL_PRICES, PAIN_INSURANCE_NOTE, PHARMACOPUNCTURE_NOTE, HERBAL_INSURANCE_CONDITIONS, HERBAL_INSURANCE_LIMIT, won, painWon } from "@/lib/pricing";
 import { postPath } from "@/lib/slug";
@@ -29,6 +30,8 @@ function body(): string {
   const holidayLine = `- ${CLINIC_WEEKEND_HOLIDAY_LABEL}: ${CLINIC_HOURS_WEEKEND} (점심시간 없이 진료)`;
   const closedLine = `- ${CLINIC.holidayClosedNote}`;
   const skinPosts = getAllPosts("skin");
+  const diseaseKeys = new Set(DISEASE_GUIDES.map(g => `${g.category}/${g.slug}`));
+  const diseaseLinks = getAllPosts().filter(post => diseaseKeys.has(`${post.category}/${post.slug}`)).map(post => `- [${post.title}](${BASE}${postPath(post.category, post.slug)})`).join("\n");
   const regionalLinks = getAllPosts().filter(post => post.id.startsWith("regional-")).map(post => `- [${post.title}](${BASE}${postPath(post.category, post.slug)})`).join("\n");
   const searchGuideLinks = [...getAllPosts("diet"), ...skinPosts.filter(post => post.id.startsWith("spot-guide-") || post.slug === "잡티제거-개수와-비용")].map(post => `- [${post.title}](${BASE}${postPath(post.category, post.slug)})`).join("\n");
   const hairLinks = HAIR_REMOVAL_SLUGS.flatMap(slug => {
@@ -56,6 +59,15 @@ function body(): string {
 
 ## 피부·지역 진료 질문
 ${regionalLinks}
+
+## 증상·검사별 진료 선택
+
+- [증상·검사별 환자 질문](${BASE}/conditions)
+- 산후·유산 후 보약, 난임·임신 준비, 소아 성장, 봉침, 공진단은 일산한의원에서 실제 진료·처방합니다. 구성과 기간·비용은 진찰 후 안내합니다.
+- 난임 치료와 성장 평가에 관련된 다른 의료기관의 검사·치료 계획을 함께 확인합니다.
+- 검사·수술·다른 진료과 선택을 다룬 글은 필요한 진료를 찾는 안내입니다. 각 글에서 일산한의원의 실제 진료 범위를 구분해 설명합니다.
+
+${diseaseLinks}
 
 ## 기본 정보
 - 웹사이트: ${BASE}
@@ -87,7 +99,9 @@ ${closedLine}
 - 침 치료, 물리치료, 부항, 온열·뜸
 - 추나요법 (건강보험 적용, 연 20회까지)
 - 약침·초음파 약침
+- 봉침 (벌독 알레르기와 과거 반응 확인 후 적합성·대안·비용 설명)
 - 한약 처방 (기능성소화불량은 첩약 건강보험 시범사업 적용 대상)
+- 산후·유산 후 보약, 난임·임신 준비, 소아 성장 진료와 공진단 처방
 - 근골격계 초음파 진단 (${CLINIC.ultrasound.name} ${CLINIC.ultrasound.count}대)
 - 체외충격파, 무중력 감압치료
 - 피부 CO2 레이저 (점·편평사마귀·쥐젖 제거)
