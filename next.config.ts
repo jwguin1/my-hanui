@@ -7,6 +7,12 @@ const nextConfig: NextConfig = {
     ignoreBuildErrors: true,
   },
   compress: true,
+  async headers() {
+    return [{
+      source: "/fonts/pretendard-1.3.9/:path*",
+      headers: [{ key: "Cache-Control", value: "public, max-age=31536000, immutable" }],
+    }];
+  },
   async redirects() {
     // 이전 건강정보 경로 중 현재 같은 원고가 남아 있는 주소만 이전한다.
     // 미발행 welcome과 삭제된 글은 404를 유지하며, 검토 중 원고의 noindex도 유지한다.

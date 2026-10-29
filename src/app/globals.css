@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "./pretendard.css";
 
 @theme {
   /* ── 레거시 키 → 라이트 웜 값으로 재정의 ──
@@ -26,7 +27,7 @@
   --color-muted: #857c73;
   --color-ok: #1d9e75;
 
-  --font-body: "Pretendard", var(--font-serif-kr, "Noto Serif KR"), -apple-system, sans-serif;
+  --font-body: "Pretendard Variable", -apple-system, BlinkMacSystemFont, "Segoe UI", "Malgun Gothic", sans-serif;
   --font-serif: var(--font-serif-kr, "Noto Serif KR"), Georgia, serif;
 }
 
