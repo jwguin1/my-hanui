@@ -192,7 +192,7 @@ export default function CategoryPostPage({
       )}
 
       {/* 피부 안내 글은 관련 글을 읽은 뒤 상담으로 이어지며, 상담 블록은 한 번만 표시한다. */}
-      {isSkinGuide && <ClinicCta note={post.clinicNote} consultationPrompt={CONSULTATION_GUIDE_SLUGS.includes(post.slug) ? "원내 진료를 원하시면 잡티·비립종 제거, 색소·피부결, 슈링크·볼뉴머, 얼굴 제모 중 관심 항목과 이전 시술 이력을 남겨주세요. 글에 소개된 다른 시술은 해당 의료기관에서 상담하세요." : "고민 부위와 관심 있는 시술, 이전 시술 이력과 방문 희망일을 카카오톡으로 남겨주세요. 진료시간 내 의료진이 상담해드립니다."} />}
+      {isSkinGuide && <ClinicCta note={post.clinicNote} consultationPrompt={CONSULTATION_GUIDE_SLUGS.includes(post.slug) ? "피부 고민과 이전 시술 이력, 방문 희망일을 알려주세요. 의료진이 피부 상태를 진찰해 필요한 원내 치료를 정하고, 추가 검사나 다른 시술·수술이 필요하면 적절한 의료기관으로 의뢰합니다." : "고민 부위와 관심 있는 시술, 이전 시술 이력과 방문 희망일을 카카오톡으로 남겨주세요. 진료시간 내 의료진이 상담해드립니다."} />}
 
       {/* Bottom nav */}
       <section className="section-padding !pt-0 text-center">

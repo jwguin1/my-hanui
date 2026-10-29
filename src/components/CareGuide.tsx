@@ -1,6 +1,6 @@
 import Link from "next/link";
 import PainVisitSteps from "@/components/PainVisitSteps";
-import { PAIN_CARE_FAQS, HERBAL_CARE_FAQS } from "@/lib/care-guide";
+import { CARE_GUIDE, PAIN_CARE_FAQS, HERBAL_CARE_FAQS } from "@/lib/care-guide";
 import { CLINIC } from "@/lib/clinic";
 
 export default function CareGuide({ herbal = false }: { herbal?: boolean }) {
@@ -11,6 +11,7 @@ export default function CareGuide({ herbal = false }: { herbal?: boolean }) {
         <div className="mx-auto max-w-3xl">
           <p className="text-center text-sm font-semibold text-primary">{herbal ? "한약 조제와 복용 상담" : "방문 전 진료 안내"}</p>
           <h2 className="mt-3 text-center font-serif text-3xl font-semibold text-ink">{herbal ? "내 한약이 준비되는 과정" : "처음 오시면 이렇게 진료합니다"}</h2>
+          <p className="mt-6 text-base leading-8 text-ink">{CARE_GUIDE.assessment}</p>
           {!herbal && <PainVisitSteps />}
           {herbal ? <ol className="mt-7 grid gap-4 sm:grid-cols-2">
             <li className="rounded-xl border border-line bg-card p-5"><h3 className="font-semibold text-primary">01 · 상담·처방</h3><p className="mt-3 text-base leading-relaxed text-muted">증상과 복용 중인 약을 확인하고 처방을 정합니다.</p></li>

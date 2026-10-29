@@ -21,9 +21,9 @@ export default function ConditionsPage() {
   const list = itemListNode("/conditions", "question-list", "증상·검사별 진료 선택 질문", entries.map(e => ({ name: e.title, url: `https://www.ilsanhan.com${e.href}` })));
   return <>
     <JsonLd graph={buildGraph({ path: "/conditions", name: "일산 증상·검사별 진료 선택", description, mainEntity: ref(pageId("/conditions", "question-list")), nodes: [list] })} />
-    <PageHeader badge="증상별 질문과 답" lead="어디부터 진료받을지," accent="함께 정리해 보세요" stacked description={description} />
+    <PageHeader badge="증상별 질문과 답" lead="불편한 증상부터," accent="의료진이 함께 살핍니다" stacked description={description} />
     <div className="mx-auto max-w-6xl px-6">
-      <p className="rounded-2xl border border-line bg-surface p-5 text-[16px] leading-8 text-ink">검사가 필요한 증상, 치료를 고르는 기준, 방문 전에 챙길 내용을 모았습니다. 일산한의원의 통증·한약·피부 진료는 각 글에서 구체적으로 안내합니다. 다른 진료과의 검사·수술을 다룬 글은 필요한 의료기관을 선택하는 안내입니다.</p>
+      <p className="rounded-2xl border border-line bg-surface p-5 text-[16px] leading-8 text-ink">증상의 원인이나 필요한 검사를 미리 정하지 않고 오셔도 됩니다. 일산한의원 의료진이 문진과 진찰로 원인을 감별하고 필요한 치료를 합니다. 추가 검사·전문 치료·입원이 필요하면 상급병원 등 적절한 의료기관으로 의뢰·전원합니다. 각 글에서 증상별 진료 과정과 실제 치료 내용을 확인하세요.</p>
       <nav aria-label="원내 진료와 방문 안내" className="mt-6 flex flex-wrap gap-x-6 gap-y-4 text-primary">
         <Link href="/pain/chronic" className="underline underline-offset-4">침·추나·약침</Link>
         <Link href="/internal/dyspepsia" className="underline underline-offset-4">소화불량</Link>

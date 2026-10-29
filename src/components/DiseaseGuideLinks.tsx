@@ -8,7 +8,7 @@ export default function DiseaseGuideLinks({ group }: { group: typeof DISEASE_GRO
   const posts = getAllPosts().filter(p => keys.has(`${p.category}/${p.slug}`));
   return <section className="mx-auto max-w-5xl px-6 py-12" aria-label={`${group} 진료 선택 질문`}>
     <h2 className="text-2xl font-bold leading-relaxed text-ink">진료 전에 궁금한 질문</h2>
-    <p className="mt-3 leading-7 text-muted">증상을 구분하고, 검사·치료 내용을 이해하고, 방문을 준비하는 데 도움이 되는 글입니다.</p>
+    <p className="mt-3 leading-7 text-muted">의료진이 증상의 원인을 어떻게 살피고 치료하는지, 어떤 경우에 추가 검사나 다른 진료를 연결하는지 안내합니다.</p>
     <ul className="mt-6 grid gap-4 md:grid-cols-2">
       {posts.map(p => <li key={p.slug} className="rounded-xl border border-line bg-card p-5"><Link href={postPath(p.category, p.slug)} className="font-semibold leading-7 text-ink hover:text-primary">{p.title}</Link></li>)}
     </ul>
