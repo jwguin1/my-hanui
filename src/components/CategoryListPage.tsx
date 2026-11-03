@@ -1,3 +1,7 @@
+import PatientJourney from "@/components/PatientJourney";
+import MobileConsultationBar from "@/components/MobileConsultationBar";
+import ConsultationActions from "@/components/ConsultationActions";
+import { PAIN_JOURNEY } from "@/lib/patient-journeys";
 import { CONSULTATION_GUIDE_SLUGS } from "@/lib/regional-guides";
 import Link from "next/link";
 import PainSymptomFinder from "@/components/PainSymptomFinder";
@@ -174,7 +178,7 @@ export default function CategoryListPage({ category }: { category: Category }) {
         icon={<Microscope size={15} />}
         lead={label}
         subtitle={category === "diet" ? "다이어트" : undefined}
-        description={category === "pain" ? "불편한 증상에 맞는 진료와 질문을 찾아보세요. 처음 오시는 분을 위한 치료 과정과 비용도 함께 안내합니다." : description}
+        description={category === "pain" ? "어디가 아픈지, 어떤 움직임이 불편한지부터 말씀해 주세요. 의료진이 원인을 살피고 침·추나·약침의 필요성과 비용, 경과를 다시 볼 시점을 설명합니다." : description}
       />
 
       {/* 네이버 하위링크 카드용 대표이미지 — 본문 최상단의 첫 이미지이자 최대 이미지.
@@ -234,7 +238,16 @@ export default function CategoryListPage({ category }: { category: Category }) {
         </section>
       )}
 
-      {category === "pain" && <><PainSymptomFinder /><PageHeroBanner page="pain" /></>}
+      {category === "pain" && <>
+        <div className="mx-auto flex max-w-4xl flex-wrap justify-center gap-x-6 gap-y-2 px-6 pb-6 text-base font-semibold text-primary">
+          <Link href="#symptom-finder" className="inline-flex min-h-11 items-center underline underline-offset-4">내 증상에 맞는 질문</Link>
+          <Link href="/pricing#pain" className="inline-flex min-h-11 items-center underline underline-offset-4">침·추나·약침 비용</Link>
+          <Link href="/pain/acute#visit-guide" className="inline-flex min-h-11 items-center underline underline-offset-4">처음 방문 준비·소요 시간</Link>
+        </div>
+        <PatientJourney id="pain-visit" title="아픈 이유를 살피고, 치료 후 변화를 다시 봅니다" intro="어떤 치료를 받을지 미리 정하지 않고 오셔도 됩니다. 진찰 결과에 맞는 치료를 설명하고, 호전 정도에 따라 다음 계획을 정합니다." steps={PAIN_JOURNEY} />
+        <PainSymptomFinder /><PageHeroBanner page="pain" />
+        <section className="mx-auto max-w-3xl px-6 py-8 text-center"><h2 className="text-xl font-semibold text-ink">오늘 진료가 필요하신가요?</h2><p className="mt-3 text-base leading-7 text-muted">아픈 부위와 방문하려는 시간을 남겨주세요. 진료시간과 준비할 내용을 안내해 드립니다.</p><ConsultationActions kakaoLabel="오늘 진료 가능 시간 문의" className="mt-5" /></section>
+      </>}
 
       {/* Diet 전문 페이지 배너 */}
       {category === "diet" && (
@@ -445,6 +458,7 @@ export default function CategoryListPage({ category }: { category: Category }) {
       </section>
       )}
 
+      {category === "pain" && <MobileConsultationBar label="통증 진료 문의" />}
     </>
   );
 }

@@ -6,14 +6,16 @@ import { CLINIC } from "@/lib/clinic";
 export default function ConsultationActions({
   directions = false,
   className = "",
+  kakaoLabel = "카카오톡 상담",
 }: {
   directions?: boolean;
   className?: string;
+  kakaoLabel?: string;
 }) {
   return (
     <div className={`flex flex-col items-center justify-center gap-3 sm:flex-row sm:flex-wrap ${className}`}>
       <PillButton href={CLINIC.kakaoHref} variant="kakao" icon={<MessageCircle size={16} />} className="w-full sm:w-auto">
-        카카오톡 상담
+        {kakaoLabel}
       </PillButton>
       <PillButton href={CLINIC.telHref} variant="outline" icon={<Phone size={16} />} className="w-full sm:w-auto">
         전화 문의 {CLINIC.tel}

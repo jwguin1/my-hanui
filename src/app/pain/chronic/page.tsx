@@ -1,3 +1,4 @@
+import MobileConsultationBar from "@/components/MobileConsultationBar";
 import { ClinicPhotoGallery } from "@/components/ClinicPhoto";
 import CareGuide from "@/components/CareGuide";
 import { CARE_GUIDE, PAIN_CARE_FAQS } from "@/lib/care-guide";
@@ -213,8 +214,8 @@ export default function ChronicPainPage() {
       <PageHeader
         badge="통증 치료"
         icon={<Stethoscope size={15} />}
-        lead="3주가 지나도 그대로라면,"
-        accent="다른 곳을 봐야 합니다"
+        lead="오래가는 통증,"
+        accent="원인과 치료 계획을 다시 살핍니다"
         stacked
       />
       <TreatmentPriceLink />
@@ -425,7 +426,8 @@ export default function ChronicPainPage() {
                 교통사고로 오셨나요? &rarr;
               </Link>
             </div>
-            <ConsultationActions className="mx-auto max-w-3xl" />
+            <p className="mb-5 text-center text-base leading-7 text-muted">아픈 부위와 언제부터 불편했는지 남겨주세요. 진료시간과 준비할 내용을 안내해 드립니다.</p>
+            <ConsultationActions kakaoLabel="통증 진료 상담 문의" className="mx-auto max-w-3xl" />
             <p className="mt-6 text-center text-sm text-primary"><Link href="/home-visit" className="underline underline-offset-4">거동이 불편해 내원이 어려우신가요? 방문진료 안내 →</Link></p>
           </SectionReveal>
         </div>
@@ -437,6 +439,7 @@ export default function ChronicPainPage() {
       <Link href="/blog/일산-침치료-봉침-약침" className="mt-3 inline-block text-primary underline underline-offset-4">침·약침·봉침의 차이와 진료 전 준비 읽기 →</Link>
     </section>
     <DiseaseGuideLinks group="통증·재활" />
+      <MobileConsultationBar label="통증 진료 문의" />
     </>
   );
 }

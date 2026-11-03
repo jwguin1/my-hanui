@@ -1,3 +1,8 @@
+import PatientJourney from "@/components/PatientJourney";
+import PatientQuestions from "@/components/PatientQuestions";
+import SectionJumpNav from "@/components/SectionJumpNav";
+import MobileConsultationBar from "@/components/MobileConsultationBar";
+import { SKIN_JOURNEY, SPOT_RETOUCH } from "@/lib/patient-journeys";
 import ConsultationActions from "@/components/ConsultationActions";
 import SpotQuestionGuide from "@/components/SpotQuestionGuide";
 import type { Metadata } from "next";
@@ -7,10 +12,8 @@ import PageHeader from "@/components/ui/PageHeader";
 import SectionBadge from "@/components/ui/SectionBadge";
 import TwoTone from "@/components/ui/TwoTone";
 import IconTile from "@/components/ui/IconTile";
-import StatCard from "@/components/ui/StatCard";
 import DefinitionCard from "@/components/ui/DefinitionCard";
 import NumberedStep from "@/components/ui/NumberedStep";
-import QARow from "@/components/ui/QARow";
 import PriceTable from "@/components/ui/PriceTable";
 import {
   AlertTriangle,
@@ -35,9 +38,7 @@ import {
   SPOT_PRICE_ROWS,
   SPOT_PRICE_HEADERS,
   SPOT_PRICE_NOTE,
-  SPOT_ENTRY,
   won,
-  wonDigits,
 } from "@/lib/pricing";
 
 export const metadata: Metadata = pageMetadata({
@@ -49,30 +50,12 @@ export const metadata: Metadata = pageMetadata({
 });
 
 const QUESTIONS = [
-  {
-    quote: "이거 그냥 점 맞나요?",
-    answer: "확대경으로 먼저 봅니다. 의심되면 빼지 않고 의뢰드립니다",
-  },
-  {
-    quote: "개수가 많은데 비용이 걱정돼요",
-    answer: "부위 단위 정액제로 운영합니다",
-  },
-  {
-    quote: "편평사마귀는 다시 난다던데요",
-    answer: "바이러스성이라 재발할 수 있습니다. 그래서 경과를 함께 봅니다",
-  },
-  {
-    quote: "자국이 남을까 걱정돼요",
-    answer: "병변 깊이와 피부 상태에 따라 흉터·색소 변화가 생길 수 있어 회복 계획을 함께 안내합니다",
-  },
-  {
-    quote: "많이 아픈가요?",
-    answer: "마취 연고를 충분히 바른 뒤 진행합니다",
-  },
-  {
-    quote: "몇 번 와야 하나요?",
-    answer: "진단과 병변의 깊이·범위에 따라 달라지며, 나누어 시술하거나 재시술이 필요할 수 있습니다",
-  },
+  { quote: "점인지 편평사마귀인지 모르겠어요", answer: "병변 이름을 알고 오실 필요는 없습니다. 의료진이 확대경으로 모양과 분포를 살펴 제거할 부위를 정합니다. 색이나 모양이 변하는 등 추가 검사가 필요한 병변은 검사받을 의료기관으로 의뢰합니다." },
+  { quote: "개수가 많으면 비용은 어떻게 정하나요?", answer: "얼굴 전체, 얼굴과 목 앞면, 얼굴과 목 앞뒤로 범위를 나누어 안내합니다. 각 범위에서 100개까지와 개수 제한 없음의 가격을 비교하고, 진찰 후 시술 범위와 비용을 확인합니다." },
+  { quote: "흉터가 걱정되는데 어떻게 시술하나요?", answer: SPOT_RETOUCH.reason + " 병변의 깊이와 피부 상태에 따라 흉터나 색소 변화가 생길 수 있어, 한 번에 깊게 제거하기보다 회복을 살피며 치료합니다." },
+  { quote: "남거나 다시 올라온 병변은 언제 리터치하나요?", answer: SPOT_RETOUCH.timing + " " + SPOT_RETOUCH.cost },
+  { quote: "시술이 많이 아픈가요?", answer: "시술 전 마취 연고를 충분히 바른 뒤 진행합니다. 통증에 민감하거나 이전 시술이 힘드셨다면 미리 말씀해 주세요. 시술 중에도 불편한 정도를 의료진에게 알려주시면 상태를 살피며 진행합니다." },
+  { quote: "집에서 관리하다 궁금한 점이 생기면요?", answer: "보호재·연고 사용과 세안 방법은 시술 부위에 맞춰 안내합니다. 회복 중 궁금한 변화가 있으면 진료시간 내 카카오톡으로 문의해 주세요. 붓기나 통증이 심해지거나 고름·발열이 생기면 진료를 받아야 합니다." },
 ];
 
 const TARGETS = [
@@ -145,54 +128,55 @@ export default function SkinSpotPage() {
       <PageHeader
         badge="피부 · 미용"
         icon={<Scan size={15} />}
-        lead="잡티 빼기 전에"
-        accent="한 번 보고 결정합니다"
+        lead="점·편평사마귀·쥐젖 제거"
+        accent="진찰부터 회복 관리까지"
         stacked
+        description="먼저 병변을 살피고, 제거할 범위와 비용을 설명합니다. 시술 후 관리와 남은 병변의 리터치까지 미리 확인하세요."
       />
+      <SectionJumpNav label="잡티 제거 안내 목차" items={[["prices", "시술 비용"], ["skin-visit", "진찰·시술 과정"], ["retouch", "리터치 안내"], ["skin-faq", "자주 묻는 질문"], ["skin-aftercare", "회복 관리"]]} />
 
-      {/* ── 정의 + 지표 ── */}
-      <section className="bg-[var(--bg)]">
+      {/* ── 비용 안내 ── */}
+      <section id="prices" className="scroll-mt-28 bg-[var(--bg)]">
         <div className="section-padding">
           <SectionReveal>
-            <div className="mx-auto max-w-3xl">
-              <DefinitionCard
-                title="잡티 제거란?"
-                body="점, 편평사마귀, 쥐젖 등을 CO2 레이저로 제거하는 시술입니다. 겉모습이 비슷해도 성격이 다르고, 드물게 제거하면 안 되는 병변도 있어 확대경으로 먼저 확인한 뒤 진행합니다."
-              />
-
-              <div className="mt-8 text-center text-[15px] leading-relaxed text-muted">
-                <p>모양이 비슷해도 원인이 다릅니다.</p>
-                <p>뺄 것과 두어야 할 것을 나눠 말씀드립니다.</p>
+            <div className="mx-auto max-w-3xl text-center">
+              <SectionBadge icon={<ChartBar size={15} />} label="비용 안내" />
+              <div className="mt-4">
+                <TwoTone as="h2" lead="비용을 " accent="먼저 공개합니다" />
               </div>
             </div>
 
-            <div className="mx-auto mt-10 grid max-w-3xl grid-cols-1 gap-4 md:grid-cols-3">
-              <StatCard
-                value={wonDigits(SPOT_ENTRY.upTo100)}
-                unit="원"
-                label={`${SPOT_ENTRY.name} 100개까지`}
+            <div className="mx-auto mt-14 max-w-2xl">
+              <PriceTable
+                caption="잡티 제거"
+                headers={SPOT_PRICE_HEADERS}
+                rows={SPOT_PRICE_ROWS.map((r) => ({
+                  name: r.name,
+                  price: won(r.upTo100),
+                  price2: won(r.unlimited),
+                }))}
+                note={SPOT_PRICE_NOTE}
               />
-              <StatCard value="관리" label="시술 후 보호재·세안 안내" />
-              <StatCard value="확대경" label="시술 전 확인" />
             </div>
           </SectionReveal>
         </div>
       </section>
 
-      <section aria-labelledby="other-skin-title" className="border-y border-line bg-[var(--surface)] px-6 py-10">
-        <div className="mx-auto max-w-3xl">
-          <h2 id="other-skin-title" className="font-serif text-2xl font-semibold text-ink">색소·탄력·얼굴 제모도 함께 살펴보세요</h2>
-          <p className="mt-3 text-[16px] leading-relaxed text-muted">점·편평사마귀·쥐젖은 CO₂ 제거 안내를 계속 읽어보세요. 색소·탄력·제모가 고민이라면 아래 진료에서 자세히 확인하실 수 있습니다.</p>
-          <div className="mt-6 grid gap-4 sm:grid-cols-3">
-            <Link href="/skin/pigmentation" className="rounded-xl border border-line bg-card p-5 hover:border-primary"><h3 className="text-lg font-semibold text-ink">색소치료 →</h3><p className="mt-2 text-[15px] leading-relaxed text-muted">기미·주근깨·흑자·피부톤<br />피코토닝·제네시스 질문과 비용</p></Link>
-            <Link href="/skin/hair-removal" className="rounded-xl border border-line bg-card p-5 hover:border-primary"><h3 className="text-lg font-semibold text-ink">얼굴 제모 →</h3><p className="mt-2 text-[15px] leading-relaxed text-muted">남녀 공통 · 엘리멘트 TL<br />인중＋앞턱·얼굴전체 가격과 관리</p></Link>
-            <Link href="/skin/lifting" className="rounded-xl border border-line bg-card p-5 hover:border-primary"><h3 className="text-lg font-semibold text-ink">리프팅 →</h3><p className="mt-2 text-[15px] leading-relaxed text-muted">턱선·볼 처짐·탄력<br />슈링크·볼뉴머 질문과 비용</p></Link>
-          </div>
+      <PatientJourney id="skin-visit" title="제거 전 진찰부터 회복 확인까지" intro="처음 받는 시술이라면 통증과 자국, 다시 올라오는 병변이 걱정될 수 있습니다. 시술 전 설명부터 이후 관리까지 순서대로 안내합니다." steps={SKIN_JOURNEY} />
+
+      <section id="retouch" className="section-padding scroll-mt-28 !py-10">
+        <div className="mx-auto max-w-3xl rounded-2xl border border-line bg-surface p-6 sm:p-8">
+          <h2 className="text-2xl font-semibold leading-snug text-ink">남거나 다시 올라온 병변, 리터치로 이어서 봅니다</h2>
+          <p className="mt-4 text-base leading-8 text-muted">{SPOT_RETOUCH.reason}</p>
+          <p className="mt-3 text-base leading-8 text-muted">{SPOT_RETOUCH.timing}</p>
+          <p className="mt-5 rounded-xl bg-card p-4 text-base font-semibold leading-8 text-primary">{SPOT_RETOUCH.cost}</p>
+          <p className="mt-3 text-sm leading-7 text-muted">위 금액은 최초 CO₂ 시술 후 남거나 다시 올라온 병변의 리터치 기준입니다. 시술 날짜와 회복 상태를 진료에서 확인합니다.</p>
+          <Link href={postPath("skin", "일산-편평사마귀-가격")} className="mt-3 inline-flex min-h-11 items-center font-medium text-primary underline underline-offset-4">편평사마귀 시술 범위와 비용 자세히 보기 →</Link>
         </div>
       </section>
 
       {/* ── 환자분들의 질문 ── */}
-      <section className="bg-[var(--surface)]">
+      <section id="skin-faq" className="scroll-mt-28 bg-[var(--surface)]">
         <div className="section-padding">
           <SectionReveal>
             <div className="mx-auto max-w-3xl text-center">
@@ -205,11 +189,7 @@ export default function SkinSpotPage() {
               </div>
             </div>
 
-            <div className="mx-auto mt-14 flex max-w-4xl flex-col gap-2.5">
-              {QUESTIONS.map((q) => (
-                <QARow key={q.quote} quote={q.quote} answer={q.answer} />
-              ))}
-            </div>
+            <PatientQuestions items={QUESTIONS} />
           </SectionReveal>
         </div>
       </section>
@@ -270,35 +250,8 @@ export default function SkinSpotPage() {
         </div>
       </section>
 
-      {/* ── 비용 안내 ── */}
-      <section className="bg-[var(--bg)]">
-        <div className="section-padding">
-          <SectionReveal>
-            <div className="mx-auto max-w-3xl text-center">
-              <SectionBadge icon={<ChartBar size={15} />} label="비용 안내" />
-              <div className="mt-4">
-                <TwoTone as="h2" lead="비용을 " accent="먼저 공개합니다" />
-              </div>
-            </div>
-
-            <div className="mx-auto mt-14 max-w-2xl">
-              <PriceTable
-                caption="잡티 제거"
-                headers={SPOT_PRICE_HEADERS}
-                rows={SPOT_PRICE_ROWS.map((r) => ({
-                  name: r.name,
-                  price: won(r.upTo100),
-                  price2: won(r.unlimited),
-                }))}
-                note={SPOT_PRICE_NOTE}
-              />
-            </div>
-          </SectionReveal>
-        </div>
-      </section>
-
       {/* ── 시술 후 관리 ── */}
-      <section className="bg-[var(--surface)]">
+      <section id="skin-aftercare" className="scroll-mt-28 bg-[var(--surface)]">
         <div className="section-padding">
           <SectionReveal>
             <div className="mx-auto max-w-3xl text-center">
@@ -359,6 +312,19 @@ export default function SkinSpotPage() {
         </div>
       </section>
       <SpotQuestionGuide />
+      <section aria-labelledby="other-skin-title" className="border-y border-line bg-[var(--surface)] px-6 py-10">
+        <div className="mx-auto max-w-3xl">
+          <h2 id="other-skin-title" className="font-serif text-2xl font-semibold text-ink">색소·탄력·얼굴 제모도 함께 살펴보세요</h2>
+          <p className="mt-3 text-[16px] leading-relaxed text-muted">점·편평사마귀·쥐젖은 CO₂ 제거 안내를 계속 읽어보세요. 색소·탄력·제모가 고민이라면 아래 진료에서 자세히 확인하실 수 있습니다.</p>
+          <div className="mt-6 grid gap-4 sm:grid-cols-3">
+            <Link href="/skin/pigmentation" className="rounded-xl border border-line bg-card p-5 hover:border-primary"><h3 className="text-lg font-semibold text-ink">색소치료 →</h3><p className="mt-2 text-[15px] leading-relaxed text-muted">기미·주근깨·흑자·피부톤<br />피코토닝·제네시스 질문과 비용</p></Link>
+            <Link href="/skin/hair-removal" className="rounded-xl border border-line bg-card p-5 hover:border-primary"><h3 className="text-lg font-semibold text-ink">얼굴 제모 →</h3><p className="mt-2 text-[15px] leading-relaxed text-muted">남녀 공통 · 엘리멘트 TL<br />인중＋앞턱·얼굴전체 가격과 관리</p></Link>
+            <Link href="/skin/lifting" className="rounded-xl border border-line bg-card p-5 hover:border-primary"><h3 className="text-lg font-semibold text-ink">리프팅 →</h3><p className="mt-2 text-[15px] leading-relaxed text-muted">턱선·볼 처짐·탄력<br />슈링크·볼뉴머 질문과 비용</p></Link>
+          </div>
+        </div>
+      </section>
+
+
       <LocalBlock {...LOCAL_BLOCKS["/skin/spot"]} />
 
       <section className="section-padding">
@@ -382,14 +348,16 @@ export default function SkinSpotPage() {
                 href="/skin"
                 className="text-[14px] font-medium text-primary transition-colors duration-200 hover:text-tan"
               >
-                피부 관련 연구 보기 &rarr;
+                피부 진료 질문과 답 더 보기 &rarr;
               </Link>
             </div>
-            <ConsultationActions className="mx-auto max-w-3xl" />
+            <p className="mx-auto mb-5 max-w-3xl text-center text-base leading-7 text-muted">제거하고 싶은 부위와 궁금한 점을 남겨주세요. 시술 범위와 비용, 방문 일정을 안내해 드립니다.</p>
+            <ConsultationActions kakaoLabel="시술 범위·비용 문의" className="mx-auto max-w-3xl" />
           </SectionReveal>
         </div>
       </section>
 
+      <MobileConsultationBar label="시술 범위·비용 문의" />
     </>
   );
 }

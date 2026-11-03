@@ -1,3 +1,8 @@
+import PatientJourney from "@/components/PatientJourney";
+import PatientQuestions from "@/components/PatientQuestions";
+import SectionJumpNav from "@/components/SectionJumpNav";
+import MobileConsultationBar from "@/components/MobileConsultationBar";
+import { DIET_JOURNEY } from "@/lib/patient-journeys";
 import { DIET_PRICES, won } from "@/lib/pricing";
 import { DIET_COST_ANSWER } from "@/lib/diet-questions";
 import DietQuestionGuide from "@/components/DietQuestionGuide";
@@ -12,13 +17,10 @@ import TwoTone from "@/components/ui/TwoTone";
 import StatCard from "@/components/ui/StatCard";
 import PillButton from "@/components/ui/PillButton";
 import DefinitionCard from "@/components/ui/DefinitionCard";
-import StageCard from "@/components/ui/StageCard";
-import QARow from "@/components/ui/QARow";
 import {
   Activity,
   AlertTriangle,
   HelpCircle,
-  ListCheck,
 } from "@/components/ui/icons";
 import { SITE_URL } from "@/lib/categories";
 import { pageMetadata } from "@/lib/page-metadata";
@@ -37,62 +39,14 @@ export const metadata: Metadata = pageMetadata({
 });
 
 const QUESTIONS = [
-  {
-    quote: "일산감비환 가격과 한 상자 복용 기간은 어떻게 되나요?",
-    answer: DIET_COST_ANSWER,
-  },
-  {
-    quote: "굶어서 뺐더니 금방 다시 쪄요",
-    answer: "식단을 지속할 수 있는 상태를 만드는 게 먼저입니다",
-  },
-  {
-    quote: "식단하는데도 안 빠져요",
-    answer: "진료 후 용량을 조정하거나 대사 상태를 확인합니다",
-  },
-  {
-    quote: "가슴이 두근거린다던데요",
-    answer: "반응을 확인하며 용량을 조절합니다. 불편하면 바로 알려주세요",
-  },
-  {
-    quote: "약값이 부담돼요",
-    answer: "필요한 약재 위주로 구성해 부담을 줄였습니다",
-  },
-  {
-    quote: "저도 한약이 꼭 필요할까요?",
-    answer: "식단 조정만으로 되는 분께는 권하지 않습니다",
-  },
-  {
-    quote: "운동을 못 하는데 가능할까요?",
-    answer: "식단이 먼저입니다. 운동은 유지 단계에서 봅니다",
-  },
+  { quote: "일산감비환 가격과 한 상자 복용 기간은 어떻게 되나요?", answer: DIET_COST_ANSWER },
+  { quote: "어떤 약이 맞는지 모르겠는데 상담받아도 되나요?", answer: "네. 체중 변화와 식사·수면, 복용 중인 약부터 말씀해 주세요. 의료진이 건강 상태를 살펴 감비환이 필요한지 판단하고 처방과 복용량을 설명합니다. 식사 조정만으로 충분한 경우에는 그 방법부터 안내합니다." },
+  { quote: "식단을 조절하는데 체중이 그대로예요", answer: "최근 식사량과 식사 시간, 수면, 복용 상황을 함께 확인합니다. 체중 변화가 더딘 이유를 살핀 뒤 생활 관리나 처방을 조정하고, 필요한 경우 대사 상태를 확인하는 검사를 안내합니다." },
+  { quote: "복용 후 두근거리거나 잠이 안 오면 어떻게 하나요?", answer: "불편한 증상은 참지 말고 의료진에게 알려주세요. 증상이 시작된 시점과 복용량, 함께 드신 약이나 커피를 확인해 복용을 계속할지, 용량을 바꾸거나 중단할지 안내합니다. 흉통·호흡곤란·실신이 동반되면 답변을 기다리지 말고 즉시 응급진료를 받으세요." },
+  { quote: "감량한 뒤에는 어떻게 관리하나요?", answer: "목표에 가까워지면 체중 추이와 식사 습관을 함께 살펴 복용량을 줄이거나 마칠 시점을 정합니다. 감량 중 유지할 수 있었던 식사와 활동을 생활 속에 이어가도록 계획합니다." },
+  { quote: "운동을 많이 못 하는데 상담받아도 되나요?", answer: "네. 현재 가능한 활동량과 식사 패턴을 말씀해 주세요. 무리한 운동을 전제로 계획하지 않고, 생활에 맞는 식사·활동 계획과 처방 필요성을 함께 살핍니다." },
 ];
 
-const STAGES = [
-  {
-    step: 1,
-    badge: "1단계",
-    title: "식단 보조",
-    note: "식단은 지키는데 배고픔이 힘든 경우입니다.",
-    tags: ["최소 용량", "식단 병행"],
-    treatment: "진료 후 최소 용량부터 시작",
-  },
-  {
-    step: 2,
-    badge: "2단계",
-    title: "정체 구간",
-    note: "식단을 지켜도 변화가 없을 때입니다.",
-    tags: ["체중 정체", "대사 확인"],
-    treatment: "진료 후 용량 조정 또는 혈액검사",
-  },
-  {
-    step: 3,
-    badge: "3단계",
-    title: "유지기",
-    note: "감량 후 체중을 지키는 단계입니다.",
-    tags: ["요요 방지", "식습관 정착"],
-    treatment: "용량을 줄이며 종료 시점 상담",
-  },
-];
 
 const graph = buildGraph({
   path: "/diet/program",
@@ -115,8 +69,10 @@ export default function DietProgramPage() {
         icon={<Activity size={15} />}
         lead="일산감비환"
         subtitle="다이어트"
-        description="일산감비환은 일산한의원에서 상담·처방하는 다이어트 한약입니다. 감비환 가격과 복용 기간을 확인하고 현재 몸 상태에 맞는 처방을 상담하세요."
+        description="내 몸에 맞는지, 얼마나 먹어야 하는지부터 상담하세요. 일산한의원은 식사·수면·건강 상태를 살펴 일산감비환을 처방하고, 복용 중 변화와 감량 이후의 유지 계획까지 함께 봅니다."
       />
+
+      <SectionJumpNav label="일산감비환 안내 목차" items={[["prices", "가격·복용 기간"], ["diet-visit", "상담·처방 과정"], ["diet-faq", "복용 전 궁금한 점"], ["diet-safety", "복용 중 확인"]]} />
 
       <section id="prices" className="scroll-mt-24 mx-auto max-w-4xl px-6 py-10">
         <h2 className="font-serif text-2xl font-semibold text-ink">첫 상담과 일산감비환 비용</h2>
@@ -126,7 +82,7 @@ export default function DietProgramPage() {
         <Link href="/diet/다이어트한약-기간과-비용" className="mt-4 inline-block text-primary underline underline-offset-4">복용 기간과 비용 자세히 보기 →</Link>
       </section>
 
-      <DietQuestionGuide />
+      <PatientJourney id="diet-visit" title="첫 상담부터 복용 후 관리까지" intro="체중만 보고 같은 양을 처방하지 않습니다. 현재 건강 상태와 생활 패턴을 듣고, 몸의 반응을 보며 복용 계획을 조정합니다." steps={DIET_JOURNEY} />
 
       {/* ── 정의 + 지표 ── */}
       <section className="bg-[var(--bg)]">
@@ -158,8 +114,7 @@ export default function DietProgramPage() {
               />
 
               <div className="mt-8 text-center text-[15px] leading-relaxed text-muted">
-                <p>식단을 지킬 수 있으면 절반은 된 겁니다.</p>
-                <p>그 절반을 버티게 하는 것이 한약의 역할입니다.</p>
+                <p>감량하는 동안의 식사와 수면, 복용 후 몸의 반응을 함께 살핍니다.</p>
               </div>
             </div>
 
@@ -173,7 +128,7 @@ export default function DietProgramPage() {
       </section>
 
       {/* ── 환자분들의 질문 ── */}
-      <section className="bg-[var(--surface)]">
+      <section id="diet-faq" className="scroll-mt-28 bg-[var(--surface)]">
         <div className="section-padding">
           <SectionReveal>
             <div className="mx-auto max-w-3xl text-center">
@@ -182,41 +137,17 @@ export default function DietProgramPage() {
                 label="환자분들의 질문"
               />
               <div className="mt-4">
-                <TwoTone as="h2" lead="이런 말씀을 " accent="많이 하십니다" />
+                <TwoTone as="h2" lead="복용 전에 " accent="궁금한 점" />
               </div>
             </div>
 
-            <div className="mx-auto mt-14 flex max-w-4xl flex-col gap-2.5">
-              {QUESTIONS.map((q) => (
-                <QARow key={q.quote} quote={q.quote} answer={q.answer} />
-              ))}
-            </div>
-          </SectionReveal>
-        </div>
-      </section>
-
-      {/* ── 복용 방식 ── */}
-      <section className="bg-[var(--bg)]">
-        <div className="section-padding">
-          <SectionReveal>
-            <div className="mx-auto max-w-3xl text-center">
-              <SectionBadge icon={<ListCheck size={15} />} label="복용 방식" />
-              <div className="mt-4">
-                <TwoTone as="h2" lead="필요한 만큼만 " accent="처방합니다" />
-              </div>
-            </div>
-
-            <div className="mx-auto mt-14 grid max-w-5xl gap-5 lg:grid-cols-3">
-              {STAGES.map((s) => (
-                <StageCard key={s.step} {...s} />
-              ))}
-            </div>
+            <PatientQuestions items={QUESTIONS} />
           </SectionReveal>
         </div>
       </section>
 
       {/* ── 복용 중 확인 (안전 안내 — 삭제 금지) ── */}
-      <section className="bg-[var(--surface)]">
+      <section id="diet-safety" className="scroll-mt-28 bg-[var(--surface)]">
         <div className="section-padding">
           <SectionReveal>
             <div className="mx-auto max-w-3xl text-center">
@@ -243,6 +174,7 @@ export default function DietProgramPage() {
         </div>
       </section>
 
+      <DietQuestionGuide />
       <LocalBlock {...LOCAL_BLOCKS["/diet/program"]} />
 
       {/* ── CTA ── */}
@@ -254,7 +186,7 @@ export default function DietProgramPage() {
                 일산감비환 상담 신청
               </h2>
               <p className="mt-3 text-[15px] text-muted">
-                체질과 대사 상태에 맞춘 처방을 상담받으실 수 있습니다
+                복용 중인 약과 식사·수면에서 불편한 점을 남겨주세요. 의료진이 상담해 드립니다.
               </p>
 
               <div className="mt-6">
@@ -262,17 +194,18 @@ export default function DietProgramPage() {
                   href="/diet"
                   className="text-[14px] font-medium text-primary transition-colors duration-200 hover:text-tan"
                 >
-                  다이어트 관련 연구 보기 &rarr;
+                  일산감비환 질문과 답 더 보기 &rarr;
                 </Link>
               </div>
 
-              <ConsultationActions className="mt-8" />
+              <ConsultationActions kakaoLabel="일산감비환 상담 문의" className="mt-8" />
               <p className="mt-5"><a href="https://diet.ilsanhan.com" target="_blank" rel="noopener noreferrer" className="text-sm text-primary underline underline-offset-4">일산감비환 프로그램 자세히 보기 →</a></p>
             </div>
           </SectionReveal>
         </div>
       </section>
 
+      <MobileConsultationBar label="일산감비환 상담 문의" />
     </>
   );
 }

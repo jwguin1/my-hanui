@@ -45,6 +45,14 @@ export const SPOT_PRICE_HEADERS: [string, string] = [
 export const SPOT_PRICE_NOTE =
   "전 항목 비급여입니다. 시술 범위는 진료 후 함께 정합니다.";
 
+/** 원장이 확인한 최초 CO₂ 시술 후 남거나 다시 올라온 병변의 리터치 기준. */
+export const SPOT_RETOUCH_POLICY = {
+  afterWeeks: 4,
+  withinMonths: 6,
+  perLesion: 4900,
+  unlimited: 55000,
+} as const;
+
 /** 읽기 쉬운 원화 표기: 88000 → "8만8천원", 14300 → "1만4천3백원". */
 export function won(amount: number): string {
   return wonDigits(amount) + "원";
@@ -133,7 +141,7 @@ export function perSpot(row: SpotPriceRow): number {
  * 검증기가 화이트리스트로 쓴다 — 여기 없는 금액이 skin 페이지에 보이면 FAIL.
  */
 export function allowedSkinAmounts(): number[] {
-  const set = new Set<number>();
+  const set = new Set<number>([SPOT_RETOUCH_POLICY.perLesion, SPOT_RETOUCH_POLICY.unlimited]);
   for (const r of SPOT_PRICE_ROWS) {
     set.add(r.upTo100);
     set.add(r.unlimited);

@@ -23,7 +23,7 @@ const QUICK_LINKS = [
   { label: "보험한약", detail: "건강보험 6개 질환·비용", href: "/herbal/insurance" },
   { label: "체질보약", detail: "몸 상태에 맞춘 한약·비용", href: "/herbal/tonic" },
   { label: "일산감비환", detail: "다이어트 · 가격·복용 안내", href: "/diet/program" },
-  { label: "잡티제거", detail: "CO₂ · 색소 · 제모 · 리프팅", href: "/skin/spot" },
+  { label: "잡티제거", detail: "점·편평사마귀·쥐젖", href: "/skin/spot" },
   { label: "방문진료", detail: "집으로 찾아가는 한의사", href: "/home-visit" },
   { label: "오늘의 한약", detail: "약재 사진과 복약편지", href: "/herbs" },
 ];
@@ -84,12 +84,15 @@ export default function Hero() {
         <div>
           <p className="mb-5 text-[15px] font-semibold tracking-wide text-primary">이마트 풍산점 3층 · 일산한의원</p>
           <h1 className="text-[clamp(30px,7.9vw,42px)] font-bold leading-[1.25] tracking-[-0.035em] text-ink md:text-[clamp(36px,4.4vw,54px)]">
-            <span className="block">“이건 치료 </span>
-            <span className="block text-primary">안 하셔도 됩니다”</span>
+            <span className="block">불편한 이유부터 살피고,</span>
+            <span className="block text-primary">필요한 치료를 설명합니다</span>
           </h1>
-          <p className="mt-4 text-base leading-relaxed text-[#554b43] md:hidden">불편한 증상을 듣고,<br />필요한 치료를 함께 정합니다.</p>
-          <p className="mt-6 hidden text-[17px] leading-[1.8] text-[#554b43] md:block">저희가 진료실에서 자주 드리는 말씀입니다.</p>
-          <p className="mt-2 hidden max-w-[29rem] text-[18px] font-medium leading-[1.8] text-ink md:block">불편한 증상을 듣고, 필요한 검사를 함께 살펴봅니다.<br className="hidden lg:block" /> 치료가 필요한 부분과 지켜봐도 되는 부분을 설명드립니다.</p>
+          <p className="mt-5 max-w-xl text-base leading-8 text-[#554b43] md:text-[18px]">통증부터 소화불량, 피부 고민까지.<br />의료진이 증상과 진찰 결과를 살펴 치료 방향을 정하고, 치료 과정과 비용, 이후 관리까지 안내합니다.</p>
+          <nav aria-label="방문 전 안내" className="mt-5 flex flex-wrap gap-x-5 gap-y-1 text-sm font-semibold text-primary">
+            <Link href="#treatment-guide" className="inline-flex min-h-11 items-center underline underline-offset-4">내 증상에 맞는 진료</Link>
+            <Link href="/pricing" className="inline-flex min-h-11 items-center underline underline-offset-4">치료 과정·비용</Link>
+            <Link href="#visit-process" className="inline-flex min-h-11 items-center underline underline-offset-4">처음 방문 안내</Link>
+          </nav>
 
           <div className="mt-6 hidden gap-3 md:flex md:flex-wrap">
           <PillButton

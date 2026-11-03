@@ -1,3 +1,6 @@
+import PatientJourney from "@/components/PatientJourney";
+import MobileConsultationBar from "@/components/MobileConsultationBar";
+import { HOME_JOURNEY } from "@/lib/patient-journeys";
 import ClinicPhoto from "@/components/ClinicPhoto";
 import { PainBodyLinks } from "@/components/PainSymptomFinder";
 import ConsultationActions from "@/components/ConsultationActions";
@@ -127,8 +130,8 @@ export default async function Home() {
       {/* ── Hero ── */}
       <Hero />
 
-      {/* ── 의료기관 확인 ── */}
-      <VerifyClinicSection />
+      {/* ── 첫 방문 과정 ── */}
+      <PatientJourney id="visit-process" title="처음 오시면 이렇게 진료합니다" intro="처음 방문하는 병원에서는 치료보다 과정이 더 궁금할 수 있습니다. 접수부터 귀가 후 관리까지, 어떤 순서로 진료받는지 미리 살펴보세요." steps={HOME_JOURNEY} />
 
       {/* ── Philosophy ── */}
       <section id="philosophy" className="scroll-mt-24 bg-[var(--bg)]">
@@ -138,11 +141,12 @@ export default async function Home() {
               <SectionBadge icon={<Quote size={15} />} label="진료철학 · 세 가지 약속" />
               <div className="mt-4">
                 <TwoTone as="h2" lead="필요한 치료를 " accent="함께 정합니다" />
+                <p className="mt-4 text-base leading-8 text-muted">“이건 치료 안 하셔도 됩니다.” 지켜봐도 되는 부분은 그렇게 말씀드리고, 치료가 필요한 부분은 이유와 방법을 설명합니다.</p>
               </div>
             </div>
 
             <div className="mx-auto mt-10 max-w-3xl space-y-7">
-              {PHILOSOPHY.map((item) => (
+              {PHILOSOPHY.map((item, index) => (
                 <div key={item.quote}>
                   <p className="font-serif text-[1.15rem] font-semibold leading-relaxed text-ink">
                     &ldquo;{item.quote}&rdquo;
@@ -150,6 +154,7 @@ export default async function Home() {
                   <p className="mt-3 text-[0.95rem] leading-[2] text-muted">
                     {item.body}
                   </p>
+                  <Link href={index === 0 ? "/doctor" : index === 1 ? "/pricing" : "/aftercare"} className="mt-3 inline-flex min-h-11 items-center text-sm font-semibold text-primary underline underline-offset-4">{index === 0 ? "의료진과 진료 분야" : index === 1 ? "치료별 비용 확인" : "치료 후 관리 안내"} →</Link>
                 </div>
               ))}
             </div>
@@ -162,6 +167,8 @@ export default async function Home() {
           </SectionReveal>
         </div>
       </section>
+
+      <VerifyClinicSection />
 
       {/* ── Differentiation ── */}
       <section id="care-approach" className="scroll-mt-24 bg-[var(--surface)]">
@@ -425,6 +432,7 @@ export default async function Home() {
           </SectionReveal>
         </div>
       </section>
+      <MobileConsultationBar />
     </div>
   );
 }

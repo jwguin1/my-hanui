@@ -1,6 +1,13 @@
 @import "tailwindcss";
 @import "./pretendard.css";
 
+/* 선택된 진료 페이지의 상담 바가 마지막 푸터 링크를 가리지 않게 한다. */
+@media (max-width: 1023px) {
+  body:has([data-mobile-consultation]) {
+    padding-bottom: calc(88px + env(safe-area-inset-bottom, 0px));
+  }
+}
+
 @theme {
   /* ── 레거시 키 → 라이트 웜 값으로 재정의 ──
      bg-bg / text-text / .card / .prose-custom 등 기존 클래스가 사이트 전역에서

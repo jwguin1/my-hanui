@@ -7,6 +7,7 @@ import { HERBAL_GUIDES, herbalPath } from "@/lib/herbal-guides";
 const BASE_URL = "https://www.ilsanhan.com";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const experienceUpdated = new Date("2026-11-03T00:00:00+09:00");
   const staticEntries: MetadataRoute.Sitemap = [
     { url: `${BASE_URL}/conditions`, lastModified: new Date("2026-10-29T00:00:00+09:00"), changeFrequency: "monthly", priority: 0.8 },
     { url: `${BASE_URL}/skin/questions`, lastModified: new Date("2026-10-27T00:00:00+09:00"), changeFrequency: "monthly", priority: 0.8 },
@@ -140,5 +141,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   // Live publications have their own sitemap, advertised alongside this one in robots.txt.
   // A LAB outage must not prevent discovery of the clinic's general information.
-  return [...staticEntries, ...categoryEntries, ...postEntries];
+  const experiencePages = new Set([BASE_URL, "/diet/program", "/skin/spot", "/pain", "/pain/acute", "/pain/chronic"].map(path => path.startsWith("https:") ? path : `${BASE_URL}${path}`));
+  return [...staticEntries, ...categoryEntries, ...postEntries].map(entry => experiencePages.has(entry.url) ? { ...entry, lastModified: experienceUpdated } : entry);
 }
