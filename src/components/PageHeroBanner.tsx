@@ -21,6 +21,8 @@ export default function PageHeroBanner({ page }: { page: CarouselTargetKey }) {
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src={hero.src}
+        srcSet={[480, 768, 1080].map(width => `${hero.src.replace(/\.jpg$/, `-${width}.webp`)} ${width}w`).join(", ")}
+        sizes="(max-width: 767px) calc(100vw - 48px), 680px"
         alt={hero.alt}
         width={1080}
         height={1080}

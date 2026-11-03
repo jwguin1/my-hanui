@@ -54,6 +54,15 @@
   --ok: #1d9e75;
 }
 
+/* Mobile reading should not compete with dozens of Korean font downloads.
+   Desktop retains the original self-hosted typefaces. */
+@media (max-width: 767px) {
+  :root {
+    --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", "Malgun Gothic", sans-serif;
+    --font-serif: Georgia, "AppleMyungjo", "Batang", serif;
+  }
+}
+
 @layer base {
   html {
     scroll-behavior: smooth;
