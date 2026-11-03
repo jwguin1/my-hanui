@@ -141,6 +141,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   // Live publications have their own sitemap, advertised alongside this one in robots.txt.
   // A LAB outage must not prevent discovery of the clinic's general information.
-  const experiencePages = new Set([BASE_URL, "/diet/program", "/skin/spot", "/pain", "/pain/acute", "/pain/chronic"].map(path => path.startsWith("https:") ? path : `${BASE_URL}${path}`));
+  const experiencePages = new Set([BASE_URL, "/diet/program", "/skin/spot", "/pain", "/pain/acute", "/pain/chronic", "/internal/dyspepsia", "/herbal", "/herbal/insurance", "/herbal/tonic"].map(path => path.startsWith("https:") ? path : `${BASE_URL}${path}`));
   return [...staticEntries, ...categoryEntries, ...postEntries].map(entry => experiencePages.has(entry.url) ? { ...entry, lastModified: experienceUpdated } : entry);
 }

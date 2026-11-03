@@ -10,6 +10,7 @@ export const CARE_GUIDE = {
   records: "다른 병원에서 받은 검사 결과가 있다면 가져와 주세요. 의료진이 검사 내용을 꼼꼼히 확인하고 현재 증상과 함께 살펴봅니다.",
   herbalProcess: "한약은 원내에서 조제·탕전합니다. 모든 탕약은 조제 후 약재 사진을 촬영해 환자분께 보내드립니다.",
   herbalTiming: "한약 조제·탕전에는 보통 1주일이 걸리며, 1개월 처방은 60팩입니다.",
+  herbalFollowup: "다 드시기 5일 전에 복용 중 달라진 점과 남아 있는 불편을 말씀해 주세요. 의료진이 경과를 살펴 다음 처방이 필요한지 판단하고, 이어서 복용할 경우 준비 일정을 안내합니다.",
   consultation: "진료시간 내 카카오톡으로 문의하시면 의료진이 직접 상담합니다. 치료나 한약 복용 중 궁금한 점을 편하게 남겨주세요.",
 } as const;
 
@@ -26,4 +27,5 @@ export const HERBAL_CARE_FAQS = [
   { q: "한약은 어디에서 만들고, 약재 사진도 받을 수 있나요?", a: CARE_GUIDE.herbalProcess },
   { q: "한약은 준비에 얼마나 걸리고, 1개월에 몇 팩인가요?", a: CARE_GUIDE.herbalTiming },
   { q: "한약 복용 중 궁금한 점은 누가 상담해 주나요?", a: CARE_GUIDE.consultation },
+  { q: "다음 처방은 언제 상담하면 되나요?", a: CARE_GUIDE.herbalFollowup },
 ];
