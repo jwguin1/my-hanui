@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import SectionReveal from "@/components/SectionReveal";
 import { fetchLatestVideos } from "@/lib/youtube";
 import { pageMetadata } from "@/lib/page-metadata";
@@ -40,7 +41,9 @@ export default async function MediaPage() {
       />
 
       {/* Videos */}
-      <section className="section-padding">
+      <section className="section-padding" aria-labelledby="video-list-title">
+        <h2 id="video-list-title" className="heading-md mb-4">통증과 치료를 살펴보는 건강 영상</h2>
+        <p className="mb-8 max-w-3xl text-base leading-7 text-muted">아픈 부위와 비슷한 주제의 영상을 골라 보세요. 진료 전에는 통증이 시작된 시점과 불편한 움직임을 정리해 두면 상담에 도움이 됩니다. 영상과 함께 <Link href="/pain" className="text-primary underline underline-offset-4">부위별 통증 질문</Link>과 <Link href="/pricing#pain" className="text-primary underline underline-offset-4">침·추나·약침 비용 안내</Link>도 확인하실 수 있습니다.</p>
         <div className="grid gap-5 md:grid-cols-2">
           {videos.map((v, i) => (
             <SectionReveal key={i}>
@@ -51,6 +54,7 @@ export default async function MediaPage() {
                     title={v.title}
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
+                    loading="lazy"
                     className="absolute inset-0 h-full w-full"
                   />
                 </div>

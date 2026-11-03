@@ -41,7 +41,9 @@ export default async function ColumnPage() {
       />
 
       {/* Blog Posts */}
-      <section className="section-padding">
+      <section className="section-padding" aria-labelledby="column-list-title">
+        <h2 id="column-list-title" className="heading-md mb-4">최근 의학칼럼</h2>
+        <p className="mb-8 text-base leading-7 text-muted">관심 있는 글을 누르면 네이버 블로그에서 전체 내용을 읽을 수 있습니다. 증상별 질문과 진료 안내는 <Link href="/blog" className="text-primary underline underline-offset-4">홈페이지 건강정보 모음</Link>에서도 확인하세요.</p>
         {posts.length > 0 ? (
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {posts.map((post, i) => (
@@ -76,10 +78,10 @@ export default async function ColumnPage() {
                     <h3 className="font-serif text-[1rem] font-semibold leading-snug text-text line-clamp-2 group-hover:text-accent transition-colors duration-200">
                       {post.title}
                     </h3>
-                    <p className="mt-2 flex-1 text-[0.82rem] leading-relaxed text-text-muted line-clamp-3">
+                    <p className="mt-2 flex-1 text-base leading-relaxed text-text-muted line-clamp-3">
                       {post.description}
                     </p>
-                    <p className="mt-3 text-[0.72rem] text-text-muted">
+                    <p className="mt-3 text-sm text-text-muted">
                       {formatDate(post.pubDate)}
                     </p>
                   </div>

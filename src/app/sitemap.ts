@@ -114,8 +114,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const categoryEntries: MetadataRoute.Sitemap = CATEGORIES.map((cat) => ({
     url: `${BASE_URL}/${cat}`,
     ...(cat === "diet" ? { lastModified: new Date("2026-10-27T00:00:00+09:00") } : {}),
-    changeFrequency: "daily" as const,
-    priority: 0.9,
+    changeFrequency: getAllPosts(cat).length > 0 ? "weekly" as const : "monthly" as const,
+    priority: getAllPosts(cat).length > 0 ? 0.9 : 0.4,
   }));
 
   /**

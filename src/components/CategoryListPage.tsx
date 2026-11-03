@@ -197,7 +197,7 @@ export default function CategoryListPage({ category }: { category: Category }) {
       {/* Diet / Skin / Autonomic 치료 안내 페이지 배너 */}
       {(category === "diet" ||
         category === "skin" ||
-        category === "autonomic") && (
+        (category === "autonomic" && posts.length > 0)) && (
         <section className="section-padding !pb-4 !pt-8">
           <SectionReveal>
             <Link
@@ -301,14 +301,14 @@ export default function CategoryListPage({ category }: { category: Category }) {
             {groups.map((group) => (
               <SectionReveal key={group.name}>
                 <div id={category === "pain" ? PAIN_GROUP_IDS[group.name] : undefined} className="scroll-mt-24">
-                  <div className="flex items-baseline justify-between gap-4 border-b border-line pb-3">
+                  <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 border-b border-line pb-3">
                     <h2 className="font-serif text-[1.05rem] font-semibold leading-snug text-ink">
                       {group.name}
                     </h2>
                     {group.hub && (
                       <Link
                         href={group.hub.href}
-                        className="shrink-0 text-[0.8rem] text-primary underline underline-offset-4"
+                        className="inline-flex min-h-11 shrink-0 items-center text-sm text-primary underline underline-offset-4"
                       >
                         {group.hub.label}
                       </Link>
@@ -409,15 +409,19 @@ export default function CategoryListPage({ category }: { category: Category }) {
              진료 안내 · 다른 카테고리로 내보낸다. */
           <SectionReveal>
             <div className="card mx-auto max-w-3xl p-7 sm:p-9">
-              <SectionBadge label="준비 중" />
+              <SectionBadge label="증상별 진료 안내" />
               <h2 className="font-serif mt-2 text-[1.05rem] font-semibold leading-snug text-ink sm:text-[1.15rem]">
-                {label} 의학정보는 준비 중입니다
+                {category === "autonomic" ? "이명·어지럼·두통, 궁금한 증상부터 확인하세요" : `${label} 진료와 환자 질문`}
               </h2>
-              <p className="mt-2 text-[0.85rem] leading-relaxed text-muted">
-                지금 보실 수 있는 안내를 모았습니다.
+              <p className="mt-3 text-base leading-7 text-muted">
+                {category === "autonomic" ? "언제부터 불편했는지, 수면과 소화는 어떤지, 현재 복용하는 약이 있는지 함께 살펴봅니다. 기존 검사 결과가 있다면 상담할 때 가져오세요. 아래에서 증상별 진료 과정과 자주 묻는 질문을 읽으실 수 있습니다." : "진료 과정과 자주 묻는 질문을 모았습니다."}
               </p>
 
               <div className="mt-6 grid gap-3">
+                {category === "autonomic" && <>
+                  <Link href="/internal/dyspepsia" className="rounded-xl border border-line px-4 py-4 text-base font-semibold text-primary hover:bg-surface">소화가 더디고 속이 불편할 때의 진료 안내 →</Link>
+                  <Link href="/herbal/tonic/autonomic" className="rounded-xl border border-line px-4 py-4 text-base font-semibold text-primary hover:bg-surface">두통·어지럼과 수면 불편의 한약 상담 →</Link>
+                </>}
                 <Link
                   href={EMPTY_STATE_LINKS[category].href}
                   className="group flex items-center justify-between gap-3 rounded-xl border border-line px-4 py-3.5 transition-colors duration-200 hover:bg-surface"

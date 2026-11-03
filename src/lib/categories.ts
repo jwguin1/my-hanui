@@ -25,14 +25,14 @@ export const CATEGORY_META: Record<Category, CategoryMeta> = {
     label: "통증",
     fullLabel: "통증 · 근골격계",
     description:
-      "근골격계 통증, 신경포착증후군, 초음파 유도 치료 등 일산한의원의 통증·근골격계 의학정보입니다.",
+      "목·허리·어깨·무릎·발 통증, 어디부터 진료받아야 할까요? 일산한의원에서 증상별 환자 질문과 침·추나·초음파 유도 약침, 초진 비용·소요 시간·치료 후 관리까지 확인하세요.",
     ogImage: "/images/pain-og.jpg",
   },
   autonomic: {
     label: "자율신경",
     fullLabel: "자율신경 · 내과",
     description:
-      "자율신경실조증, 이명, 두통, 불면, 기능성소화불량 등 일산한의원의 자율신경·내과 건강정보입니다.",
+      "이명·어지럼·두통, 수면과 소화 불편이 함께 있을 때 무엇을 확인할까요? 일산한의원의 증상별 진료 안내와 자주 묻는 질문, 상담 전 준비할 검사 자료·복용약 정보를 확인하세요.",
     ogImage: "/images/autonomic-og.jpg",
   },
   diet: {
@@ -46,7 +46,7 @@ export const CATEGORY_META: Record<Category, CategoryMeta> = {
     label: "피부",
     fullLabel: "피부 · 미용레이저",
     description:
-      "피부레이저, 아토피, 피부염, 피부재생 등 일산한의원의 피부·미용레이저 정보입니다.",
+      "잡티 제거부터 기미·색소치료, 슈링크·볼뉴머 리프팅과 얼굴·수염 제모까지. 일산한의원의 시술별 가격·간격·관리 방법과 환자들이 자주 묻는 질문을 한곳에서 확인하세요.",
     ogImage: "/images/skin-og.jpg",
   },
 };
