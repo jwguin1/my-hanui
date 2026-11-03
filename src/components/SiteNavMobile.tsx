@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Close, Menu, MessageCircle, Phone } from "@/components/ui/icons";
 import {
   SITE_NAV,
@@ -15,23 +15,33 @@ export default function SiteNavMobile() {
   const pathname = usePathname() ?? "/";
   const [open, setOpen] = useState(false);
   const [expanded, setExpanded] = useState<number | null>(0);
+  const toggleRef = useRef<HTMLButtonElement>(null);
 
   const close = () => setOpen(false);
 
   return (
     <>
       <button
+        ref={toggleRef}
         type="button"
         onClick={() => setOpen(!open)}
+        onKeyDown={(event) => { if (event.key === "Escape") close(); }}
         className="inline-flex h-11 w-11 items-center justify-center text-ink lg:hidden"
         aria-label={open ? "메뉴 닫기" : "메뉴 열기"}
         aria-expanded={open}
+        aria-controls={open ? "mobile-navigation" : undefined}
       >
         {open ? <Close size={22} /> : <Menu size={22} />}
       </button>
 
       {open ? (
-        <div className="fixed inset-x-0 bottom-0 top-16 z-[999] flex flex-col bg-card lg:hidden">
+        <nav id="mobile-navigation" aria-label="모바일 메뉴" className="fixed inset-x-0 bottom-0 top-16 z-[999] flex flex-col bg-card lg:hidden"
+          onKeyDown={(event) => {
+            if (event.key === "Escape") { close(); toggleRef.current?.focus(); }
+          }}
+          onBlur={(event) => {
+            if (!event.currentTarget.contains(event.relatedTarget as Node) && event.relatedTarget !== toggleRef.current) close();
+          }}>
           <div className="flex-1 overflow-y-auto overscroll-contain px-6 py-4">
             <ul>
               {SITE_NAV.map((group, i) => {
@@ -43,6 +53,7 @@ export default function SiteNavMobile() {
                     <li key={group.label} className="border-b border-line">
                       <Link
                         href={group.href}
+                        aria-current={pathname === group.href ? "page" : undefined}
                         onClick={close}
                         className={`block py-4 text-[15px] font-medium ${
                           active ? "text-primary" : "text-ink"
@@ -102,6 +113,7 @@ export default function SiteNavMobile() {
                                 <li key={item.href}>
                                   <Link
                                     href={item.href}
+                                    aria-current={pathname === item.href ? "page" : undefined}
                                     onClick={close}
                                     className={`block rounded-lg px-3 py-3 text-[14px] ${
                                       isActivePath(pathname, item.href)
@@ -133,7 +145,7 @@ export default function SiteNavMobile() {
               <Phone size={16} />전화
             </a>
           </div>
-        </div>
+        </nav>
       ) : null}
     </>
   );

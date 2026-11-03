@@ -2,6 +2,8 @@ import {cache} from "react";
 export type PublicLetter = {token:string;title:string;narrative:string;doctorName:string;publishedAt:string;listed?:boolean};
 const origin=process.env.MEDICATION_PUBLIC_API_ORIGIN||"https://lab.jwguin.uk";
 export function publicLetterPhotoUrl(token:string,size:"thumb"|"web"){
+  // Lab serves resized photos and controls expiry/revocation. Render with
+  // Image unoptimized so Next's image cache cannot retain a withdrawn photo.
   return `${origin}/api/public/medication/letters/${token}/photo?size=${size}`;
 }
 export async function medicationPublicFetch(path:string){

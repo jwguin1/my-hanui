@@ -66,8 +66,9 @@ export default function RootLayout({
         <meta name="naver-site-verification" content="aab70373e7135bf4cc9a612bc491f5f1a662f675" />
       </head>
       <body>
+        <a className="skip-link" href="#main">본문 바로가기</a>
         <SiteHeader />
-        <main>{children}</main>
+        <main id="main" tabIndex={-1}>{children}</main>
         <Footer />
         <KakaoButton />
       </body>

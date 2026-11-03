@@ -53,7 +53,7 @@ export default function SiteNavDesktop() {
   }, [openIdx]);
 
   return (
-    <nav ref={navRef} className="hidden lg:block">
+    <nav ref={navRef} aria-label="주 메뉴" className="hidden lg:block">
       <ul className="flex items-center gap-6">
         {SITE_NAV.map((group, i) => {
           const active = isActiveGroup(pathname, group);
@@ -66,7 +66,7 @@ export default function SiteNavDesktop() {
           if (group.href) {
             return (
               <li key={group.label}>
-                <Link href={group.href} className={triggerCls}>
+                <Link href={group.href} aria-current={pathname === group.href ? "page" : undefined} className={triggerCls}>
                   {group.label}
                 </Link>
               </li>
@@ -148,6 +148,7 @@ export default function SiteNavDesktop() {
                           <li key={item.href}>
                             <Link
                               href={item.href}
+                              aria-current={pathname === item.href ? "page" : undefined}
                               onClick={closeNow}
                               className={`block whitespace-nowrap rounded-lg px-4 py-2.5 text-[14px] transition-colors duration-200 hover:bg-surface ${
                                 isActivePath(pathname, item.href)
