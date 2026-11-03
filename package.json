@@ -42,7 +42,8 @@
     "png-to-ico": "^3.0.2",
     "postcss": "^8",
     "tailwindcss": "^4",
-    "typescript": "^5"
+    "typescript": "^5",
+    "wawoff2": "^2.0.1"
   },
   "browserslist": [
     "last 2 Chrome versions",

@@ -6,6 +6,7 @@ import { PainBodyLinks } from "@/components/PainSymptomFinder";
 import ConsultationActions from "@/components/ConsultationActions";
 import Link from "next/link";
 import Hero from "@/components/Hero";
+import VideoPoster from "@/components/VideoPoster";
 import { VISIT_FAQS as FAQS } from "@/lib/visit-guide";
 import SectionReveal from "@/components/SectionReveal";
 import VerifyClinicSection from "@/components/VerifyClinicSection";
@@ -329,14 +330,7 @@ export default async function Home() {
                 className="card group overflow-hidden transition-transform duration-200 hover:-translate-y-1"
               >
                 <div className="relative aspect-video">
-                  <iframe
-                    src={`https://www.youtube.com/embed/${v.id}`}
-                    title={v.title}
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    loading="lazy"
-                    allowFullScreen
-                    className="absolute inset-0 h-full w-full pointer-events-none"
-                  />
+                  <VideoPoster id={v.id} />
                 </div>
                 <div className="p-5">
                   <h3 className="font-serif text-[1rem] font-semibold leading-snug text-ink transition-colors duration-200 group-hover:text-primary">

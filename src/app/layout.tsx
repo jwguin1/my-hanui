@@ -1,33 +1,8 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
 import "./globals.css";
 import SiteHeader from "@/components/SiteHeader";
 import Footer from "@/components/Footer";
 import KakaoButton from "@/components/KakaoButton";
-
-const notoSerifKR = localFont({
-  src: [
-    {
-      path: "../../public/fonts/NotoSerifKR-Regular.woff2",
-      weight: "400",
-      style: "normal",
-    },
-    {
-      path: "../../public/fonts/NotoSerifKR-SemiBold.woff2",
-      weight: "600",
-      style: "normal",
-    },
-    {
-      path: "../../public/fonts/NotoSerifKR-Bold.woff2",
-      weight: "700",
-      style: "normal",
-    },
-  ],
-  display: "swap",
-  preload: false,
-  variable: "--font-serif-kr",
-  fallback: ["Georgia", "serif"],
-});
 
 const SITE_URL = "https://www.ilsanhan.com";
 
@@ -84,7 +59,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="ko" className={notoSerifKR.variable}>
+    <html lang="ko">
       <head>
         <link rel="alternate" type="application/rss+xml" title="일산한의원 새 글" href="/rss.xml" />
         <link rel="help" type="text/plain" title="일산한의원 정보와 안내 페이지" href="/llms.txt" />

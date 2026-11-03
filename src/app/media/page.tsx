@@ -8,6 +8,7 @@ import { buildGraph } from "@/lib/schema";
 
 import PageHeader from "@/components/ui/PageHeader";
 import { PlayerPlay } from "@/components/ui/icons";
+import VideoEmbed from "@/components/VideoEmbed";
 
 export const metadata: Metadata = pageMetadata({
   path: "/media",
@@ -48,16 +49,7 @@ export default async function MediaPage() {
           {videos.map((v, i) => (
             <SectionReveal key={i}>
               <div className="card overflow-hidden transition-transform duration-200 hover:-translate-y-1">
-                <div className="relative aspect-video">
-                  <iframe
-                    src={`https://www.youtube.com/embed/${v.id}`}
-                    title={v.title}
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                    loading="lazy"
-                    className="absolute inset-0 h-full w-full"
-                  />
-                </div>
+                <VideoEmbed id={v.id} title={v.title} />
                 <div className="p-5">
                   <h3 className="font-serif text-[1.05rem] font-semibold leading-snug text-text">
                     {v.title}
