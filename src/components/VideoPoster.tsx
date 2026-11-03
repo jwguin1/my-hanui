@@ -1,12 +1,13 @@
 /** A light preview; the YouTube player is loaded only when requested. */
-export default function VideoPoster({ id }: { id: string }) {
+export default function VideoPoster({ id, priority = false }: { id: string; priority?: boolean }) {
   return <>
     <img
       src={`https://i.ytimg.com/vi/${encodeURIComponent(id)}/hqdefault.jpg`}
       alt=""
       width={480}
       height={360}
-      loading="lazy"
+      loading={priority ? "eager" : "lazy"}
+      fetchPriority={priority ? "high" : undefined}
       decoding="async"
       className="absolute inset-0 h-full w-full object-cover"
     />

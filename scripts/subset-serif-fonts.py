@@ -75,7 +75,7 @@ def generate(font_spec):
             assert points <= set(saved.getBestCmap()), f"Coverage mismatch: {filename}"
         assert not (covered & points), "Overlapping unicode ranges"
         covered |= points
-        css.append(f"@font-face {{\n  font-family: 'Noto Serif KR';\n  font-style: normal;\n  font-weight: {weight};\n  font-display: swap;\n  src: url('/fonts/{OUTPUT_VERSION}/{filename}') format('woff2');\n  unicode-range: {unicode_range(points)};\n}}")
+        css.append(f"@font-face {{\n  font-family: 'Noto Serif KR';\n  font-style: normal;\n  font-weight: {weight};\n  font-display: optional;\n  src: url('/fonts/{OUTPUT_VERSION}/{filename}') format('woff2');\n  unicode-range: {unicode_range(points)};\n}}")
     assert covered == set(original.getBestCmap()), "Missing original characters"
     print(f"{name}: {len(groups)} shards, {len(covered)} characters verified", flush=True)
     return "\n\n".join(css)
