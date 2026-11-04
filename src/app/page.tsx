@@ -1,13 +1,11 @@
-import PatientJourney from "@/components/PatientJourney";
 import MobileConsultationBar from "@/components/MobileConsultationBar";
-import { HOME_JOURNEY } from "@/lib/patient-journeys";
 import ClinicPhoto from "@/components/ClinicPhoto";
 import { PainBodyLinks } from "@/components/PainSymptomFinder";
 import ConsultationActions from "@/components/ConsultationActions";
 import Link from "next/link";
 import Hero from "@/components/Hero";
 import VideoPoster from "@/components/VideoPoster";
-import { VISIT_FAQS as FAQS } from "@/lib/visit-guide";
+import { VISIT_FAQS } from "@/lib/visit-guide";
 import SectionReveal from "@/components/SectionReveal";
 import VerifyClinicSection from "@/components/VerifyClinicSection";
 import SectionBadge from "@/components/ui/SectionBadge";
@@ -15,7 +13,6 @@ import TwoTone from "@/components/ui/TwoTone";
 import {
   Clock,
   HelpCircle,
-  ListCheck,
   MapPin,
   PlayerPlay,
   Quote,
@@ -32,13 +29,20 @@ import {
   CLINIC_WEEKEND_HOLIDAY_LABEL,
 } from "@/lib/clinic";
 import { HERBAL_GUIDES, herbalPath } from "@/lib/herbal-guides";
-import { CARE_GUIDE } from "@/lib/care-guide";
 import JsonLd from "@/components/JsonLd";
 import {
   buildGraph,
   faqEntities,
   itemListNode,
 } from "@/lib/schema";
+
+// 첫 화면에는 방문 전 핵심 질문만 노출하며, 화면과 FAQ 스키마를 함께 유지한다.
+const FAQS = [
+  { ...VISIT_FAQS[0], q: "예약 없이 방문해도 되나요?", a: `예약 없이 당일 침·물리치료를 받으실 수 있습니다. ${CLINIC.receptionNote}` },
+  { ...VISIT_FAQS[1], q: "통증치료는 얼마나 걸리나요?" },
+  { ...VISIT_FAQS[3], q: "통증 초진 진료비는 얼마인가요?" },
+  { ...VISIT_FAQS[4], q: "보험한약은 얼마인가요?" },
+];
 
 /**
  * 진료 실적 수치.
@@ -60,15 +64,15 @@ const TRUST_STATS = [
 const TRUST_STATS_SOURCE = `${CLINIC.foundingYear}년 개원 이래 누적 · 원내 진료기록(EMR) 기준`;
 
 const WHY_CARDS = [
-  { photo: "ultrasound" as const, badge: "직접 확인", heading: "아픈 부위를 확인합니다", body: "근골격계 초음파로 필요한 부위를 살펴 진찰 결과와 함께 설명합니다. 다른 병원의 검사 결과도 현재 증상과 함께 확인합니다.", href: "/pain/chronic", linkLabel: "통증 진료 방식 보기" },
-  { photo: "chuna" as const, badge: "6인 의료진", heading: "진료하는 의료진을 확인하세요", body: "6인의 한의사가 근골격계·내과·미용 진료를 함께합니다. 의료진 소개에서 각 원장의 경력과 진료 분야를 살펴보실 수 있습니다.", href: "/doctor", linkLabel: "의료진 소개 보기" },
-  { photo: "ict" as const, badge: "경과 확인", heading: "치료 후 변화를 다시 봅니다", body: "근육성 통증은 3회, 만성 통증은 5회 치료 후 경과를 다시 평가합니다. 통증과 움직임이 어떻게 달라졌는지 확인해 다음 치료를 상담합니다.", href: "/pain/acute#visit-guide", linkLabel: "치료 과정과 재평가 안내" },
+  { photo: "ultrasound" as const, heading: "초음파로 확인", body: "필요한 부위를 살펴 통증의 원인과 치료 방향을 설명합니다.", href: "/pain/chronic", linkLabel: "통증 진료 안내" },
+  { photo: "chuna" as const, heading: "6인 한의사 협진", body: "각 원장의 경력과 진료 분야를 확인하세요.", href: "/doctor", linkLabel: "의료진 소개" },
+  { photo: "ict" as const, heading: "경과에 맞춘 치료", body: "통증과 움직임의 변화를 살펴 다음 치료를 정합니다.", href: "/pain/acute#visit-guide", linkLabel: "치료 과정 안내" },
 ];
 
 const PHILOSOPHY = [
-  { quote: "필요한 치료와 그 이유를 설명합니다.", body: "가장 불편한 증상을 듣고 진찰과 검사 결과를 함께 살펴봅니다. 어떤 치료가 필요한지, 지켜봐도 되는 부분은 무엇인지 말씀드립니다." },
-  { quote: "치료 과정과 비용을 먼저 안내합니다.", body: "건강보험 적용 여부와 추가 치료의 비용을 확인하고, 받으실 치료를 이해한 뒤 결정하실 수 있도록 안내합니다." },
-  { quote: "치료 후 변화를 확인하고 다음 계획을 정합니다.", body: "처음 불편했던 증상이 얼마나 달라졌는지 확인합니다. 치료 중 궁금한 점은 진료시간 내 카카오톡으로 의료진에게 물어보실 수 있습니다." },
+  { title: "증상부터 듣습니다", body: "불편한 점과 기존 검사 결과를 함께 살핍니다." },
+  { title: "치료와 비용을 설명합니다", body: "필요한 치료를 이해하고 결정하실 수 있도록 안내합니다." },
+  { title: "치료 후에도 함께합니다", body: "관리 방법과 다음 진료 계획을 알려드립니다." },
 ];
 
 // 최신 발행일 대신 첫 방문자의 관심 분야를 기준으로 선택한다.
@@ -76,25 +80,25 @@ const PHILOSOPHY = [
 const digestiveGuide = HERBAL_GUIDES.find(g => g.slug === "dyspepsia")!;
 const tonicGuide = HERBAL_GUIDES.find(g => g.slug === "constitution")!;
 const RECOMMENDED_READINGS = [
-  { category: "통증치료", title: "허리는 안 아픈데 다리만 저려요, 디스크일까요?", description: "다리 저림이 있을 때 확인할 증상과 진료 방향을 살펴보세요.", href: "/pain/다리만-저릴때-허리디스크" },
-  { category: "교통사고", title: "교통사고 후 병원과 한의원을 같이 다녀도 되나요?", description: "정형외과·한의원 병행 진료와 자동차보험 접수 전 확인할 내용을 안내합니다.", href: "/pain/교통사고-병원-한의원-병행" },
-  { category: "보험한약", title: digestiveGuide.question, description: "반복되는 소화불량과 보험한약 적용·비용을 확인하세요.", href: herbalPath(digestiveGuide) },
-  { category: "체질보약", title: tonicGuide.question, description: "피로·소화·수면을 함께 살피는 맞춤 한약 상담을 안내합니다.", href: herbalPath(tonicGuide) },
-  { category: "일산감비환", title: "일산감비환, 얼마나 먹어야 하고 비용은 어느 정도인가요?", description: "다이어트 한약의 복용 기간과 비용을 먼저 확인하세요.", href: "/diet/다이어트한약-기간과-비용" },
-  { category: "피부 · 미용", title: "피코토닝과 제네시스는 어떻게 다른가요?", description: "색소·피부결 등 고민에 따라 치료를 선택할 때 확인할 내용을 안내합니다.", href: "/skin/피코토닝-제네시스-차이" },
+  { category: "통증치료", title: "허리는 안 아픈데 다리만 저려요, 디스크일까요?", href: "/pain/다리만-저릴때-허리디스크" },
+  { category: "교통사고", title: "교통사고 후 병원과 한의원을 같이 다녀도 되나요?", href: "/pain/교통사고-병원-한의원-병행" },
+  { category: "보험한약", title: digestiveGuide.question, href: herbalPath(digestiveGuide) },
+  { category: "체질보약", title: tonicGuide.question, href: herbalPath(tonicGuide) },
+  { category: "일산감비환", title: "일산감비환, 얼마나 먹어야 하고 비용은 어느 정도인가요?", href: "/diet/다이어트한약-기간과-비용" },
+  { category: "피부 · 미용", title: "피코토닝과 제네시스는 어떻게 다른가요?", href: "/skin/피코토닝-제네시스-차이" },
 ];
 
-// "진료 범위" 섹션의 단일 소스 — 화면 카드와 아래 ItemList 노드가 이 배열에서 함께 생성된다.
+// Hero의 8개 진료 바로가기와 대응하는 ItemList 정보.
 // 상세 진료 안내로 직접 연결하고, 전체 글 목록은 하단과 푸터에서 안내한다.
-const CLINIC_CARDS = [
-  { href: "/pain", badge: "통증", heading: "통증치료", blurb: "침·추나·약침, 치료 과정과 비용", ogImage: "/images/cards/pain-acute.png" },
-  { href: "/accident", badge: "자동차보험", heading: "교통사고", blurb: "사고 후 통증과 불편, 접수부터 치료까지", ogImage: "/images/cards/accident.png" },
-  { href: "/herbal/insurance", badge: "건강보험", heading: "보험한약", blurb: "건강보험 대상 6개 질환과 적용·비용 안내", ogImage: "/herbal/insurance/opengraph-image" },
-  { href: "/herbal/tonic", badge: "맞춤 한약", heading: "체질보약", blurb: "몸 상태에 맞춘 비급여 한약과 비용", ogImage: "/herbal/tonic/opengraph-image" },
-  { href: "/diet/program", badge: "다이어트", heading: "일산감비환", blurb: "감비환 가격·처방·복용과 식사 관리", ogImage: "/images/cards/diet-program.png" },
-  { href: "/skin/spot", badge: "피부 · 미용", heading: "잡티제거", blurb: "CO₂ 제거부터 색소·제모·슈링크·볼뉴머까지", ogImage: "/images/cards/skin-spot.png" },
-  { href: "/home-visit", badge: "집에서 받는 진료", heading: "방문진료", blurb: "거동이 불편한 분을 위한 방문 대상·지역·비용", ogImage: "/home-visit/opengraph-image" },
-  { href: "/herbs", badge: "원내 조제", heading: "오늘의 한약", blurb: "약재 사진과 원장이 전하는 나를 위한 복약편지", ogImage: "/herbal/tonic/opengraph-image" },
+const TREATMENT_LINKS = [
+  { href: "/pain", heading: "통증치료", ogImage: "/images/cards/pain-acute.png" },
+  { href: "/accident", heading: "교통사고", ogImage: "/images/cards/accident.png" },
+  { href: "/herbal/insurance", heading: "보험한약", ogImage: "/herbal/insurance/opengraph-image" },
+  { href: "/herbal/tonic", heading: "체질보약", ogImage: "/herbal/tonic/opengraph-image" },
+  { href: "/diet/program", heading: "일산감비환", ogImage: "/images/cards/diet-program.png" },
+  { href: "/skin/spot", heading: "잡티제거", ogImage: "/images/cards/skin-spot.png" },
+  { href: "/home-visit", heading: "방문진료", ogImage: "/home-visit/opengraph-image" },
+  { href: "/herbs", heading: "오늘의 한약", ogImage: "/herbal/tonic/opengraph-image" },
 ] as const;
 
 // 네이버 사이트 컬렉션(카드 슬라이드) 노출용 — 화면 카드와 1:1 대응
@@ -102,7 +106,7 @@ const treatmentListNode = itemListNode(
   "/",
   "treatment-list",
   "일산한의원 진료 안내",
-  CLINIC_CARDS.map((card) => ({
+  TREATMENT_LINKS.map((card) => ({
     url: `${SITE_URL}${card.href}`,
     name: card.heading,
     image: `${SITE_URL}${card.ogImage}`,
@@ -110,7 +114,7 @@ const treatmentListNode = itemListNode(
 );
 
 export default async function Home() {
-  const videos = await fetchLatestVideos(3);
+  const videos = await fetchLatestVideos(2);
 
   const graph = buildGraph({
     path: "/",
@@ -131,45 +135,29 @@ export default async function Home() {
       {/* ── Hero ── */}
       <Hero />
 
-      {/* ── 첫 방문 과정 ── */}
-      <PatientJourney id="visit-process" title="처음 오시면 이렇게 진료합니다" intro="처음 방문하는 병원에서는 치료보다 과정이 더 궁금할 수 있습니다. 접수부터 귀가 후 관리까지, 어떤 순서로 진료받는지 미리 살펴보세요." steps={HOME_JOURNEY} />
+      <VerifyClinicSection />
 
-      {/* ── Philosophy ── */}
+      {/* ── 첫 방문 과정과 진료철학 ── */}
       <section id="philosophy" className="scroll-mt-24 bg-[var(--bg)]">
-        <div className="section-padding !py-10 md:!py-16">
+        <div id="visit-process" className="section-padding scroll-mt-24 !py-10 md:!py-16">
           <SectionReveal>
-            <div className="mx-auto max-w-3xl text-center">
-              <SectionBadge icon={<Quote size={15} />} label="진료철학 · 세 가지 약속" />
-              <div className="mt-4">
-                <TwoTone as="h2" lead="필요한 치료를 " accent="함께 정합니다" />
-                <p className="mt-4 text-base leading-8 text-muted">“이건 치료 안 하셔도 됩니다.” 지켜봐도 되는 부분은 그렇게 말씀드리고, 치료가 필요한 부분은 이유와 방법을 설명합니다.</p>
-              </div>
+            <div className="text-center">
+              <SectionBadge icon={<Quote size={15} />} label="진료철학" />
+              <div className="mt-4"><TwoTone as="h2" lead="처음부터 끝까지, " accent="함께" /></div>
             </div>
-
-            <div className="mx-auto mt-10 max-w-3xl space-y-7">
-              {PHILOSOPHY.map((item, index) => (
-                <div key={item.quote}>
-                  <p className="font-serif text-[1.15rem] font-semibold leading-relaxed text-ink">
-                    &ldquo;{item.quote}&rdquo;
-                  </p>
-                  <p className="mt-3 text-[0.95rem] leading-[2] text-muted">
-                    {item.body}
-                  </p>
-                  <Link href={index === 0 ? "/doctor" : index === 1 ? "/pricing" : "/aftercare"} className="mt-3 inline-flex min-h-11 items-center text-sm font-semibold text-primary underline underline-offset-4">{index === 0 ? "의료진과 진료 분야" : index === 1 ? "치료별 비용 확인" : "치료 후 관리 안내"} →</Link>
+            <ol className="mx-auto mt-7 grid max-w-5xl gap-3 md:grid-cols-3 md:gap-5">
+              {PHILOSOPHY.map((item, index) => <li key={item.title} className="flex gap-4 rounded-2xl border border-line bg-white p-5 md:block md:p-6">
+                <span aria-hidden="true" className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-surface text-sm font-bold text-primary">0{index + 1}</span>
+                <div className="min-w-0 md:mt-4">
+                  <h3 className="text-base font-semibold text-ink md:text-lg">{item.title}</h3>
+                  <p className="mt-2 text-base leading-7 text-muted">{item.body}</p>
                 </div>
-              ))}
-            </div>
-
-            <div className="mt-10 text-center">
-              <Link href="/about" className="btn-ghost">
-                일산한의원 소개 보기
-              </Link>
-            </div>
+              </li>)}
+            </ol>
+            <div className="mt-5 text-center"><Link href="/about" className="inline-flex min-h-11 items-center font-medium text-primary underline underline-offset-4">일산한의원 소개 →</Link></div>
           </SectionReveal>
         </div>
       </section>
-
-      <VerifyClinicSection />
 
       {/* ── Differentiation ── */}
       <section id="care-approach" className="scroll-mt-24 bg-[var(--surface)]">
@@ -178,71 +166,31 @@ export default async function Home() {
             <div className="mx-auto max-w-3xl text-center">
               <SectionBadge icon={<Stethoscope size={15} />} label="진료 방식" />
               <div className="mt-4">
-                <TwoTone as="h2" lead="진료실에서는 " accent="이렇게 확인합니다" />
+                <TwoTone as="h2" lead="눈으로 확인하는 " accent="진료" />
               </div>
             </div>
 
-            <div className="mx-auto mt-8 grid max-w-5xl gap-6 md:grid-cols-3">
+            <div className="mx-auto mt-7 grid max-w-5xl gap-4 md:grid-cols-3">
               {WHY_CARDS.map((card) => (
-                <div key={card.badge} className="card overflow-hidden">
-                  <ClinicPhoto photo={card.photo} caption={false} />
-                  <div className="p-5 md:p-7">
-                  <SectionBadge label={card.badge} />
-                  <h3 className="font-serif mt-3 text-[1.1rem] font-semibold text-ink">
-                    {card.heading}
-                  </h3>
-                  <p className="mt-4 text-[0.95rem] leading-[1.9] text-muted">
-                    {card.body}
-                  </p>
-                  <Link href={card.href} className="mt-5 inline-block text-[15px] font-medium text-primary underline underline-offset-4">{card.linkLabel} →</Link>
+                <div key={card.href} className="card grid grid-cols-[30%_1fr] overflow-hidden md:block">
+                  <div className="[&>figure]:h-full [&>figure]:rounded-none [&>figure]:border-0 [&_img]:h-full [&_img]:object-cover md:[&_img]:h-auto"><ClinicPhoto photo={card.photo} caption={false} /></div>
+                  <div className="min-w-0 p-4 md:p-6">
+                    <h3 className="text-base font-semibold text-ink md:text-lg">{card.heading}</h3>
+                    <p className="mt-2 text-base leading-7 text-muted">{card.body}</p>
+                    <Link href={card.href} className="mt-2 inline-flex min-h-11 items-center text-sm font-medium text-primary underline underline-offset-4">{card.linkLabel} →</Link>
                   </div>
                 </div>
               ))}
             </div>
             <div className="mx-auto mt-10 max-w-5xl border-t border-line pt-8">
               <h3 className="text-center text-lg font-semibold text-ink">일산한의원이 쌓아온 진료 경험</h3>
-              <dl className="mt-5 grid gap-5 text-center sm:grid-cols-3">
+              <dl className="mt-5 grid grid-cols-3 gap-3 text-center">
                 {TRUST_STATS.map(stat => <div key={stat.label}>
-                  <dt className="text-sm text-muted">{stat.label}</dt>
-                  <dd className="mt-2 text-2xl font-semibold text-ink">{stat.value}<span className="ml-1 text-base font-medium">{stat.unit}</span></dd>
+                  <dt className="text-xs leading-relaxed text-muted sm:text-sm">{stat.label}</dt>
+                  <dd className="mt-2 text-lg font-semibold text-ink sm:text-2xl">{stat.value}<span className="ml-0.5 text-xs font-medium sm:ml-1 sm:text-base">{stat.unit}</span></dd>
                 </div>)}
               </dl>
               <p className="mt-5 text-center text-[12px] text-muted">{TRUST_STATS_SOURCE}</p>
-            </div>
-          </SectionReveal>
-        </div>
-      </section>
-
-      {/* ── Treatment Scope ── */}
-      <section id="treatment-guide" className="scroll-mt-24 bg-[var(--bg)]">
-        <div className="section-padding !py-10 md:!py-16">
-          <SectionReveal>
-            <div className="mx-auto max-w-3xl text-center">
-              <SectionBadge icon={<ListCheck size={15} />} label="진료 범위" />
-              <div className="mt-4">
-                <TwoTone as="h2" lead="어떤 치료가 " accent="필요하신가요?" />
-              </div>
-              <p className="mt-4 text-[14px] text-muted">
-                증상별 치료 과정과 비용을 확인하세요.
-              </p>
-            </div>
-
-            <div className="mx-auto mt-6 grid max-w-5xl grid-cols-2 gap-3 md:mt-8 md:gap-5 lg:grid-cols-3">
-              {CLINIC_CARDS.map((card) => (
-                <Link
-                  key={card.href}
-                  href={card.href}
-                  className="card group block p-4 md:p-7"
-                >
-                  <span className="hidden md:inline"><SectionBadge label={card.badge} /></span>
-                  <h3 className="text-base font-semibold text-ink transition-colors group-hover:text-primary md:mt-2 md:font-serif md:text-[1.15rem]">
-                    {card.heading}
-                  </h3>
-                  <p className="mt-3 hidden text-[0.95rem] leading-[1.9] text-muted md:block">
-                    {card.blurb}
-                  </p>
-                </Link>
-              ))}
             </div>
           </SectionReveal>
         </div>
@@ -257,8 +205,7 @@ export default async function Home() {
             <div className="mt-4">
               <TwoTone as="h2" lead="시간과 비용, " accent="미리 확인하세요" />
             </div>
-            <Link href="/pricing" className="mt-5 inline-block font-semibold text-primary underline underline-offset-4">전체 진료비·소요 시간 한눈에 보기 →</Link>
-            <div className="mt-4 flex flex-wrap justify-center gap-x-6 gap-y-2 text-base font-medium text-primary"><Link href="/pain/acute#visit-guide" className="py-2 underline underline-offset-4">첫 방문 진료 과정 →</Link><Link href="/pain/acute#physical-therapy" className="py-2 underline underline-offset-4">무료 추가 물리치료 안내 →</Link></div>
+            <Link href="/pricing" className="mt-5 inline-block font-semibold text-primary underline underline-offset-4">진료비·소요 시간 보기 →</Link>
           </div>
 
           <div className="mx-auto mt-8 max-w-3xl space-y-3">
@@ -268,14 +215,14 @@ export default async function Home() {
                 className="card group p-5 transition-colors open:border-primary/40"
               >
                 <summary className="flex cursor-pointer items-start justify-between gap-4 list-none">
-                  <h3 className="font-serif text-[1rem] font-semibold leading-snug text-ink group-open:text-primary">
+                  <h3 className="text-base font-semibold leading-relaxed text-ink group-open:text-primary">
                     Q. {faq.q}
                   </h3>
                   <span className="shrink-0 text-primary transition-transform group-open:rotate-45">
                     +
                   </span>
                 </summary>
-                <p className="mt-4 text-[0.95rem] leading-[2] text-muted">
+                <p className="mt-4 text-base leading-7 text-muted">
                   {faq.a}
                 </p>
                 <Link href={faq.href} className="mt-3 inline-block text-[15px] font-medium text-primary underline underline-offset-4">{faq.linkLabel}</Link>
@@ -292,16 +239,14 @@ export default async function Home() {
           <SectionReveal>
             <div className="mx-auto max-w-3xl text-center">
               <SectionBadge icon={<HelpCircle size={15} />} label="증상별 질문과 답" />
-              <div className="mt-4"><TwoTone as="h2" lead="내 고민과 닮은 " accent="질문을 읽어보세요" /></div>
-              <p className="mt-4 text-[16px] leading-relaxed text-muted">진료를 결정하기 전에 궁금한 내용부터 살펴보세요.</p>
+              <div className="mt-4"><TwoTone as="h2" lead="궁금한 점, " accent="짧게 살펴보세요" /></div>
             </div>
-            <div className="mt-7 rounded-2xl bg-surface p-5"><h3 className="mb-3 text-lg font-semibold text-ink">통증이 있다면, 아픈 부위부터 찾아보세요</h3><PainBodyLinks /></div>
-            <div className="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-              {RECOMMENDED_READINGS.map(item => <Link key={item.href} href={item.href} className="card group flex flex-col p-5 md:p-6">
+            <div className="mt-7 rounded-2xl bg-surface p-5"><h3 className="mb-3 text-lg font-semibold text-ink">아픈 부위로 찾기</h3><PainBodyLinks /></div>
+            <div className="mt-5 grid gap-3 md:grid-cols-2 lg:grid-cols-3">
+              {RECOMMENDED_READINGS.map(item => <Link key={item.href} href={item.href} className="card group relative flex flex-col py-4 pl-5 pr-11 md:p-6">
                 <p className="text-sm font-semibold text-primary">{item.category}</p>
-                <h3 className="mt-3 text-lg font-semibold leading-relaxed text-ink group-hover:text-primary">{item.title}</h3>
-                <p className="mt-2 flex-1 text-[15px] leading-[1.8] text-muted">{item.description}</p>
-                <span className="mt-3 text-[15px] font-medium text-primary">답변 읽기 →</span>
+                <h3 className="mt-1 text-base font-semibold leading-relaxed text-ink group-hover:text-primary">{item.title}</h3>
+                <span aria-hidden="true" className="absolute right-4 top-1/2 -translate-y-1/2 text-primary md:static md:mt-3 md:translate-y-0">→</span>
               </Link>)}
             </div>
             <div className="mt-8 text-center"><Link href="/blog" className="btn-ghost">질문과 글 전체 보기 →</Link></div>
@@ -320,20 +265,20 @@ export default async function Home() {
             </div>
           </div>
 
-          <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mx-auto mt-7 grid max-w-4xl gap-4 sm:grid-cols-2">
             {videos.map((v) => (
               <a
                 key={v.id}
                 href={`https://www.youtube.com/watch?v=${v.id}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="card group overflow-hidden transition-transform duration-200 hover:-translate-y-1"
+                className="card group grid grid-cols-[35%_1fr] items-center overflow-hidden sm:block"
               >
                 <div className="relative aspect-video">
                   <VideoPoster id={v.id} />
                 </div>
                 <div className="p-5">
-                  <h3 className="font-serif text-[1rem] font-semibold leading-snug text-ink transition-colors duration-200 group-hover:text-primary">
+                  <h3 className="text-base font-semibold leading-relaxed text-ink group-hover:text-primary">
                     {v.title}
                   </h3>
                 </div>
@@ -355,10 +300,10 @@ export default async function Home() {
                 <div className="text-center">
                   <SectionBadge icon={<Clock size={15} />} label="진료시간" />
                   <div className="mt-4">
-                    <TwoTone as="h2" lead="언제 " accent="오시면 되나요?" />
+                    <TwoTone as="h2" lead="진료 " accent="시간" />
                   </div>
                 </div>
-                <ul className="mt-8 space-y-3 text-[0.9rem]">
+                <ul className="mt-6 space-y-3 text-base">
                   <li className="flex justify-between border-b border-line pb-3">
                     <span className="text-ink">월 – 금</span>
                     <span className="text-ink">{CLINIC_HOURS_WEEKDAY}</span>
@@ -402,7 +347,7 @@ export default async function Home() {
                   </div>
                   <div>
                     <p className="text-[0.8rem] text-primary">상담 · 예약</p>
-                    <p className="mt-2 text-sm text-muted">{CARE_GUIDE.consultation}</p>
+                    <p className="mt-2 text-base text-muted">진료시간 내 의료진이 답변드립니다.</p>
                     <ConsultationActions className="mt-3 !justify-start" />
                   </div>
                   <div>
@@ -419,7 +364,7 @@ export default async function Home() {
                   </div>
                 </div>
                 <Link href="/contact" className="btn-primary mt-8 inline-block">
-                  자세한 안내 →
+                  오시는 길·주차 안내 →
                 </Link>
               </div>
             </div>

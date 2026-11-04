@@ -89,19 +89,9 @@ export default function VerifyClinicSection() {
               ‘일산한의원’은 한 곳입니다
             </h2>
 
-            <div
-              aria-hidden="true"
-              className="mx-auto mt-6 h-px w-16 bg-[var(--line)]"
-            />
-
-            {/* 문장 경계에서 끊어 데스크톱에서 정확히 두 줄로 보이게 한다.
-                모바일은 폭이 모자라 어차피 더 접히므로 br 을 숨긴다
-                (about 페이지와 같은 관례) */}
-            <p className="mt-6 text-[0.95rem] leading-[1.9] text-muted">
-              건강보험심사평가원에 ‘일산한의원’이라는 이름으로 등록된 요양기관은
-              전국에 한 곳입니다.
-              <br className="hidden md:block" /> 이마트 풍산점 3층에 있는 저희
-              한의원입니다.
+            <p className="mt-4 text-base leading-7 text-muted">
+              심평원에 ‘일산한의원’으로 등록된 곳은<br className="hidden md:block" />
+              이마트 풍산점 3층의 저희 한의원입니다.
             </p>
           </div>
 
@@ -119,11 +109,10 @@ export default function VerifyClinicSection() {
                   건강보험심사평가원
                 </span>
                 <span className="font-serif mt-1.5 block text-[1.05rem] font-semibold leading-snug text-ink transition-colors duration-200 group-hover:text-primary sm:text-[1.15rem]">
-                  병원·약국 찾기에서 직접 확인하기
+                  심평원에서 확인하기
                 </span>
                 <span className="mt-2 block text-[0.85rem] leading-relaxed text-muted">
-                  누르시면 검색어가 복사되고 심평원 사이트가 새 창으로 열립니다.
-                  검색창에 붙여넣어 주세요.
+                  검색어가 복사됩니다. 새 창의 검색창에 붙여넣어 주세요.
                 </span>
               </span>
               <span

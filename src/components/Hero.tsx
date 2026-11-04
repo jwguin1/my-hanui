@@ -101,18 +101,18 @@ export default function Hero() {
             <PillButton href={CLINIC.kakaoHref} variant="kakao" icon={<MessageCircle size={16} />} className="min-h-12 whitespace-nowrap !px-4 !text-[14px] max-[360px]:[&>svg]:hidden sm:!px-6 sm:!text-[15px]">
               카카오톡 상담
             </PillButton>
-            <PillButton href="#treatment-guide" variant="outline" icon={<Stethoscope size={16} />} className="min-h-12 whitespace-nowrap !px-4 !text-[14px] max-[360px]:[&>svg]:hidden sm:!px-6 sm:!text-[15px]">
+            <PillButton href="/treatment" variant="outline" icon={<Stethoscope size={16} />} className="min-h-12 whitespace-nowrap !px-4 !text-[14px] max-[360px]:[&>svg]:hidden sm:!px-6 sm:!text-[15px]">
               진료 안내 보기
             </PillButton>
           </div>
         </div>
 
-        <nav aria-label="첫 화면 진료 바로가기" className="rounded-2xl border border-line bg-white px-5 py-6 sm:px-7 sm:py-8">
+        <nav id="treatment-guide" aria-label="첫 화면 진료 바로가기" className="scroll-mt-24 rounded-2xl border border-line bg-white px-5 py-6 sm:px-7 sm:py-8">
           <h2 className="text-[20px] font-bold tracking-tight text-ink">어떤 진료를 찾으세요?</h2>
-          <ul className="mt-4 grid grid-cols-2 gap-x-5">
-            {QUICK_LINKS.map((item) => <li key={item.href} className="border-b border-line">
-              <Link href={item.href} className="flex min-h-14 items-center justify-between gap-1 py-3 text-[15px] font-semibold text-ink transition-colors hover:text-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary">
-                {item.label}<span aria-hidden="true" className="text-tan">↗</span>
+          <ul className="mt-5 grid grid-cols-2 gap-3">
+            {QUICK_LINKS.map((item) => <li key={item.href}>
+              <Link href={item.href} className="group relative flex min-h-[76px] items-center whitespace-nowrap rounded-xl border border-line bg-[var(--bg)] px-3 py-4 text-[15px] font-semibold text-ink transition-colors hover:border-primary/40 hover:bg-surface hover:text-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary lg:px-4">
+                {item.label}<span aria-hidden="true" className="absolute right-2.5 top-2 text-xs text-primary/60">↗</span>
               </Link>
             </li>)}
           </ul>
