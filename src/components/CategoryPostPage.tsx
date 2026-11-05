@@ -12,7 +12,7 @@ import PostContent from "@/components/PostContent";
 import ArticleContents from "@/components/ArticleContents";
 import ClinicCta from "@/components/ClinicCta";
 import { painPostHub } from "@/lib/pain-groups";
-import { skinPostHub, SKIN_GUIDE_SLUGS } from "@/lib/skin-guides";
+import { skinPostHub, SKIN_GUIDE_SLUGS, SPOT_QUESTION_SLUGS } from "@/lib/skin-guides";
 import { CONSULTATION_GUIDE_SLUGS } from "@/lib/regional-guides";
 import SkinResearchLinks from "@/components/SkinResearchLinks";
 import { CATEGORY_META } from "@/lib/categories";
@@ -47,8 +47,9 @@ export default function CategoryPostPage({
   const label = CATEGORY_LABEL[category];
   // 이후로는 params 의 slug 가 아니라 정규화된 post.slug 만 쓴다
   const isSkinGuide = category === "skin" && SKIN_GUIDE_SLUGS.includes(post.slug);
+  const isSpotQuestion = category === "skin" && SPOT_QUESTION_SLUGS.includes(post.slug);
   // 새 글은 본문에 문맥에 맞는 링크를 직접 배치했다.
-  const linkedContent = isSkinGuide ? post.content : autoLinkMarkdown(post.content, post.slug);
+  const linkedContent = isSkinGuide || isSpotQuestion ? post.content : autoLinkMarkdown(post.content, post.slug);
   const relatedPosts = getRelatedPosts(post.slug, 3, category);
   // 그룹 배열(lib/pain-groups.ts)이 정본이다. 글 쪽 프론트매터에 넣지 않는다.
   const hub = category === "pain" ? painPostHub(post.slug) : category === "skin" ? skinPostHub(post.slug) : undefined;
@@ -155,7 +156,7 @@ export default function CategoryPostPage({
       )}
 
       {isSkinGuide && <SkinResearchLinks slug={post.slug} />}
-      {!isSkinGuide && <ClinicCta note={post.clinicNote} />}
+      {!isSkinGuide && <ClinicCta note={post.clinicNote} consultationPrompt={isSpotQuestion ? "제거를 고민하는 부위나 시술 후 달라진 점을 카카오톡으로 남겨주세요. 진료시간 내 의료진이 상담합니다." : undefined} />}
 
       {/* Related posts */}
       {relatedPosts.length > 0 && (

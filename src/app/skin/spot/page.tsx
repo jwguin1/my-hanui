@@ -90,18 +90,18 @@ const DEVICE = [
 ];
 
 const AFTERCARE = [
-  { title: "연고 도포", body: "처방해드린 연고를 하루 2회 바릅니다." },
+  { title: "상처 보호", body: "안내받은 드레싱을 사용하세요. 연고를 처방받으셨다면 설명드린 횟수와 방법대로 바릅니다." },
   {
     title: "딱지 유지",
-    body: "딱지를 억지로 떼지 마세요. 자국이 남는 가장 흔한 원인입니다.",
+    body: "딱지는 손으로 떼거나 문지르지 마세요. 습윤 드레싱 아래에서는 단단한 딱지가 보이지 않을 수도 있습니다.",
   },
   {
     title: "자외선 차단",
-    body: "딱지가 떨어진 뒤에도 2~3개월은 차단제를 발라주세요.",
+    body: "상처가 열려 있을 때는 모자와 그늘로 햇빛을 피하세요. 표면이 닫히고 진물·출혈이 멎으면 선크림을 사용합니다.",
   },
   {
     title: "경과 확인",
-    body: "깊은 병변은 재시술이 필요할 수 있어 경과를 확인합니다.",
+    body: "통증·열감이 심해지거나 고름, 퍼지는 붉은 기가 생기면 연락해 주세요. 남은 병변은 피부가 아문 뒤 다시 봅니다.",
   },
 ];
 
@@ -133,7 +133,7 @@ export default function SkinSpotPage() {
         stacked
         description="먼저 병변을 살피고, 제거할 범위와 비용을 설명합니다. 시술 후 관리와 남은 병변의 리터치까지 미리 확인하세요."
       />
-      <SectionJumpNav label="잡티 제거 안내 목차" items={[["prices", "시술 비용"], ["skin-visit", "진찰·시술 과정"], ["retouch", "리터치 안내"], ["skin-faq", "자주 묻는 질문"], ["skin-aftercare", "회복 관리"]]} />
+      <SectionJumpNav label="잡티 제거 안내 목차" items={[["prices", "시술 비용"], ["skin-visit", "진찰·시술 과정"], ["retouch", "리터치 안내"], ["skin-faq", "자주 묻는 질문"], ["skin-aftercare", "회복 관리"], ["spot-questions", "질문별 글"]]} />
 
       {/* ── 비용 안내 ── */}
       <section id="prices" className="scroll-mt-28 bg-[var(--bg)]">
@@ -257,7 +257,7 @@ export default function SkinSpotPage() {
             <div className="mx-auto max-w-3xl text-center">
               <SectionBadge icon={<ListCheck size={15} />} label="시술 후 관리" />
               <div className="mt-4">
-                <TwoTone as="h2" lead="딱지가 " accent="떨어질 때까지" />
+                <TwoTone as="h2" lead="상처가 " accent="아물 때까지" />
               </div>
             </div>
 
