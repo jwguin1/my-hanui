@@ -1,9 +1,9 @@
 [
   {
-    "pmcid": "PMC9323185",
+    "pmcid": "PMC12104007",
     "category": "skin",
-    "reason": "independent-review",
-    "failedAt": "2026-10-26T00:21:49.217Z",
-    "retryAfter": "2026-11-02T00:21:49.217Z"
+    "reason": "draft-validation",
+    "failedAt": "2026-11-07T00:57:40.642Z",
+    "retryAfter": "2026-11-08T00:57:40.642Z"
   }
 ]
