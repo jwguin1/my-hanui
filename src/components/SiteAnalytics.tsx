@@ -20,7 +20,8 @@ export default function SiteAnalytics() {
     const pageLocation = location.origin + (location.hostname === 'research.ilsanhan.com' ? page.replace(/^\/research/, '') || '/' : page);
     if (!w.gtag) {
       w.dataLayer = w.dataLayer || [];
-      w.gtag = (...args: unknown[]) => { w.dataLayer!.push(args); };
+      // gtag consumes an Arguments command, not a dataLayer array-method call.
+      w.gtag = function () { w.dataLayer!.push(arguments); };
       w.gtag('consent','default',{analytics_storage:'granted',ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied'});
       w.gtag('js',new Date());
       w.gtag('config',ANALYTICS_ID,{send_page_view:false,allow_google_signals:false,allow_ad_personalization_signals:false,cookie_expires:2592000,cookie_update:false,cookie_flags:'SameSite=Lax;Secure',page_location:pageLocation,page_title:page,page_referrer:sourceOrigin(document.referrer)});
