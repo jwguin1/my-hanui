@@ -7,6 +7,7 @@ export default function ClinicVisitInfo({ className = "" }: { className?: string
         <p key={line}>{line.replace(` · ${CLINIC.tel}`, "")}</p>
       ))}
       <p>{CLINIC.receptionNote}</p>
+      <p>{CLINIC.closedNote} {CLINIC.holidayClosedNote}</p>
     </address>
   );
 }

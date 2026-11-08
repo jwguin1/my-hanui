@@ -97,23 +97,10 @@ export const CLINIC = {
    */
   holidayClosedNote: "설날·추석 당일은 휴진합니다.",
 
-  /**
-   * 이마트 풍산점 의무휴업일 안내.
-   *
-   * **「휴진」이라고 단정하지 않는다.** 조례가 자주 바뀌고 실제로는 대부분 문을 연다.
-   * 닫는다고 못 박으면 **열려 있는 날 환자를 잃는다** — 방향이 잘못된 손실이다.
-   * 같은 이유로 JSON-LD 에는 이 예외를 넣지 않는다 (정상 요일 패턴만 유지).
-   */
-  closedNote:
-    "매달 2·4번째 수요일은 이마트 풍산점 휴업일에 따라 진료가 조정될 수 있습니다. 방문 전 확인 부탁드립니다.",
+  /** 원장 확인: 2026-11-08. 화면·상태 표시·날짜별 구조화 데이터에 함께 적용. */
+  closedNote: "매월 둘째·넷째 수요일은 휴진합니다.",
 
-  /**
-   * 확정된 휴진일 (YYYY-MM-DD). **원장이 확실한 날짜만 적는다.**
-   *
-   * 비어 있어도 된다 — 비어 있으면 2·4 수요일에도 정상 진료로 계산하고
-   * 상태 뱃지에 「확인」만 덧붙인다. 규칙으로 자동 휴진 판정을 하지 않는 이유는
-   * 위 closedNote 와 같다.
-   */
+  /** 정기 휴진과 명절 외 추가 휴진일 (YYYY-MM-DD). */
   closedDates: [] as readonly string[],
 
   /**
@@ -271,9 +258,41 @@ export function isPublicHoliday(isoDate: string): boolean {
   return holidayFor(isoDate) !== undefined;
 }
 
-/** 그날 휴진인가 — 설날 당일·추석 당일 */
+/** 월의 둘째·넷째 수요일. UTC로 날짜만 계산해 실행 환경의 시간대 영향을 피한다. */
+export function isRegularClinicClosedDay(isoDate: string): boolean {
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(isoDate)) return false;
+  const date = new Date(`${isoDate}T00:00:00Z`);
+  if (!Number.isFinite(date.getTime()) || date.toISOString().slice(0, 10) !== isoDate) return false;
+  return date.getUTCDay() === 3 && [2, 4].includes(Math.ceil(date.getUTCDate() / 7));
+}
+
+/** 정기 휴진·추가 휴진·설날 및 추석 당일. 공휴일과 겹쳐도 휴진을 우선한다. */
 export function isClinicClosedDay(isoDate: string): boolean {
-  return holidayFor(isoDate)?.open === false;
+  return isRegularClinicClosedDay(isoDate) || CLINIC.closedDates.includes(isoDate) || holidayFor(isoDate)?.open === false;
+}
+
+/** 공휴일 표가 관리하는 연도의 날짜별 예외. 같은 날의 휴진과 진료가 중복되지 않는다. */
+export const CLINIC_DATED_HOURS: readonly ClinicHoliday[] = (() => {
+  const dates = new Map(CLINIC.holidays.map((entry) => [entry.date, entry]));
+  const years = new Set(CLINIC.holidays.map((entry) => Number(entry.date.slice(0, 4))));
+  for (const year of years) {
+    for (let month = 0; month < 12; month += 1) {
+      for (let day = 8; day <= 28; day += 1) {
+        const isoDate = new Date(Date.UTC(year, month, day)).toISOString().slice(0, 10);
+        if (isRegularClinicClosedDay(isoDate)) dates.set(isoDate, { date: isoDate, name: "정기 휴진", open: false });
+      }
+    }
+  }
+  for (const date of CLINIC.closedDates) dates.set(date, { date, name: "휴진", open: false });
+  return [...dates.values()].sort((a, b) => a.date.localeCompare(b.date));
+})();
+
+/** 오늘부터 60일간의 휴진일. 입력과 출력은 한국 날짜 기준이다. */
+export function upcomingClinicClosedDates(now = new Date()): string[] {
+  const kst = new Date(now.getTime() + 9 * 60 * 60 * 1000);
+  const today = Date.UTC(kst.getUTCFullYear(), kst.getUTCMonth(), kst.getUTCDate());
+  return Array.from({ length: 60 }, (_, offset) => new Date(today + offset * 86400000).toISOString().slice(0, 10))
+    .filter(isClinicClosedDay);
 }
 
 /** 휴진으로 지정된 공휴일 목록 */

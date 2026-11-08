@@ -15,4 +15,8 @@ test('referrers discard paths, queries and identifiers; consultation events are 
  assert.equal(consultationEvent('https://pf.kakao.com/_eXXun'),'kakao_click');
  assert.equal(consultationEvent('tel:031-976-7706'),'phone_click');
  assert.equal(consultationEvent('tel:01012345678'),undefined);
+ assert.equal(consultationEvent('https://naver.me/IItclnGB'),'directions_click');
+ assert.equal(consultationEvent('https://naver.me/some-other-clinic'),undefined);
+ assert.equal(consultationEvent('https://naver.me/IItclnGB?patient=private'),undefined);
+ assert.equal(consultationEvent('https://www.ilsanhan.com/contact'),undefined);
 });

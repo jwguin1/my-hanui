@@ -48,6 +48,7 @@ import { hasFaqSection, parsePostFaq } from "../src/lib/post-faq.ts";
 import {
   CLINIC,
   CLINIC_CLOSED_HOLIDAYS,
+  CLINIC_DATED_HOURS,
   CLINIC_HOLIDAY_TABLE_END,
   CLINIC_WEEKEND_HOLIDAY_LABEL,
 } from "../src/lib/clinic.ts";
@@ -644,8 +645,8 @@ function validate(pagePath, html) {
 
     /* ── 공휴일(날짜 기반) 항목 ── 정적 표와 건수·날짜·시각을 전부 대조 ── */
     {
-      const want = CLINIC.holidays.map((h) => h.date).slice().sort();
-      const byDate = new Map(CLINIC.holidays.map((h) => [h.date, h]));
+      const want = CLINIC_DATED_HOURS.map((h) => h.date).slice().sort();
+      const byDate = new Map(CLINIC_DATED_HOURS.map((h) => [h.date, h]));
       const got = dateSpecs
         .map((x) => String(x.validFrom))
         .slice()
@@ -1453,7 +1454,7 @@ try {
   console.log(
     `  · openingHours — 요일 기반 ${
       Object.entries(CLINIC.hours).length - dayless.length
-    }구간 + 날짜 기반 ${CLINIC.holidays.length}건 (${dayless
+    }구간 + 날짜 기반 ${CLINIC_DATED_HOURS.length}건 (${dayless
       .map(([k]) => k)
       .join(", ")}: dayOfWeek 없이 validFrom/validThrough 로 하루씩)`
   );

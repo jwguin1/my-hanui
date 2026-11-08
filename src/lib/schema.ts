@@ -21,7 +21,7 @@
  *
  * 같은 이유로 lib/post-faq.ts 는 아예 의존을 두지 않는다.
  */
-import { CLINIC } from "./clinic.ts";
+import { CLINIC, CLINIC_DATED_HOURS } from "./clinic.ts";
 
 export const BASE_URL = "https://www.ilsanhan.com";
 
@@ -270,9 +270,7 @@ export function clinicNode(): SchemaNode {
      * 평일이 두 항목인 것은 **점심시간(13:00~14:00)을 비우기 위해서**다.
      * 10:00~20:00 한 덩어리로 두면 13시에도 진료중이라고 답하게 된다.
      *
-     * 이마트 의무휴업일(2·4 수요일)은 **여기 넣지 않는다.** 조례가 자주 바뀌고
-     * 실제로는 대부분 문을 열어서, 닫는다고 못 박으면 열려 있는 날 환자를 잃는다.
-     * 안내는 화면 문구(CLINIC.closedNote)로만 하고 스키마는 정상 패턴을 유지한다.
+     * 둘째·넷째 수요일과 명절·추가 휴진은 날짜별 예외로 반영한다.
      */
     openingHoursSpecification: [
       // 요일 기반 — 평일은 점심을 비우느라 오전·오후 두 구간이다
@@ -286,18 +284,8 @@ export function clinicNode(): SchemaNode {
         opens: h.opens,
         closes: h.closes,
       })),
-      /* 날짜 기반 — 관공서 공휴일.
-         schema.org 의 dayOfWeek 에는 「공휴일」에 해당하는 값이 없다
-         (PublicHolidays 는 표준이 아니다). 대신 dayOfWeek 를 생략하고
-         validFrom/validThrough 로 그 하루만 지정하는 것이 표준 문법이다.
-
-         넣는 이유: 공휴일은 법정이고 예측 가능하며 **실제로 여는 날**이다.
-         빼두면 요일 패턴만 남아 AI·검색이 「공휴일 휴진」으로 읽는다.
-         (이마트 의무휴업일을 넣지 않는 것과 판단이 다른 지점 —
-          그쪽은 조례로 바뀌고 대부분 여는 불확실한 날이라 단정하지 않는다.)
-
-         날짜는 clinic.ts 의 정적 표에서 그대로 파생한다. 여기에 적지 않는다. */
-      ...CLINIC.holidays.map((h) => {
+      // 날짜별 공휴일·정기 휴진. 겹치는 날은 휴진을 우선하고 한 번만 출력한다.
+      ...CLINIC_DATED_HOURS.map((h) => {
         /* 휴진일(설·추석 당일)은 opens 와 closes 를 같은 값으로 둔다 —
            「그날은 열지 않는다」를 나타내는 표준 방식이다.
            빼버리면 요일 패턴이 살아나 오히려 여는 것으로 읽힌다. */

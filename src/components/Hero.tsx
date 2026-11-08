@@ -12,7 +12,7 @@ import {
 const META = [
   { icon: <Users size={15} />, label: "6인 한의사 협진" },
   { icon: <HeartMonitor size={15} />, label: "초음파 진단" },
-  { icon: <Clock size={15} />, label: "평일 20시 진료" },
+  { icon: <Clock size={15} />, label: `평일 ${CLINIC.hours.weekdayAfternoon.closes} · 주말 ${CLINIC.hours.weekend.closes}까지` },
 ];
 
 const QUICK_LINKS = [
@@ -80,7 +80,7 @@ export default function Hero() {
 
       <div className="mx-auto grid max-w-[1180px] gap-10 px-5 pb-10 pt-10 md:grid-cols-[1.35fr_1fr] md:items-center md:gap-12 md:px-6 md:py-16 lg:gap-16 lg:py-24">
         <div>
-          <p className="mb-6 text-[13px] font-semibold tracking-[0.06em] text-primary md:mb-8 md:text-[15px]">일산한의원 · 이마트 풍산점 3층</p>
+          <p className="mb-6 text-[13px] font-semibold tracking-[0.06em] text-primary md:mb-8 md:text-[15px]">고양시 일산동구 · {CLINIC.building}</p>
           <h1 className="text-[clamp(31px,8.8vw,42px)] font-extrabold leading-[1.22] tracking-[-0.055em] text-ink md:text-[clamp(42px,5.3vw,66px)]">
             <span className="block">“이건 치료</span>
             <span className="relative isolate mt-1 inline-block whitespace-nowrap text-primary">
@@ -92,6 +92,7 @@ export default function Hero() {
             저희가 자주 드리는 말씀입니다.<br />
             <strong className="font-semibold text-[#554b43]">필요한 치료만, 충분히 설명하고 권합니다.</strong>
           </p>
+          <p className="mt-3 text-base leading-7 text-muted">통증·다이어트·피부 미용·기능성 소화불량을 진료합니다.</p>
 
           <ul className="mt-6 flex flex-wrap gap-x-5 gap-y-2 text-[12px] font-medium text-[#665b50] md:mt-8 md:text-[13px]">
             {META.map((m) => <li key={m.label} className="flex items-center gap-1.5"><span aria-hidden="true" className="text-tan">{m.icon}</span>{m.label}</li>)}
@@ -116,7 +117,7 @@ export default function Hero() {
               </Link>
             </li>)}
           </ul>
-          <Link href="/pricing" className="mt-4 inline-flex min-h-11 items-center text-[14px] font-medium text-primary underline underline-offset-4">진료비·시간 안내 →</Link>
+          <div className="mt-4 flex flex-wrap gap-x-5"><Link href="/pricing" className="inline-flex min-h-11 items-center text-[14px] font-medium text-primary underline underline-offset-4">진료비·시간 안내 →</Link><Link href="/contact#before-visit" className="inline-flex min-h-11 items-center text-[14px] font-medium text-primary underline underline-offset-4">접수 마감·휴진일 →</Link></div>
         </nav>
       </div>
 

@@ -12,7 +12,7 @@ import PostContent from "@/components/PostContent";
 import ArticleContents from "@/components/ArticleContents";
 import ClinicCta from "@/components/ClinicCta";
 import { painPostHub } from "@/lib/pain-groups";
-import { skinPostHub, SKIN_GUIDE_SLUGS, SPOT_QUESTION_SLUGS } from "@/lib/skin-guides";
+import { skinPostHub, SKIN_GUIDE_SLUGS, SPOT_QUESTION_SLUGS, HAIR_REMOVAL_SLUGS, LIFTING_SLUGS, PIGMENTATION_SLUGS } from "@/lib/skin-guides";
 import { CONSULTATION_GUIDE_SLUGS } from "@/lib/regional-guides";
 import SkinResearchLinks from "@/components/SkinResearchLinks";
 import { FocusReadings } from "@/components/FocusGuides";
@@ -49,6 +49,13 @@ export default function CategoryPostPage({
   // 이후로는 params 의 slug 가 아니라 정규화된 post.slug 만 쓴다
   const isSkinGuide = category === "skin" && SKIN_GUIDE_SLUGS.includes(post.slug);
   const isSpotQuestion = category === "skin" && SPOT_QUESTION_SLUGS.includes(post.slug);
+  const kakaoLabel = category === "pain" ? "통증 진료·방문 시간 문의"
+    : category === "diet" ? "감비환 처방·비용 문의"
+    : isSpotQuestion ? "얼굴·목 제거 범위·예약 문의"
+    : category === "skin" && HAIR_REMOVAL_SLUGS.includes(post.slug) ? "얼굴·수염 제모 예약 문의"
+    : category === "skin" && LIFTING_SLUGS.includes(post.slug) ? "리프팅 구성·예약 문의"
+    : category === "skin" && PIGMENTATION_SLUGS.includes(post.slug) ? "색소 진료·예약 문의"
+    : "진료·예약 문의";
   // 새 글은 본문에 문맥에 맞는 링크를 직접 배치했다.
   const linkedContent = isSkinGuide || isSpotQuestion ? post.content : autoLinkMarkdown(post.content, post.slug);
   const relatedPosts = getRelatedPosts(post.slug, 3, category);
@@ -158,7 +165,7 @@ export default function CategoryPostPage({
 
       {isSkinGuide && <SkinResearchLinks slug={post.slug} />}
       {(post.category === "pain" || post.category === "diet") && <FocusReadings focus={post.category} currentSlug={post.slug} />}
-      {!isSkinGuide && <ClinicCta note={post.clinicNote} consultationPrompt={isSpotQuestion ? "제거를 고민하는 부위나 시술 후 달라진 점을 카카오톡으로 남겨주세요. 진료시간 내 의료진이 상담합니다." : undefined} />}
+      {!isSkinGuide && <ClinicCta note={post.clinicNote} kakaoLabel={kakaoLabel} consultationPrompt={isSpotQuestion ? "제거를 고민하는 부위나 시술 후 달라진 점을 카카오톡으로 남겨주세요. 진료시간 내 의료진이 상담합니다." : undefined} />}
 
       {/* Related posts */}
       {relatedPosts.length > 0 && (
@@ -195,7 +202,7 @@ export default function CategoryPostPage({
       )}
 
       {/* 피부 안내 글은 관련 글을 읽은 뒤 상담으로 이어지며, 상담 블록은 한 번만 표시한다. */}
-      {isSkinGuide && <ClinicCta note={post.clinicNote} consultationPrompt={CONSULTATION_GUIDE_SLUGS.includes(post.slug) ? "피부 고민과 이전 시술 이력, 방문 희망일을 알려주세요. 의료진이 피부 상태를 진찰해 필요한 원내 치료를 정하고, 추가 검사나 다른 시술·수술이 필요하면 적절한 의료기관으로 의뢰합니다." : "고민 부위와 관심 있는 시술, 이전 시술 이력과 방문 희망일을 카카오톡으로 남겨주세요. 진료시간 내 의료진이 상담해드립니다."} />}
+      {isSkinGuide && <ClinicCta note={post.clinicNote} kakaoLabel={kakaoLabel} consultationPrompt={CONSULTATION_GUIDE_SLUGS.includes(post.slug) ? "피부 고민과 이전 시술 이력, 방문 희망일을 알려주세요. 의료진이 피부 상태를 진찰해 필요한 원내 치료를 정하고, 추가 검사나 다른 시술·수술이 필요하면 적절한 의료기관으로 의뢰합니다." : "고민 부위와 관심 있는 시술, 이전 시술 이력과 방문 희망일을 카카오톡으로 남겨주세요. 진료시간 내 의료진이 상담해드립니다."} />}
 
       {/* Bottom nav */}
       <section className="section-padding !pt-0 text-center">

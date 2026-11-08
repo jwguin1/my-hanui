@@ -25,7 +25,7 @@ import ClinicVisitInfo from "@/components/ClinicVisitInfo";
  * 빈 제목만 남는 것보다 없는 편이 낫고, 원장이 순서대로 채워 넣는 동안
  * 하단 정보 두 줄은 21편 전부에서 이미 제 역할을 한다.
  */
-export default function ClinicCta({ note, consultationPrompt }: { note?: string; consultationPrompt?: string }) {
+export default function ClinicCta({ note, consultationPrompt, kakaoLabel }: { note?: string; consultationPrompt?: string; kakaoLabel?: string }) {
   const body = (note ?? "").trim();
 
   return (
@@ -45,7 +45,7 @@ export default function ClinicCta({ note, consultationPrompt }: { note?: string;
 
         <ClinicVisitInfo className={body ? "mt-6" : ""} />
         <p className="mt-5 text-sm text-muted">{consultationPrompt ?? CLINIC.consultationPrompt}</p>
-        <ConsultationActions directions className="mt-4" />
+        <ConsultationActions directions kakaoLabel={kakaoLabel} className="mt-4" />
         <p className="mt-4 text-center text-sm"><Link href="/aftercare" className="text-primary underline underline-offset-4">치료 후 관리 안내</Link></p>
       </div>
     </section>

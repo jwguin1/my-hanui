@@ -9,7 +9,8 @@ export function analyticsPath(host: string, pathname: string, allowed: readonly 
 export function sourceOrigin(referrer: string): string {
   try { const url = new URL(referrer); return /^https?:$/.test(url.protocol) ? url.origin + '/' : ''; } catch { return ''; }
 }
-export function consultationEvent(href: string): 'kakao_click' | 'phone_click' | undefined {
+export function consultationEvent(href: string): 'kakao_click' | 'phone_click' | 'directions_click' | undefined {
   if (href === 'https://pf.kakao.com/_eXXun' || href === 'https://pf.kakao.com/_eXXun/chat') return 'kakao_click';
   if (href.replace(/[\s-]/g,'') === 'tel:0319767706') return 'phone_click';
+  if (href === 'https://naver.me/IItclnGB') return 'directions_click';
 }

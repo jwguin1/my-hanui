@@ -210,7 +210,7 @@ const openingDays = () =>
   clinicNode().openingHoursSpecification.flatMap((s) => [].concat(s.dayOfWeek ?? []));
 
 test("진료시간: dayOfWeek 가 clinic.ts 정본과 일치한다", async () => {
-  const { CLINIC } = await import("../src/lib/clinic.ts");
+  const { CLINIC, CLINIC_DATED_HOURS } = await import("../src/lib/clinic.ts");
   const specs = clinicNode().openingHoursSpecification;
 
   // 평일은 점심을 비우느라 오전·오후 두 구간이다. 같은 요일 구성이 둘이므로
@@ -239,7 +239,7 @@ test("진료시간: dayOfWeek 가 clinic.ts 정본과 일치한다", async () =>
   );
   assert.equal(
     dated.length,
-    CLINIC.holidays.length,
+    CLINIC_DATED_HOURS.length,
     "날짜 기반(공휴일) openingHoursSpecification 개수가 정적 표와 다르다"
   );
   assert.equal(

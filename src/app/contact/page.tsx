@@ -12,6 +12,7 @@ import {
   CLINIC_HOURS_WEEKDAY,
   CLINIC_HOURS_WEEKEND,
   CLINIC_WEEKEND_HOLIDAY_LABEL,
+  upcomingClinicClosedDates,
 } from "@/lib/clinic";
 import JsonLd from "@/components/JsonLd";
 import { buildGraph } from "@/lib/schema";
@@ -19,6 +20,8 @@ import ClinicMap from "@/components/ClinicMap";
 
 import PageHeader from "@/components/ui/PageHeader";
 import { MapPin } from "@/components/ui/icons";
+
+export const revalidate = 3600;
 
 export const metadata: Metadata = pageMetadata({
   path: "/contact",
@@ -39,6 +42,7 @@ const graph = buildGraph({
 });
 
 export default function ContactPage() {
+  const upcomingClosures = upcomingClinicClosedDates().slice(0, 5);
   return (
     <>
       <JsonLd graph={graph} />
@@ -116,6 +120,17 @@ export default function ContactPage() {
 
       <section id="before-visit" className="scroll-mt-24 mx-auto max-w-5xl px-6 py-10">
         <h2 className="font-serif text-2xl font-semibold text-ink">오늘 방문하시기 전에</h2>
+        <div className="mt-5 rounded-xl border border-line bg-surface p-5">
+          <h3 className="font-semibold text-ink">다가오는 휴진일</h3>
+          <p className="mt-2 text-base leading-relaxed text-muted">{CLINIC.closedNote} {CLINIC.holidayClosedNote}</p>
+          <ul className="mt-3 flex flex-wrap gap-2">
+            {upcomingClosures.map((date) => (
+              <li key={date} className="rounded-lg border border-line bg-card px-3 py-2 text-sm font-semibold text-ink">
+                <time dateTime={date}>{new Intl.DateTimeFormat("ko-KR", { timeZone: "Asia/Seoul", month: "long", day: "numeric", weekday: "short" }).format(new Date(`${date}T00:00:00+09:00`))}</time>
+              </li>
+            ))}
+          </ul>
+        </div>
         <div className="mt-5 grid gap-4 md:grid-cols-3">
           <div className="rounded-xl border border-line bg-card p-5"><h3 className="font-semibold text-ink">접수 마감</h3><p className="mt-3 leading-relaxed text-muted">{CLINIC.receptionNote}</p><p className="mt-2 text-sm text-muted">진료 종료는 평일 오후 8시, 토·일·공휴일 오후 4시입니다.</p></div>
           <div className="rounded-xl border border-line bg-card p-5"><h3 className="font-semibold text-ink">당일 진료·원장 예약</h3><p className="mt-3 leading-relaxed text-muted">침 치료는 예약 없이 당일 방문하실 수 있습니다. 피부 시술이나 특정 원장의 진료를 원하시면 카카오톡으로 희망 시간을 알려주세요.</p></div>

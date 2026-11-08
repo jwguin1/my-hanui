@@ -26,7 +26,14 @@ export default function BlogArchivePage() {
   return <>
     <JsonLd graph={buildGraph({ path: "/blog", name: "환자 질문 모음 – 일산한의원", description, mainEntity: ref(pageId("/blog", "post-list")), nodes: [list] })} />
     <PageHeader badge="진료별 질문과 답" lead="내 고민과 닮은" accent="질문을 찾아보세요" stacked description={description} />
-    <nav aria-label="방문과 치료 후 안내" className="flex flex-wrap justify-center gap-5 px-6 text-primary"><Link href="/contact#before-visit" className="underline underline-offset-4">오늘 방문 안내</Link><Link href="/conditions" className="underline underline-offset-4">증상·검사별 진료 선택</Link><Link href="/skin/questions" className="underline underline-offset-4">피부 고민별 질문</Link><Link href="/aftercare" className="underline underline-offset-4">치료 후 관리 모음</Link></nav>
+    <nav aria-label="지금 필요한 안내" className="mx-auto grid max-w-5xl grid-cols-2 gap-3 px-5 md:grid-cols-4">
+      {[
+        { href: "/contact#before-visit", title: "오늘 진료받고 싶어요", detail: "접수 마감·휴진일·주차" },
+        { href: "/pain/chronic", title: "치료받아도 계속 아파요", detail: "기존 검사와 치료 경과" },
+        { href: "/pricing", title: "비용부터 보고 싶어요", detail: "진료비·포함 항목·시간" },
+        { href: "/aftercare", title: "치료 후 관리가 궁금해요", detail: "회복 관리·다음 진료" },
+      ].map(item => <Link key={item.href} href={item.href} className="min-w-0 rounded-xl border border-line bg-surface p-4 transition-colors hover:border-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"><span className="block text-base font-semibold leading-7 text-ink">{item.title}</span><span className="mt-1 block text-sm leading-6 text-muted">{item.detail}</span></Link>)}
+    </nav>
     <FocusGuides />
     <QuestionDirectory entries={entries.map(entry => {
       if (entry.href === "/internal/dyspepsia") return { ...entry, group: "기능성 소화불량" };
