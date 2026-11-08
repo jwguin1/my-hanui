@@ -1,5 +1,4 @@
-import fs from "fs";
-import path from "path";
+import { publicAssets } from "../data/public-assets.ts";
 
 /**
  * 글별 OG/캐러셀 전용 파생 이미지의 경로 규약과 소스 선택 로직.
@@ -11,7 +10,6 @@ import path from "path";
 export const OG_WIDTH = 1200;
 export const OG_HEIGHT = 630;
 
-const PUBLIC_DIR = path.join(process.cwd(), "public");
 
 export function isExternalImage(src: string): boolean {
   return /^https?:\/\//.test(src);
@@ -32,7 +30,7 @@ export function ogImagePath(id: string): string {
 }
 
 export function hasOgImage(id: string): boolean {
-  return fs.existsSync(path.join(PUBLIC_DIR, "blog-images", id, "og.png"));
+  return Object.hasOwn(publicAssets, ogImagePath(id));
 }
 
 /** 화면 표시용 파생 OG 의 public 기준 절대경로 (`/blog-images/{id}/og.webp`) */
@@ -41,7 +39,7 @@ export function ogWebpPath(id: string): string {
 }
 
 export function hasOgWebp(id: string): boolean {
-  return fs.existsSync(path.join(PUBLIC_DIR, "blog-images", id, "og.webp"));
+  return Object.hasOwn(publicAssets, ogWebpPath(id));
 }
 
 /**
@@ -105,10 +103,11 @@ export function resolveOgSource(
     .find((p) => !isExternalImage(p));
   if (localInBody) return { rel: localInBody, via: "본문 로컬 이미지 폴백" };
 
-  const dir = path.join(PUBLIC_DIR, "blog-images", id);
-  if (fs.existsSync(dir)) {
-    const first = fs
-      .readdirSync(dir)
+  const prefix = `/blog-images/${id}/`;
+  {
+    const first = Object.keys(publicAssets)
+      .filter((p) => p.startsWith(prefix))
+      .map((p) => p.slice(prefix.length))
       .filter((f) => /^(img-\d+|thumbnail)\.(png|jpe?g|webp)$/i.test(f))
       .sort((a, b) => a.localeCompare(b, undefined, { numeric: true }))[0];
     if (first) {
