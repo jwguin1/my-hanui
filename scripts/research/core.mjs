@@ -66,9 +66,12 @@ export const ReviewSchema=z.object({
   approved:z.boolean(), issues:z.array(z.string()),
   checks:z.object({numbers:z.boolean(),methods:z.boolean(),causality:z.boolean(),clinicalRelevance:z.boolean(),figures:z.boolean(),noPatientIdentifyingImages:z.boolean(),noInventedCredentials:z.boolean()}),
 });
-export function validateDraft(raw,paper) {
+export function validateDraft(raw,paper,format=raw.publicationFormat||'illustrated') {
   const d=DraftSchema.parse(raw);
-  if (d.figures.length!==paper.figures.length || new Set(d.figures.map(f=>f.id)).size!==paper.figures.length || d.figures.some(f=>!paper.figures.some(p=>p.id===f.id))) throw Error('Figure coverage mismatch');
+  if(!['text-only','illustrated'].includes(format))throw Error('Unknown publication format');
+  if(format==='text-only'){
+    if(d.figures.length)throw Error('Text-only publications must not attach figures');
+  }else if (d.figures.length!==paper.figures.length || new Set(d.figures.map(f=>f.id)).size!==paper.figures.length || d.figures.some(f=>!paper.figures.some(p=>p.id===f.id))) throw Error('Figure coverage mismatch');
   const corpus=normalize(paper.abstract+' '+paper.fullText);
   for (const e of d.evidence) if (!corpus.includes(normalize(e.quote))) throw Error('Evidence quote not found in source');
   const prose=[d.title,d.summary,d.answer,d.results,d.meaning,d.consultation,...d.faq.map(f=>f.answer)].join(' ');

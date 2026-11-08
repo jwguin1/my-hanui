@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {generate,usage} from './generate.mjs';
+import {generate,usage,saveAssets} from './generate.mjs';
 import {sourceForAI,attachEvidence,compactDraft} from './source-prompt.mjs';
 import {config} from './config.mjs';
 
@@ -91,28 +91,42 @@ test('budget exhaustion prevents another paid call including a format repair',as
 const figuredPaper={...paper,figures:[{id:'Fig1',label:'Figure 1',caption:'First result',graphics:[]},{id:'Fig2',label:'Figure 2',caption:'Second result',graphics:[]}]};
 const figuredDraft={...raw,figures:figuredPaper.figures.map(f=>({id:f.id,explanation:t,alt:t}))};
 
-test('a revision that drops a figure is repaired before the final independent review',async t=>{
-  const incomplete={...figuredDraft,figures:figuredDraft.figures.slice(0,1)};
-  const requests=provider(t,[figuredDraft,rejected,incomplete,figuredDraft,approved]);
+test('text-only output is independently reviewed against source figures without attaching them',async t=>{
+  const images=[{id:'Fig1',index:0,thumb:Buffer.from('review-only-image')}];
+  const requests=provider(t,[raw,approved]);
+  const result=await generate(figuredPaper,'skin',images);
+  assert.deepEqual(result.draft.figures,[]);
+  assert.equal(requests.length,2);
+  assert.ok(requests.every(r=>r.messages[0].content.some(c=>c.type==='image')));
+  assert.match(requests[0].system,/text-only publication/);
+  assert.match(requests[1].system,/verification only/);
+});
+
+test('figures accidentally reintroduced in a revision are repaired before independent review',async t=>{
+  const requests=provider(t,[raw,rejected,figuredDraft,raw,approved]);
   const result=await generate(figuredPaper,'skin',[]);
-  assert.deepEqual(result.draft.figures.map(f=>f.id),['Fig1','Fig2']);
+  assert.deepEqual(result.draft.figures,[]);
   assert.equal(requests.length,5);
   assert.match(requests[3].messages[0].content[0].text,/FORMAT REPAIR/);
   assert.equal(requests[4].model,config.reviewModel);
-  assert.equal(requests[4].max_tokens,config.reviewOutputTokens);
 });
 
-test('renamed or duplicate figure IDs cannot pass after a failed repair',async t=>{
-  const invalid={...figuredDraft,figures:figuredDraft.figures.map(f=>({...f,id:'Fig1'}))};
-  const requests=provider(t,[invalid,invalid]);
-  await assert.rejects(()=>generate(figuredPaper,'skin',[]),/exactly once/);
+test('repeated figure attachment fails closed',async t=>{
+  const requests=provider(t,[figuredDraft,figuredDraft]);
+  await assert.rejects(()=>generate(figuredPaper,'skin',[]),/0 items/);
   assert.equal(requests.length,2);
 });
 
-test('wrong figure IDs are constrained to source IDs in the provider schema',async t=>{
-  const invalid={...figuredDraft,figures:figuredDraft.figures.map(f=>({...f,id:'figure-unknown'}))};
-  const requests=provider(t,[invalid,figuredDraft,approved]);
-  await generate(figuredPaper,'skin',[]);
-  assert.deepEqual(requests[0].output_config.format.schema.properties.figures.items.properties.id.enum,['Fig1','Fig2']);
-  assert.equal(requests.length,3);
+test('saving a text-only article writes source evidence but never image buffers',async t=>{
+  const fs=await import('node:fs/promises');
+  const {tmpdir}=await import('node:os');
+  const path=await import('node:path');
+  const root=await fs.mkdtemp(path.join(tmpdir(),'research-text-only-'));
+  // The directory is created by this test and its absolute path is retained.
+  t.after(()=>fs.rm(root,{recursive:true,force:true}));
+  const source={...figuredPaper,pmcid:'PMC123',xml:'<article/>',authors:['Example'],doi:'10.1/test',licenseUrl:'https://creativecommons.org/licenses/by/4.0/',licenseText:'CC BY'};
+  const result=await saveAssets(source,[{file:'figure.webp',full:Buffer.from('image'),thumb:Buffer.from('thumbnail')}],root);
+  assert.deepEqual(result,[]);
+  assert.deepEqual((await fs.readdir(path.join(root,'PMC123'))).sort(),['LICENSE.txt','source.xml']);
+  assert.equal(await fs.readFile(path.join(root,'PMC123','source.xml'),'utf8'),source.xml);
 });

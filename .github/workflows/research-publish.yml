@@ -55,7 +55,7 @@ jobs:
             fi
             node scripts/research/run.mjs --category "$MANUAL_CATEGORY" --publish-at "${MANUAL_DATE}T09:00:00+09:00"
           fi
-      - name: Verify licensed source and all figure files
+      - name: Verify licensed source, evidence and publication assets
         id: validate
         if: success() || failure()
         run: node scripts/research/validate.mjs

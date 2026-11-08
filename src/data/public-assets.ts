@@ -2624,6 +2624,78 @@ export const publicAssets: Record<string, {width:number;height:number}|null> = {
     "width": 105,
     "height": 79
   },
+  "/research-assets/PMC12104007/jocd70208-fig-0001-1.webp": {
+    "width": 709,
+    "height": 381
+  },
+  "/research-assets/PMC12104007/jocd70208-fig-0002-1.webp": {
+    "width": 709,
+    "height": 422
+  },
+  "/research-assets/PMC12104007/jocd70208-fig-0003-1.webp": {
+    "width": 709,
+    "height": 554
+  },
+  "/research-assets/PMC12104007/jocd70208-fig-0004-1.webp": {
+    "width": 709,
+    "height": 467
+  },
+  "/research-assets/PMC12104007/jocd70208-fig-0005-1.webp": {
+    "width": 709,
+    "height": 457
+  },
+  "/research-assets/PMC12104007/jocd70208-fig-0006-1.webp": {
+    "width": 709,
+    "height": 396
+  },
+  "/research-assets/PMC12104007/jocd70208-fig-0007-1.webp": {
+    "width": 709,
+    "height": 213
+  },
+  "/research-assets/PMC12104007/jocd70208-fig-0008-1.webp": {
+    "width": 709,
+    "height": 215
+  },
+  "/research-assets/PMC12104007/jocd70208-fig-0009-1.webp": {
+    "width": 709,
+    "height": 218
+  },
+  "/research-assets/PMC12104007/preview-jocd70208-fig-0001-1.webp": {
+    "width": 709,
+    "height": 381
+  },
+  "/research-assets/PMC12104007/preview-jocd70208-fig-0002-1.webp": {
+    "width": 709,
+    "height": 422
+  },
+  "/research-assets/PMC12104007/preview-jocd70208-fig-0003-1.webp": {
+    "width": 709,
+    "height": 554
+  },
+  "/research-assets/PMC12104007/preview-jocd70208-fig-0004-1.webp": {
+    "width": 709,
+    "height": 467
+  },
+  "/research-assets/PMC12104007/preview-jocd70208-fig-0005-1.webp": {
+    "width": 709,
+    "height": 457
+  },
+  "/research-assets/PMC12104007/preview-jocd70208-fig-0006-1.webp": {
+    "width": 709,
+    "height": 396
+  },
+  "/research-assets/PMC12104007/preview-jocd70208-fig-0007-1.webp": {
+    "width": 709,
+    "height": 213
+  },
+  "/research-assets/PMC12104007/preview-jocd70208-fig-0008-1.webp": {
+    "width": 709,
+    "height": 215
+  },
+  "/research-assets/PMC12104007/preview-jocd70208-fig-0009-1.webp": {
+    "width": 709,
+    "height": 218
+  },
   "/research-assets/PMC12372385/Fig1-1.webp": {
     "width": 710,
     "height": 595
