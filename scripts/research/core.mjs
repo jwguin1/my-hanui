@@ -92,14 +92,20 @@ export function eligibleDate(value,now=new Date()) {
 }
 export function publicationSlot(now=new Date()) {
   const kst=new Date(now.getTime()+9*3600000);
-  const day=kst.getUTCDay(); const category=({1:'pain',3:'skin',5:'korean'})[day];
+  const day=kst.getUTCDay();
+  if(![1,3,5].includes(day))return null;
+  const date=kst.toISOString().slice(0,10);
+  // Keep historic weekday assignments; rotate four topics from the next Monday.
+  const weeks=Math.floor((Date.parse(date)-Date.parse('2026-11-09'))/(7*86400000));
+  const category=date<'2026-11-09'?({1:'pain',3:'skin',5:'korean'})[day]:['pain','diet','skin','digestive'][(weeks*3+[1,3,5].indexOf(day))%4];
   return category ? {category,publishedAt:kst.toISOString().slice(0,10)+'T09:00:00+09:00'} : null;
 }
 export function nextPublicationSlot(articles,now=new Date(),queueSize=6){
   if(articles.filter(a=>a.status==='published'&&Date.parse(a.publishedAt)>now.getTime()).length>=queueSize)return null;
   for(let i=0;i<35;i++){
     const slot=publicationSlot(new Date(now.getTime()+i*86400000));
-    if(slot&&!articles.some(a=>a.category===slot.category&&a.publishedAt.slice(0,10)===slot.publishedAt.slice(0,10)))return slot;
+    // Existing queued articles keep their date even if their category predates the rotation.
+    if(slot&&!articles.some(a=>a.status==='published'&&a.publishedAt.slice(0,10)===slot.publishedAt.slice(0,10)))return slot;
   }
   return null;
 }

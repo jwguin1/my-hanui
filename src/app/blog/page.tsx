@@ -10,11 +10,14 @@ import { buildGraph, itemListNode, pageId, ref } from "@/lib/schema";
 import JsonLd from "@/components/JsonLd";
 import PageHeader from "@/components/ui/PageHeader";
 import QuestionDirectory, { type QuestionEntry } from "@/components/QuestionDirectory";
+import FocusGuides from "@/components/FocusGuides";
+import { FOCUS_GUIDES, postFocus } from "@/lib/focus-guides";
 
-const description = "통증치료·교통사고·보험한약·체질보약·일산감비환·잡티제거의 질문과 답을 찾아보세요. 치료 과정, 비용, 시술 후 관리를 진료별로 모았습니다.";
+const description = "통증·다이어트·미용·기능성 소화불량의 질문과 답을 모았습니다. 내 증상부터 치료 과정, 비용과 관리까지 확인하세요.";
 export const metadata: Metadata = pageMetadata({ path: "/blog", title: "환자 질문 모음 | 증상·치료·비용 검색", description });
 
 export default function BlogArchivePage() {
+  const focusByPath = new Map(getAllPosts().map(p => [postPath(p.category, p.slug), postFocus(p)]));
   const entries: QuestionEntry[] = [
     ...HERBAL_GUIDES.map(g => ({ title: g.question, description: g.summary, href: herbalPath(g), group: g.category === "insurance" ? "보험한약" : "체질보약", keywords: `${g.title} ${g.faqs.map(f => f.q).join(" ")}` })),
     ...getAllPosts().map(p => ({ title: p.title, description: p.description, href: postPath(p.category, p.slug), group: (p.id.startsWith("disease-") ? diseaseGuide(p.category, p.slug)?.group : undefined) ?? (p.category === "pain" ? (/교통사고/.test(`${p.title} ${p.tags.join(" ")}`) ? "교통사고" : "통증치료") : p.category === "skin" ? (CONSULTATION_GUIDE_SLUGS.includes(p.slug) ? "치료선택" : "잡티제거") : p.category === "diet" ? "일산감비환" : p.category === "autonomic" ? "체질보약" : (p.id.startsWith("regional-") ? "방문준비" : "한의원 소식")), keywords: `${diseaseGuide(p.category, p.slug)?.keywords ?? ""} ${p.tags.join(" ")} ${p.category === "diet" ? "감비환 일산감비환 일산한의원 다이어트" : ""}` })),
@@ -24,6 +27,11 @@ export default function BlogArchivePage() {
     <JsonLd graph={buildGraph({ path: "/blog", name: "환자 질문 모음 – 일산한의원", description, mainEntity: ref(pageId("/blog", "post-list")), nodes: [list] })} />
     <PageHeader badge="진료별 질문과 답" lead="내 고민과 닮은" accent="질문을 찾아보세요" stacked description={description} />
     <nav aria-label="방문과 치료 후 안내" className="flex flex-wrap justify-center gap-5 px-6 text-primary"><Link href="/contact#before-visit" className="underline underline-offset-4">오늘 방문 안내</Link><Link href="/conditions" className="underline underline-offset-4">증상·검사별 진료 선택</Link><Link href="/skin/questions" className="underline underline-offset-4">피부 고민별 질문</Link><Link href="/aftercare" className="underline underline-offset-4">치료 후 관리 모음</Link></nav>
-    <QuestionDirectory entries={entries} />
+    <FocusGuides />
+    <QuestionDirectory entries={entries.map(entry => {
+      if (entry.href === "/internal/dyspepsia") return { ...entry, group: "기능성 소화불량" };
+      const focus = focusByPath.get(entry.href);
+      return { ...entry, group: focus ? FOCUS_GUIDES[focus].label : "다른 진료·소식" };
+    })} />
   </>;
 }

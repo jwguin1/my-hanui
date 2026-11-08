@@ -1180,6 +1180,30 @@ export const publicAssets: Record<string, {width:number;height:number}|null> = {
     "width": 1200,
     "height": 630
   },
+  "/blog-images/20261108-내시경-정상-소화불량/og.png": {
+    "width": 1200,
+    "height": 630
+  },
+  "/blog-images/20261108-내시경-정상-소화불량/og.webp": {
+    "width": 1200,
+    "height": 630
+  },
+  "/blog-images/20261108-소화불량-식사/og.png": {
+    "width": 1200,
+    "height": 630
+  },
+  "/blog-images/20261108-소화불량-식사/og.webp": {
+    "width": 1200,
+    "height": 630
+  },
+  "/blog-images/20261108-조기포만감/og.png": {
+    "width": 1200,
+    "height": 630
+  },
+  "/blog-images/20261108-조기포만감/og.webp": {
+    "width": 1200,
+    "height": 630
+  },
   "/blog-images/accident-03-byeonghaeng/og.png": {
     "width": 1200,
     "height": 630

@@ -28,7 +28,6 @@ import {
   CLINIC_HOURS_WEEKEND,
   CLINIC_WEEKEND_HOLIDAY_LABEL,
 } from "@/lib/clinic";
-import { HERBAL_GUIDES, herbalPath } from "@/lib/herbal-guides";
 import JsonLd from "@/components/JsonLd";
 import {
   buildGraph,
@@ -77,13 +76,9 @@ const PHILOSOPHY = [
 
 // 최신 발행일 대신 첫 방문자의 관심 분야를 기준으로 선택한다.
 // 화면과 ItemList는 같은 배열을 사용한다. 실제 질문 빈도 순위를 의미하지 않는다.
-const digestiveGuide = HERBAL_GUIDES.find(g => g.slug === "dyspepsia")!;
-const tonicGuide = HERBAL_GUIDES.find(g => g.slug === "constitution")!;
 const RECOMMENDED_READINGS = [
   { category: "통증치료", title: "허리는 안 아픈데 다리만 저려요, 디스크일까요?", href: "/pain/다리만-저릴때-허리디스크" },
-  { category: "교통사고", title: "교통사고 후 병원과 한의원을 같이 다녀도 되나요?", href: "/pain/교통사고-병원-한의원-병행" },
-  { category: "보험한약", title: digestiveGuide.question, href: herbalPath(digestiveGuide) },
-  { category: "체질보약", title: tonicGuide.question, href: herbalPath(tonicGuide) },
+  { category: "기능성 소화불량", title: "위내시경은 정상인데 소화가 안 돼요. 왜 그럴까요?", href: "/blog/내시경-정상-기능성소화불량" },
   { category: "일산감비환", title: "일산감비환, 얼마나 먹어야 하고 비용은 어느 정도인가요?", href: "/diet/다이어트한약-기간과-비용" },
   { category: "피부 · 미용", title: "피코토닝과 제네시스는 어떻게 다른가요?", href: "/skin/피코토닝-제네시스-차이" },
 ];
@@ -242,7 +237,7 @@ export default async function Home() {
               <div className="mt-4"><TwoTone as="h2" lead="궁금한 점, " accent="짧게 살펴보세요" /></div>
             </div>
             <div className="mt-7 rounded-2xl bg-surface p-5"><h3 className="mb-3 text-lg font-semibold text-ink">아픈 부위로 찾기</h3><PainBodyLinks /></div>
-            <div className="mt-5 grid gap-3 md:grid-cols-2 lg:grid-cols-3">
+            <div className="mt-5 grid gap-3 md:grid-cols-2">
               {RECOMMENDED_READINGS.map(item => <Link key={item.href} href={item.href} className="card group relative flex flex-col py-4 pl-5 pr-11 md:p-6">
                 <p className="text-sm font-semibold text-primary">{item.category}</p>
                 <h3 className="mt-1 text-base font-semibold leading-relaxed text-ink group-hover:text-primary">{item.title}</h3>

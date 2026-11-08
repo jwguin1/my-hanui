@@ -1,4 +1,5 @@
 import PageHeader from "@/components/ui/PageHeader";
+import { FocusReadings } from "@/components/FocusGuides";
 import ConsultationActions from "@/components/ConsultationActions";
 import PatientJourney from "@/components/PatientJourney";
 import SectionJumpNav from "@/components/SectionJumpNav";
@@ -42,7 +43,8 @@ export default function DyspepsiaPage() {
     <HerbalPrices />
     <HerbalQuestions faqs={faqs} id="insurance-questions" title="소화불량 진료, 궁금한 점" />
     <CareGuide herbal />
-    <RelatedPatientGuides title="내 불편과 가까운 질문을 더 읽어보세요" items={DIGESTIVE_READINGS} />
+    <FocusReadings focus="digestive" />
+    <RelatedPatientGuides title="함께 확인할 진료 안내" items={DIGESTIVE_READINGS} />
     <section className="bg-surface px-6 py-14 text-center">
       <h2 className="font-serif text-2xl font-semibold text-ink">언제부터 소화가 불편했는지 알려주세요</h2>
       <p className="mx-auto mt-4 max-w-xl text-base leading-8 text-muted">불편한 부위와 시작 시점, 현재 드시는 약을 카카오톡으로 남겨주세요. 진료시간 내 의료진이 상담하고 내원 준비를 안내합니다.</p>

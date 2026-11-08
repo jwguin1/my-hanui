@@ -8,6 +8,9 @@ import {
   toISO8601KST,
 } from "@/lib/blog-local";
 import PostContent from "@/components/PostContent";
+import { FocusReadings } from "@/components/FocusGuides";
+import { postFocus } from "@/lib/focus-guides";
+import ConsultationActions from "@/components/ConsultationActions";
 import ArticleContents from "@/components/ArticleContents";
 import { postImagePath } from "@/lib/og-image";
 import JsonLd from "@/components/JsonLd";
@@ -160,6 +163,7 @@ export default async function BlogPostPage({
         </article>
       </section>
 
+      {postFocus(post) === "digestive" && <><FocusReadings focus="digestive" currentSlug={post.slug} /><ConsultationActions kakaoLabel="소화불량 진료 문의" directions className="mx-auto mb-10 max-w-3xl px-6" /></>}
       <section className="section-padding !pt-0 text-center">
         <Link href="/blog" className="btn-ghost">
           전체 글로 돌아가기

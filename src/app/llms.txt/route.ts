@@ -14,6 +14,7 @@ import { DISEASE_GUIDES } from "@/lib/disease-guides";
 import { PIGMENTATION_SLUGS, LIFTING_SLUGS, LIFTING_PATH, SHURINK_CARE, HAIR_REMOVAL_SLUGS } from "@/lib/skin-guides";
 import { PIGMENTATION_PRICES, SHURINK_PRICES, VOLNEWMER_PRICES, LIFTING_PACKAGE, HAIR_REMOVAL_PRICES, skinPrice, PAIN_PRICES, HERBAL_PRICES, PAIN_INSURANCE_NOTE, PHARMACOPUNCTURE_NOTE, HERBAL_INSURANCE_CONDITIONS, HERBAL_INSURANCE_LIMIT, won, painWon } from "@/lib/pricing";
 import { postPath } from "@/lib/slug";
+import { FOCUS_ORDER, FOCUS_GUIDES, focusPosts } from "@/lib/focus-guides";
 
 /**
  * llms.txt — AI 크롤러용 요약.
@@ -70,6 +71,10 @@ ${regionalLinks}
 - 검사·수술·다른 진료과 선택을 다룬 글은 필요한 진료를 찾는 안내입니다. 각 글에서 일산한의원의 실제 진료 범위를 구분해 설명합니다.
 
 ${diseaseLinks}
+
+## 통증·다이어트·미용·기능성 소화불량
+
+${FOCUS_ORDER.map(key => `### ${FOCUS_GUIDES[key].label}\n- [진료·질문 안내](${BASE}${FOCUS_GUIDES[key].href})\n${focusPosts(key).map(p => `- [${p.title}](${BASE}${postPath(p.category,p.slug)})`).join('\n')}`).join('\n\n')}
 
 ## 기본 정보
 - 웹사이트: ${BASE}

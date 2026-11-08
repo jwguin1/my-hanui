@@ -13,7 +13,7 @@ on:
         default: validate
       category:
         type: choice
-        options: [pain, skin, korean]
+        options: [pain, diet, skin, digestive, korean]
         default: pain
       publication_date:
         description: 'Publication date YYYY-MM-DD (Korea time, at 09:00); required for manual publish'

@@ -15,6 +15,7 @@ import { painPostHub } from "@/lib/pain-groups";
 import { skinPostHub, SKIN_GUIDE_SLUGS, SPOT_QUESTION_SLUGS } from "@/lib/skin-guides";
 import { CONSULTATION_GUIDE_SLUGS } from "@/lib/regional-guides";
 import SkinResearchLinks from "@/components/SkinResearchLinks";
+import { FocusReadings } from "@/components/FocusGuides";
 import { CATEGORY_META } from "@/lib/categories";
 import { postImagePath } from "@/lib/og-image";
 import { postPath } from "@/lib/slug";
@@ -156,6 +157,7 @@ export default function CategoryPostPage({
       )}
 
       {isSkinGuide && <SkinResearchLinks slug={post.slug} />}
+      {(post.category === "pain" || post.category === "diet") && <FocusReadings focus={post.category} currentSlug={post.slug} />}
       {!isSkinGuide && <ClinicCta note={post.clinicNote} consultationPrompt={isSpotQuestion ? "제거를 고민하는 부위나 시술 후 달라진 점을 카카오톡으로 남겨주세요. 진료시간 내 의료진이 상담합니다." : undefined} />}
 
       {/* Related posts */}

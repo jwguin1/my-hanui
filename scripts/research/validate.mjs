@@ -5,7 +5,7 @@ const articles=JSON.parse(await fs.readFile('src/data/research-articles.json','u
 const ids=new Set();
 for(const a of articles){
   if(ids.has(a.paper.doi.toLowerCase()))throw Error('Duplicate DOI');ids.add(a.paper.doi.toLowerCase());
-  if(!/^pmid-\d+$/.test(a.slug)||!['pain','skin','korean'].includes(a.category))throw Error('Invalid route');
+  if(!/^pmid-\d+$/.test(a.slug)||!['pain','diet','skin','digestive','korean'].includes(a.category))throw Error('Invalid route');
   if(!Number.isFinite(Date.parse(a.publishedAt)))throw Error('Invalid publication date');
   const xml=await fs.readFile(`public/research-assets/${a.paper.pmcid}/source.xml`,'utf8');
   const p=parsePaper(xml);validateDraft(a,p);

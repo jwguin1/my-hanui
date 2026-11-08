@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import SiteHeader from "@/components/SiteHeader";
 import Footer from "@/components/Footer";
+import SiteAnalytics from "@/components/SiteAnalytics";
 import KakaoButton from "@/components/KakaoButton";
 
 const SITE_URL = "https://www.ilsanhan.com";
@@ -71,6 +72,7 @@ export default function RootLayout({
         <main id="main" tabIndex={-1}>{children}</main>
         <Footer />
         <KakaoButton />
+        <SiteAnalytics />
       </body>
     </html>
   );

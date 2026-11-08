@@ -4,6 +4,7 @@ import {nextPublicationSlot,rankCandidate} from './core.mjs';
 import {discover,getPaper,crossref,checkPubMedNotice} from './sources.mjs';
 import {prepareFigures,generate,saveAssets,usage} from './generate.mjs';
 import {isCandidateHeld,holdCandidate} from './attempt-state.mjs';
+import {questionPlan} from './question-plan.mjs';
 const file='src/data/research-articles.json';
 const articles=JSON.parse(await fs.readFile(file,'utf8'));
 const stateFile='src/data/research-attempts.json';
@@ -27,14 +28,19 @@ if(!slot&&!arg('--category')){console.log('Two-week publication queue is ready.'
 const category=arg('--category')||slot?.category;
 const publishedAt=arg('--publish-at')||slot?.publishedAt;
 if(!categories[category]||!publishedAt||!Number.isFinite(Date.parse(publishedAt)))throw Error('Valid --category and --publish-at required outside M/W/F');
-if(articles.some(a=>a.category===category&&a.publishedAt.slice(0,10)===publishedAt.slice(0,10))){console.log('Publication slot already filled.');process.exit(0);}
-const count=articles.filter(a=>a.category===category).length;
+if(articles.some(a=>a.status==='published'&&a.publishedAt.slice(0,10)===publishedAt.slice(0,10))){console.log('Publication slot already filled.');process.exit(0);}
 let success=false,attempts=0;const failures=[];
 const pool=new Map();
-for(let rotation=0;rotation<categories[category].topics.length;rotation++){
-  for(const candidate of await discover(category,articles.map(a=>a.paper),count+rotation))pool.set(candidate.doi.toLowerCase(),candidate);
+for(const question of questionPlan(category,articles)){
+  try {
+    const found=await discover(category,articles.map(a=>a.paper),question.index);
+    for(const candidate of found.sort((a,b)=>rankCandidate(b)-rankCandidate(a))) {
+      const key=candidate.doi.toLowerCase();
+      if(!pool.has(key))pool.set(key,{...candidate,editorialQuestion:{id:question.id,question:question.question}});
+    }
+  } catch(e) { console.log('Question search unavailable',question.id,e.message.slice(0,120)); }
 }
-const candidates=[...pool.values()].sort((a,b)=>rankCandidate(b)-rankCandidate(a));
+const candidates=[...pool.values()];
 console.log('Ranked candidates',category,candidates.length);
 {
   for(const c of candidates){
@@ -46,9 +52,9 @@ console.log('Ranked candidates',category,candidates.length);
       if(category==='korean'&&!/acupunct|Chinese (?:herbal )?medicine|Korean medicine|Kampo|moxibustion/i.test(paper.title+' '+paper.abstract))throw Error('Outside Korean medicine clinical scope');
       const images=await prepareFigures(paper);
       console.log('Verifying full paper',c.pmcid,'figures',images.length,'citations',c.citations);
-      const {draft,review}=await generate(paper,category,images);
+      const {draft,review}=await generate(paper,category,images,c.editorialQuestion.question);
       const figures=await saveAssets(paper,images);
-      articles.push({slug:`pmid-${c.pmid}`,category,status:'published',publishedAt,updatedAt:publishedAt,lastSourceCheck:new Date().toISOString(),...draft,publicationFormat:'text-only',figures:figures.map(f=>({...f,...draft.figures.find(d=>d.id===f.id)})),paper:{...c,authors:paper.authors,journal:paper.journal,volume:paper.volume,issue:paper.issue,pages:paper.pages,abstract:paper.abstract,conclusion:paper.conclusion,licenseUrl:paper.licenseUrl,licenseText:paper.licenseText,sourceUrl:paper.sourceUrl,sourceHash:paper.sourceHash,figureCount:paper.figures.length},verification:{type:'automated',model:config.reviewModel,writerModel:config.model,checkedAt:new Date().toISOString(),checks:review.checks}});
+      articles.push({editorialQuestion:c.editorialQuestion,slug:`pmid-${c.pmid}`,category,status:'published',publishedAt,updatedAt:publishedAt,lastSourceCheck:new Date().toISOString(),...draft,publicationFormat:'text-only',figures:figures.map(f=>({...f,...draft.figures.find(d=>d.id===f.id)})),paper:{...c,authors:paper.authors,journal:paper.journal,volume:paper.volume,issue:paper.issue,pages:paper.pages,abstract:paper.abstract,conclusion:paper.conclusion,licenseUrl:paper.licenseUrl,licenseText:paper.licenseText,sourceUrl:paper.sourceUrl,sourceHash:paper.sourceHash,figureCount:paper.figures.length},verification:{type:'automated',model:config.reviewModel,writerModel:config.model,checkedAt:new Date().toISOString(),checks:review.checks}});
       success=true;break;
     }catch(e){
       failures.push({pmcid:c.pmcid,reason:e.message.slice(0,700)});console.log('Held',c.pmcid,e.message.slice(0,250));

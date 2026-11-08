@@ -4,7 +4,7 @@ export function GET(){
   const articles=getResearchArticles();
   const body=`# 일산한의원 연구노트
 
-> 환자의 질문에서 시작하는 통증·피부·한의학 논문 해설입니다. 최근 10년의 PubMed 논문을 대상으로 연구 대상·방법·결과와 적용 범위를 설명합니다.
+> 환자의 질문에서 시작하는 통증·다이어트·미용·소화불량 논문 해설입니다. 최근 10년의 PubMed 논문을 대상으로 연구 대상·방법·결과와 적용 범위를 설명합니다.
 
 - [작성·검증 기준](${RESEARCH_ORIGIN}/editorial)
 - [사이트맵](${RESEARCH_ORIGIN}/sitemap.xml)
