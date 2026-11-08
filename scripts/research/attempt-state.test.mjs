@@ -28,3 +28,8 @@ test('insufficient budget cannot start a draft that has no room for independent 
   assert.equal(canCompleteReview(source,[{},{}],{input:180000,output:18000},config),false);
   assert.equal(canCompleteReview('short',[],{input:0,output:40000},config),false);
 });
+
+test('actual writer and reviewer caps leave room for a second eligible paper after a failed draft',()=>{
+  assert.equal(canCompleteReview('x'.repeat(50000),[{},{}],{input:54061,output:14621},config),true);
+  assert.equal(canCompleteReview('short',[],{input:0,output:19000},config),false);
+});

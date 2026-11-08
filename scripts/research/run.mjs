@@ -40,10 +40,11 @@ console.log('Ranked candidates',category,candidates.length);
   for(const c of candidates){
     if(attempts>=config.maxAttempts)break;
     if(isCandidateHeld(attemptState,c.pmcid)){console.log('Previously held',c.pmcid);continue;}
+    const callsBefore=usage.calls;
     try{
       const paper=await getPaper(c);
       if(category==='korean'&&!/acupunct|Chinese (?:herbal )?medicine|Korean medicine|Kampo|moxibustion/i.test(paper.title+' '+paper.abstract))throw Error('Outside Korean medicine clinical scope');
-      const images=await prepareFigures(paper);attempts++;
+      const images=await prepareFigures(paper);
       console.log('Verifying full paper',c.pmcid,'figures',images.length,'citations',c.citations);
       const {draft,review}=await generate(paper,category,images);
       const figures=await saveAssets(paper,images);
@@ -54,6 +55,10 @@ console.log('Ranked candidates',category,candidates.length);
       attemptState=holdCandidate(attemptState,c.pmcid,category,e);
       await fs.writeFile(stateFile,JSON.stringify(attemptState,null,2)+'\n');
       if(e.message==='Run AI usage budget reached')break;
+    }finally{
+      // A source or preflight rejection did not use an AI attempt. Keep looking
+      // for a smaller eligible paper within the unchanged run budget.
+      if(usage.calls>callsBefore)attempts++;
     }
   }
 }

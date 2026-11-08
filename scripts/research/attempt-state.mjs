@@ -17,5 +17,6 @@ export function canCompleteReview(source,images,usage,config){
   // Reserve four calls: writing, independent review, one revision, final review.
   // Allow room for images, instructions and the draft in subsequent prompts.
   const perCall=Math.ceil(source.length/2)+images.length*2000+8000;
-  return usage.input+perCall*4<=config.maxRunInputTokens&&usage.output+12000*4<=config.maxRunOutputTokens;
+  const outputReserve=2*config.writerOutputTokens+2*config.reviewOutputTokens;
+  return usage.input+perCall*4<=config.maxRunInputTokens&&usage.output+outputReserve<=config.maxRunOutputTokens;
 }

@@ -4,7 +4,15 @@ import {DraftSchema} from './core.mjs';
 export const WriterSchema=DraftSchema.extend({
   evidence:z.array(z.object({claim:z.string().min(10),sourceId:z.number().int().positive()})).min(3).max(8),
 });
-export const writerRules='Return exactly 3 to 8 evidence items, each with claim and sourceId only (no quote). Keep every field within its schema length limit. Revising a draft does not change these limits.';
+export const writerRules='Return exactly 3 to 8 evidence items, each with claim and sourceId only (no quote). Keep every field within its schema length limit. Return ALL source figures with their exact source IDs, each exactly once, with complete explanations and alt text. Never rename figure IDs or return only changed figures in a revision. Revising a draft does not change these limits.';
+
+export function writerSchemaFor(paper){
+  const ids=paper.figures.map(f=>f.id);
+  const figure=DraftSchema.shape.figures.element.extend({id:ids.length?z.enum(ids):z.string()});
+  return WriterSchema.extend({figures:z.array(figure).length(ids.length).superRefine((figures,ctx)=>{
+    if(new Set(figures.map(f=>f.id)).size!==ids.length)ctx.addIssue({code:'custom',message:'Return each source figure ID exactly once; no duplicates.'});
+  })});
+}
 
 // Keep the entire body, including tables, but do not send it again as an array
 // of evidence paragraphs. Mark their locations in the one complete source.

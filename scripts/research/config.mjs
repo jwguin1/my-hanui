@@ -8,6 +8,8 @@ export const config = {
   maxSourceChars: 160000,
   maxRunInputTokens: 220000,
   maxRunOutputTokens: 50000,
+  writerOutputTokens: 12000,
+  reviewOutputTokens: 4000,
   queueSize: 6,
 };
 export const categories = {

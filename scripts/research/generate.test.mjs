@@ -87,3 +87,32 @@ test('budget exhaustion prevents another paid call including a format repair',as
   await assert.rejects(()=>generate(paper,'skin',[]),/remaining budget/);
   assert.equal(requests.length,0);
 });
+
+const figuredPaper={...paper,figures:[{id:'Fig1',label:'Figure 1',caption:'First result',graphics:[]},{id:'Fig2',label:'Figure 2',caption:'Second result',graphics:[]}]};
+const figuredDraft={...raw,figures:figuredPaper.figures.map(f=>({id:f.id,explanation:t,alt:t}))};
+
+test('a revision that drops a figure is repaired before the final independent review',async t=>{
+  const incomplete={...figuredDraft,figures:figuredDraft.figures.slice(0,1)};
+  const requests=provider(t,[figuredDraft,rejected,incomplete,figuredDraft,approved]);
+  const result=await generate(figuredPaper,'skin',[]);
+  assert.deepEqual(result.draft.figures.map(f=>f.id),['Fig1','Fig2']);
+  assert.equal(requests.length,5);
+  assert.match(requests[3].messages[0].content[0].text,/FORMAT REPAIR/);
+  assert.equal(requests[4].model,config.reviewModel);
+  assert.equal(requests[4].max_tokens,config.reviewOutputTokens);
+});
+
+test('renamed or duplicate figure IDs cannot pass after a failed repair',async t=>{
+  const invalid={...figuredDraft,figures:figuredDraft.figures.map(f=>({...f,id:'Fig1'}))};
+  const requests=provider(t,[invalid,invalid]);
+  await assert.rejects(()=>generate(figuredPaper,'skin',[]),/exactly once/);
+  assert.equal(requests.length,2);
+});
+
+test('wrong figure IDs are constrained to source IDs in the provider schema',async t=>{
+  const invalid={...figuredDraft,figures:figuredDraft.figures.map(f=>({...f,id:'figure-unknown'}))};
+  const requests=provider(t,[invalid,figuredDraft,approved]);
+  await generate(figuredPaper,'skin',[]);
+  assert.deepEqual(requests[0].output_config.format.schema.properties.figures.items.properties.id.enum,['Fig1','Fig2']);
+  assert.equal(requests.length,3);
+});
