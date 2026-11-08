@@ -5,5 +5,12 @@
     "reason": "draft-validation",
     "failedAt": "2026-11-07T00:57:40.642Z",
     "retryAfter": "2026-11-08T00:57:40.642Z"
+  },
+  {
+    "pmcid": "PMC11626351",
+    "category": "skin",
+    "reason": "draft-validation",
+    "failedAt": "2026-11-08T00:36:33.938Z",
+    "retryAfter": "2026-11-09T00:36:33.938Z"
   }
 ]
