@@ -108,6 +108,10 @@ export function HerbalDetail({ guide }: { guide: HerbalGuide }) {
       <h2 className="text-xl font-semibold text-ink">함께 읽으면 도움이 되는 안내</h2>
       <ul className="mt-4 space-y-3 text-[16px] text-primary">{[...guide.related, { href: `/herbal/${guide.category}`, label: `${label} 전체 안내` }].map(l => <li key={l.href}><Link href={l.href} className="underline underline-offset-4">{l.label} →</Link></li>)}</ul>
     </nav>
+    {guide.sources && <section className="mx-auto max-w-3xl px-6 pb-10" aria-label="참고 자료">
+      <h2 className="text-lg font-semibold text-ink">참고 자료</h2>
+      <ul className="mt-3 space-y-3 text-sm leading-7 text-primary">{guide.sources.map(source => <li key={source.href}><a href={source.href} className="underline underline-offset-4">{source.label}</a></li>)}</ul>
+    </section>}
     <HerbalConsultation />
   </>;
 }
