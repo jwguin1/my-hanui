@@ -30,7 +30,7 @@ export default function DoctorGrid({ doctors }: { doctors: Doctor[] }) {
             {doc.laserCertification && <li>{doc.laserCertification}</li>}
           </ul> : null}
           <details className="mt-5 border-t border-line pt-4">
-            <summary className="min-h-11 cursor-pointer py-2 font-medium text-primary">{doc.career?.length ? "학력·경력 자세히 보기" : "원장의 진료 이야기·학회 활동"}</summary>
+            <summary className="min-h-11 cursor-pointer py-2 font-medium text-primary">{doc.bio?.length ? "원장의 진료 이야기·학회 활동" : "학력·경력 자세히 보기"}</summary>
             <div className="mt-4 space-y-4 text-[15px] leading-[1.9] text-muted">{doc.bio?.map((p, i) => <p key={i}>{p}</p>)}</div>
             {doc.education?.length ? <><p className="mt-5 text-sm font-semibold text-ink">학력·자격</p><ul className="mt-2 space-y-2 text-sm leading-relaxed text-muted">{doc.education.map(item => <li key={item}>{item}</li>)}</ul></> : null}
             {doc.career?.length ? <><p className="mt-5 text-sm font-semibold text-ink">주요 경력</p><ul className="mt-2 space-y-3 text-sm leading-relaxed text-muted">{doc.career.map(item => <li key={item}>{item}</li>)}</ul></> : null}
