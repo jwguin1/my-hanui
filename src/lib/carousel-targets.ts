@@ -63,7 +63,7 @@ export const CAROUSEL_TARGETS = {
     title: "의료진 – 한의사 7인 협진",
     navLabel: "의료진",
     hero: {
-      src: "/images/hero/doctor-seven-hero.jpg",
+      src: "/images/hero/doctor-seven-natural-hero.jpg",
       alt: "일산한의원 의료진 소개",
     },
   },

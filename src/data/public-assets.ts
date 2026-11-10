@@ -2376,6 +2376,10 @@ export const publicAssets: Record<string, {width:number;height:number}|null> = {
     "width": 1200,
     "height": 630
   },
+  "/images/doctor-seven-natural-og.jpg": {
+    "width": 1200,
+    "height": 630
+  },
   "/images/doctor-seven-og.jpg": {
     "width": 1200,
     "height": 630
@@ -2476,6 +2480,22 @@ export const publicAssets: Record<string, {width:number;height:number}|null> = {
     "width": 1080,
     "height": 1080
   },
+  "/images/hero/doctor-seven-natural-hero-1080.webp": {
+    "width": 1080,
+    "height": 1080
+  },
+  "/images/hero/doctor-seven-natural-hero-480.webp": {
+    "width": 480,
+    "height": 480
+  },
+  "/images/hero/doctor-seven-natural-hero-768.webp": {
+    "width": 768,
+    "height": 768
+  },
+  "/images/hero/doctor-seven-natural-hero.jpg": {
+    "width": 1080,
+    "height": 1080
+  },
   "/images/hero/pain-hero-1080.webp": {
     "width": 1080,
     "height": 1080
@@ -2523,6 +2543,22 @@ export const publicAssets: Record<string, {width:number;height:number}|null> = {
   "/images/team-seven-mobile.webp": {
     "width": 720,
     "height": 434
+  },
+  "/images/team-seven-natural-mobile.avif": {
+    "width": 720,
+    "height": 434
+  },
+  "/images/team-seven-natural-mobile.webp": {
+    "width": 720,
+    "height": 434
+  },
+  "/images/team-seven-natural.avif": {
+    "width": 1000,
+    "height": 603
+  },
+  "/images/team-seven-natural.webp": {
+    "width": 1000,
+    "height": 603
   },
   "/images/team-seven.avif": {
     "width": 812,

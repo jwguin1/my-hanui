@@ -73,11 +73,11 @@ const BANNERS = [
   },
   {
     slug: "doctor",
-    outputSlug: "doctor-seven",
+    outputSlug: "doctor-seven-natural",
     title: "의료진",
     sub: "한의사 7인 협진",
     foot: "근골격 · 내과 · 다이어트 · 피부",
-    fallback: "assets/team-seven-source.png",
+    fallback: "assets/team-seven-transparent.png",
     position: "centre",
   },
   {

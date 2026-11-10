@@ -33,14 +33,14 @@ export default function Hero() {
       <link
         rel="preload"
         as="image"
-        href="/images/team-seven.avif"
+        href="/images/team-seven-natural.avif"
         media="(min-width: 768px)"
         fetchPriority="high"
       />
       <link
         rel="preload"
         as="image"
-        href="/images/team-seven-mobile.avif"
+        href="/images/team-seven-natural-mobile.avif"
         media="(max-width: 767px)"
         fetchPriority="high"
       />
@@ -90,12 +90,12 @@ export default function Hero() {
 
       <div className="mx-auto max-w-[1000px] px-5 pb-10 md:px-6">
         <picture>
-          <source media="(max-width: 767px)" srcSet="/images/team-seven-mobile.avif" type="image/avif" />
-          <source media="(max-width: 767px)" srcSet="/images/team-seven-mobile.webp" type="image/webp" />
-          <source srcSet="/images/team-seven.avif" type="image/avif" />
-          <source srcSet="/images/team-seven.webp" type="image/webp" />
-          <img src="/images/team-seven.webp" alt="일산한의원 한의사 7명 단체사진"
-            width={812} height={490} fetchPriority="high" loading="eager" decoding="async"
+          <source media="(max-width: 767px)" srcSet="/images/team-seven-natural-mobile.avif" type="image/avif" />
+          <source media="(max-width: 767px)" srcSet="/images/team-seven-natural-mobile.webp" type="image/webp" />
+          <source srcSet="/images/team-seven-natural.avif" type="image/avif" />
+          <source srcSet="/images/team-seven-natural.webp" type="image/webp" />
+          <img src="/images/team-seven-natural.webp" alt="일산한의원 한의사 7명 단체사진"
+            width={1615} height={974} fetchPriority="high" loading="eager" decoding="async"
             className="block h-auto w-full rounded-2xl" />
         </picture>
         <p className="mt-4 text-center text-sm text-primary">필요한 치료만 권해드립니다</p>
