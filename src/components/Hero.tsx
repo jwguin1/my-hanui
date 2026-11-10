@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/icons";
 
 const META = [
-  { icon: <Users size={15} />, label: "6인 한의사 협진" },
+  { icon: <Users size={15} />, label: "7인 한의사 협진" },
   { icon: <HeartMonitor size={15} />, label: "초음파 진단" },
   { icon: <Clock size={15} />, label: `평일 ${CLINIC.hours.weekdayAfternoon.closes} · 주말 ${CLINIC.hours.weekend.closes}까지` },
 ];
@@ -141,7 +141,7 @@ export default function Hero() {
           <source srcSet="/images/hero-team.webp" type="image/webp" />
           <img
             src="/images/hero-team.webp"
-            alt="일산한의원 한의사 6인 단체 사진"
+            alt="일산한의원 의료진 단체 사진"
             width={1916}
             height={479}
             fetchPriority="high"

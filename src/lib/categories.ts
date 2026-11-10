@@ -56,9 +56,9 @@ export const CATEGORY_META: Record<Category, CategoryMeta> = {
 export const DOCTOR_META = {
   slug: "doctor",
   label: "의료진",
-  fullLabel: "6인 한의사 협진 의료진",
+  fullLabel: "7인 한의사 협진 의료진",
   description:
-    "6인 한의사 협진 — 장경진·남태훈·박건희·강민석·박동석·이명주",
+    "7인 한의사 협진 — 장경진·남태훈·박건희·강민석·박동석·이명주·오서혜",
   // 1200x630 의료진 대표 OG 이미지
   ogImage: "/images/doctor-og.jpg",
 } as const;

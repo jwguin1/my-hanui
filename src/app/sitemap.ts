@@ -143,7 +143,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // A LAB outage must not prevent discovery of the clinic's general information.
   const experiencePages = new Set([BASE_URL, "/diet/program", "/skin/spot", "/pain", "/pain/acute", "/pain/chronic", "/internal/dyspepsia", "/herbal", "/herbal/insurance", "/herbal/tonic"].map(path => path.startsWith("https:") ? path : `${BASE_URL}${path}`));
   const focusPages = new Set(["", "/blog", "/pain", "/diet", "/skin", "/internal/dyspepsia"].map(path => BASE_URL + path));
-  return [...staticEntries, ...categoryEntries, ...postEntries].map(entry => entry.url === `${BASE_URL}/herbal/insurance/facial-palsy`
+  return [...staticEntries, ...categoryEntries, ...postEntries].map(entry => ["/doctor", "/", "/accident", "/pain/acute"].map(path => path === "/" ? BASE_URL : BASE_URL + path).includes(entry.url)
+    ? { ...entry, lastModified: new Date("2026-11-10T00:00:00+09:00") }
+    : entry.url === `${BASE_URL}/herbal/insurance/facial-palsy`
     ? { ...entry, lastModified: new Date("2026-11-08T00:00:00+09:00") }
     : focusPages.has(entry.url)
     ? { ...entry, lastModified: new Date("2026-11-08T00:00:00+09:00") }

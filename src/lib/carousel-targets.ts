@@ -60,11 +60,11 @@ export const CAROUSEL_TARGETS = {
   },
   doctor: {
     path: "/doctor",
-    title: "의료진 – 한의사 6인 협진",
+    title: "의료진 – 한의사 7인 협진",
     navLabel: "의료진",
     hero: {
       src: "/images/hero/doctor-hero.jpg",
-      alt: "일산한의원 의료진 – 한의사 6인 협진",
+      alt: "일산한의원 의료진 소개",
     },
   },
   about: {

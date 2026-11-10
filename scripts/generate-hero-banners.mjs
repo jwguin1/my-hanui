@@ -74,7 +74,7 @@ const BANNERS = [
   {
     slug: "doctor",
     title: "의료진",
-    sub: "한의사 6인 협진",
+    sub: "한의사 협진 진료",
     foot: "근골격 · 내과 · 다이어트 · 피부",
     fallback: "public/images/doctor-og.jpg",
     position: "centre",

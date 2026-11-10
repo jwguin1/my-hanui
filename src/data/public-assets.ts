@@ -2368,6 +2368,10 @@ export const publicAssets: Record<string, {width:number;height:number}|null> = {
     "width": 864,
     "height": 1232
   },
+  "/images/doctor-7.webp": {
+    "width": 900,
+    "height": 1350
+  },
   "/images/doctor-og.jpg": {
     "width": 1200,
     "height": 630

@@ -64,7 +64,7 @@ const TRUST_STATS_SOURCE = `${CLINIC.foundingYear}년 개원 이래 누적 · �
 
 const WHY_CARDS = [
   { photo: "ultrasound" as const, heading: "초음파로 확인", body: "필요한 부위를 살펴 통증의 원인과 치료 방향을 설명합니다.", href: "/pain/chronic", linkLabel: "통증 진료 안내" },
-  { photo: "chuna" as const, heading: "6인 한의사 협진", body: "각 원장의 경력과 진료 분야를 확인하세요.", href: "/doctor", linkLabel: "의료진 소개" },
+  { photo: "chuna" as const, heading: "7인 한의사 협진", body: "각 원장의 경력과 진료 분야를 확인하세요.", href: "/doctor", linkLabel: "의료진 소개" },
   { photo: "ict" as const, heading: "경과에 맞춘 치료", body: "통증과 움직임의 변화를 살펴 다음 치료를 정합니다.", href: "/pain/acute#visit-guide", linkLabel: "치료 과정 안내" },
 ];
 

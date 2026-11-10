@@ -19,11 +19,11 @@ const SITE_URL = "https://www.ilsanhan.com";
 export const metadata: Metadata = {
   title: CAROUSEL_TARGETS.doctor.title,
   description:
-    "장경진, 남태훈, 박건희, 강민석, 박동석, 이명주. 6명의 한의사가 정성을 다해 진료합니다. 각 원장의 학력, 자격, 학회 활동과 주요 진료 분야를 확인하세요.",
+    "장경진, 남태훈, 박건희, 강민석, 박동석, 이명주, 오서혜. 7명의 한의사가 정성을 다해 진료합니다. 각 원장의 학력, 자격, 학회 활동과 주요 진료 분야를 확인하세요.",
   openGraph: {
-    title: "의료진 소개 – 일산한의원 6명의 한의사",
+    title: "의료진 소개 – 일산한의원 7명의 한의사",
     description:
-      "장경진, 남태훈, 박건희, 강민석, 박동석, 이명주 원장. 각 원장의 학력·자격·학회 활동과 주요 진료 분야 소개.",
+      "장경진, 남태훈, 박건희, 강민석, 박동석, 이명주, 오서혜 원장. 각 원장의 학력·자격·학회 활동과 주요 진료 분야 소개.",
     url: `${SITE_URL}/doctor`,
     siteName: "일산한의원",
     images: [
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
         url: `${SITE_URL}${DOCTOR_META.ogImage}`,
         width: 1200,
         height: 630,
-        alt: "일산한의원 6인 한의사 협진 의료진",
+        alt: "일산한의원 한의사 협진 의료진",
       },
     ],
     locale: "ko_KR",
@@ -39,9 +39,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "의료진 소개 – 일산한의원 6명의 한의사",
+    title: "의료진 소개 – 일산한의원 7명의 한의사",
     description:
-      "장경진, 남태훈, 박건희, 강민석, 박동석, 이명주 원장. 각 원장의 학력·자격·학회 활동과 주요 진료 분야 소개.",
+      "장경진, 남태훈, 박건희, 강민석, 박동석, 이명주, 오서혜 원장. 각 원장의 학력·자격·학회 활동과 주요 진료 분야 소개.",
     images: [`${SITE_URL}${DOCTOR_META.ogImage}`],
   },
   alternates: {
@@ -76,6 +76,9 @@ export interface Doctor {
   name: string;
   image: string;
   school: string;
+  specialty?: string;
+  education?: string[];
+  career?: string[];
   /** 국제 자격. 학회 직책은 societies 로 뺀다 (자격이 아니다) */
   credentials: Credential[];
   /** 2026-10-16 원장 확인. 대한통합레이저의학회 인증의는 장경진 원장만 보유. */
@@ -86,7 +89,7 @@ export interface Doctor {
 }
 
 /**
- * APCA RMSK — 6인 전원 보유.
+ * APCA RMSK — 기존 의료진 6인 보유. 새 의료진에게 자동 적용하지 않는다.
  *
  * APCA 발급 자격은 ABVM · CBCCT · CBNC · CBCMR · RPVI · RPVI-China · RMSK 다.
  * 「APCA RMDS」는 이 목록에 없는 조합이라 삭제했다 — 복부 초음파 계열의
@@ -137,7 +140,7 @@ const doctors: Doctor[] = [
     school: "상지대학교 한의과대학",
     credentials: [RMSK],
     societies: [
-      "대한통합레이저의학회 정회원",
+
       "척추신경추나의학회",
       "대한약침학회",
       "한방비만학회",
@@ -157,7 +160,7 @@ const doctors: Doctor[] = [
     school: "상지대학교 한의과대학",
     credentials: [RMSK],
     societies: [
-      "대한통합레이저의학회 정회원",
+
       "한의기능영양학회",
       "대한연부조직학회",
       "한방비만학회",
@@ -179,7 +182,7 @@ const doctors: Doctor[] = [
     school: "상지대학교 한의과대학",
     credentials: [RMSK],
     societies: [
-      "대한통합레이저의학회 정회원",
+
       "척추신경추나의학회",
       "통합방제의학회",
       "대한약침학회",
@@ -201,7 +204,7 @@ const doctors: Doctor[] = [
     school: "부산대학교 한의과대학",
     credentials: [RMSK],
     societies: [
-      "대한통합레이저의학회 정회원",
+
       "한의영상학회",
       "대한연부조직학회",
       "한방비만학회",
@@ -223,7 +226,7 @@ const doctors: Doctor[] = [
     school: "동의대학교 한의과대학",
     credentials: [RMSK],
     societies: [
-      "대한통합레이저의학회 정회원",
+
       "척추신경추나의학회",
       "통합방제의학회",
       "대한연부조직학회",
@@ -239,6 +242,23 @@ const doctors: Doctor[] = [
       "단순히 아픔을 달래는 게 아니라, 여러분이 다시 예전처럼 활기차게 움직일 수 있도록 제가 옆에서 확실하게 책임지고 치료하겠습니다. 믿고 찾아주시는 만큼, 결과로 증명하겠습니다. 감사합니다.",
     ],
   },
+  {
+    name: "오서혜",
+    image: "/images/doctor-7.webp",
+    school: "동국대학교 한의과대학",
+    specialty: "한방내과 전문의",
+    education: ["동국대학교 한의학과 학사 (2013.03–2019.02)", "한방내과 전문의 (2023)"],
+    credentials: [],
+    societies: [],
+    bio: [],
+    career: [
+      "동서한방병원 일반수련의 (2019.03–2020.02)",
+      "동서한방병원 전문수련의 · 병동 및 외래 진료 (2020.03–2023.02)",
+      "전 인애한의원 부원장 · 대진 (2023.05)",
+      "전 하나로솔한의원 부원장 (2023.10–2024.06)",
+      "전 솔담한방병원 부원장 · 병동 및 외래 진료 (2024.07–2026.07)",
+    ],
+  },
 ];
 
 // Physician 정식 노드는 이 페이지에만 둔다.
@@ -249,7 +269,7 @@ const physicianNodes = doctors.map((doc) => ({
   "@type": "Physician",
   "@id": physicianId(doc.name),
   name: doc.name,
-  jobTitle: "한의사",
+  jobTitle: doc.specialty ? `한의사 · ${doc.specialty}` : "한의사",
   url: `${SITE_URL}/doctor`,
   image: `${SITE_URL}${doc.image}`,
   mainEntityOfPage: ref(pageId("/doctor", "webpage")),
@@ -263,7 +283,11 @@ const physicianNodes = doctors.map((doc) => ({
     name: `${c.abbr} — ${c.name}`,
     credentialCategory: "certification",
     recognizedBy: { "@type": "Organization", name: c.issuerFull, alternateName: c.issuer },
-  })), ...(doc.laserCertification ? [{
+  })), ...(doc.specialty ? [{
+    "@type": "EducationalOccupationalCredential",
+    name: doc.specialty,
+    credentialCategory: "전문의",
+  }] : []), ...(doc.laserCertification ? [{
     "@type": "EducationalOccupationalCredential",
     name: doc.laserCertification,
     credentialCategory: "certification",
@@ -277,9 +301,9 @@ const physicianNodes = doctors.map((doc) => ({
 
 const graph = buildGraph({
   path: "/doctor",
-  name: "의료진 – 한의사 6인 협진 | 일산한의원",
+  name: "의료진 – 한의사 7인 협진 | 일산한의원",
   description:
-    "장경진, 남태훈, 박건희, 강민석, 박동석, 이명주. 6명의 한의사가 정성을 다해 진료합니다. 각 원장의 학력, 자격, 학회 활동과 주요 진료 분야를 확인하세요.",
+    "장경진, 남태훈, 박건희, 강민석, 박동석, 이명주, 오서혜. 7명의 한의사가 정성을 다해 진료합니다. 각 원장의 학력, 자격, 학회 활동과 주요 진료 분야를 확인하세요.",
   image: DOCTOR_META.ogImage,
   nodes: physicianNodes,
 });
@@ -294,7 +318,7 @@ export default function DoctorPage() {
         icon={<Users size={15} />}
         lead="의료진 "
         accent="소개"
-        description="6명의 한의사가 정성을 다해 진료합니다"
+        description="7명의 한의사가 정성을 다해 진료합니다"
       />
 
       <PageHeroBanner page="doctor" />
@@ -305,8 +329,8 @@ export default function DoctorPage() {
         <div className="section-padding">
           <div className="mx-auto max-w-3xl">
             <h2 id="skin-laser-title" className="font-serif text-2xl font-semibold text-ink">피부레이저, 상담한 원장이 직접 시술합니다</h2>
-            <p className="mt-5 text-[15px] leading-[1.9] text-muted">일산한의원 한의사 6명 모두 피부레이저 상담과 시술을 담당합니다. 피부 고민을 듣고 치료 방향을 설명한 원장이 직접 시술까지 진행합니다.</p>
-            <p className="mt-3 text-[15px] leading-[1.9] text-muted">의료진 모두 대한통합레이저의학회 정회원이며, 장경진 원장은 같은 학회의 인증의입니다.</p>
+            <p className="mt-5 text-[15px] leading-[1.9] text-muted">피부 고민을 듣고 치료 방향을 설명한 원장이 직접 시술까지 진행합니다.</p>
+            <p className="mt-3 text-[15px] leading-[1.9] text-muted">장경진 원장은 대한통합레이저의학회 정회원·인증의입니다.</p>
 
             <p className="mt-6 text-sm leading-relaxed text-muted">특정 원장의 상담을 원하시면 예약할 때 말씀해주세요. 진료 일정을 안내해드립니다. 각 의료진 카드에서 약력과 진료 이야기를 확인하실 수 있습니다.</p>
             <nav aria-label="피부레이저 진료 안내" className="mt-5 flex flex-wrap gap-x-6 gap-y-3 text-sm text-primary">
