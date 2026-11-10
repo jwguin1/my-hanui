@@ -73,10 +73,11 @@ const BANNERS = [
   },
   {
     slug: "doctor",
+    outputSlug: "doctor-seven",
     title: "의료진",
-    sub: "한의사 협진 진료",
+    sub: "한의사 7인 협진",
     foot: "근골격 · 내과 · 다이어트 · 피부",
-    fallback: "public/images/doctor-og.jpg",
+    fallback: "assets/team-seven-source.png",
     position: "centre",
   },
   {
@@ -176,7 +177,7 @@ async function build(banner) {
 
   // 최상단 비-lazy 이미지라 용량이 곧 LCP 다. 같은 배너가 PNG 로는 0.4~1.3MB,
   // mozjpeg q84 로는 100~200KB — 육안 차이 없이 8배 가볍다.
-  const out = path.join(OUT_DIR, `${banner.slug}-hero.jpg`);
+  const out = path.join(OUT_DIR, `${banner.outputSlug || banner.slug}-hero.jpg`);
   await sharp({
     create: {
       width: SIZE,

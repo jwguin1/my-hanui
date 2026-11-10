@@ -24,7 +24,7 @@ const FROZEN = {
     "/pain": `${SITE_URL}/images/pain-og.jpg`,
     "/diet": `${SITE_URL}/images/diet-og.jpg`,
     "/skin": `${SITE_URL}/images/skin-og.jpg`,
-    "/doctor": `${SITE_URL}/images/doctor-og.jpg`,
+    "/doctor": `${SITE_URL}/images/doctor-seven-og.jpg`,
     "/about": `${SITE_URL}/og-image.jpg`,
     "/contact": `${SITE_URL}/og-image.jpg`,
   },
@@ -90,7 +90,7 @@ const TARGETS = [
   { key: "pain", path: "/pain", title: "통증 · 근골격 – 추나, 초음파약침" },
   { key: "diet", path: "/diet", title: "다이어트 – 일산감비환 한방 체질 처방" },
   { key: "skin", path: "/skin", title: "피부 · 레이저 – CO₂, 점·편평사마귀" },
-  { key: "doctor", path: "/doctor", title: "의료진 – 한의사 7인 협진" },
+  { key: "doctor", path: "/doctor", heroSrc: "/images/hero/doctor-seven-hero.jpg", title: "의료진 – 한의사 7인 협진" },
   { key: "about", path: "/about", title: "병원 소개 – 이마트 풍산점 3층" },
   {
     key: "contact",

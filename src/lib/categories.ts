@@ -60,7 +60,7 @@ export const DOCTOR_META = {
   description:
     "7인 한의사 협진 — 장경진·남태훈·박건희·강민석·박동석·이명주·오서혜",
   // 1200x630 의료진 대표 OG 이미지
-  ogImage: "/images/doctor-og.jpg",
+  ogImage: "/images/doctor-seven-og.jpg",
 } as const;
 
 /**

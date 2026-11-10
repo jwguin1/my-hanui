@@ -12,7 +12,7 @@
     "icons": "node scripts/build-icons.mjs",
     "cards:generate": "node scripts/generate-title-cards.mjs",
     "og:generate": "node scripts/generate-og-images.mjs",
-    "hero:generate": "node scripts/generate-hero-team.mjs",
+    "hero:generate": "node scripts/generate-team-seven.mjs",
     "banners": "node scripts/generate-hero-banners.mjs",
     "verify:carousel": "node scripts/verify-carousel.mjs",
     "verify:jsonld": "node scripts/validate-jsonld.mjs",
