@@ -182,7 +182,7 @@ ${searchGuideLinks}
 상담한 원장이 피부 상태와 치료 목표를 확인하고 피코하이 또는 엘리멘트 TL 중 필요한 장비를 선택해 직접 시술합니다. 엘리멘트 TL은 532·755·1064nm 세 파장의 롱펄스 레이저입니다.
 - 레이저 시술 자체는 20분 이내이며 상담·준비 시간은 별도입니다. 최소 2,000샷을 기준으로 진행합니다.
 - 피부레이저 상담을 맡은 원장이 직접 시술합니다. 장경진 원장은 대한통합레이저의학회 정회원·인증의입니다.
-- 피부레이저 의료진 안내: ${BASE}/doctor#skin-laser
+- 피부레이저 의료진 안내: ${BASE}/skin/피부레이저-담당-의료진
 
 2026-10-16 확인한 가격과 구성:
 - ${PIGMENTATION_PRICES.name}: 1회 ${won(PIGMENTATION_PRICES.single)}, 10회 ${won(PIGMENTATION_PRICES.tenSessions)} (회당 ${won(PIGMENTATION_PRICES.perSession)})

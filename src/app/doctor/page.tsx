@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import DoctorGrid from "@/components/DoctorGrid";
 import PageHeroBanner from "@/components/PageHeroBanner";
 import { DOCTOR_META } from "@/lib/categories";
@@ -8,9 +7,7 @@ import JsonLd from "@/components/JsonLd";
 import { CLINIC_ID, buildGraph, pageId, physicianId, ref } from "@/lib/schema";
 
 import PageHeader from "@/components/ui/PageHeader";
-import { CLINIC } from "@/lib/clinic";
 import { Users } from "@/components/ui/icons";
-import { postPath } from "@/lib/slug";
 
 const SITE_URL = "https://www.ilsanhan.com";
 
@@ -329,34 +326,6 @@ export default function DoctorPage() {
 
       <DoctorGrid doctors={doctors} />
 
-      <section id="skin-laser" aria-labelledby="skin-laser-title" className="scroll-mt-28 bg-[var(--surface)]">
-        <div className="section-padding">
-          <div className="mx-auto max-w-3xl">
-            <h2 id="skin-laser-title" className="font-serif text-2xl font-semibold text-ink">피부레이저, 상담한 원장이 직접 시술합니다</h2>
-            <p className="mt-5 text-[15px] leading-[1.9] text-muted">피부 고민을 듣고 치료 방향을 설명한 원장이 직접 시술까지 진행합니다.</p>
-            <p className="mt-3 text-[15px] leading-[1.9] text-muted">장경진 원장은 대한통합레이저의학회 정회원·인증의입니다.</p>
-
-            <p className="mt-6 text-sm leading-relaxed text-muted">특정 원장의 상담을 원하시면 예약할 때 말씀해주세요. 진료 일정을 안내해드립니다. 각 의료진 카드에서 약력과 진료 이야기를 확인하실 수 있습니다.</p>
-            <nav aria-label="피부레이저 진료 안내" className="mt-5 flex flex-wrap gap-x-6 gap-y-3 text-sm text-primary">
-              <Link href={postPath("skin", "피부레이저-담당-의료진")} className="underline underline-offset-4">피부레이저 상담·시술 담당 안내</Link>
-              <Link href={postPath("skin", "피코토닝-가격-제네시스")} className="underline underline-offset-4">토닝 방문 과정·시간·비용</Link>
-              <Link href="/skin/pigmentation" className="underline underline-offset-4">색소치료 질문 모음</Link>
-            </nav>
-          </div>
-        </div>
-      </section>
-
-
-      {/* 장비 표기. 의료진 본인 문장(bio) 안에 끼워 넣지 않는다 —
-          남의 말을 고쳐 쓰는 셈이 된다. 별도 줄로 둔다.
-          문안은 clinic.ts 가 정본이고, 제조사 마케팅 문구는 쓰지 않는다. */}
-      <section className="bg-[var(--bg)]">
-        <div className="section-padding">
-          <p className="mx-auto max-w-3xl text-[0.85rem] leading-relaxed text-muted">
-            {CLINIC.ultrasound.detail}
-          </p>
-        </div>
-      </section>
     </>
   );
 }

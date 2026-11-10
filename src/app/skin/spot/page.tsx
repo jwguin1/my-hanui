@@ -315,29 +315,19 @@ export default function SkinSpotPage() {
       <section aria-labelledby="other-skin-title" className="border-y border-line bg-[var(--surface)] px-6 py-10">
         <div className="mx-auto max-w-3xl">
           <h2 id="other-skin-title" className="font-serif text-2xl font-semibold text-ink">색소·탄력·얼굴 제모도 함께 살펴보세요</h2>
-          <p className="mt-3 text-[16px] leading-relaxed text-muted">점·편평사마귀·쥐젖은 CO₂ 제거 안내를 계속 읽어보세요. 색소·탄력·제모가 고민이라면 아래 진료에서 자세히 확인하실 수 있습니다.</p>
+          <p className="mt-3 text-[16px] leading-relaxed text-muted">잡티 제거 외에 색소·탄력·제모가 고민이라면 아래에서 진료와 비용을 확인하세요.</p>
           <div className="mt-6 grid gap-4 sm:grid-cols-3">
             <Link href="/skin/pigmentation" className="rounded-xl border border-line bg-card p-5 hover:border-primary"><h3 className="text-lg font-semibold text-ink">색소치료 →</h3><p className="mt-2 text-[15px] leading-relaxed text-muted">기미·주근깨·흑자·피부톤<br />피코토닝·제네시스 질문과 비용</p></Link>
             <Link href="/skin/hair-removal" className="rounded-xl border border-line bg-card p-5 hover:border-primary"><h3 className="text-lg font-semibold text-ink">얼굴 제모 →</h3><p className="mt-2 text-[15px] leading-relaxed text-muted">남녀 공통 · 엘리멘트 TL<br />인중＋앞턱·얼굴전체 가격과 관리</p></Link>
             <Link href="/skin/lifting" className="rounded-xl border border-line bg-card p-5 hover:border-primary"><h3 className="text-lg font-semibold text-ink">리프팅 →</h3><p className="mt-2 text-[15px] leading-relaxed text-muted">턱선·볼 처짐·탄력<br />슈링크·볼뉴머 질문과 비용</p></Link>
           </div>
+          <Link href={postPath("skin", "기미-주근깨-흑자-차이")} className="mt-4 inline-flex min-h-11 items-center text-sm font-medium text-primary underline underline-offset-4">기미·주근깨·흑자, 어떻게 구분하나요? →</Link>
         </div>
       </section>
 
 
       <LocalBlock {...LOCAL_BLOCKS["/skin/spot"]} />
 
-      <section className="section-padding">
-        <div className="mx-auto max-w-3xl rounded-2xl border border-line bg-surface p-6 sm:p-8">
-          <SectionBadge label="색소치료" />
-          <h2 className="mt-3 text-xl font-semibold text-ink">기미·주근깨·흑자가 고민이라면</h2>
-          <p className="mt-3 text-sm leading-relaxed text-muted">평평한 갈색 반점과 피부톤은 피코토닝·제네시스 색소치료 안내에서 확인하세요. 치료 차이와 비용, 시술 후 관리에 관한 질문을 모았습니다.</p>
-          <ul className="mt-5 space-y-3 text-sm font-medium text-primary">
-            <li><Link href="/skin/pigmentation" className="underline underline-offset-4">색소치료 · 피코토닝·제네시스 안내 →</Link></li>
-            <li><Link href={postPath("skin", "기미-주근깨-흑자-차이")} className="underline underline-offset-4">기미·주근깨·흑자, 어떻게 구분하나요? →</Link></li>
-          </ul>
-        </div>
-      </section>
 
       {/* ── CTA ── */}
       <section className="bg-[var(--surface)]">

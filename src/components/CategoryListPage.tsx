@@ -184,7 +184,6 @@ export default function CategoryListPage({ category }: { category: Category }) {
 
       {/* 네이버 하위링크 카드용 대표이미지 — 본문 최상단의 첫 이미지이자 최대 이미지.
           /autonomic 은 이번 캐러셀 타깃이 아니라 배너를 두지 않는다. */}
-      {category !== "autonomic" && <FocusReadings focus={category} />}
       {category === "diet" && <DietQuestionGuide showCost />}
       {category !== "autonomic" && category !== "pain" && <PageHeroBanner page={category} />}
 
@@ -464,6 +463,7 @@ export default function CategoryListPage({ category }: { category: Category }) {
       </section>
       )}
 
+      {category !== "autonomic" && <FocusReadings focus={category} questions={false} />}
       {category === "pain" && <MobileConsultationBar label="통증 진료 문의" />}
     </>
   );

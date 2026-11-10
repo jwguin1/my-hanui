@@ -135,11 +135,6 @@ export default function PigmentationPage() {
           <p className="text-sm leading-relaxed text-muted">상담한 원장이 피부 상태에 따라 피코하이 또는 엘리멘트 TL 중 필요한 장비를 선택해 시술합니다. 레이저 시술 시간은 20분 이내이며, 상담·준비 시간은 별도입니다.</p>
           <PriceTable rowLabel="시술" caption={PIGMENTATION_PRICES.name} headers={["1회", "10회"]} rows={[{ name: "피코 트리플 토닝", price: won(PIGMENTATION_PRICES.single), price2: won(PIGMENTATION_PRICES.tenSessions) }]} note={`10회 패키지 회당 ${won(PIGMENTATION_PRICES.perSession)} · ${PIGMENTATION_PRICES.booster} 흑자 개별 치료 범위와 포함 여부는 상담 시 확인하세요.`} />
           <Link href={postPath("skin", "피코토닝-가격-제네시스")} className="block text-sm font-medium text-primary underline underline-offset-4">한 번 방문하면 무엇을 받나요? 구성·시간·가격 안내 →</Link>
-          <div className="card p-5">
-            <h3 className="font-semibold text-ink">탄력과 턱선도 고민이라면</h3>
-            <p className="mt-2 text-sm leading-relaxed text-muted">슈링크·볼뉴머의 300·600샷 비용과 함께 받는 패키지, 시술 간격을 리프팅 안내에서 확인하세요.</p>
-            <Link href={LIFTING_PATH} className="mt-3 inline-block text-sm font-medium text-primary underline underline-offset-4">슈링크·볼뉴머 리프팅·비용 안내 →</Link>
-          </div>
         </div>
       </div>
     </section>
@@ -147,6 +142,7 @@ export default function PigmentationPage() {
     <section className="bg-[var(--bg)]"><div className="section-padding">
       <div className="mx-auto max-w-3xl text-center"><SectionBadge icon={<ListCheck size={15} />} label="진료 과정" /><div className="mt-4"><TwoTone as="h2" lead="고민 부위부터 " accent="경과 확인까지" /></div></div>
       <ol className="mx-auto mt-12 max-w-2xl">{STEPS.map((s, i) => <NumberedStep key={s.title} index={i + 1} title={s.title} body={s.body} last={i === STEPS.length - 1} />)}</ol>
+      <p className="mx-auto mt-6 max-w-2xl"><Link href={postPath("skin", "피부레이저-담당-의료진")} className="inline-flex min-h-11 items-center text-sm font-medium text-primary underline underline-offset-4">피부레이저 담당 원장과 상담 안내 →</Link></p>
     </div></section>
 
     <section className="bg-[var(--surface)]"><div className="section-padding">
@@ -154,6 +150,10 @@ export default function PigmentationPage() {
       <div className="mx-auto mt-12 flex max-w-4xl flex-col gap-3">{QUESTIONS.map((q) => <QARow key={q.q} quote={q.q} answer={q.a} />)}</div>
     </div></section>
 
+    <nav aria-label="함께 살펴볼 피부 진료" className="mx-auto flex max-w-3xl flex-wrap gap-x-6 gap-y-2 px-6 pt-8 text-sm font-medium text-primary">
+      <Link href="/skin/spot" className="inline-flex min-h-11 items-center underline underline-offset-4">점·편평사마귀·쥐젖 제거 →</Link>
+      <Link href={LIFTING_PATH} className="inline-flex min-h-11 items-center underline underline-offset-4">슈링크·볼뉴머 리프팅 →</Link>
+    </nav>
     <section className="section-padding"><div className="mx-auto max-w-3xl text-center">
       <h2 className="font-serif text-xl font-semibold text-ink">일산한의원 피부·색소 상담</h2>
       <p className="mt-4 text-sm leading-relaxed text-muted">가장 신경 쓰이는 부위와 이전 시술 이력을 알려주세요.<br />피부 상태와 치료 방향을 함께 살펴봅니다.</p>
