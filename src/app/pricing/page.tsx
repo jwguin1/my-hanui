@@ -89,18 +89,26 @@ export default function PricingPage() {
         <DetailLink href="/diet/program">일산감비환 처방과 복용 안내</DetailLink>
       </PriceSection>
       <PriceSection id="skin" title="잡티제거 · 맞춤 레이저 · 토닝관리 · 리프팅 · 제모">
+        <nav aria-label="피부 진료비 바로가기" className="flex flex-wrap gap-3">
+          <Link href="#pigmentation" className="inline-flex min-h-11 items-center rounded-xl border border-line bg-white px-4 font-medium text-primary">색소·홍조·재생치료</Link>
+          <Link href="#toning" className="inline-flex min-h-11 items-center rounded-xl border border-line bg-white px-4 font-medium text-primary">토닝관리</Link>
+        </nav>
         <PriceTable caption="CO₂ 레이저 잡티제거 · 비급여" headers={SPOT_PRICE_HEADERS} rows={SPOT_PRICE_ROWS.map(row => ({ name: row.name, price: won(row.upTo100), price2: won(row.unlimited) }))} />
         <p>점·편평사마귀·쥐젖을 살펴보고 치료 범위를 정합니다. 시술 시간은 부위와 개수에 따라 방문 전 안내해드립니다.</p>
         <p>재생크림은 별도 구매입니다. {AFTERCARE_PRODUCTS.map(p => `${p.name} ${p.volume} ${won(p.price)}`).join(" · ")}.</p>
         <DetailLink href="/skin/spot">잡티제거 과정과 관리</DetailLink>
-        <PriceTable caption="색소·홍조·재생치료 · 비급여" rows={[
-          { name: "1회", price: won(PIGMENTATION_PRICES.single) },
-          { name: "10회", price: won(PIGMENTATION_PRICES.tenSessions) },
+        <h3 id="pigmentation" className="scroll-mt-36 pt-6 text-xl font-bold text-ink">색소·홍조·재생치료</h3>
+        <p>색소·홍조·실핏줄·피부결을 살펴 필요한 레이저를 선택하는 맞춤 치료입니다.</p>
+        <PriceTable caption="맞춤 레이저 치료 · 비급여 · 부가세 포함" rows={[
+          { name: "1회", price: painWon(PIGMENTATION_PRICES.single) },
+          { name: "10회", price: painWon(PIGMENTATION_PRICES.tenSessions) },
         ]} />
         <p>{PIGMENTATION_PRICES.selection}</p>
         <p>레이저 시술 시간은 20분 이내이며, 상담·준비 시간은 별도입니다.</p>
         <DetailLink href="/skin/pigmentation">색소·홍조·재생 맞춤 치료 안내</DetailLink>
-        <PriceTable caption="토닝관리 · 1회 · 부가세 포함" rows={[
+        <h3 id="toning" className="scroll-mt-36 pt-6 text-xl font-bold text-ink">토닝관리</h3>
+        <p>피부결을 위한 제네시스 토닝과 피부톤을 위한 피코토닝 중 한 가지를 선택하는 관리입니다.</p>
+        <PriceTable caption="토닝관리 · 각 1회 · 비급여 · 부가세 포함" rows={[
           { name: "제네시스 토닝", includes: "엘리멘트 TL", price: painWon(TONING_PRICES.genesis) },
           { name: "피코토닝", includes: "피코하이", price: painWon(TONING_PRICES.pico) },
         ]} />

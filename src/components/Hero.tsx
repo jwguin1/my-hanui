@@ -1,5 +1,6 @@
 import { CLINIC } from "@/lib/clinic";
 import Link from "next/link";
+import { PIGMENTATION_PRICES, TONING_PRICES, painWon } from "@/lib/pricing";
 import PillButton from "@/components/ui/PillButton";
 import {
   Clock,
@@ -84,6 +85,22 @@ export default function Hero() {
               </Link>
             </li>)}
           </ul>
+          <div className="mt-5 border-t border-line pt-4">
+            <h3 className="text-base font-semibold text-ink">피부 레이저 · 치료와 관리</h3>
+            <div className="mt-3 grid gap-3">
+              <Link href="/skin/pigmentation" className="rounded-xl border border-line bg-[var(--bg)] p-4 transition-colors hover:border-primary/40 focus-visible:outline-2 focus-visible:outline-primary">
+                <span className="block text-base font-semibold text-ink">색소·홍조·재생치료 →</span>
+                <span className="mt-1 block text-sm leading-relaxed text-muted">피부 상태에 맞춰 레이저 선택</span>
+                <span className="mt-2 block text-sm font-medium text-primary">1회 {painWon(PIGMENTATION_PRICES.single)} · 10회 {painWon(PIGMENTATION_PRICES.tenSessions)}</span>
+              </Link>
+              <Link href="/skin/toning" className="rounded-xl border border-line bg-[var(--bg)] p-4 transition-colors hover:border-primary/40 focus-visible:outline-2 focus-visible:outline-primary">
+                <span className="block text-base font-semibold text-ink">토닝관리 →</span>
+                <span className="mt-1 block text-sm leading-relaxed text-muted">피부결은 제네시스 · 피부톤은 피코토닝</span>
+                <span className="mt-2 block text-sm font-medium text-primary">각 1회 {painWon(TONING_PRICES.genesis)}</span>
+              </Link>
+            </div>
+            <p className="mt-2 text-xs text-muted">부가세 포함</p>
+          </div>
           <div className="mt-4 flex flex-wrap gap-x-5"><Link href="/pricing" className="inline-flex min-h-11 items-center text-[14px] font-medium text-primary underline underline-offset-4">진료비·시간 안내 →</Link><Link href="/contact#before-visit" className="inline-flex min-h-11 items-center text-[14px] font-medium text-primary underline underline-offset-4">접수 마감·휴진일 →</Link></div>
         </nav>
       </div>
