@@ -91,7 +91,7 @@ const TREATMENT_LINKS = [
   { href: "/herbal/insurance", heading: "보험한약", ogImage: "/herbal/insurance/opengraph-image" },
   { href: "/herbal/tonic", heading: "체질보약", ogImage: "/herbal/tonic/opengraph-image" },
   { href: "/diet/program", heading: "일산감비환", ogImage: "/images/cards/diet-program.png" },
-  { href: "/skin/spot", heading: "잡티제거", ogImage: "/images/cards/skin-spot.png" },
+  { href: "/skin", heading: "피부·레이저", ogImage: "/images/cards/skin-spot.png" },
   { href: "/home-visit", heading: "방문진료", ogImage: "/home-visit/opengraph-image" },
   { href: "/herbs", heading: "오늘의 한약", ogImage: "/herbal/tonic/opengraph-image" },
 ] as const;
