@@ -1,4 +1,5 @@
 import Image from "next/image";
+import SkinDeviceGallery from "@/components/SkinDeviceGallery";
 import PatientJourney from "@/components/PatientJourney";
 import PatientQuestions from "@/components/PatientQuestions";
 import SectionJumpNav from "@/components/SectionJumpNav";
@@ -240,7 +241,8 @@ export default function SkinSpotPage() {
               </div>
             </div>
 
-            <div className="mx-auto mt-14 grid max-w-3xl gap-5 sm:grid-cols-2">
+            <div className="mx-auto mt-8 max-w-3xl"><SkinDeviceGallery ids={["upulse"]} /></div>
+            <div className="mx-auto mt-6 grid max-w-3xl gap-5 sm:grid-cols-2">
               {DEVICE.map((d) => (
                 <div key={d.title} className="card p-6">
                   <IconTile icon={d.icon} />

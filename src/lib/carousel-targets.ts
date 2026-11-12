@@ -51,7 +51,7 @@ export const CAROUSEL_TARGETS = {
   skin: {
     path: "/skin",
     // 상세 진료는 잡티제거·색소치료·리프팅·제모 페이지에서 안내한다.
-    title: "피부 · 레이저 – CO₂, 점·편평사마귀",
+    title: "피부 · 레이저 – 잡티제거·토닝·리프팅·제모",
     navLabel: "피부 · 레이저",
     hero: {
       src: "/images/hero/skin-hero.jpg",

@@ -282,6 +282,7 @@ function listPaths() {
     "/skin/spot",
     "/skin/pigmentation",
     "/skin/toning",
+    "/skin/agnes",
     "/skin/lifting",
     "/skin/hair-removal",
     "/skin/questions",

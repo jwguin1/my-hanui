@@ -124,7 +124,7 @@
   }
 
   /* 첫 화면은 PC와 모바일 모두 같은 고딕 계열을 사용한다. */
-  .home-hero {
+  .home-hero, .skin-treatment {
     font-family: "Pretendard Variable", -apple-system, BlinkMacSystemFont, "Segoe UI", "Malgun Gothic", sans-serif;
   }
 

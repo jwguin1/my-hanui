@@ -139,6 +139,7 @@ const SEGMENT_LABELS: Record<string, string> = {
   spot: "잡티 제거",
   pigmentation: "색소·홍조·재생치료",
   toning: "토닝관리",
+  agnes: "아그네스 RF",
   lifting: "리프팅",
   "hair-removal": "얼굴 제모",
   about: "병원 소개",

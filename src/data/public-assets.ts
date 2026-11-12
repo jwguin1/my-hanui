@@ -2340,6 +2340,30 @@ export const publicAssets: Record<string, {width:number;height:number}|null> = {
     "width": 1280,
     "height": 853
   },
+  "/images/devices/agnes.webp": {
+    "width": 720,
+    "height": 720
+  },
+  "/images/devices/element-tl.webp": {
+    "width": 720,
+    "height": 720
+  },
+  "/images/devices/picohi.webp": {
+    "width": 720,
+    "height": 720
+  },
+  "/images/devices/shurink-universe.webp": {
+    "width": 720,
+    "height": 720
+  },
+  "/images/devices/upulse.webp": {
+    "width": 720,
+    "height": 720
+  },
+  "/images/devices/volnewmer.webp": {
+    "width": 720,
+    "height": 720
+  },
   "/images/diet-og.jpg": {
     "width": 1200,
     "height": 630

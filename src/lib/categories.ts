@@ -46,7 +46,7 @@ export const CATEGORY_META: Record<Category, CategoryMeta> = {
     label: "피부",
     fullLabel: "피부 · 미용레이저",
     description:
-      "잡티 제거부터 색소·홍조·재생치료와 토닝관리, 슈링크·볼뉴머 리프팅과 얼굴·수염 제모까지. 일산한의원의 시술별 가격·간격·관리 방법과 환자들이 자주 묻는 질문을 한곳에서 확인하세요.",
+      "잡티제거, 색소·홍조·재생치료, 토닝관리, 리프팅, 제모를 한눈에 비교하세요. 일산한의원의 장비별 진료 안내와 아그네스 RF, 시술 가격·관리 방법·자주 묻는 질문을 확인할 수 있습니다.",
     ogImage: "/images/skin-og.jpg",
   },
 };

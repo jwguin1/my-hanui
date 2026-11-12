@@ -62,6 +62,7 @@ export const SITE_NAV: NavGroup[] = [
           { href: "/skin/toning", label: "토닝관리 · 제네시스·피코" },
           { href: "/skin/lifting", label: "리프팅 · 슈링크·볼뉴머" },
           { href: "/skin/hair-removal", label: "제모 · 얼굴·수염" },
+          { href: "/skin/agnes", label: "아그네스 · 미세침 고주파" },
         ],
       },
     ],

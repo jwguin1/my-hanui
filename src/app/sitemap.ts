@@ -100,6 +100,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.9,
     },
     {
+      url: `${BASE_URL}/skin/agnes`,
+      lastModified: new Date("2026-11-12T00:00:00+09:00"),
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
       url: `${BASE_URL}/accident`,
       changeFrequency: "monthly",
       priority: 0.9,
