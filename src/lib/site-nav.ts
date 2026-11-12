@@ -58,7 +58,8 @@ export const SITE_NAV: NavGroup[] = [
         items: [
           { href: "/diet/program", label: "일산감비환 · 다이어트" },
           { href: "/skin/spot", label: "잡티 제거" },
-          { href: "/skin/pigmentation", label: "색소치료" },
+          { href: "/skin/pigmentation", label: "색소·홍조·재생치료" },
+          { href: "/skin/toning", label: "토닝관리 · 제네시스·피코" },
           { href: "/skin/lifting", label: "리프팅 · 슈링크·볼뉴머" },
           { href: "/skin/hair-removal", label: "제모 · 얼굴·수염" },
         ],

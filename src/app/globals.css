@@ -534,3 +534,22 @@ article p > em:only-child,
     font-size: 1.8rem;
   }
 }
+
+/* Shared FAQ typography: separate question hierarchy from comfortable answer text. */
+.faq-item summary, .faq-item summary h3 {
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
+  font-weight: 650;
+  line-height: 1.65;
+  color: var(--ink);
+}
+.faq-item summary { min-height: 44px; }
+.faq-item > p {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.85;
+  color: #665b50;
+}
+@media (min-width: 768px) {
+  .faq-item summary, .faq-item summary h3 { font-size: 1.125rem; }
+}

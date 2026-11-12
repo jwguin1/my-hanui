@@ -1,7 +1,7 @@
 import { CONSULTATION_GUIDE_SLUGS } from "./regional-guides";
 /** 피부 진료 안내와 관련 글의 표시 순서. 제목·요약은 실제 글에서 읽는다. */
 export const PIGMENTATION_PATH = "/skin/pigmentation";
-export const PIGMENTATION_UPDATED = "2026-10-27";
+export const PIGMENTATION_UPDATED = "2026-11-12";
 export const LIFTING_PATH = "/skin/lifting";
 export const LIFTING_UPDATED = "2026-10-27";
 export const VOLNEWMER_SLUGS: readonly string[] = [
@@ -33,7 +33,7 @@ export const SHURINK_CARE = {
 } as const;
 
 export const PIGMENTATION_GROUPS = [
-  { id: "first-visit", name: "토닝을 처음 알아보신다면", slugs: ["한의원-피코토닝-상담-시술", "피부레이저-담당-의료진", "피코토닝-가격-제네시스", "일산-스킨부스터-리쥬란-쥬베룩"] },
+  { id: "first-visit", name: "맞춤 치료와 토닝관리", slugs: ["한의원-피코토닝-상담-시술", "피부레이저-담당-의료진", "피코토닝-가격-제네시스"] },
   { id: "pigment", name: "기미·잡티·흑자", slugs: ["피코토닝-효과-횟수", "흑자제거-피코레이저", "기미-주근깨-흑자-차이", "기미레이저-재발-관리"] },
   { id: "genesis", name: "제네시스·피부결·홍조", slugs: ["제네시스토닝-효과", "피코토닝-제네시스-차이", "피코토닝-피부톤-미백", "제네시스-피부장벽-민감피부"] },
   { id: "cost-care", name: "시술 후 관리", slugs: ["토닝후-색소침착-딱지"] },
@@ -114,10 +114,11 @@ export const SKIN_RELATED: Record<string, readonly string[]> = {
 };
 
 export function skinPostHub(slug: string) {
+  if (["제네시스토닝-효과", "피코토닝-제네시스-차이", "피코토닝-효과-횟수", "피코토닝-피부톤-미백", "제네시스-피부장벽-민감피부"].includes(slug)) return { href: "/skin/toning", label: "제네시스·피코토닝 관리 · 가격과 샷 수" };
   if (CONSULTATION_GUIDE_SLUGS.includes(slug)) return { href: "/skin/questions", label: "피부 고민·치료 선택 질문 모음" };
   if (HAIR_REMOVAL_SLUGS.includes(slug)) return { href: HAIR_REMOVAL_PATH, label: "얼굴·수염 제모 · 엘리멘트 TL 안내" };
   if (LIFTING_SLUGS.includes(slug)) return { href: LIFTING_PATH, label: "리프팅 · 슈링크·볼뉴머 안내" };
   return PIGMENTATION_SLUGS.includes(slug)
-    ? { href: PIGMENTATION_PATH, label: "색소치료 · 피코토닝·제네시스 안내" }
+    ? { href: PIGMENTATION_PATH, label: "색소·홍조·재생치료 안내" }
     : { href: "/skin/spot", label: "잡티 제거 · 점·편평사마귀·쥐젖·비립종 안내" };
 }

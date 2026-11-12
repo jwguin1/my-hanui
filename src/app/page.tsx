@@ -207,7 +207,7 @@ export default async function Home() {
             {FAQS.map((faq, i) => (
               <details
                 key={i}
-                className="card group p-5 transition-colors open:border-primary/40"
+                className="faq-item card group p-5 transition-colors open:border-primary/40"
               >
                 <summary className="flex cursor-pointer items-start justify-between gap-4 list-none">
                   <h3 className="text-base font-semibold leading-relaxed text-ink group-open:text-primary">

@@ -88,7 +88,7 @@ const GEO_BOUNDS = { latMin: 37.6, latMax: 37.72, lngMin: 126.72, lngMax: 126.92
  * 잡히지 않는다 — 좌표가 144일 살아남은 것과 같은 구조다.
  * 값 검사는 어렵지만 금지어 검사는 비용이 거의 없다.
  *
- *   전문의          확인된 전문의 자격이 없다.
+ *   전문의          2026-11-08 확인한 오서혜 원장의 한방내과 전문의만 별도 검증한다.
  *   인증의          2026-10-16 원장 확인: 장경진 원장의 대한통합레이저의학회 인증의만 별도 검증한다.
  *   초음파사        RMSK 는 의사 자격이고 sonographer 등급은 ARDMS 의 RMSKS 다
  *   RMDS           APCA 가 발급하지 않는 조합 — 존재하지 않는 자격
@@ -281,6 +281,7 @@ function listPaths() {
     "/skin",
     "/skin/spot",
     "/skin/pigmentation",
+    "/skin/toning",
     "/skin/lifting",
     "/skin/hair-removal",
     "/skin/questions",
@@ -858,9 +859,15 @@ function validate(pagePath, html) {
         `numberOfEmployees(${empValue}) 가 /doctor 의 Physician ${physicians.length}명과 다르다`
       );
     for (const physician of physicians) {
-      if (!physician.memberOf?.some((society) => society.name === "대한통합레이저의학회"))
-        errors.push(`${physician.name}: 확인된 대한통합레이저의학회 회원 정보 누락`);
+      const laserMember = physician.memberOf?.some((society) => society.name === "대한통합레이저의학회");
+      if (Boolean(laserMember) !== (physician.name === "장경진"))
+        errors.push(`${physician.name}: 레이저학회 회원 표시는 장경진 원장만 허용`);
     }
+    const specialist = physicians.find(p => p.name === "오서혜");
+    const specialistCredentials = (specialist?.hasCredential ?? []).filter(c => JSON.stringify(c).includes("전문의"));
+    if (specialist?.jobTitle !== "한의사 · 한방내과 전문의" || specialistCredentials.length !== 1 ||
+        specialistCredentials[0].name !== "한방내과 전문의" || specialistCredentials[0].credentialCategory !== "전문의")
+      errors.push("오서혜 원장의 확인된 한방내과 전문의 자격이 누락되거나 달라졌다");
     const certificates = physicians.flatMap((physician) =>
       (physician.hasCredential ?? []).filter((credential) => credential.name?.includes("인증의"))
         .map((credential) => ({ physician, credential }))
@@ -873,7 +880,13 @@ function validate(pagePath, html) {
 
   /* ── 금지 문자열 ── 구조가 아니라 내용을 본다 ── */
   for (const word of FORBIDDEN_IN_JSONLD) {
-    if (blocks[0].includes(word))
+    const checked = word === "전문의" ? JSON.stringify(graph.map(n => {
+      if (n["@type"] !== "Physician" || n.name !== "오서혜") return n;
+      return { ...n, jobTitle: n.jobTitle?.replace("한방내과 전문의", "한방내과 자격"),
+        hasCredential: n.hasCredential?.map(c => c.name === "한방내과 전문의" && c.credentialCategory === "전문의"
+          ? { ...c, name: "한방내과 자격", credentialCategory: "자격" } : c) };
+    })) : blocks[0];
+    if (checked.includes(word))
       errors.push(`JSON-LD 에 금지 표현 "${word}" 가 있다`);
   }
 
@@ -1272,14 +1285,24 @@ if (PROD === "off") {
     console.log(
       `슬러그 변경    프로덕션 글 ${live.length}건 대조 · 사라진 URL ${gone.length}건`
     );
-    if (gone.length) {
-      failed += 1;
-      console.log("  ! 이미 색인된 글 URL 이 이번 빌드에 없다. 리다이렉트 없이 배포하면 404 다.");
-      console.log("    next.config.ts 의 redirects() 에 아래를 추가하고 다시 돌릴 것:");
-      for (const p of gone) {
-        console.log(`      { source: "${p}", destination: "<새 URL>", permanent: true },`);
+    const missingRedirects = [];
+    for (const oldPath of gone) {
+      const response = await fetch(`${BASE}${oldPath}`, { redirect: "manual" });
+      const location = response.headers.get("location");
+      const destination = location ? new URL(location, BASE) : null;
+      const internal = destination?.origin === new URL(BASE).origin;
+      const known = internal && paths.includes(destination.pathname);
+      const permanent = response.status === 301 || response.status === 308;
+      if (permanent && known && (await fetch(destination.href, { redirect: "manual" })).status === 200) {
+        console.log(`  ok 영구 이동 ${oldPath} → ${destination.pathname}`);
+      } else {
+        missingRedirects.push(oldPath);
+        console.log(`  ! ${oldPath}: 정상 페이지로 향하는 301/308 이동 필요 (응답 ${response.status})`);
       }
-      failures.push(`슬러그 변경으로 사라진 URL ${gone.length}건: ${gone.join(", ")}`);
+    }
+    if (missingRedirects.length) {
+      failed += 1;
+      failures.push(`영구 이동 없이 사라진 URL ${missingRedirects.length}건: ${missingRedirects.join(", ")}`);
     }
   } catch (e) {
     console.log(`슬러그 변경    확인 실패 — 검사하지 못했다 (${e.message})`);

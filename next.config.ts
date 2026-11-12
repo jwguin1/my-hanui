@@ -30,6 +30,7 @@ const nextConfig: NextConfig = {
     // 이전 건강정보 경로 중 현재 같은 원고가 남아 있는 주소만 이전한다.
     // 미발행 welcome과 삭제된 글은 404를 유지하며, 검토 중 원고의 noindex도 유지한다.
     return [
+      { source: encodeURI("/skin/일산-스킨부스터-리쥬란-쥬베룩"), destination: "/skin/pigmentation", permanent: true },
       // Host 조건으로 연구노트 서브도메인의 내부 rewrite와 충돌하지 않게 한다.
       {
         source: "/research/:path*",

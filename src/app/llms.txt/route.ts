@@ -12,7 +12,7 @@ import {
 import { getAllPosts } from "@/lib/blog-local";
 import { DISEASE_GUIDES } from "@/lib/disease-guides";
 import { PIGMENTATION_SLUGS, LIFTING_SLUGS, LIFTING_PATH, SHURINK_CARE, HAIR_REMOVAL_SLUGS } from "@/lib/skin-guides";
-import { PIGMENTATION_PRICES, SHURINK_PRICES, VOLNEWMER_PRICES, LIFTING_PACKAGE, HAIR_REMOVAL_PRICES, skinPrice, PAIN_PRICES, HERBAL_PRICES, PAIN_INSURANCE_NOTE, PHARMACOPUNCTURE_NOTE, HERBAL_INSURANCE_CONDITIONS, HERBAL_INSURANCE_LIMIT, won, painWon } from "@/lib/pricing";
+import { PIGMENTATION_PRICES, TONING_PRICES, SHURINK_PRICES, VOLNEWMER_PRICES, LIFTING_PACKAGE, HAIR_REMOVAL_PRICES, skinPrice, PAIN_PRICES, HERBAL_PRICES, PAIN_INSURANCE_NOTE, PHARMACOPUNCTURE_NOTE, HERBAL_INSURANCE_CONDITIONS, HERBAL_INSURANCE_LIMIT, won, painWon } from "@/lib/pricing";
 import { postPath } from "@/lib/slug";
 import { FOCUS_ORDER, FOCUS_GUIDES, focusPosts } from "@/lib/focus-guides";
 
@@ -112,7 +112,8 @@ ${closedLine}
 - 근골격계 초음파 진단 (${CLINIC.ultrasound.name} ${CLINIC.ultrasound.count}대)
 - 체외충격파, 무중력 감압치료
 - 피부 CO2 레이저 (점·편평사마귀·쥐젖 제거)
-- 색소치료: 피코하이 피코토닝 · 엘리멘트 TL 제네시스
+- 색소·홍조·재생치료: 피부에 맞춘 레이저 치료
+- 토닝관리: 제네시스 토닝 · 피코토닝
 - 슈링크 유니버스·볼뉴머 리프팅
 - 엘리멘트 TL 얼굴·수염 제모
 
@@ -146,7 +147,8 @@ ${searchGuideLinks}
 - 이명·어지럼·두통: ${BASE}/autonomic/care
 - 일산감비환 · 다이어트 한약 처방: ${BASE}/diet/program
 - 잡티 제거 (점·편평사마귀·쥐젖): ${BASE}/skin/spot
-- 색소치료 (피코토닝·제네시스·기미·흑자): ${BASE}/skin/pigmentation
+- 색소·홍조·재생치료: ${BASE}/skin/pigmentation
+- 토닝관리: ${BASE}/skin/toning
 - 리프팅 (슈링크 유니버스·볼뉴머·탄력·턱선): ${BASE}${LIFTING_PATH}
 
 ## 방문 시간·치료 과정·한약 조제
@@ -177,17 +179,19 @@ ${searchGuideLinks}
 - 통증 치료 비용 안내: ${BASE}/pain/chronic#prices
 - 한약 비용과 약재 확인 안내: ${BASE}/internal/dyspepsia#herbal-prices
 
-## 색소치료 질문과 비용
+## 색소·홍조·재생치료와 토닝관리
 
-상담한 원장이 피부 상태와 치료 목표를 확인하고 피코하이 또는 엘리멘트 TL 중 필요한 장비를 선택해 직접 시술합니다. 엘리멘트 TL은 532·755·1064nm 세 파장의 롱펄스 레이저입니다.
-- 레이저 시술 자체는 20분 이내이며 상담·준비 시간은 별도입니다. 최소 2,000샷을 기준으로 진행합니다.
-- 피부레이저 상담을 맡은 원장이 직접 시술합니다. 장경진 원장은 대한통합레이저의학회 정회원·인증의입니다.
-- 피부레이저 의료진 안내: ${BASE}/skin/피부레이저-담당-의료진
-
-2026-10-16 확인한 가격과 구성:
-- ${PIGMENTATION_PRICES.name}: 1회 ${won(PIGMENTATION_PRICES.single)}, 10회 ${won(PIGMENTATION_PRICES.tenSessions)} (회당 ${won(PIGMENTATION_PRICES.perSession)})
-- ${PIGMENTATION_PRICES.booster}
-- 흑자 개별 치료 범위와 포함 여부는 상담 시 확인합니다.
+상담한 원장이 피부 상태를 진단하고 필요한 레이저를 선택해 직접 시술합니다.
+- 색소: 755nm 롱펄스, 1064nm 피코, 532nm 피코.
+- 홍조·모세혈관: 532nm 롱펄스. 재생·피부결: 1064nm 롱펄스.
+- 피코하이: 1064·532nm 피코 레이저. 엘리멘트 TL: 755·1064·532nm 롱펄스 레이저.
+- 맞춤 치료: 1회 ${painWon(PIGMENTATION_PRICES.single)}, 10회 ${painWon(PIGMENTATION_PRICES.tenSessions)}.
+- 토닝관리: 엘리멘트 TL 제네시스 토닝 1회 ${painWon(TONING_PRICES.genesis)}, 피코하이 피코토닝 1회 ${painWon(TONING_PRICES.pico)}.
+- 토닝관리는 최소 2,000샷 이상, 얼굴 면적이 넓으면 3,000샷까지 진행합니다. 얼굴 크기와 피부 반응에 맞춰 조사합니다.
+- 위 가격은 모두 부가세 포함입니다. 2026-11-12 원내 기준.
+- 맞춤 치료: ${BASE}/skin/pigmentation
+- 토닝관리: ${BASE}/skin/toning
+- 피부레이저 의료진: ${BASE}/skin/피부레이저-담당-의료진
 
 ${pigmentLinks}
 

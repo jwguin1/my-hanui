@@ -129,7 +129,7 @@ export default function SiteNavDesktop() {
                   open ? "block" : "hidden"
                 }`}
               >
-                <div className="min-w-[190px] rounded-xl border border-line bg-card p-1.5">
+                <div className="max-h-[calc(100dvh-5rem)] min-w-[190px] overflow-y-auto overscroll-contain rounded-xl border border-line bg-card p-1.5">
                   {group.sections?.map((section, si) => (
                     <div
                       key={section.label ?? si}

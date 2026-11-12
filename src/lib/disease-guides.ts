@@ -493,12 +493,6 @@ export const DISEASE_GUIDES = [
     "keywords": "일산지방분해주사 일산지방흡입 일산람스 일산카복시"
   },
   {
-    "category": "skin",
-    "slug": "일산-스킨부스터-리쥬란-쥬베룩",
-    "group": "피부·시술 선택",
-    "keywords": "일산리쥬란 일산리쥬란힐러 일산스킨부스터"
-  },
-  {
     "category": "blog",
     "slug": "일산-헤드스파-두피관리",
     "group": "피부·시술 선택",

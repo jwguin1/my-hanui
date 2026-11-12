@@ -2536,6 +2536,14 @@ export const publicAssets: Record<string, {width:number;height:number}|null> = {
     "width": 1200,
     "height": 630
   },
+  "/images/skin/consultation.webp": {
+    "width": 1200,
+    "height": 800
+  },
+  "/images/skin/procedure.webp": {
+    "width": 1200,
+    "height": 716
+  },
   "/images/team-seven-mobile.avif": {
     "width": 720,
     "height": 434

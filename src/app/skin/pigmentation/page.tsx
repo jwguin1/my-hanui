@@ -1,167 +1,40 @@
-import ConsultationActions from "@/components/ConsultationActions";
 import Link from "next/link";
-import PageHeader from "@/components/ui/PageHeader";
-import SectionBadge from "@/components/ui/SectionBadge";
-import TwoTone from "@/components/ui/TwoTone";
-import DefinitionCard from "@/components/ui/DefinitionCard";
-import StatCard from "@/components/ui/StatCard";
-import IconTile from "@/components/ui/IconTile";
-import PriceTable from "@/components/ui/PriceTable";
-import QARow from "@/components/ui/QARow";
-import NumberedStep from "@/components/ui/NumberedStep";
-import PillButton from "@/components/ui/PillButton";
-import { Scan, HelpCircle, ChartBar, Flame, ListCheck } from "@/components/ui/icons";
-import ClinicVisitInfo from "@/components/ClinicVisitInfo";
 import JsonLd from "@/components/JsonLd";
+import SkinTreatmentLayout, { SkinSection, SkinFaq } from "@/components/SkinTreatmentLayout";
+import PriceTable from "@/components/ui/PriceTable";
 import { pageMetadata } from "@/lib/page-metadata";
+import { buildGraph, faqEntities } from "@/lib/schema";
+import { LASER_TARGETS, PIGMENTATION_FAQS } from "@/lib/skin-laser-care";
+import { PIGMENTATION_PRICES, painWon } from "@/lib/pricing";
+import { PIGMENTATION_GROUPS } from "@/lib/skin-guides";
 import { getAllPosts } from "@/lib/blog-local";
-import { buildGraph, faqEntities, itemListNode, absoluteUrl } from "@/lib/schema";
-import { PIGMENTATION_GROUPS, PIGMENTATION_SLUGS, PIGMENTATION_PATH, PIGMENTATION_UPDATED, LIFTING_PATH } from "@/lib/skin-guides";
-import { PIGMENTATION_PRICES, won, wonDigits } from "@/lib/pricing";
 import { postPath } from "@/lib/slug";
 
-const DESCRIPTION = "일산한의원 색소치료. 상담한 원장이 피코하이 또는 엘리멘트 TL을 선택해 시술합니다. 레이저 시술 20분 이내, 1회 8만8천원·10회 66만원. 담당 의료진과 방문 과정을 확인하세요.";
-
-export const metadata = pageMetadata({
-  path: PIGMENTATION_PATH,
-  title: "일산 색소치료 | 피코토닝·제네시스 비용과 기미·흑자 질문",
-  description: DESCRIPTION,
-  routeOgImage: true,
-});
-
-const QUESTIONS = [
-  { q: "기미와 흑자는 같은 치료를 받나요?", a: "넓게 퍼진 기미와 경계가 뚜렷한 흑자는 색소의 모습과 치료 범위를 살펴보고 접근합니다." },
-  { q: "피코토닝과 제네시스를 같은 날 받나요?", a: PIGMENTATION_PRICES.selection },
-  { q: "토닝 비용과 패키지 구성은 어떻게 되나요?", a: `${PIGMENTATION_PRICES.name}은 1회 ${won(PIGMENTATION_PRICES.single)}, 10회 ${won(PIGMENTATION_PRICES.tenSessions)}입니다. ${PIGMENTATION_PRICES.booster}` },
-  { q: "토닝 후 딱지가 없으면 효과가 없는 건가요?", a: "얼굴 전체 토닝과 특정 반점 치료는 회복 모습이 다릅니다. 같은 조명에서 색소 변화와 피부 회복 상태를 살펴봅니다." },
-];
-
-const DEVICES = [
-  { title: "피코하이", body: "기미·잡티 등 색소 고민에 사용하는 피코초 레이저입니다. 얼굴 전체의 피부톤과 눈에 띄는 반점을 살펴 치료 방향을 정합니다." },
-  { title: "엘리멘트 TL", body: "532·755·1064nm 세 파장을 갖춘 롱펄스 레이저입니다. 색소와 붉은기, 피부결 등 고민에 맞춰 파장과 조사 방식을 선택합니다." },
-];
-
-const STEPS = [
-  { title: "원장과 피부 고민 상담", body: "원장이 가장 신경 쓰이는 부위와 이전 시술 경험을 듣고 피부 상태를 살펴봅니다." },
-  { title: "치료 목표와 비용 상담", body: "피부톤·반점·붉은기·피부결 중 가장 바꾸고 싶은 부분을 정하고 치료 범위와 비용을 살펴봅니다." },
-  { title: "상담한 원장이 직접 시술", body: "피코하이 또는 엘리멘트 TL 중 필요한 장비를 선택합니다. 최소 2,000샷을 기준으로, 레이저 시술 자체는 20분 이내로 진행합니다." },
-  { title: "경과와 다음 일정 확인", body: "색소 변화와 회복 상태를 확인하며 다음 시술 시점과 유지 관리 방향을 정합니다." },
-];
+const description = "일산한의원 색소·홍조·재생치료. 피코하이와 엘리멘트 TL로 피부 상태에 맞는 755·1064·532nm 레이저를 선택합니다. 1회 88,000원·10회 660,000원. 치료 과정과 환자 질문을 확인하세요.";
+export const metadata = pageMetadata({ path: "/skin/pigmentation", title: "일산 색소·홍조·재생치료 | 내 피부에 맞춘 레이저·가격", description, routeOgImage: true });
 
 export default function PigmentationPage() {
   const posts = getAllPosts("skin");
-  const groups = PIGMENTATION_GROUPS.map((group) => ({
-    ...group,
-    posts: group.slugs.map((slug) => {
-      const post = posts.find((p) => p.slug === slug);
-      if (!post) throw new Error(`Missing pigmentation article: ${slug}`);
-      return post;
-    }),
-  }));
-  const graph = buildGraph({
-    path: PIGMENTATION_PATH,
-    name: "색소치료 · 피코토닝·제네시스 – 일산한의원",
-    description: DESCRIPTION,
-    image: `${PIGMENTATION_PATH}/opengraph-image`,
-    faq: faqEntities(QUESTIONS),
-    nodes: [itemListNode(PIGMENTATION_PATH, "questions", "색소치료 질문과 방문 안내", groups.flatMap((g) => g.posts).map((post) => ({ url: absoluteUrl(postPath("skin", post.slug)), name: post.title })))],
-  });
-
-  return <>
-    <JsonLd graph={graph} />
-    <PageHeader badge="피부 · 미용" icon={<Scan size={15} />} lead="기미·잡티부터 피부결까지" accent="색소치료" stacked description="피코하이 · 엘리멘트 TL / 피코토닝 · 제네시스" />
-
-    <section className="bg-[var(--bg)]">
-      <div className="section-padding">
-        <div className="mx-auto max-w-3xl">
-          <DefinitionCard title="색소치료란?" body="기미·주근깨·흑자 등 갈색 색소를 옅게 하고 피부톤을 고르게 만드는 치료입니다. 일산한의원에서는 피코하이와 엘리멘트 TL을 이용해 색소와 함께 붉은기·피부결 고민을 상담합니다." />
-          <p className="mt-6 text-center text-[15px] leading-relaxed text-muted">얼굴 전체의 얼룩인지, 반점 하나인지.<br />가장 신경 쓰이는 부분부터 함께 살펴봅니다.</p>
-          <div className="mt-10 grid gap-4 sm:grid-cols-3">
-            <StatCard value={wonDigits(PIGMENTATION_PRICES.single)} unit="원" label="피코 트리플 토닝 1회" />
-            <StatCard value={wonDigits(PIGMENTATION_PRICES.tenSessions)} unit="원" label="10회" />
-            <StatCard value={String(PIGMENTATION_SLUGS.length)} unit="가지" label="질문별로 읽는 치료 안내" />
-          </div>
-          <nav aria-label="색소치료 페이지 바로가기" className="mt-8 flex flex-wrap justify-center gap-3">
-            <PillButton href="#first-visit" variant="solid">처음 방문 안내</PillButton>
-            <PillButton href="#questions" variant="outline">궁금한 질문 찾기</PillButton>
-            <PillButton href="#prices" variant="outline">비용 안내</PillButton>
-            <PillButton href="#devices" variant="outline">사용 장비</PillButton>
-          </nav>
-          <p className="mt-5 text-center text-xs text-muted">최종 업데이트 <time dateTime={PIGMENTATION_UPDATED}>{PIGMENTATION_UPDATED.replaceAll("-", ".")}</time></p>
-        </div>
-      </div>
-    </section>
-
-    <section id="questions" className="scroll-mt-28 bg-[var(--surface)]">
-      <div className="section-padding">
-        <div className="mx-auto max-w-3xl text-center">
-          <SectionBadge icon={<HelpCircle size={15} />} label="질문별 치료 안내" />
-          <div className="mt-4"><TwoTone as="h2" lead="궁금한 것부터 " accent="읽어보세요" /></div>
-          <nav aria-label="질문 주제" className="mt-6 flex flex-wrap justify-center gap-x-5 gap-y-3 text-sm text-primary">
-            {groups.map((g) => <a key={g.id} href={`#${g.id}`} className="underline underline-offset-4">{g.name}</a>)}
-          </nav>
-        </div>
-        <div className="mx-auto mt-12 max-w-4xl space-y-12">
-          {groups.map((g) => <section key={g.id} id={g.id} className="scroll-mt-28" aria-labelledby={`${g.id}-title`}>
-            <h3 id={`${g.id}-title`} className="font-serif border-b border-line pb-3 text-xl font-semibold text-ink">{g.name}</h3>
-            <ul className="mt-5 grid gap-3 sm:grid-cols-2">
-              {g.posts.map((post) => <li key={post.slug}>
-                <Link href={postPath("skin", post.slug)} className="card group flex h-full flex-col p-5 transition-colors hover:border-primary focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary">
-                  <h4 className="text-[16px] font-semibold leading-relaxed text-ink group-hover:text-primary">{post.title}</h4>
-                  <p className="mt-3 flex-1 text-sm leading-relaxed text-muted">{post.description}</p>
-                  <span aria-hidden="true" className="mt-4 text-primary">답변 읽기 →</span>
-                </Link>
-              </li>)}
-            </ul>
-          </section>)}
-        </div>
-      </div>
-    </section>
-
-    <section id="devices" className="scroll-mt-28 bg-[var(--bg)]">
-      <div className="section-padding">
-        <div className="mx-auto max-w-3xl text-center"><SectionBadge icon={<Flame size={15} />} label="사용 장비" /><div className="mt-4"><TwoTone as="h2" lead="색소와 피부결에 맞춘 " accent="두 가지 장비" /></div></div>
-        <div className="mx-auto mt-12 grid max-w-3xl gap-5 sm:grid-cols-2">
-          {DEVICES.map((d) => <div key={d.title} className="card p-6"><IconTile icon={<Scan />} /><h3 className="mt-4 text-lg font-semibold text-ink">{d.title}</h3><p className="mt-2 text-sm leading-[1.8] text-muted">{d.body}</p></div>)}
-        </div>
-        <p className="mx-auto mt-6 max-w-3xl text-sm leading-relaxed text-muted">점·편평사마귀·쥐젖이 고민이라면 <Link href="/skin/spot" className="font-medium text-primary underline underline-offset-4">CO2 레이저 잡티 제거 안내</Link>에서 치료와 부위별 비용을 확인하세요.</p>
-      </div>
-    </section>
-
-    <section id="prices" className="scroll-mt-28 bg-[var(--surface)]">
-      <div className="section-padding">
-        <div className="mx-auto max-w-3xl text-center"><SectionBadge icon={<ChartBar size={15} />} label="비용 안내" /><div className="mt-4"><TwoTone as="h2" lead="피코 트리플 토닝 " accent="구성과 비용" /></div></div>
-        <div className="mx-auto mt-12 max-w-3xl space-y-6">
-          <p className="text-sm leading-relaxed text-muted">상담한 원장이 피부 상태에 따라 피코하이 또는 엘리멘트 TL 중 필요한 장비를 선택해 시술합니다. 레이저 시술 시간은 20분 이내이며, 상담·준비 시간은 별도입니다.</p>
-          <PriceTable rowLabel="시술" caption={PIGMENTATION_PRICES.name} headers={["1회", "10회"]} rows={[{ name: "피코 트리플 토닝", price: won(PIGMENTATION_PRICES.single), price2: won(PIGMENTATION_PRICES.tenSessions) }]} note={`10회 패키지 회당 ${won(PIGMENTATION_PRICES.perSession)} · ${PIGMENTATION_PRICES.booster} 흑자 개별 치료 범위와 포함 여부는 상담 시 확인하세요.`} />
-          <Link href={postPath("skin", "피코토닝-가격-제네시스")} className="block text-sm font-medium text-primary underline underline-offset-4">한 번 방문하면 무엇을 받나요? 구성·시간·가격 안내 →</Link>
-        </div>
-      </div>
-    </section>
-
-    <section className="bg-[var(--bg)]"><div className="section-padding">
-      <div className="mx-auto max-w-3xl text-center"><SectionBadge icon={<ListCheck size={15} />} label="진료 과정" /><div className="mt-4"><TwoTone as="h2" lead="고민 부위부터 " accent="경과 확인까지" /></div></div>
-      <ol className="mx-auto mt-12 max-w-2xl">{STEPS.map((s, i) => <NumberedStep key={s.title} index={i + 1} title={s.title} body={s.body} last={i === STEPS.length - 1} />)}</ol>
-      <p className="mx-auto mt-6 max-w-2xl"><Link href={postPath("skin", "피부레이저-담당-의료진")} className="inline-flex min-h-11 items-center text-sm font-medium text-primary underline underline-offset-4">피부레이저 담당 원장과 상담 안내 →</Link></p>
-    </div></section>
-
-    <section className="bg-[var(--surface)]"><div className="section-padding">
-      <div className="mx-auto max-w-3xl text-center"><SectionBadge icon={<HelpCircle size={15} />} label="자주 묻는 질문" /><div className="mt-4"><TwoTone as="h2" lead="먼저 궁금한 " accent="네 가지" /></div></div>
-      <div className="mx-auto mt-12 flex max-w-4xl flex-col gap-3">{QUESTIONS.map((q) => <QARow key={q.q} quote={q.q} answer={q.a} />)}</div>
-    </div></section>
-
-    <nav aria-label="함께 살펴볼 피부 진료" className="mx-auto flex max-w-3xl flex-wrap gap-x-6 gap-y-2 px-6 pt-8 text-sm font-medium text-primary">
-      <Link href="/skin/spot" className="inline-flex min-h-11 items-center underline underline-offset-4">점·편평사마귀·쥐젖 제거 →</Link>
-      <Link href={LIFTING_PATH} className="inline-flex min-h-11 items-center underline underline-offset-4">슈링크·볼뉴머 리프팅 →</Link>
-    </nav>
-    <section className="section-padding"><div className="mx-auto max-w-3xl text-center">
-      <h2 className="font-serif text-xl font-semibold text-ink">일산한의원 피부·색소 상담</h2>
-      <p className="mt-4 text-sm leading-relaxed text-muted">가장 신경 쓰이는 부위와 이전 시술 이력을 알려주세요.<br />피부 상태와 치료 방향을 함께 살펴봅니다.</p>
-      <p className="mt-4 text-sm text-muted">궁금한 점과 예약 문의는 카카오톡으로 편하게 남겨주세요.</p>
-      <ClinicVisitInfo className="mt-5" />
-      <ConsultationActions directions className="mt-6" />
-      <Link href="/skin" className="mt-6 inline-block text-sm text-primary underline underline-offset-4">피부 · 레이저 글 전체 보기</Link>
-      <a href="https://research.ilsanhan.com/category/skin" className="mt-4 block text-sm text-primary underline underline-offset-4">피부·미용 치료의 논문 해설 읽기 →</a>
-    </div></section>
-  </>;
+  return <><JsonLd graph={buildGraph({ path: "/skin/pigmentation", name: "색소·홍조·재생치료 – 일산한의원", description, faq: faqEntities([...PIGMENTATION_FAQS]) })} />
+    <SkinTreatmentLayout kind="pigmentation" title={<>색소·홍조·재생치료<br /><span className="text-primary">내 피부에 필요한 레이저로.</span></>} description="갈색 잡티, 붉은 볼, 거친 피부결. 원장이 피부 상태를 진단하고 필요한 장비와 파장을 골라 치료합니다.">
+      <SkinSection id="treatments" title="고민이 다른 만큼, 치료도 다르게">
+        <p>같은 잡티처럼 보여도 색소의 종류와 깊이가 다릅니다. 피부색, 붉은기, 드러난 혈관과 피부결을 함께 살펴 <strong className="text-ink">치료할 부위·파장·강도</strong>를 정합니다.</p>
+        <div className="grid gap-4 sm:grid-cols-2">{LASER_TARGETS.map(item => <article key={item.title} className="rounded-2xl border border-line bg-white p-6"><h3 className="text-xl font-bold text-ink">{item.title}</h3><p className="mt-3 font-semibold text-primary">{item.wavelengths}</p><p className="mt-3">{item.body}</p></article>)}</div>
+        <p>피코하이는 1064·532nm 피코 레이저, 엘리멘트 TL은 755·1064·532nm 롱펄스 레이저입니다. 한 가지 고민에 집중하거나 여러 고민을 함께 치료하며, 매회 피부 반응에 맞춰 조절합니다.</p>
+      </SkinSection>
+      <SkinSection id="prices" title="맞춤 레이저 치료 비용">
+        <PriceTable caption={PIGMENTATION_PRICES.name} rows={[{name:"1회",price:painWon(PIGMENTATION_PRICES.single)},{name:"10회",price:painWon(PIGMENTATION_PRICES.tenSessions)}]} note="부가세 포함 · 10회 구성은 회당 66,000원" />
+        <p>{PIGMENTATION_PRICES.selection}</p>
+        <Link href="/skin/toning" className="block rounded-xl border border-line bg-white p-5 font-semibold text-primary">얼굴 전반의 피부결·피부톤 관리가 필요하다면?<br />제네시스·피코토닝 각 1회 33,000원 →</Link>
+      </SkinSection>
+      <SkinSection id="process" title="상담한 원장이 시술까지 진행합니다">
+        <ol className="space-y-5">{[["01 · 진찰과 설명","가장 신경 쓰이는 부위와 이전 치료 경험을 듣고 색소·혈관·피부결을 살핍니다."],["02 · 맞춤 시술","부위별로 필요한 레이저를 선택하고, 피부 반응을 보며 조사합니다."],["03 · 회복과 다음 치료","시술 부위에 맞는 세안·보습·자외선 관리와 다음 방문 일정을 안내합니다."]].map(([title,body])=><li key={title} className="border-l-2 border-brush pl-5"><h3 className="font-bold text-ink">{title}</h3><p className="mt-2">{body}</p></li>)}</ol>
+        <Link href={postPath("skin","피부레이저-담당-의료진")} className="inline-block font-semibold text-primary underline underline-offset-4">피부레이저 담당 의료진과 상담 방식 →</Link>
+      </SkinSection>
+      <SkinSection id="questions" title="치료 전에 많이 묻는 질문"><SkinFaq items={PIGMENTATION_FAQS} /></SkinSection>
+      <SkinSection id="guides" title="피부 고민별로 더 읽어보세요">
+        {PIGMENTATION_GROUPS.map(group=><div id={group.id} key={group.id} className="scroll-mt-28"><h3 className="mb-3 text-lg font-bold text-ink">{group.name}</h3><div className="grid gap-3 sm:grid-cols-2">{group.slugs.flatMap(slug=>{const post=posts.find(p=>p.slug===slug);return post?[<Link key={slug} href={postPath("skin",slug)} className="rounded-xl border border-line bg-white p-4 font-medium text-primary">{post.title} →</Link>]:[];})}</div></div>)}
+      </SkinSection>
+      <p className="py-5 text-sm text-muted">장비 안내: <a href="https://kr.hironic.com/p/picohi" className="underline">하이로닉 피코하이</a> · <a href="https://elemenic.com/element-tl/" className="underline">엘레메닉 엘리멘트 TL</a></p>
+    </SkinTreatmentLayout></>;
 }

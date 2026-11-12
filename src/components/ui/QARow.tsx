@@ -16,14 +16,14 @@ export default function QARow({
         >
           <QuestionMark size={14} />
         </span>
-        <p className="text-[14px] leading-relaxed text-ink">{quote}</p>
+        <p className="text-base md:text-[17px] leading-relaxed text-ink">{quote}</p>
       </div>
 
       <div className="flex items-start gap-2.5 lg:w-[48%]">
         <span aria-hidden="true" className="mt-0.5 shrink-0 text-line">
           <ArrowRight size={16} />
         </span>
-        <p className="text-[14px] font-medium leading-relaxed text-primary">
+        <p className="text-base md:text-[17px] font-medium leading-relaxed text-primary">
           {answer}
         </p>
       </div>

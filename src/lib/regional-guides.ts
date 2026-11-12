@@ -53,8 +53,8 @@ export const REGIONAL_GUIDE_GROUPS = [
     ]
   },
   {
-    "name": "색소·피부결과 스킨부스터",
-    "description": "원내 피코토닝·제네시스와 도포 구성",
+    "name": "색소·홍조·재생과 토닝관리",
+    "description": "맞춤 레이저 치료와 제네시스·피코토닝",
     "items": [
       {
         "category": "skin",
@@ -71,10 +71,6 @@ export const REGIONAL_GUIDE_GROUPS = [
       {
         "category": "skin",
         "slug": "제네시스토닝-효과"
-      },
-      {
-        "category": "skin",
-        "slug": "일산-스킨부스터-리쥬란-쥬베룩"
       }
     ]
   },

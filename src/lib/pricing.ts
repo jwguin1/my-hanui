@@ -81,15 +81,16 @@ export function wonDigits(amount: number): string {
 /** 진입 가격 = 가장 싼 행의 100개까지 금액 */
 export const SPOT_ENTRY: SpotPriceRow = SPOT_PRICE_ROWS[0];
 
-/** 2026-10-16 원장 확인. 방문 시 피부 상태에 맞는 장비를 선택한다. */
+/** 2026-11-12 원장 확인: 맞춤 치료와 단독 토닝관리를 구분한다. */
 export const PIGMENTATION_PRICES = {
-  name: "피코 트리플 토닝",
+  name: "색소·홍조·재생치료",
   single: 88000,
   tenSessions: 660000,
   perSession: 66000,
-  selection: "피부 상태와 치료 목표에 따라 피코하이 또는 엘리멘트 TL을 선택해 진행합니다.",
-  booster: "10회 패키지에 PDRN 스킨부스터 총 1회 · 4cc · MTS 방식 도포가 포함됩니다.",
+  selection: "피부 상태와 치료 목표를 진단한 뒤 피코하이·엘리멘트 TL의 파장과 조사 방식을 맞춰 치료합니다.",
 } as const;
+
+export const TONING_PRICES = { genesis: 33000, pico: 33000 } as const;
 
 /** 2026-10-24 원장 확인. 슈링크 3회 단독 구성은 종료. */
 export const SHURINK_PRICES = { name: "슈링크 유니버스", single: 99000, shots600: 176000 } as const;
@@ -148,7 +149,7 @@ export function allowedSkinAmounts(): number[] {
     set.add(perSpot(r));
   }
   for (const p of AFTERCARE_PRODUCTS) set.add(p.price);
-  for (const amount of [PIGMENTATION_PRICES.single, PIGMENTATION_PRICES.tenSessions, PIGMENTATION_PRICES.perSession, SHURINK_PRICES.single, SHURINK_PRICES.shots600, VOLNEWMER_PRICES.single, VOLNEWMER_PRICES.shots600, LIFTING_PACKAGE.shots300, LIFTING_PACKAGE.shots600]) set.add(amount);
+  for (const amount of [TONING_PRICES.genesis, TONING_PRICES.pico, PIGMENTATION_PRICES.single, PIGMENTATION_PRICES.tenSessions, PIGMENTATION_PRICES.perSession, SHURINK_PRICES.single, SHURINK_PRICES.shots600, VOLNEWMER_PRICES.single, VOLNEWMER_PRICES.shots600, LIFTING_PACKAGE.shots300, LIFTING_PACKAGE.shots600]) set.add(amount);
   for (const row of HAIR_REMOVAL_PRICES) for (const amount of [row.single, row.five, row.annual]) set.add(amount);
   return [...set].sort((a, b) => a - b);
 }

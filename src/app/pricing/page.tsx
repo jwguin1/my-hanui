@@ -16,7 +16,7 @@ import {
   PAIN_PRICES, PAIN_INSURANCE_NOTE, PHARMACOPUNCTURE_NOTE,
   HERBAL_PRICES, HERBAL_INSURANCE_CONDITIONS, HERBAL_INSURANCE_LIMIT,
   DIET_PRICES, SPOT_PRICE_ROWS, SPOT_PRICE_HEADERS, AFTERCARE_PRODUCTS,
-  PIGMENTATION_PRICES, painWon, won,
+  PIGMENTATION_PRICES, TONING_PRICES, painWon, won,
 } from "@/lib/pricing";
 
 const description = `일산한의원 초진 ${painWon(PAIN_PRICES.firstVisit)}, 단순추나 ${painWon(PAIN_PRICES.simpleChuna)}, 복잡추나 ${painWon(PAIN_PRICES.complexChuna)}. 보험한약·체질보약·다이어트·피부 시술 비용과 방문 소요 시간을 한눈에 확인하세요.`;
@@ -59,7 +59,7 @@ export default function PricingPage() {
         <div className="flex flex-wrap gap-5"><DetailLink href="/pain/acute#visit-guide">통증 치료 과정</DetailLink><DetailLink href="/pain/acute#physical-therapy">추가 물리치료실 이용</DetailLink><DetailLink href="/pain/chronic#treatment-photos">추나·약침 치료 모습</DetailLink><DetailLink href="/accident">교통사고 자동차보험 안내</DetailLink></div>
       </PriceSection>
       <PriceSection id="questions" title="가격표를 보면서 궁금했던 점">
-        <div className="space-y-3">{PRICING_VISIT_FAQS.map(faq => <details key={faq.q} className="group rounded-xl border border-line bg-white p-5"><summary className="flex cursor-pointer list-none items-start justify-between gap-3 text-base font-semibold text-ink [&::-webkit-details-marker]:hidden">{faq.q}<span aria-hidden="true" className="shrink-0 group-open:rotate-45">＋</span></summary><p className="mt-4 text-base leading-[1.9] text-muted">{faq.a}</p></details>)}</div>
+        <div className="space-y-3">{PRICING_VISIT_FAQS.map(faq => <details key={faq.q} className="faq-item group rounded-xl border border-line bg-white p-5"><summary className="flex cursor-pointer list-none items-start justify-between gap-3 text-base font-semibold text-ink [&::-webkit-details-marker]:hidden">{faq.q}<span aria-hidden="true" className="shrink-0 group-open:rotate-45">＋</span></summary><p className="mt-4 text-base leading-[1.9] text-muted">{faq.a}</p></details>)}</div>
       </PriceSection>
       <PriceSection id="home-visit" title="집으로 찾아가는 방문진료">
         <p>거동이 불편해 내원이 어려운 분을 위한 한의 방문진료 시범사업 비용입니다.</p>
@@ -88,18 +88,23 @@ export default function PricingPage() {
         <p>100포는 하루 1포 기준 100일, 하루 2포 기준 50일 분량입니다. 복용량은 진료 후 정합니다.</p>
         <DetailLink href="/diet/program">일산감비환 처방과 복용 안내</DetailLink>
       </PriceSection>
-      <PriceSection id="skin" title="잡티제거 · 색소치료 · 리프팅 · 제모">
+      <PriceSection id="skin" title="잡티제거 · 맞춤 레이저 · 토닝관리 · 리프팅 · 제모">
         <PriceTable caption="CO₂ 레이저 잡티제거 · 비급여" headers={SPOT_PRICE_HEADERS} rows={SPOT_PRICE_ROWS.map(row => ({ name: row.name, price: won(row.upTo100), price2: won(row.unlimited) }))} />
         <p>점·편평사마귀·쥐젖을 살펴보고 치료 범위를 정합니다. 시술 시간은 부위와 개수에 따라 방문 전 안내해드립니다.</p>
         <p>재생크림은 별도 구매입니다. {AFTERCARE_PRODUCTS.map(p => `${p.name} ${p.volume} ${won(p.price)}`).join(" · ")}.</p>
         <DetailLink href="/skin/spot">잡티제거 과정과 관리</DetailLink>
-        <PriceTable caption="피코 트리플 토닝 · 비급여" rows={[
+        <PriceTable caption="색소·홍조·재생치료 · 비급여" rows={[
           { name: "1회", price: won(PIGMENTATION_PRICES.single) },
           { name: "10회", price: won(PIGMENTATION_PRICES.tenSessions) },
         ]} />
-        <p>{PIGMENTATION_PRICES.selection} {PIGMENTATION_PRICES.booster}</p>
+        <p>{PIGMENTATION_PRICES.selection}</p>
         <p>레이저 시술 시간은 20분 이내이며, 상담·준비 시간은 별도입니다.</p>
-        <DetailLink href="/skin/pigmentation">피코토닝·제네시스 질문과 답</DetailLink>
+        <DetailLink href="/skin/pigmentation">색소·홍조·재생 맞춤 치료 안내</DetailLink>
+        <PriceTable caption="토닝관리 · 1회 · 부가세 포함" rows={[
+          { name: "제네시스 토닝", includes: "엘리멘트 TL", price: painWon(TONING_PRICES.genesis) },
+          { name: "피코토닝", includes: "피코하이", price: painWon(TONING_PRICES.pico) },
+        ]} />
+        <DetailLink href="/skin/toning">토닝 종류·샷 수·관리 방법</DetailLink>
         <h3 className="pt-6 text-xl font-bold text-ink">슈링크·볼뉴머 리프팅</h3>
         <LiftingPrices />
         <DetailLink href="/skin/lifting">리프팅 장비·샷 수·시술 간격 안내</DetailLink>

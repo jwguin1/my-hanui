@@ -114,7 +114,7 @@ export default function HomeVisitPage() {
       <div className="mx-auto max-w-3xl">
         <p className="text-sm font-semibold text-primary">환자와 보호자를 위한 Q&amp;A</p><h2 className="mt-3 font-serif text-3xl font-semibold text-ink">신청 전에 궁금한 질문</h2>
         <p className="mt-4 text-base leading-relaxed text-muted">궁금한 질문을 누르면 답변을 볼 수 있습니다.</p>
-        <div className="mt-7 divide-y divide-line overflow-hidden rounded-2xl border border-line bg-white">{HOME_VISIT_FAQS.map(f => <details key={f.id} id={`question-${f.id}`} className="group scroll-mt-24 open:bg-[#f4f8f5]">
+        <div className="mt-7 divide-y divide-line overflow-hidden rounded-2xl border border-line bg-white">{HOME_VISIT_FAQS.map(f => <details key={f.id} id={`question-${f.id}`} className="faq-item group scroll-mt-24 open:bg-[#f4f8f5]">
           <summary className="flex min-h-16 cursor-pointer list-none items-start gap-3 px-5 py-5 text-base font-semibold leading-relaxed text-ink focus-visible:outline-2 focus-visible:outline-offset-[-4px] focus-visible:outline-primary md:px-8 md:text-lg [&::-webkit-details-marker]:hidden">
             <span className="shrink-0 text-primary" aria-hidden="true">Q.</span><span className="flex-1 break-keep">{f.q}</span><span aria-hidden="true" className="shrink-0 text-xl text-primary group-open:rotate-45">＋</span>
           </summary>

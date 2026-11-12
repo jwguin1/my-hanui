@@ -1,3 +1,4 @@
+import Image from "next/image";
 import PatientJourney from "@/components/PatientJourney";
 import PatientQuestions from "@/components/PatientQuestions";
 import SectionJumpNav from "@/components/SectionJumpNav";
@@ -164,6 +165,12 @@ export default function SkinSpotPage() {
 
       <PatientJourney id="skin-visit" title="제거 전 진찰부터 회복 확인까지" intro="처음 받는 시술이라면 통증과 자국, 다시 올라오는 병변이 걱정될 수 있습니다. 시술 전 설명부터 이후 관리까지 순서대로 안내합니다." steps={SKIN_JOURNEY} />
 
+      <section aria-label="잡티제거 상담과 시술 모습" className="section-padding !py-8">
+        <div className="grid gap-6 sm:grid-cols-2">
+          <figure className="overflow-hidden rounded-2xl border border-line bg-card"><Image src="/images/skin/consultation.webp" width={1200} height={800} sizes="(max-width: 640px) 100vw, 520px" alt="피부 분석 화면을 보며 환자에게 피부 상태와 치료 방향을 설명하는 모습" className="aspect-[3/2] w-full object-cover" /><figcaption className="p-5"><h3 className="text-lg font-bold">01 · 피부를 살피고 설명합니다</h3><p className="mt-2 text-base leading-relaxed text-muted">병변과 피부 상태를 확인하고, 제거할 범위와 시술 방법을 함께 정합니다.</p></figcaption></figure>
+          <figure className="overflow-hidden rounded-2xl border border-line bg-card"><Image src="/images/skin/procedure.webp" width={1200} height={716} sizes="(max-width: 640px) 100vw, 520px" alt="보호안경을 착용한 환자에게 의료진이 얼굴 레이저 시술을 진행하는 모습" className="aspect-[3/2] w-full object-cover" /><figcaption className="p-5"><h3 className="text-lg font-bold">02 · 필요한 부위를 시술합니다</h3><p className="mt-2 text-base leading-relaxed text-muted">눈을 보호하고 피부 반응을 확인하며 진행합니다. 시술 후 관리 방법까지 안내합니다.</p></figcaption></figure>
+        </div>
+      </section>
       <section id="retouch" className="section-padding scroll-mt-28 !py-10">
         <div className="mx-auto max-w-3xl rounded-2xl border border-line bg-surface p-6 sm:p-8">
           <h2 className="text-2xl font-semibold leading-snug text-ink">남거나 다시 올라온 병변, 리터치로 이어서 봅니다</h2>
@@ -316,8 +323,9 @@ export default function SkinSpotPage() {
         <div className="mx-auto max-w-3xl">
           <h2 id="other-skin-title" className="font-serif text-2xl font-semibold text-ink">색소·탄력·얼굴 제모도 함께 살펴보세요</h2>
           <p className="mt-3 text-[16px] leading-relaxed text-muted">잡티 제거 외에 색소·탄력·제모가 고민이라면 아래에서 진료와 비용을 확인하세요.</p>
-          <div className="mt-6 grid gap-4 sm:grid-cols-3">
-            <Link href="/skin/pigmentation" className="rounded-xl border border-line bg-card p-5 hover:border-primary"><h3 className="text-lg font-semibold text-ink">색소치료 →</h3><p className="mt-2 text-[15px] leading-relaxed text-muted">기미·주근깨·흑자·피부톤<br />피코토닝·제네시스 질문과 비용</p></Link>
+          <div className="mt-6 grid gap-4 sm:grid-cols-2">
+            <Link href="/skin/toning" className="rounded-xl border border-line bg-card p-5 hover:border-primary"><h3 className="text-lg font-semibold text-ink">토닝관리 →</h3><p className="mt-2 text-base leading-relaxed text-muted">제네시스·피코토닝 각 1회 33,000원</p></Link>
+            <Link href="/skin/pigmentation" className="rounded-xl border border-line bg-card p-5 hover:border-primary"><h3 className="text-lg font-semibold text-ink">색소·홍조·재생치료 →</h3><p className="mt-2 text-[15px] leading-relaxed text-muted">색소·혈관·피부결에 맞춘 레이저 치료</p></Link>
             <Link href="/skin/hair-removal" className="rounded-xl border border-line bg-card p-5 hover:border-primary"><h3 className="text-lg font-semibold text-ink">얼굴 제모 →</h3><p className="mt-2 text-[15px] leading-relaxed text-muted">남녀 공통 · 엘리멘트 TL<br />인중＋앞턱·얼굴전체 가격과 관리</p></Link>
             <Link href="/skin/lifting" className="rounded-xl border border-line bg-card p-5 hover:border-primary"><h3 className="text-lg font-semibold text-ink">리프팅 →</h3><p className="mt-2 text-[15px] leading-relaxed text-muted">턱선·볼 처짐·탄력<br />슈링크·볼뉴머 질문과 비용</p></Link>
           </div>

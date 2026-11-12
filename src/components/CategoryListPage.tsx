@@ -122,7 +122,7 @@ export default function CategoryListPage({ category }: { category: Category }) {
             .filter((post) => post !== undefined),
         })).filter((g) => g.items.length > 0)
       : category === "skin" ? [
-          ...PIGMENTATION_GROUPS.map((g) => ({ name: g.name, hub: { href: `${PIGMENTATION_PATH}#${g.id}`, label: "색소치료 안내" }, items: g.slugs.flatMap((slug) => { const post = bySlug.get(slug); return post ? [post] : []; }) })),
+          ...PIGMENTATION_GROUPS.map((g) => ({ name: g.name, hub: { href: `${PIGMENTATION_PATH}#${g.id}`, label: "색소·홍조·재생치료 안내" }, items: g.slugs.flatMap((slug) => { const post = bySlug.get(slug); return post ? [post] : []; }) })),
           { name: "슈링크·볼뉴머 리프팅", hub: { href: LIFTING_PATH, label: "리프팅 안내" }, items: LIFTING_SLUGS.flatMap((slug) => { const post = bySlug.get(slug); return post ? [post] : []; }) },
           { name: "얼굴·수염 제모", hub: { href: HAIR_REMOVAL_PATH, label: "제모 안내" }, items: HAIR_REMOVAL_SLUGS.flatMap((slug) => { const post = bySlug.get(slug); return post ? [post] : []; }) },
           { name: "피부 고민과 치료 선택", hub: { href: "/skin/questions", label: "고민별 질문 모음" }, items: posts.filter(p => CONSULTATION_GUIDE_SLUGS.includes(p.slug)) },
@@ -189,7 +189,8 @@ export default function CategoryListPage({ category }: { category: Category }) {
 
       {category === "skin" && <section className="section-padding !pb-0 !pt-8">
         <div className="mx-auto grid max-w-3xl gap-4 sm:grid-cols-2">
-          <Link href={PIGMENTATION_PATH} className="card block p-6 transition-colors hover:border-primary"><SectionBadge label="색소치료" /><h2 className="mt-3 text-lg font-semibold text-ink">피코토닝·제네시스 안내 →</h2><p className="mt-2 text-sm leading-relaxed text-muted">기미·잡티·피부결에 관한 질문부터 담당 의료진, 방문 과정과 비용까지 확인하세요.</p></Link>
+          <Link href="/skin/toning" className="card block p-6 transition-colors hover:border-primary"><SectionBadge label="토닝관리" /><h2 className="mt-3 text-lg font-semibold text-ink">제네시스·피코토닝 →</h2><p className="mt-2 text-base leading-relaxed text-muted">피부결과 피부톤을 관리합니다. 각 1회 33,000원 · 얼굴 크기에 따라 2,000~3,000샷.</p></Link>
+          <Link href={PIGMENTATION_PATH} className="card block p-6 transition-colors hover:border-primary"><SectionBadge label="맞춤 레이저 치료" /><h2 className="mt-3 text-lg font-semibold text-ink">색소·홍조·재생치료 →</h2><p className="mt-2 text-sm leading-relaxed text-muted">색소·혈관·피부결을 진단하고 필요한 파장으로 치료합니다. 1회 88,000원 · 10회 660,000원.</p></Link>
           <Link href="/skin/hair-removal" className="card block p-6 transition-colors hover:border-primary"><SectionBadge label="얼굴 제모" /><h2 className="mt-3 text-lg font-semibold text-ink">엘리멘트 TL 제모 안내 →</h2><p className="mt-2 text-base leading-relaxed text-muted">남녀 공통, 인중＋앞턱·얼굴전체의 가격과 면도·관리 질문을 확인하세요.</p></Link>
           <Link href={LIFTING_PATH} className="card block p-6 transition-colors hover:border-primary"><SectionBadge label="리프팅" /><h2 className="mt-3 text-lg font-semibold text-ink">슈링크·볼뉴머 안내 →</h2><p className="mt-2 text-sm leading-relaxed text-muted">턱선·탄력, 300·600샷 비용과 패키지·시술 간격을 확인하세요.</p></Link>
         </div>
