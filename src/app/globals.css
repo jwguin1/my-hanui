@@ -313,6 +313,11 @@
     border-bottom: 0;
   }
 
+  .prose-custom td.prose-price {
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+  }
+
   @media (max-width: 480px) {
     .skin-guide th,
     .skin-guide td {

@@ -1,6 +1,14 @@
 import Image from "next/image";
 import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import { Children, isValidElement, type ReactNode } from "react";
+
+function cellText(children: ReactNode): string {
+  return Children.toArray(children).map((child) => {
+    if (typeof child === "string" || typeof child === "number") return String(child);
+    return isValidElement<{ children?: ReactNode }>(child) ? cellText(child.props.children) : "";
+  }).join("");
+}
 
 export default function PostContent({ markdown, headingAnchors = false }: { markdown: string; headingAnchors?: boolean }) {
   let imgIndex = 0;
@@ -33,6 +41,10 @@ export default function PostContent({ markdown, headingAnchors = false }: { mark
               <table>{children}</table>
             </div>
           );
+        },
+        td({ children, style }) {
+          const isPrice = /^\s*\d[\d,.]*(?:만)?원\s*$/.test(cellText(children));
+          return <td style={style} className={isPrice ? "prose-price" : undefined}>{children}</td>;
         },
         img({ src, alt }) {
           if (!src || typeof src !== "string") return null;
