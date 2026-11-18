@@ -457,7 +457,7 @@
     "status": "published",
     "publishedAt": "2026-10-26T09:00:00+09:00",
     "updatedAt": "2026-11-08T03:16:25.166Z",
-    "lastSourceCheck": "2026-11-16T01:01:01.767Z",
+    "lastSourceCheck": "2026-11-18T02:53:37.606Z",
     "title": "만성 목 통증, 수기치료와 목 운동 중 무엇이 더 빨리 도움이 될까요?",
     "summary": "만성 목 통증 성인 69명을 3군으로 나눠 12주간 비교했습니다. 수기치료와 운동 모두 가짜 치료보다 나았고, 두 치료의 4·12주 차이는 없었으며 속도에서만 차이가 있었습니다.",
     "question": "오래된 목 통증에는 수기(도수)치료와 목 운동 중 어느 쪽이 더 효과적이고, 효과는 언제 나타날까요?",
@@ -592,7 +592,7 @@
     "status": "published",
     "publishedAt": "2026-10-28T09:00:00+09:00",
     "updatedAt": "2026-10-28T09:00:00+09:00",
-    "lastSourceCheck": "2026-11-16T01:01:02.068Z",
+    "lastSourceCheck": "2026-11-18T02:53:37.925Z",
     "title": "초음파 리프팅(MFU-V)은 처짐과 탄력 개선에 도움이 될까? 42개 연구 종합 분석",
     "summary": "42개 연구를 종합하니 시술 후 전반적 개선은 의료진 평가 89%, 환자 평가 84%였습니다. 다만 대조군 없는 연구가 많고 통증은 중등도였으며, 중립 응답 여부에 따라 만족도가 달라졌습니다.",
     "question": "미세집속초음파(MFU-V) 리프팅을 받으면 실제로 얼마나 좋아지고, 통증이나 이상반응은 어떤가요?",
@@ -813,7 +813,7 @@
     "status": "published",
     "publishedAt": "2026-10-30T09:00:00+09:00",
     "updatedAt": "2026-10-30T09:00:00+09:00",
-    "lastSourceCheck": "2026-11-16T01:01:02.376Z",
+    "lastSourceCheck": "2026-11-18T02:53:38.032Z",
     "title": "알레르기 비염에 침 치료가 도움이 될까? 항히스타민제와 비교한 임상시험 30편 분석",
     "summary": "성인 알레르기 비염에서 침은 무치료나 가짜 침보다 코 증상과 삶의 질에서 나았지만, 세티리진·로라타딘과는 뚜렷한 차이가 없었습니다. 다만 근거의 안정성은 약했습니다.",
     "question": "알레르기 비염 증상을 줄이기 위해 침 치료를 받아볼 만한가요? 항히스타민제와 비교하면 어떤가요?",
@@ -1040,7 +1040,7 @@
     "status": "published",
     "publishedAt": "2026-11-02T09:00:00+09:00",
     "updatedAt": "2026-11-08T03:16:25.166Z",
-    "lastSourceCheck": "2026-11-17T03:50:41.107Z",
+    "lastSourceCheck": "2026-11-18T02:53:39.865Z",
     "title": "만성 허리통증에 침 치료는 가짜 침보다 나을까요? 어떤 방식이 더 효과적일까요?",
     "summary": "만성 비특이적 요통 무작위시험 44개를 비교한 분석에서 진짜 침은 가짜 침보다 낫게 나왔고, 개별 맞춤 침과 표준 침+TENS가 가장 큰 개선을 보였습니다.",
     "question": "오래 지속되는 원인 불명의 허리통증에서 침 치료는 가짜 침보다 효과가 있고, 침 방식 중 무엇이 가장 나을까요?",
@@ -1219,7 +1219,7 @@
     "status": "published",
     "publishedAt": "2026-11-04T09:00:00+09:00",
     "updatedAt": "2026-11-08T03:16:25.166Z",
-    "lastSourceCheck": "2026-11-17T03:50:41.392Z",
+    "lastSourceCheck": "2026-11-18T02:53:39.988Z",
     "title": "고주파(RF) 얼굴 시술을 받으면 피부 수분과 탄력이 바로 좋아질까요?",
     "summary": "성인 여성 62명에게 비절제형 바이폴라 고주파 시술을 했더니 1시간 뒤 수분·탄력·피지 수치가 올랐습니다. 다만 대조군이 없는 단기 연구라 장기 효과는 알 수 없습니다.",
     "question": "비절제형 바이폴라 고주파 시술은 얼굴 피부의 수분, 탄력, 피지 수치를 시술 직후 개선할까요?",
@@ -1359,7 +1359,7 @@
     "status": "published",
     "publishedAt": "2026-11-06T09:00:00+09:00",
     "updatedAt": "2026-11-06T09:00:00+09:00",
-    "lastSourceCheck": "2026-11-17T03:50:41.837Z",
+    "lastSourceCheck": "2026-11-18T02:53:41.715Z",
     "title": "알레르기 비염에 혈자리 한약 첩포를 붙이면 증상과 면역 반응이 달라질까요?",
     "summary": "알레르기 비염 23명이 혈자리 한약 첩포를 4회 붙인 소규모 예비 연구입니다. 검사 양성군 19명은 삶의 질 7개 영역 중 6개가 좋아졌지만 대조군이 없어 효과를 확정하기는 어렵습니다.",
     "question": "만성 알레르기 비염 환자가 혈자리 한약 첩포를 붙이면 증상이 좋아지나요? 몸의 면역 반응에도 변화가 있나요?",
@@ -1525,7 +1525,7 @@
     "status": "published",
     "publishedAt": "2026-11-09T09:00:00+09:00",
     "updatedAt": "2026-11-09T09:00:00+09:00",
-    "lastSourceCheck": "2026-11-17T03:50:42.118Z",
+    "lastSourceCheck": "2026-11-18T02:53:41.831Z",
     "title": "목·허리 신경뿌리 방사통, 견인 같은 수기치료가 도움이 될까요?",
     "summary": "목·허리 신경뿌리 방사통의 수기치료 무작위 시험 27개를 모은 문헌고찰입니다. 목은 견인 중심 복합 치료가 통증·기능 개선으로 보고됐지만, 연구 질이 낮아 확정적이지 않았습니다.",
     "question": "팔·다리로 뻗치는 목·허리 신경뿌리 통증에 견인이나 수기치료를 받으면 실제로 좋아진다는 근거가 있나요?",
@@ -1666,7 +1666,7 @@
     "status": "published",
     "publishedAt": "2026-11-11T09:00:00+09:00",
     "updatedAt": "2026-11-11T09:00:00+09:00",
-    "lastSourceCheck": "2026-11-17T03:50:42.402Z",
+    "lastSourceCheck": "2026-11-18T02:53:41.951Z",
     "title": "기미에 레이저토닝(저강도 Q스위치 Nd:YAG)은 정말 효과가 있고 안전한가요?",
     "summary": "기미 레이저토닝 연구 42편을 종합한 체계적 문헌고찰입니다. 대체로 기미를 옅게 했지만 점상 탈색과 재발 위험이 있었고, 장기 추적 자료는 부족했습니다.",
     "question": "기미 치료로 많이 하는 저강도 Q스위치 Nd:YAG 레이저토닝은 효과가 있나요? 안전한가요? 재발은 없나요?",
@@ -1806,7 +1806,7 @@
     "status": "published",
     "publishedAt": "2026-11-13T09:00:00+09:00",
     "updatedAt": "2026-11-13T09:00:00+09:00",
-    "lastSourceCheck": "2026-11-17T03:50:44.264Z",
+    "lastSourceCheck": "2026-11-18T02:53:43.578Z",
     "title": "위가 더부룩하고 명치가 아픈 기능성 소화불량, 침과 뜸 중 무엇이 더 맞을까요?",
     "summary": "기능성 소화불량 청년 144명에서 침과 뜸 모두 4주 뒤 증상 점수가 내려갔고 전체 점수 차이는 없었습니다. 명치 통증·불안은 침, 식후 더부룩함은 뜸이 앞섰지만 부차적 분석입니다.",
     "question": "기능성 소화불량에서 침과 뜸은 4주 치료 후 증상 개선에 차이가 있고, 증상별로 더 맞는 치료가 따로 있을까요?",
@@ -1995,7 +1995,7 @@
     "status": "published",
     "publishedAt": "2026-11-16T09:00:00+09:00",
     "updatedAt": "2026-11-16T09:00:00+09:00",
-    "lastSourceCheck": "2026-11-17T03:50:45.177Z",
+    "lastSourceCheck": "2026-11-18T02:53:43.684Z",
     "title": "만성 목통증에 운동만 할 때와 도수치료를 더하면 6개월까지 차이가 있을까?",
     "summary": "목 위쪽 관절 움직임이 제한된 만성 목통증 58명을 비교한 무작위 연구입니다. 4주간 운동에 도수치료를 더한 군이 6개월까지 통증·기능 지표에서 더 좋았지만, 치료자 1명이 시행한 소규모 연구입니다.",
     "question": "목 위쪽 관절이 뻣뻣한 만성 목통증이라면 운동만 하는 것보다 도수치료를 함께 받는 것이 더 도움이 될까요?",
@@ -2226,7 +2226,7 @@
     "status": "published",
     "publishedAt": "2026-11-18T09:00:00+09:00",
     "updatedAt": "2026-11-18T09:00:00+09:00",
-    "lastSourceCheck": "2026-11-17T03:50:45.455Z",
+    "lastSourceCheck": "2026-11-18T02:53:43.792Z",
     "title": "엑소좀과 PRP, 광노화 얼굴 피부에는 어느 쪽이 더 나을까요?",
     "summary": "광노화 피부 15명의 얼굴 반쪽씩 엑소좀과 PRP를 비교한 소규모 연구입니다. 6개월까지 양쪽 모두 개선됐고 뚜렷한 차이는 없었지만, 표본이 작고 무작위 배정이 아니라 확정하기는 어렵습니다.",
     "question": "얼굴 광노화에 엑소좀을 바르는 방법이 내 피를 뽑아 쓰는 PRP와 비교해 효과와 안전성이 어떤가요?",
@@ -2494,7 +2494,7 @@
     "status": "published",
     "publishedAt": "2026-11-20T09:00:00+09:00",
     "updatedAt": "2026-11-20T09:00:00+09:00",
-    "lastSourceCheck": "2026-11-17T03:50:46.059Z",
+    "lastSourceCheck": "2026-11-18T02:53:45.599Z",
     "title": "침 치료는 식욕과 체중 관리에 도움이 되나요? 이 논문은 심혈관 위험 예측 연구입니다",
     "summary": "이 논문은 침이나 식욕, 체중 감량을 다루지 않았고, 동부 중국 심혈관 고위험군의 3년 발생 위험을 예측하는 모델을 비교했습니다. 침의 체중 관리 효과는 이 논문으로 답할 수 없습니다.",
     "question": "식욕과 체중을 관리할 때 침 치료는 어떤 역할을 하나요?",
@@ -2744,7 +2744,7 @@
     "status": "published",
     "publishedAt": "2026-11-25T09:00:00+09:00",
     "updatedAt": "2026-11-25T09:00:00+09:00",
-    "lastSourceCheck": "2026-11-17T03:50:47.932Z",
+    "lastSourceCheck": "2026-11-18T02:53:45.696Z",
     "title": "식후 더부룩함(식후불편증후군)에 침 치료가 도움이 되나요? 가짜 침과 비교한 4주 무작위 시험",
     "summary": "식후불편증후군 환자 51명을 분석한 4주 시험에서 침 그룹의 76.9%가 호전을 보고해 가짜 침 그룹 28%보다 높았습니다. 소규모·단일 병원 연구이며 4주 시점까지만 평가했습니다.",
     "question": "식후 더부룩함과 조기 포만감이 있는 기능성 소화불량(식후불편증후군)에서 침 치료가 가짜 침보다 증상을 더 줄이나요?",
@@ -2864,7 +2864,7 @@
     "status": "published",
     "publishedAt": "2026-11-27T09:00:00+09:00",
     "updatedAt": "2026-11-27T09:00:00+09:00",
-    "lastSourceCheck": "2026-11-17T03:50:45.686Z",
+    "lastSourceCheck": "2026-11-18T02:53:45.485Z",
     "title": "만성 허리통증에 수기치료만 받는 것과 통증교육을 함께 받는 것, 무엇이 달랐나요?",
     "summary": "만성 비특이적 요통 60명 연구에서 수기치료는 4주 뒤 통증을 줄였고, 통증교육과 동기강화 면담을 더한 쪽이 개선 폭이 더 컸습니다. 침은 연구하지 않았습니다.",
     "question": "허리 통증에 침과 수기치료는 어떤 도움이 되나요? 이 논문은 수기치료와 통증교육 병행에 대해 무엇을 보여주나요?",
@@ -2991,7 +2991,7 @@
     "status": "published",
     "publishedAt": "2026-11-30T09:00:00+09:00",
     "updatedAt": "2026-11-30T09:00:00+09:00",
-    "lastSourceCheck": "2026-11-16T01:03:09.107Z",
+    "lastSourceCheck": "2026-11-18T02:53:39.754Z",
     "title": "지방간 환자 대상 보충제·허브 리뷰로 본 한약과 체중 감량: 이 논문이 답할 수 있는 범위",
     "summary": "이 논문은 한약 체중 감량 시험이 아니라 지방간 환자의 보충제·허브 문헌고찰입니다. 체중 관련 수치는 일부 시험에서 보조 결과로만 나왔고, 한약의 감량 효과는 직접 확인되지 않았습니다.",
     "question": "체중 감량에서 한약 연구는 무엇을 확인했나요? 이 지방간 영양보충제 리뷰로 답할 수 있는 범위는 어디까지인가요?",
@@ -3096,6 +3096,134 @@
       "model": "claude-opus-5-5",
       "writerModel": "claude-sonnet-5-5",
       "checkedAt": "2026-11-16T01:03:09.107Z",
+      "checks": {
+        "numbers": true,
+        "methods": true,
+        "causality": true,
+        "clinicalRelevance": true,
+        "figures": true,
+        "noPatientIdentifyingImages": true,
+        "noInventedCredentials": true
+      }
+    }
+  },
+  {
+    "editorialQuestion": {
+      "id": "skin-2",
+      "question": "모공과 흉터 치료 후 어떤 변화를 기대할 수 있나요?"
+    },
+    "slug": "pmid-41081097",
+    "category": "skin",
+    "status": "published",
+    "publishedAt": "2026-12-02T09:00:00+09:00",
+    "updatedAt": "2026-12-02T09:00:00+09:00",
+    "lastSourceCheck": "2026-11-18T02:56:04.854Z",
+    "title": "여드름 흉터 치료 후 어떤 변화를 기대할 수 있나요? 68개 임상시험 비교",
+    "summary": "여드름 흉터 환자 4,480명이 포함된 68개 무작위 시험 분석에서 레이저+PRP가 흉터 점수 감소 1위였습니다. 모공은 평가하지 않았고 치료 간 차이가 불분명한 항목도 많습니다.",
+    "question": "모공과 흉터 치료 후 어떤 변화를 기대할 수 있나요? (여드름 흉터 연구 기준)",
+    "answer": "이 연구는 여드름 흉터만 다뤘고 모공은 평가하지 않았습니다. 흉터 점수(ECCA)는 레이저+PRP 병행이 레이저 단독보다 20.54점 더 낮았고, 만족도는 레이저+화학박피가 가장 높았습니다. 다른 흉터 척도(GBS), 통증, 홍반, 색소침착에서는 치료 간 뚜렷한 차이가 확인되지 않았습니다.",
+    "population": "얼굴에 여드름 흉터가 있는 환자 4,480명이 포함된 무작위 대조시험 68개입니다. 남성이 약 44.34%, 여성이 약 55.66%였고 평균 나이는 26.34±5.35세였습니다. 시험은 인도 21개, 이집트 18개, 중국 12개 등에서 시행되었습니다.",
+    "methods": "PubMed, Embase, Cochrane Library, Web of Science를 2024년 9월 19일까지 검색해 레이저, 마이크로니들링, PRP, 필러, 화학박피, 약물 등 두 가지 이상 치료를 비교한 시험을 모았습니다. 베이지안 네트워크 메타분석으로 직접 비교되지 않은 치료끼리도 간접 비교했고, 순위는 SUCRA(100%에 가까울수록 유리)로 표시했습니다. 평가 항목은 흉터 점수 ECCA와 GBS, 통증(VAS), 환자 만족도, 이상반응이었습니다.",
+    "results": "ECCA는 18개 시험이 보고했습니다. 레이저+PRP는 마이크로니들링보다 21.44점(95% 신뢰구간 −27.21~−15.66), 레이저 단독보다 20.54점(−21.45~−19.63), 레이저+필러보다 18.55점(−20.25~−16.86), 레이저+약물보다 24.47점 더 낮았고 SUCRA 98.4%로 1위였습니다. 레이저+화학박피와의 차이는 8.58점(−0.63~17.80)으로 통계적으로 불확실했습니다.\n\nGBS는 16개 시험 중 14개가 분석에 연결되었고, 모든 비교에서 신뢰구간이 0을 포함해 치료 간 차이를 말할 수 없었습니다. 레이저+약물(73.36%)과 레이저+필러(72.1%)가 순위 상위였으나 참고용입니다.\n\n만족도는 33개 시험에서 '만족' 또는 '매우 만족' 비율로 비교했습니다. 레이저+화학박피는 마이크로니들링 단독보다 2.04배(1.23~3.85), 레이저 단독보다 1.71배(1.09~2.93), 화학박피 단독보다 3.56배(1.79~7.97), 마이크로니들링+PRP보다 2.15배(1.15~4.94) 높았습니다.\n\n통증은 11개 시험 중 10개가 분석되었고 치료 간 차이가 없었습니다. 홍반(21개 시험)과 색소침착(16개 시험)도 차이가 없었습니다. 부종은 11개 시험에서 PRP 단독이 레이저+화학박피보다 낮았고(상대위험도 0.06, 0~0.73), 나머지 비교는 차이가 없었습니다.",
+    "meaning": "여드름 흉터에서 레이저에 다른 치료를 더하는 방식이 단독 치료보다 흉터 점수 개선 면에서 유리해 보였습니다. 다만 점수가 더 낮아졌다는 것이 눈에 띄는 변화나 개인의 체감 만족을 보장하지는 않습니다. 또 다른 흉터 척도인 GBS에서는 차이가 없었으므로 평가 도구에 따라 결과가 달라질 수 있습니다.\n\n통증·홍반·색소침착에서 차이가 없다는 것은 위험이 같다는 증명이 아니라 이 자료로는 구분하지 못했다는 뜻입니다. 모공 크기 변화는 이 연구로 알 수 없습니다. 패인 흉터, 붉은 자국, 색소침착은 접근이 다를 수 있습니다.",
+    "limitations": "시험마다 환자 특성, 치료 방식, 추적 기간이 달랐고 레이저 병행군은 표본이 비교적 적었습니다. 위험 편향은 낮음 32개, 불분명 29개, 높음 7개였고, 인구·지역별 하위 분석은 하지 않았습니다. 많은 비교가 직접 시험 없이 간접 추정입니다.",
+    "consultation": "흉터가 패인 형태인지, 붉거나 색이 남은 자국인지, 모공 넓어 보임이 함께 있는지에 따라 접근이 달라집니다. 일산한의원(풍산역 2번 출구 도보 1분)에서는 피부 상태와 이전 시술·검사 내용을 보고 원내에서 가능한 진료 범위를 설명하며, 연구에서 비교한 모든 시술을 원내에서 하는 것은 아닙니다. 이전 치료 시기와 반응, 색소침착 경험, 복용 약과 현재 사진을 카카오톡 상담이나 내원 때 가져오시면 좋습니다.",
+    "tags": [
+      "여드름흉터",
+      "네트워크 메타분석",
+      "레이저",
+      "PRP",
+      "화학박피",
+      "마이크로니들링",
+      "환자만족도"
+    ],
+    "evidence": [
+      {
+        "claim": "무작위 대조시험 68개, 여드름 흉터 환자 4,480명이 분석에 포함되었다.",
+        "quote": "Basic characteristics of enrolled RCTs are displayed in File S3 . A total of 68 RCTs were included, comprising 4,480 patients with acne scarring, of whom approximately 44.34% were male and 55.66% were female, with an average age of 26.34 ± 5.35. 21 investigations were carried out in India, 18 in Egypt, 12 in China, five investigations in Pakistan, five in Iran, two in Korea, and one each in the United States, Japan, Denmark, Brazil, and Israel. In addition, 10 RCTs had three arms and 58 RCTs had two arms."
+      },
+      {
+        "claim": "ECCA 점수는 레이저+PRP가 레이저 단독, 마이크로니들링, 레이저+필러 등보다 더 크게 감소했고 SUCRA 98.4%로 1위였다.",
+        "quote": "Eighteen RCTs reported ECCA scores. NMA results showed that ECCA scores were notably reduced after laser combined with PRP for acne scarring compared with microneedling, laser, chemical peel, PRP, microneedling + PRP, laser + drugs, and laser + filler injection (laser + PRP vs. microneedling: MD = −21.44, 95% CrI [−27.21 to −15.66]; laser + PRP vs. laser: MD = −20.54, 95% CrI [−21.45 to −19.63]; laser + PRP vs. chemical peeling: MD = −16.66, 95% CrI [−28.44 to −4.75]); laser + PRP vs. PRP: MD = −14.99, 95% CrI [−27.30 to −2.65]; laser + PRP vs . microneedling + PRP: MD = −27.48, 95% CrI [−41.59 to −13.34]; laser + PRP vs. laser + drug: MD = −24.47, 95% CrI [−26.93 to −22.02]; laser + PRP vs. laser + filler injection: MD = −18.55, 95% CrI [−20.25 to −16.86]. More results are detailed in Table 2 . SUCRA ranking results revealed laser + PRP (98.4%) >microneedling + laser (84.2%) >laser + chemical peeling (76.4%). More results are detailed in Fig. 5A ."
+      },
+      {
+        "claim": "GBS 비교에서는 모든 신뢰구간이 0을 포함해 치료 간 차이를 말할 수 없었다.",
+        "quote": "16 RCTs mentioned GBS, and two studies were excluded due to their inability to connect to the network ( Abdelwahab, Omar & Hamdino, 2022 ; Shetty et al., 2021 ). NMA results uncovered that the 95% CrIs for comparisons of different regimens contained 0, and it could not imply differences among different regimens in terms of GBS. More results are detailed in Table 3 . SUCRA ranking results revealed laser + drugs (73.36%) >laser + filler injections (72.1%) >microneedling + PRP (65.1%). More results are detailed in Fig. 5B . Due to the lack of evidence to support differences in treatment efficacy among interventions, SUCRA results were informative only and cannot be effectively interpreted as differences in efficacy among interventions."
+      },
+      {
+        "claim": "통증(VAS) 비교에서도 치료 간 차이를 시사하는 근거가 없었다.",
+        "quote": "A total of 11 RCTs reported pain based on VAS scores, and one study was excluded due to their inability to connect to the network ( Dastgheib et al., 2024 ). NMA results uncovered that the 95% CrIs for comparisons of different regimens contained 0, and it could not imply differences among different regimens in terms of VAS scores. More results are detailed in Table 4 . SUCRA ranking results revealed microneedling (72.6%) >chemical peeling (60.6%) >microneedling + PRP (53.3%). More results are detailed in Fig. 5C . Due to the lack of evidence to support differences in treatment efficacy among interventions, SUCRA results were informative only and cannot be effectively interpreted as differences in tolerability among interventions."
+      },
+      {
+        "claim": "만족 비율은 레이저+화학박피가 마이크로니들링, 레이저, 화학박피, 마이크로니들링+PRP보다 높았다.",
+        "quote": "A total of 33 RCTs reported post-treatment patient satisfaction grading, and this outcome was analyzed by comparing the proportions of patients that were satisfied or very satisfied and the proportion of patients that were not. NMA results uncovered that patient satisfaction with laser + chemical peeling for acne scarring was considerably better than microneedling alone, laser, chemical peeling, and microneedling + PRP (laser + chemical peeling vs. microneedling: RR = 2.04, 95% CrI [1.23–3.85]; laser + chemical peeling vs. laser: RR = 1.71, 95% CrI [1.09–2.93]; laser + chemical peeling vs. chemical peeling: RR = 3.56, 95% CrI [1.79–7.97]; laser + chemical peeling vs. microneedling + PRP: RR = 2.15, 95% CrI [1.15–4.94]), suggesting that laser + chemical peeling was superior for acne scarring treatment. More results are detailed in Table 5 . SUCRA ranking results revealed lasers + chemical peeling (85.6%) >lasers + PRP (80.0%) >lasers + subcision (71.1%). More results are detailed in Fig. 5D ."
+      },
+      {
+        "claim": "홍반 발생률은 21개 시험 분석에서 치료 간 차이를 확인하지 못했다.",
+        "quote": "A total of 21 RCTs reported the incidence of erythema after treatment. NMA noted that the 95% CrIs of the comparisons of different regimens included 1, and it could not be assumed a difference in erythema incidence among different regimens. More results are detailed in Table 6 . SUCRA ranking results revealed laser + drugs (84.4%) >PRP (72.5%) >microneedling + chemical peeling (65.0%). More results are detailed in Fig. 6A ."
+      },
+      {
+        "claim": "부종은 PRP 단독이 레이저+화학박피보다 낮았고 나머지 비교는 차이가 없었다.",
+        "quote": "A total of 11 RCTs reported the incidence of post-treatment edema. NMA showed that edema incidence of edema after PRP alone was notably lower than that of laser + chemical peeling (PRP vs. laser + chemical peeling: RR = 0.06, 95% CrI [0–0.73]) ( P < 0.05). The 95% CrI of other comparisons contained 1, and it could not yet imply differences in edema incidence among different regimens. More results are detailed in Table 7 ."
+      },
+      {
+        "claim": "색소침착(PIH)은 16개 시험 분석에서 치료 간 차이가 없었다.",
+        "quote": "A total of 16 RCTs reported the incidence of post-treatment PIH. NMA results uncovered that the 95% CrIs for comparisons of different regimens contained 1, and it could not imply differences among different regimens in terms of PIH incidence. More results are detailed in Table 8 . SUCRA ranking results revealed microneedling (72.0%) >microneedling + filler injection (61.4%) >microneedling + PRP (58.4%). More results are detailed in Fig. 6C . Due to the lack of evidence to support differences in treatment efficacy between interventions, SUCRA results were informative only and cannot be effectively interpreted as differences in PIH among interventions."
+      }
+    ],
+    "figures": [],
+    "faq": [
+      {
+        "question": "모공도 같은 치료로 줄어드나요?",
+        "answer": "이 연구는 여드름 흉터의 점수, 통증, 만족도, 이상반응만 평가했고 모공 크기는 측정하지 않았습니다. 그래서 모공 변화는 이 결과로 답할 수 없습니다."
+      },
+      {
+        "question": "레이저+PRP가 가장 좋은 치료라고 봐도 되나요?",
+        "answer": "ECCA 점수로는 1위였지만 GBS, 통증, 홍반, 색소침착에서는 치료 간 차이가 확인되지 않았습니다. 만족도는 레이저+화학박피가 더 높았습니다. 흉터 형태와 회복 기간, 비용에 맞춰 고려할 문제입니다."
+      }
+    ],
+    "publicationFormat": "text-only",
+    "paper": {
+      "doi": "10.7717/peerj.19938",
+      "pmcid": "PMC12515001",
+      "pmid": "41081097",
+      "date": "2025-10-08",
+      "types": [
+        "Journal Article",
+        "Network Meta-Analysis",
+        "Systematic Review"
+      ],
+      "title": "Optimal treatment options for acne scars in patients with historic acne: a systematic review and network meta-analysis.",
+      "citations": 7,
+      "citationSource": "Crossref",
+      "checkedAt": "2026-11-18T02:53:49.630Z",
+      "editorialQuestion": {
+        "id": "skin-2",
+        "question": "모공과 흉터 치료 후 어떤 변화를 기대할 수 있나요?"
+      },
+      "authors": [
+        "Wu Bingwei",
+        "Gao Mingju",
+        "Zhang Yixuan",
+        "Bai Xinping"
+      ],
+      "journal": "PeerJ",
+      "volume": "13",
+      "issue": "",
+      "pages": "e19938",
+      "abstract": "Background Acne is a common skin condition that can cause permanent scarring and profoundly affect patients’ quality of life. Despite the increasing diversity of acne scar treatments, there is a dearth of comprehensive evidence-based guidelines to help clinicians and patients make the best choices. This study aimed to comprehensively assess the efficacy and safety of existing acne scar treatments through a network meta-analysis. Method PubMed, Embase, Cochrane Library, and Web of Science were thoroughly searched for relevant studies from database establishment to September 19, 2024. Outcome included Echelle d’evaluation clinique des cicatrices d’acne (ECCA), Goodman and Baron Scale (GBS), pain, patient satisfaction, and adverse events. Bayesian network meta-analyses were performed using the gemtc package in R. Risk of bias was assessed using Cochrane Risk of Bias (RoB 2) tool, while publication bias was assessed via funnel plots. The study protocol was registered with PROSPERO (CRD42024598780). Results A total of 68 randomized controlled trials were enrolled, comprising 4,480 patients with acne scarring. Laser + platelet-rich plasma (PRP) ranked best in reducing ECCA scores (surface under cumulative ranking curve to the total area (SUCRA): 98.4%), laser + filler injection ranked best in reducing GBS (SUCRA: 72.1%), and laser + chemical peels ranked the best in patient satisfaction (SUCRA: 89.6%). Microneedling was ranked as the most tolerable in terms of pain (SUCRA: 72.6%). In addition, no strong evidence suggesting a treatment reduced the risk of erythema nor post-inflammatory hyperpigmentation compared to the other treatments. Conclusions The evidence suggests laser combined with PRP or filler injections are the best options for reducing scar severity, while laser combined with chemical peeling yields the best patient satisfaction. Laser combined with other therapies should be considered to optimize treatment of acne scarring.",
+      "conclusion": "Conclusion This NMA provides evidence suggesting that laser combined with other therapies should be considered to optimize treatment of acne scarring. More evidence is required to conclude definitive superiority of these treatments over all other regimens, and to better understand tolerability as well as the risks of adverse events.",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "licenseText": "https://creativecommons.org/licenses/by/4.0/ This is an open access article distributed under the terms of the Creative Commons Attribution License , which permits unrestricted use, distribution, reproduction and adaptation in any medium and for any purpose provided that it is properly attributed. For attribution, the original author(s), title, publication source (PeerJ) and either DOI or URL of the article must be cited.",
+      "sourceUrl": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12515001/fullTextXML",
+      "sourceHash": "cfb11e518e3d7853ed5b991212a7fa85b2af1a17c54492834766478719c88a03",
+      "figureCount": 8
+    },
+    "verification": {
+      "type": "automated",
+      "model": "claude-opus-5-5",
+      "writerModel": "claude-sonnet-5-5",
+      "checkedAt": "2026-11-18T02:56:04.854Z",
       "checks": {
         "numbers": true,
         "methods": true,
