@@ -11,6 +11,7 @@ for(const a of articles){
   const p=parsePaper(xml);validateDraft(a,p);
   if(!allowedLicense(a.paper.licenseUrl)||sha256(xml)!==a.paper.sourceHash||p.ids.doi.toLowerCase()!==a.paper.doi.toLowerCase())throw Error('Source/license mismatch');
   assertReview({approved:true,issues:[],checks:a.verification.checks});
+  if(a.verification.checks.topicAlignment===false)throw Error('Topic alignment review failed');
   if((a.publicationFormat!=='text-only'&&a.figures.length!==p.figures.length)||a.paper.figureCount!==p.figures.length)throw Error('Figure missing');
   for(const f of a.figures){const source=p.figures.find(s=>s.id===f.id);if(!source||f.images.length!==source.graphics.length)throw Error('Figure panel missing');for(const img of f.images)for(const key of ['src','preview']){if(!img[key].startsWith(`/research-assets/${a.paper.pmcid}/`)||img[key].includes('..'))throw Error('Unsafe asset path');await fs.access(path.join('public',img[key]));}}
 }

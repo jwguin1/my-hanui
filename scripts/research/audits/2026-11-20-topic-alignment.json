@@ -1,0 +1,233 @@
+{
+  "checkedAt": "2026-11-20T02:47:14.536Z",
+  "type": "automated-source-comparison",
+  "scope": "Title, patient question, summary, answer and FAQ compared with archived licensed full-paper title/abstract/conclusion; focused methods/results checks for corrections. Not a new independent clinical review of every numeric claim.",
+  "articles": [
+    {
+      "slug": "pmid-38693474",
+      "pmid": "38693474",
+      "doi": "10.1186/s12891-024-07468-0",
+      "sourceHash": "fe7f6cdf225920632ac53c72d54c5c656aedf21ef0b83bc6225d790fbd219298",
+      "sourceUrl": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11061926/fullTextXML",
+      "sourceIdentityMatched": true,
+      "status": "topic-matched",
+      "reason": "Patient-facing topic matches the studied condition, intervention/exposure and outcomes."
+    },
+    {
+      "slug": "pmid-30521155",
+      "pmid": "30521155",
+      "doi": "10.5935/1518-0557.20180083",
+      "sourceHash": "007b1cbe8fddeba624313022bebb5d05877d7bb4eaf091e09dff99920d32c80d",
+      "sourceUrl": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC6364281/fullTextXML",
+      "sourceIdentityMatched": true,
+      "status": "topic-matched",
+      "reason": "Patient-facing topic matches the studied condition, intervention/exposure and outcomes."
+    },
+    {
+      "slug": "pmid-36674277",
+      "pmid": "36674277",
+      "doi": "10.3390/ijerph20021522",
+      "sourceHash": "051ca9b2fb23a28093a4a384c52a09c446f3bda26c9ccdc750541646b5ddaa6f",
+      "sourceUrl": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC9861614/fullTextXML",
+      "sourceIdentityMatched": true,
+      "status": "topic-matched",
+      "reason": "Patient-facing topic matches the studied condition, intervention/exposure and outcomes."
+    },
+    {
+      "slug": "pmid-32723399",
+      "pmid": "32723399",
+      "doi": "10.1186/s13063-020-04610-w",
+      "sourceHash": "fc85aa5bd386d662728a2c8578f9a9a8076fa6a1d6c6f7a2908097410e9343e9",
+      "sourceUrl": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC7385865/fullTextXML",
+      "sourceIdentityMatched": true,
+      "status": "topic-matched",
+      "reason": "Patient-facing topic matches the studied condition, intervention/exposure and outcomes."
+    },
+    {
+      "slug": "pmid-39540440",
+      "pmid": "39540440",
+      "doi": "10.1093/asj/sjae228",
+      "sourceHash": "592f33c6da79b2edc8721e585c194eacfea3fcb4aa68ca793743a3c1b2efc98e",
+      "sourceUrl": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11834976/fullTextXML",
+      "sourceIdentityMatched": true,
+      "status": "topic-matched",
+      "reason": "Patient-facing topic matches the studied condition, intervention/exposure and outcomes."
+    },
+    {
+      "slug": "pmid-35462555",
+      "pmid": "35462555",
+      "doi": "10.1186/s40001-022-00682-3",
+      "sourceHash": "e7d3718c344ecfdd74dd1462cddb1cf4fa9b6e67b1ed84b36942ea3ee99d8e9b",
+      "sourceUrl": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC9036742/fullTextXML",
+      "sourceIdentityMatched": true,
+      "status": "corrected",
+      "reason": "30편 전체가 항히스타민제 비교 시험인 것처럼 읽히던 제목의 비교군 범위를 바로잡음.",
+      "previousTitle": "알레르기 비염에 침 치료가 도움이 될까? 항히스타민제와 비교한 임상시험 30편 분석",
+      "title": "알레르기 비염에 침 치료가 도움이 될까요? 무치료·가짜 침·항히스타민제 등과 비교한 30편 분석"
+    },
+    {
+      "slug": "pmid-35725480",
+      "pmid": "35725480",
+      "doi": "10.1186/s13018-022-03212-3",
+      "sourceHash": "e54d3e172fbb83e36bfa883d0eb41a385d4ff860f45f5d3a69eed1e406b6bd3b",
+      "sourceUrl": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC9208133/fullTextXML",
+      "sourceIdentityMatched": true,
+      "status": "topic-matched",
+      "reason": "Patient-facing topic matches the studied condition, intervention/exposure and outcomes."
+    },
+    {
+      "slug": "pmid-37632188",
+      "pmid": "37632188",
+      "doi": "10.1111/srt.13422",
+      "sourceHash": "250a9238b667cf63d9e6b450185dff6e5bad30bcfd762e9f40bfd7920744c1c6",
+      "sourceUrl": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC10405365/fullTextXML",
+      "sourceIdentityMatched": true,
+      "status": "topic-matched",
+      "reason": "Patient-facing topic matches the studied condition, intervention/exposure and outcomes."
+    },
+    {
+      "slug": "pmid-27814709",
+      "pmid": "27814709",
+      "doi": "10.1186/s12906-016-1418-0",
+      "sourceHash": "6c1777d51042c583144601f9e2c0ac89c04b1829fbeab056d5bd6646aba7d842",
+      "sourceUrl": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC5097372/fullTextXML",
+      "sourceIdentityMatched": true,
+      "status": "topic-matched",
+      "reason": "Patient-facing topic matches the studied condition, intervention/exposure and outcomes."
+    },
+    {
+      "slug": "pmid-34200510",
+      "pmid": "34200510",
+      "doi": "10.3390/ijerph18116176",
+      "sourceHash": "a28561e5cb2ac581be3a4450c6f284227670b378d0ff0326fd292f31acef7f29",
+      "sourceUrl": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC8201115/fullTextXML",
+      "sourceIdentityMatched": true,
+      "status": "corrected",
+      "reason": "원문 초록·본문의 질 평가 분모와 비율이 서로 맞지 않아 해당 세부 집계 대신 공통된 질 평가 경향을 기술함.",
+      "previousTitle": "목·허리 신경뿌리 방사통, 견인 같은 수기치료가 도움이 될까요?",
+      "title": "목·허리 신경뿌리 방사통, 견인 같은 수기치료가 도움이 될까요?"
+    },
+    {
+      "slug": "pmid-35888655",
+      "pmid": "35888655",
+      "doi": "10.3390/medicina58070936",
+      "sourceHash": "664e111071633e3afbc3d25342e9c98edc68efe92fe89c3c2ce5eab4c2da6cd8",
+      "sourceUrl": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC9323185/fullTextXML",
+      "sourceIdentityMatched": true,
+      "status": "topic-matched",
+      "reason": "Patient-facing topic matches the studied condition, intervention/exposure and outcomes."
+    },
+    {
+      "slug": "pmid-40847362",
+      "pmid": "40847362",
+      "doi": "10.1186/s13020-025-01187-x",
+      "sourceHash": "79ea41b0200bc81574f6fc8c26fb74b88c90010bc577a1049dcfe129591b78bc",
+      "sourceUrl": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12372385/fullTextXML",
+      "sourceIdentityMatched": true,
+      "status": "topic-matched",
+      "reason": "Patient-facing topic matches the studied condition, intervention/exposure and outcomes."
+    },
+    {
+      "slug": "pmid-32927858",
+      "pmid": "32927858",
+      "doi": "10.3390/ijerph17186601",
+      "sourceHash": "8ed7a76c5f0ac01e85b11390201b3b5da3143c47974ccf7217686b382fb84ffd",
+      "sourceUrl": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC7558520/fullTextXML",
+      "sourceIdentityMatched": true,
+      "status": "topic-matched",
+      "reason": "Patient-facing topic matches the studied condition, intervention/exposure and outcomes."
+    },
+    {
+      "slug": "pmid-40414798",
+      "pmid": "40414798",
+      "doi": "10.1111/jocd.70208",
+      "sourceHash": "8829a4d2e5f150f3c73f4fe1f592babbe78641425ccde76be01048c5065ef935",
+      "sourceUrl": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12104007/fullTextXML",
+      "sourceIdentityMatched": true,
+      "status": "corrected",
+      "reason": "엑소좀·PRP 단독 치료 비교로 오해하지 않도록 공통 선행 치료인 고주파 미세침을 제목·질문·요약에 명시함.",
+      "previousTitle": "엑소좀과 PRP, 광노화 얼굴 피부에는 어느 쪽이 더 나을까요?",
+      "title": "고주파 미세침 후 바르는 엑소좀과 PRP, 광노화 피부에서 어떻게 달랐나요?"
+    },
+    {
+      "slug": "pmid-32251324",
+      "pmid": "32251324",
+      "doi": "10.1038/s41598-020-62133-5",
+      "sourceHash": "b413c02bc0f8f44c319d01559f38d7a51dd9b58ef6f39d520b8403a4b02877d0",
+      "sourceUrl": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC7090086/fullTextXML",
+      "sourceIdentityMatched": true,
+      "status": "corrected",
+      "reason": "침·식욕 질문을 제거하고 실제 연구한 체중·허리둘레와 심혈관 위험 예측으로 제목·질문·본문·태그를 일치시킴.",
+      "previousTitle": "침 치료는 식욕과 체중 관리에 도움이 되나요? 이 논문은 심혈관 위험 예측 연구입니다",
+      "title": "체중과 허리둘레만으로 심혈관 위험을 알 수 있을까요?"
+    },
+    {
+      "slug": "pmid-40145274",
+      "pmid": "40145274",
+      "doi": "10.1111/jocd.70133",
+      "sourceHash": "eabf93ca9bcf62499748d65df54bcc2a75d705c37cf4c9ed86eccd291f1cb95f",
+      "sourceUrl": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11948172/fullTextXML",
+      "sourceIdentityMatched": true,
+      "status": "topic-matched",
+      "reason": "Patient-facing topic matches the studied condition, intervention/exposure and outcomes."
+    },
+    {
+      "slug": "pmid-39568071",
+      "pmid": "39568071",
+      "doi": "10.1186/s13020-024-01028-3",
+      "sourceHash": "6f0e4668b71aaac519ee12df9c75832336996946bba744205b77009da01e00c3",
+      "sourceUrl": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11580632/fullTextXML",
+      "sourceIdentityMatched": true,
+      "status": "topic-matched",
+      "reason": "Patient-facing topic matches the studied condition, intervention/exposure and outcomes."
+    },
+    {
+      "slug": "pmid-38674202",
+      "pmid": "38674202",
+      "doi": "10.3390/medicina60040556",
+      "sourceHash": "f2a069763d62ae74f1d8a0f6638dbdb106a1718a32b707edf2e5e3165ad5ab82",
+      "sourceUrl": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11052486/fullTextXML",
+      "sourceIdentityMatched": true,
+      "status": "corrected",
+      "reason": "수기치료·통증교육 연구의 질문과 FAQ에서 연구하지 않은 침 치료를 제거함.",
+      "previousTitle": "만성 허리통증에 수기치료만 받는 것과 통증교육을 함께 받는 것, 무엇이 달랐나요?",
+      "title": "만성 허리통증에 수기치료만 받는 것과 통증교육을 함께 받는 것, 무엇이 달랐나요?"
+    },
+    {
+      "slug": "pmid-30142943",
+      "pmid": "30142943",
+      "doi": "10.3390/nu10091153",
+      "sourceHash": "851641f0123e585ad3d3fb25bc9bcedaf88a7a60661ca62324ceb1f78242ec83",
+      "sourceUrl": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC6163782/fullTextXML",
+      "sourceIdentityMatched": true,
+      "status": "corrected",
+      "reason": "한약 감량 질문을 지방간 보충제의 간수치·간 지방 연구로 바로잡음.",
+      "previousTitle": "지방간 환자 대상 보충제·허브 리뷰로 본 한약과 체중 감량: 이 논문이 답할 수 있는 범위",
+      "title": "지방간이 있을 때 보충제는 어떤 역할을 하나요?"
+    },
+    {
+      "slug": "pmid-41081097",
+      "pmid": "41081097",
+      "doi": "10.7717/peerj.19938",
+      "sourceHash": "cfb11e518e3d7853ed5b991212a7fa85b2af1a17c54492834766478719c88a03",
+      "sourceUrl": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12515001/fullTextXML",
+      "sourceIdentityMatched": true,
+      "status": "corrected",
+      "reason": "여드름 흉터 연구의 질문·첫 답변·FAQ를 모공과 분리함.",
+      "previousTitle": "여드름 흉터 치료 후 어떤 변화를 기대할 수 있나요? 68개 임상시험 비교",
+      "title": "여드름 흉터 치료 후 어떤 변화를 기대할 수 있나요? 68개 임상시험 비교"
+    },
+    {
+      "slug": "pmid-28424994",
+      "pmid": "28424994",
+      "doi": "10.1007/s10354-017-0557-3",
+      "sourceHash": "00fac78a74dda9a4f85f8559415669a512849b47f08d316f3e06a07bdf4464e7",
+      "sourceUrl": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC5409921/fullTextXML",
+      "sourceIdentityMatched": true,
+      "status": "corrected",
+      "reason": "일반적인 한약 질문을 특정 제품 STW 5로 좁히고 허가·안전성 설명의 기준 시점을 밝힘.",
+      "previousTitle": "기능성 소화불량에서 약초 복합제 STW 5는 메토클로프라미드·시사프리드와 무엇이 달랐나요?",
+      "title": "기능성 소화불량에서 약초 복합제 STW 5는 메토클로프라미드·시사프리드와 무엇이 달랐나요?"
+    }
+  ]
+}

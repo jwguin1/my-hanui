@@ -8,9 +8,36 @@ const sentence='The complete study paragraph reports the outcomes and limitation
 const paper={title:'A complete clinical study',abstract:'Study abstract.',date:'2025-01-01',fullText:`Introduction ${sentence} Methods and tables remain here.`,excerpts:[{sourceId:1,text:sentence}],figures:[]};
 const t='충분한 길이의 환자 설명 문장입니다.';
 const raw={title:t,summary:t,question:t,answer:t,population:t,methods:t,results:t,meaning:t,limitations:t,consultation:t,tags:['통증','치료'],evidence:Array.from({length:3},()=>({claim:t,sourceId:1})),figures:[],faq:[{question:t,answer:t},{question:t,answer:t}]};
-const checks={numbers:true,methods:true,causality:true,clinicalRelevance:true,figures:true,noPatientIdentifyingImages:true,noInventedCredentials:true};
+const checks={numbers:true,methods:true,causality:true,clinicalRelevance:true,figures:true,noPatientIdentifyingImages:true,noInventedCredentials:true,topicAlignment:true};
 const approved={approved:true,issues:[],checks};
 const rejected={approved:false,issues:['Revise the interpretation of the result.'],checks:{...checks,causality:false}};
+
+test('an unrelated cardiovascular paper is rejected before writing an acupuncture weight-loss article',async t=>{
+  const source={...paper,title:'Cardiovascular risk prediction',abstract:'A cohort prediction model using obesity and blood pressure.',methods:'Observational cohort; no acupuncture intervention.',results:'AUC of the risk model.'};
+  const requests=provider(t,[{relevant:false,population:'Adults at cardiovascular risk',interventionOrExposure:'Risk factors',outcomes:'Cardiovascular events',reason:'No acupuncture or weight-loss intervention was studied.'}]);
+  await assert.rejects(()=>generate(source,'diet',[],'식욕과 체중을 관리할 때 침 치료는 어떤 역할을 하나요?'),/Topic relevance rejected/);
+  assert.equal(requests.length,1);
+  assert.match(requests[0].messages[0].content[0].text,/Risk model|risk model/);
+});
+
+test('publication review receives the original question and fails closed on a repeated topic mismatch',async t=>{
+  const relevance={relevant:true,population:'Adults',interventionOrExposure:'Manual therapy',outcomes:'Pain',reason:'Answers the manual therapy part only.'};
+  const mismatch={approved:true,issues:[],checks:{...checks,topicAlignment:false}};
+  const requests=provider(t,[relevance,raw,mismatch,raw,mismatch]);
+  await assert.rejects(()=>generate(paper,'pain',[],'허리 통증에 침과 수기치료는 어떤 도움이 되나요?'),/topic alignment/);
+  assert.equal(requests.length,5);
+  assert.match(requests[2].messages[0].content[0].text,/ORIGINAL PATIENT QUESTION: 허리 통증에 침과 수기치료/);
+  assert.match(requests[4].messages[0].content[0].text,/ORIGINAL PATIENT QUESTION/);
+});
+
+test('a relevant source still requires drafting and a successful topic-aware publication review',async t=>{
+  const relevance={relevant:true,population:'Adults with neck pain',interventionOrExposure:'Manual therapy',outcomes:'Pain and disability',reason:'Directly studies the requested treatment and condition.'};
+  const requests=provider(t,[relevance,raw,approved]);
+  const result=await generate(paper,'pain',[],'목 통증에 수기치료가 도움이 되나요?');
+  assert.equal(requests.length,3);
+  assert.equal(result.review.checks.topicAlignment,true);
+  assert.match(requests[1].system,/publication must then ask ONLY that studied question/);
+});
 
 function provider(t,responses,inputTokens=100){
   const requests=[];
