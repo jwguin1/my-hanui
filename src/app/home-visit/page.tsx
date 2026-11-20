@@ -2,6 +2,7 @@ import Link from "next/link";
 import SectionJumpNav from "@/components/SectionJumpNav";
 import JsonLd from "@/components/JsonLd";
 import HomeVisitMap from "@/components/HomeVisitMap";
+import HomeVisitApplication from "@/components/HomeVisitApplication";
 import PillButton from "@/components/ui/PillButton";
 import { MessageCircle, Stethoscope, MapPin, Clock } from "@/components/ui/icons";
 import { CLINIC, CLINIC_HOURS_WEEKDAY, CLINIC_HOURS_WEEKEND, CLINIC_HOURS_LUNCH } from "@/lib/clinic";
@@ -125,16 +126,10 @@ export default function HomeVisitPage() {
     <section id="apply" className="scroll-mt-24 px-6 py-14 md:py-20">
       <div className="mx-auto max-w-3xl rounded-2xl border border-line bg-white p-6 md:p-10">
         <p className="text-sm font-semibold text-primary">일산한의원 방문진료 상담</p><h2 className="mt-3 font-serif text-3xl font-semibold leading-snug text-ink">신청할 때 이렇게 남겨주세요</h2>
-        <p className="mt-5 text-base leading-[1.85] text-muted">일산한의원 카카오톡 채널에서 ‘채팅으로 문의하기’를 누르고 아래 내용을 남겨주세요.</p>
-        <ol className="my-6 space-y-5 rounded-xl bg-[var(--surface)] p-4 text-base leading-relaxed text-ink sm:p-5">
-          <li><strong className="block">1. 진료받으실 분의 성함</strong><span className="mt-1 block">보호자가 신청하면 보호자 성함과 환자분과의 관계도 알려주세요. 예: 딸, 아들, 배우자</span></li>
-          <li><strong className="block">2. 연락받을 전화번호</strong><span className="mt-1 block">환자 본인 또는 보호자 중 연락받기 편한 분의 번호를 남겨주세요.</span></li>
-          <li><strong className="block">3. 방문할 동네</strong><span className="mt-1 block">고양시 또는 파주시와 동·읍·면 이름을 적어주세요. 예: 고양시 일산동구 중산동, 파주시 문산읍</span></li>
-          <li><strong className="block">4. 희망 요일과 시간</strong><span className="mt-1 block">아직 정하지 않으셨다면 ‘상담 후 결정’이라고 적어주세요.</span></li>
-        </ol>
-        <p className="mb-6 text-base leading-relaxed text-ink">현재 가장 불편한 점도 한두 문장으로 알려주세요. 자세한 주소와 준비사항은 카카오톡 상담에서 함께 확인합니다.</p>
+        <p className="mt-5 text-base leading-[1.85] text-muted">양식을 복사한 뒤 카카오톡에 붙여넣고 빈칸만 채워주세요.</p>
+        <HomeVisitApplication />
         <ApplyButtons />
-        <p className="mt-5 text-base leading-relaxed text-muted">남겨주신 내용을 확인하고 카카오톡으로 방문 일정과 준비사항을 안내합니다.</p>
+        <p className="mt-5 text-base leading-relaxed text-muted">채널이 열리면 ‘채팅으로 문의하기’를 눌러주세요. 자세한 주소와 방문 일정은 상담에서 함께 확인합니다.</p>
       </div>
       <nav aria-label="관련 진료 안내" className="mx-auto mt-8 flex max-w-3xl flex-wrap justify-center gap-x-6 gap-y-3 text-sm text-primary"><Link href="/doctor">의료진 소개 →</Link><Link href="/pain/chronic">통증·추나·약침 →</Link><Link href="/herbal/insurance">보험한약 →</Link><Link href="/herbal/tonic">체질보약 →</Link><Link href="/pricing">원내 진료비 안내 →</Link></nav>
     </section>
