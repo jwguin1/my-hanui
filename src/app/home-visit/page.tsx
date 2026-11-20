@@ -12,16 +12,15 @@ import { buildGraph, faqEntities } from "@/lib/schema";
 export const metadata = pageMetadata({ path: HOME_VISIT.path, title: HOME_VISIT.title, description: HOME_VISIT.description, routeOgImage: true });
 
 const steps = [
-  { title: "편한 방법으로 문의", body: "구글 신청서나 카카오톡으로 연락처와 희망 지역을 남겨주세요. 보호자가 대신 신청하셔도 됩니다." },
-  { title: "상태·비용·일정 상담", body: "한의원에서 연락드려 이동이 어려운 이유와 필요한 진료를 확인하고, 본인부담금과 방문 일정을 안내합니다." },
+  { title: "카카오톡으로 신청", body: "일산한의원 채널의 채팅으로 성함·연락처와 방문 지역을 남겨주세요. 보호자가 대신 신청하셔도 됩니다." },
+  { title: "상태·비용·일정 상담", body: "카카오톡 상담으로 이동이 어려운 이유와 필요한 진료를 확인하고, 본인부담금과 방문 일정을 안내합니다." },
   { title: "집으로 찾아가는 진료", body: "약속한 시간에 한의사가 방문합니다. 현재 상태와 복용약을 살피고 진찰 결과에 맞춰 치료합니다." },
   { title: "진료 후 생활 안내", body: "집에서 살펴볼 변화와 생활관리 방법을 알려드립니다. 환자분이 동의하시면 보호자에게도 진료 내용을 설명하고, 다음 방문 간격을 상의합니다." },
 ];
 
 function ApplyButtons() {
   return <div className="flex flex-wrap gap-3">
-    <PillButton href={CLINIC.kakaoHref} variant="kakao" icon={<MessageCircle size={17} />}>카카오톡 방문진료 상담</PillButton>
-    <PillButton href={HOME_VISIT.formUrl} variant="outline">방문진료 신청서 작성 →</PillButton>
+    <PillButton href={HOME_VISIT.applyUrl} variant="kakao" icon={<MessageCircle size={17} />}>카카오톡으로 방문진료 신청</PillButton>
   </div>;
 }
 
@@ -36,7 +35,7 @@ export default function HomeVisitPage() {
           <p className="mt-6 max-w-xl text-lg leading-[1.9] text-ink">병원에 가는 일부터 힘겨우셨나요?<br />거동이 불편해 치료를 미뤘던 분을 위해<br className="hidden sm:block" /> 한의사가 익숙한 집으로 찾아갑니다.</p>
           <p className="mb-7 mt-4 text-base leading-relaxed text-muted">환자분의 통증과 움직임, 식사·수면과 복용약까지 함께 살핍니다. 부모님을 위한 상담도 편하게 남겨주세요.</p>
           <ApplyButtons />
-          <a href={CLINIC.telHref} className="mt-4 inline-block text-sm text-muted underline underline-offset-4">전화 문의 {CLINIC.tel}</a>
+          <p className="mt-4 text-sm text-muted">카카오톡 채널에서 ‘채팅으로 문의하기’를 눌러주세요.</p>
         </div>
         <aside aria-label="방문진료 핵심 안내" className="rounded-2xl border border-line bg-white p-6 md:p-8">
           <p className="text-sm font-semibold text-primary">처음 알아보신다면</p>
@@ -97,7 +96,7 @@ export default function HomeVisitPage() {
 
     <section id="area" className="scroll-mt-24 border-y border-line bg-white px-6 py-14 md:py-20">
       <div className="mx-auto grid max-w-5xl gap-10 md:grid-cols-2">
-        <div><p className="text-sm font-semibold text-primary">방문 가능 지역</p><h2 className="mt-3 font-serif text-3xl font-semibold text-ink">풍산역에서 출발해<br />고양시·파주시로</h2><p className="mt-5 text-base leading-[1.85] text-muted">{HOME_VISIT.areaDetail} 일산동구 풍산역·이마트 풍산점에서 출발합니다. {HOME_VISIT.areaNote}</p><p className="mt-4 font-medium text-primary">신청서에 시·구·동을 남겨주시면 확인해 드립니다.</p></div>
+        <div><p className="text-sm font-semibold text-primary">방문 가능 지역</p><h2 className="mt-3 font-serif text-3xl font-semibold text-ink">풍산역에서 출발해<br />고양시·파주시로</h2><p className="mt-5 text-base leading-[1.85] text-muted">{HOME_VISIT.areaDetail} 일산동구 풍산역·이마트 풍산점에서 출발합니다. {HOME_VISIT.areaNote}</p><p className="mt-4 font-medium text-primary">카카오톡에 시·구·동을 남겨주시면 확인해 드립니다.</p></div>
         <div><p className="text-sm font-semibold text-primary">상담·방문 일정</p><h2 className="mt-3 font-serif text-3xl font-semibold text-ink">진료시간 내 상담 후 방문</h2><dl className="mt-5 divide-y divide-line text-base"><div className="flex flex-wrap justify-between gap-2 py-3"><dt>평일</dt><dd className="font-semibold">{CLINIC_HOURS_WEEKDAY}</dd></div><div className="flex flex-wrap justify-between gap-2 py-3"><dt>토·일·공휴일</dt><dd className="font-semibold">{CLINIC_HOURS_WEEKEND}</dd></div><div className="flex flex-wrap justify-between gap-2 py-3"><dt>평일 점심시간</dt><dd>{CLINIC_HOURS_LUNCH}</dd></div></dl><p className="mt-4 text-sm leading-relaxed text-muted">위 진료시간 안에서 방문 날짜와 시간을 상담 후 정합니다. {CLINIC.closedNote} {CLINIC.holidayClosedNote}</p></div>
       </div>
       <HomeVisitMap />
@@ -126,9 +125,15 @@ export default function HomeVisitPage() {
     <section id="apply" className="scroll-mt-24 px-6 py-14 md:py-20">
       <div className="mx-auto max-w-3xl rounded-2xl border border-line bg-white p-6 md:p-10">
         <p className="text-sm font-semibold text-primary">일산한의원 방문진료 상담</p><h2 className="mt-3 font-serif text-3xl font-semibold leading-snug text-ink">먼저 이야기해 주세요.<br />방문 방법을 함께 찾겠습니다.</h2>
-        <p className="mb-7 mt-5 text-base leading-[1.85] text-muted">짧은 신청서에 성함·연락처·희망 지역을 남겨주세요. 한의원에서 연락드려 필요한 진료와 일정을 상담합니다.</p>
+        <p className="mt-5 text-base leading-[1.85] text-muted">일산한의원 카카오톡 채널에서 ‘채팅으로 문의하기’를 누르고 아래 내용을 남겨주세요.</p>
+        <ul className="my-6 space-y-2 rounded-xl bg-[var(--surface)] p-5 text-base leading-relaxed text-ink">
+          <li>신청자 성함 · 연락처</li>
+          <li>환자와의 관계 — 본인 또는 보호자</li>
+          <li>방문 지역 — 고양시·파주시의 구·동</li>
+          <li>희망 요일과 시간</li>
+        </ul>
         <ApplyButtons />
-        <p className="mt-5 text-base text-ink">문의·회신 연락처 <a href={CLINIC.telHref} className="font-semibold underline underline-offset-4">{CLINIC.tel}</a></p>
+        <p className="mt-5 text-base leading-relaxed text-muted">남겨주신 내용을 확인하고 카카오톡으로 방문 일정과 준비사항을 안내합니다.</p>
       </div>
       <nav aria-label="관련 진료 안내" className="mx-auto mt-8 flex max-w-3xl flex-wrap justify-center gap-x-6 gap-y-3 text-sm text-primary"><Link href="/doctor">의료진 소개 →</Link><Link href="/pain/chronic">통증·추나·약침 →</Link><Link href="/herbal/insurance">보험한약 →</Link><Link href="/herbal/tonic">체질보약 →</Link><Link href="/pricing">원내 진료비 안내 →</Link></nav>
     </section>

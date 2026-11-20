@@ -131,7 +131,7 @@ ${HERBAL_GUIDES.map(g => `- [${g.title}](${BASE}${herbalPath(g)}): ${g.question}
 - 지역: ${HOME_VISIT.areaDetail} ${HOME_VISIT.areaNote}
 - 비용: ${HOME_VISIT_PRICES.map(p => `${p.label} ${p.price} (${p.rate})`).join("; ")}.
 - 비용 기준: ${HOME_VISIT.costNote}
-- 상담 신청: ${HOME_VISIT.formUrl}
+- 상담 신청: 카카오톡 채팅 ${HOME_VISIT.applyUrl} — 성함·연락처, 환자와의 관계, 고양시·파주시 내 방문 지역, 희망 요일·시간을 남겨주세요.
 ${HOME_VISIT_FAQS.map(f => `- [${f.q}](${BASE}${HOME_VISIT.path}#question-${f.id}): ${f.a}`).join("\n")}
 
 ## 일산감비환·잡티 제거 질문별 안내
