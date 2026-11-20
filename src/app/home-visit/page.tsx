@@ -20,7 +20,7 @@ const steps = [
 
 function ApplyButtons() {
   return <div className="flex flex-wrap gap-3">
-    <PillButton href={HOME_VISIT.applyUrl} variant="kakao" className="min-h-14 w-full text-base! font-semibold! sm:w-auto" icon={<MessageCircle size={20} className="shrink-0" />}>카카오톡으로 신청하기</PillButton>
+    <PillButton href={HOME_VISIT.applyUrl} variant="kakao" className="min-h-14 w-full whitespace-nowrap px-4! text-base! font-semibold! sm:w-auto sm:px-[26px]!" icon={<MessageCircle size={20} className="shrink-0" />}>카카오톡으로 신청하기</PillButton>
   </div>;
 }
 
