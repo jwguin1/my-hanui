@@ -5,7 +5,7 @@
     "status": "published",
     "publishedAt": "2026-10-24T08:29:28.843Z",
     "updatedAt": "2026-10-24T08:59:21.741Z",
-    "lastSourceCheck": "2026-11-19T02:33:22.011Z",
+    "lastSourceCheck": "2026-11-20T02:18:34.638Z",
     "title": "허리 통증, 전 세계 진료지침은 어떤 치료를 권고할까요?",
     "summary": "허리가 아플 때 쉬어야 할까요, 움직여야 할까요? 15개국의 진료지침 22개를 비교한 연구에서 운동·침·도수치료의 권고와 차이를 살펴봅니다.",
     "question": "허리 통증이 생겼을 때 전 세계 의료 지침들은 어떤 치료를 권고하고 있으며, 지침마다 차이가 있나요?",
@@ -215,7 +215,7 @@
     "status": "published",
     "publishedAt": "2026-10-24T08:54:20.207Z",
     "updatedAt": "2026-10-24T09:03:20.640Z",
-    "lastSourceCheck": "2026-11-19T02:33:22.117Z",
+    "lastSourceCheck": "2026-11-20T02:18:34.855Z",
     "title": "매달 반복되는 생리통, 침·지압과 약용식물 연구는 무엇을 보여줄까요?",
     "summary": "2019년 문헌고찰은 생리통 치료 연구 17편을 살펴봤습니다. 침·지압과 약용식물의 가능성, 진료를 선택할 때 확인할 점을 정리합니다.",
     "question": "진통제 외에 침·지압이나 약용식물도 생리통 치료의 선택지가 될까요?",
@@ -318,7 +318,7 @@
     "status": "published",
     "publishedAt": "2026-10-24T09:00:43.027Z",
     "updatedAt": "2026-11-08T03:16:25.157Z",
-    "lastSourceCheck": "2026-11-19T02:33:23.730Z",
+    "lastSourceCheck": "2026-11-20T02:18:35.148Z",
     "title": "얼굴 처짐에 초음파 리프팅(MFU)을 1회 받으면 얼마나 좋아지고, 어떤 이상반응이 있을까요?",
     "summary": "16개 연구를 종합하니 1회 시술 90일 뒤 전문가 평가로 92%에서 탄력 개선이 있었지만 대부분 약간~중간 정도였고, 처짐이 심하거나 BMI가 30을 넘으면 효과가 줄었습니다.",
     "question": "초음파 리프팅(MFU)을 한 번 받으면 얼굴 피부 처짐이 실제로 얼마나 개선되고, 어떤 불편이나 이상반응이 생길 수 있나요?",
@@ -457,7 +457,7 @@
     "status": "published",
     "publishedAt": "2026-10-26T09:00:00+09:00",
     "updatedAt": "2026-11-08T03:16:25.166Z",
-    "lastSourceCheck": "2026-11-19T02:33:23.817Z",
+    "lastSourceCheck": "2026-11-20T02:18:37.026Z",
     "title": "만성 목 통증, 수기치료와 목 운동 중 무엇이 더 빨리 도움이 될까요?",
     "summary": "만성 목 통증 성인 69명을 3군으로 나눠 12주간 비교했습니다. 수기치료와 운동 모두 가짜 치료보다 나았고, 두 치료의 4·12주 차이는 없었으며 속도에서만 차이가 있었습니다.",
     "question": "오래된 목 통증에는 수기(도수)치료와 목 운동 중 어느 쪽이 더 효과적이고, 효과는 언제 나타날까요?",
@@ -592,7 +592,7 @@
     "status": "published",
     "publishedAt": "2026-10-28T09:00:00+09:00",
     "updatedAt": "2026-10-28T09:00:00+09:00",
-    "lastSourceCheck": "2026-11-19T02:33:23.908Z",
+    "lastSourceCheck": "2026-11-20T02:18:37.347Z",
     "title": "초음파 리프팅(MFU-V)은 처짐과 탄력 개선에 도움이 될까? 42개 연구 종합 분석",
     "summary": "42개 연구를 종합하니 시술 후 전반적 개선은 의료진 평가 89%, 환자 평가 84%였습니다. 다만 대조군 없는 연구가 많고 통증은 중등도였으며, 중립 응답 여부에 따라 만족도가 달라졌습니다.",
     "question": "미세집속초음파(MFU-V) 리프팅을 받으면 실제로 얼마나 좋아지고, 통증이나 이상반응은 어떤가요?",
@@ -813,7 +813,7 @@
     "status": "published",
     "publishedAt": "2026-10-30T09:00:00+09:00",
     "updatedAt": "2026-10-30T09:00:00+09:00",
-    "lastSourceCheck": "2026-11-19T02:33:25.727Z",
+    "lastSourceCheck": "2026-11-20T02:18:37.712Z",
     "title": "알레르기 비염에 침 치료가 도움이 될까? 항히스타민제와 비교한 임상시험 30편 분석",
     "summary": "성인 알레르기 비염에서 침은 무치료나 가짜 침보다 코 증상과 삶의 질에서 나았지만, 세티리진·로라타딘과는 뚜렷한 차이가 없었습니다. 다만 근거의 안정성은 약했습니다.",
     "question": "알레르기 비염 증상을 줄이기 위해 침 치료를 받아볼 만한가요? 항히스타민제와 비교하면 어떤가요?",
@@ -1040,7 +1040,7 @@
     "status": "published",
     "publishedAt": "2026-11-02T09:00:00+09:00",
     "updatedAt": "2026-11-08T03:16:25.166Z",
-    "lastSourceCheck": "2026-11-19T02:33:25.936Z",
+    "lastSourceCheck": "2026-11-20T02:18:39.897Z",
     "title": "만성 허리통증에 침 치료는 가짜 침보다 나을까요? 어떤 방식이 더 효과적일까요?",
     "summary": "만성 비특이적 요통 무작위시험 44개를 비교한 분석에서 진짜 침은 가짜 침보다 낫게 나왔고, 개별 맞춤 침과 표준 침+TENS가 가장 큰 개선을 보였습니다.",
     "question": "오래 지속되는 원인 불명의 허리통증에서 침 치료는 가짜 침보다 효과가 있고, 침 방식 중 무엇이 가장 나을까요?",
@@ -1219,7 +1219,7 @@
     "status": "published",
     "publishedAt": "2026-11-04T09:00:00+09:00",
     "updatedAt": "2026-11-08T03:16:25.166Z",
-    "lastSourceCheck": "2026-11-19T02:33:27.551Z",
+    "lastSourceCheck": "2026-11-20T02:18:40.303Z",
     "title": "고주파(RF) 얼굴 시술을 받으면 피부 수분과 탄력이 바로 좋아질까요?",
     "summary": "성인 여성 62명에게 비절제형 바이폴라 고주파 시술을 했더니 1시간 뒤 수분·탄력·피지 수치가 올랐습니다. 다만 대조군이 없는 단기 연구라 장기 효과는 알 수 없습니다.",
     "question": "비절제형 바이폴라 고주파 시술은 얼굴 피부의 수분, 탄력, 피지 수치를 시술 직후 개선할까요?",
@@ -2226,7 +2226,7 @@
     "status": "published",
     "publishedAt": "2026-11-18T09:00:00+09:00",
     "updatedAt": "2026-11-18T09:00:00+09:00",
-    "lastSourceCheck": "2026-11-18T02:53:43.792Z",
+    "lastSourceCheck": "2026-11-20T02:18:32.510Z",
     "title": "엑소좀과 PRP, 광노화 얼굴 피부에는 어느 쪽이 더 나을까요?",
     "summary": "광노화 피부 15명의 얼굴 반쪽씩 엑소좀과 PRP를 비교한 소규모 연구입니다. 6개월까지 양쪽 모두 개선됐고 뚜렷한 차이는 없었지만, 표본이 작고 무작위 배정이 아니라 확정하기는 어렵습니다.",
     "question": "얼굴 광노화에 엑소좀을 바르는 방법이 내 피를 뽑아 쓰는 PRP와 비교해 효과와 안전성이 어떤가요?",
@@ -2494,7 +2494,7 @@
     "status": "published",
     "publishedAt": "2026-11-20T09:00:00+09:00",
     "updatedAt": "2026-11-20T09:00:00+09:00",
-    "lastSourceCheck": "2026-11-18T02:53:45.599Z",
+    "lastSourceCheck": "2026-11-20T02:18:33.094Z",
     "title": "침 치료는 식욕과 체중 관리에 도움이 되나요? 이 논문은 심혈관 위험 예측 연구입니다",
     "summary": "이 논문은 침이나 식욕, 체중 감량을 다루지 않았고, 동부 중국 심혈관 고위험군의 3년 발생 위험을 예측하는 모델을 비교했습니다. 침의 체중 관리 효과는 이 논문으로 답할 수 없습니다.",
     "question": "식욕과 체중을 관리할 때 침 치료는 어떤 역할을 하나요?",
@@ -2622,7 +2622,7 @@
     "status": "published",
     "publishedAt": "2026-11-23T09:00:00+09:00",
     "updatedAt": "2026-11-23T09:00:00+09:00",
-    "lastSourceCheck": "2026-11-19T02:33:21.845Z",
+    "lastSourceCheck": "2026-11-20T02:18:34.243Z",
     "title": "일광 검버섯(태양흑자) 색소 레이저 선택: 41개 임상시험 고찰에서 비교한 점",
     "summary": "41개 임상시험(3234명)을 모은 고찰입니다. 저자들은 레이저가 더 효과적으로 보인다고 정리했습니다. 비교할 점은 호전율, 색소 침착(PIH), 통증, 회복입니다. 연구 간 차이가 커 우열은 잠정적입니다.",
     "question": "햇빛 때문에 생긴 검버섯(태양흑자)에 색소 레이저를 고를 때는 어떤 점을 비교해야 하나요?",
@@ -2744,7 +2744,7 @@
     "status": "published",
     "publishedAt": "2026-11-25T09:00:00+09:00",
     "updatedAt": "2026-11-25T09:00:00+09:00",
-    "lastSourceCheck": "2026-11-18T02:53:45.696Z",
+    "lastSourceCheck": "2026-11-20T02:18:33.513Z",
     "title": "식후 더부룩함(식후불편증후군)에 침 치료가 도움이 되나요? 가짜 침과 비교한 4주 무작위 시험",
     "summary": "식후불편증후군 환자 51명을 분석한 4주 시험에서 침 그룹의 76.9%가 호전을 보고해 가짜 침 그룹 28%보다 높았습니다. 소규모·단일 병원 연구이며 4주 시점까지만 평가했습니다.",
     "question": "식후 더부룩함과 조기 포만감이 있는 기능성 소화불량(식후불편증후군)에서 침 치료가 가짜 침보다 증상을 더 줄이나요?",
@@ -2864,7 +2864,7 @@
     "status": "published",
     "publishedAt": "2026-11-27T09:00:00+09:00",
     "updatedAt": "2026-11-27T09:00:00+09:00",
-    "lastSourceCheck": "2026-11-18T02:53:45.485Z",
+    "lastSourceCheck": "2026-11-20T02:18:32.812Z",
     "title": "만성 허리통증에 수기치료만 받는 것과 통증교육을 함께 받는 것, 무엇이 달랐나요?",
     "summary": "만성 비특이적 요통 60명 연구에서 수기치료는 4주 뒤 통증을 줄였고, 통증교육과 동기강화 면담을 더한 쪽이 개선 폭이 더 컸습니다. 침은 연구하지 않았습니다.",
     "question": "허리 통증에 침과 수기치료는 어떤 도움이 되나요? 이 논문은 수기치료와 통증교육 병행에 대해 무엇을 보여주나요?",
@@ -2991,7 +2991,7 @@
     "status": "published",
     "publishedAt": "2026-11-30T09:00:00+09:00",
     "updatedAt": "2026-11-30T09:00:00+09:00",
-    "lastSourceCheck": "2026-11-19T02:33:25.838Z",
+    "lastSourceCheck": "2026-11-20T02:18:39.605Z",
     "title": "지방간 환자 대상 보충제·허브 리뷰로 본 한약과 체중 감량: 이 논문이 답할 수 있는 범위",
     "summary": "이 논문은 한약 체중 감량 시험이 아니라 지방간 환자의 보충제·허브 문헌고찰입니다. 체중 관련 수치는 일부 시험에서 보조 결과로만 나왔고, 한약의 감량 효과는 직접 확인되지 않았습니다.",
     "question": "체중 감량에서 한약 연구는 무엇을 확인했나요? 이 지방간 영양보충제 리뷰로 답할 수 있는 범위는 어디까지인가요?",
@@ -3117,7 +3117,7 @@
     "status": "published",
     "publishedAt": "2026-12-02T09:00:00+09:00",
     "updatedAt": "2026-12-02T09:00:00+09:00",
-    "lastSourceCheck": "2026-11-18T02:56:04.854Z",
+    "lastSourceCheck": "2026-11-20T02:18:33.818Z",
     "title": "여드름 흉터 치료 후 어떤 변화를 기대할 수 있나요? 68개 임상시험 비교",
     "summary": "여드름 흉터 환자 4,480명이 포함된 68개 무작위 시험 분석에서 레이저+PRP가 흉터 점수 감소 1위였습니다. 모공은 평가하지 않았고 치료 간 차이가 불분명한 항목도 많습니다.",
     "question": "모공과 흉터 치료 후 어떤 변화를 기대할 수 있나요? (여드름 흉터 연구 기준)",
@@ -3224,6 +3224,133 @@
       "model": "claude-opus-5-5",
       "writerModel": "claude-sonnet-5-5",
       "checkedAt": "2026-11-18T02:56:04.854Z",
+      "checks": {
+        "numbers": true,
+        "methods": true,
+        "causality": true,
+        "clinicalRelevance": true,
+        "figures": true,
+        "noPatientIdentifyingImages": true,
+        "noInventedCredentials": true
+      }
+    }
+  },
+  {
+    "editorialQuestion": {
+      "id": "digestive-2",
+      "question": "기능성 소화불량 한약 연구에서는 무엇이 달라졌나요?"
+    },
+    "slug": "pmid-28424994",
+    "category": "digestive",
+    "status": "published",
+    "publishedAt": "2026-12-04T09:00:00+09:00",
+    "updatedAt": "2026-12-04T09:00:00+09:00",
+    "lastSourceCheck": "2026-11-20T02:24:31.931Z",
+    "title": "기능성 소화불량에서 약초 복합제 STW 5는 메토클로프라미드·시사프리드와 무엇이 달랐나요?",
+    "summary": "한국 한약 연구가 아니라 유럽 약초 복합제 STW 5를 다룬 문헌 검토입니다. 증상 개선은 기존 위장운동촉진제와 비슷했고, 안전성 근거는 대조군 없는 감시 자료에 많이 의존했습니다.",
+    "question": "기능성 소화불량 한약 연구에서는 무엇이 달라졌나요?",
+    "answer": "이 논문은 한국 한의원의 한약이 아니라 유럽의 약초 복합제 STW 5(이베로가스트)를 검토한 글입니다. 메토클로프라미드나 시사프리드와 비교한 연구에서 소화불량 증상 개선 정도가 비슷했고, 이 약들의 사용이 제한되면서 대안으로 논의된 점이 달라진 부분입니다. 다만 비교 연구는 소규모이고 일부는 눈가림이 불완전하며, 안전성 우위는 직접 비교 임상시험보다 감시 자료와 허가 문서에 크게 기대고 있습니다.",
+    "population": "2016년 11월 PubMed 검색으로 메토클로프라미드, 돔페리돈, 시사프리드와 약초제를 직접 비교한 기능성 소화불량·과민성장증후군 임상연구 7편을 찾았습니다. 이 중 STW 5 관련은 3편이며 환자 수는 77명, 약 960명, 각 군 61명씩 배정된 122명이었습니다. 과민성장증후군에서는 STW 5 51명과 위약 52명을 비교한 시험이 따로 있었습니다.",
+    "methods": "저자들은 PRISMA 방식에 따라 2016년 11월 PubMed에서 임상시험으로 제한해 메토클로프라미드(1361건), 돔페리돈(315건), 시사프리드(413건)를 검색했습니다. 약초제와 비교한 연구는 각각 3편, 3편, 6편이었고, 이 중 소화불량 또는 과민성장증후군 대상은 0편, 2편, 3편으로 모두 5편이 남았습니다. 교차 검색과 수작업 검색으로 2편이 더해져 7편이 되었습니다. 이후 소화불량과 과민성장증후군 양쪽에서 임상시험 근거가 있는 제품만 골라 STW 5의 효능, 안전성, 작용 기전을 정리했습니다. 수치를 합산한 메타분석은 아닙니다.",
+    "results": "2주 단일맹검 시험(77명, 메토클로프라미드 액 대 STW 5 액)에서는 두 군 모두 시작 때보다 3, 7, 14일째 위장관 증상 점수가 의미 있게 좋아졌습니다. 14일째 절반 넘는 환자가 증상이 없었고 군 간 유의한 차이는 없었으며, 이상반응은 STW 5 쪽이 적은 경향이었습니다.\n\n후향적 코호트(약 960명)에서는 치료 후 증상이 없는 환자가 STW 5 72.6%, 메토클로프라미드 62.8%였습니다(원문 그래프에는 71.6% 대 62.0%로 표기되어 소수점 차이가 있습니다). 치료 기간 중앙값은 거의 같았고, 업무 불능 기간과 의사의 내약성 평가는 STW 5 쪽이 유리했습니다. 약물 이상반응은 메토클로프라미드에서만 기록되었습니다. 다만 무작위 배정이 아니라 실제 진료 기록을 비교한 결과입니다.\n\n운동저하형 기능성 소화불량 이중맹검 시험에서는 시사프리드와 4주간 비교했습니다. 각 군 61명을 배정했고 확증 분석에는 STW 5 43명, 시사프리드 45명이 포함되었습니다. 위장관 증상 점수는 STW 5가 14.3점에서 2.3점, 시사프리드가 14.5점에서 3.6점으로 낮아졌고 STW 5의 비열등성이 확인되었습니다. 2차 평가변수는 유의한 차이가 없었습니다.\n\n과민성장증후군에서는 STW 5 51명과 위약 52명을 4주간 비교해, 복통 점수와 증상 점수가 STW 5 쪽에서 위약보다 유의하게 더 낮아졌습니다.\n\n안전성은 5만 명 이상의 비중재·감시 연구와, 1960년 출시 이후 약 7천만 명 이상의 약물감시 자료를 근거로 매우 양호하다고 서술되었습니다.",
+    "meaning": "달라진 점은 두 가지입니다. 하나는 시사프리드가 2000년 시장에서 철수하고, 2014년 유럽에서 메토클로프라미드와 돔페리돈이 소화불량 같은 만성 질환에는 더 이상 허가되지 않는 등 선택지가 줄었다는 것입니다. 메토클로프라미드는 추체외로 이상반응, 돔페리돈과 시사프리드는 드문 심장 이상반응이 문제가 되었습니다. 다른 하나는 그 빈자리를 약초 복합제가 메울 수 있는지 비교한 자료가 모였다는 것입니다. 저자들은 STW 5에 한해 가능하다고 결론지었지만, 근거는 증상 점수와 증상 소실 비율이며 다른 한약이나 한국 한약 처방에 그대로 적용할 수 없습니다.",
+    "limitations": "직접 비교 연구는 7편뿐이고 대부분 소규모입니다. 메토클로프라미드 시험은 단일맹검이며 품질 점수가 2점(3점 이상이 양호)이었고, 한 연구는 후향적 자료입니다. 시사프리드 시험은 122명 배정 중 88명만 확증 분석에 들어갔고, 메토클로프라미드와는 간접 비교입니다. 기능성 소화불량에서 STW 5의 위약 대조 결과는 이 논문에 없고, 안전성 우위는 대조군 없는 감시 자료와 허가 문서 비교에 근거합니다.",
+    "consultation": "소화불량으로 약을 바꾸고 싶다면 지금까지 드신 약 이름과 기간(메토클로프라미드, 돔페리돈 포함), 위내시경 등 검사 결과를 가져오세요. 일산한의원에서는 식후 더부룩함, 상복부 통증, 조기 포만감 같은 증상 양상과 식사·배변 습관, 복용 약을 확인해 기능성 소화불량으로 볼 수 있는지 평가하고, 침이나 보험한약·체질맞춤 한약 등 가능한 진료를 상의합니다. 카카오톡으로 증상 경과를 먼저 보내셔도 됩니다. 체중 감소, 삼킴 곤란, 반복 구토, 검은 변이 있거나 증상이 계속 악화되면 먼저 검사를 받으세요.",
+    "tags": [
+      "기능성 소화불량",
+      "STW 5",
+      "이베로가스트",
+      "약초 복합제",
+      "메토클로프라미드",
+      "시사프리드",
+      "과민성장증후군"
+    ],
+    "evidence": [
+      {
+        "claim": "시사프리드는 드문 심장 이상반응 때문에 2000년 시장에서 철수했다.",
+        "quote": "Prokinetic drugs such as metoclopramide (MCP) and domperidone were important drugs in the treatment of functional gastrointestinal disorders (FGID). However, this prokinetic approach was questioned when the prokinetic drug cisapride, formerly a standard treatment, was withdrawn from the market in 2000 due to rare cardiac side effects."
+      },
+      {
+        "claim": "유럽연합에서 메토클로프라미드와 돔페리돈은 소화불량 같은 만성 질환 치료로 더 이상 허가되지 않는다.",
+        "quote": "Within the European Union, MCP is presently no longer authorized for the treatment of chronic conditions such as dyspepsia and gastroesophageal reflux diseases. The same applies to domperidone, due to rare cardiac side effects."
+      },
+      {
+        "claim": "STW 5와 메토클로프라미드를 비교한 77명 2주 단일맹검 시험에서 두 군 모두 증상 점수가 개선되었고 군 간 유의한 차이는 없었다.",
+        "quote": "The first study, a single blind multicenter study with MCP liquid versus STW 5 was conducted in 77 patients with FGID, who complained at least three of the following symptoms: pressure or pain in the epigastrium, stomach cramps, feeling of fullness, eructation, nausea, urge to vomit, heartburn, or inappetence. Examination was conducted before starting therapy and on days 3, 7, and 14, and showed significant improvements of the validated gastrointestinal symptom score (GIS) against baseline in both groups. More than 50% of patients were free of symptoms after 14 days in both groups. There were no significant differences of clinical efficacy (Fig. 2 ), with a trend towards a lower number of adverse events in the STW 5 group [ 3 ]. Fig. 2 Comparison studies of STW 5 (Iberogast) and prokinetics. a Significant improvement of three gastrointestinal symptoms ( p < 0.05) after treatment with STW 5 or metoclopramide ( MCP ) over 2 weeks in a single blind randomized clinical trial ( RCT ) [ 3 ]. b Significantly higher percentage of symptom-free patients with STW 5 vs. MCP (* p ≤ 0.05) in a retrospective surveillance study [ 4 ]. c Significant improvement of GIS (gastrointestinal symptom score) in a RCT ( p < 0.001), demonstrating noninferiority of STW 5 vs. cisapride (* p ≤ 0.05; [ 6 ])"
+      },
+      {
+        "claim": "약 960명 후향적 연구에서 치료 후 증상 없는 환자는 STW 5 72.6%, 메토클로프라미드 62.8%였고 이상반응은 메토클로프라미드에서만 기록되었다.",
+        "quote": "In a second study, a retrolective, multicenter epidemiological postmarketing surveillance study, MCP and STW 5 were compared in routine clinical practice ( n = 960) [ 4 ]. Before inclusion into analysis, patients should have suffered from at least three of ten symptoms of the GIS [ 5 ]. The main outcome variable was the improvement of GIS, changes of single symptoms, time until complete symptom relief, investigators’ judgement of efficacy and tolerability, duration of inability to work, and occurrence of adverse effects as secondary parameters. The proportion of symptom-free patients after treatment was significantly higher in STW 5 than MCP (72.6% vs. 62.8%) while the median treatment duration was almost equal. Also the extent of single symptom improvement and the median duration of inability to work were significantly different in favor of STW5, as well as the physician’s assessment of tolerability. Adverse drug reactions were documented only for MCP. The study confirmed the findings from prospective trials which showed STW 5 being effective and an appropriate alternative to the prokinetics."
+      },
+      {
+        "claim": "시사프리드와 4주 비교한 이중맹검 시험에서 STW 5는 위장관 증상 점수 개선에서 비열등성을 보였다.",
+        "quote": "In a third study, a double blind, double dummy randomized controlled clinical trial (RCTs) of high quality (Table 1 ), STW 5 and cisapride were compared in patients with dysmotility type of functional dyspepsia (61 patients per group). The primary endpoint was the improvement of the GIS after 4 weeks; efficacy and tolerability assessments, recurrence and safety parameters were the secondary endpoints. In all, 43 (STW 5) and 45 (cisapride) patients were included in the confirmatory analysis which showed noninferiority for STW 5 and no significant differences for the secondary endpoints, while there was a trend towards superior tolerability of STW 5. Thus, STW 5 showed comparability with cisapride [ 6 ] and indirectly also to MCP, because the comparable efficacy of MCP and cisapride in FGID has been proven in a high quality study [ 7 ]."
+      },
+      {
+        "claim": "과민성장증후군 4주 시험에서 STW 5(51명)는 위약(52명)보다 복통 점수와 증상 점수를 더 크게 낮췄다.",
+        "quote": "The literature search for studies on the efficacy of STW 5 in IBS, revealed a double blind RCT [ 8 , 9 ]. STW 5 ( n = 51) and placebo ( n = 52) were compared over 4 weeks. The main outcome variables were the change in total abdominal pain and the IBS symptom score. STW 5 was significantly superior to placebo in reducing the total abdominal pain score and the IBS symptom score after 4 weeks, likewise in the diarrhea or constipation dominant or alternating type of IBS. These results are supported by a non-interventional study (NIS) [ 9 ]."
+      },
+      {
+        "claim": "STW 5의 안전성은 5만 명 이상의 비중재·감시 연구와 시판 후 약물감시 자료에 근거해 양호하다고 서술되었다.",
+        "quote": "The search for further efficacy and safety data for STW 5 identified, among others, NIS and surveillances in more than 50,000 patients [ 10 ], also including children of all age groups [ 11 , 12 ] and routine pharmacovigilance data from therapeutic use in roughly more than 70 million patients since its introduction to the market in 1960 [ 10 , 13 ]."
+      }
+    ],
+    "figures": [],
+    "faq": [
+      {
+        "question": "STW 5 연구 결과를 한국에서 쓰는 한약에도 그대로 적용할 수 있나요?",
+        "answer": "적용할 수 없습니다. 이 논문이 효과 자료를 정리한 약초 복합제는 STW 5 하나이며, 다른 한약 처방이나 한국 보험한약의 효과·안전성 근거로 쓸 수 없습니다. 개별 처방은 증상과 복용 약을 확인한 뒤 따로 판단해야 합니다."
+      },
+      {
+        "question": "약초 복합제가 메토클로프라미드보다 안전하다고 확정할 수 있나요?",
+        "answer": "이 논문은 감시 자료와 허가 문서 비교를 근거로 안전성이 양호하다고 서술했지만, 장기 안전성을 직접 비교한 무작위 시험 결과는 제시하지 않았습니다. 지금 드시는 약을 임의로 중단하기보다 처방한 의료진과 상의해 조정하세요."
+      }
+    ],
+    "publicationFormat": "text-only",
+    "paper": {
+      "doi": "10.1007/s10354-017-0557-3",
+      "pmcid": "PMC5409921",
+      "pmid": "28424994",
+      "date": "2017-04-19",
+      "types": [
+        "Comparative Study",
+        "Journal Article",
+        "Systematic Review"
+      ],
+      "title": "Modulation of gastrointestinal motility beyond metoclopramide and domperidone : Pharmacological and clinical evidence for phytotherapy in functional gastrointestinal disorders.",
+      "citations": 23,
+      "citationSource": "Crossref",
+      "checkedAt": "2026-11-20T02:18:47.382Z",
+      "editorialQuestion": {
+        "id": "digestive-2",
+        "question": "기능성 소화불량 한약 연구에서는 무엇이 달라졌나요?"
+      },
+      "authors": [
+        "Madisch Ahmed",
+        "Vinson Bettina R.",
+        "Abdel-Aziz Heba",
+        "Kelber Olaf",
+        "Nieber Karen",
+        "Kraft Karin",
+        "Storr Martin"
+      ],
+      "journal": "Wiener Medizinische Wochenschrift (1946)",
+      "volume": "167",
+      "issue": "7",
+      "pages": "160",
+      "abstract": "Summary The prokinetic cisapride, an important therapeutic option in functional gastrointestinal (GI) disorders, was withdrawn from the market 15 years ago due to rare severe side effects. Likewise in 2014, the use of metoclopramide (MCP) and domperidone in functional GI disorders (FGID) was restricted, consequently leaving a therapeutic gap in clinical practice. A systematic review revealed that the herbal medicinal product (HMP) STW 5 presents a therapeutic option equivalent to MCP and cisapride. STW 5 is the only HMP for which efficacy has been shown in randomized controlled clinical trials (RCTs) in functional dyspepsia and irritable bowel syndrome, based on its multitarget effect on numerous etiological factors. Due to an outstanding favorable safety profile, STW 5 allows an effective and safe use in FGID without a limitation of the duration of the treatment.",
+      "conclusion": "Conclusion The clinical studies comparing STW 5 with cisapride and MCP, and further clinical studies on FD and IBS clearly demonstrate its efficacy in FGID. The clinical data qualify STW 5 as a substitute for the prokinetics, which are no longer authorised for the treatment of FGID. In vitro and in vivo as well as human studies demonstrate spasmolytic as well as tonificating, prokinetic and anti-inflammatory effects which are in line with the reported clinical outcomes. The effects described are based on the multitarget action of the multitude of constituents of STW 5. In contrast to the prokinetics, which, despite of their apparent selectivity, have turned out to have specific severe adverse effects in rare cases, STW 5 has a favorable safety profile. Thus, for the treatment of FGID, STW 5 was identified as a treatment with a clinical efficacy comparable to prokinetics, especially MCP and cisapride, but with a superior safety profile and without limitations of the duration of treatment. It presents an effective and safe treatment option for patients with both FD and IBS.",
+      "licenseUrl": "http://creativecommons.org/licenses/by/4.0/",
+      "licenseText": "https://creativecommons.org/licenses/by/4.0/ Open Access This article is distributed under the terms of the Creative Commons Attribution 4.0 International License ( http://creativecommons.org/licenses/by/4.0/ ), which permits unrestricted use, distribution, and reproduction in any medium, provided you give appropriate credit to the original author(s) and the source, provide a link to the Creative Commons license, and indicate if changes were made.",
+      "sourceUrl": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC5409921/fullTextXML",
+      "sourceHash": "00fac78a74dda9a4f85f8559415669a512849b47f08d316f3e06a07bdf4464e7",
+      "figureCount": 3
+    },
+    "verification": {
+      "type": "automated",
+      "model": "claude-opus-5-5",
+      "writerModel": "claude-sonnet-5-5",
+      "checkedAt": "2026-11-20T02:24:31.931Z",
       "checks": {
         "numbers": true,
         "methods": true,
