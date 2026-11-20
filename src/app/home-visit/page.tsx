@@ -21,7 +21,7 @@ const steps = [
 
 function ApplyButtons() {
   return <div className="flex flex-wrap gap-3">
-    <PillButton href={HOME_VISIT.applyUrl} variant="kakao" className="min-h-14 w-full whitespace-nowrap px-4! text-base! font-semibold! sm:w-auto sm:px-[26px]!" icon={<MessageCircle size={20} className="shrink-0" />}>카카오톡으로 신청하기</PillButton>
+    <PillButton href="#apply" variant="kakao" className="min-h-14 w-full whitespace-nowrap px-4! text-base! font-semibold! sm:w-auto sm:px-[26px]!" icon={<MessageCircle size={20} className="shrink-0" />}>방문진료 신청하기</PillButton>
   </div>;
 }
 
@@ -36,7 +36,7 @@ export default function HomeVisitPage() {
           <p className="mt-6 max-w-xl text-lg leading-[1.9] text-ink">병원에 가는 일부터 힘겨우셨나요?<br />거동이 불편해 치료를 미뤘던 분을 위해<br className="hidden sm:block" /> 한의사가 익숙한 집으로 찾아갑니다.</p>
           <p className="mb-7 mt-4 text-base leading-relaxed text-muted">환자분의 통증과 움직임, 식사·수면과 복용약까지 함께 살핍니다. 부모님을 위한 상담도 편하게 남겨주세요.</p>
           <ApplyButtons />
-          <p className="mt-4 text-base leading-relaxed text-muted">채널이 열리면 ‘채팅으로 문의하기’를 눌러주세요.<br />환자 본인이나 보호자 모두 신청하실 수 있습니다.</p>
+          <p className="mt-4 text-base leading-relaxed text-muted">신청 양식을 복사해 카카오톡으로 보내주세요.<br />환자 본인이나 보호자 모두 신청하실 수 있습니다.</p>
         </div>
         <aside aria-label="방문진료 핵심 안내" className="rounded-2xl border border-line bg-white p-6 md:p-8">
           <p className="text-sm font-semibold text-primary">처음 알아보신다면</p>
@@ -127,9 +127,8 @@ export default function HomeVisitPage() {
       <div className="mx-auto max-w-3xl rounded-2xl border border-line bg-white p-6 md:p-10">
         <p className="text-sm font-semibold text-primary">일산한의원 방문진료 상담</p><h2 className="mt-3 font-serif text-3xl font-semibold leading-snug text-ink">신청할 때 이렇게 남겨주세요</h2>
         <p className="mt-5 text-base leading-[1.85] text-muted">양식을 복사한 뒤 카카오톡에 붙여넣고 빈칸만 채워주세요.</p>
-        <HomeVisitApplication />
-        <ApplyButtons />
-        <p className="mt-5 text-base leading-relaxed text-muted">채널이 열리면 ‘채팅으로 문의하기’를 눌러주세요. 자세한 주소와 방문 일정은 상담에서 함께 확인합니다.</p>
+        <HomeVisitApplication kakaoHref={HOME_VISIT.applyUrl} />
+        <p className="mt-5 text-base leading-relaxed text-muted">자세한 주소와 방문 일정은 상담에서 함께 확인합니다.</p>
       </div>
       <nav aria-label="관련 진료 안내" className="mx-auto mt-8 flex max-w-3xl flex-wrap justify-center gap-x-6 gap-y-3 text-sm text-primary"><Link href="/doctor">의료진 소개 →</Link><Link href="/pain/chronic">통증·추나·약침 →</Link><Link href="/herbal/insurance">보험한약 →</Link><Link href="/herbal/tonic">체질보약 →</Link><Link href="/pricing">원내 진료비 안내 →</Link></nav>
     </section>
