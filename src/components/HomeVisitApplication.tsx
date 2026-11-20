@@ -41,7 +41,7 @@ export default function HomeVisitApplication({ kakaoHref }: { kakaoHref: string 
         <a href={kakaoHref} target="_blank" rel="noopener noreferrer" className="flex min-h-14 w-full items-center justify-center whitespace-nowrap rounded-xl bg-[#FEE500] px-3 py-3 text-base font-semibold text-[#3C1E1E] transition-colors hover:bg-[#f2d900] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary">2. 카카오톡 신청</a>
       </div>
       <p role="status" aria-live="polite" aria-atomic="true" className="mt-3 min-h-12 text-base leading-relaxed text-primary">{status || "1번으로 양식을 복사한 뒤 2번을 눌러주세요."}</p>
-      <p className="mt-2 text-base leading-relaxed text-ink">카카오톡 채널에서 ‘채팅으로 문의하기’를 누르고, 붙여넣은 양식의 빈칸을 채워 보내주세요.</p>
+      <p className="mt-2 text-base leading-relaxed text-ink">채팅창이 열리면 양식을 붙여넣고, 빈칸을 채워 보내주세요.</p>
     </div>
     <label htmlFor="home-visit-template" className="mb-3 mt-6 block text-base font-semibold text-ink">복사되는 신청 양식</label>
     <textarea ref={templateRef} id="home-visit-template" value={TEMPLATE} readOnly rows={8} spellCheck={false} aria-describedby="home-visit-template-help" className="block w-full resize-none rounded-xl border border-line bg-[var(--surface)] p-4 text-base leading-8 text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary" />
