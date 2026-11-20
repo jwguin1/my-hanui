@@ -21,12 +21,12 @@ export const DIET_JOURNEY: JourneyStep[] = [
 export const SPOT_RETOUCH = {
   reason: "CO₂ 시술은 흉터 부담을 줄이기 위해 피부 표면 위주로 얕게 제거하므로, 깊은 점은 일부 남거나 편평사마귀 등이 다시 올라올 수 있습니다.",
   timing: `남거나 다시 올라온 병변은 시술 ${SPOT_RETOUCH_POLICY.afterWeeks}주 이후 피부가 충분히 아문 것을 확인하고 리터치로 제거할 수 있습니다.`,
-  cost: `리터치는 최초 시술 후 ${SPOT_RETOUCH_POLICY.withinMonths}개월 동안 개당 ${SPOT_RETOUCH_POLICY.perLesion.toLocaleString("ko-KR")}원, 무제한 ${SPOT_RETOUCH_POLICY.unlimited.toLocaleString("ko-KR")}원에 진행합니다.`,
+  cost: `리터치는 최초 시술 후 ${SPOT_RETOUCH_POLICY.withinMonths}개월 이내 기존 시술 부위에 개당 ${SPOT_RETOUCH_POLICY.perLesion.toLocaleString("ko-KR")}원, 개수 무제한 1회 ${SPOT_RETOUCH_POLICY.unlimited.toLocaleString("ko-KR")}원에 진행합니다. 방문 시마다 비용이 적용되며, 무제한은 해당 회차의 제거 개수입니다.`,
 };
 
 export const SKIN_JOURNEY: JourneyStep[] = [
   { title: "어떤 병변인지 먼저 진찰합니다", text: "점·편평사마귀·쥐젖은 겉모습이 비슷해도 치료 계획이 다릅니다. 확대경으로 모양과 분포를 살피고 제거할 부위를 정합니다. 추가 검사가 필요한 병변은 검사받을 의료기관으로 의뢰합니다." },
-  { title: "시술 범위와 비용을 확인합니다", text: "얼굴과 목의 어느 부위까지 제거할지, 100개까지와 개수 제한 없음 중 어떤 구성이 맞는지 설명합니다. 회복 과정과 리터치 조건도 시술 전에 함께 안내합니다.", href: "#prices", linkLabel: "부위별 시술 비용" },
+  { title: "시술 범위와 비용을 확인합니다", text: "편평사마귀는 선택한 부위 내 개수 무제한 가격으로, 점·쥐젖은 별도 가격표로 안내합니다. 얼굴·목·몸통·팔다리 중 시술할 범위와 비용을 확인합니다. 회복 과정과 리터치 조건도 시술 전에 함께 안내합니다.", href: "#prices", linkLabel: "부위별 시술 비용" },
   { title: "마취 후 피부 상태에 맞춰 제거합니다", text: "마취 연고를 충분히 바른 뒤 CO₂ 레이저로 시술합니다. 병변의 깊이와 피부 상태를 보며 제거하고, 귀가 전 보호재·연고 사용과 세안 방법을 안내합니다.", href: "/aftercare", linkLabel: "시술 후 관리 안내" },
   { title: "회복을 살피고 남은 병변을 확인합니다", text: "깊은 점이 남거나 편평사마귀가 다시 올라오면 시술 4주 이후 피부가 아문 상태를 확인해 리터치를 진행합니다. 회복 중 궁금한 변화가 있으면 진료시간 내 카카오톡으로 문의해 주세요.", href: "#retouch", linkLabel: "리터치 기간과 비용" },
 ];

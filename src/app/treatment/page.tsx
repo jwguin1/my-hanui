@@ -20,7 +20,7 @@ const treatments = [
   { title: "추가 물리치료실", body: CARE_GUIDE.extra, note: "추가 물리치료까지 받으시면 접수부터 전체 약 1시간 10분입니다.", href: "/pain/acute#visit-guide", label: "방문 시간과 이용 안내" },
   { title: "보험한약", body: "소화불량·생리통 등 건강보험 대상 6개 질환의 진단과 적용 여부를 확인해 처방합니다.", note: "10일 처방 본인부담금 4만원대", href: "/herbal/insurance", label: "6개 대상 질환과 보험 적용" },
   { title: "체질보약", body: `${CARE_GUIDE.herbalProcess} ${CARE_GUIDE.herbalTiming}`, note: "체질맞춤보약 · 두통·어지럼 · 갱년기 한약", href: "/herbal/tonic", label: "비급여 한약 구성과 가격" },
-  { title: "색소·홍조·재생치료", body: "색소와 홍조, 실핏줄, 피부결을 살펴 필요한 레이저와 파장을 선택하는 맞춤 치료입니다.", note: `1회 ${painWon(PIGMENTATION_PRICES.single)} · 10회 ${painWon(PIGMENTATION_PRICES.tenSessions)} · 부가세 포함`, href: "/skin/pigmentation", label: "맞춤 레이저 치료 과정과 가격" },
+  { title: "색소·홍조·재생치료", body: "색소와 홍조, 실핏줄, 피부결을 살펴 필요한 레이저와 파장을 선택하는 맞춤 치료입니다.", note: `얼굴 전체 1회 ${painWon(PIGMENTATION_PRICES.single)} · 부위별 가격 · 5회 10% 할인 · 부가세 포함`, href: "/skin/pigmentation", label: "맞춤 레이저 치료 과정과 가격" },
   { title: "토닝관리", body: "제네시스 토닝은 엘리멘트 TL로 피부결을, 피코토닝은 피코하이로 피부톤을 관리합니다. 두 가지 중 원하는 관리를 선택합니다.", note: `제네시스 토닝 1회 ${painWon(TONING_PRICES.genesis)} · 피코토닝 1회 ${painWon(TONING_PRICES.pico)} · 부가세 포함`, href: "/skin/toning", label: "토닝 종류·샷 수·관리 방법" },
 ];
 export default function TreatmentPage() {

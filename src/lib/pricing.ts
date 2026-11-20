@@ -81,12 +81,41 @@ export function wonDigits(amount: number): string {
 /** 진입 가격 = 가장 싼 행의 100개까지 금액 */
 export const SPOT_ENTRY: SpotPriceRow = SPOT_PRICE_ROWS[0];
 
+/** 2026-11-21 원장 제공 가격표. 편평사마귀는 선택 부위 내 개수 무제한. */
+export const FLAT_WART_PRICE_GROUPS = [
+  { title: "얼굴·목·몸통", rows: [
+    { name: "얼굴 전체", price: 165000 }, { name: "목 전체", includes: "앞·뒤 포함", price: 165000 },
+    { name: "윗가슴", includes: "쇄골 아래~가슴 위", price: 165000 }, { name: "복부", price: 440000 },
+    { name: "등", price: 275000 }, { name: "허리", price: 275000 },
+  ] },
+  { title: "부위별 패키지", rows: [
+    { name: "얼굴＋목 전체", price: 275000 }, { name: "윗가슴＋복부", price: 440000 },
+    { name: "등＋허리", price: 440000 }, { name: "얼굴＋상반신 전체", includes: "얼굴·목·윗가슴·복부·등·허리 포함 · 팔 제외", price: 880000 },
+  ] },
+  { title: "팔", rows: [
+    { name: "아래팔 한쪽", price: 165000 }, { name: "윗팔 한쪽", price: 165000 },
+    { name: "팔 한쪽 전체", price: 275000 }, { name: "양쪽 팔 전체", price: 440000 },
+  ] },
+  { title: "다리", rows: [
+    { name: "무릎 아래 한쪽", price: 165000 }, { name: "허벅지 한쪽", price: 165000 },
+    { name: "다리 한쪽 전체", price: 275000 }, { name: "양쪽 다리 전체", price: 440000 },
+  ] },
+] as const;
+
+export const PIGMENTATION_AREA_PRICES = [
+  { name: "얼굴 전체", price: 88000 }, { name: "얼굴 전체＋목", price: 110000 },
+  { name: "겨드랑이", price: 55000 }, { name: "상완(윗팔)", price: 110000 },
+  { name: "하완(아래팔)", price: 110000 }, { name: "팔 전체", price: 240000 },
+  { name: "사타구니", price: 110000 }, { name: "허벅지", price: 198000 },
+  { name: "종아리", price: 165000 }, { name: "다리 전체", price: 440000 },
+] as const;
+export const PIGMENTATION_PACKAGE_NOTE = "5회 패키지 10% 할인";
+export const PIGMENTATION_COUPON_NOTE = "얼굴 전체 1회 44,000원 쿠폰 사용 시, 양쪽 1회 가격에서 44,000원을 차감합니다.";
+
 /** 2026-11-12 원장 확인: 맞춤 치료와 단독 토닝관리를 구분한다. */
 export const PIGMENTATION_PRICES = {
   name: "색소·홍조·재생치료",
   single: 88000,
-  tenSessions: 660000,
-  perSession: 66000,
   selection: "피부 상태와 치료 목표를 진단한 뒤 피코하이·엘리멘트 TL의 파장과 조사 방식을 맞춰 치료합니다.",
 } as const;
 
@@ -149,7 +178,9 @@ export function allowedSkinAmounts(): number[] {
     set.add(perSpot(r));
   }
   for (const p of AFTERCARE_PRODUCTS) set.add(p.price);
-  for (const amount of [TONING_PRICES.genesis, TONING_PRICES.pico, PIGMENTATION_PRICES.single, PIGMENTATION_PRICES.tenSessions, PIGMENTATION_PRICES.perSession, SHURINK_PRICES.single, SHURINK_PRICES.shots600, VOLNEWMER_PRICES.single, VOLNEWMER_PRICES.shots600, LIFTING_PACKAGE.shots300, LIFTING_PACKAGE.shots600]) set.add(amount);
+  for (const group of FLAT_WART_PRICE_GROUPS) for (const row of group.rows) set.add(row.price);
+  for (const row of PIGMENTATION_AREA_PRICES) { set.add(row.price); set.add(row.price * 5 * 0.9); }
+  for (const amount of [44000, TONING_PRICES.genesis, TONING_PRICES.pico, PIGMENTATION_PRICES.single, SHURINK_PRICES.single, SHURINK_PRICES.shots600, VOLNEWMER_PRICES.single, VOLNEWMER_PRICES.shots600, LIFTING_PACKAGE.shots300, LIFTING_PACKAGE.shots600]) set.add(amount);
   for (const row of HAIR_REMOVAL_PRICES) for (const amount of [row.single, row.five, row.annual]) set.add(amount);
   return [...set].sort((a, b) => a - b);
 }

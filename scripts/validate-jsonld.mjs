@@ -62,6 +62,8 @@ import {
 } from "../src/lib/pain-groups.ts";
 import {
   SPOT_PRICE_ROWS,
+  FLAT_WART_PRICE_GROUPS,
+  PIGMENTATION_AREA_PRICES,
   AFTERCARE_PRODUCTS,
   allowedSkinAmounts,
   perSpot,
@@ -441,6 +443,18 @@ function checkPrices(pagePath, html, errors) {
 
   // B. 표 행 대조
   for (const cells of tableRows(html)) {
+    // Two-column regional prices are a separate service from the legacy
+    // three-column mole/skin-tag schedule, even when the area names match.
+    if (cells.length === 2) {
+      const areaRows = /pigmentation|피코토닝-가격/.test(decodeURIComponent(pagePath))
+        ? PIGMENTATION_AREA_PRICES : FLAT_WART_PRICE_GROUPS.flatMap(g => [...g.rows]);
+      const area = areaRows.find(r => cells[0].split(" — ")[0] === r.name);
+      if (area) {
+        const prices = moneyTokens(cells[1]);
+        if (prices.length !== 1 || prices[0].value !== area.price) errors.push(`부위별 가격표 "${area.name}" 금액이 정본 ${area.price}원과 다르다`);
+      }
+      continue;
+    }
     const row = SPOT_PRICE_ROWS.find((r) => cells[0] === r.name);
     if (!row) continue;
     const want = [won(row.upTo100), won(row.unlimited)];
@@ -456,7 +470,7 @@ function checkPrices(pagePath, html, errors) {
   for (const row of SPOT_PRICE_ROWS) {
     const ok = new Set([row.upTo100, row.unlimited, perSpot(row)]);
     for (const chunk of text.split(/[.!?\n]/)) {
-      if (!chunk.includes(row.name)) continue;
+      if (!chunk.includes(row.name) || !chunk.includes("100개")) continue;
       for (const t of moneyTokens(chunk)) {
         if (ok.has(t.value)) continue;
         errors.push(

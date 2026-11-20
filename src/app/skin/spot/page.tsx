@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { FlatWartPrices } from "@/components/SkinAreaPrices";
 import SkinDeviceGallery from "@/components/SkinDeviceGallery";
 import PatientJourney from "@/components/PatientJourney";
 import PatientQuestions from "@/components/PatientQuestions";
@@ -53,7 +54,7 @@ export const metadata: Metadata = pageMetadata({
 
 const QUESTIONS = [
   { quote: "점인지 편평사마귀인지 모르겠어요", answer: "병변 이름을 알고 오실 필요는 없습니다. 의료진이 확대경으로 모양과 분포를 살펴 제거할 부위를 정합니다. 색이나 모양이 변하는 등 추가 검사가 필요한 병변은 검사받을 의료기관으로 의뢰합니다." },
-  { quote: "개수가 많으면 비용은 어떻게 정하나요?", answer: "얼굴 전체, 얼굴과 목 앞면, 얼굴과 목 앞뒤로 범위를 나누어 안내합니다. 각 범위에서 100개까지와 개수 제한 없음의 가격을 비교하고, 진찰 후 시술 범위와 비용을 확인합니다." },
+  { quote: "개수가 많으면 비용은 어떻게 정하나요?", answer: "편평사마귀는 얼굴·목·몸통·팔·다리에서 선택한 부위 내 개수 제한 없이 제거합니다. 얼굴 전체와 목 전체는 각각 165,000원, 얼굴＋목 전체는 275,000원입니다. 점·쥐젖은 별도 가격표로 안내하며, 진찰 후 병변 종류와 시술 범위를 확인합니다." },
   { quote: "흉터가 걱정되는데 어떻게 시술하나요?", answer: SPOT_RETOUCH.reason + " 병변의 깊이와 피부 상태에 따라 흉터나 색소 변화가 생길 수 있어, 한 번에 깊게 제거하기보다 회복을 살피며 치료합니다." },
   { quote: "남거나 다시 올라온 병변은 언제 리터치하나요?", answer: SPOT_RETOUCH.timing + " " + SPOT_RETOUCH.cost },
   { quote: "시술이 많이 아픈가요?", answer: "시술 전 마취 연고를 충분히 바른 뒤 진행합니다. 통증에 민감하거나 이전 시술이 힘드셨다면 미리 말씀해 주세요. 시술 중에도 불편한 정도를 의료진에게 알려주시면 상태를 살피며 진행합니다." },
@@ -148,9 +149,12 @@ export default function SkinSpotPage() {
               </div>
             </div>
 
-            <div className="mx-auto mt-14 max-w-2xl">
+            <div className="mx-auto mt-10 max-w-4xl space-y-8">
+              <h3 className="text-2xl font-bold">편평사마귀 부위별 가격</h3>
+              <FlatWartPrices />
+              <h3 className="pt-6 text-xl font-bold">점·쥐젖 제거</h3>
               <PriceTable
-                caption="잡티 제거"
+                caption="점·쥐젖 제거"
                 headers={SPOT_PRICE_HEADERS}
                 rows={SPOT_PRICE_ROWS.map((r) => ({
                   name: r.name,
