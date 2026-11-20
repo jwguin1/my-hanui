@@ -125,7 +125,7 @@ ${HERBAL_GUIDES.map(g => `- [${g.title}](${BASE}${herbalPath(g)}): ${g.question}
 
 ## 방문진료
 
-- [일산·고양 방문진료 안내](${BASE}${HOME_VISIT.path})
+- [고양시·파주시 방문진료 안내](${BASE}${HOME_VISIT.path})
 - 일산한의원은 일차의료 한의 방문진료 수가 시범사업 참여기관입니다. 한의사가 집으로 찾아가는 방문진료를 운영하며, 재택의료센터 서비스는 아닙니다.
 - 대상: 질병·부상 등으로 거동이 불편해 내원이 어려운 환자. 보호자도 신청할 수 있습니다.
 - 지역: ${HOME_VISIT.areaDetail} ${HOME_VISIT.areaNote}

@@ -12,7 +12,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${BASE_URL}/conditions`, lastModified: new Date("2026-10-29T00:00:00+09:00"), changeFrequency: "monthly", priority: 0.8 },
     { url: `${BASE_URL}/skin/questions`, lastModified: new Date("2026-10-27T00:00:00+09:00"), changeFrequency: "monthly", priority: 0.8 },
     { url: `${BASE_URL}/skin/hair-removal`, lastModified: new Date("2026-10-27T00:00:00+09:00"), changeFrequency: "monthly", priority: 0.9 },
-    { url: `${BASE_URL}/home-visit`, lastModified: new Date("2026-10-20T00:00:00+09:00"), changeFrequency: "monthly", priority: 0.9 },
+    { url: `${BASE_URL}/home-visit`, lastModified: new Date("2026-11-20T00:00:00+09:00"), changeFrequency: "monthly", priority: 0.9 },
     { url: `${BASE_URL}/pricing`, lastModified: new Date("2026-10-27T00:00:00+09:00"), changeFrequency: "monthly", priority: 0.9 },
     { url: `${BASE_URL}/aftercare`, lastModified: new Date("2026-10-27T00:00:00+09:00"), changeFrequency: "monthly", priority: 0.7 },
     ...["/herbal", "/herbs", "/herbal/insurance", "/herbal/tonic", ...HERBAL_GUIDES.filter(g => !g.href).map(herbalPath)].map(path => ({ url: `${BASE_URL}${path}`, lastModified: new Date("2026-10-29T00:00:00+09:00"), changeFrequency: "monthly" as const, priority: 0.8 })),

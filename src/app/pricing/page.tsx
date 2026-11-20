@@ -62,7 +62,7 @@ export default function PricingPage() {
         <div className="space-y-3">{PRICING_VISIT_FAQS.map(faq => <details key={faq.q} className="faq-item group rounded-xl border border-line bg-white p-5"><summary className="flex cursor-pointer list-none items-start justify-between gap-3 text-base font-semibold text-ink [&::-webkit-details-marker]:hidden">{faq.q}<span aria-hidden="true" className="shrink-0 group-open:rotate-45">＋</span></summary><p className="mt-4 text-base leading-[1.9] text-muted">{faq.a}</p></details>)}</div>
       </PriceSection>
       <PriceSection id="home-visit" title="집으로 찾아가는 방문진료">
-        <p>거동이 불편해 내원이 어려운 분을 위한 한의 방문진료 시범사업 비용입니다.</p>
+        <p>거동이 불편해 내원이 어려운 분을 위한 한의 방문진료 시범사업 비용입니다. {HOME_VISIT.areaDetail}</p>
         <PriceTable caption="방문진료 · 본인부담금" rows={HOME_VISIT_PRICES.map(p => ({ name: p.label, includes: p.rate, price: p.price }))} />
         <p>{HOME_VISIT.costNote} 장기요양 1·2등급은 와상 여부를 확인하며, 산소치료·인공호흡기 요양비 급여 대상자도 15%가 적용됩니다.</p>
         <DetailLink href="/home-visit#cost">보험 적용 기준·포함 비용·방문 신청</DetailLink>
