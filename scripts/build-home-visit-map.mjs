@@ -24,13 +24,13 @@ ${paths.filter(p=>!p.service).map(p=>`<path d="${p.d}" fill="#e4e8e3" stroke="#c
 ${paths.filter(p=>p.service).map(p=>`<path d="${p.d}" fill="${p.name==='파주시'?'#cde3cf':'#8bc0aa'}" stroke="#2c6d56" stroke-width="2" fill-rule="evenodd"/>`).join('\n')}
 <g font-family="Malgun Gothic, Apple SD Gothic Neo, sans-serif" text-anchor="middle">
 <text x="300" y="285" font-size="48" font-weight="700" fill="#234e39">파주시</text>
-<text x="340" y="520" font-size="42" font-weight="700" fill="#163f32">고양시</text>
+<text x="340" y="520" font-size="48" font-weight="700" fill="#163f32">고양시</text>
 <g font-size="26" fill="#6e7d73"><text x="505" y="300">양주시</text><text x="86" y="450">김포시</text><text x="524" y="590">서울</text></g>
 <g transform="translate(588 36)" fill="#617166"><text font-size="22">N</text><path d="M0 12L-7 30L0 26L7 30Z"/><path d="M0 26V48" stroke="#617166" stroke-width="2"/></g>
 <path d="M${x.toFixed(1)},${y.toFixed(1)}L190,577" stroke="#704a2b" stroke-width="2.5" fill="none"/>
 <circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="14" fill="#fff"/><circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="8" fill="#704a2b"/>
-<rect x="26" y="577" width="304" height="82" rx="14" fill="#fff" stroke="#d6c7b7" stroke-width="1.5"/>
-<text x="178" y="612" font-size="30" font-weight="700" fill="#704a2b">출발 · 일산한의원</text><text x="178" y="643" font-size="27" fill="#59695e">일산동구 풍산역</text>
+<rect x="20" y="577" width="340" height="90" rx="14" fill="#fff" stroke="#d6c7b7" stroke-width="1.5"/>
+<text x="190" y="613" font-size="34" font-weight="700" fill="#704a2b">출발 · 일산한의원</text><text x="190" y="651" font-size="34" fill="#59695e">일산동구 풍산역</text>
 </g></g></svg>`;
 await fs.mkdir('public/images',{recursive:true});await fs.writeFile('public/images/home-visit-goyang-paju.svg',svg);
 console.log({output:'public/images/home-visit-goyang-paju.svg',areas:paths.filter(p=>p.service).map(p=>p.name),bytes:Buffer.byteLength(svg)});

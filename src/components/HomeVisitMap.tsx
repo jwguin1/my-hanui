@@ -15,7 +15,8 @@ export default function HomeVisitMap() {
           <li className="flex gap-3"><span aria-hidden="true" className="mt-1.5 h-4 w-4 shrink-0 rounded-sm border border-[#2c6d56] bg-[#cde3cf]" /><strong>파주시</strong></li>
         </ul>
         <p className="mt-5 text-base leading-[1.85] text-muted">{HOME_VISIT.areaNote}</p>
-        <p className="mt-4 text-base leading-[1.85] text-ink">카카오톡 상담 때 거주하시는 시·구·동을 알려주세요.</p>
+        <p className="mt-5 text-base font-semibold leading-relaxed text-primary">출발: 일산동구 풍산역 일산한의원</p>
+        <p className="mt-4 text-base leading-[1.85] text-ink">카카오톡에 방문할 시와 동·읍·면을 알려주세요.</p>
       </div>
     </div>
     <figcaption className="border-t border-line px-6 py-4 text-sm leading-relaxed text-muted">색칠한 고양시·파주시가 방문 지역입니다. 행정경계를 단순화한 안내지도입니다.<br />지도 자료: 통계청 SGIS 2018 · <a href="https://github.com/southkorea/southkorea-maps/tree/master/kostat/2018/json" target="_blank" rel="noopener noreferrer" className="underline underline-offset-4">southkorea-maps</a> · 공공누리 제1유형</figcaption>
