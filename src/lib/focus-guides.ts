@@ -1,6 +1,7 @@
 import { getAllPosts, type LocalBlogPost } from "@/lib/blog-local";
 import { getResearchArticles, type ResearchArticle } from "@/lib/research";
 import { cache } from "react";
+import { PAIN_GROUP_POSTS } from "./pain-groups";
 
 const publishedPosts = cache((focus: Focus) => getAllPosts(focus === "digestive" ? undefined : focus));
 
@@ -27,6 +28,28 @@ export function articleFocus(article: ResearchArticle): Focus | undefined {
   if (article.category === "korean") return /functional dyspepsia/i.test(article.paper.title) ? "digestive" : undefined;
   return article.category;
 }
-export function focusResearch(focus: Focus) {
-  return getResearchArticles().filter(a => articleFocus(a) === focus).slice(0, 2);
+/** The field alone is too broad: a neck study does not answer a question about knee pain. */
+export function relatedToPatientArticle(article: ResearchArticle, focus: Focus, slug: string) {
+  if (articleFocus(article) !== focus) return false;
+  const title = article.paper.title.toLowerCase();
+  if (focus === "pain") {
+    if (title.includes("radiculopathy"))
+      return ["다리만-저릴때-허리디스크", "팔저림-손힘빠짐-목디스크", "목디스크-등통증"].includes(slug);
+    if (/neck pain|cervical exercise/.test(title))
+      return slug === "일자목-거북목-목디스크";
+    if (title.includes("low back pain") && !title.includes("aspecific"))
+      return PAIN_GROUP_POSTS["허리"].includes(slug);
+    return false;
+  }
+  if (focus === "diet" && title.includes("cardiovascular"))
+    return ["다이어트한약-복용전-확인", "일산-다이어트약-비만클리닉"].includes(slug);
+  if (focus === "digestive")
+    return ["내시경-정상-기능성소화불량", "조금만-먹어도-배부름", "소화불량-한약-재진"].includes(slug);
+  return false;
+}
+
+export function focusResearch(focus: Focus, currentSlug?: string) {
+  return getResearchArticles().filter(a => currentSlug
+    ? relatedToPatientArticle(a, focus, currentSlug)
+    : articleFocus(a) === focus).slice(0, 2);
 }

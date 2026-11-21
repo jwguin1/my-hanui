@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { SITE_VERIFICATION } from "@/lib/site-verification";
 import "./globals.css";
 import SiteHeader from "@/components/SiteHeader";
 import Footer from "@/components/Footer";
@@ -46,12 +47,7 @@ export const metadata: Metadata = {
   alternates: {
     canonical: SITE_URL,
   },
-  verification: {
-    google: "22ChFnBQrveZIT-GeE1Og3uQAH1Y3BMqj1i2ZQqCD14",
-    other: {
-      "naver-site-verification": "83d2c358b88e14b85aafa600c95a741cf4d0a0e6",
-    },
-  },
+  verification: { google: SITE_VERIFICATION.google },
 };
 
 export default function RootLayout({
@@ -64,7 +60,6 @@ export default function RootLayout({
       <head>
         <link rel="alternate" type="application/rss+xml" title="일산한의원 새 글" href="/rss.xml" />
         <link rel="help" type="text/plain" title="일산한의원 정보와 안내 페이지" href="/llms.txt" />
-        <meta name="naver-site-verification" content="aab70373e7135bf4cc9a612bc491f5f1a662f675" />
       </head>
       <body>
         <a className="skip-link" href="#main">본문 바로가기</a>

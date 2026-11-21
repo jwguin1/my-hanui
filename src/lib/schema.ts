@@ -97,6 +97,8 @@ export const DOCTOR_SLUGS: Record<string, string> = {
   오서혜: "oh-seohye",
 };
 
+export const CLINIC_PHYSICIAN_COUNT = Object.keys(DOCTOR_SLUGS).length;
+
 /** 의료진 이름 → Physician @id. 등록되지 않은 이름이면 undefined. */
 export function doctorId(name?: string): string | undefined {
   if (!name) return undefined;
@@ -221,13 +223,13 @@ export function clinicNode(): SchemaNode {
   return {
     "@type": ["MedicalClinic", "LocalBusiness"],
     "@id": CLINIC_ID,
-    name: "일산한의원",
-    alternateName: "일산한의원 이마트풍산점",
+    name: CLINIC.name,
+    alternateName: CLINIC.alternateName,
     description:
       // 실적 숫자에는 기간 기준과 산출 근거를 함께 적는다.
       // 화면(TRUST_STATS_SOURCE)에는 붙어 있었는데 여기만 빠져 있었고,
       // validate-jsonld 의 실적 숫자 검사가 그것을 잡아냈다.
-      `7인의 한의사가 4개 분과를 협진합니다. 근골격계, 자율신경, 다이어트, 피부레이저 특화. ${CLINIC.foundingYear}년 개원 이래 누적 13,000명이 80,000회 내원, 한방 다이어트 처방 9,000건 이상 (원내 진료기록 기준).`,
+      `${CLINIC_PHYSICIAN_COUNT}인의 한의사가 4개 분과를 협진합니다. 근골격계, 자율신경, 다이어트, 피부레이저 특화. ${CLINIC.foundingYear}년 개원 이래 누적 13,000명이 80,000회 내원, 한방 다이어트 처방 9,000건 이상 (원내 진료기록 기준).`,
     url: BASE_URL,
     // 화면의 「2023년 개원 이래」와 같은 값에서 나온다 (clinic.ts).
     // 검증기가 양쪽 일치를 대조한다 — 갈리면 FAIL.
@@ -354,7 +356,7 @@ export function clinicNode(): SchemaNode {
       },
       {
         "@type": "LocationFeatureSpecification",
-        name: "7인협진시스템",
+        name: `${CLINIC_PHYSICIAN_COUNT}인협진시스템`,
         value: true,
       },
     ],
@@ -362,7 +364,7 @@ export function clinicNode(): SchemaNode {
     // (validate-jsonld 가 /doctor 의 Physician 노드 수와도 대조한다)
     numberOfEmployees: {
       "@type": "QuantitativeValue",
-      value: Object.keys(DOCTOR_SLUGS).length,
+      value: CLINIC_PHYSICIAN_COUNT,
     },
     // 외부 프로필 4개 — 변경/삭제 금지
     sameAs: [
@@ -613,9 +615,11 @@ export function physicianStub(name?: string): SchemaNode | undefined {
   if (!id || !name) return undefined;
   return {
     "@type": "Physician",
+    additionalType: "https://schema.org/IndividualPhysician",
     "@id": id,
     name,
-    url: `${BASE_URL}/doctor`,
+    url: id,
+    practicesAt: ref(CLINIC_ID),
     worksFor: ref(CLINIC_ID),
   };
 }

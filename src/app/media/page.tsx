@@ -9,21 +9,21 @@ import { buildGraph } from "@/lib/schema";
 import PageHeader from "@/components/ui/PageHeader";
 import { PlayerPlay } from "@/components/ui/icons";
 import VideoEmbed from "@/components/VideoEmbed";
+import { INTERNAL_MEDICINE_PAPERS, SHOULDER_LECTURE } from "@/lib/doctor-profile";
 
 export const metadata: Metadata = pageMetadata({
   path: "/media",
-  title: "유튜브 – 건강 정보 영상",
+  title: "건강 영상·의료진 학술활동",
   description:
-    "일산한의원 유튜브 채널. 족저근막염, 아킬레스건, 무릎통증, 허리디스크, 오십견 등 통증 치료와 건강 정보를 영상으로 전합니다.",
-  ogTitle: "유튜브 – 일산한의원 건강 정보 영상",
-  ogDescription: "통증 치료와 건강 정보를 영상으로 쉽게 전합니다.",
+    "일산한의원 통증 진료 영상, 장경진 원장의 어깨 통증 학술대회 발표, 오서혜 원장이 참여한 어지럼·두통 논문을 원문과 함께 소개합니다.",
+  ogTitle: "건강 영상·의료진 학술활동 | 일산한의원",
 });
 
 const graph = buildGraph({
   path: "/media",
-  name: "유튜브 – 건강 정보 영상 | 일산한의원",
+  name: "건강 영상·의료진 학술활동 | 일산한의원",
   description:
-    "일산한의원 유튜브 채널. 족저근막염, 아킬레스건, 무릎통증, 허리디스크, 오십견 등 통증 치료와 건강 정보를 영상으로 전합니다.",
+    "통증 진료 영상과 일산한의원 의료진이 참여한 강연·논문을 소개합니다.",
 });
 
 export default async function MediaPage() {
@@ -33,12 +33,12 @@ export default async function MediaPage() {
       <JsonLd graph={graph} />
       {/* Hero */}
       <PageHeader
-        badge="영상"
+        badge="영상·학술활동"
         icon={<PlayerPlay size={15} />}
         lead="영상으로 만나는"
         accent="일산한의원"
         stacked
-        description="일산한의원이 전하는 한의학 이야기와 건강 정보"
+        description="통증 진료 영상과 의료진이 직접 참여한 연구·강연"
       />
 
       {/* Videos */}
@@ -56,6 +56,35 @@ export default async function MediaPage() {
                 </div>
               </div>
           ))}
+        </div>
+      </section>
+
+      <section id="academic-activity" aria-labelledby="academic-activity-title" className="section-padding scroll-mt-28">
+        <h2 id="academic-activity-title" className="heading-md">의료진이 참여한 강연과 논문</h2>
+        <div className="mt-6 grid items-start gap-6 md:grid-cols-2">
+          <article className="card p-5">
+            <h3 className="text-lg font-semibold">{SHOULDER_LECTURE.title}</h3>
+            <p className="mt-3 text-base leading-7">{SHOULDER_LECTURE.description}</p>
+            <div className="mt-2 flex flex-wrap gap-x-4 text-primary underline underline-offset-4">
+              <a href={SHOULDER_LECTURE.href} className="inline-flex min-h-11 items-center">민족의학신문 강연 보도</a>
+              <Link href="/doctor#jang-kyungjin" className="inline-flex min-h-11 items-center">장경진 원장 소개</Link>
+              <Link href={SHOULDER_LECTURE.careHref} className="inline-flex min-h-11 items-center">어깨 통증 진료</Link>
+            </div>
+          </article>
+          <article className="card p-5">
+            <h3 className="text-lg font-semibold">어지럼·두통에 관한 오서혜 원장의 연구</h3>
+            <ul className="divide-y divide-line">
+              {INTERNAL_MEDICINE_PAPERS.map(paper => <li key={paper.href} className="py-3">
+                <a href={paper.href} className="inline-flex min-h-11 items-center font-medium text-primary underline underline-offset-4">{paper.title}</a>
+                <p className="text-base leading-7">{paper.description}</p>
+                <p className="mt-1 text-sm text-muted">{paper.credit} · {paper.citation}</p>
+              </li>)}
+            </ul>
+            <div className="flex flex-wrap gap-x-4 text-primary underline underline-offset-4">
+              <Link href="/doctor#oh-seohye" className="inline-flex min-h-11 items-center">오서혜 원장 소개</Link>
+              <Link href="/herbal/tonic/autonomic" className="inline-flex min-h-11 items-center">두통·어지럼 진료</Link>
+            </div>
+          </article>
         </div>
       </section>
 

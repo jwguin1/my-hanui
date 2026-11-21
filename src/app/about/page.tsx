@@ -12,6 +12,7 @@ import SectionBadge from "@/components/ui/SectionBadge";
 import TwoTone from "@/components/ui/TwoTone";
 import { Quote, Users } from "@/components/ui/icons";
 import { CLINIC } from "@/lib/clinic";
+import Link from "next/link";
 
 export const metadata: Metadata = pageMetadata({
   path: "/about",
@@ -93,6 +94,9 @@ export default function AboutPage() {
               <p className="mt-3 text-[0.85rem] leading-relaxed text-muted">
                 {CLINIC.ultrasound.detail}
               </p>
+              <Link className="mt-2 inline-flex min-h-11 items-center text-base text-primary underline underline-offset-4" href="/media#academic-activity">
+                의료진의 어깨 통증 강연과 한방내과 연구
+              </Link>
             </div>
 
             {/* 3 */}

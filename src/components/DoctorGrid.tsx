@@ -1,15 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { DOCTOR_SLUGS } from "@/lib/schema";
-
-interface Doctor {
-  name: string; image: string; bio?: string[]; school?: string;
-  credentials?: { abbr: string; name: string; issuer: string; issuerFull: string }[];
-  laserCertification?: string; societies?: string[];
-  specialty?: string;
-  education?: string[];
-  career?: string[];
-}
+import { type Doctor, INTERNAL_MEDICINE_PAPERS, SHOULDER_LECTURE } from "@/lib/doctor-profile";
 
 export default function DoctorGrid({ doctors }: { doctors: Doctor[] }) {
   return <section className="mx-auto max-w-6xl px-6 py-10">
@@ -23,11 +15,11 @@ export default function DoctorGrid({ doctors }: { doctors: Doctor[] }) {
         <div className="p-5">
           <h3 className="font-serif text-xl font-semibold text-ink">{doc.name} 원장 · 한의사</h3>
           <p className="mt-3 text-sm leading-relaxed text-muted">{doc.school} 졸업</p>
-          {doc.name === "오서혜" && <nav aria-label="오서혜 원장 관련 진료 안내" className="mt-3 flex flex-wrap gap-x-4 gap-y-2 text-base text-primary underline underline-offset-4">
-            <Link href="/internal/dyspepsia">기능성 소화불량 진료</Link>
-            <Link href="/herbal/tonic">피로·보약 상담</Link>
-          </nav>}
           {doc.specialty && <p className="mt-2 text-sm font-semibold text-primary">{doc.specialty}</p>}
+          <p className="mt-3 text-base leading-relaxed text-ink">{doc.introduction}</p>
+          <nav aria-label={`${doc.name} 원장 관련 진료 안내`} className="mt-2 flex flex-wrap gap-x-4 text-base text-primary underline underline-offset-4">
+            {doc.careLinks.map(link => <Link className="inline-flex min-h-11 items-center" href={link.href} key={link.href}>{link.label}</Link>)}
+          </nav>
           {(doc.credentials?.length || doc.laserCertification || doc.societies?.includes("대한통합레이저의학회 정회원")) ? <ul className="mt-3 space-y-2 text-sm leading-relaxed text-ink">
             {doc.credentials?.map(c => <li key={c.abbr}>{c.abbr} — {c.name}<span className="block text-muted">발급: {c.issuer} ({c.issuerFull})</span></li>)}
             {doc.societies?.includes("대한통합레이저의학회 정회원") && <li>대한통합레이저의학회 정회원</li>}
@@ -39,6 +31,20 @@ export default function DoctorGrid({ doctors }: { doctors: Doctor[] }) {
             {doc.education?.length ? <><p className="mt-5 text-sm font-semibold text-ink">학력·자격</p><ul className="mt-2 space-y-2 text-sm leading-relaxed text-muted">{doc.education.map(item => <li key={item}>{item}</li>)}</ul></> : null}
             {doc.career?.length ? <><p className="mt-5 text-sm font-semibold text-ink">주요 경력</p><ul className="mt-2 space-y-3 text-sm leading-relaxed text-muted">{doc.career.map(item => <li key={item}>{item}</li>)}</ul></> : null}
             {doc.societies?.length ? <><p className="mt-5 text-sm font-semibold text-ink">학회 활동</p><ul className="mt-2 space-y-1 text-sm leading-relaxed text-muted">{doc.societies.map(s => <li key={s}>{s}</li>)}</ul></> : null}
+            {doc.name === "장경진" && <div className="mt-5">
+              <h4 className="font-semibold text-ink">어깨 통증 학술대회 강연</h4>
+              <p className="mt-2 text-base leading-relaxed text-muted">{SHOULDER_LECTURE.description}</p>
+              <a href={SHOULDER_LECTURE.href} className="mt-2 inline-flex min-h-11 items-center text-primary underline underline-offset-4">민족의학신문 강연 보도 읽기</a>
+            </div>}
+            {doc.name === "오서혜" && <div className="mt-5">
+              <h4 className="font-semibold text-ink">동서한방병원 한방내과에서 발표한 논문</h4>
+              <ul className="mt-2 space-y-3">
+                {INTERNAL_MEDICINE_PAPERS.map(paper => <li key={paper.href}>
+                  <a href={paper.href} className="inline-flex min-h-11 items-center text-primary underline underline-offset-4">{paper.title}</a>
+                  <p className="text-sm leading-relaxed text-muted">{paper.credit} · {paper.citation}</p>
+                </li>)}
+              </ul>
+            </div>}
           </details>
           {doc.name === "오서혜" && <nav aria-label="한방내과 진료 질문" className="mt-4 border-t border-line pt-4">
             <h4 className="font-semibold text-ink">한방내과 진료 질문</h4>

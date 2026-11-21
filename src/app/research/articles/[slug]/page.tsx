@@ -3,7 +3,8 @@ import {notFound} from 'next/navigation';
 import {getResearchArticle,getResearchArticles,RESEARCH_CATEGORIES,RESEARCH_ORIGIN,CLINIC_ORIGIN,researchUrl,reference,displayDate} from '@/lib/research';
 import ResearchCards from '@/components/ResearchCards';
 import JsonLd from '@/components/JsonLd';
-import { articleFocus, focusPosts } from '@/lib/focus-guides';
+import { CLINIC_ID } from '@/lib/schema';
+import { articleFocus, relatedToPatientArticle } from '@/lib/focus-guides';
 import { patientGuidesForResearch } from '@/lib/skin-research';
 import { getAllPosts } from '@/lib/blog-local';
 import { postPath } from '@/lib/slug';
@@ -23,11 +24,11 @@ function Paragraphs({text,figure=false}:{text:string;figure?:boolean}){
 }
 export default async function ResearchArticlePage({params}:Props){const a=getResearchArticle((await params).slug);if(!a)notFound();const p=a.paper,c=RESEARCH_CATEGORIES[a.category];const related=getResearchArticles(a.category).filter(x=>x.slug!==a.slug).slice(0,3);const url=researchUrl(a);
 const focus=articleFocus(a);
-const patientGuides=a.category==="skin"?patientGuidesForResearch(a).flatMap(slug=>{const post=getAllPosts("skin").find(p=>p.slug===slug);return post?[post]:[];}):focus?focusPosts(focus):[];
+const patientGuides=a.category==="skin"?patientGuidesForResearch(a).flatMap(slug=>{const post=getAllPosts("skin").find(p=>p.slug===slug);return post?[post]:[];}):focus?getAllPosts().filter(post=>relatedToPatientArticle(a,focus,post.slug)).slice(0,3):[];
 return <div className="research-wrap"><JsonLd graph={[
-  {'@type':'BlogPosting','@id':url+'#article',headline:a.title,description:a.summary,url,mainEntityOfPage:url,inLanguage:'ko-KR',datePublished:a.publishedAt,dateModified:a.updatedAt,author:{'@type':'Organization',name:'일산한의원 연구노트',url:`${RESEARCH_ORIGIN}/editorial`},publisher:{'@type':'Organization',name:'일산한의원',url:CLINIC_ORIGIN},citation:{'@type':'ScholarlyArticle',name:p.title,url:`https://doi.org/${p.doi}`,identifier:p.doi,datePublished:p.date,isPartOf:{'@type':'Periodical',name:p.journal},license:p.licenseUrl},...(a.humanReview?{reviewedBy:{'@type':'Person',name:a.humanReview.name},lastReviewed:a.humanReview.date}:{})},
-  {'@type':'BreadcrumbList',itemListElement:[{'@type':'ListItem',position:1,name:'연구노트',item:RESEARCH_ORIGIN},{'@type':'ListItem',position:2,name:c.label,item:`${RESEARCH_ORIGIN}/category/${a.category}`},{'@type':'ListItem',position:3,name:a.title,item:url}]},
-  {'@type':'FAQPage',mainEntity:a.faq.map(f=>({'@type':'Question',name:f.question,acceptedAnswer:{'@type':'Answer',text:f.answer}}))}
+  {'@type':'BlogPosting','@id':url+'#article',headline:a.title,description:a.summary,url,mainEntityOfPage:url,inLanguage:'ko-KR',datePublished:a.publishedAt,dateModified:a.updatedAt,author:{'@type':'Organization','@id':RESEARCH_ORIGIN+'/editorial#team',name:'일산한의원 연구노트',url:`${RESEARCH_ORIGIN}/editorial`},publisher:{'@type':'MedicalClinic','@id':CLINIC_ID,name:'일산한의원',url:CLINIC_ORIGIN},citation:{'@type':'ScholarlyArticle','@id':`https://doi.org/${p.doi}`,name:p.title,url:`https://doi.org/${p.doi}`,identifier:p.doi,datePublished:p.date,isPartOf:{'@type':'Periodical',name:p.journal},license:p.licenseUrl},...(a.humanReview?{reviewedBy:{'@type':'Person',name:a.humanReview.name},lastReviewed:a.humanReview.date}:{})},
+  {'@type':'BreadcrumbList','@id':url+'#breadcrumbs',itemListElement:[{'@type':'ListItem',position:1,name:'연구노트',item:RESEARCH_ORIGIN},{'@type':'ListItem',position:2,name:c.label,item:`${RESEARCH_ORIGIN}/category/${a.category}`},{'@type':'ListItem',position:3,name:a.title,item:url}]},
+  {'@type':'FAQPage','@id':url+'#webpage',url,mainEntity:a.faq.map(f=>({'@type':'Question',name:f.question,acceptedAnswer:{'@type':'Answer',text:f.answer}}))}
 ]} />
 <nav className="research-breadcrumb" aria-label="현재 위치"><a href={RESEARCH_ORIGIN}>연구노트</a><span> / </span><a href={`${RESEARCH_ORIGIN}/category/${a.category}`}>{c.label}</a></nav>
 <header className="research-article-header"><span className="research-eyebrow">{c.label} · 논문 해설</span><h1>{a.title}</h1><p className="research-deck">{a.summary}</p><div className="research-article-meta"><span>일산한의원 연구노트</span><time dateTime={a.publishedAt}>{displayDate(a.publishedAt)} 발행</time>{a.humanReview&&<span>{a.humanReview.name} 검토 · {displayDate(a.humanReview.date)}</span>}</div><div className="research-tags">{a.tags.map(t=><a href={`${RESEARCH_ORIGIN}/?q=${encodeURIComponent(t)}`} key={t}>{t}</a>)}</div></header>

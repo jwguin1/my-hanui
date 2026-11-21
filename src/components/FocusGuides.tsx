@@ -19,7 +19,7 @@ export default function FocusGuides() {
 export function FocusReadings({ focus, currentSlug, questions = true }: { focus: Focus; currentSlug?: string; questions?: boolean }) {
   const g = FOCUS_GUIDES[focus];
   const posts = questions ? focusPosts(focus).filter(p => p.slug !== currentSlug) : [];
-  const research = focusResearch(focus);
+  const research = focusResearch(focus, currentSlug);
   return <section className="section-padding !py-8" aria-label={`${g.label} 관련 글과 진료 안내`}>
     <div className="mx-auto max-w-4xl rounded-2xl border border-line bg-surface p-5 sm:p-7">
       <h2 className="text-xl font-bold text-ink">{g.label}, {questions ? "함께 읽을 질문" : "관련 연구와 진료 안내"}</h2>

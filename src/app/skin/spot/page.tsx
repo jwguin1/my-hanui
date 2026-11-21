@@ -2,7 +2,7 @@ import ClinicPatientQuestions from "@/components/ClinicPatientQuestions";
 import { clinicFaqItems } from "@/lib/clinic-patient-questions";
 import Image from "next/image";
 import { FlatWartPrices } from "@/components/SkinAreaPrices";
-import SkinDeviceGallery from "@/components/SkinDeviceGallery";
+import { SkinTreatmentHeader } from "@/components/SkinTreatmentLayout";
 import PatientJourney from "@/components/PatientJourney";
 import PatientQuestions from "@/components/PatientQuestions";
 import SectionJumpNav from "@/components/SectionJumpNav";
@@ -13,7 +13,6 @@ import SpotQuestionGuide from "@/components/SpotQuestionGuide";
 import type { Metadata } from "next";
 import Link from "next/link";
 import SectionReveal from "@/components/SectionReveal";
-import PageHeader from "@/components/ui/PageHeader";
 import SectionBadge from "@/components/ui/SectionBadge";
 import TwoTone from "@/components/ui/TwoTone";
 import IconTile from "@/components/ui/IconTile";
@@ -22,7 +21,6 @@ import NumberedStep from "@/components/ui/NumberedStep";
 import PriceTable from "@/components/ui/PriceTable";
 import {
   AlertTriangle,
-  ChartBar,
   CircleDot,
   Flame,
   Grain,
@@ -30,7 +28,6 @@ import {
   ListCheck,
   MoodSmile,
   Point,
-  Scan,
 } from "@/components/ui/icons";
 import { SITE_URL } from "@/lib/categories";
 import { pageMetadata } from "@/lib/page-metadata";
@@ -131,28 +128,22 @@ export default function SkinSpotPage() {
   return (
     <>
       <JsonLd graph={graph} />
-      <PageHeader
-        badge="피부 · 미용"
-        icon={<Scan size={15} />}
-        lead="점·편평사마귀·쥐젖 제거"
-        accent="진찰부터 회복 관리까지"
-        stacked
+      <SkinTreatmentHeader
+        kind="spot"
+        title={<>점·편평사마귀·쥐젖 제거<br /><span className="text-primary">진찰부터 회복 관리까지</span></>}
         description="먼저 병변을 살피고, 제거할 범위와 비용을 설명합니다. 시술 후 관리와 남은 병변의 리터치까지 미리 확인하세요."
       />
       <SectionJumpNav label="잡티 제거 안내 목차" items={[["prices", "시술 비용"], ["skin-visit", "진찰·시술 과정"], ["retouch", "리터치 안내"], ["skin-faq", "자주 묻는 질문"], ["skin-aftercare", "회복 관리"], ["spot-questions", "질문별 글"]]} />
 
       {/* ── 비용 안내 ── */}
       <section id="prices" className="scroll-mt-28 bg-[var(--bg)]">
-        <div className="section-padding">
+        <div className="section-padding !pt-8 md:!pt-12">
           <SectionReveal>
             <div className="mx-auto max-w-3xl text-center">
-              <SectionBadge icon={<ChartBar size={15} />} label="비용 안내" />
-              <div className="mt-4">
-                <TwoTone as="h2" lead="비용을 " accent="먼저 공개합니다" />
-              </div>
+              <h2 className="text-2xl font-bold text-ink sm:text-3xl">잡티 제거 시술비</h2>
             </div>
 
-            <div className="mx-auto mt-10 max-w-4xl space-y-8">
+            <div className="mx-auto mt-6 max-w-4xl space-y-8">
               <h3 className="text-2xl font-bold">편평사마귀 부위별 가격</h3>
               <FlatWartPrices />
               <h3 className="pt-6 text-xl font-bold">점·쥐젖 제거</h3>
@@ -248,7 +239,6 @@ export default function SkinSpotPage() {
               </div>
             </div>
 
-            <div className="mx-auto mt-8 max-w-3xl"><SkinDeviceGallery ids={["upulse"]} /></div>
             <div className="mx-auto mt-6 grid max-w-3xl gap-5 sm:grid-cols-2">
               {DEVICE.map((d) => (
                 <div key={d.title} className="card p-6">

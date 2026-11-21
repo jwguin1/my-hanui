@@ -33,7 +33,7 @@ export default function PageHeader({
           {subtitle && <p className="text-base font-medium text-muted md:text-xl">{subtitle}</p>}
         </div>
         {description ? (
-          <p className="mx-auto mt-4 max-w-md text-[14px] leading-relaxed text-muted">
+          <p className="mx-auto mt-4 max-w-xl break-keep text-base leading-7 text-muted md:text-[17px] md:leading-8">
             {description}
           </p>
         ) : null}

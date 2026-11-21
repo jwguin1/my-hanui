@@ -2552,6 +2552,10 @@ export const publicAssets: Record<string, {width:number;height:number}|null> = {
     "width": 1080,
     "height": 1080
   },
+  "/images/home-visit-goyang-paju.svg": {
+    "width": 640,
+    "height": 680
+  },
   "/images/pain-og.jpg": {
     "width": 1200,
     "height": 630
@@ -2563,6 +2567,14 @@ export const publicAssets: Record<string, {width:number;height:number}|null> = {
   "/images/skin/consultation.webp": {
     "width": 1200,
     "height": 800
+  },
+  "/images/skin/flat-wart-prices-20261121.png": {
+    "width": 992,
+    "height": 1585
+  },
+  "/images/skin/pigmentation-prices-20261121.png": {
+    "width": 1054,
+    "height": 1492
   },
   "/images/skin/procedure.webp": {
     "width": 1200,
