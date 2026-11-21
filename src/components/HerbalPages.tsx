@@ -29,8 +29,8 @@ export function HerbalQuestions({ faqs, title = "진료 전 궁금한 질문", i
 
 function HerbalConsultation({ category }: { category?: HerbalCategory }) {
   return <section className="bg-[var(--surface)] px-6 py-14 text-center">
-    <h2 className="font-serif text-2xl font-semibold text-ink">{category === "insurance" ? "보험한약 적용부터 진료 준비까지 문의하세요" : category === "tonic" ? "피로·소화·수면, 가장 힘든 점부터 알려주세요" : "내 증상부터 편하게 이야기해 주세요"}</h2>
-    <p className="mx-auto mt-4 max-w-xl text-[16px] leading-8 text-muted">{category === "insurance" ? "현재 증상과 올해 보험한약을 처방받은 이력이 있다면 함께 남겨주세요. 진료시간 내 의료진이 상담하고, 보험 적용과 비용은 진찰 후 안내합니다." : "가장 불편한 증상과 복용 중인 약, 방문 희망일을 카카오톡으로 남겨주세요. 진료시간 내 의료진이 직접 상담합니다."}</p>
+    <h2 className="font-serif text-2xl font-semibold text-ink">{category === "insurance" ? "보험한약 진료를 받으시려면" : category === "tonic" ? "보약 진료, 편한 날에 오세요" : "한약 진료를 받으시려면"}</h2>
+    <p className="mx-auto mt-4 max-w-xl text-[16px] leading-8 text-muted">{category === "insurance" ? "카카오톡에 진료받으실 증상과 방문 희망일을 남겨주세요. 올해 다른 곳에서 보험한약을 드셨다면 처방받은 달도 알려주세요." : "카카오톡에 가장 불편한 점과 방문 희망일을 남겨주세요. 부모님 보약은 자녀분이 먼저 진료 일정을 문의하셔도 됩니다."}</p>
     <ConsultationActions directions kakaoLabel={category === "insurance" ? "보험한약 진료 문의" : "한약 상담 문의"} className="mx-auto mt-7 max-w-3xl" />
   </section>;
 }
@@ -47,15 +47,17 @@ export function HerbalHub({ category, children }: { category: HerbalCategory; ch
   const label = insurance ? "보험한약" : "체질보약";
   return <>
     <JsonLd graph={buildGraph({ path: `/herbal/${category}`, name: meta.title, description: meta.description, faq: faqEntities([...HERBAL_HUB_FAQS[category], ...HERBAL_CARE_FAQS]) })} />
-    <PageHeader badge={insurance ? "일산한의원 · 건강보험 한약" : "일산한의원 · 체질보약"} lead={insurance ? "불편한 증상을 진찰하고," : "쉬어도 회복이 더딜 때,"} accent={insurance ? "보험 적용까지 살핍니다" : "지금의 몸 상태를 살핍니다"} stacked description={insurance ? "소화불량·생리통 등 6개 대상 질환의 한약 진료를 안내합니다. 의료진이 진찰하고 올해 처방 이력을 확인해 치료 계획과 비용을 설명드립니다." : "피로만 따로 보지 않고 소화·수면과 최근 몸의 변화를 함께 봅니다. 진찰을 바탕으로 처방 목적과 복용 기간을 정합니다."} />
+    <PageHeader badge={insurance ? "일산한의원 · 보험한약" : "일산한의원 · 체질보약"} lead={insurance ? "소화불량부터 생리통까지," : "쉬어도 피곤하고 입맛이 떨어질 때,"} accent={insurance ? "건강보험 한약으로 치료합니다" : "내 몸에 맞는 보약을 짓습니다"} stacked description={insurance ? "기능성 소화불량·월경통 등 여섯 질환을 진료합니다. 건강보험 적용 대상인 분께는 증상에 맞춘 한약을 처방하고 원내에서 직접 달여 드립니다." : "한 끼를 다 먹기 힘든 분과 새벽마다 깨서 아침이 힘든 분은 처방이 다릅니다. 일산한의원은 식욕과 잠, 피로가 겹치는 양상에 맞춰 약재를 고르고 한 사람의 보약을 직접 달입니다."} />
     <SectionJumpNav label={`${label} 안내 목차`} items={[["herbal-visit", "진료 과정"], ["conditions", insurance ? "6개 대상 질환" : "증상별 상담"], ["herbal-prices", "비용 확인"], ["questions", "궁금한 질문"], ["herbal-guide", "조제·복용 관리"]]} />
-    <PatientJourney id="herbal-visit" title={insurance ? "보험 기준과 몸 상태를 함께 확인합니다" : "보약을 정하기 전에 일상의 변화를 듣습니다"} intro={insurance ? "같은 증상이라도 진단과 처방 이력에 따라 보험 적용이 달라집니다. 적용 여부를 혼자 판단하지 말고 진료에서 확인하세요." : "체질이나 한약 이름을 미리 정하지 않고 오셔도 됩니다. 현재 가장 불편한 점과 이전 치료 경험부터 이야기해 주세요."} steps={insurance ? INSURANCE_JOURNEY : TONIC_JOURNEY} />
-    {!insurance && <nav aria-label="피로와 한약 진료 안내" className="mx-auto flex max-w-5xl flex-wrap gap-x-6 gap-y-4 px-6 text-base text-primary underline underline-offset-4">
-      <Link href="/blog/피로-식사량-저하">피곤하고 식사량도 줄었을 때</Link>
-      <Link href="/blog/한약-복용약-함께">처방약과 한약을 함께 복용할 때</Link>
-      <Link href="/blog/부모님-보약-상담준비">부모님 보약을 자녀가 먼저 알아볼 때</Link>
+    <PatientJourney id="herbal-visit" title={insurance ? "첫 진료부터 보험한약을 받기까지" : "보약 한 제를 짓는 과정"} intro={insurance ? "첫 방문 때 가장 불편한 증상을 말씀해 주세요. 진찰부터 처방, 건강보험 적용과 복용 안내까지 한의원에서 진행합니다." : "평소보다 식사가 얼마나 줄었는지, 하루 중 언제 기운이 가장 떨어지는지 말씀해 주세요. 첫 진료 때 나눈 이야기를 바탕으로 약재와 복용 기간을 정합니다."} steps={insurance ? INSURANCE_JOURNEY : TONIC_JOURNEY} />
+    <nav aria-label="한방내과 의료진과 진료 질문" className="mx-auto flex max-w-5xl flex-wrap gap-x-6 px-6 text-base text-primary underline underline-offset-4 [&_a]:inline-flex [&_a]:min-h-11 [&_a]:items-center">
       <Link href="/doctor#oh-seohye">오서혜 한방내과 전문의 소개</Link>
-    </nav>}
+      {insurance ? <Link href="/blog/소화불량-한약-재진">소화불량 한약을 드신 뒤 재진할 때</Link> : <>
+        <Link href="/blog/피로-식사량-저하">피곤하고 식사량도 줄었을 때</Link>
+        <Link href="/blog/한약-복용약-함께">처방약과 한약을 함께 복용할 때</Link>
+        <Link href="/blog/부모님-보약-상담준비">부모님 보약을 자녀가 먼저 알아볼 때</Link>
+      </>}
+    </nav>
     <section id="conditions" className="scroll-mt-24 px-6 py-12 md:py-16">
       <div className="mx-auto max-w-5xl">
         <h2 className="font-serif text-2xl font-semibold text-ink md:text-3xl">{insurance ? "어떤 증상이 가장 불편하세요?" : "가장 먼저 편해지고 싶은 일상은 무엇인가요?"}</h2>
@@ -84,7 +86,7 @@ export function HerbalHub({ category, children }: { category: HerbalCategory; ch
     </section>}
     {insurance ? <HerbalPrices /> : <TonicPrices />}
     <p className="mx-auto max-w-5xl px-6 py-5 text-center text-base"><Link href="/blog/소화불량-보험한약-보약-비용" className="text-primary underline underline-offset-4">소화불량 보험 첩약과 체질보약, 비용은 어떻게 다른가요?</Link></p>
-    <HerbalQuestions faqs={HERBAL_HUB_FAQS[category]} title={insurance ? "보험 적용과 비용, 먼저 확인하세요" : "보약을 처음 고민할 때 궁금한 점"} />
+    <HerbalQuestions faqs={HERBAL_HUB_FAQS[category]} title={insurance ? "보험한약 대상과 비용" : "보약을 처음 지을 때 궁금한 점"} />
     <CareGuide herbal />
     {insurance && <RelatedPatientGuides title="소화불량으로 보험한약을 고민하고 있다면" items={DIGESTIVE_READINGS.slice(0, 2)} />}
     <p className="px-6 py-6 text-center text-sm text-primary"><a href="https://research.ilsanhan.com/category/korean" className="underline underline-offset-4">한약·침 치료의 논문 해설 읽기 →</a></p>
