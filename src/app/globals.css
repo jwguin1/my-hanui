@@ -105,6 +105,9 @@
 }
 .skip-link:focus { transform: translateY(0); }
 
+/* Land on the expanded answer immediately, even on a long treatment page. */
+html:has(#patient-faq :target) { scroll-behavior: auto; }
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after {

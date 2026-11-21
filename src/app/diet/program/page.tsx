@@ -1,3 +1,5 @@
+import ClinicPatientQuestions from "@/components/ClinicPatientQuestions";
+import { clinicFaqItems } from "@/lib/clinic-patient-questions";
 import PatientJourney from "@/components/PatientJourney";
 import PatientQuestions from "@/components/PatientQuestions";
 import SectionJumpNav from "@/components/SectionJumpNav";
@@ -56,6 +58,7 @@ const graph = buildGraph({
   about: { "@type": "MedicalCondition", name: "비만" },
   faq: [
     ...faqEntities(QUESTIONS.map((q) => ({ q: q.quote, a: q.answer }))),
+    ...faqEntities(clinicFaqItems("/diet/program")),
     ...localFaqEntities("/diet/program"),
   ],
 });
@@ -72,7 +75,7 @@ export default function DietProgramPage() {
         description="내 몸에 맞는지, 얼마나 먹어야 하는지부터 상담하세요. 일산한의원은 식사·수면·건강 상태를 살펴 일산감비환을 처방하고, 복용 중 변화와 감량 이후의 유지 계획까지 함께 봅니다."
       />
 
-      <SectionJumpNav label="일산감비환 안내 목차" items={[["prices", "가격·복용 기간"], ["diet-visit", "상담·처방 과정"], ["diet-faq", "복용 전 궁금한 점"], ["diet-safety", "복용 중 확인"]]} />
+      <SectionJumpNav label="일산감비환 안내 목차" items={[["prices", "가격·복용 기간"], ["diet-visit", "상담·처방 과정"], ["diet-faq", "복용 전 궁금한 점"], ["patient-faq", "감량 중 궁금한 점"], ["diet-safety", "복용 중 확인"]]} />
 
       <section id="prices" className="scroll-mt-24 mx-auto max-w-4xl px-6 py-10">
         <h2 className="font-serif text-2xl font-semibold text-ink">첫 상담과 일산감비환 비용</h2>
@@ -146,6 +149,7 @@ export default function DietProgramPage() {
         </div>
       </section>
 
+      <ClinicPatientQuestions path="/diet/program" />
       {/* ── 복용 중 확인 (안전 안내 — 삭제 금지) ── */}
       <section id="diet-safety" className="scroll-mt-28 bg-[var(--surface)]">
         <div className="section-padding">

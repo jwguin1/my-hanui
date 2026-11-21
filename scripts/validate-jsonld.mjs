@@ -900,7 +900,14 @@ function validate(pagePath, html) {
       return { ...n, jobTitle: n.jobTitle?.replace("한방내과 전문의", "한방내과 자격"),
         hasCredential: n.hasCredential?.map(c => c.name === "한방내과 전문의" && c.credentialCategory === "전문의"
           ? { ...c, name: "한방내과 자격", credentialCategory: "자격" } : c) };
-    })) : blocks[0];
+    }), function (key, value) {
+      // 원내에서 확인한 자격이 오서혜 원장 실명에 붙은 설명·답변만 허용한다.
+      if (typeof value === "string" && (key === "description" || (key === "text" && this["@type"] === "Answer"))) {
+        return value.replaceAll("오서혜 한방내과 전문의", "오서혜 한방내과 자격")
+          .replaceAll("한방내과 전문의 오서혜", "한방내과 자격 오서혜");
+      }
+      return value;
+    }) : blocks[0];
     if (checked.includes(word))
       errors.push(`JSON-LD 에 금지 표현 "${word}" 가 있다`);
   }

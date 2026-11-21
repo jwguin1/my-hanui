@@ -1,3 +1,5 @@
+import ClinicPatientQuestions from "@/components/ClinicPatientQuestions";
+import { clinicFaqItems } from "@/lib/clinic-patient-questions";
 import Image from "next/image";
 import { FlatWartPrices } from "@/components/SkinAreaPrices";
 import SkinDeviceGallery from "@/components/SkinDeviceGallery";
@@ -120,6 +122,7 @@ const graph = buildGraph({
   },
   faq: [
     ...faqEntities(QUESTIONS.map((q) => ({ q: q.quote, a: q.answer }))),
+    ...faqEntities(clinicFaqItems("/skin/spot")),
     ...localFaqEntities("/skin/spot"),
   ],
 });
@@ -324,6 +327,7 @@ export default function SkinSpotPage() {
           <Link href="/skin/일산-비립종-제거-압출" className="mt-4 inline-block py-2 font-semibold text-primary underline underline-offset-4">비립종 제거·압출 질문과 답 →</Link>
         </div>
       </section>
+      <ClinicPatientQuestions path="/skin/spot" />
       <SpotQuestionGuide />
       <section aria-labelledby="other-skin-title" className="border-y border-line bg-[var(--surface)] px-6 py-10">
         <div className="mx-auto max-w-3xl">

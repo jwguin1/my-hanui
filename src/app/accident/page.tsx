@@ -1,3 +1,5 @@
+import ClinicPatientQuestions from "@/components/ClinicPatientQuestions";
+import { clinicFaqItems } from "@/lib/clinic-patient-questions";
 import ConsultationActions from "@/components/ConsultationActions";
 import type { Metadata } from "next";
 import Link from "next/link";
@@ -217,6 +219,7 @@ const graph = buildGraph({
   },
   faq: [
     ...faqEntities(QUESTIONS.map((q) => ({ q: q.quote, a: q.answer }))),
+    ...faqEntities(clinicFaqItems("/accident")),
     ...localFaqEntities("/accident"),
   ],
 });
@@ -461,6 +464,7 @@ export default function AccidentPage() {
         </section>
       )}
 
+      <ClinicPatientQuestions path="/accident" />
       <LocalBlock {...LOCAL_BLOCKS["/accident"]} />
 
       {/* ── CTA ── */}

@@ -1,16 +1,18 @@
+import ClinicPatientQuestions from "@/components/ClinicPatientQuestions";
+import { clinicFaqItems } from "@/lib/clinic-patient-questions";
 import Link from "next/link";
 import type { Metadata } from "next";
 import PageHeader from "@/components/ui/PageHeader";
 import ConsultationActions from "@/components/ConsultationActions";
 import JsonLd from "@/components/JsonLd";
-import { buildGraph } from "@/lib/schema";
+import { buildGraph, faqEntities } from "@/lib/schema";
 import { pageMetadata } from "@/lib/page-metadata";
 import { CARE_GUIDE } from "@/lib/care-guide";
 import { PAIN_PRICES, PIGMENTATION_PRICES, TONING_PRICES, painWon } from "@/lib/pricing";
 
 import { HOME_VISIT } from "@/lib/home-visit";
 
-const description = "일산한의원의 기본 보험진료, 추나, 초음파 유도 약침, 원내 탕전 한약과 피부레이저 진료를 안내합니다. 치료 과정과 비용을 먼저 확인하세요.";
+const description = "건강보험 추나치료, 초음파 유도 약침, 한약과 피부레이저 진료를 안내합니다. 근골격계·상복부·경동맥·갑상선 초음파, 혈액·소변검사도 원내에서 받으실 수 있습니다.";
 export const metadata: Metadata = pageMetadata({ path: "/treatment", title: "진료 안내 | 기본 치료·추나·약침·한약", description });
 const treatments = [
   { title: "방문진료", body: `거동이 불편해 한의원에 오기 어려운 분을 위해 한의사가 집으로 찾아갑니다. ${HOME_VISIT.area}에서 상담하실 수 있습니다. ${HOME_VISIT.areaNote}`, note: "한의 방문진료 시범사업 참여기관 · 건강보험·의료급여 적용", href: "/home-visit", label: "방문 대상·비용·상담 신청" },
@@ -25,9 +27,11 @@ const treatments = [
 ];
 export default function TreatmentPage() {
   return <>
-    <JsonLd graph={buildGraph({ path: "/treatment", name: "진료 안내 – 일산한의원", description })} />
+    <JsonLd graph={buildGraph({ path: "/treatment", name: "진료 안내 – 일산한의원", description, faq: faqEntities(clinicFaqItems("/treatment")) })} />
     <PageHeader badge="진료 안내" lead="내 증상에 맞는 치료와" accent="비용을 확인하세요" stacked description={description} />
+    <div className="mx-auto max-w-5xl px-6 pt-2 text-center"><a href="#patient-faq" className="inline-flex min-h-11 items-center font-semibold text-primary underline underline-offset-4">원내 초음파·혈액검사와 건강보험 추나 안내</a></div>
     <div className="mx-auto grid max-w-5xl gap-5 px-6 py-10 md:grid-cols-2">{treatments.map(t => <section key={t.title} className="rounded-2xl border border-line bg-card p-6"><h2 className="font-serif text-xl font-semibold text-ink">{t.title}</h2><p className="mt-4 text-base leading-relaxed text-muted">{t.body}</p><p className="mt-4 text-sm font-medium leading-relaxed text-ink">{t.note}</p><Link href={t.href} className="mt-5 inline-block text-primary underline underline-offset-4">{t.label} →</Link></section>)}</div>
+    <ClinicPatientQuestions path="/treatment" />
     <nav aria-label="다른 진료 안내" className="mx-auto flex max-w-5xl flex-wrap gap-5 px-6 pb-10 text-primary"><Link href="/accident">교통사고 →</Link><Link href="/diet/program">일산감비환 · 다이어트 →</Link><Link href="/skin/spot">잡티제거 →</Link><Link href="/skin/hair-removal">얼굴·수염 제모 →</Link><Link href="/skin/lifting">슈링크·볼뉴머 리프팅 →</Link><Link href="/aftercare">치료 후 관리 →</Link></nav>
     <section className="bg-[var(--surface)] px-6 py-12 text-center"><h2 className="text-xl font-semibold text-ink">어떤 진료가 필요한지 편하게 물어보세요</h2><p className="mx-auto mt-3 max-w-xl text-base leading-relaxed text-muted">불편한 부위와 증상이 시작된 시기, 방문 희망일을 남겨주세요. 진료시간 내 의료진이 직접 상담합니다.</p><ConsultationActions directions className="mt-6" /></section>
   </>;

@@ -1,3 +1,5 @@
+import ClinicPatientQuestions from "@/components/ClinicPatientQuestions";
+import { clinicFaqItems } from "@/lib/clinic-patient-questions";
 import Link from "next/link";
 import PageHeader from "@/components/ui/PageHeader";
 import JsonLd from "@/components/JsonLd";
@@ -97,7 +99,7 @@ export function HerbalHub({ category, children }: { category: HerbalCategory; ch
 export function HerbalDetail({ guide }: { guide: HerbalGuide }) {
   const label = guide.category === "insurance" ? "보험한약" : "체질보약";
   return <>
-    <JsonLd graph={buildGraph({ path: herbalPath(guide), name: `${guide.title} 한약 질문과 답 – 일산한의원`, description: guide.summary, faq: faqEntities(guide.faqs) })} />
+    <JsonLd graph={buildGraph({ path: herbalPath(guide), name: `${guide.title} 한약 질문과 답 – 일산한의원`, description: guide.summary, faq: faqEntities([...guide.faqs, ...clinicFaqItems(herbalPath(guide))]) })} />
     <nav aria-label="현재 위치" className="mx-auto max-w-4xl px-6 pt-6 text-sm text-primary"><Link href="/">홈</Link> · <Link href={`/herbal/${guide.category}`}>{label}</Link> · {guide.title}</nav>
     <PageHeader badge={`${label} · ${guide.title}`} lead={guide.question} description={guide.summary} />
     {guide.specialistNote && <aside className="mx-auto max-w-3xl px-6 pt-8 text-base leading-8">
@@ -106,6 +108,7 @@ export function HerbalDetail({ guide }: { guide: HerbalGuide }) {
     </aside>}
     <HerbalArticleQuestions topic={guide.slug} />
     <HerbalQuestions faqs={guide.faqs} title={`${guide.title} 진료 질문`} />
+    <ClinicPatientQuestions path={herbalPath(guide)} />
     <section className="bg-[var(--surface)] px-6 py-12">
       <div className="mx-auto max-w-3xl">
         <h2 className="text-xl font-semibold text-ink">첫 상담에 준비하면 좋은 것</h2>

@@ -1,9 +1,11 @@
+import ClinicPatientQuestions from "@/components/ClinicPatientQuestions";
+import { clinicFaqItems } from "@/lib/clinic-patient-questions";
 import Link from "next/link";
 import type { Metadata } from "next";
 import PageHeader from "@/components/ui/PageHeader";
 import ConsultationActions from "@/components/ConsultationActions";
 import JsonLd from "@/components/JsonLd";
-import { buildGraph } from "@/lib/schema";
+import { buildGraph, faqEntities } from "@/lib/schema";
 import { pageMetadata } from "@/lib/page-metadata";
 import { CARE_GUIDE } from "@/lib/care-guide";
 
@@ -18,13 +20,14 @@ const guides = [
 ];
 export default function AftercarePage() {
   return <>
-    <JsonLd graph={buildGraph({ path: "/aftercare", name: "치료 후 관리 – 일산한의원", description })} />
+    <JsonLd graph={buildGraph({ path: "/aftercare", name: "치료 후 관리 – 일산한의원", description, faq: faqEntities(clinicFaqItems("/aftercare")) })} />
     <PageHeader badge="치료 후 안내" lead="치료받은 뒤 궁금한 점을" accent="여기서 확인하세요" stacked description={description} />
     <nav aria-label="치료별 관리 바로가기" className="flex flex-wrap justify-center gap-5 px-6 pb-6 text-primary"><Link href="#pain">침·약침</Link>{guides.map(g => <Link key={g.id} href={`#${g.id}`}>{g.title}</Link>)}</nav>
     <div className="mx-auto max-w-4xl space-y-5 px-6 pb-12">
       <section id="pain" className="scroll-mt-24 rounded-2xl border border-line bg-card p-6"><h2 className="font-serif text-xl font-semibold text-ink">침·약침 치료 후</h2><p className="mt-4 text-base leading-relaxed text-muted">침을 맞은 자리에 작은 멍이나 소량의 출혈이 생길 수 있습니다. 출혈이 있으면 깨끗한 거즈로 가볍게 눌러주세요. 붉은기·열감·붓기가 커지거나 열이 나면 진료가 필요합니다.</p><p className="mt-3 text-base leading-relaxed text-muted">약침을 받은 부위와 시각, 이후 달라진 증상을 알려주시면 경과를 확인하는 데 도움이 됩니다. 갑작스러운 호흡곤란이나 얼굴·입술 부종이 있으면 즉시 응급 진료를 받으세요.</p><p className="mt-4 text-base leading-relaxed text-muted">{CARE_GUIDE.acuteReview} {CARE_GUIDE.chronicReview}</p><Link href="/pain/acute#visit-guide" className="mt-4 inline-block text-primary underline underline-offset-4">다음 통증 진료와 재평가 안내 →</Link></section>
       {guides.map(g => <section key={g.id} id={g.id} className="scroll-mt-24 rounded-2xl border border-line bg-card p-6"><h2 className="font-serif text-xl font-semibold text-ink">{g.title}</h2><p className="mt-4 text-base leading-relaxed text-muted">{g.text}</p><Link href={g.href} className="mt-4 inline-block text-primary underline underline-offset-4">{g.label} →</Link></section>)}
     </div>
+    <ClinicPatientQuestions path="/aftercare" />
     <section className="bg-[var(--surface)] px-6 py-12 text-center"><h2 className="font-serif text-2xl font-semibold text-ink">치료 후 변화가 궁금하신가요?</h2><p className="mx-auto mt-4 max-w-xl text-base leading-relaxed text-muted">받으신 치료와 날짜, 불편해진 시점을 카카오톡으로 알려주세요. 진료시간 내 의료진이 직접 상담합니다.</p><ConsultationActions directions className="mt-6" /></section>
   </>;
 }

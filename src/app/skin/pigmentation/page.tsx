@@ -1,3 +1,5 @@
+import ClinicPatientQuestions from "@/components/ClinicPatientQuestions";
+import { clinicFaqItems } from "@/lib/clinic-patient-questions";
 import Image from "next/image";
 import Link from "next/link";
 import JsonLd from "@/components/JsonLd";
@@ -16,7 +18,7 @@ export const metadata = pageMetadata({ path: "/skin/pigmentation", title: "일�
 
 export default function PigmentationPage() {
   const posts = getAllPosts("skin");
-  return <><JsonLd graph={buildGraph({ path: "/skin/pigmentation", name: "색소·홍조·재생치료 – 일산한의원", description, faq: faqEntities([...PIGMENTATION_FAQS]) })} />
+  return <><JsonLd graph={buildGraph({ path: "/skin/pigmentation", name: "색소·홍조·재생치료 – 일산한의원", description, faq: faqEntities([...PIGMENTATION_FAQS, ...clinicFaqItems("/skin/pigmentation")]) })} />
     <SkinTreatmentLayout kind="pigmentation" title={<>색소·홍조·재생치료<br /><span className="text-primary">내 피부에 필요한 레이저로.</span></>} description="갈색 잡티, 붉은 볼, 거친 피부결. 원장이 피부 상태를 진단하고 필요한 장비와 파장을 골라 치료합니다.">
       <SkinSection id="treatments" title="고민이 다른 만큼, 치료도 다르게">
         <p>얼굴뿐 아니라 겨드랑이·팔·사타구니·다리의 색소와 착색도 진찰합니다. 필요한 부위를 선택하고, 피부 상태에 맞춰 시술 범위와 계획을 정합니다.</p>
@@ -38,6 +40,7 @@ export default function PigmentationPage() {
         <Link href={postPath("skin","피부레이저-담당-의료진")} className="inline-block font-semibold text-primary underline underline-offset-4">피부레이저 담당 의료진과 상담 방식 →</Link>
       </SkinSection>
       <SkinSection id="questions" title="치료 전에 많이 묻는 질문"><SkinFaq items={PIGMENTATION_FAQS} /></SkinSection>
+      <ClinicPatientQuestions path="/skin/pigmentation" />
       <SkinSection id="guides" title="피부 고민별로 더 읽어보세요">
         {PIGMENTATION_GROUPS.map(group=><div id={group.id} key={group.id} className="scroll-mt-28"><h3 className="mb-3 text-lg font-bold text-ink">{group.name}</h3><div className="grid gap-3 sm:grid-cols-2">{group.slugs.flatMap(slug=>{const post=posts.find(p=>p.slug===slug);return post?[<Link key={slug} href={postPath("skin",slug)} className="rounded-xl border border-line bg-white p-4 font-medium text-primary">{post.title} →</Link>]:[];})}</div></div>)}
       </SkinSection>

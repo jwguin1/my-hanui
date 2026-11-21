@@ -1,3 +1,5 @@
+import ClinicPatientQuestions from "@/components/ClinicPatientQuestions";
+import { clinicFaqItems } from "@/lib/clinic-patient-questions";
 import MobileConsultationBar from "@/components/MobileConsultationBar";
 import { ClinicPhotoGallery } from "@/components/ClinicPhoto";
 import CareGuide from "@/components/CareGuide";
@@ -203,6 +205,7 @@ const graph = buildGraph({
   faq: [
     ...faqEntities(PAIN_CARE_FAQS),
     ...faqEntities(QUESTIONS.map((q) => ({ q: q.quote, a: q.answer }))),
+    ...faqEntities(clinicFaqItems("/pain/chronic")),
     ...localFaqEntities("/pain/chronic"),
   ],
 });
@@ -378,6 +381,7 @@ export default function ChronicPainPage() {
         </div>
       </section>
 
+      <ClinicPatientQuestions path="/pain/chronic" />
       <PainPrices />
 
       {/* ── 치료 과정 ── */}

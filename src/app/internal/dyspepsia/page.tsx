@@ -1,3 +1,5 @@
+import ClinicPatientQuestions from "@/components/ClinicPatientQuestions";
+import { clinicFaqItems } from "@/lib/clinic-patient-questions";
 import Link from "next/link";
 import PageHeader from "@/components/ui/PageHeader";
 import { FocusReadings } from "@/components/FocusGuides";
@@ -28,9 +30,9 @@ const faqs = [
 ];
 export default function DyspepsiaPage() {
   return <>
-    <JsonLd graph={buildGraph({ path: "/internal/dyspepsia", name: "소화불량 치료 – 일산한의원", description, about: { "@type": "MedicalCondition", name: "소화불량", alternateName: ["급체", "기능성소화불량"] }, faq: faqEntities([...faqs, ...HERBAL_CARE_FAQS]) })} />
+    <JsonLd graph={buildGraph({ path: "/internal/dyspepsia", name: "소화불량 치료 – 일산한의원", description, about: { "@type": "MedicalCondition", name: "소화불량", alternateName: ["급체", "기능성소화불량"] }, faq: faqEntities([...faqs, ...HERBAL_CARE_FAQS, ...clinicFaqItems("/internal/dyspepsia")]) })} />
     <PageHeader badge="일산한의원 · 기능성 소화불량" lead="조금만 먹어도 답답한 속," accent="침과 한약으로 치료합니다" stacked description="명치가 막힌 듯 답답하거나 식사를 끝내기 전에 배가 차서 수저를 놓으시나요? 일산한의원은 급체부터 반복되는 식후 불편까지 진료합니다. 편안하게 한 끼를 드시는 것이 치료의 목표입니다." />
-    <SectionJumpNav label="소화불량 안내 목차" items={[["symptoms", "이런 불편이 있다면"], ["process", "진료 과정"], ["herbal-prices", "보험·비용"], ["insurance-questions", "궁금한 질문"], ["herbal-guide", "복용 후 관리"], ["related-guides", "함께 읽을 글"]]} />
+    <SectionJumpNav label="소화불량 안내 목차" items={[["symptoms", "이런 불편이 있다면"], ["process", "진료 과정"], ["herbal-prices", "보험·비용"], ["patient-faq", "식후 증상과 검사"], ["herbal-guide", "복용 후 관리"], ["related-guides", "함께 읽을 글"]]} />
     <section id="symptoms" className="mx-auto max-w-4xl scroll-mt-28 px-6 py-12">
       <h2 className="font-serif text-2xl font-semibold text-ink">식사할 때 어떤 점이 가장 힘드세요?</h2>
       <div className="mt-6 grid gap-4 sm:grid-cols-2">{["조금만 먹어도 더부룩하고 오래 남는 느낌", "식후 명치가 답답하고 잦은 트림", "검사는 정상이지만 반복되는 소화불량", "긴장하거나 신경 쓸 때 심해지는 불편"].map(t => <p key={t} className="rounded-xl border border-line bg-card p-5 text-base leading-7 text-ink">{t}</p>)}</div>
@@ -49,6 +51,7 @@ export default function DyspepsiaPage() {
     </aside>
     <HerbalPrices />
     <HerbalQuestions faqs={faqs} id="insurance-questions" title="소화불량 진료, 궁금한 점" />
+    <ClinicPatientQuestions path="/internal/dyspepsia" />
     <CareGuide herbal />
     <FocusReadings focus="digestive" questions={false} />
     <RelatedPatientGuides title="함께 확인할 진료 안내" items={DIGESTIVE_READINGS} />

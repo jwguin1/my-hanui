@@ -1,3 +1,5 @@
+import ClinicPatientQuestions from "@/components/ClinicPatientQuestions";
+import { clinicFaqItems } from "@/lib/clinic-patient-questions";
 import { notFound, permanentRedirect } from "next/navigation";
 import Link from "next/link";
 import type { Metadata } from "next";
@@ -101,7 +103,8 @@ export default async function BlogPostPage({
   const absoluteImage = imagePath.startsWith("http") ? imagePath : `${SITE_URL}${imagePath}`;
 
   // 카테고리 글과 같은 규칙 — 본문 FAQ 섹션을 FAQPage 로 올린다
-  const faq = faqEntities(parsePostFaq(linkedContent));
+  const faqPath = `/blog/${post.slug}`;
+  const faq = faqEntities([...parsePostFaq(linkedContent), ...clinicFaqItems(faqPath)]);
 
   const path = postPath("blog", post.slug);
   const graph = buildGraph({
@@ -163,6 +166,7 @@ export default async function BlogPostPage({
         </article>
       </section>
 
+      <ClinicPatientQuestions path={faqPath} />
       {postFocus(post) === "digestive" && <><FocusReadings focus="digestive" currentSlug={post.slug} /><ConsultationActions kakaoLabel="소화불량 진료 문의" directions className="mx-auto mb-10 max-w-3xl px-6" /></>}
       <section className="section-padding !pt-0 text-center">
         <Link href="/blog" className="btn-ghost">

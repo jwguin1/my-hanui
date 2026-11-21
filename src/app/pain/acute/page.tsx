@@ -1,3 +1,5 @@
+import ClinicPatientQuestions from "@/components/ClinicPatientQuestions";
+import { clinicFaqItems } from "@/lib/clinic-patient-questions";
 import MobileConsultationBar from "@/components/MobileConsultationBar";
 import { ClinicPhotoGallery } from "@/components/ClinicPhoto";
 import CareGuide from "@/components/CareGuide";
@@ -221,7 +223,7 @@ const graph = buildGraph({
     name: "급성 근골격계 통증",
     alternateName: ["담 결림", "급성 요추 염좌", "발목 염좌"],
   },
-  faq: [...faqEntities(PAIN_CARE_FAQS), ...localFaqEntities("/pain/acute")],
+  faq: [...faqEntities([...PAIN_CARE_FAQS, ...clinicFaqItems("/pain/acute")]), ...localFaqEntities("/pain/acute")],
 });
 
 export default function AcutePainPage() {
@@ -440,6 +442,7 @@ export default function AcutePainPage() {
         </div>
       </section>
 
+      <ClinicPatientQuestions path="/pain/acute" />
       <PainPrices />
 
       {/* ── 치료 과정 ── */}

@@ -20,12 +20,16 @@ export default function QuestionDirectory({ entries, groups = GROUPS }: { entrie
     </div>
     <p role="status" className="my-5 text-sm text-muted">{visible.length}개의 질문·안내</p>
     <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-      {visible.map(e => <article key={e.href} className="rounded-2xl border border-line bg-card p-5">
+      {visible.map(e => {
+        // A document navigation expands native disclosures around a fragment, including with JavaScript disabled.
+        const EntryLink = e.href.includes("#faq-") ? "a" : Link;
+        return <article key={e.href} className="rounded-2xl border border-line bg-card p-5">
         <p className="text-sm font-medium text-primary">{e.group}</p>
-        <h2 className="mt-2 text-lg font-semibold leading-relaxed text-ink"><Link href={e.href} className="hover:text-primary">{e.title}</Link></h2>
+        <h2 className="mt-2 text-lg font-semibold leading-relaxed text-ink"><EntryLink href={e.href} className="hover:text-primary">{e.title}</EntryLink></h2>
         <p className="mt-3 text-[15px] leading-relaxed text-muted">{e.description}</p>
-        <Link href={e.href} className="mt-4 inline-block text-sm font-medium text-primary underline underline-offset-4">답변 읽기 →</Link>
-      </article>)}
+        <EntryLink href={e.href} aria-label={`${e.title} 답변 읽기`} className="mt-2 inline-flex min-h-11 items-center text-base font-medium text-primary underline underline-offset-4">답변 읽기 →</EntryLink>
+      </article>;
+      })}
     </div>
     {visible.length === 0 && <div className="rounded-xl border border-line p-6"><p>일치하는 질문이 없습니다. 다른 단어로 검색하거나 전체 분류를 살펴보세요.</p><button type="button" onClick={() => { setQuery(""); setGroup("전체"); }} className="mt-4 text-primary underline">전체 질문 보기</button></div>}
   </section>;

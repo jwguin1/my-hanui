@@ -1,3 +1,4 @@
+import { clinicDirectoryEntries } from "@/lib/clinic-patient-questions";
 import { diseaseGuide } from "@/lib/disease-guides";
 import { CONSULTATION_GUIDE_SLUGS } from "@/lib/regional-guides";
 import type { Metadata } from "next";
@@ -13,7 +14,7 @@ import QuestionDirectory, { type QuestionEntry } from "@/components/QuestionDire
 import FocusGuides from "@/components/FocusGuides";
 import { FOCUS_GUIDES, postFocus } from "@/lib/focus-guides";
 
-const description = "통증·다이어트·미용·기능성 소화불량의 질문과 답을 모았습니다. 내 증상부터 치료 과정, 비용과 관리까지 확인하세요.";
+const description = "통증·피부·소화불량·비염·산후 회복·월경통·다이어트 질문을 찾아보세요. 내 증상으로 받을 수 있는 검사와 치료, 비용을 안내합니다.";
 export const metadata: Metadata = pageMetadata({ path: "/blog", title: "환자 질문 모음 | 증상·치료·비용 검색", description });
 
 export default function BlogArchivePage() {
@@ -22,7 +23,12 @@ export default function BlogArchivePage() {
     ...HERBAL_GUIDES.map(g => ({ title: g.question, description: g.summary, href: herbalPath(g), group: g.category === "insurance" ? "보험한약" : "체질보약", keywords: `${g.title} ${g.faqs.map(f => f.q).join(" ")}` })),
     ...getAllPosts().map(p => ({ title: p.title, description: p.description, href: postPath(p.category, p.slug), group: (p.id.startsWith("disease-") ? diseaseGuide(p.category, p.slug)?.group : undefined) ?? (p.category === "pain" ? (/교통사고/.test(`${p.title} ${p.tags.join(" ")}`) ? "교통사고" : "통증치료") : p.category === "skin" ? (CONSULTATION_GUIDE_SLUGS.includes(p.slug) ? "치료선택" : "잡티제거") : p.category === "diet" ? "일산감비환" : p.category === "autonomic" ? "체질보약" : (p.id.startsWith("regional-") ? "방문준비" : "한의원 소식")), keywords: `${diseaseGuide(p.category, p.slug)?.keywords ?? ""} ${p.tags.join(" ")} ${p.category === "diet" ? "감비환 일산감비환 일산한의원 다이어트" : ""}` })),
   ];
-  const list = itemListNode("/blog", "post-list", "환자 질문과 진료 안내", entries.map(e => ({ url: `https://www.ilsanhan.com${e.href}`, name: e.title })));
+  const directory = entries.map(entry => {
+    if (entry.href === "/internal/dyspepsia") return { ...entry, group: "기능성 소화불량" };
+    const focus = focusByPath.get(entry.href);
+    return { ...entry, group: focus ? FOCUS_GUIDES[focus].label : "다른 진료·소식" };
+  }).concat(clinicDirectoryEntries());
+  const list = itemListNode("/blog", "post-list", "환자 질문과 진료 안내", directory.map(e => ({ url: `https://www.ilsanhan.com${e.href}`, name: e.title })));
   return <>
     <JsonLd graph={buildGraph({ path: "/blog", name: "환자 질문 모음 – 일산한의원", description, mainEntity: ref(pageId("/blog", "post-list")), nodes: [list] })} />
     <PageHeader badge="진료별 질문과 답" lead="내 고민과 닮은" accent="질문을 찾아보세요" stacked description={description} />
@@ -35,10 +41,6 @@ export default function BlogArchivePage() {
       ].map(item => <Link key={item.href} href={item.href} className="min-w-0 rounded-xl border border-line bg-surface p-4 transition-colors hover:border-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"><span className="block text-base font-semibold leading-7 text-ink">{item.title}</span><span className="mt-1 block text-sm leading-6 text-muted">{item.detail}</span></Link>)}
     </nav>
     <FocusGuides />
-    <QuestionDirectory entries={entries.map(entry => {
-      if (entry.href === "/internal/dyspepsia") return { ...entry, group: "기능성 소화불량" };
-      const focus = focusByPath.get(entry.href);
-      return { ...entry, group: focus ? FOCUS_GUIDES[focus].label : "다른 진료·소식" };
-    })} />
+    <QuestionDirectory entries={directory} />
   </>;
 }
