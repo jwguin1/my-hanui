@@ -3,10 +3,20 @@ import { HAIR_REMOVAL_PRICES, LIFTING_PACKAGE, SHURINK_PRICES, VOLNEWMER_PRICES,
 export function LiftingPrices() {
   return <div className="space-y-6">
     <div className="overflow-hidden rounded-2xl border border-line bg-white">
-      <table className="w-full text-left text-base text-ink">
+      <table className="w-full text-left text-base tabular-nums text-ink">
         <caption className="bg-surface px-4 py-4 text-left font-bold">리프팅 단독 · 1회 시술</caption>
-        <thead><tr className="border-y border-line text-sm"><th scope="col" className="p-4">시술</th><th scope="col" className="px-2 py-4">300샷</th><th scope="col" className="px-2 py-4">600샷</th></tr></thead>
-        <tbody>{[SHURINK_PRICES, VOLNEWMER_PRICES].map(p => <tr key={p.name} className="border-b border-line last:border-0"><th scope="row" className="p-4 text-[15px] font-semibold">{p.name}</th><td className="px-2 py-5 whitespace-nowrap">{skinPrice(p.single)}</td><td className="px-2 py-5 whitespace-nowrap font-bold text-[#792d44]">{skinPrice(p.shots600)}</td></tr>)}</tbody>
+        <thead><tr className="border-y border-line">
+          <th scope="col" className="p-3 sm:p-4">시술</th>
+          <th scope="col" className="px-2 py-3 text-right">300샷</th>
+          <th scope="col" className="p-3 text-right sm:p-4">600샷</th>
+        </tr></thead>
+        <tbody>{[SHURINK_PRICES, VOLNEWMER_PRICES].map(p => (
+          <tr key={p.name} className="border-b border-line last:border-0">
+            <th scope="row" className="p-3 font-semibold sm:p-4">{p.name}</th>
+            <td className="whitespace-nowrap px-2 py-4 text-right text-lg">{skinPrice(p.single)}</td>
+            <td className="whitespace-nowrap p-3 text-right text-lg font-bold text-[#792d44] sm:p-4">{skinPrice(p.shots600)}</td>
+          </tr>
+        ))}</tbody>
       </table>
     </div>
     <div className="rounded-2xl border border-[#ddc5cd] bg-[#fbf5f6] p-5 sm:p-7">

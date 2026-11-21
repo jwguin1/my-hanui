@@ -1,8 +1,9 @@
+import { SITE_VERIFICATION } from "@/lib/site-verification";
 import type {Metadata} from 'next';
 import {getResearchArticles,RESEARCH_CATEGORIES,RESEARCH_FOCUS,RESEARCH_ORIGIN} from '@/lib/research';
 import ResearchCards from '@/components/ResearchCards';
 export const dynamic='force-dynamic';
-export const metadata:Metadata={title:'연구노트 | 통증·다이어트·미용·소화불량 논문 해설',description:'최근 10년의 의학 논문을 환자의 질문으로 풀어 읽습니다. 연구 대상·방법·결과, 일산한의원 진료에서의 의미를 함께 확인하세요.',alternates:{canonical:RESEARCH_ORIGIN,types:{'application/rss+xml':`${RESEARCH_ORIGIN}/feed.xml`}},openGraph:{title:'일산한의원 연구노트',description:'환자의 질문에서 시작하는 통증·다이어트·미용·소화불량 논문 해설',url:RESEARCH_ORIGIN,type:'website',images:['https://www.ilsanhan.com/og-image.jpg']}};
+export const metadata:Metadata={verification:SITE_VERIFICATION,title:'연구노트 | 통증·다이어트·미용·소화불량 논문 해설',description:'최근 10년의 의학 논문을 환자의 질문으로 풀어 읽습니다. 연구 대상·방법·결과, 일산한의원 진료에서의 의미를 함께 확인하세요.',alternates:{canonical:RESEARCH_ORIGIN,types:{'application/rss+xml':`${RESEARCH_ORIGIN}/feed.xml`}},openGraph:{title:'일산한의원 연구노트',description:'환자의 질문에서 시작하는 통증·다이어트·미용·소화불량 논문 해설',url:RESEARCH_ORIGIN,type:'website',images:['https://www.ilsanhan.com/og-image.jpg']}};
 export default async function ResearchHome({searchParams}:{searchParams:Promise<{q?:string}>}){const q=((await searchParams).q||'').trim().slice(0,100);const all=getResearchArticles();const articles=q?all.filter(a=>[a.title,a.summary,...a.tags,a.paper.title].join(' ').toLowerCase().includes(q.toLowerCase())):all;
 return <div className="research-wrap"><section className="research-hero"><span className="research-eyebrow">ILSAN CLINIC · RESEARCH NOTES</span><h1>논문 속 근거를,<br/><em>내 건강의 언어로.</em></h1><p>치료를 고민할 때 떠오르는 질문들.<br/>통증·다이어트·미용·소화불량 연구 결과를 함께 읽고,<br className="research-desktop"/> 진료에서 어떤 의미가 있는지 살펴봅니다.</p><div className="research-schedule">월·수·금 · 네 분야 순환 발행 <span>최근 10년 논문 중심</span></div></section>
 <div className="research-category-grid">{RESEARCH_FOCUS.map(key=>{const c=RESEARCH_CATEGORIES[key];return <a key={key} href={`${RESEARCH_ORIGIN}/category/${key}`}><span>{c.day}</span><h2>{c.label} ↗</h2><p>{c.description}</p></a>})}</div>

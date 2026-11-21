@@ -4,23 +4,24 @@ import PageHeroBanner from "@/components/PageHeroBanner";
 import { DOCTOR_META } from "@/lib/categories";
 import { CAROUSEL_TARGETS } from "@/lib/carousel-targets";
 import JsonLd from "@/components/JsonLd";
-import { CLINIC_ID, buildGraph, pageId, physicianId, ref } from "@/lib/schema";
+import { BASE_URL, CLINIC_ID, CLINIC_PHYSICIAN_COUNT, DOCTOR_SLUGS, buildGraph, pageId, physicianId, ref } from "@/lib/schema";
+import { type Credential, type Doctor, INTERNAL_MEDICINE_PAPERS, SHOULDER_LECTURE } from "@/lib/doctor-profile";
 
 import PageHeader from "@/components/ui/PageHeader";
 import { Users } from "@/components/ui/icons";
 
-const SITE_URL = "https://www.ilsanhan.com";
+const SITE_URL = BASE_URL;
+const directoryTitle = `의료진 소개 – 일산한의원 ${CLINIC_PHYSICIAN_COUNT}명의 한의사`;
+const directoryDescription = `${Object.keys(DOCTOR_SLUGS).join(", ")} 원장의 진료 분야와 학력·자격, 어깨 통증 강연과 두통·어지럼 연구를 확인하세요.`;
 
 // 기존 title/description/OG title·desc 는 그대로 유지(더 상세함)하고
 // OG 이미지 · twitter 카드 · canonical 만 병합 추가.
 export const metadata: Metadata = {
   title: CAROUSEL_TARGETS.doctor.title,
-  description:
-    "장경진, 남태훈, 박건희, 강민석, 박동석, 이명주, 오서혜. 7명의 한의사가 정성을 다해 진료합니다. 각 원장의 학력, 자격, 학회 활동과 주요 진료 분야를 확인하세요.",
+  description: directoryDescription,
   openGraph: {
-    title: "의료진 소개 – 일산한의원 7명의 한의사",
-    description:
-      "장경진, 남태훈, 박건희, 강민석, 박동석, 이명주, 오서혜 원장. 각 원장의 학력·자격·학회 활동과 주요 진료 분야 소개.",
+    title: directoryTitle,
+    description: directoryDescription,
     url: `${SITE_URL}/doctor`,
     siteName: "일산한의원",
     images: [
@@ -36,9 +37,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "의료진 소개 – 일산한의원 7명의 한의사",
-    description:
-      "장경진, 남태훈, 박건희, 강민석, 박동석, 이명주, 오서혜 원장. 각 원장의 학력·자격·학회 활동과 주요 진료 분야 소개.",
+    title: directoryTitle,
+    description: directoryDescription,
     images: [`${SITE_URL}${DOCTOR_META.ogImage}`],
   },
   alternates: {
@@ -57,35 +57,7 @@ export const metadata: Metadata = {
  *
  * 원문 명칭과 발급기관만 쓴다. 발급기관을 정확히 밝히는 쪽이
  * 오인 소지를 없애고 신뢰도 올린다.
- */
-export interface Credential {
-  /** 자격 약칭 (예: "RMSK") */
-  abbr: string;
-  /** 영문 정식 명칭 */
-  name: string;
-  /** 발급기관 약칭 (예: "APCA") */
-  issuer: string;
-  /** 발급기관 정식 명칭 */
-  issuerFull: string;
-}
-
-export interface Doctor {
-  name: string;
-  image: string;
-  school: string;
-  specialty?: string;
-  education?: string[];
-  career?: string[];
-  /** 국제 자격. 학회 직책은 societies 로 뺀다 (자격이 아니다) */
-  credentials: Credential[];
-  /** 2026-10-16 원장 확인. 대한통합레이저의학회 인증의는 장경진 원장만 보유. */
-  laserCertification?: string;
-  /** 국내 학회 활동 · 직책 */
-  societies: string[];
-  bio: string[];
-}
-
-/**
+ *
  * APCA RMSK — 기존 의료진 6인 보유. 새 의료진에게 자동 적용하지 않는다.
  *
  * APCA 발급 자격은 ABVM · CBCCT · CBNC · CBCMR · RPVI · RPVI-China · RMSK 다.
@@ -104,6 +76,8 @@ const RMSK: Credential = {
 const doctors: Doctor[] = [
   {
     name: "장경진",
+    introduction: "팔을 돌리거나 들어 올릴 때 어디서 아픈지, 진찰한 움직임과 초음파 영상을 함께 짚어 설명합니다.",
+    careLinks: [{ href: SHOULDER_LECTURE.careHref, label: "오십견·회전근개 진료" }, { href: "/skin", label: "피부·레이저 진료" }],
     laserCertification: "대한통합레이저의학회 인증의",
     image: "/images/doctor-1.JPG",
     school: "대구한의대학교 한의과대학",
@@ -133,6 +107,8 @@ const doctors: Doctor[] = [
   },
   {
     name: "남태훈",
+    introduction: "갑자기 다친 부위는 힘과 움직임부터 살핍니다. 필요한 초음파 검사와 치료 순서를 설명합니다.",
+    careLinks: [{ href: "/pain/acute", label: "삐끗했을 때 받는 진료" }],
     image: "/images/doctor-2.JPG",
     school: "상지대학교 한의과대학",
     credentials: [RMSK],
@@ -153,6 +129,8 @@ const doctors: Doctor[] = [
   },
   {
     name: "박건희",
+    introduction: "운동 중 다치면 쉬어야 할 동작, 지금 해도 좋은 동작을 나누고 운동으로 돌아가는 과정을 함께 계획합니다.",
+    careLinks: [{ href: "/blog/일산-재활-도수치료-운동", label: "다친 뒤 운동을 다시 시작할 때" }],
     image: "/images/doctor-3.png",
     school: "상지대학교 한의과대학",
     credentials: [RMSK],
@@ -175,6 +153,8 @@ const doctors: Doctor[] = [
   },
   {
     name: "강민석",
+    introduction: "오래 아픈 부위는 일상에서 힘든 동작부터 듣고, 초음파 진찰과 침·약침·추나 중 필요한 치료를 설명합니다.",
+    careLinks: [{ href: "/pain/chronic", label: "오래된 통증 진료" }],
     image: "/images/doctor-4.jpg",
     school: "상지대학교 한의과대학",
     credentials: [RMSK],
@@ -197,6 +177,8 @@ const doctors: Doctor[] = [
   },
   {
     name: "박동석",
+    introduction: "사고 뒤 통증이 생기면 처음 다친 부위와 이후 달라진 움직임을 살펴 진료와 재활 계획을 세웁니다.",
+    careLinks: [{ href: "/accident", label: "교통사고 후 진료" }],
     image: "/images/doctor-5.png",
     school: "부산대학교 한의과대학",
     credentials: [RMSK],
@@ -219,6 +201,8 @@ const doctors: Doctor[] = [
   },
   {
     name: "이명주",
+    introduction: "운동할 때 통증이 반복되는 분께 아픈 동작을 짚어 보고, 침·추나·초음파 유도 약침의 선택 기준을 설명합니다.",
+    careLinks: [{ href: "/treatment", label: "침·추나·약침 진료" }],
     image: "/images/doctor-6.png",
     school: "동의대학교 한의과대학",
     credentials: [RMSK],
@@ -241,6 +225,8 @@ const doctors: Doctor[] = [
   },
   {
     name: "오서혜",
+    introduction: "식후 더부룩함이나 쉽게 지치는 증상은 식사·수면·복용약을 함께 살펴 침과 한약 치료를 계획합니다.",
+    careLinks: [{ href: "/internal/dyspepsia", label: "기능성 소화불량 진료" }, { href: "/herbal/tonic/constitution", label: "피로·체질보약 상담" }, { href: "/herbal/tonic/autonomic", label: "두통·어지럼 진료" }],
     image: "/images/doctor-7.webp",
     school: "동국대학교 한의과대학",
     specialty: "한방내과 전문의",
@@ -263,18 +249,21 @@ const doctors: Doctor[] = [
 ];
 
 // Physician 정식 노드는 이 페이지에만 둔다.
-// 병원 노드에는 employee[] 를 두지 않고 worksFor 방향으로만 연결한다
-// (전역에 6인을 실으면 51개 페이지 용량만 늘고 여기서 중복된다).
+// 병원 노드에는 employee[] 를 반복하지 않고 각각의 의료진 노드에서 병원으로 연결한다.
 // 학력·사진·자격·학회는 기존 두 소스(layout employee[] / 이 페이지)를 합친 값이다.
 const physicianNodes = doctors.map((doc) => ({
   "@type": "Physician",
+  additionalType: "https://schema.org/IndividualPhysician",
   "@id": physicianId(doc.name),
   name: doc.name,
   jobTitle: doc.specialty ? `한의사 · ${doc.specialty}` : "한의사",
-  url: `${SITE_URL}/doctor`,
+  url: physicianId(doc.name),
+  description: doc.introduction,
   image: `${SITE_URL}${doc.image}`,
   mainEntityOfPage: ref(pageId("/doctor", "webpage")),
   worksFor: ref(CLINIC_ID),
+  practicesAt: ref(CLINIC_ID),
+  ...(doc.name === "장경진" ? { subjectOf: ref(SHOULDER_LECTURE.href) } : {}),
   alumniOf: {
     "@type": "CollegeOrUniversity",
     name: doc.school,
@@ -296,17 +285,28 @@ const physicianNodes = doctors.map((doc) => ({
   }] : [])],
   memberOf: doc.societies.map((name) => ({
     "@type": "Organization",
-    name: name === "대한통합레이저의학회 정회원" ? "대한통합레이저의학회" : name,
+    name: name.replace(/ (정회원|학술위원)$/, ""),
   })),
 }));
 
 const graph = buildGraph({
   path: "/doctor",
-  name: "의료진 – 한의사 7인 협진 | 일산한의원",
-  description:
-    "장경진, 남태훈, 박건희, 강민석, 박동석, 이명주, 오서혜. 7명의 한의사가 정성을 다해 진료합니다. 각 원장의 학력, 자격, 학회 활동과 주요 진료 분야를 확인하세요.",
+  name: directoryTitle,
+  description: directoryDescription,
   image: DOCTOR_META.ogImage,
-  nodes: physicianNodes,
+  nodes: [
+    ...physicianNodes,
+    {
+      "@type": "NewsArticle", "@id": SHOULDER_LECTURE.href, url: SHOULDER_LECTURE.href,
+      headline: SHOULDER_LECTURE.report, datePublished: SHOULDER_LECTURE.published,
+      publisher: { "@type": "Organization", name: SHOULDER_LECTURE.publisher },
+      mentions: ref(physicianId("장경진")),
+    },
+    ...INTERNAL_MEDICINE_PAPERS.map(paper => ({
+      "@type": "ScholarlyArticle", "@id": paper.href, url: paper.href, name: paper.title,
+      author: paper.authors.map(name => name === "오서혜" ? ref(physicianId(name)) : { "@type": "Person", name }),
+    })),
+  ],
 });
 
 export default function DoctorPage() {
@@ -319,7 +319,7 @@ export default function DoctorPage() {
         icon={<Users size={15} />}
         lead="의료진 "
         accent="소개"
-        description="7명의 한의사가 정성을 다해 진료합니다"
+        description={`${CLINIC_PHYSICIAN_COUNT}명의 의료진이 어떤 증상을 살피고 어떻게 진료하는지 소개합니다.`}
       />
 
       <PageHeroBanner page="doctor" />

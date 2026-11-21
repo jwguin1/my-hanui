@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import matter from 'gray-matter';
+import { HERBAL_GUIDES, herbalPath } from '../src/lib/herbal-guides.ts';
 const paths=new Set();
 function pages(dir,prefix=''){
  for(const e of fs.readdirSync(dir,{withFileTypes:true})){
@@ -9,6 +10,7 @@ function pages(dir,prefix=''){
  }
 }
 pages('src/app');
+for (const guide of HERBAL_GUIDES) paths.add(herbalPath(guide));
 for(const category of ['blog','pain','diet','skin','autonomic'])for(const f of fs.readdirSync('content/'+category).filter(f=>f.endsWith('.md'))){
  const {data}=matter(fs.readFileSync(`content/${category}/${f}`,'utf8'));
  if(data.published!==false&&data.status!=='under_review')paths.add(`/${category}/${data.slug||f.slice(0,-3)}`);

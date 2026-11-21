@@ -29,7 +29,7 @@ export default function AgnesPage() {
       </SkinSection>
       <SkinSection id="questions" title="아그네스, 많이 물어보시는 질문"><SkinFaq items={AGNES_FAQS} /></SkinSection>
       <SkinSection id="related" title="여드름과 자국, 고민에 맞춰 살펴보세요">
-        <p>갈색 자국과 붉은 부위가 함께 남아 있다면 <Link href="/skin/pigmentation" className="font-semibold text-primary underline underline-offset-4">색소·홍조·재생치료</Link>를, 피부톤과 피부결을 꾸준히 관리하고 싶다면 <Link href="/skin/toning" className="font-semibold text-primary underline underline-offset-4">토닝관리</Link>를 함께 살펴보세요.</p>
+        <p>새 여드름이 계속 올라오면 염증부터 치료합니다. 염증은 가라앉고 흔적만 남았다면 <Link href="/skin/일산-여드름흉터-치료-피코프락셀" className="font-semibold text-primary underline underline-offset-4">붉은 자국과 패인 흉터의 차이</Link>를 읽어 보세요. 색이 고민일 때는 <Link href="/skin/pigmentation" className="font-semibold text-primary underline underline-offset-4">색소·홍조·재생치료</Link>와 <Link href="/skin/toning" className="font-semibold text-primary underline underline-offset-4">토닝관리</Link> 중 어떤 치료가 맞는지 진료합니다.</p>
       </SkinSection>
       <section className="py-8 text-sm leading-relaxed text-muted"><h2 className="font-semibold text-ink">참고 자료</h2><ul className="mt-3 space-y-3 break-words">
         <li><a href="https://lat.agnesmedical.com/products/agnes/" className="underline underline-offset-4">AGNES Medical. AGNES 장비 안내.</a></li>

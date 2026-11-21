@@ -2,7 +2,7 @@
 import { useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import pages from '@/data/analytics-pages.json';
-import { analyticsPath, consultationEvent, sourceOrigin } from '@/lib/analytics-policy';
+import { analyticsPath, consultationEvent, contentGroup, referrerGroup, sourceOrigin } from '@/lib/analytics-policy';
 
 // Public measurement ID, not a credential. Advertising and automatic form/search tracking are off.
 export const ANALYTICS_ID = 'G-0BE2S5TH5K';
@@ -18,6 +18,7 @@ export default function SiteAnalytics() {
     w[`ga-disable-${ANALYTICS_ID}`] = !page || optedOut;
     if (!page || optedOut) { w.clinicAnalyticsPage = undefined; return; }
     const pageLocation = location.origin + (location.hostname === 'research.ilsanhan.com' ? page.replace(/^\/research/, '') || '/' : page);
+    const dimensions = { content_group: contentGroup(page), referrer_group: referrerGroup(document.referrer) };
     if (!w.gtag) {
       w.dataLayer = w.dataLayer || [];
       // gtag consumes an Arguments command, not a dataLayer array-method call.
@@ -33,13 +34,13 @@ export default function SiteAnalytics() {
     // Override defaults on every navigation; never send query strings, search text or form fields.
     w.gtag('set',{page_location:pageLocation,page_title:page,page_referrer:sourceOrigin(document.referrer)});
     if (w.clinicAnalyticsPage !== pageLocation) {
-      w.gtag('event','page_view',{page_location:pageLocation,page_title:page,page_referrer:sourceOrigin(document.referrer)});
+      w.gtag('event','page_view',{...dimensions,page_location:pageLocation,page_title:page,page_referrer:sourceOrigin(document.referrer)});
       w.clinicAnalyticsPage = pageLocation;
     }
     const onClick = (event: MouseEvent) => {
       const link = event.target instanceof Element ? event.target.closest('a') : null;
       const name = link && consultationEvent(link.href);
-      if (name) w.gtag?.('event',name,{page_location:pageLocation,page_title:page,transport_type:'beacon'});
+      if (name) w.gtag?.('event',name,{...dimensions,page_location:pageLocation,page_title:page,transport_type:'beacon'});
     };
     document.addEventListener('click',onClick);
     return () => { document.removeEventListener('click',onClick); w[`ga-disable-${ANALYTICS_ID}`] = true; };

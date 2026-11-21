@@ -7,10 +7,9 @@ import PageHeader from "@/components/ui/PageHeader";
 import SectionBadge from "@/components/ui/SectionBadge";
 import TwoTone from "@/components/ui/TwoTone";
 import IconTile from "@/components/ui/IconTile";
-import StatCard from "@/components/ui/StatCard";
 import DefinitionCard from "@/components/ui/DefinitionCard";
 import NumberedStep from "@/components/ui/NumberedStep";
-import QARow from "@/components/ui/QARow";
+import FaqList from "@/components/ui/FaqList";
 import CompareTable from "@/components/ui/CompareTable";
 import {
   AlertTriangle,
@@ -25,7 +24,7 @@ import {
   Scan,
   Stethoscope,
 } from "@/components/ui/icons";
-import { SITE_URL } from "@/lib/categories";
+import { CLINIC } from "@/lib/clinic";
 import { pageMetadata } from "@/lib/page-metadata";
 import JsonLd from "@/components/JsonLd";
 import { buildGraph, faqEntities } from "@/lib/schema";
@@ -36,34 +35,34 @@ export const metadata: Metadata = pageMetadata({
   path: "/autonomic/care",
   title: "일산 이명·어지럼·두통 | 자율신경 치료",
   description:
-    "고양시 일산한의원. 이명, 어지럼, 두통을 침·물리치료로 먼저 확인하고 반응에 따라 추나·약침·한약으로 접근합니다. 이마트 풍산점 3층, 평일 20시까지.",
+    "일산한의원에서 두통·어지럼·이명을 진료합니다. 편두통과 목 통증, 자세에 따른 어지럼, 이명으로 깨는 밤을 나눠 보고 침 치료와 한약 상담, 청력검사가 필요한 경우를 안내합니다.",
   routeOgImage: true,
 });
 
 const QUESTIONS = [
   {
-    quote: "검사에선 아무 이상 없대요",
-    answer: "구조가 아니라 조절의 문제일 수 있습니다",
+    q: "뇌 MRI가 정상인데도 머리가 지끈거리고 속이 울렁거려요. 왜 그럴까요?",
+    a: "편두통은 MRI가 정상이어도 생깁니다. 움직일 때 더 아픈지, 빛이나 소리가 유독 거슬리는지 듣고 두통 양상을 살핍니다. 일산한의원에서는 한 달 중 일상을 멈출 만큼 아팠던 날을 기준으로 침 치료나 한약의 경과를 봅니다.",
   },
   {
-    quote: "약 먹을 때만 잠깐 괜찮아요",
-    answer: "증상을 누르기 전에 유발 원인을 먼저 봅니다",
+    q: "이석증 치료를 받고 방이 도는 건 멎었는데 아직 걸을 때 휘청해요. 또 이석증인가요?",
+    a: "고개를 돌릴 때 짧게 빙빙 도는 증상이 다시 생겼는지, 걸을 때만 중심 잡기가 힘든지를 구분합니다. 이석증이 의심되면 자세검사와 이석을 제자리로 돌리는 치료를 안내합니다. 회전감이 가라앉은 뒤에는 보행과 함께 남은 목 통증·수면 불편을 진료합니다.",
   },
   {
-    quote: "어지럼이 목 때문일 수도 있나요?",
-    answer: "경추성 어지럼인지 먼저 감별합니다",
+    q: "목이 뻣뻣한 날이면 같이 어지러워요. 추나부터 받으면 될까요?",
+    a: "먼저 어지럼이 오는 자세와 귀 증상, 목을 움직일 때의 통증을 따로 봅니다. 귀의 균형기관이나 혈압 문제는 목 치료와 접근이 다릅니다. 목 움직임이 제한되고 근육 압통이 뚜렷하면 그 부위의 통증을 줄이는 침·추나 치료를 상의합니다.",
   },
   {
-    quote: "이명은 못 고친다던데요",
-    answer: "소리를 없애기보다 불편을 줄이는 쪽을 함께 봅니다",
+    q: "밤에 누우면 귀에서 삐 소리가 커져서 잠이 안 와요. 무엇을 해볼 수 있나요?",
+    a: "조용한 방에서 소리가 도드라질 때는 선풍기나 잔잔한 빗소리처럼 편한 배경음을 작게 틀어 보세요. 진료 때는 어느 쪽에서 들리는지, 이명 때문에 깨는지와 청력 변화를 묻습니다. 필요한 청력검사를 안내하고, 밤잠을 설치거나 목·턱이 아픈 분은 그 증상도 함께 진료합니다.",
   },
   {
-    quote: "두통약을 계속 먹고 있어요",
-    answer: "진통제를 자주 드시면 오히려 두통이 잦아질 수 있습니다",
+    q: "두통약을 한 달에 며칠씩 먹는지 기억이 안 나요. 약 봉투를 들고 갈까요?",
+    a: "네. 약 봉투와 지난달 대략 며칠 복용했는지를 가져오세요. 진통제를 자주 쓰면서 두통이 더 잦아지는 경우가 있어 약의 종류와 복용 일수를 같이 봅니다. 기존 처방약은 임의로 끊지 마시고, 진료에서 두통이 줄었는지 약을 찾는 날과 함께 비교합니다.",
   },
   {
-    quote: "스트레스 때문이라던데요",
-    answer: "방아쇠일 수는 있지만, 확인할 것은 따로 있습니다",
+    q: "한쪽 귀에서 심장 뛰듯 쿵쿵거리는 소리가 들려요. 흔한 이명과 같은가요?",
+    a: "맥박과 박자가 맞는 소리는 ‘박동성 이명’으로, 귀와 주변 혈관을 살피는 진찰이 필요합니다. 한쪽에서 계속 들리면 이비인후과 진료를 받으세요. 청력검사나 영상검사를 이미 받으셨다면 결과를 가져오시면 남은 불편을 진료하는 데 도움이 됩니다.",
   },
 ];
 
@@ -109,18 +108,18 @@ const RED_FLAGS = [
 const COMPARE_ROWS = [
   {
     label: "이명",
-    left: "스트레스성·일시적 이명 → 침 · 물리치료",
-    right: "오래된 이명 → 추나 · 약침 · 한약",
+    left: "어느 귀에 들리는지, 청력이 변했는지, 밤잠에 얼마나 영향을 주는지 봅니다.",
+    right: "청력검사가 필요한 분을 안내하고, 수면 불편과 함께 나타나는 목·턱 통증을 진료합니다.",
   },
   {
     label: "어지럼",
-    left: "이석증 후유증, 전정기능 저하 → 침 치료",
-    right: "반복되는 어지럼 → 추나 · 약침 · 한약",
+    left: "돌아누울 때 도는지, 일어설 때 눈앞이 어두운지, 걸을 때 휘청하는지 묻습니다.",
+    right: "자세에 따른 혈압 변화를 보거나 귀의 균형검사를 안내합니다. 검사 후 남은 불편과 통증도 함께 진료합니다.",
   },
   {
     label: "두통",
-    left: "긴장성 두통 → 침 · 물리치료",
-    right: "후두신경통 · 편두통 → 추나 · 약침 · 한약",
+    left: "통증 위치, 빛·소리에 예민해지는지, 목 움직임이나 진통제 복용과의 관계를 봅니다.",
+    right: "두통 양상과 목·어깨 진찰에 따라 침 치료나 한약을 정하고 아팠던 날과 약을 먹은 날을 비교합니다.",
   },
 ];
 
@@ -133,7 +132,7 @@ const TREATMENTS = [
   {
     icon: <Hands />,
     title: "추나요법",
-    body: "상부 경추 정렬을 확인하고 교정합니다. 뒷목에서 올라오는 두통과 어지럼에서 함께 봅니다.",
+    body: "목을 돌릴 때 움직임이 제한되고 뒷목에서 통증이 올라오는 분은 근육과 관절을 진찰한 뒤 추나를 결정합니다.",
   },
   {
     icon: <Scan />,
@@ -154,15 +153,15 @@ const PROCESS = [
   },
   {
     title: "감별",
-    body: "먼저 확인이 필요한 원인이 있는지 봅니다. 필요하면 검사가 가능한 의료기관을 안내드립니다.",
+    body: "혈압, 보행, 목의 움직임을 증상에 맞게 살핍니다. 청력이나 귀의 균형기능을 보는 검사가 필요하면 이비인후과로 연결합니다.",
   },
   {
-    title: "침 · 물리치료",
-    body: "3~5회 진행하며 반응을 확인합니다.",
+    title: "치료 계획",
+    body: "진찰한 부위와 일상에서 가장 불편한 점에 맞춰 침·물리치료 또는 한약을 정합니다.",
   },
   {
     title: "재평가",
-    body: "변화가 있으면 이어가고, 없으면 추나·약침·한약으로 접근을 바꿉니다.",
+    body: "두통으로 약을 먹은 날, 어지럼으로 멈춰 선 횟수, 이명으로 잠을 깬 횟수를 처음과 비교합니다.",
   },
   {
     title: "종결 또는 의뢰",
@@ -174,14 +173,9 @@ const graph = buildGraph({
   path: "/autonomic/care",
   name: "이명·어지럼·두통 치료 – 일산한의원",
   description:
-    "이명, 어지럼, 두통을 침·물리치료로 먼저 확인하고 반응에 따라 추나·약침·한약으로 접근합니다.",
-  about: {
-    "@type": "MedicalCondition",
-    name: "자율신경 관련 증상",
-    alternateName: ["이명", "어지럼", "두통"],
-  },
+    "두통·어지럼·이명이 생기는 상황을 살피고, 진찰 결과에 따라 침·한약 치료와 청력검사 등 필요한 검사를 안내합니다.",
   faq: [
-    ...faqEntities(QUESTIONS.map((q) => ({ q: q.quote, a: q.answer }))),
+    ...faqEntities(QUESTIONS),
     ...localFaqEntities("/autonomic/care"),
   ],
 });
@@ -193,8 +187,8 @@ export default function AutonomicCarePage() {
       <PageHeader
         badge="자율신경"
         icon={<Stethoscope size={15} />}
-        lead="검사에선 이상 없다는데,"
-        accent="계속 힘드시다면"
+        lead="두통·어지럼과 이명,"
+        accent="언제 어떻게 시작되나요?"
         stacked
       />
 
@@ -206,20 +200,10 @@ export default function AutonomicCarePage() {
           <SectionReveal>
             <div className="mx-auto max-w-3xl">
               <DefinitionCard
-                title="자율신경 증상이란?"
-                body="귀·머리·균형 감각에 이상이 없는데도 이명, 어지럼, 두통이 반복되는 경우가 있습니다. 목과 어깨의 긴장, 수면과 스트레스가 얽혀 있는 경우가 많아, 증상만 누르기보다 무엇이 방아쇠인지부터 확인합니다."
+                title="진료실에서 처음 묻는 것"
+                body="고개를 돌릴 때 방이 도는 분, 계단을 오르면 머리가 울리는 분, 한쪽 귀가 울려 잠드는 데 오래 걸리는 분은 진찰할 곳이 다릅니다. 처음 증상이 생겼을 때 무엇을 하고 있었는지 들려주세요. 이전에 받은 청력검사나 영상검사도 함께 살펴봅니다."
               />
 
-              <div className="mt-8 text-center text-[15px] leading-relaxed text-muted">
-                <p>같은 이명이라도 몇 달 된 것과 몇 년 된 것은 다릅니다.</p>
-                <p>먼저 침 치료로 반응을 보고, 그다음을 정합니다.</p>
-              </div>
-            </div>
-
-            <div className="mx-auto mt-10 grid max-w-3xl grid-cols-1 gap-4 md:grid-cols-3">
-              <StatCard value="3" unit="가지" label="이명·어지럼·두통" />
-              <StatCard value="3~5" unit="회" label="1차 반응 확인" />
-              <StatCard value="20:00" label="평일 야간진료" />
             </div>
           </SectionReveal>
         </div>
@@ -235,14 +219,15 @@ export default function AutonomicCarePage() {
                 label="환자분들의 질문"
               />
               <div className="mt-4">
-                <TwoTone as="h2" lead="이런 말씀을 " accent="많이 하십니다" />
+                <TwoTone as="h2" lead="진료 전에 " accent="궁금한 점" />
               </div>
             </div>
 
-            <div className="mx-auto mt-14 flex max-w-4xl flex-col gap-2.5">
-              {QUESTIONS.map((q) => (
-                <QARow key={q.quote} quote={q.quote} answer={q.answer} />
-              ))}
+            <div className="mx-auto mt-8 max-w-3xl">
+              <FaqList items={QUESTIONS} openFirst />
+              <a href={CLINIC.kakaoHref} className="mt-4 inline-flex min-h-11 items-center font-semibold text-primary underline underline-offset-4">
+                두통·어지럼·이명 진료 일정 카카오톡으로 문의
+              </a>
             </div>
           </SectionReveal>
         </div>
@@ -319,12 +304,11 @@ export default function AutonomicCarePage() {
             <div className="mx-auto mt-14 max-w-4xl">
               <CompareTable
                 rows={COMPARE_ROWS}
-                headers={["비교적 잘 좋아지는 경우", "오래가거나 반복되는 경우"]}
+                headers={["처음 살피는 점", "진료에서 정하는 일"]}
               />
 
               <blockquote className="mt-8 border-l-[3px] border-primary bg-card p-5 text-[15px] leading-[1.8] text-ink">
-                몇 회 해보고 반응을 봅니다. 좋아지면 그대로 종결하고, 변화가
-                없으면 다른 접근이 필요하다는 뜻입니다.
+                같은 증상으로 여러 번 진료받으신 분은 이전에 가장 도움이 됐던 치료와 여전히 힘든 일을 알려주세요.
               </blockquote>
             </div>
           </SectionReveal>
@@ -386,6 +370,12 @@ export default function AutonomicCarePage() {
       </section>
 
       <LocalBlock {...LOCAL_BLOCKS["/autonomic/care"]} />
+
+      <nav aria-label="두통·어지럼·이명 참고 자료" className="mx-auto flex max-w-4xl flex-wrap gap-x-6 px-6 py-4 text-sm text-primary [&_a]:inline-flex [&_a]:min-h-11 [&_a]:items-center [&_a]:underline [&_a]:underline-offset-4">
+        <a href="https://nikom.or.kr/nckm/module/practiceGuide/view.do?guide_idx=171&menu_idx=14">편두통 한의표준임상진료지침</a>
+        <a href="https://www.entnet.org/quality-practice/quality-products/clinical-practice-guidelines/bppv/">미국 이비인후과학회 이석증 진료지침</a>
+        <a href="https://www.nidcd.nih.gov/health/tinnitus">미국 국립청각·의사소통장애연구소 이명 안내</a>
+      </nav>
 
       {/* ── CTA ── */}
       <section className="bg-[var(--surface)]">

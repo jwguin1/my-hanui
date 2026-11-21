@@ -9,6 +9,7 @@ import PatientJourney from "@/components/PatientJourney";
 import SectionJumpNav from "@/components/SectionJumpNav";
 import MobileConsultationBar from "@/components/MobileConsultationBar";
 import RelatedPatientGuides from "@/components/RelatedPatientGuides";
+import { herbalQuestionAnchor } from "@/lib/patient-care-topics";
 import HerbalArticleQuestions from "@/components/HerbalArticleQuestions";
 import { INSURANCE_JOURNEY, TONIC_JOURNEY, DIGESTIVE_READINGS } from "@/lib/herbal-experience";
 import { HerbalPrices, TonicPrices } from "@/components/TreatmentPrices";
@@ -22,7 +23,7 @@ export function HerbalQuestions({ faqs, title = "진료 전 궁금한 질문", i
       <h2 className="font-serif text-2xl font-semibold text-ink md:text-3xl">{title}</h2>
       <div className="mt-6 divide-y divide-line rounded-2xl border border-line bg-card px-6 md:px-8">
         {faqs.map((faq, i) => <article key={faq.q} id={`${id}-${i + 1}`} className="scroll-mt-24 py-7">
-          <h3 className="text-lg font-semibold leading-relaxed text-ink">{faq.q}</h3>
+          <h3 id={herbalQuestionAnchor(faq.q)} className="scroll-mt-24 text-lg font-semibold leading-relaxed text-ink">{faq.q}</h3>
           <p className="mt-3 text-[16px] leading-[1.9] text-ink/80">{faq.a}</p>
         </article>)}
       </div>
@@ -106,9 +107,9 @@ export function HerbalDetail({ guide }: { guide: HerbalGuide }) {
       <p>{guide.specialistNote}</p>
       <Link href="/doctor#oh-seohye" className="inline-flex min-h-11 items-center text-primary underline underline-offset-4">오서혜 원장 약력과 진료 이야기</Link>
     </aside>}
-    <HerbalArticleQuestions topic={guide.slug} />
     <HerbalQuestions faqs={guide.faqs} title={`${guide.title} 진료 질문`} />
     <ClinicPatientQuestions path={herbalPath(guide)} />
+    <HerbalArticleQuestions topic={guide.slug} />
     <section className="bg-[var(--surface)] px-6 py-12">
       <div className="mx-auto max-w-3xl">
         <h2 className="text-xl font-semibold text-ink">첫 상담에 준비하면 좋은 것</h2>
@@ -130,7 +131,7 @@ export function HerbalDetail({ guide }: { guide: HerbalGuide }) {
     </section>}
     <section className="bg-surface px-6 py-12 text-center">
       <h2 className="text-2xl font-semibold text-ink">{guide.title} 진료 문의</h2>
-      <p className="mt-3 text-base leading-8 text-muted">카카오톡에 불편한 증상과 방문 희망일을 남겨주세요.</p>
+      <p className="mx-auto mt-3 max-w-xl text-base leading-8 text-muted">{guide.consultation ?? "카카오톡으로 진료받기 편한 날을 알려주세요. 방문 일정을 안내해 드립니다."}</p>
       <ConsultationActions directions kakaoLabel="카카오톡 진료 문의" className="mx-auto mt-6 max-w-3xl" />
     </section>
     <MobileConsultationBar label="카카오톡 진료 문의" />

@@ -35,6 +35,10 @@ import {
   itemListNode,
 } from "@/lib/schema";
 
+import { SITE_VERIFICATION } from "@/lib/site-verification";
+
+export const metadata = { verification: SITE_VERIFICATION };
+
 // 첫 화면에는 방문 전 핵심 질문만 노출하며, 화면과 FAQ 스키마를 함께 유지한다.
 const FAQS = [
   { ...VISIT_FAQS[0], q: "예약 없이 방문해도 되나요?", a: `예약 없이 당일 침·물리치료를 받으실 수 있습니다. ${CLINIC.receptionNote}` },

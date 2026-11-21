@@ -3,7 +3,7 @@ import Image from "next/image";
 import { FLAT_WART_PRICE_GROUPS, PIGMENTATION_AREA_PRICES, PIGMENTATION_PACKAGE_NOTE, PIGMENTATION_COUPON_NOTE, SPOT_RETOUCH_POLICY, painWon } from "@/lib/pricing";
 
 export function FlatWartPrices() {
-  return <div className="space-y-6" data-price-kind="flat-wart">
+  return <div className="space-y-6 tabular-nums [&_li>p]:text-lg" data-price-kind="flat-wart">
     <p className="text-base leading-relaxed text-ink">얼굴부터 몸까지, 필요한 부위를 선택하세요.<br /><strong>선택한 부위 내 편평사마귀를 개수 제한 없이 제거합니다.</strong></p>
     <div className="grid items-start gap-6 md:grid-cols-2">{FLAT_WART_PRICE_GROUPS.map(group => <PriceTable key={group.title} caption={group.title} rows={group.rows.map(row => ({ ...row, price: painWon(row.price) }))} />)}</div>
     <p className="text-base leading-relaxed text-ink">얼굴＋상반신 전체는 얼굴·목·윗가슴·복부·등·허리를 포함하며, 팔은 제외됩니다.</p>
@@ -15,9 +15,9 @@ export function FlatWartPrices() {
 }
 
 export function PigmentationAreaPrices() {
-  return <div className="space-y-5" data-price-kind="pigmentation">
-    <PriceTable caption="색소·착색 제거 치료 · 부위별 1회 가격" rows={PIGMENTATION_AREA_PRICES.map(row => ({ ...row, price: painWon(row.price) }))} />
+  return <div className="space-y-5 tabular-nums [&_li>p]:text-lg" data-price-kind="pigmentation">
     <p className="text-base font-semibold leading-relaxed text-ink">얼굴·목은 전체, 나머지 부위는 양쪽 기준입니다. 모든 금액은 부가세 포함입니다.</p>
+    <PriceTable caption="색소·착색 제거 치료 · 부위별 1회 가격" rows={PIGMENTATION_AREA_PRICES.map(row => ({ ...row, price: painWon(row.price) }))} />
     <div className="rounded-xl border border-line bg-surface p-5 text-base leading-relaxed"><p className="font-semibold text-primary">{PIGMENTATION_PACKAGE_NOTE}</p><p className="mt-3 text-ink">{PIGMENTATION_COUPON_NOTE}</p></div>
     <PricePoster kind="pigmentation" />
   </div>;

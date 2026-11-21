@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 
 export type QuestionEntry = { title: string; description: string; href: string; group: string; keywords: string };
-const GROUPS = ["전체", "통증", "다이어트", "미용", "기능성 소화불량", "다른 진료·소식"];
+const GROUPS = ["전체", "통증", "다이어트", "미용", "기능성 소화불량", "두통·어지럼", "갱년기", "체질보약"];
 
 export default function QuestionDirectory({ entries, groups = GROUPS }: { entries: QuestionEntry[]; groups?: readonly string[] }) {
   const availableGroups = [...new Set([...groups, ...entries.map(e => e.group)])];
@@ -14,7 +14,7 @@ export default function QuestionDirectory({ entries, groups = GROUPS }: { entrie
   const visible = entries.filter(e => (group === "전체" || e.group === group) && words.every(w => `${e.title} ${e.description} ${e.keywords}`.toLocaleLowerCase().replace(/\s/g, "").includes(w.replace(/\s/g, ""))));
   return <section className="mx-auto max-w-6xl px-6 py-10">
     <label htmlFor="question-search" className="block text-lg font-semibold text-ink">질문 검색</label>
-    <input id="question-search" type="search" value={query} onChange={e => setQuery(e.target.value)} placeholder="예: 허리, 감비환, 볼뉴머, 소화불량" className="mt-3 w-full rounded-xl border border-line bg-card px-4 py-4 text-base text-ink focus:outline-2 focus:outline-primary" />
+    <input id="question-search" type="search" value={query} onChange={e => setQuery(e.target.value)} placeholder="두통, 밤에 나는 땀, 부모님 보약, 허리 통증" className="mt-3 w-full rounded-xl border border-line bg-card px-4 py-4 text-base text-ink focus:outline-2 focus:outline-primary" />
     <div role="group" aria-label="진료별 질문 분류" className="mt-5 flex flex-wrap gap-2">
       {availableGroups.map(g => <button key={g} type="button" aria-pressed={group === g} onClick={() => setGroup(g)} className={`rounded-full border px-4 py-2.5 text-sm font-medium ${group === g ? "border-primary bg-primary text-white" : "border-line bg-card text-ink"}`}>{g === "잡티제거" ? "잡티제거·색소·리프팅" : g === "일산감비환" ? "일산감비환 · 다이어트" : g === "치료선택" ? "피부 고민·치료 선택" : g === "방문준비" ? "의료기관 선택·방문" : g}</button>)}
     </div>
@@ -22,11 +22,11 @@ export default function QuestionDirectory({ entries, groups = GROUPS }: { entrie
     <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
       {visible.map(e => {
         // A document navigation expands native disclosures around a fragment, including with JavaScript disabled.
-        const EntryLink = e.href.includes("#faq-") ? "a" : Link;
+        const EntryLink = e.href.includes("#") || e.href.startsWith("https://") ? "a" : Link;
         return <article key={e.href} className="rounded-2xl border border-line bg-card p-5">
         <p className="text-sm font-medium text-primary">{e.group}</p>
         <h2 className="mt-2 text-lg font-semibold leading-relaxed text-ink"><EntryLink href={e.href} className="hover:text-primary">{e.title}</EntryLink></h2>
-        <p className="mt-3 text-[15px] leading-relaxed text-muted">{e.description}</p>
+        <p className="mt-3 line-clamp-3 text-base leading-relaxed text-muted">{e.description}</p>
         <EntryLink href={e.href} aria-label={`${e.title} 답변 읽기`} className="mt-2 inline-flex min-h-11 items-center text-base font-medium text-primary underline underline-offset-4">답변 읽기 →</EntryLink>
       </article>;
       })}

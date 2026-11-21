@@ -8,7 +8,7 @@ export const SKIN_DEVICES = [
   { id: "agnes", name: "아그네스", type: "미세침 고주파 RF", description: "피지선에 집중하는 여드름 치료", href: "/skin/agnes" },
 ] as const;
 export type SkinDeviceId = (typeof SKIN_DEVICES)[number]["id"];
-export const TREATMENT_DEVICES: Record<string, readonly SkinDeviceId[]> = {
+export const TREATMENT_DEVICES = {
   spot: ["upulse"], pigmentation: ["element-tl", "picohi"], toning: ["element-tl", "picohi"],
   lifting: ["volnewmer", "shurink-universe"], "hair-removal": ["element-tl"], agnes: ["agnes"],
-};
+} as const satisfies Record<string, readonly SkinDeviceId[]>;

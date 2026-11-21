@@ -27,7 +27,7 @@ updated: '2026-11-21'
 
 **Q. 류마티스와 퇴행성관절염은 같은가요?**
 
-질환의 원인과 관리 목표가 다릅니다. 부은 관절의 분포와 진찰·검사 결과를 함께 보고 구분합니다.
+류마티스관절염은 면역계가 관절에 염증을 일으키는 질환이고, 퇴행성관절염은 연골과 관절 주변 구조의 변화가 중심입니다. 여러 손가락 관절이 붓고 아침 뻣뻣함이 오래 이어진다면 류마티스내과 진료를 받으세요. 진단을 받으셨다면 사용 중인 약을 유지하며 남는 통증과 움직임을 일산한의원에서 함께 치료합니다.
 
 **Q. 요산이 높으면 바로 통풍인가요?**
 
@@ -45,7 +45,7 @@ updated: '2026-11-21'
 
 ## 참고 자료
 
-- [NHS 환자 안내](https://www.nhs.uk/conditions/rheumatoid-arthritis/)
-- [NHS 환자 안내](https://www.nhs.uk/conditions/gout/)
+- [NHS 류마티스관절염 안내](https://www.nhs.uk/conditions/rheumatoid-arthritis/)
+- [NHS 통풍의 증상과 치료](https://www.nhs.uk/conditions/gout/)
 
 [원내 초음파·혈액검사 안내](/treatment#patient-faq) · [붓고 아픈 관절 진료 문의](https://pf.kakao.com/_eXXun/chat)
