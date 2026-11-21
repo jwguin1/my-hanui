@@ -108,7 +108,7 @@ export const HERBAL_GUIDES: HerbalGuide[] = [
       { q: "제 체질을 모르는데 맞춤보약을 지을 수 있나요?", a: "네. 체질 이름을 미리 알고 오실 필요는 없습니다. 평소 식욕·소화·배변·수면과 현재 증상을 진료에서 확인합니다. 예전에 먹고 잘 맞았거나 불편했던 한약이 있다면 알려주세요. 지금의 몸 상태를 반영해 처방을 상담하는 데 도움이 됩니다." },
       { q: "한 달부터 시작할 수 있나요? 가격과 양도 궁금해요.", a: `일산한의원 비급여 한약은 1개월 ${won(HERBAL_PRICES.oneMonth)}, 2개월 ${won(HERBAL_PRICES.twoMonths)}, 3개월 ${won(HERBAL_PRICES.threeMonths)}입니다. 1개월은 60팩이며, 첫 상담에서 목표와 복용 기간을 정합니다. 한 달 복용을 고려 중이라고 말씀하셔도 좋습니다. 원내 조제·탕전 후 약재 사진을 보내드립니다.` },
     ],
-    related: [{ href: "/blog/부모님-보약-상담준비", label: "부모님 보약을 자녀가 먼저 알아볼 때" }, { href: "/internal/dyspepsia", label: "식후 불편이 반복될 때의 소화불량 진료" }, { href: "/herbal/tonic/menopause", label: "갱년기 피로·열감·수면 상담" }],
+    related: [{ href: "/internal/dyspepsia", label: "식후 불편이 반복될 때의 소화불량 진료" }, { href: "/herbal/tonic/menopause", label: "갱년기 피로·열감·수면 상담" }],
   },
   {
     category: "tonic", slug: "autonomic", title: "자율신경계 · 두통·어지럼증",

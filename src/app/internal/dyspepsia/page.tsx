@@ -1,6 +1,7 @@
 import Link from "next/link";
 import PageHeader from "@/components/ui/PageHeader";
 import { FocusReadings } from "@/components/FocusGuides";
+import HerbalArticleQuestions from "@/components/HerbalArticleQuestions";
 import ConsultationActions from "@/components/ConsultationActions";
 import PatientJourney from "@/components/PatientJourney";
 import SectionJumpNav from "@/components/SectionJumpNav";
@@ -39,6 +40,7 @@ export default function DyspepsiaPage() {
         <Link className="inline-flex min-h-11 items-center" href="/blog/소화불량-한약-재진">소화불량 한약, 언제까지 먹나요?</Link>
       </nav>
     </section>
+    <HerbalArticleQuestions topic="dyspepsia" />
     <PatientJourney id="process" title="소화불량을 이렇게 치료합니다" intro="갑자기 체한 분은 지금의 명치 통증과 답답함부터 치료합니다. 식후 불편이 반복되는 분은 평소 한 끼를 얼마나 드시는지 듣고, 침 치료와 한약 복용 후 식사가 어떻게 달라지는지 재진까지 살핍니다." steps={DYSPEPSIA_JOURNEY} />
     <aside className="mx-auto max-w-4xl px-6 py-8" aria-labelledby="digestive-urgent-title">
       <h2 id="digestive-urgent-title" className="text-lg font-semibold text-ink">진료할 때 함께 알려주실 증상</h2>
@@ -48,7 +50,7 @@ export default function DyspepsiaPage() {
     <HerbalPrices />
     <HerbalQuestions faqs={faqs} id="insurance-questions" title="소화불량 진료, 궁금한 점" />
     <CareGuide herbal />
-    <FocusReadings focus="digestive" />
+    <FocusReadings focus="digestive" questions={false} />
     <RelatedPatientGuides title="함께 확인할 진료 안내" items={DIGESTIVE_READINGS} />
     <section className="bg-surface px-6 py-14 text-center">
       <h2 className="font-serif text-2xl font-semibold text-ink">언제부터 소화가 불편했는지 알려주세요</h2>

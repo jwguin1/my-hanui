@@ -7,6 +7,7 @@ import PatientJourney from "@/components/PatientJourney";
 import SectionJumpNav from "@/components/SectionJumpNav";
 import MobileConsultationBar from "@/components/MobileConsultationBar";
 import RelatedPatientGuides from "@/components/RelatedPatientGuides";
+import HerbalArticleQuestions from "@/components/HerbalArticleQuestions";
 import { INSURANCE_JOURNEY, TONIC_JOURNEY, DIGESTIVE_READINGS } from "@/lib/herbal-experience";
 import { HerbalPrices, TonicPrices } from "@/components/TreatmentPrices";
 import { HERBAL_CARE_FAQS } from "@/lib/care-guide";
@@ -52,12 +53,9 @@ export function HerbalHub({ category, children }: { category: HerbalCategory; ch
     <PatientJourney id="herbal-visit" title={insurance ? "첫 진료부터 보험한약을 받기까지" : "보약 한 제를 짓는 과정"} intro={insurance ? "첫 방문 때 가장 불편한 증상을 말씀해 주세요. 진찰부터 처방, 건강보험 적용과 복용 안내까지 한의원에서 진행합니다." : "평소보다 식사가 얼마나 줄었는지, 하루 중 언제 기운이 가장 떨어지는지 말씀해 주세요. 첫 진료 때 나눈 이야기를 바탕으로 약재와 복용 기간을 정합니다."} steps={insurance ? INSURANCE_JOURNEY : TONIC_JOURNEY} />
     <nav aria-label="한방내과 의료진과 진료 질문" className="mx-auto flex max-w-5xl flex-wrap gap-x-6 px-6 text-base text-primary underline underline-offset-4 [&_a]:inline-flex [&_a]:min-h-11 [&_a]:items-center">
       <Link href="/doctor#oh-seohye">오서혜 한방내과 전문의 소개</Link>
-      {insurance ? <Link href="/blog/소화불량-한약-재진">소화불량 한약을 드신 뒤 재진할 때</Link> : <>
-        <Link href="/blog/피로-식사량-저하">피곤하고 식사량도 줄었을 때</Link>
-        <Link href="/blog/한약-복용약-함께">처방약과 한약을 함께 복용할 때</Link>
-        <Link href="/blog/부모님-보약-상담준비">부모님 보약을 자녀가 먼저 알아볼 때</Link>
-      </>}
+      {insurance && <Link href="/blog/소화불량-한약-재진">소화불량 한약을 드신 뒤 재진할 때</Link>}
     </nav>
+    {!insurance && <HerbalArticleQuestions topic="tonic" />}
     <section id="conditions" className="scroll-mt-24 px-6 py-12 md:py-16">
       <div className="mx-auto max-w-5xl">
         <h2 className="font-serif text-2xl font-semibold text-ink md:text-3xl">{insurance ? "어떤 증상이 가장 불편하세요?" : "가장 먼저 편해지고 싶은 일상은 무엇인가요?"}</h2>
@@ -106,6 +104,8 @@ export function HerbalDetail({ guide }: { guide: HerbalGuide }) {
       <p>{guide.specialistNote}</p>
       <Link href="/doctor#oh-seohye" className="inline-flex min-h-11 items-center text-primary underline underline-offset-4">오서혜 원장 약력과 진료 이야기</Link>
     </aside>}
+    {guide.slug === "rhinitis" && <HerbalArticleQuestions topic="rhinitis" />}
+    {guide.slug === "constitution" && <HerbalArticleQuestions topic="tonic" />}
     <HerbalQuestions faqs={guide.faqs} title={`${guide.title} 진료 질문`} />
     <section className="bg-[var(--surface)] px-6 py-12">
       <div className="mx-auto max-w-3xl">
