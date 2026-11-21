@@ -40,6 +40,20 @@ export default function DoctorGrid({ doctors }: { doctors: Doctor[] }) {
             {doc.career?.length ? <><p className="mt-5 text-sm font-semibold text-ink">주요 경력</p><ul className="mt-2 space-y-3 text-sm leading-relaxed text-muted">{doc.career.map(item => <li key={item}>{item}</li>)}</ul></> : null}
             {doc.societies?.length ? <><p className="mt-5 text-sm font-semibold text-ink">학회 활동</p><ul className="mt-2 space-y-1 text-sm leading-relaxed text-muted">{doc.societies.map(s => <li key={s}>{s}</li>)}</ul></> : null}
           </details>
+          {doc.name === "오서혜" && <nav aria-label="한방내과 진료 질문" className="mt-4 border-t border-line pt-4">
+            <h4 className="font-semibold text-ink">한방내과 진료 질문</h4>
+            <ul className="mt-2 divide-y divide-line">
+              {[
+                ["/blog/소화불량-한약-재진", "소화불량 한약, 언제까지 먹나요?"],
+                ["/blog/부모님-보약-상담준비", "부모님 보약, 자녀가 먼저 문의해도 되나요?"],
+                ["/blog/소화불량-보험한약-보약-비용", "보험 첩약과 체질보약, 비용은 어떻게 다른가요?"],
+              ].map(([href, title]) => <li key={href}>
+                <Link href={href} className="flex min-h-11 items-center justify-between gap-2 py-3 text-base leading-relaxed text-primary hover:underline focus-visible:underline">
+                  {title}<span aria-hidden="true">→</span>
+                </Link>
+              </li>)}
+            </ul>
+          </nav>}
         </div>
       </article>)}
     </div>
