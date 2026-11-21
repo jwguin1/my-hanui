@@ -53,6 +53,7 @@ export function HerbalHub({ category, children }: { category: HerbalCategory; ch
     {!insurance && <nav aria-label="피로와 한약 진료 안내" className="mx-auto flex max-w-5xl flex-wrap gap-x-6 gap-y-4 px-6 text-base text-primary underline underline-offset-4">
       <Link href="/blog/피로-식사량-저하">피곤하고 식사량도 줄었을 때</Link>
       <Link href="/blog/한약-복용약-함께">처방약과 한약을 함께 복용할 때</Link>
+      <Link href="/blog/부모님-보약-상담준비">부모님 보약을 자녀가 먼저 알아볼 때</Link>
       <Link href="/doctor#oh-seohye">오서혜 한방내과 전문의 소개</Link>
     </nav>}
     <section id="conditions" className="scroll-mt-24 px-6 py-12 md:py-16">
@@ -82,6 +83,7 @@ export function HerbalHub({ category, children }: { category: HerbalCategory; ch
       <p className="mt-4 text-sm leading-7 text-muted">공진단 등 개별 처방은 구성과 복용 기간에 따라 비용을 별도로 안내합니다.</p>
     </section>}
     {insurance ? <HerbalPrices /> : <TonicPrices />}
+    <p className="mx-auto max-w-5xl px-6 py-5 text-center text-base"><Link href="/blog/소화불량-보험한약-보약-비용" className="text-primary underline underline-offset-4">소화불량 보험 첩약과 체질보약, 비용은 어떻게 다른가요?</Link></p>
     <HerbalQuestions faqs={HERBAL_HUB_FAQS[category]} title={insurance ? "보험 적용과 비용, 먼저 확인하세요" : "보약을 처음 고민할 때 궁금한 점"} />
     <CareGuide herbal />
     {insurance && <RelatedPatientGuides title="소화불량으로 보험한약을 고민하고 있다면" items={DIGESTIVE_READINGS.slice(0, 2)} />}

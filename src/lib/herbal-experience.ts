@@ -47,4 +47,5 @@ export const DIGESTIVE_READINGS = [
   { href: postPath("blog", "일산-역류성식도염-소화불량"), title: "속쓰림과 식후 더부룩함이 함께 있어요", text: "역류감·명치 불편과 현재 복용 중인 위장약을 함께 살핍니다." },
   { href: postPath("blog", "일산-소화기내과-내시경"), title: "내시경을 받았는데 계속 불편하다면", text: "기존 검사 결과와 이후에도 남은 증상을 함께 확인합니다." },
   { href: "/herbal/tonic/autonomic", title: "긴장하면 소화가 안 되고 두통·어지럼도 생겨요", text: "소화와 수면, 함께 나타나는 불편을 진료에서 이야기합니다." },
+  { href: postPath("blog", "소화불량-한약-재진"), title: "소화불량 한약, 더 먹어야 할까요?", text: "재진 때 식사량과 식후 불편을 어떻게 이야기하면 좋을지 예를 들어 설명합니다." },
 ];
