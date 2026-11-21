@@ -32,7 +32,8 @@ export default function DyspepsiaPage() {
     <section id="symptoms" className="mx-auto max-w-4xl scroll-mt-28 px-6 py-12">
       <h2 className="font-serif text-2xl font-semibold text-ink">식사할 때 어떤 점이 가장 힘드세요?</h2>
       <div className="mt-6 grid gap-4 sm:grid-cols-2">{["조금만 먹어도 더부룩하고 오래 남는 느낌", "식후 명치가 답답하고 잦은 트림", "검사는 정상이지만 반복되는 소화불량", "긴장하거나 신경 쓸 때 심해지는 불편"].map(t => <p key={t} className="rounded-xl border border-line bg-card p-5 text-base leading-7 text-ink">{t}</p>)}</div>
-      <p className="mt-6 text-base leading-8 text-muted">원인을 미리 정하지 않고 오셔도 됩니다. 증상이 시작된 시점과 식사 후 불편이 이어지는 시간부터 듣고, 의료진이 문진과 진찰로 치료 방향을 잡습니다.</p>
+      <p className="mt-6 text-base leading-8 text-muted">조금만 먹어도 배가 차는지, 식사를 마친 뒤 답답함이 몇 시간씩 가는지 알려주세요. 한방내과 전문의 오서혜 원장의 진료를 원하시면 예약할 때 말씀해 주세요.</p>
+      <p className="mt-3 text-base"><a className="text-primary underline underline-offset-4" href="/doctor#oh-seohye">오서혜 원장 약력과 진료 이야기</a></p>
     </section>
     <PatientJourney id="process" title="진찰부터 식후 불편의 변화까지 살핍니다" intro="갑자기 생긴 급체와 몇 달째 반복되는 불편은 경과가 다릅니다. 같은 소화불량이라도 현재 증상과 진찰 결과에 맞춰 치료합니다." steps={DYSPEPSIA_JOURNEY} />
     <aside className="mx-auto max-w-4xl px-6 py-8" aria-labelledby="digestive-urgent-title">

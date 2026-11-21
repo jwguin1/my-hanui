@@ -109,7 +109,7 @@ export const PIGMENTATION_AREA_PRICES = [
   { name: "사타구니", price: 110000 }, { name: "허벅지", price: 198000 },
   { name: "종아리", price: 165000 }, { name: "다리 전체", price: 440000 },
 ] as const;
-export const PIGMENTATION_PACKAGE_NOTE = "5회 패키지 10% 할인";
+export const PIGMENTATION_PACKAGE_NOTE = "색소·착색 치료 5회 패키지: 부위별 1회 가격의 5회 합계에서 10% 할인";
 export const PIGMENTATION_COUPON_NOTE = "얼굴 전체 1회 44,000원 쿠폰 사용 시, 양쪽 1회 가격에서 44,000원을 차감합니다.";
 
 /** 2026-11-12 원장 확인: 맞춤 치료와 단독 토닝관리를 구분한다. */

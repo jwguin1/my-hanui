@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import JsonLd from "@/components/JsonLd";
 import SkinTreatmentLayout, { SkinSection, SkinFaq } from "@/components/SkinTreatmentLayout";
@@ -29,6 +30,10 @@ export default function PigmentationPage() {
         <Link href="/skin/toning" className="block rounded-xl border border-line bg-white p-5 font-semibold text-primary">얼굴 전반의 피부결·피부톤 관리가 필요하다면?<br />제네시스·피코토닝 각 1회 33,000원 →</Link>
       </SkinSection>
       <SkinSection id="process" title="상담한 원장이 시술까지 진행합니다">
+        <figure className="mx-auto max-w-2xl">
+          <Image src="/images/skin/consultation.webp" width={1200} height={800} sizes="(max-width: 720px) 90vw, 672px" alt="피부 분석 화면에서 볼의 색소와 붉은 부위를 살펴보는 상담 장면" className="h-auto w-full rounded-2xl" />
+          <figcaption className="mt-3 text-base text-muted">갈색 자국과 붉은 실핏줄은 치료에 쓰는 파장이 다릅니다. 진찰할 때 가장 신경 쓰이는 부위부터 짚어 주세요.</figcaption>
+        </figure>
         <ol className="space-y-5">{[["01 · 진찰과 설명","가장 신경 쓰이는 부위와 이전 치료 경험을 듣고 색소·혈관·피부결을 살핍니다."],["02 · 맞춤 시술","부위별로 필요한 레이저를 선택하고, 피부 반응을 보며 조사합니다."],["03 · 회복과 다음 치료","시술 부위에 맞는 세안·보습·자외선 관리와 다음 방문 일정을 안내합니다."]].map(([title,body])=><li key={title} className="border-l-2 border-brush pl-5"><h3 className="font-bold text-ink">{title}</h3><p className="mt-2">{body}</p></li>)}</ol>
         <Link href={postPath("skin","피부레이저-담당-의료진")} className="inline-block font-semibold text-primary underline underline-offset-4">피부레이저 담당 의료진과 상담 방식 →</Link>
       </SkinSection>

@@ -237,7 +237,7 @@ export default function AcutePainPage() {
       />
       <TreatmentPriceLink />
       <CareGuide />
-      <ClinicPhotoGallery photos={["acupuncture", "ict"]} title="침과 기본 물리치료, 이렇게 진행합니다" id="treatment-photos" />
+      <ClinicPhotoGallery photos={["acupuncture", "ict", "ultrasound"]} title="침·물리치료와 초음파 유도 약침" id="treatment-photos" />
 
       {/* ── 정의 + 지표 ── */}
       <section className="bg-[var(--bg)]">

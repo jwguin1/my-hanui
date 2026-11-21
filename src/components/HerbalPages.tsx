@@ -40,7 +40,7 @@ export const HERBAL_HUB_META = {
   tonic: { title: "일산 체질보약 | 맞춤보약·두통·어지럼·갱년기 한약", description: "비급여 한약 1개월 39만원·2개월 69만원·3개월 99만원. 체질맞춤보약, 두통·어지럼, 갱년기 상담과 원내 탕전·약재 사진 안내." },
 };
 
-export function HerbalHub({ category }: { category: HerbalCategory }) {
+export function HerbalHub({ category, children }: { category: HerbalCategory; children?: React.ReactNode }) {
   const insurance = category === "insurance";
   const meta = HERBAL_HUB_META[category];
   const guides = HERBAL_GUIDES.filter(g => g.category === category);
@@ -50,6 +50,11 @@ export function HerbalHub({ category }: { category: HerbalCategory }) {
     <PageHeader badge={insurance ? "일산한의원 · 건강보험 한약" : "일산한의원 · 체질보약"} lead={insurance ? "불편한 증상을 진찰하고," : "쉬어도 회복이 더딜 때,"} accent={insurance ? "보험 적용까지 살핍니다" : "지금의 몸 상태를 살핍니다"} stacked description={insurance ? "소화불량·생리통 등 6개 대상 질환의 한약 진료를 안내합니다. 의료진이 진찰하고 올해 처방 이력을 확인해 치료 계획과 비용을 설명드립니다." : "피로만 따로 보지 않고 소화·수면과 최근 몸의 변화를 함께 봅니다. 진찰을 바탕으로 처방 목적과 복용 기간을 정합니다."} />
     <SectionJumpNav label={`${label} 안내 목차`} items={[["herbal-visit", "진료 과정"], ["conditions", insurance ? "6개 대상 질환" : "증상별 상담"], ["herbal-prices", "비용 확인"], ["questions", "궁금한 질문"], ["herbal-guide", "조제·복용 관리"]]} />
     <PatientJourney id="herbal-visit" title={insurance ? "보험 기준과 몸 상태를 함께 확인합니다" : "보약을 정하기 전에 일상의 변화를 듣습니다"} intro={insurance ? "같은 증상이라도 진단과 처방 이력에 따라 보험 적용이 달라집니다. 적용 여부를 혼자 판단하지 말고 진료에서 확인하세요." : "체질이나 한약 이름을 미리 정하지 않고 오셔도 됩니다. 현재 가장 불편한 점과 이전 치료 경험부터 이야기해 주세요."} steps={insurance ? INSURANCE_JOURNEY : TONIC_JOURNEY} />
+    {!insurance && <nav aria-label="피로와 한약 진료 안내" className="mx-auto flex max-w-5xl flex-wrap gap-x-6 gap-y-4 px-6 text-base text-primary underline underline-offset-4">
+      <Link href="/blog/피로-식사량-저하">피곤하고 식사량도 줄었을 때</Link>
+      <Link href="/blog/한약-복용약-함께">처방약과 한약을 함께 복용할 때</Link>
+      <Link href="/doctor#oh-seohye">오서혜 한방내과 전문의 소개</Link>
+    </nav>}
     <section id="conditions" className="scroll-mt-24 px-6 py-12 md:py-16">
       <div className="mx-auto max-w-5xl">
         <h2 className="font-serif text-2xl font-semibold text-ink md:text-3xl">{insurance ? "어떤 증상이 가장 불편하세요?" : "가장 먼저 편해지고 싶은 일상은 무엇인가요?"}</h2>
@@ -81,6 +86,7 @@ export function HerbalHub({ category }: { category: HerbalCategory }) {
     <CareGuide herbal />
     {insurance && <RelatedPatientGuides title="소화불량으로 보험한약을 고민하고 있다면" items={DIGESTIVE_READINGS.slice(0, 2)} />}
     <p className="px-6 py-6 text-center text-sm text-primary"><a href="https://research.ilsanhan.com/category/korean" className="underline underline-offset-4">한약·침 치료의 논문 해설 읽기 →</a></p>
+    {children}
     <HerbalConsultation category={category} />
     <MobileConsultationBar label={insurance ? "보험한약 진료 문의" : "체질보약 상담 문의"} />
   </>;

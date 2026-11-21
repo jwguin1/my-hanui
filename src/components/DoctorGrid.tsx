@@ -23,6 +23,10 @@ export default function DoctorGrid({ doctors }: { doctors: Doctor[] }) {
         <div className="p-5">
           <h3 className="font-serif text-xl font-semibold text-ink">{doc.name} 원장 · 한의사</h3>
           <p className="mt-3 text-sm leading-relaxed text-muted">{doc.school} 졸업</p>
+          {doc.name === "오서혜" && <nav aria-label="오서혜 원장 관련 진료 안내" className="mt-3 flex flex-wrap gap-x-4 gap-y-2 text-base text-primary underline underline-offset-4">
+            <Link href="/internal/dyspepsia">기능성 소화불량 진료</Link>
+            <Link href="/herbal/tonic">피로·보약 상담</Link>
+          </nav>}
           {doc.specialty && <p className="mt-2 text-sm font-semibold text-primary">{doc.specialty}</p>}
           {(doc.credentials?.length || doc.laserCertification || doc.societies?.includes("대한통합레이저의학회 정회원")) ? <ul className="mt-3 space-y-2 text-sm leading-relaxed text-ink">
             {doc.credentials?.map(c => <li key={c.abbr}>{c.abbr} — {c.name}<span className="block text-muted">발급: {c.issuer} ({c.issuerFull})</span></li>)}

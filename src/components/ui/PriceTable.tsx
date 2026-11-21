@@ -27,7 +27,7 @@ export default function PriceTable({
   return (
     <div>
       <div className="overflow-hidden rounded-2xl border border-line bg-card">
-        <p className="border-b border-line bg-surface px-5 py-3.5 text-base font-semibold text-ink md:text-[14px]">
+        <p className="border-b border-line bg-surface px-5 py-3.5 text-base font-semibold text-ink">
           {caption}
         </p>
 
@@ -49,7 +49,7 @@ export default function PriceTable({
                   key={row.name}
                   className="flex items-center gap-4 border-b border-line px-5 py-4 last:border-b-0"
                 >
-                  <p className="min-w-0 flex-1 text-[15px] font-medium text-ink">
+                  <p className="min-w-0 flex-1 text-base font-medium text-ink">
                     {row.name}
                   </p>
                   <p className="w-[112px] shrink-0 whitespace-nowrap text-right text-[16px] font-semibold text-primary">
@@ -96,9 +96,9 @@ export default function PriceTable({
                 className="flex items-start justify-between gap-4 border-b border-line px-5 py-4 last:border-b-0"
               >
                 <div className="min-w-0">
-                  <p className="text-[15px] font-medium text-ink">{row.name}</p>
+                  <p className="text-base font-medium text-ink">{row.name}</p>
                   {row.includes ? (
-                    <p className="mt-1 text-base leading-relaxed text-muted md:text-[13px]">
+                    <p className="mt-1 text-base leading-relaxed text-muted">
                       {row.includes}
                     </p>
                   ) : null}
@@ -113,7 +113,7 @@ export default function PriceTable({
       </div>
 
       {note ? (
-        <p className="mt-3 text-base leading-relaxed text-muted md:text-[12px]">{note}</p>
+        <p className="mt-3 text-base leading-relaxed text-muted">{note}</p>
       ) : null}
     </div>
   );

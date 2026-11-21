@@ -90,8 +90,7 @@ export default function VerifyClinicSection() {
             </h2>
 
             <p className="mt-4 text-base leading-7 text-muted">
-              심평원에 ‘일산한의원’으로 등록된 곳은<br className="hidden md:block" />
-              이마트 풍산점 3층의 저희 한의원입니다.
+              일산한의원은 이마트 풍산점 3층에 있습니다.
             </p>
           </div>
 
