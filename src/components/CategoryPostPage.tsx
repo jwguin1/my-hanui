@@ -51,7 +51,7 @@ export default function CategoryPostPage({
   const isSpotQuestion = category === "skin" && SPOT_QUESTION_SLUGS.includes(post.slug);
   const kakaoLabel = category === "pain" ? "통증 진료·방문 시간 문의"
     : category === "diet" ? "감비환 처방·비용 문의"
-    : isSpotQuestion ? "얼굴·목 제거 범위·예약 문의"
+    : isSpotQuestion ? "제거 부위·비용·예약 문의"
     : category === "skin" && HAIR_REMOVAL_SLUGS.includes(post.slug) ? "얼굴·수염 제모 예약 문의"
     : category === "skin" && LIFTING_SLUGS.includes(post.slug) ? "리프팅 구성·예약 문의"
     : category === "skin" && PIGMENTATION_SLUGS.includes(post.slug) ? "색소 진료·예약 문의"
@@ -110,7 +110,7 @@ export default function CategoryPostPage({
         <div className="section-padding w-full !py-0 py-16 md:py-20">
           <Link
             href={hub?.href ?? `/${category}`}
-            className="text-[0.8rem] text-muted transition-colors hover:text-primary"
+            className="inline-flex min-h-11 items-center py-2 text-base leading-relaxed text-muted transition-colors hover:text-primary"
           >
             &larr; {hub?.label ?? `${label} 목록`}
           </Link>

@@ -324,6 +324,12 @@
   }
 
   @media (max-width: 480px) {
+    .skin-guide th:first-child,
+    .skin-guide td:first-child {
+      min-width: 5em;
+      word-break: keep-all;
+    }
+
     .skin-guide th,
     .skin-guide td {
       padding-left: 0.5rem;

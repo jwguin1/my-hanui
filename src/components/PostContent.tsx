@@ -43,7 +43,7 @@ export default function PostContent({ markdown, headingAnchors = false }: { mark
           );
         },
         td({ children, style }) {
-          const isPrice = /^\s*\d[\d,.]*(?:만)?원\s*$/.test(cellText(children));
+          const isPrice = /^\s*\d[\d,.]*(?:만(?:\d+천)?(?:\d+백)?|천(?:\d+백)?|백)?원\s*$/.test(cellText(children));
           return <td style={style} className={isPrice ? "prose-price" : undefined}>{children}</td>;
         },
         img({ src, alt }) {
