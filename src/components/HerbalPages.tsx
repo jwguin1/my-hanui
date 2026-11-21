@@ -102,12 +102,16 @@ export function HerbalDetail({ guide }: { guide: HerbalGuide }) {
     <JsonLd graph={buildGraph({ path: herbalPath(guide), name: `${guide.title} 한약 질문과 답 – 일산한의원`, description: guide.summary, faq: faqEntities(guide.faqs) })} />
     <nav aria-label="현재 위치" className="mx-auto max-w-4xl px-6 pt-6 text-sm text-primary"><Link href="/">홈</Link> · <Link href={`/herbal/${guide.category}`}>{label}</Link> · {guide.title}</nav>
     <PageHeader badge={`${label} · ${guide.title}`} lead={guide.question} description={guide.summary} />
-    <HerbalQuestions faqs={guide.faqs} title={`${guide.title}, 궁금한 점부터 살펴보세요`} />
+    {guide.specialistNote && <aside className="mx-auto max-w-3xl px-6 pt-8 text-base leading-8">
+      <p>{guide.specialistNote}</p>
+      <Link href="/doctor#oh-seohye" className="inline-flex min-h-11 items-center text-primary underline underline-offset-4">오서혜 원장 약력과 진료 이야기</Link>
+    </aside>}
+    <HerbalQuestions faqs={guide.faqs} title={`${guide.title} 진료 질문`} />
     <section className="bg-[var(--surface)] px-6 py-12">
       <div className="mx-auto max-w-3xl">
         <h2 className="text-xl font-semibold text-ink">첫 상담에 준비하면 좋은 것</h2>
         <p className="mt-3 text-[16px] leading-[1.9] text-ink/80">{guide.preparation}</p>
-        <p className="mt-3 text-[16px] leading-[1.9] text-ink/80">검사 결과가 있다면 의료진이 꼼꼼히 살펴봅니다. 한약은 원내에서 조제·탕전하고 약재 사진을 보내드립니다.</p>
+        <p className="mt-3 text-[16px] leading-[1.9] text-ink/80">한약은 처방에 맞춰 원내에서 직접 달입니다. 사용한 약재 사진과 복용 방법을 보내드립니다.</p>
         <div className="mt-6 flex flex-wrap gap-x-6 gap-y-3 text-[16px] font-medium text-primary">
           <Link href={`/herbal/${guide.category}#herbal-prices`} className="underline underline-offset-4">{label} 비용 보기</Link>
           <Link href={`/herbal/${guide.category}#herbal-guide`} className="underline underline-offset-4">한약 준비 기간·복용 상담</Link>
@@ -122,6 +126,11 @@ export function HerbalDetail({ guide }: { guide: HerbalGuide }) {
       <h2 className="text-lg font-semibold text-ink">참고 자료</h2>
       <ul className="mt-3 space-y-3 text-sm leading-7 text-primary">{guide.sources.map(source => <li key={source.href}><a href={source.href} className="underline underline-offset-4">{source.label}</a></li>)}</ul>
     </section>}
-    <HerbalConsultation />
+    <section className="bg-surface px-6 py-12 text-center">
+      <h2 className="text-2xl font-semibold text-ink">{guide.title} 진료 문의</h2>
+      <p className="mt-3 text-base leading-8 text-muted">카카오톡에 불편한 증상과 방문 희망일을 남겨주세요.</p>
+      <ConsultationActions directions kakaoLabel="카카오톡 진료 문의" className="mx-auto mt-6 max-w-3xl" />
+    </section>
+    <MobileConsultationBar label="카카오톡 진료 문의" />
   </>;
 }
