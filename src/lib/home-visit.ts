@@ -11,7 +11,7 @@ export const HOME_VISIT = {
   area: HOME_VISIT_REGIONS.join("·"),
   areaDetail: "방문진료는 고양시·파주시 두 지역에서 운영합니다.",
   areaNote: "정확한 주소와 이동 시간, 당일 진료 일정을 확인해 방문 여부를 안내합니다.",
-  applyUrl: `${CLINIC.kakaoHref}/chat`,
+  applyUrl: CLINIC.kakaoHref,
   costNote: "보험 자격과 산정 기준을 확인해 방문 전에 실제 납부 금액을 알려드립니다.",
 } as const;
 

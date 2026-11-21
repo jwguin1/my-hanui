@@ -14,7 +14,7 @@ export default function ConsultationActions({
 }) {
   return (
     <div className={`flex flex-col items-center justify-center gap-3 sm:flex-row sm:flex-wrap ${className}`}>
-      <PillButton href={`${CLINIC.kakaoHref}/chat`} variant="kakao" icon={<MessageCircle size={16} />} className="w-full sm:w-auto">
+      <PillButton href={CLINIC.kakaoHref} variant="kakao" icon={<MessageCircle size={16} />} className="w-full sm:w-auto">
         {kakaoLabel}
       </PillButton>
       <PillButton href={CLINIC.telHref} variant="outline" icon={<Phone size={16} />} className="w-full sm:w-auto">

@@ -47,8 +47,8 @@ export const CLINIC = {
   telHref: "tel:031-976-7706",
   /** JSON-LD 용 국제 표기 */
   telIntl: "+82-31-976-7706",
-  /** 상담·예약의 기본 채널 */
-  kakaoHref: "https://pf.kakao.com/_eXXun",
+  /** 상담·예약: 채널 소개를 거치지 않는 1:1 채팅 */
+  kakaoHref: "https://pf.kakao.com/_eXXun/chat",
 
   /* ── 접근 ── */
   transit: "경의중앙선 풍산역 2번 출구 도보 1분",
