@@ -55,7 +55,7 @@ export function HerbalHub({ category, children }: { category: HerbalCategory; ch
       <Link href="/doctor#oh-seohye">오서혜 한방내과 전문의 소개</Link>
       {insurance && <Link href="/blog/소화불량-한약-재진">소화불량 한약을 드신 뒤 재진할 때</Link>}
     </nav>
-    {!insurance && <HerbalArticleQuestions topic="tonic" />}
+    {!insurance && <HerbalArticleQuestions topic="constitution" />}
     <section id="conditions" className="scroll-mt-24 px-6 py-12 md:py-16">
       <div className="mx-auto max-w-5xl">
         <h2 className="font-serif text-2xl font-semibold text-ink md:text-3xl">{insurance ? "어떤 증상이 가장 불편하세요?" : "가장 먼저 편해지고 싶은 일상은 무엇인가요?"}</h2>
@@ -104,8 +104,7 @@ export function HerbalDetail({ guide }: { guide: HerbalGuide }) {
       <p>{guide.specialistNote}</p>
       <Link href="/doctor#oh-seohye" className="inline-flex min-h-11 items-center text-primary underline underline-offset-4">오서혜 원장 약력과 진료 이야기</Link>
     </aside>}
-    {guide.slug === "rhinitis" && <HerbalArticleQuestions topic="rhinitis" />}
-    {guide.slug === "constitution" && <HerbalArticleQuestions topic="tonic" />}
+    <HerbalArticleQuestions topic={guide.slug} />
     <HerbalQuestions faqs={guide.faqs} title={`${guide.title} 진료 질문`} />
     <section className="bg-[var(--surface)] px-6 py-12">
       <div className="mx-auto max-w-3xl">

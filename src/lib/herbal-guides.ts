@@ -3,7 +3,7 @@ import { HERBAL_PRICES, HERBAL_INSURANCE_LIMIT, won } from "./pricing";
 export type HerbalCategory = "insurance" | "tonic";
 export type HerbalGuide = {
   category: HerbalCategory;
-  slug: string;
+  slug: "dyspepsia" | "period-pain" | "rhinitis" | "lumbar-disc" | "facial-palsy" | "stroke" | "constitution" | "autonomic" | "menopause";
   title: string;
   question: string;
   summary: string;
