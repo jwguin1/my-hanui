@@ -28,6 +28,11 @@
  * 안전해야 하고 lib/schema.ts 가 이 값을 가져다 쓴다.
  */
 
+type CalendarHoliday = { date: string; name: string } & (
+  | { open: true }
+  | { open: false; makeupWednesdays: readonly [string] | readonly [string, string] }
+);
+
 export const CLINIC = {
   name: "일산한의원",
   alternateName: "일산한의원 이마트풍산점",
@@ -95,10 +100,9 @@ export const CLINIC = {
    * 드러나지 않는다 — 공휴일이라 여는 줄 알고 오시게 된다.
    * 화면과 llms.txt 가 이 문장을 그대로 쓴다.
    */
-  holidayClosedNote: "설날·추석 당일은 휴진합니다.",
+  holidayClosedNote: "설날과 추석에는 당일에 쉬고, 가장 가까운 정기휴진 수요일에 진료합니다.",
 
-  /** 원장 확인: 2026-11-08. 화면·상태 표시·날짜별 구조화 데이터에 함께 적용. */
-  closedNote: "매월 둘째·넷째 수요일은 휴진합니다.",
+  closedNote: "정기 휴진일은 매월 둘째·넷째 수요일입니다.",
 
   /** 정기 휴진과 명절 외 추가 휴진일 (YYYY-MM-DD). */
   closedDates: [] as readonly string[],
@@ -136,7 +140,7 @@ export const CLINIC = {
   holidays: [
     { date: "2026-01-01", name: "신정", open: true },
     { date: "2026-02-16", name: "설날 연휴", open: true },
-    { date: "2026-02-17", name: "설날", open: false },
+    { date: "2026-02-17", name: "설날", open: false, makeupWednesdays: ["2026-02-11"] },
     { date: "2026-02-18", name: "설날 연휴", open: true },
     { date: "2026-03-01", name: "삼일절", open: true },
     { date: "2026-03-02", name: "삼일절 대체공휴일", open: true },
@@ -150,7 +154,7 @@ export const CLINIC = {
     { date: "2026-08-15", name: "광복절", open: true },
     { date: "2026-08-17", name: "광복절 대체공휴일", open: true },
     { date: "2026-09-24", name: "추석 연휴", open: true },
-    { date: "2026-09-25", name: "추석", open: false },
+    { date: "2026-09-25", name: "추석", open: false, makeupWednesdays: ["2026-09-23"] },
     { date: "2026-09-26", name: "추석 연휴", open: true },
     { date: "2026-10-03", name: "개천절", open: true },
     { date: "2026-10-05", name: "개천절 대체공휴일", open: true },
@@ -158,7 +162,7 @@ export const CLINIC = {
     { date: "2026-12-25", name: "성탄절", open: true },
     { date: "2027-01-01", name: "신정", open: true },
     { date: "2027-02-06", name: "설날 연휴", open: true },
-    { date: "2027-02-07", name: "설날", open: false },
+    { date: "2027-02-07", name: "설날", open: false, makeupWednesdays: ["2027-02-10"] },
     { date: "2027-02-08", name: "설날 연휴", open: true },
     { date: "2027-02-09", name: "설날 대체공휴일", open: true },
     { date: "2027-03-01", name: "삼일절", open: true },
@@ -172,7 +176,7 @@ export const CLINIC = {
     { date: "2027-08-15", name: "광복절", open: true },
     { date: "2027-08-16", name: "광복절 대체공휴일", open: true },
     { date: "2027-09-14", name: "추석 연휴", open: true },
-    { date: "2027-09-15", name: "추석", open: false },
+    { date: "2027-09-15", name: "추석", open: false, makeupWednesdays: ["2027-09-08", "2027-09-22"] },
     { date: "2027-09-16", name: "추석 연휴", open: true },
     { date: "2027-10-03", name: "개천절", open: true },
     { date: "2027-10-04", name: "개천절 대체공휴일", open: true },
@@ -180,7 +184,7 @@ export const CLINIC = {
     { date: "2027-10-11", name: "한글날 대체공휴일", open: true },
     { date: "2027-12-25", name: "성탄절", open: true },
     { date: "2027-12-27", name: "성탄절 대체공휴일", open: true },
-  ] as readonly { date: string; name: string; open: boolean }[],
+  ] as readonly CalendarHoliday[],
 
   /**
    * 진료 권역 — JSON-LD areaServed 의 정본.
@@ -248,6 +252,25 @@ export const CLINIC_WEEKEND_HOLIDAY_CLOSE =
 
 export type ClinicHoliday = { date: string; name: string; open: boolean };
 
+export const CLINIC_CLOSED_HOLIDAYS = CLINIC.holidays.filter((holiday) => !holiday.open);
+
+export function holidayScheduleText({ date, name, makeupWednesdays }: (typeof CLINIC_CLOSED_HOLIDAYS)[number]) {
+  const opening = makeupWednesdays.length === 1
+    ? `${makeupWednesdays[0]} 수요일 진료`
+    : `${makeupWednesdays.join(" 또는 ")} 중 하루 진료. 진료일은 확정 후 공지`;
+  return `${date} ${name} 당일 휴진. ${opening}.`;
+}
+
+// 한 날짜는 확정된 진료일, 두 날짜는 원내 결정 전인 후보일이다.
+const makeupWednesdays = CLINIC_CLOSED_HOLIDAYS.flatMap((holiday) => holiday.makeupWednesdays);
+const pendingWednesdays = new Set(CLINIC_CLOSED_HOLIDAYS.flatMap((holiday) =>
+  holiday.makeupWednesdays.length === 2 ? holiday.makeupWednesdays : []
+));
+
+export function isClinicSchedulePending(isoDate: string): boolean {
+  return pendingWednesdays.has(isoDate);
+}
+
 /** 그날의 공휴일 항목. 공휴일이 아니면 undefined */
 export function holidayFor(isoDate: string): ClinicHoliday | undefined {
   return CLINIC.holidays.find((h) => h.date === isoDate);
@@ -260,6 +283,7 @@ export function isPublicHoliday(isoDate: string): boolean {
 
 /** 월의 둘째·넷째 수요일. UTC로 날짜만 계산해 실행 환경의 시간대 영향을 피한다. */
 export function isRegularClinicClosedDay(isoDate: string): boolean {
+  if (makeupWednesdays.includes(isoDate)) return false;
   if (!/^\d{4}-\d{2}-\d{2}$/.test(isoDate)) return false;
   const date = new Date(`${isoDate}T00:00:00Z`);
   if (!Number.isFinite(date.getTime()) || date.toISOString().slice(0, 10) !== isoDate) return false;
@@ -273,13 +297,15 @@ export function isClinicClosedDay(isoDate: string): boolean {
 
 /** 공휴일 표가 관리하는 연도의 날짜별 예외. 같은 날의 휴진과 진료가 중복되지 않는다. */
 export const CLINIC_DATED_HOURS: readonly ClinicHoliday[] = (() => {
-  const dates = new Map(CLINIC.holidays.map((entry) => [entry.date, entry]));
+  const dates = new Map<string, ClinicHoliday>(CLINIC.holidays.map((entry) => [entry.date, entry]));
   const years = new Set(CLINIC.holidays.map((entry) => Number(entry.date.slice(0, 4))));
   for (const year of years) {
     for (let month = 0; month < 12; month += 1) {
       for (let day = 8; day <= 28; day += 1) {
         const isoDate = new Date(Date.UTC(year, month, day)).toISOString().slice(0, 10);
-        if (isRegularClinicClosedDay(isoDate)) dates.set(isoDate, { date: isoDate, name: "정기 휴진", open: false });
+        if (isRegularClinicClosedDay(isoDate) && holidayFor(isoDate)?.open !== false) {
+          dates.set(isoDate, { date: isoDate, name: "정기 휴진", open: false });
+        }
       }
     }
   }
@@ -295,9 +321,13 @@ export function upcomingClinicClosedDates(now = new Date()): string[] {
     .filter(isClinicClosedDay);
 }
 
-/** 휴진으로 지정된 공휴일 목록 */
-export const CLINIC_CLOSED_HOLIDAYS: readonly ClinicHoliday[] =
-  CLINIC.holidays.filter((h) => !h.open);
+/** 명절이 지나도 해당 수요일이 남아 있으면 환자에게 계속 안내한다. */
+export function upcomingClinicHolidaySchedules(now = new Date()) {
+  const today = new Date(now.getTime() + 9 * 60 * 60 * 1000).toISOString().slice(0, 10);
+  return CLINIC_CLOSED_HOLIDAYS.filter(({ date, makeupWednesdays }) =>
+    date >= today || makeupWednesdays.some((wednesday) => wednesday >= today)
+  );
+}
 
 /** 표에 실린 마지막 공휴일. 검증기가 이 날짜로 갱신 시점을 재촉한다 */
 export const CLINIC_HOLIDAY_TABLE_END =

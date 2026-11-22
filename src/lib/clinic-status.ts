@@ -1,4 +1,4 @@
-import { CLINIC, holidayFor, isClinicClosedDay, isRegularClinicClosedDay } from "./clinic.ts";
+import { CLINIC, holidayFor, isClinicClosedDay, isClinicSchedulePending, isRegularClinicClosedDay } from "./clinic.ts";
 
 export type Status = { open: boolean; label: string };
 
@@ -77,6 +77,7 @@ function nextOpenLabel(today: Date): string {
     const nextYmd = ymd(ny, nm, nd);
     if (isClinicClosedDay(nextYmd)) continue;
     const when = i === 1 ? "내일" : `${DAY_NAMES[next.getUTCDay()]}요일`;
+    if (isClinicSchedulePending(nextYmd)) return `${when} 진료 일정 문의`;
     const nextOpen = openMinuteOf(holidayFor(nextYmd)?.open === true);
     return `${when} ${hhmm(nextOpen)} 오픈`;
   }
@@ -89,13 +90,14 @@ export function computeStatus(now: Date): Status {
   const weekday = today.getUTCDay();
   const today0 = ymd(y, m, d);
   const holidayToday = holidayFor(today0);
+  if (isClinicSchedulePending(today0)) return { open: false, label: "오늘 진료 일정 문의" };
   // 설·추석 당일은 공휴일이지만 **휴진**이다. 여는 공휴일과 갈라 본다.
   const holiday = holidayToday?.open === true;
   const closeMin = closeMinuteOf(weekday, holiday);
   const openMin = openMinuteOf(holiday);
   const openToday = !isClinicClosedDay(today0);
   if (!openToday) {
-    const reason = isRegularClinicClosedDay(today0) ? "정기 휴진" : holidayToday?.open === false ? `${holidayToday.name} 휴진` : "휴진";
+    const reason = holidayToday?.open === false ? `${holidayToday.name} 휴진` : isRegularClinicClosedDay(today0) ? "정기 휴진" : "휴진";
     return { open: false, label: `${reason} · ${nextOpenLabel(today)}` };
   }
 

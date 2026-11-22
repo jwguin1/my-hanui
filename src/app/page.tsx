@@ -323,10 +323,9 @@ export default async function Home() {
                 </p>
                 {/* 명절 휴진 — 「토·일·공휴일 16:00까지」만으로는 드러나지 않는다.
                     문안은 clinic.ts 가 정본이다. */}
-                <p className="mt-1 text-[0.82rem] text-primary">{CLINIC.holidayClosedNote}</p>
-                <p className="mt-1 text-[0.82rem] text-muted">
-                  {CLINIC.closedNote}
-                </p>
+                <p className="mt-2 text-sm text-muted">{CLINIC.closedNote}</p>
+                <p className="mt-1 text-sm text-primary">{CLINIC.holidayClosedNote}</p>
+                <Link href="/contact#holiday-schedule" className="inline-flex min-h-11 items-center text-sm font-semibold text-primary underline underline-offset-4">설·추석 진료 날짜 보기</Link>
                 <p className="mt-3 text-sm font-medium text-ink">{CLINIC.receptionNote}</p>
               </div>
 

@@ -12,7 +12,9 @@ import {
   CLINIC_HOURS_WEEKDAY,
   CLINIC_HOURS_WEEKEND,
   CLINIC_WEEKEND_HOLIDAY_LABEL,
+  isPublicHoliday,
   upcomingClinicClosedDates,
+  upcomingClinicHolidaySchedules,
 } from "@/lib/clinic";
 import JsonLd from "@/components/JsonLd";
 import { buildGraph } from "@/lib/schema";
@@ -22,6 +24,14 @@ import PageHeader from "@/components/ui/PageHeader";
 import { MapPin } from "@/components/ui/icons";
 
 export const revalidate = 3600;
+
+const calendarDate = new Intl.DateTimeFormat("ko-KR", {
+  timeZone: "Asia/Seoul", month: "long", day: "numeric", weekday: "short",
+});
+
+function CalendarDate({ date }: { date: string }) {
+  return <time dateTime={date}>{calendarDate.format(new Date(`${date}T00:00:00+09:00`))}</time>;
+}
 
 export const metadata: Metadata = pageMetadata({
   path: "/contact",
@@ -42,7 +52,9 @@ const graph = buildGraph({
 });
 
 export default function ContactPage() {
-  const upcomingClosures = upcomingClinicClosedDates().slice(0, 5);
+  const now = new Date();
+  const upcomingClosures = upcomingClinicClosedDates(now).slice(0, 5);
+  const holidays = upcomingClinicHolidaySchedules(now).slice(0, 2);
   return (
     <>
       <JsonLd graph={graph} />
@@ -109,10 +121,8 @@ export default function ContactPage() {
               </p>
               {/* 명절 휴진 — 「토·일·공휴일 16:00까지」만으로는 드러나지 않는다.
                   문안은 clinic.ts 가 정본이다. */}
+              <p className="mt-2 text-base text-text-muted">{CLINIC.closedNote}</p>
               <p className="mt-1 text-base text-accent">{CLINIC.holidayClosedNote}</p>
-              <p className="mt-1 text-base text-text-muted">
-                {CLINIC.closedNote}
-              </p>
             </div>
           </div>
         </SectionReveal>
@@ -122,14 +132,30 @@ export default function ContactPage() {
         <h2 className="font-serif text-2xl font-semibold text-ink">오늘 방문하시기 전에</h2>
         <div className="mt-5 rounded-xl border border-line bg-surface p-5">
           <h3 className="font-semibold text-ink">다가오는 휴진일</h3>
-          <p className="mt-2 text-base leading-relaxed text-muted">{CLINIC.closedNote} {CLINIC.holidayClosedNote}</p>
           <ul className="mt-3 flex flex-wrap gap-2">
             {upcomingClosures.map((date) => (
               <li key={date} className="rounded-lg border border-line bg-card px-3 py-2 text-sm font-semibold text-ink">
-                <time dateTime={date}>{new Intl.DateTimeFormat("ko-KR", { timeZone: "Asia/Seoul", month: "long", day: "numeric", weekday: "short" }).format(new Date(`${date}T00:00:00+09:00`))}</time>
+                <CalendarDate date={date} />
               </li>
             ))}
           </ul>
+        </div>
+        <div id="holiday-schedule" className="mt-5 scroll-mt-24 rounded-xl border border-line bg-card p-5">
+            <h3 className="font-semibold text-ink">설·추석 진료 일정</h3>
+            {holidays.length === 0 && <p className="mt-2 text-muted">다음 명절의 진료 날짜는 이곳에 안내합니다.</p>}
+            <ul className="mt-3 divide-y divide-line text-base leading-relaxed">
+              {holidays.map(({ date, name, makeupWednesdays }) => (
+                <li key={date} className="py-3 first:pt-0 last:pb-0">
+                  <p className="font-semibold text-ink">{date.slice(0, 4)}년 {name}</p>
+                  <p className="mt-1"><CalendarDate date={date} /> {name} 당일 휴진</p>
+                  {makeupWednesdays.length === 1 ? (
+                    <p className="mt-1 text-primary"><CalendarDate date={makeupWednesdays[0]} /> 진료 {isPublicHoliday(makeupWednesdays[0]) ? CLINIC_HOURS_WEEKEND : CLINIC_HOURS_WEEKDAY}</p>
+                  ) : (
+                    <p className="mt-1 text-muted"><CalendarDate date={makeupWednesdays[0]} /> 또는 <CalendarDate date={makeupWednesdays[1]} />에 진료합니다. 진료일이 정해지면 이곳에 공지합니다.</p>
+                  )}
+                </li>
+              ))}
+            </ul>
         </div>
         <div className="mt-5 grid gap-4 md:grid-cols-3">
           <div className="rounded-xl border border-line bg-card p-5"><h3 className="font-semibold text-ink">접수 마감</h3><p className="mt-3 leading-relaxed text-muted">{CLINIC.receptionNote}</p><p className="mt-2 text-sm text-muted">진료 종료는 평일 오후 8시, 토·일·공휴일 오후 4시입니다.</p></div>

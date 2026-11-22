@@ -8,6 +8,8 @@ import {
   CLINIC_HOURS_WEEKDAY,
   CLINIC_HOURS_WEEKEND,
   CLINIC_WEEKEND_HOLIDAY_LABEL,
+  holidayScheduleText,
+  upcomingClinicHolidaySchedules,
 } from "@/lib/clinic";
 import { getAllPosts } from "@/lib/blog-local";
 import { DISEASE_GUIDES } from "@/lib/disease-guides";
@@ -29,7 +31,7 @@ const BASE = "https://www.ilsanhan.com";
 
 function body(): string {
   const holidayLine = `- ${CLINIC_WEEKEND_HOLIDAY_LABEL}: ${CLINIC_HOURS_WEEKEND} (점심시간 없이 진료)`;
-  const closedLine = `- ${CLINIC.holidayClosedNote}`;
+  const holidaySchedules = upcomingClinicHolidaySchedules().map(holiday => `- ${holidayScheduleText(holiday)}`).join("\n");
   const skinPosts = getAllPosts("skin");
   const diseaseKeys = new Set(DISEASE_GUIDES.map(g => `${g.category}/${g.slug}`));
   const diseaseLinks = getAllPosts().filter(post => diseaseKeys.has(`${post.category}/${post.slug}`)).map(post => `- [${post.title}](${BASE}${postPath(post.category, post.slug)})`).join("\n");
@@ -90,9 +92,11 @@ ${FOCUS_ORDER.map(key => `### ${FOCUS_GUIDES[key].label}\n- [진료·질문 안�
 
 - 월~금: ${CLINIC_HOURS_WEEKDAY} (점심 ${CLINIC_HOURS_LUNCH})
 ${holidayLine}
-${closedLine}
-- ${CLINIC.receptionNote}
 - ${CLINIC.closedNote}
+- ${CLINIC.holidayClosedNote}
+${holidaySchedules}
+- ${CLINIC.receptionNote}
+- [설·추석 당일 휴진과 수요일 진료 날짜](${BASE}/contact#holiday-schedule)
 
 ## 방문과 관리 안내
 

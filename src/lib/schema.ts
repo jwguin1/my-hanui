@@ -21,7 +21,7 @@
  *
  * 같은 이유로 lib/post-faq.ts 는 아예 의존을 두지 않는다.
  */
-import { CLINIC, CLINIC_DATED_HOURS } from "./clinic.ts";
+import { CLINIC, CLINIC_CLOSED_HOLIDAYS, CLINIC_DATED_HOURS, holidayScheduleText } from "./clinic.ts";
 
 export const BASE_URL = "https://www.ilsanhan.com";
 
@@ -277,6 +277,11 @@ export function clinicNode(): SchemaNode {
      *
      * 둘째·넷째 수요일과 명절·추가 휴진은 날짜별 예외로 반영한다.
      */
+    additionalProperty: CLINIC_CLOSED_HOLIDAYS.map(holiday => ({
+      "@type": "PropertyValue",
+      name: `${holiday.date.slice(0, 4)}년 ${holiday.name} 진료 일정`,
+      value: holidayScheduleText(holiday),
+    })),
     openingHoursSpecification: [
       // 요일 기반 — 평일은 점심을 비우느라 오전·오후 두 구간이다
       ...[
