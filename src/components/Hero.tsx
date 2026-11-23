@@ -8,7 +8,8 @@ import {
 } from "@/components/ui/icons";
 
 const META = [
-  { icon: <Users size={16} />, label: `${CLINIC_PHYSICIAN_COUNT}인 한의사 협진` },
+  { icon: <Users size={16} />, label: `${CLINIC_PHYSICIAN_COUNT}인 의료진 시간표`, href: "/doctor#weekly-schedule" },
+  { label: "한방내과 전문의 진료", href: "/internal/dyspepsia#specialist" },
   { icon: <HeartMonitor size={16} />, label: "초음파 진단" },
   { icon: <Clock size={16} />, label: `평일 ${CLINIC.hours.weekdayAfternoon.closes} · 주말 ${CLINIC.hours.weekend.closes}까지` },
 ];
@@ -80,8 +81,11 @@ export default function Hero() {
           </ul>
         </nav>
         <ul aria-label="의료진과 진료시간" className="mt-4 flex flex-wrap gap-x-4 gap-y-1 text-sm font-medium leading-relaxed text-primary">
-          {META.map(({ icon, label }) => (
-            <li key={label} className="flex items-center gap-1.5"><span aria-hidden="true">{icon}</span>{label}</li>
+          {META.map(({ icon, label, href }) => (
+            <li key={label} className="flex items-center gap-1.5">
+              {icon && <span aria-hidden="true">{icon}</span>}
+              {href ? <Link href={href} className="inline-flex min-h-11 items-center underline underline-offset-4">{label}</Link> : label}
+            </li>
           ))}
         </ul>
       </div>

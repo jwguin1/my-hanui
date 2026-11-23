@@ -1,19 +1,21 @@
 import Image from "next/image";
 import Link from "next/link";
 import { DOCTOR_SLUGS } from "@/lib/schema";
-import { type Doctor, INTERNAL_MEDICINE_PAPERS, SHOULDER_LECTURE } from "@/lib/doctor-profile";
+import { type Doctor, DOCTOR_WORKDAYS, INTERNAL_MEDICINE_PAPERS, SHOULDER_LECTURE } from "@/lib/doctor-profile";
 
 export default function DoctorGrid({ doctors }: { doctors: Doctor[] }) {
   return <section className="mx-auto max-w-6xl px-6 py-10">
     <h2 className="font-serif text-2xl font-semibold text-ink">진료하는 의료진을 만나보세요</h2>
     <p className="mt-3 text-base leading-relaxed text-muted">{doctors.length}명의 한의사가 함께합니다. 원하는 원장이 있으시면 카카오톡으로 방문 희망일을 알려주세요.</p>
-    <nav aria-label="의료진 소개 바로가기" className="mt-5 flex flex-wrap gap-3">{doctors.map(doc => <Link key={doc.name} href={`#${DOCTOR_SLUGS[doc.name]}`} className="inline-flex min-h-11 items-center rounded-full border border-line px-4 py-2 text-sm text-primary">{doc.name} 원장</Link>)}</nav>
     <div className="mt-8 grid items-start gap-6 md:grid-cols-2 lg:grid-cols-3">
       {doctors.map(doc => <article key={doc.name} id={DOCTOR_SLUGS[doc.name]} className="scroll-mt-28 overflow-hidden rounded-2xl border border-line bg-card">
         {/* 동일한 세로 비율로 여백 없이 채우고, 머리 위 공간을 보존한다. */}
         <div className="relative aspect-[3/4] overflow-hidden bg-[#f1f1ef]"><Image src={doc.image} alt={`${doc.name} 원장`} fill sizes="(max-width: 767px) calc(100vw - 48px), (max-width: 1023px) calc((100vw - 72px) / 2), (max-width: 1151px) calc((100vw - 96px) / 3), 352px" className="doctor-portrait object-cover object-top" /></div>
         <div className="p-5">
           <h3 className="font-serif text-xl font-semibold text-ink">{doc.name} 원장 · 한의사</h3>
+          <Link href="#weekly-schedule" aria-label={`${doc.name} 원장 진료일 확인`} className="mt-1 inline-flex min-h-11 items-center text-base font-semibold text-primary underline underline-offset-4">
+            진료일 · {DOCTOR_WORKDAYS[doc.name].join("·")}
+          </Link>
           <p className="mt-3 text-sm leading-relaxed text-muted">{doc.school} 졸업</p>
           {doc.specialty && <p className="mt-2 text-sm font-semibold text-primary">{doc.specialty}</p>}
           <p className="mt-3 text-base leading-relaxed text-ink">{doc.introduction}</p>

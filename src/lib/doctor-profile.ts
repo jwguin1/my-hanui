@@ -1,3 +1,16 @@
+export const WEEKDAYS = ["월", "화", "수", "목", "금", "토", "일"] as const;
+
+// 원내 정규 진료표. 명절이나 임시 변경일의 근무자를 이 표로 추정하지 않는다.
+export const DOCTOR_WORKDAYS = {
+  박건희: ["월", "화", "토", "일"],
+  강민석: ["화", "수", "목", "금", "토"],
+  남태훈: ["월", "화", "목", "일"],
+  박동석: ["월", "수", "목", "금", "토"],
+  장경진: ["월", "수", "금"],
+  이명주: ["수", "목", "금", "토", "일"],
+  오서혜: ["월", "화", "목", "일"],
+} as const satisfies Record<string, readonly (typeof WEEKDAYS)[number][]>;
+
 export interface Credential {
   abbr: string;
   name: string;
@@ -6,7 +19,7 @@ export interface Credential {
 }
 
 export interface Doctor {
-  name: string;
+  name: keyof typeof DOCTOR_WORKDAYS;
   image: string;
   school: string;
   introduction: string;

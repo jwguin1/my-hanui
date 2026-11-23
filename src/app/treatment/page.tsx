@@ -4,15 +4,18 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import PageHeader from "@/components/ui/PageHeader";
 import ConsultationActions from "@/components/ConsultationActions";
+import ClinicCalendarDate from "@/components/ClinicCalendarDate";
 import JsonLd from "@/components/JsonLd";
 import { buildGraph, faqEntities } from "@/lib/schema";
 import { pageMetadata } from "@/lib/page-metadata";
 import { CARE_GUIDE } from "@/lib/care-guide";
+import { CLINIC, CLINIC_WEEKEND_HOLIDAY_LABEL, upcomingClinicClosedDates } from "@/lib/clinic";
 import { PAIN_PRICES, PIGMENTATION_PRICES, TONING_PRICES, painWon } from "@/lib/pricing";
 
 import { HOME_VISIT } from "@/lib/home-visit";
 
 const description = "건강보험 추나치료, 초음파 유도 약침, 한약과 피부레이저 진료를 안내합니다. 근골격계·상복부·경동맥·갑상선 초음파, 혈액·소변검사도 원내에서 받으실 수 있습니다.";
+export const revalidate = 3600;
 export const metadata: Metadata = pageMetadata({ path: "/treatment", title: "진료 안내 | 기본 치료·추나·약침·한약", description });
 const treatments = [
   { title: "방문진료", body: `거동이 불편해 한의원에 오기 어려운 분을 위해 한의사가 집으로 찾아갑니다. ${HOME_VISIT.area}에서 상담하실 수 있습니다. ${HOME_VISIT.areaNote}`, note: "한의 방문진료 시범사업 참여기관 · 건강보험·의료급여 적용", href: "/home-visit", label: "방문 대상·비용·상담 신청" },
@@ -26,6 +29,7 @@ const treatments = [
   { title: "토닝관리", body: "제네시스 토닝은 엘리멘트 TL로 피부결을, 피코토닝은 피코하이로 피부톤을 관리합니다. 두 가지 중 원하는 관리를 선택합니다.", note: `제네시스 토닝 1회 ${painWon(TONING_PRICES.genesis)} · 피코토닝 1회 ${painWon(TONING_PRICES.pico)} · 부가세 포함`, href: "/skin/toning", label: "토닝 종류·샷 수·관리 방법" },
 ];
 export default function TreatmentPage() {
+  const [nextClosure] = upcomingClinicClosedDates();
   return <>
     <JsonLd graph={buildGraph({ path: "/treatment", name: "진료 안내 – 일산한의원", description, faq: faqEntities(clinicFaqItems("/treatment")) })} />
     <PageHeader badge="진료 안내" lead="내 증상에 맞는 치료와" accent="비용을 확인하세요" stacked description={description} />
@@ -33,6 +37,17 @@ export default function TreatmentPage() {
     <div className="mx-auto grid max-w-5xl gap-5 px-6 py-10 md:grid-cols-2">{treatments.map(t => <section key={t.title} className="rounded-2xl border border-line bg-card p-6"><h2 className="font-serif text-xl font-semibold text-ink">{t.title}</h2><p className="mt-4 text-base leading-relaxed text-muted">{t.body}</p><p className="mt-4 text-sm font-medium leading-relaxed text-ink">{t.note}</p><Link href={t.href} className="mt-5 inline-block text-primary underline underline-offset-4">{t.label} →</Link></section>)}</div>
     <ClinicPatientQuestions path="/treatment" />
     <nav aria-label="다른 진료 안내" className="mx-auto flex max-w-5xl flex-wrap gap-5 px-6 pb-10 text-primary"><Link href="/accident">교통사고 →</Link><Link href="/diet/program">일산감비환 · 다이어트 →</Link><Link href="/skin/spot">잡티제거 →</Link><Link href="/skin/hair-removal">얼굴·수염 제모 →</Link><Link href="/skin/lifting">슈링크·볼뉴머 리프팅 →</Link><Link href="/aftercare">치료 후 관리 →</Link></nav>
-    <section className="bg-[var(--surface)] px-6 py-12 text-center"><h2 className="text-xl font-semibold text-ink">어떤 진료가 필요한지 편하게 물어보세요</h2><p className="mx-auto mt-3 max-w-xl text-base leading-relaxed text-muted">불편한 부위와 증상이 시작된 시기, 방문 희망일을 남겨주세요. 진료시간 내 의료진이 직접 상담합니다.</p><ConsultationActions directions className="mt-6" /></section>
+    <section className="bg-surface px-5 py-12 text-center">
+      <h2 className="text-xl font-semibold text-ink">방문 전 접수시간을 확인하세요</h2>
+      <p className="mt-4 text-base leading-7 text-ink">{CLINIC.receptionNote}</p>
+      <p className="mt-1 text-base leading-7 text-muted">진료 종료는 평일 {CLINIC.hours.weekdayAfternoon.closes}, {CLINIC_WEEKEND_HOLIDAY_LABEL} {CLINIC.hours.weekend.closes}입니다.</p>
+      {nextClosure && <p className="mt-3 text-base font-semibold text-ink">가장 가까운 휴진일 · <ClinicCalendarDate date={nextClosure} /></p>}
+      <nav aria-label="방문할 날짜 확인" className="mt-1 flex flex-wrap justify-center gap-x-6 text-primary underline underline-offset-4">
+        <Link className="inline-flex min-h-11 items-center" href="/doctor#weekly-schedule">원장별 진료 시간표</Link>
+        <Link className="inline-flex min-h-11 items-center" href="/contact#before-visit">휴진일과 명절 진료</Link>
+      </nav>
+      <p className="mx-auto mt-4 max-w-xl text-base leading-relaxed text-muted">원하는 원장과 방문 희망일을 알려주시면 예약을 안내해 드립니다.</p>
+      <ConsultationActions directions className="mt-6" />
+    </section>
   </>;
 }

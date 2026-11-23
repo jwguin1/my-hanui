@@ -1,5 +1,7 @@
 import { ClinicPhotoGallery } from "@/components/ClinicPhoto";
 import ConsultationActions from "@/components/ConsultationActions";
+import CalendarDate from "@/components/ClinicCalendarDate";
+import Link from "next/link";
 import type { Metadata } from "next";
 import SectionReveal from "@/components/SectionReveal";
 import PillButton from "@/components/ui/PillButton";
@@ -24,14 +26,6 @@ import PageHeader from "@/components/ui/PageHeader";
 import { MapPin } from "@/components/ui/icons";
 
 export const revalidate = 3600;
-
-const calendarDate = new Intl.DateTimeFormat("ko-KR", {
-  timeZone: "Asia/Seoul", month: "long", day: "numeric", weekday: "short",
-});
-
-function CalendarDate({ date }: { date: string }) {
-  return <time dateTime={date}>{calendarDate.format(new Date(`${date}T00:00:00+09:00`))}</time>;
-}
 
 export const metadata: Metadata = pageMetadata({
   path: "/contact",
@@ -73,10 +67,17 @@ export default function ContactPage() {
         <div className="mt-5 flex flex-wrap gap-3">
           <PillButton href="https://naver.me/IItclnGB" variant="solid" icon={<MapPin size={18} />}>네이버 지도·길찾기 →</PillButton>
           <PillButton href="#parking" variant="outline">주차 안내 ↓</PillButton>
+          <PillButton href="/doctor#weekly-schedule" variant="outline">의료진 진료 시간표</PillButton>
         </div>
         <div id="parking" className="mt-6 grid scroll-mt-24 gap-4 rounded-2xl bg-surface p-5 text-base leading-relaxed md:grid-cols-2">
           <div><h3 className="font-semibold text-ink">자가용 · 3시간 무료주차</h3><p className="mt-2 text-muted">이마트 4·5·6·7층에 주차 후 3층으로 내려오세요. 엘리베이터에서 내린 뒤 좌측 끝에 있습니다.</p></div>
           <div><h3 className="font-semibold text-ink">전철 · 풍산역 2번 출구</h3><p className="mt-2 text-muted">출구에서 100m, 도보 약 1분입니다. 이마트 3층 에스컬레이터에서 내려오면 바로 보입니다.</p></div>
+        </div>
+        <div id="from-unjeong" className="mt-6 scroll-mt-24">
+          <h2 className="text-xl font-semibold text-ink">파주 운정에서 오시는 길</h2>
+          <p className="mt-2 max-w-3xl text-base leading-7 text-muted">운정역에서 일산 방면 경의중앙선 일반열차를 타세요. 야당·탄현·일산역을 지나 네 번째 역인 풍산역에서 내리시면 됩니다. 2번 출구로 나와 이마트 풍산점 3층으로 올라오세요.</p>
+          <p className="mt-2 max-w-3xl text-base leading-7 text-muted">차로 오실 때는 내비게이션에 ‘이마트 풍산점’을 입력하세요. 4~7층에 주차하고 엘리베이터로 3층에 내려 왼쪽 끝으로 오시면 한의원이 있습니다.</p>
+          <Link href="#before-visit" className="inline-flex min-h-11 items-center font-semibold text-primary underline underline-offset-4">접수 마감·휴진일 보기</Link>
         </div>
       </section>
 

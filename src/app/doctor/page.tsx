@@ -1,18 +1,19 @@
 import type { Metadata } from "next";
 import DoctorGrid from "@/components/DoctorGrid";
+import DoctorSchedule from "@/components/DoctorSchedule";
 import PageHeroBanner from "@/components/PageHeroBanner";
 import { DOCTOR_META } from "@/lib/categories";
 import { CAROUSEL_TARGETS } from "@/lib/carousel-targets";
 import JsonLd from "@/components/JsonLd";
 import { BASE_URL, CLINIC_ID, CLINIC_PHYSICIAN_COUNT, DOCTOR_SLUGS, buildGraph, pageId, physicianId, ref } from "@/lib/schema";
-import { type Credential, type Doctor, INTERNAL_MEDICINE_PAPERS, SHOULDER_LECTURE } from "@/lib/doctor-profile";
+import { type Credential, type Doctor, DOCTOR_WORKDAYS, INTERNAL_MEDICINE_PAPERS, SHOULDER_LECTURE } from "@/lib/doctor-profile";
 
 import PageHeader from "@/components/ui/PageHeader";
 import { Users } from "@/components/ui/icons";
 
 const SITE_URL = BASE_URL;
 const directoryTitle = `의료진 소개 – 일산한의원 ${CLINIC_PHYSICIAN_COUNT}명의 한의사`;
-const directoryDescription = `${Object.keys(DOCTOR_SLUGS).join(", ")} 원장의 진료 분야와 학력·자격, 어깨 통증 강연과 두통·어지럼 연구를 확인하세요.`;
+const directoryDescription = `${Object.keys(DOCTOR_SLUGS).join(", ")} 원장의 요일별 진료 시간표와 담당 분야, 학력과 자격을 확인하세요.`;
 
 // 기존 title/description/OG title·desc 는 그대로 유지(더 상세함)하고
 // OG 이미지 · twitter 카드 · canonical 만 병합 추가.
@@ -258,7 +259,7 @@ const physicianNodes = doctors.map((doc) => ({
   name: doc.name,
   jobTitle: doc.specialty ? `한의사 · ${doc.specialty}` : "한의사",
   url: physicianId(doc.name),
-  description: doc.introduction,
+  description: `${doc.introduction} 정규 진료일은 ${DOCTOR_WORKDAYS[doc.name].join("·")}요일입니다.`,
   image: `${SITE_URL}${doc.image}`,
   mainEntityOfPage: ref(pageId("/doctor", "webpage")),
   worksFor: ref(CLINIC_ID),
@@ -319,9 +320,10 @@ export default function DoctorPage() {
         icon={<Users size={15} />}
         lead="의료진 "
         accent="소개"
-        description={`${CLINIC_PHYSICIAN_COUNT}명의 의료진이 어떤 증상을 살피고 어떻게 진료하는지 소개합니다.`}
+        description="원장별 진료 요일과 담당 분야를 확인하세요."
       />
 
+      <DoctorSchedule />
       <PageHeroBanner page="doctor" />
 
       <DoctorGrid doctors={doctors} />
