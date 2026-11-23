@@ -6,6 +6,7 @@ import type { Metadata } from "next";
 import SectionReveal from "@/components/SectionReveal";
 import PillButton from "@/components/ui/PillButton";
 import { pageMetadata } from "@/lib/page-metadata";
+import { DOCTOR_WORKDAYS } from "@/lib/doctor-profile";
 import { CAROUSEL_TARGETS } from "@/lib/carousel-targets";
 import {
   CLINIC,
@@ -76,8 +77,9 @@ export default function ContactPage() {
         <div id="from-unjeong" className="mt-6 scroll-mt-24">
           <h2 className="text-xl font-semibold text-ink">파주 운정에서 오시는 길</h2>
           <p className="mt-2 max-w-3xl text-base leading-7 text-muted">운정역에서 일산 방면 경의중앙선 일반열차를 타세요. 야당·탄현·일산역을 지나 네 번째 역인 풍산역에서 내리시면 됩니다. 2번 출구로 나와 이마트 풍산점 3층으로 올라오세요.</p>
-          <p className="mt-2 max-w-3xl text-base leading-7 text-muted">차로 오실 때는 내비게이션에 ‘이마트 풍산점’을 입력하세요. 4~7층에 주차하고 엘리베이터로 3층에 내려 왼쪽 끝으로 오시면 한의원이 있습니다.</p>
+          <p className="mt-2 max-w-3xl text-base leading-7 text-muted">차로 오실 때는 내비게이션에 ‘이마트 풍산점’을 입력하세요. 주차 후 엘리베이터로 3층에 내려 왼쪽 끝으로 오세요. <strong className="font-semibold text-ink">{CLINIC.parkingDetail}</strong></p>
           <p className="mt-2 text-base leading-7 text-ink">{CLINIC.receptionNote}</p>
+          <p className="mt-2 max-w-3xl text-base leading-7 text-muted">한방내과 전문의 <Link href="/doctor#weekly-schedule" className="font-semibold text-primary underline underline-offset-4">오서혜 원장 진료일은 {DOCTOR_WORKDAYS.오서혜.join("·")}요일</Link>입니다. 원장 지정이나 피부 시술을 원하시면 <a href={CLINIC.kakaoHref} className="font-semibold text-primary underline underline-offset-4">카카오톡</a>이나 <a href={CLINIC.telHref} className="font-semibold text-primary underline underline-offset-4">전화 {CLINIC.tel}</a>로 희망 시간을 알려주세요.</p>
           <nav aria-label="운정에서 방문하기 전 확인" className="mt-2 flex flex-wrap gap-x-6 font-semibold text-primary underline underline-offset-4">
             <Link href="#before-visit" className="inline-flex min-h-11 items-center">진료일·휴진일 확인</Link>
             <Link href="/pricing#pain" className="inline-flex min-h-11 items-center">초음파 유도 약침 비용</Link>
