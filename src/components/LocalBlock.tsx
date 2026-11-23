@@ -1,3 +1,5 @@
+import type { ReactNode } from "react";
+
 export type LocalFaq = { q: string; a: string };
 
 /**
@@ -7,11 +9,11 @@ export type LocalFaq = { q: string; a: string };
  */
 export default function LocalBlock({
   title,
-  paragraphs,
+  paragraphs: [intro, access],
   faqs,
 }: {
   title: string;
-  paragraphs: [string, string];
+  paragraphs: [ReactNode, string];
   faqs: LocalFaq[];
 }) {
   return (
@@ -20,12 +22,9 @@ export default function LocalBlock({
         <div className="mx-auto max-w-3xl rounded-2xl border border-line bg-surface p-7">
           <h2 className="text-[18px] font-semibold text-ink">{title}</h2>
 
-          <div className="mt-4 space-y-3">
-            {paragraphs.map((p) => (
-              <p key={p} className="text-[14px] leading-[1.9] text-muted">
-                {p}
-              </p>
-            ))}
+          <div className="mt-4 space-y-3 text-base leading-7 text-muted">
+            <p>{intro}</p>
+            <p>{access}</p>
           </div>
 
           <dl className="mt-6 space-y-4 border-t border-line pt-5">

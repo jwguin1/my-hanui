@@ -103,6 +103,9 @@ ${holidaySchedules}
 - [진료비·소요 시간 안내](${BASE}/pricing)
 - [환자 질문 검색](${BASE}/blog)
 - [오늘 방문·접수 마감](${BASE}/contact#before-visit)
+- [파주 운정에서 오시는 길](${BASE}/contact#from-unjeong)
+- [김포에서 오시는 길·주차·진료일](${BASE}/contact/gimpo)
+- [서울 은평에서 오시는 길·주차·진료일](${BASE}/contact/eunpyeong)
 - [치료 후 관리](${BASE}/aftercare)
 
 ## 진료 항목

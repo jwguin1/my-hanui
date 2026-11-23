@@ -9,6 +9,7 @@ const BASE_URL = "https://www.ilsanhan.com";
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const experienceUpdated = new Date("2026-11-03T00:00:00+09:00");
   const scheduleUpdated = new Date("2026-11-23T13:52:35+09:00");
+  const visitGuidesUpdated = new Date("2026-11-23T14:48:12+09:00");
   const staticEntries: MetadataRoute.Sitemap = [
     { url: `${BASE_URL}/conditions`, lastModified: new Date("2026-10-29T00:00:00+09:00"), changeFrequency: "monthly", priority: 0.8 },
     { url: `${BASE_URL}/skin/questions`, lastModified: new Date("2026-10-27T00:00:00+09:00"), changeFrequency: "monthly", priority: 0.8 },
@@ -52,10 +53,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
     {
       url: `${BASE_URL}/contact`,
-      lastModified: scheduleUpdated,
+      lastModified: visitGuidesUpdated,
       changeFrequency: "monthly",
       priority: 0.8,
     },
+    ...["/contact/gimpo", "/contact/eunpyeong"].map(path => ({
+      url: `${BASE_URL}${path}`, lastModified: visitGuidesUpdated, changeFrequency: "monthly" as const, priority: 0.7,
+    })),
     {
       url: `${BASE_URL}/blog`,
       changeFrequency: "daily",
@@ -63,13 +67,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
     {
       url: `${BASE_URL}/pain/acute`,
-      lastModified: new Date("2026-10-29T00:00:00+09:00"),
+      lastModified: visitGuidesUpdated,
       changeFrequency: "monthly",
       priority: 0.9,
     },
     {
       url: `${BASE_URL}/pain/chronic`,
-      lastModified: new Date("2026-10-29T00:00:00+09:00"),
+      lastModified: visitGuidesUpdated,
       changeFrequency: "monthly",
       priority: 0.9,
     },
@@ -81,7 +85,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
     {
       url: `${BASE_URL}/skin/spot`,
-      lastModified: new Date("2026-11-12T00:00:00+09:00"),
+      lastModified: visitGuidesUpdated,
       changeFrequency: "monthly",
       priority: 0.9,
     },

@@ -77,8 +77,17 @@ export default function ContactPage() {
           <h2 className="text-xl font-semibold text-ink">파주 운정에서 오시는 길</h2>
           <p className="mt-2 max-w-3xl text-base leading-7 text-muted">운정역에서 일산 방면 경의중앙선 일반열차를 타세요. 야당·탄현·일산역을 지나 네 번째 역인 풍산역에서 내리시면 됩니다. 2번 출구로 나와 이마트 풍산점 3층으로 올라오세요.</p>
           <p className="mt-2 max-w-3xl text-base leading-7 text-muted">차로 오실 때는 내비게이션에 ‘이마트 풍산점’을 입력하세요. 4~7층에 주차하고 엘리베이터로 3층에 내려 왼쪽 끝으로 오시면 한의원이 있습니다.</p>
-          <Link href="#before-visit" className="inline-flex min-h-11 items-center font-semibold text-primary underline underline-offset-4">접수 마감·휴진일 보기</Link>
+          <p className="mt-2 text-base leading-7 text-ink">{CLINIC.receptionNote}</p>
+          <nav aria-label="운정에서 방문하기 전 확인" className="mt-2 flex flex-wrap gap-x-6 font-semibold text-primary underline underline-offset-4">
+            <Link href="#before-visit" className="inline-flex min-h-11 items-center">진료일·휴진일 확인</Link>
+            <Link href="/pricing#pain" className="inline-flex min-h-11 items-center">초음파 유도 약침 비용</Link>
+            <Link href="/skin/spot#skin-booking" className="inline-flex min-h-11 items-center">피부 시술 예약 안내</Link>
+          </nav>
         </div>
+        <nav aria-label="김포·은평에서 오시는 길" className="mt-5 flex flex-wrap gap-x-6 border-t border-line pt-2 font-semibold text-primary underline underline-offset-4">
+          <Link href="/contact/gimpo" className="inline-flex min-h-11 items-center">김포에서 오시는 길</Link>
+          <Link href="/contact/eunpyeong" className="inline-flex min-h-11 items-center">서울 은평에서 오시는 길</Link>
+        </nav>
       </section>
 
       {/* Naver Map */}

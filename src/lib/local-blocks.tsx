@@ -1,4 +1,6 @@
 import { CLINIC } from "./clinic";
+import Link from "next/link";
+import type { ReactNode } from "react";
 import { PAIN_PRICE_FAQS, HERBAL_PRICE_FAQS } from "@/lib/visit-guide";
 import type { LocalFaq } from "@/components/LocalBlock";
 import { faqEntities, type FaqEntity } from "@/lib/schema";
@@ -6,12 +8,16 @@ import { SPOT_PRICE_ROWS, SPOT_PRICE_NOTE, won } from "@/lib/pricing";
 
 export type LocalBlockData = {
   title: string;
-  paragraphs: [string, string];
+  paragraphs: [ReactNode, string];
   faqs: LocalFaq[];
 };
 
 const ACCESS =
   "경의중앙선 풍산역 2번 출구에서 도보 1분이며, 이마트 풍산점 4~7층 주차장에서 3시간 무료주차가 가능합니다. 평일 20시까지 진료해 퇴근 후에도 오실 수 있습니다.";
+
+function UnjeongLink() {
+  return <Link href="/contact#from-unjeong" aria-label="파주 운정에서 일산한의원 오시는 길" className="font-semibold text-primary underline underline-offset-4">파주 운정</Link>;
+}
 
 const FAQ_ACCESS: LocalFaq[] = [
   {
@@ -29,7 +35,7 @@ export const LOCAL_BLOCKS: Record<string, LocalBlockData> = {
   "/pain/acute": {
     title: "일산·고양에서 오시는 환자분들께",
     paragraphs: [
-      "일산동구, 일산서구, 덕양구, 파주 운정에서 담 결림과 허리 삐끗, 발목 접질림으로 내원하십니다. 다친 당일에 오시는 분이 많아 일산한의원은 당일 침·물리치료가 가능하도록 운영합니다.",
+      <>일산동구, 일산서구, 덕양구, <UnjeongLink />에서 담 결림과 허리 삐끗, 발목 접질림으로 내원하십니다. 다친 당일에 오시는 분이 많아 일산한의원은 당일 침·물리치료가 가능하도록 운영합니다.</>,
       ACCESS,
     ],
     faqs: [
@@ -45,7 +51,7 @@ export const LOCAL_BLOCKS: Record<string, LocalBlockData> = {
   "/pain/chronic": {
     title: "일산·고양에서 오시는 환자분들께",
     paragraphs: [
-      "일산동구, 일산서구, 덕양구, 파주 운정에서 어깨·무릎·허리 통증으로 내원하십니다. 고양시 안에서 초음파로 확인한 뒤 추나와 약침을 함께 보는 곳을 찾아 일산한의원으로 오시는 경우가 많습니다.",
+      <>일산동구, 일산서구, 덕양구, <UnjeongLink />에서 어깨·무릎·허리 통증으로 내원하십니다. 고양시 안에서 초음파로 확인한 뒤 추나와 약침을 함께 보는 곳을 찾아 일산한의원으로 오시는 경우가 많습니다.</>,
       ACCESS,
     ],
     faqs: [
@@ -118,7 +124,7 @@ export const LOCAL_BLOCKS: Record<string, LocalBlockData> = {
   "/skin/spot": {
     title: "일산·고양에서 오시는 환자분들께",
     paragraphs: [
-      "일산동구, 일산서구, 덕양구, 파주 운정에서 점, 편평사마귀, 쥐젖 제거로 내원하십니다. 고양시 안에서 시술 전에 병변을 먼저 확인해 주는 곳을 찾아 일산한의원으로 오시는 경우가 많습니다.",
+      <>일산동구, 일산서구, 덕양구, <UnjeongLink />에서 점, 편평사마귀, 쥐젖 제거로 내원하십니다. 고양시 안에서 시술 전에 병변을 먼저 확인해 주는 곳을 찾아 일산한의원으로 오시는 경우가 많습니다.</>,
       ACCESS,
     ],
     faqs: [

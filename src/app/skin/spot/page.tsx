@@ -338,7 +338,7 @@ export default function SkinSpotPage() {
 
 
       {/* ── CTA ── */}
-      <section className="bg-[var(--surface)]">
+      <section id="skin-booking" aria-labelledby="skin-booking-title" className="scroll-mt-28 bg-[var(--surface)]">
         <div className="section-padding">
           <SectionReveal>
             <div className="mb-8 text-center">
@@ -349,8 +349,9 @@ export default function SkinSpotPage() {
                 피부 진료 질문과 답 더 보기 &rarr;
               </Link>
             </div>
-            <p className="mx-auto mb-5 max-w-3xl text-center text-base leading-7 text-muted">제거하고 싶은 부위와 궁금한 점을 남겨주세요. 시술 범위와 비용, 방문 일정을 안내해 드립니다.</p>
-            <ConsultationActions kakaoLabel="시술 범위·비용 문의" className="mx-auto max-w-3xl" />
+            <h2 id="skin-booking-title" className="text-center text-xl font-semibold text-ink">피부 시술 예약</h2>
+            <p className="mx-auto mb-5 mt-2 max-w-3xl text-center text-base leading-7 text-muted">카카오톡으로 제거하고 싶은 부위와 방문 희망일을 남겨주세요. 시술 범위와 비용, 예약 가능한 시간을 안내해 드립니다.</p>
+            <ConsultationActions kakaoLabel="카카오톡으로 피부 시술 예약 문의" className="mx-auto max-w-3xl" />
           </SectionReveal>
         </div>
       </section>
