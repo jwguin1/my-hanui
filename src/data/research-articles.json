@@ -5,7 +5,7 @@
     "status": "published",
     "publishedAt": "2026-10-24T08:29:28.843Z",
     "updatedAt": "2026-10-24T08:59:21.741Z",
-    "lastSourceCheck": "2026-11-21T02:12:38.508Z",
+    "lastSourceCheck": "2026-11-23T01:40:29.072Z",
     "title": "허리 통증, 전 세계 진료지침은 어떤 치료를 권고할까요?",
     "summary": "허리가 아플 때 쉬어야 할까요, 움직여야 할까요? 15개국의 진료지침 22개를 비교한 연구에서 운동·침·도수치료의 권고와 차이를 살펴봅니다.",
     "question": "허리 통증이 생겼을 때 전 세계 의료 지침들은 어떤 치료를 권고하고 있으며, 지침마다 차이가 있나요?",
@@ -215,7 +215,7 @@
     "status": "published",
     "publishedAt": "2026-10-24T08:54:20.207Z",
     "updatedAt": "2026-10-24T09:03:20.640Z",
-    "lastSourceCheck": "2026-11-21T02:12:40.138Z",
+    "lastSourceCheck": "2026-11-23T01:40:30.684Z",
     "title": "매달 반복되는 생리통, 침·지압과 약용식물 연구는 무엇을 보여줄까요?",
     "summary": "2019년 문헌고찰은 생리통 치료 연구 17편을 살펴봤습니다. 침·지압과 약용식물의 가능성, 진료를 선택할 때 확인할 점을 정리합니다.",
     "question": "진통제 외에 침·지압이나 약용식물도 생리통 치료의 선택지가 될까요?",
@@ -318,7 +318,7 @@
     "status": "published",
     "publishedAt": "2026-10-24T09:00:43.027Z",
     "updatedAt": "2026-11-08T03:16:25.157Z",
-    "lastSourceCheck": "2026-11-21T02:12:40.227Z",
+    "lastSourceCheck": "2026-11-23T01:40:30.772Z",
     "title": "얼굴 처짐에 초음파 리프팅(MFU)을 1회 받으면 얼마나 좋아지고, 어떤 이상반응이 있을까요?",
     "summary": "16개 연구를 종합하니 1회 시술 90일 뒤 전문가 평가로 92%에서 탄력 개선이 있었지만 대부분 약간~중간 정도였고, 처짐이 심하거나 BMI가 30을 넘으면 효과가 줄었습니다.",
     "question": "초음파 리프팅(MFU)을 한 번 받으면 얼굴 피부 처짐이 실제로 얼마나 개선되고, 어떤 불편이나 이상반응이 생길 수 있나요?",
@@ -457,7 +457,7 @@
     "status": "published",
     "publishedAt": "2026-10-26T09:00:00+09:00",
     "updatedAt": "2026-11-08T03:16:25.166Z",
-    "lastSourceCheck": "2026-11-21T02:12:40.327Z",
+    "lastSourceCheck": "2026-11-23T01:40:30.890Z",
     "title": "만성 목 통증, 수기치료와 목 운동 중 무엇이 더 빨리 도움이 될까요?",
     "summary": "만성 목 통증 성인 69명을 3군으로 나눠 12주간 비교했습니다. 수기치료와 운동 모두 가짜 치료보다 나았고, 두 치료의 4·12주 차이는 없었으며 속도에서만 차이가 있었습니다.",
     "question": "오래된 목 통증에는 수기(도수)치료와 목 운동 중 어느 쪽이 더 효과적이고, 효과는 언제 나타날까요?",
@@ -592,7 +592,7 @@
     "status": "published",
     "publishedAt": "2026-10-28T09:00:00+09:00",
     "updatedAt": "2026-10-28T09:00:00+09:00",
-    "lastSourceCheck": "2026-11-22T01:16:58.288Z",
+    "lastSourceCheck": "2026-11-23T01:40:32.591Z",
     "title": "초음파 리프팅(MFU-V)은 처짐과 탄력 개선에 도움이 될까? 42개 연구 종합 분석",
     "summary": "42개 연구를 종합하니 시술 후 전반적 개선은 의료진 평가 89%, 환자 평가 84%였습니다. 다만 대조군 없는 연구가 많고 통증은 중등도였으며, 중립 응답 여부에 따라 만족도가 달라졌습니다.",
     "question": "미세집속초음파(MFU-V) 리프팅을 받으면 실제로 얼마나 좋아지고, 통증이나 이상반응은 어떤가요?",
@@ -813,7 +813,7 @@
     "status": "published",
     "publishedAt": "2026-10-30T09:00:00+09:00",
     "updatedAt": "2026-11-20T02:47:14.536Z",
-    "lastSourceCheck": "2026-11-22T01:16:58.480Z",
+    "lastSourceCheck": "2026-11-23T01:40:32.700Z",
     "title": "알레르기 비염에 침 치료가 도움이 될까요? 무치료·가짜 침·항히스타민제 등과 비교한 30편 분석",
     "summary": "성인 알레르기 비염에서 침은 무치료나 가짜 침보다 코 증상과 삶의 질에서 나았지만, 세티리진·로라타딘과는 뚜렷한 차이가 없었습니다. 다만 근거의 안정성은 약했습니다.",
     "question": "알레르기 비염 증상을 줄이기 위해 침 치료를 받아볼 만한가요? 항히스타민제와 비교하면 어떤가요?",
@@ -1046,7 +1046,7 @@
     "status": "published",
     "publishedAt": "2026-11-02T09:00:00+09:00",
     "updatedAt": "2026-11-08T03:16:25.166Z",
-    "lastSourceCheck": "2026-11-22T01:17:00.505Z",
+    "lastSourceCheck": "2026-11-23T01:40:34.419Z",
     "title": "만성 허리통증에 침 치료는 가짜 침보다 나을까요? 어떤 방식이 더 효과적일까요?",
     "summary": "만성 비특이적 요통 무작위시험 44개를 비교한 분석에서 진짜 침은 가짜 침보다 낫게 나왔고, 개별 맞춤 침과 표준 침+TENS가 가장 큰 개선을 보였습니다.",
     "question": "오래 지속되는 원인 불명의 허리통증에서 침 치료는 가짜 침보다 효과가 있고, 침 방식 중 무엇이 가장 나을까요?",
@@ -1225,7 +1225,7 @@
     "status": "published",
     "publishedAt": "2026-11-04T09:00:00+09:00",
     "updatedAt": "2026-11-08T03:16:25.166Z",
-    "lastSourceCheck": "2026-11-22T01:17:00.767Z",
+    "lastSourceCheck": "2026-11-23T01:40:34.517Z",
     "title": "고주파(RF) 얼굴 시술을 받으면 피부 수분과 탄력이 바로 좋아질까요?",
     "summary": "성인 여성 62명에게 비절제형 바이폴라 고주파 시술을 했더니 1시간 뒤 수분·탄력·피지 수치가 올랐습니다. 다만 대조군이 없는 단기 연구라 장기 효과는 알 수 없습니다.",
     "question": "비절제형 바이폴라 고주파 시술은 얼굴 피부의 수분, 탄력, 피지 수치를 시술 직후 개선할까요?",
@@ -1365,7 +1365,7 @@
     "status": "published",
     "publishedAt": "2026-11-06T09:00:00+09:00",
     "updatedAt": "2026-11-06T09:00:00+09:00",
-    "lastSourceCheck": "2026-11-22T01:17:02.740Z",
+    "lastSourceCheck": "2026-11-23T01:40:36.262Z",
     "title": "알레르기 비염에 혈자리 한약 첩포를 붙이면 증상과 면역 반응이 달라질까요?",
     "summary": "알레르기 비염 23명이 혈자리 한약 첩포를 4회 붙인 소규모 예비 연구입니다. 검사 양성군 19명은 삶의 질 7개 영역 중 6개가 좋아졌지만 대조군이 없어 효과를 확정하기는 어렵습니다.",
     "question": "만성 알레르기 비염 환자가 혈자리 한약 첩포를 붙이면 증상이 좋아지나요? 몸의 면역 반응에도 변화가 있나요?",
@@ -1531,7 +1531,7 @@
     "status": "published",
     "publishedAt": "2026-11-09T09:00:00+09:00",
     "updatedAt": "2026-11-20T02:47:14.536Z",
-    "lastSourceCheck": "2026-11-22T01:17:02.944Z",
+    "lastSourceCheck": "2026-11-23T01:40:36.364Z",
     "title": "목·허리 신경뿌리 방사통, 견인 같은 수기치료가 도움이 될까요?",
     "summary": "목·허리 신경뿌리 방사통의 수기치료 무작위 시험 27개를 모은 문헌고찰입니다. 목은 견인 중심 복합 치료가 통증·기능 개선으로 보고됐지만, 연구 질이 낮아 확정적이지 않았습니다.",
     "question": "팔·다리로 뻗치는 목·허리 신경뿌리 통증에 견인이나 수기치료를 받으면 실제로 좋아진다는 근거가 있나요?",
@@ -1678,7 +1678,7 @@
     "status": "published",
     "publishedAt": "2026-11-11T09:00:00+09:00",
     "updatedAt": "2026-11-11T09:00:00+09:00",
-    "lastSourceCheck": "2026-11-22T01:17:03.138Z",
+    "lastSourceCheck": "2026-11-23T01:40:36.548Z",
     "title": "기미에 레이저토닝(저강도 Q스위치 Nd:YAG)은 정말 효과가 있고 안전한가요?",
     "summary": "기미 레이저토닝 연구 42편을 종합한 체계적 문헌고찰입니다. 대체로 기미를 옅게 했지만 점상 탈색과 재발 위험이 있었고, 장기 추적 자료는 부족했습니다.",
     "question": "기미 치료로 많이 하는 저강도 Q스위치 Nd:YAG 레이저토닝은 효과가 있나요? 안전한가요? 재발은 없나요?",
@@ -2629,7 +2629,7 @@
     "status": "published",
     "publishedAt": "2026-11-23T09:00:00+09:00",
     "updatedAt": "2026-11-23T09:00:00+09:00",
-    "lastSourceCheck": "2026-11-21T02:12:38.343Z",
+    "lastSourceCheck": "2026-11-23T01:40:28.651Z",
     "title": "일광 검버섯(태양흑자) 색소 레이저 선택: 41개 임상시험 고찰에서 비교한 점",
     "summary": "41개 임상시험(3234명)을 모은 고찰입니다. 저자들은 레이저가 더 효과적으로 보인다고 정리했습니다. 비교할 점은 호전율, 색소 침착(PIH), 통증, 회복입니다. 연구 간 차이가 커 우열은 잠정적입니다.",
     "question": "햇빛 때문에 생긴 검버섯(태양흑자)에 색소 레이저를 고를 때는 어떤 점을 비교해야 하나요?",
@@ -3004,7 +3004,7 @@
     "status": "published",
     "publishedAt": "2026-11-30T09:00:00+09:00",
     "updatedAt": "2026-11-20T02:47:14.536Z",
-    "lastSourceCheck": "2026-11-22T01:16:58.685Z",
+    "lastSourceCheck": "2026-11-23T01:40:32.800Z",
     "title": "지방간이 있을 때 보충제는 어떤 역할을 하나요?",
     "summary": "2018년 문헌고찰은 지방간 환자의 보충제·허브 추출물 연구를 정리했습니다. 간수치와 간 지방의 변화를 중심으로, 생활습관 관리에 더하는 보조 치료의 근거를 설명합니다.",
     "question": "지방간 환자의 간수치와 간 지방을 줄이는 데 보충제가 도움이 되나요?",
@@ -3136,7 +3136,7 @@
     "status": "published",
     "publishedAt": "2026-12-02T09:00:00+09:00",
     "updatedAt": "2026-11-20T02:47:14.536Z",
-    "lastSourceCheck": "2026-11-21T02:12:38.184Z",
+    "lastSourceCheck": "2026-11-23T01:40:28.554Z",
     "title": "여드름 흉터 치료 후 어떤 변화를 기대할 수 있나요? 68개 임상시험 비교",
     "summary": "여드름 흉터 환자 4,480명이 포함된 무작위 시험 68편을 비교했습니다. 흉터 점수와 만족도에 따라 유리한 병행 치료가 달랐고, 통증·색소침착에서는 치료 간 뚜렷한 차이가 없었습니다.",
     "question": "여드름 흉터 치료 후 흉터 점수와 만족도는 어떻게 달라졌나요?",
@@ -3270,7 +3270,7 @@
     "status": "published",
     "publishedAt": "2026-12-04T09:00:00+09:00",
     "updatedAt": "2026-11-20T02:47:14.536Z",
-    "lastSourceCheck": "2026-11-22T01:17:00.991Z",
+    "lastSourceCheck": "2026-11-23T01:40:34.615Z",
     "title": "기능성 소화불량에서 약초 복합제 STW 5는 메토클로프라미드·시사프리드와 무엇이 달랐나요?",
     "summary": "2017년 문헌고찰은 약초 복합제 STW 5와 위장운동촉진제를 비교한 연구를 정리했습니다. 제품별 증상 개선 자료와 연구 설계, 당시 안전성 자료를 구분해 읽습니다.",
     "question": "기능성 소화불량에 약초 복합제 STW 5를 쓴 연구에서는 증상이 어떻게 달라졌나요?",
@@ -3391,6 +3391,124 @@
       "checkedAt": "2026-11-20T02:47:14.536Z",
       "reason": "일반적인 한약 질문을 특정 제품 STW 5로 좁히고 허가·안전성 설명의 기준 시점을 밝힘.",
       "sourceHash": "00fac78a74dda9a4f85f8559415669a512849b47f08d316f3e06a07bdf4464e7"
+    }
+  },
+  {
+    "editorialQuestion": {
+      "id": "pain-2",
+      "question": "초음파를 보면서 치료하면 어떤 점이 달라지나요?"
+    },
+    "slug": "pmid-36978047",
+    "category": "pain",
+    "status": "published",
+    "publishedAt": "2026-12-07T09:00:00+09:00",
+    "updatedAt": "2026-12-07T09:00:00+09:00",
+    "lastSourceCheck": "2026-11-23T01:43:08.143Z",
+    "title": "어깨 이두근 힘줄 주사, 초음파를 보며 놓으면 무엇이 달라지나요?",
+    "summary": "어깨 이두근 장두건 주사를 다룬 문헌 검토에서 주사 연구 7편 중 6편이 초음파·투시영상 유도 주사가 유도 없는 주사보다 정확도와 통증 완화가 컸다고 보고했습니다. 주사 자체의 효과 비교는 없었습니다.",
+    "question": "어깨 앞쪽 이두근 힘줄 주변에 주사를 맞을 때, 초음파를 보면서 놓으면 안 보고 놓는 것과 어떤 점이 다른가요?",
+    "answer": "이 검토에서는 이두근 힘줄 주머니 주사 연구 7편 중 6편이 초음파나 투시영상을 쓴 쪽이 안 보고 놓은 쪽보다 약이 들어가는 정확도가 높고 통증 완화도 컸다고 보고했습니다. 다만 주사를 맞는 것과 안 맞는 것, 또는 가짜 주사를 비교한 연구는 한 편도 없었습니다. 약이 어깨관절 안으로 들어가면 원치 않는 합병증이 생길 수 있다는 점도 언급됐습니다.",
+    "population": "어깨 상완이두근 장두(LHB)를 다룬 18세 이상 성인 대상 문헌 214편을 모은 연구입니다. 주사 부분은 이두근 힘줄 주머니에 염색약, 국소마취제, 스테로이드를 주사한 연구 7편이며, 이 중 1편은 시체 연구입니다.",
+    "methods": "범위 문헌고찰입니다. PubMed, Embase, Cinahl, SportDiscus, CENTRAL, Web of Science를 시작 시점부터 2021년 12월 31일까지 검색했고 영어 논문만 포함했습니다. 계획서는 미리 등록됐습니다. 검색된 6031건과 참고문헌 검색에서 얻은 기록 중 214편을 골랐고, 연구마다 근거 수준은 평가했지만 방법론의 질은 비판적으로 평가하지 않았습니다. 결과는 해부, 기능, 병리, 평가, 비수술 치료, 수술 치료의 여섯 주제로 정리했습니다.",
+    "results": "이두근 힘줄 주머니 주사를 다룬 7편 중 6편은 초음파 또는 투시영상으로 보며 놓은 주사가 유도 없이 놓은 주사보다 약이 정확히 들어가고 통증 완화도 더 컸다고 보고했습니다. 7편 모두 주사와 무주사, 또는 주사와 가짜 주사를 비교하지 않았습니다. 그래서 주사가 통증에 실제로 효과가 있는지는 이 문헌만으로 판단할 수 없습니다.\n\n시체 연구 1편에서는 힘줄 주머니에 넣은 주사액이 표본의 92%에서 어깨관절 안과 연골로 퍼졌습니다. 이 연구에서 영상 유도를 썼는지는 이 문헌에 명시되어 있지 않습니다. 저자들은 초음파 유도 주사에서도 주사액이 관절 안으로 들어가면 원치 않는 합병증이 생길 수 있다고 언급했고, 스테로이드는 힘줄·인대·연골 조직에 분해 작용을 줄 수 있으며 리도카인과 부피바카인 같은 마취제 고농도는 연골에 독성이 있다고 설명했습니다.\n\n진단 쪽에서는 초음파가 이두근 힘줄의 완전 파열과 탈구는 비교적 잘 찾았지만, 부분 파열은 민감도가 낮은 경향이었습니다. 힘줄 부위를 눌러 아픈지 보는 검사는 정확도가 제한적이었고, 여러 검사를 묶어 쓰고 초음파를 함께 하면 진단 정확도가 올랐습니다.",
+    "meaning": "이 문헌에서 초음파 등 영상 유도는 유도 없이 놓는 방법보다 약이 목표 지점에 들어가는 정확도와 통증 완화 면에서 앞선다고 보고됐고, 저자들은 힘줄 주머니 주사를 한다면 영상 유도를 선택하는 것이 바람직하다고 했습니다. 다만 이것은 약 주입 정확도라는 중간 지표와 통증 호전 보고이며, 장기 기능 회복이나 장기 안전성을 확인한 결과는 아닙니다. 주사 자체를 해야 하는지, 운동치료나 다른 방법과 비교해 어떤지는 답하지 못했습니다. 이두근 힘줄을 위한 비수술 재활 프로그램도 연구가 부족하다고 저자들은 지적했습니다.",
+    "limitations": "영어 논문만 포함했고, 선별과 자료 추출을 제1저자 한 명이 했으며, 개별 연구의 방법론 질은 평가하지 않았습니다. 주사 연구 7편에는 무주사나 가짜 주사 대조군이 없었고, 시체 연구는 실제 환자의 결과가 아닙니다. 주사 후 통증이 몇 주 또는 몇 개월 유지됐는지는 이 문헌에 정리돼 있지 않습니다.",
+    "consultation": "어깨 앞쪽이나 팔 윗부분이 아파 주사를 권유받았거나 고민 중이라면, 통증 위치와 아픈 동작, 지난 영상검사 결과, 이전에 받은 치료와 반응을 정리해 오세요. 일산한의원에서는 진찰로 이두근 힘줄 문제인지 회전근개 등 다른 원인인지부터 살피고, 초음파 유도 약침이나 침·부항 등 가능한 방법을 상담합니다. 이 연구는 염색약, 마취제, 스테로이드 주사를 다뤘기 때문에 약침의 효과를 보여 주는 것은 아니며, 카카오톡으로 먼저 문의하셔도 됩니다.",
+    "tags": [
+      "어깨통증",
+      "이두근 장두건",
+      "초음파 유도 주사",
+      "범위 문헌고찰",
+      "회전근개",
+      "건병증"
+    ],
+    "evidence": [
+      {
+        "claim": "이두근 힘줄 주머니 주사를 다룬 연구 7편 중 6편이 초음파 또는 투시영상 유도 주사가 비유도 주사보다 정확도와 통증 완화가 더 컸다고 보고했다.",
+        "quote": "Seven studies investigated the injection of dye, local anaesthetic, and corticosteroid into the LHBT sheath (Supplementary Table 17 ). None compared injection with no injection or placebo. Six reported greater accuracy and pain relief when injections were guided by ultrasound or fluoroscopy than unguided injections [ 91 , 93 , 97 , 126 , 210 , 232 ]. One cadaver study found a high rate of dye migration into the glenohumeral joint capsule and the potential for wanted or unwanted deposition of injectate into the intra-articular glenohumeral joint [ 186 ]. One article compared non-surgical care versus tenodesis for LHBT ruptures. Patients managed non-surgically tend to return to work quicker but at lesser capacity and with less elbow flexion and forearm supination strength than patients who underwent biceps tenodesis [ 26 ]. One systematic review reported common surgical indications for tenodesis, including LHBT tears, instability, and tenosynovitis [ 145 ]."
+      },
+      {
+        "claim": "주사와 무주사 또는 위약을 비교한 연구는 없었다.",
+        "quote": "Seven studies investigated the injection of dye, local anaesthetic, and corticosteroid into the LHBT sheath (Supplementary Table 17 ). None compared injection with no injection or placebo. Six reported greater accuracy and pain relief when injections were guided by ultrasound or fluoroscopy than unguided injections [ 91 , 93 , 97 , 126 , 210 , 232 ]. One cadaver study found a high rate of dye migration into the glenohumeral joint capsule and the potential for wanted or unwanted deposition of injectate into the intra-articular glenohumeral joint [ 186 ]. One article compared non-surgical care versus tenodesis for LHBT ruptures. Patients managed non-surgically tend to return to work quicker but at lesser capacity and with less elbow flexion and forearm supination strength than patients who underwent biceps tenodesis [ 26 ]. One systematic review reported common surgical indications for tenodesis, including LHBT tears, instability, and tenosynovitis [ 145 ]."
+      },
+      {
+        "claim": "시체 연구에서 힘줄 주머니 주사액이 표본의 92%에서 어깨관절과 연골로 퍼졌다.",
+        "quote": "A single study on diagnostic injections for LHBT pathology reported high specificity but low sensitivity to exclude LHBT pathology [ 169 ]. A cadaver study by Gofeld, Hurdle [ 186 ] demonstrated the spread of injectate from the biceps sheath into the glenohumeral joint and cartilage in 92% of specimens suggesting the limited diagnostic utility of injections for LHB pathology as detailed in Supplementary Table 14 ."
+      },
+      {
+        "claim": "저자들은 주사를 한다면 영상 유도가 권장되나 스테로이드와 국소마취제의 관절 노출 위험을 통증과 기능 저하의 위험과 저울질해야 한다고 했다.",
+        "quote": "This review found no studies that compared LHB injection with no injection, indicating that the current literature does not provide guidance on the efficacy of injection for LHBT pathology. In contrast, a prior review reported that it might give temporary pain relief for inflammatory conditions of the LHBT [ 262 ]. If a clinical decision is made to use LHBT sheath injection, our results consistently indicate that image-guided procedures are more accurate and should be preferred over unguided techniques. Injected substances can migrate from the sheath into the communicating glenohumeral joint capsule, exposing the joint to a variety of potential corticosteroid adverse effects, including known catabolic effects on the tendon, ligament, adipose and cartilage tissue [ 262 – 264 ]. In addition, high concentrations of commonly used local anaesthetics such as lidocaine and bupivacaine are chondrotoxic [ 265 – 267 ]. These risks must be weighed against pain-induced morbidity and progressive shoulder dysfunction associated with LHBT pathology. Until further research clarifies the efficacy of injection compared with other treatment options, clinicians must continue to make clinical decisions based on the individual patient’s circumstances."
+      },
+      {
+        "claim": "초음파는 이두근 힘줄 완전 파열 진단에서 정확도가 높았지만 부분 파열은 민감도가 낮은 경향이었다.",
+        "quote": "Ten studies examined the validity of diagnostic ultrasound in detecting LHBT pathology compared with arthroscopy in four studies, arthroscopy/open surgery in two, arthroscopy/arthrotomy in one and MRI in two studies, as detailed in Supplementary Table 14 . Two articles reported high specificity and sensitivity values for ruling in and out full-thickness tears. In comparison, there was an observed trend for lower sensitivity values to rule out partial thickness tears of the LHBT [ 67 , 95 ]. Two studies demonstrated variable specificity and sensitivity for complete tears [ 128 , 181 ]. Two studies showed high specificity for LHBT rupture [ 49 , 181 ]. Biceps instability demonstrated an overall trend for increased specificity and sensitivity values for ruling in and out dislocation > subluxation of the LHBT [ 43 , 49 , 67 , 128 , 181 ]. The specificity of diagnostic ultrasound to rule in tendinitis was high, and its sensitivity to rule out tendinitis was low [ 43 , 110 ]. A single cross-sectional study comparing the diagnostic accuracy of ultrasound vs. MRI in detecting LHBT pathology to arthroscopy showed a trend for higher specificity for MRI compared to diagnostic ultrasound for identifying proximal LHBT pathology. Sensitivity values for both remained poor [ 162 ]."
+      },
+      {
+        "claim": "이 검토는 6개 데이터베이스에서 214편을 포함했으나 개별 연구의 방법론 질은 비판적으로 평가하지 않았다.",
+        "quote": "This scoping review was limited to English publications, excluding full-text articles published in other languages. Previous narrative reviews and grey literature were excluded, including conference abstracts and thesis dissertations. The lead author (BD) independently performed the screening, inclusion, exclusion, and data extraction. Whilst the level of evidence for each article was assessed, the methodological quality of the studies was not appraised critically as per guidelines for completing scoping reviews. Articles biased towards rotator cuff pathology and intra-articular SLAP or labral pathology were excluded from this scoping review."
+      }
+    ],
+    "figures": [],
+    "faq": [
+      {
+        "question": "초음파를 보며 주사하면 통증이 더 확실히 줄어드나요?",
+        "answer": "7편 중 6편에서 영상 유도 주사가 비유도 주사보다 통증 완화가 더 컸다고 보고했습니다. 다만 주사 자체를 무주사나 가짜 주사와 비교한 연구가 없어 주사의 효과 크기는 이 문헌으로 알 수 없습니다."
+      },
+      {
+        "question": "영상으로 보면 약이 관절 안으로 새지 않나요?",
+        "answer": "영상 유도로도 관절 안 유입 가능성은 남아 있다고 저자들은 언급했습니다. 시체 연구 1편에서는 힘줄 주머니 주사액이 표본의 92%에서 관절 안과 연골로 퍼졌지만, 유도 방식은 이 문헌에 명시되지 않았습니다. 스테로이드나 마취제를 쓸 때는 관절과 연골에 미칠 영향을 함께 고려해야 합니다."
+      }
+    ],
+    "publicationFormat": "text-only",
+    "paper": {
+      "doi": "10.1186/s12891-023-06346-5",
+      "pmcid": "PMC10044783",
+      "pmid": "36978047",
+      "date": "2023-03-28",
+      "types": [
+        "Journal Article",
+        "Scoping Review"
+      ],
+      "title": "The long head of biceps at the shoulder: a scoping review.",
+      "citations": 64,
+      "citationSource": "Crossref",
+      "checkedAt": "2026-11-23T01:40:39.431Z",
+      "editorialQuestion": {
+        "id": "pain-2",
+        "question": "초음파를 보면서 치료하면 어떤 점이 달라지나요?"
+      },
+      "authors": [
+        "Diplock Brendan",
+        "Hing Wayne",
+        "Marks Darryn"
+      ],
+      "journal": "BMC Musculoskeletal Disorders",
+      "volume": "24",
+      "issue": "",
+      "pages": "232",
+      "abstract": "Background This review aimed to explore the available literature to update our understanding of the long head of biceps (LHB) at the shoulder. Synthesise our findings to identify emergent themes and knowledge gaps to inform future research and management directions. Methods PubMed, Embase, Cinahl, SportDiscus, CENTRAL, and Web of Science were searched from inception to 31st December 2021. Articles were included if they referenced adult participants > 18 years of age and were written in English. Results 214 articles were included in the final analysis, and results were categorised into six emergent themes: (1) Anatomy - Normal anatomical variation of the biceps from aberrant origins, third and fourth accessory heads, and an absence of the LHB tendon (LHBT) are not necessarily benign, with shoulder pain and instability a commonly reported theme. (2) Function - Bicep’s role in glenohumeral elevation and stability in healthy shoulders is minimal. In contrast, LHB has a more significant role in shoulder stability and humeral head depression in subjects with rotator cuff failure or an absent LHBT. (3) Pathology - There is an association between LHB tendinopathy, rotator cuff disease, LHBT instability and occult rotator cuff tears. Early recruitment and hyperactivity of the LHB in subjects with symptomatic rotator cuff tears and instability suggest a potential compensatory role. (4) Assessment - The limited diagnostic utility of special orthopaedic tests in assessing LHBT pathology was a consistent theme. The utility of magnetic resonance imaging and ultrasound to identify full-thickness tendon tears and instability of the LHBT was moderate to high. However, the utility of clinical tests and imaging may be underestimated due to arthroscopy’s limitations in fully visualising the proximal LHBT. (5) Non-Surgical Management - Ultrasound-guided injections into the biceps sheath show greater accuracy and patient outcomes than blinded injections; however, the entry of injectate into the intraarticular glenohumeral joint may have unwanted complications. (6) Surgical management - For the surgical management of biceps pathology with or without rotator cuff pathology, both biceps tenodesis and tenotomy report similar improvements in pain without any significant adverse effect on strength or function. Tenodesis favoured higher overall constant scores and a lower incidence of Popeye deformity and cramping arm pain, with tenotomy trending to be more cost and time effective. For patients with a healthy LHBT, rotator cuff repair with adjunctive tenodesis or tenotomy fails to provide additional clinical improvements compared to rotator cuff repair in isolation. Conclusions The scoping review highlights the variability of biceps anatomy, which is not necessarily benign and suggests a minimal role of the LHB in shoulder elevation and stability in healthy individuals. In contrast, individuals with rotator cuff tears experience proximal humeral migration and demonstrate hyperactivity of the LHB, suggesting a potential compensation role. The observed prevalence of LHBT pathology with rotator cuff tears is well established; however, the cause-and-effect relationship between LHBT pathology and rotator cuff disease is undetermined. The diagnostic utility of clinical tests and imaging to exclude LHBT pathology may be understated due to the limitations of arthroscopy to visualise the proximal LHBT fully. Rehabilitation programs for the LHB are understudied. Similar post-surgical clinical outcomes are observed for tenodesis and tenotomy for biceps and rotator cuff-related shoulder pain. Subjects undergoing biceps tenodesis are less likely to have cramping arm pain and a Popeye deformity than patients undergoing biceps tenotomy. The significance of routine surgical removal of the LHBT and sequelae on rotator cuff tear progression to failure and long-term shoulder function is unknown, and further research is required. Pre-registration OSF : https://osf.io/erh9m Supplementary Information The online version contains supplementary material available at 10.1186/s12891-023-06346-5.",
+      "conclusion": "Conclusions and recommendations The scoping review highlights; (a) Anatomy – Common anatomical variations of the biceps brachii, associated with shoulder pain and instability, a potential role for the biceps sling in LHBT stability with minimal support for the transverse humeral ligament as a separate, distinct anatomical structure. (b) Function - the minimal role of the LHB in shoulder elevation and glenohumeral stability in healthy shoulders. In pathological shoulders, proximal humeral migration, and hyperactivity of the LHB suggest a potential compensation function in individuals with symptomatic rotator cuff tears or shoulder instability. However, changes in LHB muscle activity in subjects with asymptomatic rotator cuff pathology are undetermined. Further research is required in both asymptomatic and symptomatic rotator cuff tear populations to determine whether there is a compensation role of the LHB at the shoulder. (c) Pathology - The prevalence of concomitant LHBT pathology with rotator cuff tears is well established; however, the cause-and-effect relationship between LHBT pathology and rotator cuff disease is undetermined. Further research is required to establish if the LHBT becomes overloaded and, in turn, pathological as it tries to compensate for the loss of function of a torn rotator cuff or is a secondary effect of degenerative shoulder pathology, pain, and weakness. (d) Assessment - The diagnostic utility of both clinical orthopaedic tests and diagnostic imaging to exclude LHBT pathology may be understated due to the inherent limitations of arthroscopy as the standard gold reference to visualise the proximal LHBT at the glenohumeral joint fully. (e) Non-surgical management - Conservative rehabilitation programs of the shoulder that include biceps strengthening protocols are understudied, and the evidence to support the inclusion of LHB rehabilitation in the management of rotator cuff and biceps-related shoulder pain is lacking. Further research is required to understand how a biceps-focused rehabilitation program may improve shoulder pain and functional outcomes in patients with symptomatic rotator cuff tears and b) prevent or reduce the likelihood of an asymptomatic rotator cuff tear becoming symptomatic and progressing to failure. (f) Surgical management - Similar post-surgical clinical outcomes are observed for tenodesis and tenotomy for biceps and concomitant rotator cuff-related shoulder pain, with subjects undergoing biceps tenodesis less likely to have cramping arm pain and a Popeye deformity compared to patients undergoing biceps tenotomy. The significance of routine surgical removal of the LHBT and sequelae on rotator cuff tear progression to failure and long-term shoulder function is unknown, and further research is required.",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "licenseText": "https://creativecommons.org/licenses/by/4.0/ Open Access This article is licensed under a Creative Commons Attribution 4.0 International License, which permits use, sharing, adaptation, distribution and reproduction in any medium or format, as long as you give appropriate credit to the original author(s) and the source, provide a link to the Creative Commons licence, and indicate if changes were made. The images or other third party material in this article are included in the article’s Creative Commons licence, unless indicated otherwise in a credit line to the material. If material is not included in the article’s Creative Commons licence and your intended use is not permitted by statutory regulation or exceeds the permitted use, you will need to obtain permission directly from the copyright holder. To view a copy of this licence, visit http://creativecommons.org/licenses/by/4.0/ . The Creative Commons Public Domain Dedication waiver ( http://creativecommons.org/publicdomain/zero/1.0/ ) applies to the data made available in this article, unless otherwise stated in a credit line to the data.",
+      "sourceUrl": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC10044783/fullTextXML",
+      "sourceHash": "8895f9e33bca494d3a09183e96369976495b894ee5bbd658b5a45fe53ac9b560",
+      "figureCount": 0
+    },
+    "verification": {
+      "type": "automated",
+      "model": "claude-opus-5-5",
+      "writerModel": "claude-sonnet-5-5",
+      "checkedAt": "2026-11-23T01:43:08.143Z",
+      "checks": {
+        "numbers": true,
+        "methods": true,
+        "causality": true,
+        "clinicalRelevance": true,
+        "figures": true,
+        "noPatientIdentifyingImages": true,
+        "noInventedCredentials": true,
+        "topicAlignment": true
+      }
     }
   }
 ]
