@@ -8,6 +8,7 @@ const BASE_URL = "https://www.ilsanhan.com";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const experienceUpdated = new Date("2026-11-03T00:00:00+09:00");
+  const scheduleUpdated = new Date("2026-11-23T13:52:35+09:00");
   const staticEntries: MetadataRoute.Sitemap = [
     { url: `${BASE_URL}/conditions`, lastModified: new Date("2026-10-29T00:00:00+09:00"), changeFrequency: "monthly", priority: 0.8 },
     { url: `${BASE_URL}/skin/questions`, lastModified: new Date("2026-10-27T00:00:00+09:00"), changeFrequency: "monthly", priority: 0.8 },
@@ -18,7 +19,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...["/herbal", "/herbs", "/herbal/insurance", "/herbal/tonic", ...HERBAL_GUIDES.filter(g => !g.href).map(herbalPath)].map(path => ({ url: `${BASE_URL}${path}`, lastModified: new Date("2026-10-29T00:00:00+09:00"), changeFrequency: "monthly" as const, priority: 0.8 })),
     {
       url: BASE_URL,
-      lastModified: new Date("2026-10-27T00:00:00+09:00"),
+      lastModified: scheduleUpdated,
       changeFrequency: "weekly",
       priority: 1,
     },
@@ -29,6 +30,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
     {
       url: `${BASE_URL}/doctor`,
+      lastModified: scheduleUpdated,
       changeFrequency: "monthly",
       priority: 0.8,
     },
@@ -44,11 +46,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
     {
       url: `${BASE_URL}/treatment`,
+      lastModified: scheduleUpdated,
       changeFrequency: "monthly",
       priority: 0.7,
     },
     {
       url: `${BASE_URL}/contact`,
+      lastModified: scheduleUpdated,
       changeFrequency: "monthly",
       priority: 0.8,
     },
@@ -117,7 +121,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
     {
       url: `${BASE_URL}/internal/dyspepsia`,
-      lastModified: new Date("2026-10-29T00:00:00+09:00"),
+      lastModified: scheduleUpdated,
       changeFrequency: "monthly",
       priority: 0.9,
     },

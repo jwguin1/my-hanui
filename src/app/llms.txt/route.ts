@@ -254,7 +254,7 @@ ${hairLinks}
 - 연구노트 사이트맵: https://research.ilsanhan.com/sitemap.xml
 
 - 병원 소개: ${BASE}/about
-- 의료진 (7인): ${BASE}/doctor
+- 원장 7명의 정규 진료 요일과 약력: ${BASE}/doctor#weekly-schedule
 - 오시는 길·진료시간: ${BASE}/contact
 - 의학칼럼: ${BASE}/column
 - 유튜브: ${BASE}/media
