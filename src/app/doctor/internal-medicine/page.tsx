@@ -32,7 +32,7 @@ export default function InternalMedicineDoctorPage() {
           <h2 className="text-xl font-semibold text-ink">오서혜 원장은 언제 진료하나요?</h2>
           <p className="my-2 break-keep text-lg font-semibold text-primary">{workdays}</p>
           <p>카카오톡이나 전화로 “오서혜 원장님 진료를 받고 싶어요”라고 말씀해 주세요. 방문하고 싶은 날짜와 시간을 알려주시면 예약을 안내합니다.</p>
-          <ConsultationActions className="mt-4 sm:justify-start" kakaoLabel="카카오톡으로 오서혜 원장 진료 문의" />
+          <ConsultationActions className="mt-4 sm:justify-start" kakaoLabel="카카오톡 지정 예약 문의" />
         </section>
         <section>
           <h2 className="text-xl font-semibold text-ink">어떤 증상으로 상담할 수 있나요?</h2>
