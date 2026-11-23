@@ -1,13 +1,13 @@
 import Link from "next/link";
 import { CLINIC } from "@/lib/clinic";
 import { DOCTOR_WORKDAYS, WEEKDAYS } from "@/lib/doctor-profile";
-import { DOCTOR_SLUGS } from "@/lib/schema";
+import { CLINIC_PHYSICIAN_COUNT, DOCTOR_SLUGS } from "@/lib/schema";
 
-export default function DoctorSchedule() {
+export default function DoctorSchedule({ embedded = false }: { embedded?: boolean }) {
   return (
-    <section id="weekly-schedule" aria-labelledby="schedule-title" className="mx-auto max-w-4xl scroll-mt-24 px-4 py-8 sm:px-6 md:py-12">
+    <section id="weekly-schedule" aria-labelledby="schedule-title" className={embedded ? "mt-6 max-w-3xl scroll-mt-24" : "mx-auto max-w-4xl scroll-mt-24 px-4 py-8 sm:px-6 md:py-12"}>
       <div className="flex items-baseline justify-between gap-3">
-        <h2 id="schedule-title" className="text-2xl font-semibold text-ink md:text-3xl">의료진 진료 시간표</h2>
+        <h2 id="schedule-title" className={embedded ? "text-xl font-semibold text-ink" : "text-2xl font-semibold text-ink md:text-3xl"}>의료진 {CLINIC_PHYSICIAN_COUNT}명 진료 시간표</h2>
         <span className="shrink-0 text-sm font-medium text-primary"><span aria-hidden="true">● </span>진료일</span>
       </div>
       <div className="mt-4 overflow-hidden rounded-xl border border-line bg-card">
@@ -23,7 +23,7 @@ export default function DoctorSchedule() {
             {Object.entries(DOCTOR_WORKDAYS).map(([name, days]) => (
               <tr key={name} className="border-t border-line">
                 <th scope="row" className="font-semibold">
-                  <Link href={`#${DOCTOR_SLUGS[name]}`} aria-label={`${name} 원장 소개`} className="inline-flex min-h-11 items-center px-1 text-primary underline decoration-primary/40 underline-offset-4">{name}</Link>
+                  <Link href={`/doctor#${DOCTOR_SLUGS[name]}`} aria-label={`${name} 원장 소개`} className="inline-flex min-h-11 items-center px-1 text-primary underline decoration-primary/40 underline-offset-4">{name}</Link>
                 </th>
                 {WEEKDAYS.map(day => {
                   const onDuty = days.some(workday => workday === day);
@@ -37,11 +37,17 @@ export default function DoctorSchedule() {
           </tbody>
         </table>
       </div>
-      <p className="mt-4 text-base leading-relaxed text-muted">{CLINIC.closedNote} {CLINIC.holidayClosedNote}</p>
-      <nav aria-label="진료일과 예약" className="mt-1 flex flex-wrap gap-x-6 text-base font-semibold text-primary underline underline-offset-4">
-        <Link href="/contact#holiday-schedule" className="inline-flex min-h-11 items-center">명절 진료 일정</Link>
-        <a href={CLINIC.kakaoHref} className="inline-flex min-h-11 items-center">원장 지정 카카오톡 문의</a>
-      </nav>
+      {embedded ? (
+        <p className="mt-2 text-sm leading-6 text-muted">원장님 이름을 누르면 약력과 진료 분야를 볼 수 있습니다.</p>
+      ) : (
+        <>
+          <p className="mt-4 text-base leading-relaxed text-muted">{CLINIC.closedNote} {CLINIC.holidayClosedNote}</p>
+          <nav aria-label="진료일과 예약" className="mt-1 flex flex-wrap gap-x-6 text-base font-semibold text-primary underline underline-offset-4">
+            <Link href="/contact#holiday-schedule" className="inline-flex min-h-11 items-center">명절 진료 일정</Link>
+            <a href={CLINIC.kakaoHref} className="inline-flex min-h-11 items-center">원장 지정 카카오톡 문의</a>
+          </nav>
+        </>
+      )}
     </section>
   );
 }

@@ -105,6 +105,7 @@ export function HerbalDetail({ guide }: { guide: HerbalGuide }) {
     <PageHeader badge={`${label} · ${guide.title}`} lead={guide.question} description={guide.summary} />
     {guide.specialistNote && <aside className="mx-auto max-w-3xl px-6 pt-8 text-base leading-8">
       <p>{guide.specialistNote}</p>
+      <Link href="/doctor/internal-medicine" className="mr-5 inline-flex min-h-11 items-center text-primary underline underline-offset-4">한방내과 전문의 진료일·예약</Link>
       <Link href="/doctor#oh-seohye" className="inline-flex min-h-11 items-center text-primary underline underline-offset-4">오서혜 원장 약력과 진료 이야기</Link>
     </aside>}
     <HerbalQuestions faqs={guide.faqs} title={`${guide.title} 진료 질문`} />

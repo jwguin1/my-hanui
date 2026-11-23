@@ -1,9 +1,9 @@
 import Link from "next/link";
 import ConsultationActions from "@/components/ConsultationActions";
+import DoctorSchedule from "@/components/DoctorSchedule";
 import JsonLd from "@/components/JsonLd";
 import PillButton from "@/components/ui/PillButton";
 import { CLINIC, CLINIC_ADDRESS_STREET, CLINIC_HOURS_LUNCH, CLINIC_HOURS_WEEKDAY, CLINIC_HOURS_WEEKEND } from "@/lib/clinic";
-import { DOCTOR_WORKDAYS } from "@/lib/doctor-profile";
 import { buildGraph } from "@/lib/schema";
 
 interface RegionalGuide {
@@ -55,11 +55,11 @@ export default function RegionalVisitGuide({ guide }: { guide: RegionalGuide }) 
             <p className="mt-2">{CLINIC.closedNote} {CLINIC.holidayClosedNote}</p>
             <Link href="/contact#before-visit" className={detailLink}>다가오는 휴진일 확인</Link>
           </section>
+          <DoctorSchedule embedded />
           <section>
-            <h2 className={sectionHeading}>오서혜 원장 진료일과 예약</h2>
-            <p className="mt-2">한방내과 전문의 오서혜 원장은 <strong className="text-ink">{DOCTOR_WORKDAYS.오서혜.join("·")}요일</strong>에 진료합니다. 원장 지정이나 피부 시술을 원하시면 출발 전 카카오톡이나 전화로 방문 희망일과 시간을 알려주세요.</p>
+            <h2 className={sectionHeading}>진료 예약</h2>
+            <p className="mt-2">원하는 원장님과 방문 시간을 카카오톡이나 전화로 알려주세요. 피부 시술을 예약하실 때는 시술받을 부위도 함께 말씀해 주세요.</p>
             <div className="mt-1 flex flex-wrap gap-x-5">
-              <Link href="/doctor#weekly-schedule" className={detailLink}>의료진 진료 시간표</Link>
               <Link href="/internal/dyspepsia" className={detailLink}>기능성 소화불량 진료</Link>
               <Link href="/pricing#pain" className={detailLink}>초음파 유도 약침 비용</Link>
               <Link href="/skin/spot#skin-booking" className={detailLink}>피부 시술 예약 안내</Link>

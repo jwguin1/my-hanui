@@ -227,7 +227,7 @@ const doctors: Doctor[] = [
   {
     name: "오서혜",
     introduction: "식후 더부룩함이나 쉽게 지치는 증상은 식사·수면·복용약을 함께 살펴 침과 한약 치료를 계획합니다.",
-    careLinks: [{ href: "/internal/dyspepsia", label: "기능성 소화불량 진료" }, { href: "/herbal/tonic/constitution", label: "피로·체질보약 상담" }, { href: "/herbal/tonic/autonomic", label: "두통·어지럼 진료" }],
+    careLinks: [{ href: "/doctor/internal-medicine", label: "한방내과 전문의 진료일·예약" }, { href: "/internal/dyspepsia", label: "기능성 소화불량 진료" }, { href: "/herbal/tonic/constitution", label: "피로·체질보약 상담" }, { href: "/herbal/tonic/autonomic", label: "두통·어지럼 진료" }],
     image: "/images/doctor-7.webp",
     school: "동국대학교 한의과대학",
     specialty: "한방내과 전문의",

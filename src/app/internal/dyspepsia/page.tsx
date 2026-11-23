@@ -18,7 +18,6 @@ import { DYSPEPSIA_JOURNEY, DIGESTIVE_READINGS } from "@/lib/herbal-experience";
 import { CLINIC } from "@/lib/clinic";
 import { pageMetadata } from "@/lib/page-metadata";
 import JsonLd from "@/components/JsonLd";
-import { DOCTOR_WORKDAYS } from "@/lib/doctor-profile";
 import { buildGraph, faqEntities } from "@/lib/schema";
 
 const guide = HERBAL_GUIDES.find(g => g.slug === "dyspepsia")!;
@@ -38,10 +37,10 @@ export default function DyspepsiaPage() {
       <h2 className="font-serif text-2xl font-semibold text-ink">식사할 때 어떤 점이 가장 힘드세요?</h2>
       <div className="mt-6 grid gap-4 sm:grid-cols-2">{["조금만 먹어도 더부룩하고 오래 남는 느낌", "식후 명치가 답답하고 잦은 트림", "검사는 정상이지만 반복되는 소화불량", "긴장하거나 신경 쓸 때 심해지는 불편"].map(t => <p key={t} className="rounded-xl border border-line bg-card p-5 text-base leading-7 text-ink">{t}</p>)}</div>
       <p id="specialist" className="mt-6 scroll-mt-28 text-base leading-8 text-muted">
-        <strong className="font-semibold text-ink">한방내과 전문의 오서혜 원장</strong>은 {DOCTOR_WORKDAYS.오서혜.join("·")}요일에 소화불량과 식욕 저하를 진료합니다. 원장 지정 예약은 카카오톡에 방문 희망일을 남겨주세요.
+        <strong className="font-semibold text-ink">한방내과 전문의 진료</strong>를 원하시면 오서혜 원장에게 예약하세요. 식후 불편감과 식사량, 함께 나타나는 피로를 살펴 치료 계획을 세웁니다.
       </p>
       <nav aria-label="소화불량 의료진과 진료 질문" className="mt-3 flex flex-wrap gap-x-6 text-base text-primary underline underline-offset-4">
-        <Link className="inline-flex min-h-11 items-center" href="/doctor#weekly-schedule">오서혜 원장 진료일 확인</Link>
+        <Link className="inline-flex min-h-11 items-center" href="/doctor/internal-medicine">한방내과 전문의 진료일·예약</Link>
         <Link className="inline-flex min-h-11 items-center" href="/doctor#oh-seohye">오서혜 원장 약력과 진료 이야기</Link>
         <a className="inline-flex min-h-11 items-center" href={CLINIC.kakaoHref}>카카오톡 진료 문의</a>
         <Link className="inline-flex min-h-11 items-center" href="/blog/소화불량-한약-재진">소화불량 한약, 언제까지 먹나요?</Link>

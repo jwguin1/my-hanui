@@ -9,7 +9,6 @@ import {
 
 const META = [
   { icon: <Users size={16} />, label: `${CLINIC_PHYSICIAN_COUNT}인 의료진 시간표`, href: "/doctor#weekly-schedule" },
-  { label: "한방내과 전문의 진료", href: "/internal/dyspepsia#specialist" },
   { icon: <HeartMonitor size={16} />, label: "초음파 진단" },
   { icon: <Clock size={16} />, label: `평일 ${CLINIC.hours.weekdayAfternoon.closes} · 주말 ${CLINIC.hours.weekend.closes}까지` },
 ];

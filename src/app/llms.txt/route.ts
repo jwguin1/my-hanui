@@ -258,6 +258,7 @@ ${hairLinks}
 
 - 병원 소개: ${BASE}/about
 - 원장 7명의 정규 진료 요일과 약력: ${BASE}/doctor#weekly-schedule
+- 한방내과 전문의 진료일·지정 예약: ${BASE}/doctor/internal-medicine
 - 오시는 길·진료시간: ${BASE}/contact
 - 의학칼럼: ${BASE}/column
 - 유튜브: ${BASE}/media
