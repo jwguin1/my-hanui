@@ -13,4 +13,11 @@ export function proxy(request:NextRequest){
   const clinic=new URL('https://www.ilsanhan.com');clinic.pathname=p;clinic.search=url.search;
   return NextResponse.redirect(clinic,308);
 }
-export const config={matcher:['/((?!_next/static|_next/image).*)']};
+export const config = {
+  matcher: [
+    {
+      source: '/((?!_next/static|_next/image).*)',
+      has: [{ type: 'host', value: 'research\\.ilsanhan\\.com\\.?' }],
+    },
+  ],
+};
