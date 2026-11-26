@@ -64,6 +64,8 @@ import {
   SPOT_PRICE_ROWS,
   FLAT_WART_FACE_PRICES,
   FLAT_WART_PRICE_GROUPS,
+  EXTRA_REMOVAL_PRICES,
+  LENTIGO_PRICES,
   PIGMENTATION_AREA_PRICES,
   AFTERCARE_PRODUCTS,
   allowedSkinAmounts,
@@ -444,11 +446,13 @@ function checkPrices(pagePath, html, errors) {
 
   // B. 표 행 대조
   for (const cells of tableRows(html)) {
-    // Two-column regional prices are a separate service from the legacy
-    // three-column mole/skin-tag schedule, even when the area names match.
+    // 같은 부위명도 색소치료, 잡티 제거, 리터치에서 서로 다른 금액을 쓴다.
     if (cells.length === 2) {
-      const areaRows = /pigmentation|피코토닝-가격/.test(decodeURIComponent(pagePath))
-        ? PIGMENTATION_AREA_PRICES : [...FLAT_WART_FACE_PRICES, ...FLAT_WART_PRICE_GROUPS.flatMap(g => [...g.rows])];
+      const path = decodeURIComponent(pagePath);
+      const areaRows = /pigmentation|피코토닝-가격/.test(path)
+        ? [...PIGMENTATION_AREA_PRICES, ...LENTIGO_PRICES.map(r => ({ ...r, name: `흑자 1개 · ${r.name}` }))]
+        : [...FLAT_WART_FACE_PRICES, ...FLAT_WART_PRICE_GROUPS.flatMap(g => [...g.rows])];
+      if (/잡티제거-개수와-비용|일산-쥐젖-제거-무제한/.test(path)) areaRows.push(...EXTRA_REMOVAL_PRICES);
       const area = areaRows.find(r => cells[0].split(" — ")[0] === r.name);
       if (area) {
         const prices = moneyTokens(cells[1]);

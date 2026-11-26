@@ -1,6 +1,6 @@
 import PriceTable from "@/components/ui/PriceTable";
 import Image from "next/image";
-import { FLAT_WART_FACE_PRICES, FLAT_WART_PRICE_GROUPS, PIGMENTATION_AREA_PRICES, PIGMENTATION_PACKAGE_NOTE, PIGMENTATION_COUPON_NOTE, SPOT_PRICE_ROWS, SPOT_PRICE_HEADERS, SPOT_PRICE_NOTE, SPOT_RETOUCH_POLICY, painWon, won } from "@/lib/pricing";
+import { FLAT_WART_FACE_PRICES, FLAT_WART_PRICE_GROUPS, EXTRA_REMOVAL_TARGETS, EXTRA_REMOVAL_PRICES, LENTIGO_PRICES, PIGMENTATION_PRICE_GROUPS, PIGMENTATION_PACKAGE_NOTE, PIGMENTATION_COUPON_NOTE, SPOT_PRICE_ROWS, SPOT_PRICE_HEADERS, SPOT_PRICE_NOTE, SPOT_RETOUCH_POLICY, painWon, won } from "@/lib/pricing";
 
 const areaGuide = "/images/skin/flat-wart-area-guide.webp";
 
@@ -20,10 +20,10 @@ function AreaDiagram({ area }: { area: "face" | "body" }) {
 export function SpotRemovalPrices() {
   const [torso, ...otherGroups] = FLAT_WART_PRICE_GROUPS;
   return <div className="space-y-6 tabular-nums [&_li>p]:text-lg" data-price-kind="flat-wart">
-    <section aria-label="편평사마귀 낱개·얼굴 가격" className="overflow-hidden rounded-2xl border border-line bg-card">
+    <section aria-label="점·편평사마귀·검버섯 기본 가격" className="overflow-hidden rounded-2xl border border-line bg-card">
       <div className="flex items-center gap-4 border-b border-line bg-surface px-5 py-4 sm:gap-6">
         <div className="w-20 shrink-0 sm:w-28"><AreaDiagram area="face" /></div>
-        <div><h3 className="text-xl font-bold text-ink">편평사마귀 낱개·얼굴 제거</h3><p className="mt-1 text-base text-muted">첫 시술 기준 · 부가세 포함</p></div>
+        <div><h3 className="text-xl font-bold text-ink">점·편평사마귀·검버섯 기본 제거비</h3><p className="mt-1 text-base text-muted">첫 시술 기준 · 부가세 포함</p></div>
       </div>
       <dl className="divide-y divide-line px-5">
         {FLAT_WART_FACE_PRICES.map(row => <div key={row.name} className="flex items-baseline justify-between gap-3 py-4">
@@ -32,14 +32,19 @@ export function SpotRemovalPrices() {
         </div>)}
       </dl>
     </section>
+    <section aria-label="돌출점·쥐젖·비립종 추가 비용">
+      <h3 className="text-xl font-bold text-ink">돌출점·쥐젖·비립종 추가 비용</h3>
+      <p className="mb-4 mt-2 text-base leading-relaxed text-muted">{EXTRA_REMOVAL_TARGETS}은 기본 제거비에 아래 금액을 더합니다. 1~4개는 개당 금액, 5개부터는 해당 구간의 합계입니다.</p>
+      <PriceTable caption="제거 개수별 추가 금액" rows={EXTRA_REMOVAL_PRICES.map(row => ({ name: row.name, price: painWon(row.price) }))} />
+    </section>
     <details className="rounded-xl border border-line bg-card px-5">
-      <summary className="cursor-pointer py-4 text-base font-semibold text-primary">점·쥐젖 얼굴·목 가격 보기</summary>
-      <div className="pb-5"><PriceTable caption="점·쥐젖 제거" headers={SPOT_PRICE_HEADERS}
+      <summary className="cursor-pointer py-4 text-base font-semibold text-primary">얼굴과 목을 함께 제거할 때의 기본 가격</summary>
+      <div className="pb-5"><PriceTable caption="점·편평사마귀·검버섯 얼굴·목 기본 제거비" headers={SPOT_PRICE_HEADERS}
         rows={SPOT_PRICE_ROWS.map(row => ({name: row.name, price: won(row.upTo100), price2: won(row.unlimited)}))}
         note={SPOT_PRICE_NOTE} /></div>
     </details>
-    <div className="pt-3"><h3 className="text-xl font-bold text-ink">편평사마귀 목·몸통·팔·다리 가격</h3>
-      <p className="mt-2 text-base leading-relaxed text-muted">아래 금액은 선택한 부위의 편평사마귀를 한 번에 개수 제한 없이 제거하는 비용입니다.</p>
+    <div className="pt-3"><h3 className="text-xl font-bold text-ink">목·몸통·팔·다리 기본 제거비</h3>
+      <p className="mt-2 text-base leading-relaxed text-muted">아래 금액은 선택한 부위의 점·편평사마귀·검버섯을 한 번에 개수 제한 없이 제거하는 비용입니다.</p>
     </div>
     <div className="grid items-start gap-5 sm:grid-cols-2">
       <figure className="mx-auto w-full max-w-sm"><AreaDiagram area="body" />
@@ -56,8 +61,30 @@ export function SpotRemovalPrices() {
 
 export function PigmentationAreaPrices() {
   return <div className="space-y-5 tabular-nums [&_li>p]:text-lg" data-price-kind="pigmentation">
-    <p className="text-base font-semibold leading-relaxed text-ink">얼굴·목은 전체, 나머지 부위는 양쪽 기준입니다. 모든 금액은 부가세 포함입니다.</p>
-    <PriceTable caption="색소·착색 제거 치료 · 부위별 1회 가격" rows={PIGMENTATION_AREA_PRICES.map(row => ({ ...row, price: painWon(row.price) }))} />
+    <PriceTable caption="흑자 1개 치료 비용 · 크기 기준" rows={LENTIGO_PRICES.map(row => ({ name: row.name, price: painWon(row.price) }))} />
+    <section aria-label="색소·착색 부위별 1회 가격">
+      <h3 className="text-xl font-bold text-ink">색소·착색 치료 부위별 1회 가격</h3>
+      <p className="mb-4 mt-2 text-base leading-relaxed text-muted">얼굴과 목은 전체, 겨드랑이·팔·사타구니·다리는 양쪽 가격입니다. 모두 부가세 포함입니다.</p>
+      <div className="space-y-4">
+        {PIGMENTATION_PRICE_GROUPS.map(group => (
+          <section key={group.image} className="overflow-hidden rounded-2xl border border-line bg-card">
+            <h4 className="border-b border-line bg-surface px-4 py-3 text-lg font-semibold text-ink">{group.name}</h4>
+            <div className="grid grid-cols-[minmax(0,1fr)_minmax(0,2.6fr)] items-center gap-3 p-3 sm:gap-6 sm:p-5">
+              <Image src={`/images/skin/pigment-region-${group.image}.webp`} alt={group.alt} width={group.width} height={group.height} unoptimized
+                className="mx-auto h-auto max-h-56 w-auto max-w-full object-contain" />
+              <dl className="divide-y divide-line">
+                {group.rows.map(row => (
+                  <div key={row.name} className="flex flex-wrap items-baseline justify-between gap-x-2 gap-y-1 py-3">
+                    <dt className="text-base font-medium text-ink">{row.name}</dt>
+                    <dd className="ml-auto whitespace-nowrap text-lg font-bold text-primary">{painWon(row.price)}</dd>
+                  </div>
+                ))}
+              </dl>
+            </div>
+          </section>
+        ))}
+      </div>
+    </section>
     <div className="rounded-xl border border-line bg-surface p-5 text-base leading-relaxed"><p className="font-semibold text-primary">{PIGMENTATION_PACKAGE_NOTE}</p><p className="mt-3 text-ink">{PIGMENTATION_COUPON_NOTE}</p></div>
     <PigmentationPoster />
   </div>;

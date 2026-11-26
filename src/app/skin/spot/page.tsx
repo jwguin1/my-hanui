@@ -35,7 +35,7 @@ import { buildGraph, faqEntities } from "@/lib/schema";
 import LocalBlock from "@/components/LocalBlock";
 import { LOCAL_BLOCKS, localFaqEntities } from "@/lib/local-blocks";
 import { postPath } from "@/lib/slug";
-import { FLAT_WART_FACE_SUMMARY } from "@/lib/pricing";
+import { EXTRA_REMOVAL_TARGETS, EXTRA_REMOVAL_SUMMARY, FLAT_WART_FACE_SUMMARY } from "@/lib/pricing";
 
 export const metadata: Metadata = pageMetadata({
   path: "/skin/spot",
@@ -47,6 +47,7 @@ export const metadata: Metadata = pageMetadata({
 
 const QUESTIONS = [
   { quote: "점인지 편평사마귀인지 모르겠어요", answer: "병변 이름을 알고 오실 필요는 없습니다. 의료진이 확대경으로 모양과 분포를 살펴 제거할 부위를 정합니다. 색이나 모양이 변하는 등 추가 검사가 필요한 병변은 검사받을 의료기관으로 의뢰합니다." },
+  { quote: "튀어나온 점이나 쥐젖도 기본 가격에 포함되나요?", answer: `${EXTRA_REMOVAL_TARGETS}은 기본 제거비에 추가 비용이 붙습니다. 추가 금액은 ${EXTRA_REMOVAL_SUMMARY}입니다.` },
   { quote: "얼굴에 편평사마귀가 100개 정도면 얼마인가요?", answer: `${FLAT_WART_FACE_SUMMARY} 목까지 함께 제거할 때에는 얼굴·목 패키지 가격을 따로 안내합니다.` },
   { quote: "흉터가 걱정되는데 어떻게 시술하나요?", answer: SPOT_RETOUCH.reason + " 병변의 깊이와 피부 상태에 따라 흉터나 색소 변화가 생길 수 있어, 한 번에 깊게 제거하기보다 회복을 살피며 치료합니다." },
   { quote: "남거나 다시 올라온 병변은 언제 리터치하나요?", answer: SPOT_RETOUCH.timing + " " + SPOT_RETOUCH.cost },

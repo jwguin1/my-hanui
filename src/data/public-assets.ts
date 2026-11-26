@@ -2576,6 +2576,18 @@ export const publicAssets: Record<string, {width:number;height:number}|null> = {
     "width": 992,
     "height": 1585
   },
+  "/images/skin/pigment-region-arm.webp": {
+    "width": 123,
+    "height": 548
+  },
+  "/images/skin/pigment-region-face.webp": {
+    "width": 376,
+    "height": 344
+  },
+  "/images/skin/pigment-region-leg.webp": {
+    "width": 158,
+    "height": 567
+  },
   "/images/skin/pigmentation-prices-20261121.png": {
     "width": 1054,
     "height": 1492

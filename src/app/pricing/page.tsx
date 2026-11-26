@@ -17,7 +17,7 @@ import {
   PAIN_PRICES, PAIN_INSURANCE_NOTE, PHARMACOPUNCTURE_NOTE,
   HERBAL_PRICES, HERBAL_INSURANCE_CONDITIONS, HERBAL_INSURANCE_LIMIT,
   DIET_PRICES, AFTERCARE_PRODUCTS,
-  PIGMENTATION_PRICES, TONING_PRICES, painWon, won,
+  PIGMENTATION_PRICES, TONING_PRICES, TONING_SESSION, painWon, won,
 } from "@/lib/pricing";
 
 const description = `일산한의원 초진 ${painWon(PAIN_PRICES.firstVisit)}, 단순추나 ${painWon(PAIN_PRICES.simpleChuna)}, 복잡추나 ${painWon(PAIN_PRICES.complexChuna)}. 보험한약·체질보약·다이어트·피부 시술 비용과 방문 소요 시간을 한눈에 확인하세요.`;
@@ -95,7 +95,7 @@ export default function PricingPage() {
           <Link href="#toning" className="inline-flex min-h-11 items-center rounded-xl border border-line bg-white px-4 font-medium text-primary">토닝관리</Link>
         </nav>
         <SpotRemovalPrices />
-        <p>점·편평사마귀·쥐젖을 살펴보고 치료 범위를 정합니다. 시술 시간은 부위와 개수에 따라 방문 전 안내해드립니다.</p>
+        <p>시술 전 거울로 제거할 부위를 함께 짚고 기본 비용과 추가 비용을 안내합니다. 시술 시간은 부위와 개수에 따라 방문 전 안내해드립니다.</p>
         <p>재생크림은 별도 구매입니다. {AFTERCARE_PRODUCTS.map(p => `${p.name} ${p.volume} ${won(p.price)}`).join(" · ")}.</p>
         <DetailLink href="/skin/spot">잡티제거 과정과 관리</DetailLink>
         <h3 id="pigmentation" className="scroll-mt-36 pt-6 text-xl font-bold text-ink">색소·홍조·재생치료</h3>
@@ -106,7 +106,7 @@ export default function PricingPage() {
         <DetailLink href="/skin/pigmentation">색소·홍조·재생 맞춤 치료 안내</DetailLink>
         <h3 id="toning" className="scroll-mt-36 pt-6 text-xl font-bold text-ink">토닝관리</h3>
         <p>피부결을 위한 제네시스 토닝과 피부톤을 위한 피코토닝 중 한 가지를 선택하는 관리입니다.</p>
-        <PriceTable caption="토닝관리 · 각 1회 · 비급여 · 부가세 포함" rows={[
+        <PriceTable caption={`토닝관리 · 각 ${TONING_SESSION} · 비급여 · 부가세 포함`} rows={[
           { name: "제네시스 토닝", includes: "엘리멘트 TL", price: painWon(TONING_PRICES.genesis) },
           { name: "피코토닝", includes: "피코하이", price: painWon(TONING_PRICES.pico) },
         ]} />

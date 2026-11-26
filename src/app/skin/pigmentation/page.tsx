@@ -13,7 +13,7 @@ import { PIGMENTATION_GROUPS } from "@/lib/skin-guides";
 import { getAllPosts } from "@/lib/blog-local";
 import { postPath } from "@/lib/slug";
 
-const description = "일산한의원 색소·홍조·재생치료. 피코하이와 엘리멘트 TL로 피부 상태에 맞는 755·1064·532nm 레이저를 선택합니다. 얼굴 전체 1회 88,000원, 얼굴＋목 110,000원. 몸 부위별 가격과 5회 패키지 10% 할인. 치료 과정과 환자 질문을 확인하세요.";
+const description = "일산한의원 색소·홍조·재생치료. 피코하이와 엘리멘트 TL로 피부 상태에 맞는 755·1064·532nm 레이저를 선택합니다. 얼굴 전체 1회 88,000원, 얼굴＋목 110,000원. 흑자 1개는 1cm 이하 22,000원, 1cm 초과 33,000원. 몸 부위별 치료 범위는 그림으로 안내합니다.";
 export const metadata = pageMetadata({ path: "/skin/pigmentation", title: "일산 색소·홍조·재생치료 | 내 피부에 맞춘 레이저·가격", description, routeOgImage: true });
 
 export default function PigmentationPage() {
@@ -28,7 +28,7 @@ export default function PigmentationPage() {
       </SkinSection>
       <SkinSection id="prices" title="색소·착색 제거 치료 비용">
         <PigmentationAreaPrices />
-        <Link href="/skin/spot#prices" className="inline-flex min-h-11 items-center font-semibold text-primary underline underline-offset-4">편평사마귀·점·쥐젖 제거 가격 보기 →</Link>
+        <Link href="/skin/spot#prices" className="inline-flex min-h-11 items-center font-semibold text-primary underline underline-offset-4">점·편평사마귀·검버섯 기본 가격과 돌출 병변 추가 비용 보기 →</Link>
         <p>{PIGMENTATION_PRICES.selection}</p>
         <Link href="/skin/toning" className="block rounded-xl border border-line bg-white p-5 font-semibold text-primary">얼굴 전반의 피부결·피부톤 관리가 필요하다면?<br />제네시스·피코토닝 각 1회 33,000원 →</Link>
       </SkinSection>

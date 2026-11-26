@@ -4,7 +4,7 @@ import type { ReactNode } from "react";
 import { PAIN_PRICE_FAQS, HERBAL_PRICE_FAQS } from "@/lib/visit-guide";
 import type { LocalFaq } from "@/components/LocalBlock";
 import { faqEntities, type FaqEntity } from "@/lib/schema";
-import { SPOT_PRICE_ROWS, SPOT_PRICE_NOTE, won } from "@/lib/pricing";
+import { FLAT_WART_FACE_SUMMARY, EXTRA_REMOVAL_TARGETS } from "@/lib/pricing";
 
 export type LocalBlockData = {
   title: string;
@@ -131,10 +131,7 @@ export const LOCAL_BLOCKS: Record<string, LocalBlockData> = {
       {
         q: "일산에서 점 빼는 비용은 얼마인가요?",
         // 금액을 여기 적지 않는다 — lib/pricing.ts 가 정본이다
-        a: `${SPOT_PRICE_ROWS.map(
-          (r) =>
-            `${r.name} 100개까지 ${won(r.upTo100)}, 개수 제한 없이 ${won(r.unlimited)}`,
-        ).join(". ")}. ${SPOT_PRICE_NOTE}`,
+        a: `${FLAT_WART_FACE_SUMMARY} ${EXTRA_REMOVAL_TARGETS}은 개수에 따라 비용이 추가됩니다.`,
       },
       ...FAQ_ACCESS,
     ],

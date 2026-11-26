@@ -14,7 +14,7 @@ import {
 import { getAllPosts } from "@/lib/blog-local";
 import { DISEASE_GUIDES } from "@/lib/disease-guides";
 import { PIGMENTATION_SLUGS, LIFTING_SLUGS, LIFTING_PATH, SHURINK_CARE, HAIR_REMOVAL_SLUGS } from "@/lib/skin-guides";
-import { FLAT_WART_FACE_SUMMARY, FLAT_WART_PRICE_GROUPS, PIGMENTATION_AREA_PRICES, PIGMENTATION_COUPON_NOTE, PIGMENTATION_PRICES, TONING_PRICES, SHURINK_PRICES, VOLNEWMER_PRICES, LIFTING_PACKAGE, HAIR_REMOVAL_PRICES, skinPrice, PAIN_PRICES, HERBAL_PRICES, PAIN_INSURANCE_NOTE, PHARMACOPUNCTURE_NOTE, HERBAL_INSURANCE_CONDITIONS, HERBAL_INSURANCE_LIMIT, won, painWon } from "@/lib/pricing";
+import { EXTRA_REMOVAL_TARGETS, EXTRA_REMOVAL_SUMMARY, LENTIGO_PRICES, TONING_SESSION, FLAT_WART_FACE_SUMMARY, FLAT_WART_PRICE_GROUPS, PIGMENTATION_AREA_PRICES, PIGMENTATION_COUPON_NOTE, PIGMENTATION_PRICES, TONING_PRICES, SHURINK_PRICES, VOLNEWMER_PRICES, LIFTING_PACKAGE, HAIR_REMOVAL_PRICES, skinPrice, PAIN_PRICES, HERBAL_PRICES, PAIN_INSURANCE_NOTE, PHARMACOPUNCTURE_NOTE, HERBAL_INSURANCE_CONDITIONS, HERBAL_INSURANCE_LIMIT, won, painWon } from "@/lib/pricing";
 import { postPath } from "@/lib/slug";
 import { FOCUS_ORDER, FOCUS_GUIDES, focusPosts } from "@/lib/focus-guides";
 
@@ -186,11 +186,12 @@ ${searchGuideLinks}
 - 통증 치료 비용 안내: ${BASE}/pain/chronic#prices
 - 한약 비용과 약재 확인 안내: ${BASE}/internal/dyspepsia#herbal-prices
 
-## 편평사마귀 부위별 제거 가격
+## 점·편평사마귀·검버섯 제거 가격
 
 ${FLAT_WART_FACE_SUMMARY}
 아래는 부위별 개수 무제한 가격입니다. 모든 금액은 부가세 포함입니다.
 ${FLAT_WART_PRICE_GROUPS.map(g => `- ${g.title}: ${g.rows.map(r => `${r.name} ${painWon(r.price)}`).join(" / ")}`).join("\n")}
+- ${EXTRA_REMOVAL_TARGETS}은 기본 제거비에 추가: ${EXTRA_REMOVAL_SUMMARY}.
 - 얼굴＋상반신 전체: 얼굴·목·윗가슴·복부·등·허리 포함, 팔 제외.
 - 리터치: 최초 시술 후 6개월 이내 기존 시술 부위, 개당 4,900원 또는 개수 무제한 1회 55,000원. 방문 시마다 적용.
 - 상세 안내: ${BASE}/skin/spot#prices
@@ -201,9 +202,10 @@ ${FLAT_WART_PRICE_GROUPS.map(g => `- ${g.title}: ${g.rows.map(r => `${r.name} ${
 - 색소: 755nm 롱펄스, 1064nm 피코, 532nm 피코.
 - 홍조·모세혈관: 532nm 롱펄스. 재생·피부결: 1064nm 롱펄스.
 - 피코하이: 1064·532nm 피코 레이저. 엘리멘트 TL: 755·1064·532nm 롱펄스 레이저.
+- 흑자 1개 치료: ${LENTIGO_PRICES.map(r => `${r.name} ${painWon(r.price)}`).join(" / ")}.
 - 맞춤 치료: 얼굴 전체 1회 ${painWon(PIGMENTATION_PRICES.single)}, 부위별 가격 적용 · 5회 패키지 10% 할인.
 - 토닝관리: 엘리멘트 TL 제네시스 토닝 1회 ${painWon(TONING_PRICES.genesis)}, 피코하이 피코토닝 1회 ${painWon(TONING_PRICES.pico)}.
-- 토닝관리는 최소 2,000샷 이상, 얼굴 면적이 넓으면 3,000샷까지 진행합니다. 얼굴 크기와 피부 반응에 맞춰 조사합니다.
+- 제네시스 토닝과 피코토닝 모두 ${TONING_SESSION}입니다.
 - 색소·착색 부위별 1회: ${PIGMENTATION_AREA_PRICES.map(r => `${r.name} ${painWon(r.price)}`).join(" / ")}.
 - 얼굴·목은 전체, 나머지 부위는 양쪽 기준입니다. ${PIGMENTATION_COUPON_NOTE}
 - 위 가격은 모두 부가세 포함입니다. 2026-11-21 원내 기준.

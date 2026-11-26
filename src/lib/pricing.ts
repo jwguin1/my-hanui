@@ -88,7 +88,22 @@ export const FLAT_WART_FACE_PRICES = [
 ] as const;
 
 export const FLAT_WART_FACE_SUMMARY =
-  `편평사마귀 낱개 제거는 1개 ${painWon(FLAT_WART_FACE_PRICES[0].price)}입니다. 얼굴은 100개까지 ${painWon(SPOT_ENTRY.upTo100)}, 개수 무제한은 ${painWon(SPOT_ENTRY.unlimited)}입니다.`;
+  `점·편평사마귀·검버섯은 같은 기본 제거비를 적용합니다. 낱개는 1개 ${painWon(FLAT_WART_FACE_PRICES[0].price)}입니다. 얼굴은 100개까지 ${painWon(SPOT_ENTRY.upTo100)}, 얼굴 전체 무제한은 ${painWon(SPOT_ENTRY.unlimited)}입니다.`;
+
+export const EXTRA_REMOVAL_TARGETS = "3mm 이상 돌출점, 돌출된 쥐젖, 압출하는 비립종";
+export const EXTRA_REMOVAL_PRICES = [
+  { name: "1~4개 (개당)", price: 9900 },
+  { name: "5~10개", price: 55000 },
+  { name: "11~20개", price: 110000 },
+  { name: "개수 무제한", price: 165000 },
+] as const;
+
+export const EXTRA_REMOVAL_SUMMARY = EXTRA_REMOVAL_PRICES.map(row => `${row.name} ${painWon(row.price)}`).join(", ");
+
+export const LENTIGO_PRICES = [
+  { name: "1cm 이하", price: 22000 },
+  { name: "1cm 초과", price: 33000 },
+] as const;
 
 /** 편평사마귀 부위별 무제한 가격 (한 번의 시술 기준). */
 export const FLAT_WART_PRICE_GROUPS = [
@@ -111,13 +126,29 @@ export const FLAT_WART_PRICE_GROUPS = [
   ] },
 ] as const;
 
-export const PIGMENTATION_AREA_PRICES = [
-  { name: "얼굴 전체", price: 88000 }, { name: "얼굴 전체＋목", price: 110000 },
-  { name: "겨드랑이", price: 55000 }, { name: "상완(윗팔)", price: 110000 },
-  { name: "하완(아래팔)", price: 110000 }, { name: "팔 전체", price: 240000 },
-  { name: "사타구니", price: 110000 }, { name: "허벅지", price: 198000 },
-  { name: "종아리", price: 165000 }, { name: "다리 전체", price: 440000 },
-] as const;
+type PigmentAreaGroup = {
+  name: string;
+  image: string;
+  width: number;
+  height: number;
+  alt: string;
+  rows: { name: string; price: number }[];
+};
+
+export const PIGMENTATION_PRICE_GROUPS: PigmentAreaGroup[] = [
+  { name: "얼굴·목", image: "face", width: 376, height: 344, alt: "얼굴과 목의 치료 범위", rows: [
+    { name: "얼굴 전체", price: 88000 }, { name: "얼굴 전체＋목", price: 110000 },
+  ] },
+  { name: "겨드랑이·팔", image: "arm", width: 123, height: 548, alt: "겨드랑이, 윗팔, 아래팔 위치를 구분한 그림", rows: [
+    { name: "겨드랑이", price: 55000 }, { name: "상완(윗팔)", price: 110000 },
+    { name: "하완(아래팔)", price: 110000 }, { name: "팔 전체", price: 240000 },
+  ] },
+  { name: "사타구니·다리", image: "leg", width: 158, height: 567, alt: "사타구니, 허벅지, 종아리 위치를 구분한 그림", rows: [
+    { name: "사타구니", price: 110000 }, { name: "허벅지", price: 198000 },
+    { name: "종아리", price: 165000 }, { name: "다리 전체", price: 440000 },
+  ] },
+];
+export const PIGMENTATION_AREA_PRICES = PIGMENTATION_PRICE_GROUPS.flatMap(group => group.rows);
 export const PIGMENTATION_PACKAGE_NOTE = "색소·착색 치료 5회 패키지: 부위별 1회 가격의 5회 합계에서 10% 할인";
 export const PIGMENTATION_COUPON_NOTE = "얼굴 전체 1회 44,000원 쿠폰 사용 시, 양쪽 1회 가격에서 44,000원을 차감합니다.";
 
@@ -128,6 +159,7 @@ export const PIGMENTATION_PRICES = {
   selection: "피부 상태와 치료 목표를 진단한 뒤 피코하이·엘리멘트 TL의 파장과 조사 방식을 맞춰 치료합니다.",
 } as const;
 
+export const TONING_SESSION = "1회 2,000샷";
 export const TONING_PRICES = { genesis: 33000, pico: 33000 } as const;
 
 /** 2026-10-24 원장 확인. 슈링크 3회 단독 구성은 종료. */
@@ -188,6 +220,7 @@ export function allowedSkinAmounts(): number[] {
   }
   for (const p of AFTERCARE_PRODUCTS) set.add(p.price);
   for (const row of FLAT_WART_FACE_PRICES) set.add(row.price);
+  for (const row of [...EXTRA_REMOVAL_PRICES, ...LENTIGO_PRICES]) set.add(row.price);
   for (const group of FLAT_WART_PRICE_GROUPS) for (const row of group.rows) set.add(row.price);
   for (const row of PIGMENTATION_AREA_PRICES) { set.add(row.price); set.add(row.price * 5 * 0.9); }
   for (const amount of [44000, TONING_PRICES.genesis, TONING_PRICES.pico, PIGMENTATION_PRICES.single, SHURINK_PRICES.single, SHURINK_PRICES.shots600, VOLNEWMER_PRICES.single, VOLNEWMER_PRICES.shots600, LIFTING_PACKAGE.shots300, LIFTING_PACKAGE.shots600]) set.add(amount);
