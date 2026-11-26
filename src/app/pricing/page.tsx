@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { FlatWartPrices, PigmentationAreaPrices } from "@/components/SkinAreaPrices";
+import { SpotRemovalPrices, PigmentationAreaPrices } from "@/components/SkinAreaPrices";
 import Link from "next/link";
 import SectionJumpNav from "@/components/SectionJumpNav";
 import PageHeader from "@/components/ui/PageHeader";
@@ -16,7 +16,7 @@ import { LiftingPrices, HairRemovalPrices } from "@/components/SkinPrices";
 import {
   PAIN_PRICES, PAIN_INSURANCE_NOTE, PHARMACOPUNCTURE_NOTE,
   HERBAL_PRICES, HERBAL_INSURANCE_CONDITIONS, HERBAL_INSURANCE_LIMIT,
-  DIET_PRICES, SPOT_PRICE_ROWS, SPOT_PRICE_HEADERS, AFTERCARE_PRODUCTS,
+  DIET_PRICES, AFTERCARE_PRODUCTS,
   PIGMENTATION_PRICES, TONING_PRICES, painWon, won,
 } from "@/lib/pricing";
 
@@ -94,9 +94,7 @@ export default function PricingPage() {
           <Link href="#pigmentation" className="inline-flex min-h-11 items-center rounded-xl border border-line bg-white px-4 font-medium text-primary">색소·홍조·재생치료</Link>
           <Link href="#toning" className="inline-flex min-h-11 items-center rounded-xl border border-line bg-white px-4 font-medium text-primary">토닝관리</Link>
         </nav>
-        <h3 className="text-xl font-bold text-ink">편평사마귀 제거 · 부위별 개수 무제한</h3>
-        <FlatWartPrices />
-        <PriceTable caption="CO₂ 레이저 점·쥐젖 제거 · 비급여" headers={SPOT_PRICE_HEADERS} rows={SPOT_PRICE_ROWS.map(row => ({ name: row.name, price: won(row.upTo100), price2: won(row.unlimited) }))} />
+        <SpotRemovalPrices />
         <p>점·편평사마귀·쥐젖을 살펴보고 치료 범위를 정합니다. 시술 시간은 부위와 개수에 따라 방문 전 안내해드립니다.</p>
         <p>재생크림은 별도 구매입니다. {AFTERCARE_PRODUCTS.map(p => `${p.name} ${p.volume} ${won(p.price)}`).join(" · ")}.</p>
         <DetailLink href="/skin/spot">잡티제거 과정과 관리</DetailLink>

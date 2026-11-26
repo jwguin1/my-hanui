@@ -2568,6 +2568,10 @@ export const publicAssets: Record<string, {width:number;height:number}|null> = {
     "width": 1200,
     "height": 800
   },
+  "/images/skin/flat-wart-area-guide.webp": {
+    "width": 1600,
+    "height": 2263
+  },
   "/images/skin/flat-wart-prices-20261121.png": {
     "width": 992,
     "height": 1585

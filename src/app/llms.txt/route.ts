@@ -14,7 +14,7 @@ import {
 import { getAllPosts } from "@/lib/blog-local";
 import { DISEASE_GUIDES } from "@/lib/disease-guides";
 import { PIGMENTATION_SLUGS, LIFTING_SLUGS, LIFTING_PATH, SHURINK_CARE, HAIR_REMOVAL_SLUGS } from "@/lib/skin-guides";
-import { FLAT_WART_PRICE_GROUPS, PIGMENTATION_AREA_PRICES, PIGMENTATION_COUPON_NOTE, PIGMENTATION_PRICES, TONING_PRICES, SHURINK_PRICES, VOLNEWMER_PRICES, LIFTING_PACKAGE, HAIR_REMOVAL_PRICES, skinPrice, PAIN_PRICES, HERBAL_PRICES, PAIN_INSURANCE_NOTE, PHARMACOPUNCTURE_NOTE, HERBAL_INSURANCE_CONDITIONS, HERBAL_INSURANCE_LIMIT, won, painWon } from "@/lib/pricing";
+import { FLAT_WART_FACE_SUMMARY, FLAT_WART_PRICE_GROUPS, PIGMENTATION_AREA_PRICES, PIGMENTATION_COUPON_NOTE, PIGMENTATION_PRICES, TONING_PRICES, SHURINK_PRICES, VOLNEWMER_PRICES, LIFTING_PACKAGE, HAIR_REMOVAL_PRICES, skinPrice, PAIN_PRICES, HERBAL_PRICES, PAIN_INSURANCE_NOTE, PHARMACOPUNCTURE_NOTE, HERBAL_INSURANCE_CONDITIONS, HERBAL_INSURANCE_LIMIT, won, painWon } from "@/lib/pricing";
 import { postPath } from "@/lib/slug";
 import { FOCUS_ORDER, FOCUS_GUIDES, focusPosts } from "@/lib/focus-guides";
 
@@ -188,7 +188,8 @@ ${searchGuideLinks}
 
 ## 편평사마귀 부위별 제거 가격
 
-선택한 부위 내 편평사마귀를 개수 제한 없이 제거합니다. 모든 금액은 부가세 포함입니다.
+${FLAT_WART_FACE_SUMMARY}
+아래는 부위별 개수 무제한 가격입니다. 모든 금액은 부가세 포함입니다.
 ${FLAT_WART_PRICE_GROUPS.map(g => `- ${g.title}: ${g.rows.map(r => `${r.name} ${painWon(r.price)}`).join(" / ")}`).join("\n")}
 - 얼굴＋상반신 전체: 얼굴·목·윗가슴·복부·등·허리 포함, 팔 제외.
 - 리터치: 최초 시술 후 6개월 이내 기존 시술 부위, 개당 4,900원 또는 개수 무제한 1회 55,000원. 방문 시마다 적용.

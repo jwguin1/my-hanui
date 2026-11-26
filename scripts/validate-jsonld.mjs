@@ -62,6 +62,7 @@ import {
 } from "../src/lib/pain-groups.ts";
 import {
   SPOT_PRICE_ROWS,
+  FLAT_WART_FACE_PRICES,
   FLAT_WART_PRICE_GROUPS,
   PIGMENTATION_AREA_PRICES,
   AFTERCARE_PRODUCTS,
@@ -447,7 +448,7 @@ function checkPrices(pagePath, html, errors) {
     // three-column mole/skin-tag schedule, even when the area names match.
     if (cells.length === 2) {
       const areaRows = /pigmentation|피코토닝-가격/.test(decodeURIComponent(pagePath))
-        ? PIGMENTATION_AREA_PRICES : FLAT_WART_PRICE_GROUPS.flatMap(g => [...g.rows]);
+        ? PIGMENTATION_AREA_PRICES : [...FLAT_WART_FACE_PRICES, ...FLAT_WART_PRICE_GROUPS.flatMap(g => [...g.rows])];
       const area = areaRows.find(r => cells[0].split(" — ")[0] === r.name);
       if (area) {
         const prices = moneyTokens(cells[1]);

@@ -1,7 +1,7 @@
 import ClinicPatientQuestions from "@/components/ClinicPatientQuestions";
 import { clinicFaqItems } from "@/lib/clinic-patient-questions";
 import Image from "next/image";
-import { FlatWartPrices } from "@/components/SkinAreaPrices";
+import { SpotRemovalPrices } from "@/components/SkinAreaPrices";
 import { SkinTreatmentHeader } from "@/components/SkinTreatmentLayout";
 import PatientJourney from "@/components/PatientJourney";
 import PatientQuestions from "@/components/PatientQuestions";
@@ -18,7 +18,6 @@ import TwoTone from "@/components/ui/TwoTone";
 import IconTile from "@/components/ui/IconTile";
 import DefinitionCard from "@/components/ui/DefinitionCard";
 import NumberedStep from "@/components/ui/NumberedStep";
-import PriceTable from "@/components/ui/PriceTable";
 import {
   AlertTriangle,
   CircleDot,
@@ -36,24 +35,19 @@ import { buildGraph, faqEntities } from "@/lib/schema";
 import LocalBlock from "@/components/LocalBlock";
 import { LOCAL_BLOCKS, localFaqEntities } from "@/lib/local-blocks";
 import { postPath } from "@/lib/slug";
-import {
-  SPOT_PRICE_ROWS,
-  SPOT_PRICE_HEADERS,
-  SPOT_PRICE_NOTE,
-  won,
-} from "@/lib/pricing";
+import { FLAT_WART_FACE_SUMMARY } from "@/lib/pricing";
 
 export const metadata: Metadata = pageMetadata({
   path: "/skin/spot",
   title: "일산 점제거·점빼기 | 편평사마귀 제거·가격",
   description:
-    "고양시 일산한의원 잡티 제거. 점, 편평사마귀, 쥐젖을 CO2 레이저로 제거합니다. 부위별 비용 전체 공개. 이마트 풍산점 3층, 평일 20시까지.",
+    `${FLAT_WART_FACE_SUMMARY} 목·몸통·팔다리 가격과 리터치 조건을 확인하세요.`,
   routeOgImage: true,
 });
 
 const QUESTIONS = [
   { quote: "점인지 편평사마귀인지 모르겠어요", answer: "병변 이름을 알고 오실 필요는 없습니다. 의료진이 확대경으로 모양과 분포를 살펴 제거할 부위를 정합니다. 색이나 모양이 변하는 등 추가 검사가 필요한 병변은 검사받을 의료기관으로 의뢰합니다." },
-  { quote: "개수가 많으면 비용은 어떻게 정하나요?", answer: "편평사마귀는 얼굴·목·몸통·팔·다리에서 선택한 부위 내 개수 제한 없이 제거합니다. 얼굴 전체와 목 전체는 각각 165,000원, 얼굴＋목 전체는 275,000원입니다. 점·쥐젖은 별도 가격표로 안내하며, 진찰 후 병변 종류와 시술 범위를 확인합니다." },
+  { quote: "얼굴에 편평사마귀가 100개 정도면 얼마인가요?", answer: `${FLAT_WART_FACE_SUMMARY} 목까지 함께 제거할 때에는 얼굴·목 패키지 가격을 따로 안내합니다.` },
   { quote: "흉터가 걱정되는데 어떻게 시술하나요?", answer: SPOT_RETOUCH.reason + " 병변의 깊이와 피부 상태에 따라 흉터나 색소 변화가 생길 수 있어, 한 번에 깊게 제거하기보다 회복을 살피며 치료합니다." },
   { quote: "남거나 다시 올라온 병변은 언제 리터치하나요?", answer: SPOT_RETOUCH.timing + " " + SPOT_RETOUCH.cost },
   { quote: "시술이 많이 아픈가요?", answer: "시술 전 마취 연고를 충분히 바른 뒤 진행합니다. 통증에 민감하거나 이전 시술이 힘드셨다면 미리 말씀해 주세요. 시술 중에도 불편한 정도를 의료진에게 알려주시면 상태를 살피며 진행합니다." },
@@ -131,7 +125,7 @@ export default function SkinSpotPage() {
       <SkinTreatmentHeader
         kind="spot"
         title={<>점·편평사마귀·쥐젖 제거<br /><span className="text-primary">진찰부터 회복 관리까지</span></>}
-        description="먼저 병변을 살피고, 제거할 범위와 비용을 설명합니다. 시술 후 관리와 남은 병변의 리터치까지 미리 확인하세요."
+        description={FLAT_WART_FACE_SUMMARY}
       />
       <SectionJumpNav label="잡티 제거 안내 목차" items={[["prices", "시술 비용"], ["skin-visit", "진찰·시술 과정"], ["retouch", "리터치 안내"], ["skin-faq", "자주 묻는 질문"], ["skin-aftercare", "회복 관리"], ["spot-questions", "질문별 글"]]} />
 
@@ -144,19 +138,7 @@ export default function SkinSpotPage() {
             </div>
 
             <div className="mx-auto mt-6 max-w-4xl space-y-8">
-              <h3 className="text-2xl font-bold">편평사마귀 부위별 가격</h3>
-              <FlatWartPrices />
-              <h3 className="pt-6 text-xl font-bold">점·쥐젖 제거</h3>
-              <PriceTable
-                caption="점·쥐젖 제거"
-                headers={SPOT_PRICE_HEADERS}
-                rows={SPOT_PRICE_ROWS.map((r) => ({
-                  name: r.name,
-                  price: won(r.upTo100),
-                  price2: won(r.unlimited),
-                }))}
-                note={SPOT_PRICE_NOTE}
-              />
+              <SpotRemovalPrices />
             </div>
           </SectionReveal>
         </div>

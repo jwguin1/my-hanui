@@ -28,6 +28,7 @@ export default function PigmentationPage() {
       </SkinSection>
       <SkinSection id="prices" title="색소·착색 제거 치료 비용">
         <PigmentationAreaPrices />
+        <Link href="/skin/spot#prices" className="inline-flex min-h-11 items-center font-semibold text-primary underline underline-offset-4">편평사마귀·점·쥐젖 제거 가격 보기 →</Link>
         <p>{PIGMENTATION_PRICES.selection}</p>
         <Link href="/skin/toning" className="block rounded-xl border border-line bg-white p-5 font-semibold text-primary">얼굴 전반의 피부결·피부톤 관리가 필요하다면?<br />제네시스·피코토닝 각 1회 33,000원 →</Link>
       </SkinSection>

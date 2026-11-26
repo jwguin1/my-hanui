@@ -78,13 +78,22 @@ export function wonDigits(amount: number): string {
   return label;
 }
 
-/** 진입 가격 = 가장 싼 행의 100개까지 금액 */
+/** 얼굴 전체 시술 가격 */
 export const SPOT_ENTRY: SpotPriceRow = SPOT_PRICE_ROWS[0];
 
-/** 2026-11-21 원장 제공 가격표. 편평사마귀는 선택 부위 내 개수 무제한. */
+export const FLAT_WART_FACE_PRICES = [
+  { name: "낱개 1개", price: 9900 },
+  { name: "얼굴 100개 이하", price: SPOT_ENTRY.upTo100 },
+  { name: "얼굴 전체 무제한", price: SPOT_ENTRY.unlimited },
+] as const;
+
+export const FLAT_WART_FACE_SUMMARY =
+  `편평사마귀 낱개 제거는 1개 ${painWon(FLAT_WART_FACE_PRICES[0].price)}입니다. 얼굴은 100개까지 ${painWon(SPOT_ENTRY.upTo100)}, 개수 무제한은 ${painWon(SPOT_ENTRY.unlimited)}입니다.`;
+
+/** 편평사마귀 부위별 무제한 가격 (한 번의 시술 기준). */
 export const FLAT_WART_PRICE_GROUPS = [
-  { title: "얼굴·목·몸통", rows: [
-    { name: "얼굴 전체", price: 165000 }, { name: "목 전체", includes: "앞·뒤 포함", price: 165000 },
+  { title: "목·몸통", rows: [
+    { name: "목 전체", includes: "앞·뒤 포함", price: 165000 },
     { name: "윗가슴", includes: "쇄골 아래~가슴 위", price: 165000 }, { name: "복부", price: 440000 },
     { name: "등", price: 275000 }, { name: "허리", price: 275000 },
   ] },
@@ -178,6 +187,7 @@ export function allowedSkinAmounts(): number[] {
     set.add(perSpot(r));
   }
   for (const p of AFTERCARE_PRODUCTS) set.add(p.price);
+  for (const row of FLAT_WART_FACE_PRICES) set.add(row.price);
   for (const group of FLAT_WART_PRICE_GROUPS) for (const row of group.rows) set.add(row.price);
   for (const row of PIGMENTATION_AREA_PRICES) { set.add(row.price); set.add(row.price * 5 * 0.9); }
   for (const amount of [44000, TONING_PRICES.genesis, TONING_PRICES.pico, PIGMENTATION_PRICES.single, SHURINK_PRICES.single, SHURINK_PRICES.shots600, VOLNEWMER_PRICES.single, VOLNEWMER_PRICES.shots600, LIFTING_PACKAGE.shots300, LIFTING_PACKAGE.shots600]) set.add(amount);
