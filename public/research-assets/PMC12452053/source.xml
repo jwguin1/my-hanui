@@ -1,0 +1,837 @@
+
+<!DOCTYPE article
+  PUBLIC "-//NLM//DTD JATS (Z39.96) Journal Archiving and Interchange DTD with MathML3 v1.4 20241031//EN" "JATS-archivearticle1-4-mathml3.dtd">
+<article id="jocd70455" xml:lang="en" article-type="research-article" dtd-version="1.4"><?da-xref-anchor-style autodetect?><processing-meta base-tagset="archiving" mathml-version="3.0" table-model="xhtml" tagset-family="jats"><restricted-by>pmc</restricted-by></processing-meta><front><journal-meta><journal-id journal-id-type="nlm-ta">J Cosmet Dermatol</journal-id><journal-id journal-id-type="iso-abbrev">J Cosmet Dermatol</journal-id><journal-id journal-id-type="pmc-domain-id">379</journal-id><journal-id journal-id-type="pmc-domain">blackwellopen</journal-id><journal-id journal-id-type="nlm-id">101130964</journal-id><journal-id journal-id-type="publisher-id">JOCD</journal-id><journal-title-group><journal-title>Journal of Cosmetic Dermatology</journal-title></journal-title-group><issn pub-type="ppub">1473-2130</issn><issn pub-type="epub">1473-2165</issn><?publisher_abbrev blackwell?><custom-meta-group><custom-meta><meta-name>pmc-is-collection-domain</meta-name><meta-value>yes</meta-value></custom-meta><custom-meta><meta-name>pmc-collection-title</meta-name><meta-value>Wiley Open Access Collection</meta-value></custom-meta></custom-meta-group></journal-meta><article-meta><article-id pub-id-type="pmcid">PMC12452053</article-id><article-id pub-id-type="pmcid-ver">PMC12452053.1</article-id><article-id pub-id-type="pmcaid">12452053</article-id><article-id pub-id-type="pmcaiid">12452053</article-id><article-id pub-id-type="pmid">40980871</article-id><article-id pub-id-type="doi">10.1111/jocd.70455</article-id><article-id pub-id-type="publisher-id">JOCD70455</article-id><article-id pub-id-type="other">JCD-01-2025-093</article-id><article-version article-version-type="pmc-version">1</article-version><article-categories><subj-group subj-group-type="overline"><subject>Original Article</subject></subj-group><subj-group subj-group-type="heading"><subject>Original Article</subject></subj-group></article-categories><title-group><article-title>Combined Novel Microfocused Ultrasound and Microneedle Fractional Radiofrequency System for Multilayered Facial Rejuvenation: A Prospective, Randomized, and Split‐Face Study</article-title></title-group><contrib-group><contrib id="jocd70455-cr-0001" contrib-type="author"><name name-style="western"><surname>Wang</surname><given-names initials="R">Ruiyao</given-names></name><contrib-id contrib-id-type="orcid" authenticated="false">https://orcid.org/0009-0000-1365-3308</contrib-id><address><email>ruiyaodorawang@gmail.com</email></address><xref rid="jocd70455-aff-0001" ref-type="aff">
+<sup>1</sup>
+</xref></contrib><contrib id="jocd70455-cr-0002" contrib-type="author"><name name-style="western"><surname>Peng</surname><given-names initials="G">Guangling</given-names></name><xref rid="jocd70455-aff-0002" ref-type="aff">
+<sup>2</sup>
+</xref></contrib><contrib id="jocd70455-cr-0003" contrib-type="author"><name name-style="western"><surname>Chen</surname><given-names initials="Y">Yangmei</given-names></name><xref rid="jocd70455-aff-0001" ref-type="aff">
+<sup>1</sup>
+</xref></contrib><contrib id="jocd70455-cr-0004" contrib-type="author"><name name-style="western"><surname>Shao</surname><given-names initials="X">Xinyi</given-names></name><xref rid="jocd70455-aff-0001" ref-type="aff">
+<sup>1</sup>
+</xref></contrib><contrib id="jocd70455-cr-0005" contrib-type="author"><name name-style="western"><surname>Liu</surname><given-names initials="L">Lin</given-names></name><contrib-id contrib-id-type="orcid" authenticated="false">https://orcid.org/0000-0002-8472-3067</contrib-id><xref rid="jocd70455-aff-0001" ref-type="aff">
+<sup>1</sup>
+</xref></contrib><contrib id="jocd70455-cr-0006" contrib-type="author"><name name-style="western"><surname>Chen</surname><given-names initials="T">Tingqiao</given-names></name><xref rid="jocd70455-aff-0001" ref-type="aff">
+<sup>1</sup>
+</xref></contrib><contrib id="jocd70455-cr-0007" contrib-type="author"><name name-style="western"><surname>Shi</surname><given-names initials="M">Mengcen</given-names></name><xref rid="jocd70455-aff-0003" ref-type="aff">
+<sup>3</sup>
+</xref></contrib><contrib id="jocd70455-cr-0008" contrib-type="author"><name name-style="western"><surname>Zhong</surname><given-names initials="J">Judan</given-names></name><xref rid="jocd70455-aff-0001" ref-type="aff">
+<sup>1</sup>
+</xref></contrib><contrib id="jocd70455-cr-0009" contrib-type="author"><name name-style="western"><surname>Ou</surname><given-names initials="Y">Yi</given-names></name><xref rid="jocd70455-aff-0001" ref-type="aff">
+<sup>1</sup>
+</xref></contrib><contrib id="jocd70455-cr-0010" contrib-type="author" corresp="yes"><name name-style="western"><surname>Chen</surname><given-names initials="J">Jin</given-names></name><xref rid="jocd70455-aff-0001" ref-type="aff">
+<sup>1</sup>
+</xref><address><email>chenjin7791@163.com</email><email>chenjin7791@163.com</email></address></contrib></contrib-group><aff id="jocd70455-aff-0001">
+<label>
+<sup>1</sup>
+</label>
+<named-content content-type="organisation-division">Department of Dermatology</named-content>
+<institution>The First Affiliated Hospital of Chongqing Medical University</institution>
+<city>Chongqing</city>
+<country country="CN">China</country>
+</aff><aff id="jocd70455-aff-0002">
+<label>
+<sup>2</sup>
+</label>
+<named-content content-type="organisation-division">Department of Dermatology</named-content>
+<institution>The Fifth People's Hospital of Chongqing</institution>
+<city>Chongqing</city>
+<country country="CN">China</country>
+</aff><aff id="jocd70455-aff-0003">
+<label>
+<sup>3</sup>
+</label>
+<named-content content-type="organisation-division">Department of Dermatology</named-content>
+<institution>Jiangjin District Maternal and Child Health Hospital of Chongqing</institution>
+<city>Chongqing</city>
+<country country="CN">China</country>
+</aff><author-notes><corresp id="correspondenceTo">
+<label>*</label>
+<bold>Correspondence:</bold>
+<break/>
+Jin Chen (<email>chenjin7791@163.com</email>)<break/>
+</corresp></author-notes><pub-date pub-type="epub"><day>22</day><month>9</month><year>2025</year></pub-date><pub-date pub-type="ppub"><month>10</month><year>2025</year></pub-date><volume>24</volume><issue seq="30">10</issue><issue-id pub-id-type="pmc-issue-id">497234</issue-id><issue-id pub-id-type="doi">10.1111/jocd.v24.10</issue-id><elocation-id>e70455</elocation-id><history>
+<date date-type="rev-recd"><day>11</day><month>8</month><year>2025</year></date>
+<date date-type="received"><day>21</day><month>1</month><year>2025</year></date>
+<date date-type="accepted"><day>09</day><month>9</month><year>2025</year></date>
+</history><pub-history><event event-type="pmc-release"><date><day>22</day><month>09</month><year>2025</year></date></event><event event-type="pmc-live"><date><day>23</day><month>09</month><year>2025</year></date></event><event event-type="pmc-last-change"><date iso-8601-date="2026-09-25 14:10:27.970"><day>25</day><month>09</month><year>2026</year></date></event></pub-history><permissions><copyright-statement content-type="article-copyright">© 2025 The Author(s). <italic toggle="yes">Journal of Cosmetic Dermatology</italic> published by Wiley Periodicals LLC.</copyright-statement><license><ali:license_ref xmlns:ali="http://www.niso.org/schemas/ali/1.0/" specific-use="textmining" content-type="ccbylicense">https://creativecommons.org/licenses/by/4.0/</ali:license_ref><license-p>This is an open access article under the terms of the <ext-link xmlns:xlink="http://www.w3.org/1999/xlink" ext-link-type="uri" xlink:href="https://creativecommons.org/licenses/by/4.0/">http://creativecommons.org/licenses/by/4.0/</ext-link> License, which permits use, distribution and reproduction in any medium, provided the original work is properly cited.</license-p></license></permissions><self-uri xmlns:xlink="http://www.w3.org/1999/xlink" content-type="pmc-pdf" xlink:href="JOCD-24-e70455.pdf"><?pdf-name JOCD-24-e70455.pdf?><?pdf-size 4400247?><?pdf-md5 596cc09f32b4922efa4e1c6ac6c02256?><?pdf-image-server-status NEVER_LOAD?><?pdf-cloudpmc-urn urn:app:8c4b/12452053/596cc09f32b4/JOCD-24-e70455.pdf?></self-uri><self-uri xmlns:xlink="http://www.w3.org/1999/xlink" content-type="pdf" xlink:href="file:JOCD-24-e70455.pdf"/><abstract><title>ABSTRACT</title><sec id="jocd70455-sec-0001"><title>Background</title><p>With the aging population, the demand for skin anti‐aging treatments has been steadily rising, prompting the development of advanced non‐invasive therapies.</p></sec><sec id="jocd70455-sec-0002"><title>Aims</title><p>To evaluate the efficacy and safety of microfocused ultrasound (MFU) combined with microneedle fractional radiofrequency (MFR) for facial rejuvenation.</p></sec><sec id="jocd70455-sec-0003"><title>Methods</title><p>This study involved 26 patients experiencing facial laxity. Each patient received one full‐face MFU treatment and one MFR treatment on one side of the face, which was randomly assigned. All treatments were performed on the same day. Facial photoaging parameters were assessed using VISIA, skin fat thickness changes were measured via ultrasound, and subjective evaluations were recorded at Months 0, 1, and 3. Side effects were recorded during treatments and each follow‐up visit.</p></sec><sec id="jocd70455-sec-0004"><title>Results</title><p>The VISIA analysis demonstrated notable enhancements in skin texture, wrinkles, pores, spots, and red areas on the combined treatment side. Ultrasound examinations revealed a significant reduction in subcutaneous fat thickness, particularly at the masseter and the middle of the cheek on the combined side. The study showed improvements in the Global Aesthetic Improvement Scale (GAIS) and Wrinkle Severity Rating Scale (WSRS) scores, with the combined treatment side outperforming the control side at the 3 month mark. Over 90% of participants expressed satisfaction with the treatment outcomes. Mild side effects, such as erythema, purpura, and edema, were observed but resolved without special interventions.</p></sec><sec id="jocd70455-sec-0005"><title>Conclusions</title><p>The combination of MFU and MFR for facial rejuvenation is both safe and effective. The combined treatment demonstrates superior enhancement in skin tightening, depigmentation, and pore refinement within a single therapeutic session.</p></sec></abstract><kwd-group kwd-group-type="author-generated"><kwd id="jocd70455-kwd-0001">clinical research</kwd><kwd id="jocd70455-kwd-0002">facial rejuvenation</kwd><kwd id="jocd70455-kwd-0003">microfocused ultrasound</kwd><kwd id="jocd70455-kwd-0004">microneedle fractional radiofrequency</kwd></kwd-group><funding-group><award-group id="funding-0001"><funding-source>
+<institution-wrap><institution>the Program for Youth Innovation in Future Medicine of Chongqing Medical University</institution></institution-wrap>
+</funding-source></award-group><award-group id="funding-0002"><funding-source>
+<institution-wrap><institution>Chongqing Municipal Science and Technology Bureau</institution><institution-id institution-id-type="doi">10.13039/501100002865</institution-id></institution-wrap>
+</funding-source><award-id>2023NSCQ‐MSX0321</award-id></award-group><award-group id="funding-0003"><funding-source>
+<institution-wrap><institution>the Chongqing talent plan project</institution></institution-wrap>
+</funding-source><award-id>cstc2024ycjhbgzxm0177</award-id></award-group></funding-group><counts><fig-count count="3"/><table-count count="4"/><page-count count="10"/><word-count count="6900"/></counts><custom-meta-group><custom-meta><meta-name>pmc-status-qastatus</meta-name><meta-value>0</meta-value></custom-meta><custom-meta><meta-name>pmc-status-live</meta-name><meta-value>yes</meta-value></custom-meta><custom-meta><meta-name>pmc-status-embargo</meta-name><meta-value>no</meta-value></custom-meta><custom-meta><meta-name>pmc-status-released</meta-name><meta-value>yes</meta-value></custom-meta><custom-meta><meta-name>pmc-prop-open-access</meta-name><meta-value>yes</meta-value></custom-meta><custom-meta><meta-name>pmc-prop-olf</meta-name><meta-value>no</meta-value></custom-meta><custom-meta><meta-name>pmc-prop-manuscript</meta-name><meta-value>no</meta-value></custom-meta><custom-meta><meta-name>pmc-prop-legally-suppressed</meta-name><meta-value>no</meta-value></custom-meta><custom-meta><meta-name>pmc-prop-has-pdf</meta-name><meta-value>yes</meta-value></custom-meta><custom-meta><meta-name>pmc-prop-has-supplement</meta-name><meta-value>yes</meta-value></custom-meta><custom-meta><meta-name>pmc-prop-pdf-only</meta-name><meta-value>no</meta-value></custom-meta><custom-meta><meta-name>pmc-prop-suppress-copyright</meta-name><meta-value>no</meta-value></custom-meta><custom-meta><meta-name>pmc-prop-is-real-version</meta-name><meta-value>no</meta-value></custom-meta><custom-meta><meta-name>pmc-prop-is-scanned-article</meta-name><meta-value>no</meta-value></custom-meta><custom-meta><meta-name>pmc-prop-preprint</meta-name><meta-value>no</meta-value></custom-meta><custom-meta><meta-name>pmc-prop-in-epmc</meta-name><meta-value>yes</meta-value></custom-meta><custom-meta><meta-name>pmc-license-ref</meta-name><meta-value>CC BY</meta-value></custom-meta><custom-meta><meta-name>source-schema-version-number</meta-name><meta-value>2.0</meta-value></custom-meta><custom-meta><meta-name>cover-date</meta-name><meta-value>October 2025</meta-value></custom-meta><custom-meta><meta-name>details-of-publishers-convertor</meta-name><meta-value>Converter:WILEY_ML3GV2_TO_JATSPMC version:6.6.4 mode:remove_FC converted:22.09.2025</meta-value></custom-meta></custom-meta-group></article-meta><notes><p content-type="self-citation">
+<mixed-citation publication-type="journal" id="jocd70455-cit-1001">
+<string-name name-style="western">
+<given-names>R.</given-names>
+<surname>Wang</surname>
+</string-name>, <string-name name-style="western">
+<given-names>G.</given-names>
+<surname>Peng</surname>
+</string-name>, <string-name name-style="western">
+<given-names>Y.</given-names>
+<surname>Chen</surname>
+</string-name>, et al., “<article-title>Combined Novel Microfocused Ultrasound and Microneedle Fractional Radiofrequency System for Multilayered Facial Rejuvenation: A Prospective, Randomized, and Split‐Face Study</article-title>,” <source>Journal of Cosmetic Dermatology</source>
+<volume>24</volume>, no. <issue>10</issue> (<year>2025</year>): <elocation-id>e70455</elocation-id>, <pub-id pub-id-type="doi">10.1111/jocd.70455</pub-id>.<pub-id pub-id-type="pmcid">PMC12452053</pub-id><pub-id pub-id-type="pmid">40980871</pub-id></mixed-citation>
+</p><fn-group id="jocd70455-ntgp-0001"><fn fn-type="funding" id="jocd70455-note-0001"><p>
+<bold>Funding:</bold> The present study was supported by the Program for Youth Innovation in Future Medicine of Chongqing Medical University, the Chongqing talent plan project (cstc2024ycjhbgzxm0177), and the Chongqing Science and Technology Commission (2023NSCQ‐MSX0321).</p></fn><fn fn-type="equal" id="jocd70455-note-0002"><p>Ruiyao Wang, Guangling Peng, and Yangmei Chen contributed equally to this work.</p></fn></fn-group></notes></front><body id="jocd70455-body-0001"><sec id="jocd70455-sec-0006"><label>1</label><title>Introduction</title><p>Skin aging is manifested by alterations in skin texture, decreased elasticity, and visible wrinkles [<xref rid="jocd70455-bib-0001" ref-type="bibr">1</xref>, <xref rid="jocd70455-bib-0002" ref-type="bibr">2</xref>]. This issue not only impacts physical appearance but also has the potential to negatively affect mental well‐being [<xref rid="jocd70455-bib-0003" ref-type="bibr">3</xref>, <xref rid="jocd70455-bib-0004" ref-type="bibr">4</xref>]. With the increasing aging trend of the population, there is a growing demand for facial rejuvenation procedures [<xref rid="jocd70455-bib-0005" ref-type="bibr">5</xref>, <xref rid="jocd70455-bib-0006" ref-type="bibr">6</xref>, <xref rid="jocd70455-bib-0007" ref-type="bibr">7</xref>]. Therefore, the selection of treatment modalities that offer superior efficacy and minimal adverse effects holds clinical and social significance.</p><p>Clinical interventions for improving skin aging encompass a range of approaches, including surgery, laser therapy, chemical peels, and injections [<xref rid="jocd70455-bib-0008" ref-type="bibr">8</xref>, <xref rid="jocd70455-bib-0009" ref-type="bibr">9</xref>, <xref rid="jocd70455-bib-0010" ref-type="bibr">10</xref>, <xref rid="jocd70455-bib-0011" ref-type="bibr">11</xref>, <xref rid="jocd70455-bib-0012" ref-type="bibr">12</xref>]. While surgery is often considered the preferred method for facial rejuvenation, it is important to note its limitations, including low patient tolerance, high surgical risks, and extended recovery periods [<xref rid="jocd70455-bib-0013" ref-type="bibr">13</xref>, <xref rid="jocd70455-bib-0014" ref-type="bibr">14</xref>, <xref rid="jocd70455-bib-0015" ref-type="bibr">15</xref>]. In contrast, less invasive treatments such as laser therapy, chemical peels, and injections have shown limited efficacy in improving skin texture and tightening tissue [<xref rid="jocd70455-bib-0016" ref-type="bibr">16</xref>, <xref rid="jocd70455-bib-0017" ref-type="bibr">17</xref>, <xref rid="jocd70455-bib-0018" ref-type="bibr">18</xref>, <xref rid="jocd70455-bib-0019" ref-type="bibr">19</xref>]. It is crucial to recognize that single treatment may not yield significant improvements in wrinkles or skin laxity.</p><p>In recent years, a novel non‐surgical approach to facial rejuvenation has emerged. The new micro‐focused ultrasound (MFU) device is capable of rapidly heating subcutaneous tissue to temperatures ranging from 50°C to 60°C, resulting in the creation of precise thermal injury zones (TIZs) measuring 2.5–3 mm<sup>3</sup> within the deep dermis and superficial musculoaponeurotic system (SMAS) [<xref rid="jocd70455-bib-0020" ref-type="bibr">20</xref>, <xref rid="jocd70455-bib-0021" ref-type="bibr">21</xref>, <xref rid="jocd70455-bib-0022" ref-type="bibr">22</xref>]. The ensuing wound healing cascade activates the degeneration and contraction of collagen fibers, leading to significant collagen remodeling [<xref rid="jocd70455-bib-0023" ref-type="bibr">23</xref>]. Importantly, this innovative system is able to target deeper tissues without causing harm to the epidermis, thereby improving treatment comfort and minimizing the occurrence of adverse reactions.</p><p>The microneedle fractional radiofrequency (MFR) system delivers energy to target tissues and elevates the temperature of dermal collagen fibers to 55°C–65°C through a combination of microneedle mechanical stimulation and radiofrequency thermal effects [<xref rid="jocd70455-bib-0024" ref-type="bibr">24</xref>, <xref rid="jocd70455-bib-0025" ref-type="bibr">25</xref>]. This process facilitates thermal remodeling and the generation of new collagen, ultimately reducing pigmentation and inflammatory reactions. The MFR device employed in this study incorporates innovative stratified technology to facilitate energy release at varying depths. The needle length can be adjusted from 0.5 to 3.5 mm, enabling precise thermal coagulation of specific layers [<xref rid="jocd70455-bib-0026" ref-type="bibr">26</xref>]. This not only enhances efficacy but also minimizes pain and reduces recovery time.</p><p>Currently, studies have demonstrated the efficacy of MFU and MFR treatments in addressing skin aging [<xref rid="jocd70455-bib-0027" ref-type="bibr">27</xref>, <xref rid="jocd70455-bib-0028" ref-type="bibr">28</xref>, <xref rid="jocd70455-bib-0029" ref-type="bibr">29</xref>, <xref rid="jocd70455-bib-0030" ref-type="bibr">30</xref>]. However, there is limited literature on the concurrent utilization of combined therapy. Consequently, our study seeks to assess the efficacy and safety of combining MFU and MFR treatments for facial rejuvenation in Asian populations.</p></sec><sec sec-type="methods" id="jocd70455-sec-0007"><label>2</label><title>Methods</title><sec id="jocd70455-sec-0008"><label>2.1</label><title>Patients and Study Design</title><p>This study was randomized, prospective, split‐face, self‐controlled, and evaluator‐blinded. A total of 26 participants, comprising one male and 25 females aged between 30 and 60 years, who presented with facial soft tissue laxity and expressed a desire for rejuvenation treatment, were recruited from the Department of Dermatology at the First Affiliated Hospital of Chongqing Medical University. The study was conducted in accordance with the principles outlined in the Helsinki Declaration and was approved by the Ethics Committee of the First Affiliated Hospital of Chongqing Medical University (approval date: October 16, 2023; clinical trial ethic number: 2023‐448). All participants provided written informed consent for the trial. The exclusion criteria included individuals who had received facial and neck rejuvenation treatment within the past 6 months, undergone previous facial and neck surgery, had active systemic or local infections, had local skin diseases affecting wound healing, were pregnant or lactating, had metallic foreign bodies or fillers in the treatment area, had systemic diseases such as immune deficiency, diabetes, or lupus, had significant organ dysfunction, neurological or psychiatric disorders, or had a body mass index (BMI) exceeding 30 kg/m<sup>2</sup>.</p><p>Prior to initiating the study, the allocation of participants to the combined side and control side was determined using a random sequence generated in an Office 2021 spreadsheet. The combined side received a combination of MFU and MFR treatments, while the control side only received MFU treatment.</p></sec><sec id="jocd70455-sec-0009"><label>2.2</label><title>Treatment Protocols</title><p>Before treatment, the patient's facial skin was cleansed with water, followed by drawing facial marks to determine the treatment zones and exclude facial depressions and sites unsuitable for treatment. The ultrasound coupling agent was uniformly applied to the face after disinfection. The Micro‐Focused Ultrasound Treatment System (MFUS Pro, Hunan Peninsula Medical Technology Co. Ltd., China), equipped with D4.5, D3.0, and D2.0 transducers, was used. All participants were set to receive the highest level of the device without topical anesthesia to test the safety of the whole system. For the treatment of one side, the following parameters were applied: D4.5 Transducer: 6.63 W (level V), 10 Hz, with 4800 dots performed in 8 min on the lower face and the perioral and preauricular areas; D3.0 Transducer: 6.63 W, 10 Hz, with 5500 dots in 9 min on the lower face, submental area, and middle face; D2.0 Transducer: 6.63 W, 10 Hz, with 1500 dots in 3 min on the upper face of the selected control side exclusively. During the treatment, specific areas such as the ligaments, nasolabial folds, and perioral wrinkles were treated with personalized strengthening techniques. Following the MFU treatment, MFR was conducted on the designated side utilizing high‐frequency electrocautery therapy equipment (United, Shenzhen Peninsula Medical Group, China). After cleaning the patient's face again, compound lidocaine cream (Tongfang Pharmaceutical Group Co. Ltd., China) was applied to the combined side for local anesthesia for 60 min, followed by disinfection with 70% alcohol. The parameters for MFR treatment were set as outlined in Table <xref rid="jocd70455-tbl-0001" ref-type="table">1</xref>. The patient was followed up twice at 1 and 3 months after the treatment.</p><table-wrap position="float" id="jocd70455-tbl-0001" content-type="TABLE" orientation="portrait"><label>TABLE 1</label><caption><p>The treatment parameters of MFR.</p></caption><table frame="hsides" rules="groups"><col align="left" span="1"/><col align="center" span="1"/><col align="center" span="1"/><col align="center" span="1"/><col align="center" span="1"/><thead valign="bottom"><tr style="border-bottom:solid 1px #000000"><th align="left" valign="bottom" rowspan="1" colspan="1">Region</th><th align="center" valign="bottom" rowspan="1" colspan="1">Layer</th><th align="center" valign="bottom" rowspan="1" colspan="1">Power (W)</th><th align="center" valign="bottom" rowspan="1" colspan="1">Pulse width (ms)</th><th align="center" valign="bottom" rowspan="1" colspan="1">Depth of needle insertion (mm)</th></tr></thead><tbody valign="top"><tr><td align="left" valign="top" rowspan="1" colspan="1">Fronto‐temporal region</td><td align="center" valign="top" rowspan="1" colspan="1">Not stratified</td><td align="center" valign="top" rowspan="1" colspan="1">8</td><td align="center" valign="top" rowspan="1" colspan="1">100</td><td align="center" valign="top" rowspan="1" colspan="1">1.2</td></tr><tr><td align="left" rowspan="2" valign="top" colspan="1">Middle face</td><td align="center" valign="top" rowspan="1" colspan="1">The first layer</td><td align="center" valign="top" rowspan="1" colspan="1">6</td><td align="center" valign="top" rowspan="1" colspan="1">60</td><td align="center" valign="top" rowspan="1" colspan="1">0.8</td></tr><tr><td align="center" valign="top" rowspan="1" colspan="1">The second layer</td><td align="center" valign="top" rowspan="1" colspan="1">8</td><td align="center" valign="top" rowspan="1" colspan="1">100</td><td align="center" valign="top" rowspan="1" colspan="1">1.5</td></tr><tr><td align="left" rowspan="2" valign="top" colspan="1">Lower face</td><td align="center" valign="top" rowspan="1" colspan="1">The first layer</td><td align="center" valign="top" rowspan="1" colspan="1">6</td><td align="center" valign="top" rowspan="1" colspan="1">60</td><td align="center" valign="top" rowspan="1" colspan="1">1.5</td></tr><tr><td align="center" valign="top" rowspan="1" colspan="1">The second layer</td><td align="center" valign="top" rowspan="1" colspan="1">8</td><td align="center" valign="top" rowspan="1" colspan="1">100</td><td align="center" valign="top" rowspan="1" colspan="1">2.5</td></tr></tbody></table></table-wrap></sec><sec id="jocd70455-sec-0010"><label>2.3</label><title>Evaluation</title><sec id="jocd70455-sec-0011"><label>2.3.1</label><title>Objective Evaluation</title><sec id="jocd70455-sec-0012"><label>2.3.1.1</label><title>
+<styled-content style="fixed-case" toggle="no">VISIA</styled-content> Parameters</title><p>Before treatment and at follow‐up visits, all patients underwent photography using the VISIA 6.0 Complexion Analysis System (Canfield Scientific Inc., USA). Images of the front and side of both cheeks were captured, with VISIA analyzing the presence of wrinkles, spots, pores, texture, and other photoaging parameters to generate a numerical score. A lower score was indicative of a lower prevalence of these skin imperfections.</p></sec><sec id="jocd70455-sec-0013"><label>2.3.1.2</label><title>Ultrasound Examination</title><p>We utilized Wisonic (Shenzhen, China) to measure the thickness of the epidermis, dermis, and subcutaneous fat layers on both sides at specific reference points (Landmarks A–C). Landmark A, located at the midpoint of the forehead, was defined by the intersection of a vertical line extending from the midpoint of the pupil and a horizontal line across the middle of the forehead. Landmark B, situated at the masseter region, was identified by positioning the probe parallel to the mandible, with its midpoint at the intersection of the masseter and the mandible. Landmark C was designated at the midpoint of the cheek. Measurements were performed by the same technician, who was blinded to the treatment conditions, while the subject was seated. The technician was instructed to apply the probe gently to avoid compressing the skin.</p></sec></sec><sec id="jocd70455-sec-0014"><label>2.3.2</label><title>Subjective Evaluation</title><p>The clinical efficacy measurements included the physician and participant Global Aesthetic Improvement Scale (GAIS) and Wrinkle Severity Ranking Scale (WSRS). The GAIS is a 5‐point scale used to assess improvement at each follow‐up compared to the baseline photograph (Grade 0 = worse than the initial state in appearance; Grade 1 = no change; Grade 2 = improved; Grade 3 = much improved; Grade 4 = very much improved). The WSRS is a validated 5‐point scale used to evaluate wrinkle severity (Grade 0 = no wrinkles; Grade 1 = mild wrinkles; Grade 2 = moderate wrinkles; Grade 3 = severe wrinkles; Grade 4 = very severe wrinkles). All assessment criteria were conducted by two blinded dermatologists under consistent lighting and positioning. Scores were averaged in cases of discrepancies among evaluators. Standardized clinical photographs were captured using a professional digital camera (60D camera; Canon, Tokyo, Japan). Consistent lighting conditions, parameters, and patient positioning were maintained throughout the photography sessions, with photos taken before treatment and at 1 and 3 months post‐treatment. Patients were asked to complete a satisfaction questionnaire utilizing a 5‐point scale to indicate their level of contentment with the treatment, ranging from 1 (very satisfied) to 5 (very dissatisfied). Patient satisfaction with skin and facial appearance was also categorized as very satisfied, satisfied, neutral, or not satisfied.</p></sec></sec><sec id="jocd70455-sec-0015"><label>2.4</label><title>Safety and Side Effects</title><p>During the MFU and MFR treatments, the severity of pain sensation was assessed using the Visual Analog Scale (VAS), with a range from 0 indicating no sensation to 10 representing the highest level of pain. Any potential side effects, such as pain, edema, erythema, oozing, purpura, post‐inflammatory hyperpigmentation, and scarring, were documented during the follow‐up period.</p></sec><sec id="jocd70455-sec-0016"><label>2.5</label><title>Statistical Analysis</title><p>Statistical analysis was conducted using SPSS 27.0 (IBM, New York, USA) and Origin 2021 (Origin Software Inc., California, USA). Normality of data was assessed using the Shapiro–Wilk test. A paired samples <italic toggle="yes">t</italic>‐test was employed for statistical analysis when two sets of dependent variables followed a normal distribution; otherwise, a paired samples Wilcoxon test was utilized. A significance level of <italic toggle="yes">p</italic> &lt; 0.05 was considered statistically significant. Results for normally distributed data are presented as mean ± standard deviation, while non‐normally distributed data are represented as the median with a range.</p></sec></sec><sec sec-type="results" id="jocd70455-sec-0017"><label>3</label><title>Results</title><sec id="jocd70455-sec-0018"><label>3.1</label><title>Demographic Characteristics</title><p>All 26 participants underwent a single treatment and completed the follow‐up examinations after 1 and 3 months. The demographic characteristics of the patients are presented in Table <xref rid="jocd70455-tbl-0002" ref-type="table">2</xref>. The study included 25 female patients and 1 male patient. The mean age of the participants was 43.19 ± 7.58 years (range: 31–58 years), and the mean BMI of the patients was 21.44 ± 2.08 kg/m<sup>2</sup> (range: 17.30–26.72 kg/m<sup>2</sup>). Of the participants, 18 were classified as Fitzpatrick skin type III and 8 as type IV.</p><table-wrap position="float" id="jocd70455-tbl-0002" content-type="TABLE" orientation="portrait"><label>TABLE 2</label><caption><p>The demographic characteristics of the patients.</p></caption><table frame="hsides" rules="groups"><col align="left" span="1"/><col align="center" span="1"/><thead valign="bottom"><tr style="border-bottom:solid 1px #000000"><th align="left" valign="bottom" rowspan="1" colspan="1">Demographic</th><th align="center" valign="bottom" rowspan="1" colspan="1">Mean ± SD (median) (min–max) or <italic toggle="yes">n</italic> (%)</th></tr></thead><tbody valign="top"><tr><td align="left" valign="top" rowspan="1" colspan="1">Age, years</td><td align="center" valign="top" rowspan="1" colspan="1">43.19 ± 7.58 (41) (31–58)</td></tr><tr><td align="left" valign="top" rowspan="1" colspan="1">BMI, kg/m<sup>2</sup>
+</td><td align="center" valign="top" rowspan="1" colspan="1">21.44 ± 2.08 (21.48) (17.30–26.72)</td></tr><tr><td align="left" colspan="2" valign="top" rowspan="1">Sex</td></tr><tr><td align="left" style="padding-left:10%" valign="top" rowspan="1" colspan="1">Female</td><td align="center" valign="top" rowspan="1" colspan="1">25 (96.2%)</td></tr><tr><td align="left" style="padding-left:10%" valign="top" rowspan="1" colspan="1">Male</td><td align="center" valign="top" rowspan="1" colspan="1">1 (3.8%)</td></tr><tr><td align="left" colspan="2" valign="top" rowspan="1">Fitzpatrick sun‐reactive skin type</td></tr><tr><td align="left" style="padding-left:10%" valign="top" rowspan="1" colspan="1">III</td><td align="center" valign="top" rowspan="1" colspan="1">18 (69.2%)</td></tr><tr><td align="left" style="padding-left:10%" valign="top" rowspan="1" colspan="1">IV</td><td align="center" valign="top" rowspan="1" colspan="1">8 (30.8%)</td></tr></tbody></table><table-wrap-foot id="jocd70455-ntgp-0002"><fn id="jocd70455-note-0003"><p>Abbreviation: BMI, body mass index.</p></fn></table-wrap-foot></table-wrap></sec><sec id="jocd70455-sec-0019"><label>3.2</label><title>Objective Evaluation</title><sec id="jocd70455-sec-0020"><label>3.2.1</label><title>
+<styled-content style="fixed-case" toggle="no">VISIA</styled-content> Parameters</title><p>Eight variables were assessed in the analysis of skin complexion: spots, wrinkles, texture, pores, ultraviolet spots, brown spots, red areas, and porphyrins. Prior to initiating the treatment, baseline characteristics of both sides of the facial features were measured and found to be statistically similar (<italic toggle="yes">p</italic> &gt; 0.05). From baseline to month 3, the scores of VISIA parameters on both sides exhibited a downward trend. The absolute scores of wrinkles, pores, ultraviolet spots, brown spots, and red area on the combined side demonstrated statistical significance at both 1 and 3 months post‐treatment when compared with pre‐treatment levels. On the control side, the absolute scores of wrinkles at 1 and 3 months, as well as the absolute score of texture at 1 month, were statistically significant compared to pre‐treatment levels (Supporting Information Table <xref rid="jocd70455-supitem-0003" ref-type="supplementary-material">S1</xref>). At the first follow‐up, the average score of texture decreased by 27% on the combined side, whereas it decreased by 15% on the control side, indicating a significant improvement in texture on the combined side (<italic toggle="yes">P</italic>
+<sub>between</sub> = 0.003). At the third month post‐treatment, there was a slight rebound on the combined side; however, a significant improvement in skin texture compared to baseline remained evident, as shown in Figure <xref rid="jocd70455-fig-0001" ref-type="fig">1B</xref>. The average score of pores exhibited a 21% decrease on the combined side at the first month follow‐up, compared to a 4% decrease on the control side (<italic toggle="yes">P</italic>
+<sub>between</sub> = 0.033). Although a rebound was observed at the third month follow‐up, a notable improvement compared to both baseline and the control side persisted, as depicted in Figure <xref rid="jocd70455-fig-0001" ref-type="fig">1C</xref>. The average scores of wrinkles and red areas on the combined side decreased by 40% and 11%, respectively, at the second follow‐up, compared to reductions of 20% (<italic toggle="yes">P</italic>
+<sub>between</sub> = 0.02) and 4% (<italic toggle="yes">P</italic>
+<sub>between</sub> = 0.01) on the control side, demonstrating a statistically significant improvement, as illustrated in Figure <xref rid="jocd70455-fig-0001" ref-type="fig">1A,F</xref>. For the average scores of ultraviolet spots and brown spots, statistical analysis revealed a significant disparity between the combined and control sides, indicating a greater reduction of spots on the combined side (<italic toggle="yes">p</italic> &lt; 0.05), and the differences persisted until the third month (Figure <xref rid="jocd70455-fig-0001" ref-type="fig">1D,E</xref>). Typical improvements in brown spots and ultraviolet spots after 3 months of combined treatment were shown in Supporting Information Figure <xref rid="jocd70455-supitem-0001" ref-type="supplementary-material">S1</xref>.</p><fig position="float" fig-type="FIGURE" id="jocd70455-fig-0001" orientation="portrait"><label>FIGURE 1</label><caption><p>The VISIA scores of (A) wrinkles, (B) texture, (C) pores, (D) ultraviolet spots, (E) brown spots, and (F) red areas on the MFU + MFR side and MFU side (*<italic toggle="yes">p</italic> &lt; 0.05; **<italic toggle="yes">p</italic> &lt; 0.005; ***<italic toggle="yes">p</italic> &lt; 0.001).</p></caption><graphic xmlns:xlink="http://www.w3.org/1999/xlink" position="anchor" id="jats-graphic-1" orientation="portrait" xlink:href="JOCD-24-e70455-g002.jpg"><?image-name JOCD-24-e70455-g002.jpg?><?image-size 53596?><?image-md5 3d6b3f6c345d45831e687345c400fbda?><?image-image-server-status LOAD_COMPLETED?><?image-original-height 518?><?image-original-width 1064?><?image-scaled-height 345?><?image-scaled-width 709?><?image-cloudpmc-urn urn:cdn:blobs/8c4b/12452053/3d6b3f6c345d/JOCD-24-e70455-g002.jpg?><?thumb-name JOCD-24-e70455-g002.gif?><?thumb-size 8488?><?thumb-md5 78c815858dc14a5ff4ac4ec74571dc1d?><?thumb-image-server-status NEVER_LOAD?><?thumb-scaled-height 80?><?thumb-scaled-width 164?><?thumb-cloudpmc-urn urn:cdn:blobs/8c4b/12452053/78c815858dc1/JOCD-24-e70455-g002.gif?></graphic></fig></sec><sec id="jocd70455-sec-0021"><label>3.2.2</label><title>Ultrasound Examination</title><p>Before initiating the treatment, the baseline subcutaneous fat thickness was measured on both sides and found to be statistically similar (<italic toggle="yes">p</italic> &gt; 0.05). The mean subcutaneous fat thickness at landmarks A, B, and C on both sides showed a significant reduction compared to baseline measurements. The mean subcutaneous fat thickness for landmarks A, B, and C on the combined side was 3.46 ± 0.68, 5.15 ± 0.87, and 6.92 ± 0.37 mm, respectively, before treatment. At the third month after treatment, these values decreased to 3.12 ± 0.60, 4.40 ± 0.81, and 5.58 ± 0.77 mm, respectively (Table <xref rid="jocd70455-tbl-0003" ref-type="table">3</xref>). There was no significant difference in subcutaneous thickness changes at landmark A between both sides during the follow‐up periods, while the mean thickness changes at landmarks B and C on the combined side were statistically different compared to the control side during the two follow‐ups (<italic toggle="yes">p</italic> &lt; 0.05) (Figure <xref rid="jocd70455-fig-0002" ref-type="fig">2A,B</xref>). Figure <xref rid="jocd70455-fig-0002" ref-type="fig">2C</xref> shows the typical changes in thickness before and after at 1 and 3 months on two sides.</p><table-wrap position="float" id="jocd70455-tbl-0003" content-type="TABLE" orientation="portrait"><label>TABLE 3</label><caption><p>The subcutaneous fat thickness measured by ultrasound.</p></caption><table frame="hsides" rules="groups"><col align="left" span="1"/><col align="center" span="1"/><col align="center" span="1"/><col align="center" span="1"/><col align="center" span="1"/><thead valign="bottom"><tr style="border-bottom:solid 1px #000000"><th align="left" valign="bottom" rowspan="1" colspan="1">Location</th><th align="center" valign="bottom" rowspan="1" colspan="1">Group</th><th align="center" valign="bottom" rowspan="1" colspan="1">Baseline</th><th align="center" valign="bottom" rowspan="1" colspan="1">Month 1</th><th align="center" valign="bottom" rowspan="1" colspan="1">Month 3</th></tr></thead><tbody valign="top"><tr><td align="left" rowspan="2" valign="top" colspan="1">The middle of forehead (Landmark A)</td><td align="center" valign="top" rowspan="1" colspan="1">MFU + MFR</td><td align="center" valign="top" rowspan="1" colspan="1">3.46 ± 0.68</td><td align="center" valign="top" rowspan="1" colspan="1">3.22 ± 0.65*</td><td align="center" valign="top" rowspan="1" colspan="1">3.12 ± 0.60***</td></tr><tr><td align="center" valign="top" rowspan="1" colspan="1">MFU</td><td align="center" valign="top" rowspan="1" colspan="1">3.46 ± 0.72</td><td align="center" valign="top" rowspan="1" colspan="1">3.22 ± 0.64***</td><td align="center" valign="top" rowspan="1" colspan="1">3.26 ± 0.65***</td></tr><tr><td align="left" rowspan="2" valign="top" colspan="1">Masseter (Landmark B)</td><td align="center" valign="top" rowspan="1" colspan="1">MFU + MFR</td><td align="center" valign="top" rowspan="1" colspan="1">5.15 ± 0.87</td><td align="center" valign="top" rowspan="1" colspan="1">4.42 ± 0.75***</td><td align="center" valign="top" rowspan="1" colspan="1">4.40 ± 0.81***</td></tr><tr><td align="center" valign="top" rowspan="1" colspan="1">MFU</td><td align="center" valign="top" rowspan="1" colspan="1">4.97 ± 0.92</td><td align="center" valign="top" rowspan="1" colspan="1">4.46 ± 0.83***</td><td align="center" valign="top" rowspan="1" colspan="1">4.47 ± 0.91***</td></tr><tr><td align="left" rowspan="2" valign="top" colspan="1">The middle of the cheek (Landmark C)</td><td align="center" valign="top" rowspan="1" colspan="1">MFU + MFR</td><td align="center" valign="top" rowspan="1" colspan="1">6.92 ± 0.37</td><td align="center" valign="top" rowspan="1" colspan="1">6.06 ± 0.64***</td><td align="center" valign="top" rowspan="1" colspan="1">5.58 ± 0.77***</td></tr><tr><td align="center" valign="top" rowspan="1" colspan="1">MFU</td><td align="center" valign="top" rowspan="1" colspan="1">6.74 ± 0.38</td><td align="center" valign="top" rowspan="1" colspan="1">6.20 ± 0.45***</td><td align="center" valign="top" rowspan="1" colspan="1">5.73 ± 0.50***</td></tr></tbody></table><table-wrap-foot id="jocd70455-ntgp-0003"><fn id="jocd70455-note-0004"><p>
+<italic toggle="yes">Note:</italic> Compared with baseline: *<italic toggle="yes">p</italic> &lt; 0.05; ***<italic toggle="yes">p</italic> &lt; 0.001.</p></fn></table-wrap-foot></table-wrap><fig position="float" fig-type="FIGURE" id="jocd70455-fig-0002" orientation="portrait"><label>FIGURE 2</label><caption><p>Thickness changes of (A) Landmark B and (B) Landmark C. (C) Typical thickness changes at the masseter of two sides before treatment and 1 to 3 months after treatment.</p></caption><graphic xmlns:xlink="http://www.w3.org/1999/xlink" position="anchor" id="jats-graphic-3" orientation="portrait" xlink:href="JOCD-24-e70455-g001.jpg"><?image-name JOCD-24-e70455-g001.jpg?><?image-size 99767?><?image-md5 9491a8a90ae25c797d2fa04994b7ac75?><?image-image-server-status LOAD_COMPLETED?><?image-original-height 899?><?image-original-width 1064?><?image-scaled-height 599?><?image-scaled-width 709?><?image-cloudpmc-urn urn:cdn:blobs/8c4b/12452053/9491a8a90ae2/JOCD-24-e70455-g001.jpg?><?thumb-name JOCD-24-e70455-g001.gif?><?thumb-size 12732?><?thumb-md5 3e783bfef89e0924d3e9ac03923bca90?><?thumb-image-server-status NEVER_LOAD?><?thumb-scaled-height 84?><?thumb-scaled-width 100?><?thumb-cloudpmc-urn urn:cdn:blobs/8c4b/12452053/3e783bfef89e/JOCD-24-e70455-g001.gif?></graphic></fig></sec></sec><sec id="jocd70455-sec-0022"><label>3.3</label><title>Subjective Evaluation</title><p>Statistically significant improvements were observed in the GAIS and WSRS scores compared to baseline. The GAIS scores of the participants and the physicians improved after 1 and 3 months. Compared to the control side, the combined side showed statistically significant differences in GAIS scores at month 3 (Table <xref rid="jocd70455-tbl-0004" ref-type="table">4</xref> and Figure <xref rid="jocd70455-fig-0003" ref-type="fig">3</xref>). At the second follow‐up, the GAIS scores of the participants and the physicians on the combined side were significantly increased to 2.95 ± 0.05 and 2.94 ± 0.07, respectively, compared to 2.66 ± 0.04 and 2.54 ± 0.04 (<italic toggle="yes">p</italic> &lt; 0.05). At baseline, the mean WSRS score was 2.96 ± 0.73 for both sides. The WSRS scores on the combined side significantly decreased from baseline to 2.15 ± 0.56 and 2.11 ± 0.64 at 1 and 3 months, respectively (<italic toggle="yes">p</italic> &lt; 0.05 at all follow‐up visits). The mean absolute change from baseline in WSRS score on the combined side at 1 and 3 months was −0.81 and −0.85, respectively, compared to −0.65 and −0.58 on the control side. The percentage of participants who were either “very satisfied” or “satisfied” consistently exceeded 90% throughout the study duration across all groups. However, two patients on the control side still maintained a neutral attitude toward the outcome of the therapy (Supporting Information Figure <xref rid="jocd70455-supitem-0002" ref-type="supplementary-material">S2</xref>).</p><table-wrap position="float" id="jocd70455-tbl-0004" content-type="TABLE" orientation="portrait"><label>TABLE 4</label><caption><p>The GAIS scores of the patients and physicians.</p></caption><table frame="hsides" rules="groups"><col align="left" span="1"/><col align="center" span="1"/><col align="center" span="1"/><col align="center" span="1"/><col align="center" span="1"/><thead valign="bottom"><tr style="border-bottom:solid 1px #000000"><th align="left" valign="bottom" rowspan="1" colspan="1">GAIS scores</th><th align="center" valign="bottom" rowspan="1" colspan="1">Follow‐up</th><th align="center" valign="bottom" rowspan="1" colspan="1">MFU + MFR</th><th align="center" valign="bottom" rowspan="1" colspan="1">MFU</th><th align="center" valign="bottom" rowspan="1" colspan="1">
+<italic toggle="yes">p</italic>
+</th></tr></thead><tbody valign="top"><tr><td align="left" rowspan="2" valign="top" colspan="1">Patient</td><td align="center" valign="top" rowspan="1" colspan="1">Month 1</td><td align="center" valign="top" rowspan="1" colspan="1">2.77 ± 0.06</td><td align="center" valign="top" rowspan="1" colspan="1">2.52 ± 0.03</td><td align="center" valign="top" rowspan="1" colspan="1">&gt; 0.05</td></tr><tr><td align="center" valign="top" rowspan="1" colspan="1">Month 3</td><td align="center" valign="top" rowspan="1" colspan="1">2.95 ± 0.05</td><td align="center" valign="top" rowspan="1" colspan="1">2.66 ± 0.04</td><td align="center" valign="top" rowspan="1" colspan="1">0.047*</td></tr><tr><td align="left" rowspan="2" valign="top" colspan="1">Physician</td><td align="center" valign="top" rowspan="1" colspan="1">Month 1</td><td align="center" valign="top" rowspan="1" colspan="1">2.66 ± 0.05</td><td align="center" valign="top" rowspan="1" colspan="1">2.48 ± 0.02</td><td align="center" valign="top" rowspan="1" colspan="1">&gt; 0.05</td></tr><tr><td align="center" valign="top" rowspan="1" colspan="1">Month 3</td><td align="center" valign="top" rowspan="1" colspan="1">2.94 ± 0.07</td><td align="center" valign="top" rowspan="1" colspan="1">2.54 ± 0.04</td><td align="center" valign="top" rowspan="1" colspan="1">0.028*</td></tr></tbody></table><table-wrap-foot id="jocd70455-ntgp-0004"><fn id="jocd70455-note-0005"><p>
+<italic toggle="yes">Note:</italic> Compared with baseline: *<italic toggle="yes">p</italic> &lt; 0.05.</p></fn></table-wrap-foot></table-wrap><fig position="float" fig-type="FIGURE" id="jocd70455-fig-0003" orientation="portrait"><label>FIGURE 3</label><caption><p>The violin graph of the GAIS scores of (A) patients and (B) physicians. (C) The improvements in skin tightness and jaw line clarity of a 43‐year‐old female patient.</p></caption><graphic xmlns:xlink="http://www.w3.org/1999/xlink" position="anchor" id="jats-graphic-5" orientation="portrait" xlink:href="JOCD-24-e70455-g003.jpg"><?image-name JOCD-24-e70455-g003.jpg?><?image-size 111107?><?image-md5 a720d675f1e63276e6165cb2fccf692d?><?image-image-server-status LOAD_COMPLETED?><?image-original-height 1119?><?image-original-width 1064?><?image-scaled-height 746?><?image-scaled-width 709?><?image-cloudpmc-urn urn:cdn:blobs/8c4b/12452053/a720d675f1e6/JOCD-24-e70455-g003.jpg?><?thumb-name JOCD-24-e70455-g003.gif?><?thumb-size 15193?><?thumb-md5 64fa56558b8a18b9ae7ac8654b383160?><?thumb-image-server-status NEVER_LOAD?><?thumb-scaled-height 105?><?thumb-scaled-width 100?><?thumb-cloudpmc-urn urn:cdn:blobs/8c4b/12452053/64fa56558b8a/JOCD-24-e70455-g003.gif?></graphic></fig></sec><sec id="jocd70455-sec-0023"><label>3.4</label><title>Safety and Side Effects</title><p>During the treatment, it was observed that MFR caused slightly stronger pain (mean score 3.29, range 1–6) compared to MFU (mean score 2.58, range 1–4). All the participants experienced slight erythema, purpura, or edema, along with a mild sensation of heat post‐treatment. Erythema usually subsided within a few hours after treatment, while swelling normally abated within 3–72 h without special interventions. In cases of significant erythema and swelling, intermittent cold or ice compresses were found to be effective in mitigating symptoms. Notably, no patients experienced scabbing, pruritus, red rash, hyperpigmentation, or hypopigmentation as adverse effects of the treatment.</p></sec></sec><sec sec-type="discussion" id="jocd70455-sec-0024"><label>4</label><title>Discussion</title><p>This study represents a novel approach by combining MFU and MFR for skin rejuvenation. The primary objective of this study was to evaluate the efficacy and safety of a combined therapy utilizing MFU and MFR in stratified anti‐aging interventions. Compared to using MFU therapy alone, the combination therapy yielded superior outcomes in reducing wrinkles and improving skin texture and significantly enhancing the treatment of skin pigmentation, enlarged pores, and subcutaneous fat.</p><p>Our research demonstrates that the use of MFU as a standalone intervention effectively elevates and firms facial skin, corroborating previous findings in the field [<xref rid="jocd70455-bib-0031" ref-type="bibr">31</xref>, <xref rid="jocd70455-bib-0032" ref-type="bibr">32</xref>]. The absolute scores for wrinkles and texture on the control side improved significantly compared to baseline. Ultrasound results revealed a significant reduction in the thickness of subcutaneous fat on the control side, aligning with prior studies [<xref rid="jocd70455-bib-0033" ref-type="bibr">33</xref>]. The MFU device employed in our study offers treatment options at depths of 4.5, 3.0, and 2.0 mm. The MFU transducer at the depth of 4.5 mm effectively and precisely delivers energy to the SMAS, a complex fibro‐fat layer composed of collagen and elastic fibers interspersed among fat cells, inducing immediate collagen contraction and promoting subsequent collagen regeneration and remodeling [<xref rid="jocd70455-bib-0034" ref-type="bibr">34</xref>]. The MFU transducer at the depth of 3.0 mm primarily targets the melting of subcutaneous adipose tissue, resulting in the final phagocytosis of decomposed fat cell contents by macrophages [<xref rid="jocd70455-bib-0035" ref-type="bibr">35</xref>]. The MFU transducer at the depth of 2.0 mm acts on the dermis, which can stimulate collagen regeneration, tighten fine lines, and shrink pore and delicate skin [<xref rid="jocd70455-bib-0028" ref-type="bibr">28</xref>]. Overall, MFU demonstrates significant potential for non‐invasive skin tightening and wrinkle improvement, offering promising prospects for facial rejuvenation.</p><p>MFR, known for its safety profile, minimal side effects, and short recovery period, has shown positive outcomes in anti‐aging treatments. Numerous studies provide evidence that MFR can effectively reduce enlarged pores [<xref rid="jocd70455-bib-0036" ref-type="bibr">36</xref>], control inflammation [<xref rid="jocd70455-bib-0037" ref-type="bibr">37</xref>] and diminish wrinkles [<xref rid="jocd70455-bib-0038" ref-type="bibr">38</xref>]. Consistently, our study showed that the absolute scores of texture, pores, red area, and wrinkles on the combined side were significantly decreased, and the improvement ratios surpassed the control side with statistically significant difference. MFR has the capacity to induce the production of collagen and elastin, reinforce the integrity of pores, and impair the functionality of sebaceous glands, resulting in reduced sebum secretion and ultimately leading to pore constriction and less inflammation [<xref rid="jocd70455-bib-0039" ref-type="bibr">39</xref>]. Compared to treatment with MFU alone, the changes in thickness of subcutaneous fat on the combined side were statistically significant during the two follow‐ups. MFR is capable of heating and coagulating the subcutaneous tissue, including dermis, fascia, and fat layer, depending on the depth of insertion [<xref rid="jocd70455-bib-0040" ref-type="bibr">40</xref>]. The novel MFR system used in this study allows for layered heating as the needle is withdrawn, unlike traditional insulating needles that can only release energy at 0.3 mm. With disordered scanning technology and customized power and pulse width for each layer, the outcomes were transformed from two‐dimensional to three‐dimensional. This process stimulates collagen regeneration, fascia contraction, and fat lipolysis, resulting in skin rejuvenation and a more defined facial contour [<xref rid="jocd70455-bib-0041" ref-type="bibr">41</xref>].</p><p>We unexpectedly discovered that the combination of MFU and MFR improves skin depigmentation through a synergistic effect. The results indicated a lasting and more pronounced reduction of ultraviolet spots and brown spots on the combined side compared with being treated by MFU alone. Previous studies have demonstrated the promising clinical effect of MFR in the treatment of melasma [<xref rid="jocd70455-bib-0042" ref-type="bibr">42</xref>]. Microneedles can stimulate dermal tissue and reconstruct the structure of the dermis, facilitating the regulation of pigment granule metabolism and vascular function [<xref rid="jocd70455-bib-0043" ref-type="bibr">43</xref>]. Additionally, this combination promotes collagen production in local skin tissue and enhances skin barrier function, creating a foundation for diminishing pigment fragments [<xref rid="jocd70455-bib-0044" ref-type="bibr">44</xref>]. The effect of MFU on pigmentation observed in this study aligns with previous findings. This may be attributed to the vibrations and friction generated by ultrasound propagation, which can mechanically disrupt or eliminate melanin and pigment fragments above the TIZs [<xref rid="jocd70455-bib-0045" ref-type="bibr">45</xref>, <xref rid="jocd70455-bib-0046" ref-type="bibr">46</xref>, <xref rid="jocd70455-bib-0047" ref-type="bibr">47</xref>]. The pigments and pigment fragments produced during this process may recruit macrophages, triggering a response similar to that seen in laser tattoo removal, thereby promoting pigment and epidermal metabolism [<xref rid="jocd70455-bib-0044" ref-type="bibr">44</xref>]. Our study further demonstrated that the combined therapy resulted in a more pronounced reduction of fat pads, likely due to synergistic effects. MFU targets ultrasonic energy at the subcutaneous fat layers without damaging the epidermis, thereby promoting the breakdown and metabolism of fat cells [<xref rid="jocd70455-bib-0048" ref-type="bibr">48</xref>, <xref rid="jocd70455-bib-0049" ref-type="bibr">49</xref>, <xref rid="jocd70455-bib-0050" ref-type="bibr">50</xref>]. MFR, on the other hand, delivers radiofrequency energy directly to the deeper layers through microneedles, effectively stimulating collagen regeneration and skin firmness [<xref rid="jocd70455-bib-0051" ref-type="bibr">51</xref>, <xref rid="jocd70455-bib-0052" ref-type="bibr">52</xref>]. This technique not only improves skin texture and reduces sagging but also promotes fat cell breakdown and volume redistribution through thermal effects, thereby optimizing facial contours [<xref rid="jocd70455-bib-0053" ref-type="bibr">53</xref>, <xref rid="jocd70455-bib-0054" ref-type="bibr">54</xref>]. When combined with MFR, this approach creates a synergistic effect that more effectively reduces fat deposits and enhances facial contour reshaping.</p><p>The significant improvements observed in the VISIA parameters in this study have substantial clinical implications for facial rejuvenation. The reduction in wrinkles and the improvement in skin texture on the combined side reflect enhancements in skin smoothness and firmness. These improvements are corroborated by significant enhancements in GAIS and WSRS scores compared to baseline. Additionally, the decrease in UV spots and brown spots, which are often the result of UV damage and aging, indicates effective pigmentation management. Furthermore, over 90% of participants reported being “very satisfied” or “satisfied” throughout the study, underscoring the clinical relevance of the observed improvements in VISIA parameters.</p><p>Given that both MFU and MFR rely on thermal stimulation for their efficacy, we opted to schedule these two treatments in a specific order on the same day to minimize the risk of significant thermal damage and subsequent adverse reactions. In regard to safety and comfort, no intramuscular anesthetics or painkillers were needed, while there were comparatively lower VAS scores of MFU and MFR. Our results indicated that this arrangement did not impact treatment outcomes or cause any serious side effects. The single pulse of the novel MFU device was comparably short, with a pulse width of less than 50 ms [<xref rid="jocd70455-bib-0055" ref-type="bibr">55</xref>]. This extremely short pulse duration could reduce pain sensation and minimize side effects. By concentrating its energy at the tip, the novel MFR device effectively reduces the likelihood of epidermal involvement and mitigates associated risks. Additionally, it utilizes disordered scanning technology, which involves two needles in groups releasing energy simultaneously, resulting in increased energy strength and reduced pain in the treatment region. The upgraded MFR outputs high‐frequency current with ultra‐short pulse sequences, allowing for rapid energy transmission that effectively mitigates skin pain by preempting signal transmission to the brain.</p><p>We argue that a multilayered approach to anti‐aging is both safe and effective. It is our belief that the simultaneous application of anti‐aging treatments targeting diverse skin layers can lead to more effective rejuvenation. The validation of this claim could be supported by relatively lower VAS scores, higher GAIS scores of both patients and physicians, as well as a higher satisfaction rate reported by patients treated with combined therapy. Furthermore, the positive outcomes of the combined therapy persisted for 3 months post‐treatment, indicating a lasting rejuvenation effect. The utilization of combined therapy offers a comfortable and effective treatment approach.</p><p>However, this study has some limitations. First, the study included a small patient cohort and lacked long‐term follow‐up. The efficacy of a singular treatment remains inconclusive, necessitating multiple treatments. Future studies with larger sample sizes and prolonged follow‐up periods should be conducted to validate our results and further ascertain the long‐term effects of the novel MFU and MFR. Second, there was an imbalance in the participants' gender distribution, with 25 out of 26 participants being female. We plan to assess the effectiveness of these technologies in male subjects in future studies. Third, although ultrasound imaging and digital assessments were used to evaluate contour changes, potential bias may have arisen from micro‐expression changes and subtle head movements. More precise equipment should be adopted in the future to accurately evaluate subtle changes that may be difficult to distinguish by the investigator.</p></sec><sec sec-type="conclusions" id="jocd70455-sec-0025"><label>5</label><title>Conclusions</title><p>Our study investigated the safety and effectiveness of MFU combined with MFR for anti‐aging treatment across different facial layers in a single treatment. The combined approach is deemed highly safe with comparatively low pain and has demonstrated enhanced effects in skin tightening, pigment reduction, and pore refinement.</p></sec><sec id="jocd70455-sec-0026"><title>Author Contributions</title><p>Ruiyao Wang, Guangling Peng, Yangmei Chen, and Jin Chen contributed to the study's conception and design. Ruiyao Wang and Guangling Peng contributed to the acquisition of data and writing of the initial article. Ruiyao Wang, Yangmei Chen, Jin Chen, and Lin Liu performed the statistical analyses and interpretation of data. Xinyi Shao, Tingqiao Chen, Megcen Shi, Judan Zhong, and Yi Ou provided editing support. All authors contributed to the interpretation and analysis of the literature, as well as careful and critical revision and approval of the final manuscript.</p></sec><sec id="jocd70455-sec-0027"><title>Ethics Statement</title><p>The present study was approved by the Ethics Committee of the First Affiliated Hospital of Chongqing Medical University (approval date: October 16, 2023; clinical trial ethic number: 2023‐448). Written informed consent was obtained from each participant before enrollment, and this study adhered to the Principle of the Declaration of Helsinki.</p></sec><sec sec-type="COI-statement" id="jocd70455-sec-0030"><title>Conflicts of Interest</title><p>The authors declare no conflicts of interest.</p></sec><sec sec-type="supplementary-material"><title>Supporting information</title><supplementary-material id="jocd70455-supitem-0001" position="float" content-type="local-data" orientation="portrait"><caption><p>
+<bold>Data S1:</bold> jocd70455‐sup‐0001‐FigureS1.tif.</p></caption><media xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="JOCD-24-e70455-s003.tif" position="float" orientation="portrait"><?suppdata-name JOCD-24-e70455-s003.tif?><?suppdata-size 5824244?><?suppdata-md5 d0e296731b308e852d6779083acdb935?><?suppdata-image-server-status NEVER_LOAD?><?suppdata-mime-type image?><?suppdata-mime-sub-type tiff?><?suppdata-cloudpmc-urn urn:app:8c4b/12452053/d0e296731b30/JOCD-24-e70455-s003.tif?></media></supplementary-material><supplementary-material id="jocd70455-supitem-0002" position="float" content-type="local-data" orientation="portrait"><caption><p>
+<bold>Data S2:</bold> jocd70455‐sup‐0002‐FigureS2.tif.</p></caption><media xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="JOCD-24-e70455-s002.tif" position="float" orientation="portrait"><?suppdata-name JOCD-24-e70455-s002.tif?><?suppdata-size 2388015?><?suppdata-md5 a8fd10685ea7560f6130add4f6efd48c?><?suppdata-image-server-status NEVER_LOAD?><?suppdata-mime-type image?><?suppdata-mime-sub-type tiff?><?suppdata-cloudpmc-urn urn:app:8c4b/12452053/a8fd10685ea7/JOCD-24-e70455-s002.tif?></media></supplementary-material><supplementary-material id="jocd70455-supitem-0003" position="float" content-type="local-data" orientation="portrait"><caption><p>
+<bold>Data S3:</bold> jocd70455‐sup‐0003‐TableS1.docx.</p></caption><media xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="JOCD-24-e70455-s001.docx" position="float" orientation="portrait"><?suppdata-name JOCD-24-e70455-s001.docx?><?suppdata-size 14796?><?suppdata-md5 bdc8ab16fc19311851a3cc9dc8872ec7?><?suppdata-image-server-status NEVER_LOAD?><?suppdata-mime-type application?><?suppdata-mime-sub-type vnd.openxmlformats-officedocument.wordprocessingml.document?><?suppdata-cloudpmc-urn urn:app:8c4b/12452053/bdc8ab16fc19/JOCD-24-e70455-s001.docx?></media></supplementary-material></sec></body><back><sec sec-type="data-availability" id="jocd70455-sec-0029"><title>Data Availability Statement</title><p>The datasets used during the current study are available from the corresponding author upon reasonable request.</p></sec><ref-list content-type="cited-references" id="jocd70455-bibl-0001"><title>References</title><ref id="jocd70455-bib-0001"><label>1</label><mixed-citation publication-type="journal" id="jocd70455-cit-0001">
+<string-name name-style="western">
+<given-names>E.</given-names>
+<surname>Kohl</surname>
+</string-name>, <string-name name-style="western">
+<given-names>J.</given-names>
+<surname>Steinbauer</surname>
+</string-name>, <string-name name-style="western">
+<given-names>M.</given-names>
+<surname>Landthaler</surname>
+</string-name>, and <string-name name-style="western">
+<given-names>R. M.</given-names>
+<surname>Szeimies</surname>
+</string-name>, “<article-title>Skin Ageing</article-title>,” <source>Journal of the European Academy of Dermatology and Venereology</source>
+<volume>25</volume>, no. <issue>8</issue> (<year>2011</year>): <fpage>873</fpage>–<lpage>884</lpage>, <pub-id pub-id-type="doi">10.1111/j.1468-3083.2010.03963.x</pub-id>.<pub-id pub-id-type="pmid">21261751</pub-id>
+</mixed-citation></ref><ref id="jocd70455-bib-0002"><label>2</label><mixed-citation publication-type="journal" id="jocd70455-cit-0002">
+<string-name name-style="western">
+<given-names>F.</given-names>
+<surname>Bonté</surname>
+</string-name>, <string-name name-style="western">
+<given-names>D.</given-names>
+<surname>Girard</surname>
+</string-name>, <string-name name-style="western">
+<given-names>J. C.</given-names>
+<surname>Archambault</surname>
+</string-name>, and <string-name name-style="western">
+<given-names>A.</given-names>
+<surname>Desmoulière</surname>
+</string-name>, “<article-title>Skin Changes During Ageing</article-title>,” <source>Sub‐Cellular Biochemistry</source>
+<volume>91</volume> (<year>2019</year>): <fpage>249</fpage>–<lpage>280</lpage>, <pub-id pub-id-type="doi">10.1007/978-981-13-3681-2_10</pub-id>.<pub-id pub-id-type="pmid">30888656</pub-id>
+</mixed-citation></ref><ref id="jocd70455-bib-0003"><label>3</label><mixed-citation publication-type="journal" id="jocd70455-cit-0003">
+<string-name name-style="western">
+<given-names>T. M.</given-names>
+<surname>Ansary</surname>
+</string-name>, <string-name name-style="western">
+<given-names>M. R.</given-names>
+<surname>Hossain</surname>
+</string-name>, <string-name name-style="western">
+<given-names>K.</given-names>
+<surname>Kamiya</surname>
+</string-name>, <string-name name-style="western">
+<given-names>M.</given-names>
+<surname>Komine</surname>
+</string-name>, and <string-name name-style="western">
+<given-names>M.</given-names>
+<surname>Ohtsuki</surname>
+</string-name>, “<article-title>Inflammatory Molecules Associated With Ultraviolet Radiation‐Mediated Skin Aging</article-title>,” <source>International Journal of Molecular Sciences</source>
+<volume>22</volume>, no. <issue>8</issue> (<year>2021</year>): <fpage>3974</fpage>, <pub-id pub-id-type="doi">10.3390/ijms22083974</pub-id>.<pub-id pub-id-type="pmid">33921444</pub-id>
+<pub-id pub-id-type="pmcid">PMC8069861</pub-id></mixed-citation></ref><ref id="jocd70455-bib-0004"><label>4</label><mixed-citation publication-type="journal" id="jocd70455-cit-0004">
+<string-name name-style="western">
+<given-names>M.</given-names>
+<surname>Chaudhary</surname>
+</string-name>, <string-name name-style="western">
+<given-names>A.</given-names>
+<surname>Khan</surname>
+</string-name>, and <string-name name-style="western">
+<given-names>M.</given-names>
+<surname>Gupta</surname>
+</string-name>, “<article-title>Skin Ageing: Pathophysiology and Current Market Treatment Approaches</article-title>,” <source>Current Aging Science</source>
+<volume>13</volume>, no. <issue>1</issue> (<year>2020</year>): <fpage>22</fpage>–<lpage>30</lpage>, <pub-id pub-id-type="doi">10.2174/1567205016666190809161115</pub-id>.<pub-id pub-id-type="pmid">31530270</pub-id>
+<pub-id pub-id-type="pmcid">PMC7403684</pub-id></mixed-citation></ref><ref id="jocd70455-bib-0005"><label>5</label><mixed-citation publication-type="journal" id="jocd70455-cit-0005">
+<string-name name-style="western">
+<given-names>T. W.</given-names>
+<surname>Griffiths</surname>
+</string-name>, <string-name name-style="western">
+<given-names>R. E. B.</given-names>
+<surname>Watson</surname>
+</string-name>, and <string-name name-style="western">
+<given-names>A. K.</given-names>
+<surname>Langton</surname>
+</string-name>, “<article-title>Skin Ageing and Topical Rejuvenation Strategies</article-title>,” <source>British Journal of Dermatology</source>
+<volume>189</volume>, no. <issue>Suppl 1</issue> (<year>2023</year>): <fpage>i17</fpage>–<lpage>i23</lpage>, <pub-id pub-id-type="doi">10.1093/bjd/ljad282</pub-id>.<pub-id pub-id-type="pmid">37903073</pub-id>
+</mixed-citation></ref><ref id="jocd70455-bib-0006"><label>6</label><mixed-citation publication-type="journal" id="jocd70455-cit-0006">
+<string-name name-style="western">
+<given-names>F. G.</given-names>
+<surname>Fedok</surname>
+</string-name> and <string-name name-style="western">
+<given-names>J. G.</given-names>
+<surname>Lighthall</surname>
+</string-name>, “<article-title>Evaluation and Treatment Planning for the Aging Face Patient</article-title>,” <source>Clinics in Plastic Surgery</source>
+<volume>50</volume>, no. <issue>3</issue> (<year>2023</year>): <fpage>367</fpage>–<lpage>380</lpage>, <pub-id pub-id-type="doi">10.1016/j.cps.2022.12.002</pub-id>.<pub-id pub-id-type="pmid">37169403</pub-id>
+</mixed-citation></ref><ref id="jocd70455-bib-0007"><label>7</label><mixed-citation publication-type="journal" id="jocd70455-cit-0007">
+<string-name name-style="western">
+<given-names>S.</given-names>
+<surname>Zhang</surname>
+</string-name> and <string-name name-style="western">
+<given-names>E.</given-names>
+<surname>Duan</surname>
+</string-name>, “<article-title>Fighting Against Skin Aging: The Way From Bench to Bedside</article-title>,” <source>Cell Transplantation</source>
+<volume>27</volume>, no. <issue>5</issue> (<year>2018</year>): <fpage>729</fpage>–<lpage>738</lpage>, <pub-id pub-id-type="doi">10.1177/0963689717725755</pub-id>.<pub-id pub-id-type="pmid">29692196</pub-id>
+<pub-id pub-id-type="pmcid">PMC6047276</pub-id></mixed-citation></ref><ref id="jocd70455-bib-0008"><label>8</label><mixed-citation publication-type="journal" id="jocd70455-cit-0008">
+<string-name name-style="western">
+<given-names>J.</given-names>
+<surname>Zhu</surname>
+</string-name>, <string-name name-style="western">
+<given-names>X.</given-names>
+<surname>Ji</surname>
+</string-name>, <string-name name-style="western">
+<given-names>Y.</given-names>
+<surname>Xu</surname>
+</string-name>, et al., “<article-title>The Efficacy of Intradermal Injection of Type A Botulinum Toxin for Facial Rejuvenation</article-title>,” <source>Dermatologic Therapy</source>
+<volume>30</volume>, no. <issue>1</issue> (<year>2017</year>): <elocation-id>e12433</elocation-id>, <pub-id pub-id-type="doi">10.1111/dth.12433</pub-id>.<pub-id pub-id-type="pmid">27862727</pub-id></mixed-citation></ref><ref id="jocd70455-bib-0009"><label>9</label><mixed-citation publication-type="journal" id="jocd70455-cit-0009">
+<string-name name-style="western">
+<given-names>S.</given-names>
+<surname>Yildirim</surname>
+</string-name>, <string-name name-style="western">
+<given-names>M. S.</given-names>
+<surname>Gurel</surname>
+</string-name>, <string-name name-style="western">
+<given-names>S.</given-names>
+<surname>Gungor</surname>
+</string-name>, <string-name name-style="western">
+<given-names>O.</given-names>
+<surname>Tekeli</surname>
+</string-name>, and <string-name name-style="western">
+<given-names>D.</given-names>
+<surname>Canat</surname>
+</string-name>, “<article-title>Comparison of Efficacy of Chemical Peeling With 25% Trichloroacetic Acid and 0.1% Retinoic Acid for Facial Rejuvenation</article-title>,” <source>Postępy Dermatologii I Alergologii</source>
+<volume>33</volume>, no. <issue>3</issue> (<year>2016</year>): <fpage>199</fpage>–<lpage>205</lpage>, <pub-id pub-id-type="doi">10.5114/ada.2016.60612</pub-id>.<pub-id pub-id-type="pmid">27512355</pub-id>
+<pub-id pub-id-type="pmcid">PMC4969415</pub-id></mixed-citation></ref><ref id="jocd70455-bib-0010"><label>10</label><mixed-citation publication-type="journal" id="jocd70455-cit-0010">
+<string-name name-style="western">
+<given-names>M.</given-names>
+<surname>El‐Domyati</surname>
+</string-name>, <string-name name-style="western">
+<given-names>T.</given-names>
+<surname>Abd‐El‐Raheem</surname>
+</string-name>, <string-name name-style="western">
+<given-names>W.</given-names>
+<surname>Medhat</surname>
+</string-name>, <string-name name-style="western">
+<given-names>H.</given-names>
+<surname>Abdel‐Wahab</surname>
+</string-name>, and <string-name name-style="western">
+<given-names>M.</given-names>
+<surname>Al Anwer</surname>
+</string-name>, “<article-title>Multiple Fractional Erbium: Yttrium‐Aluminum‐Garnet Laser Sessions for Upper Facial Rejuvenation: Clinical and Histological Implications and Expectations</article-title>,” <source>Journal of Cosmetic Dermatology</source>
+<volume>13</volume>, no. <issue>1</issue> (<year>2014</year>): <fpage>30</fpage>–<lpage>37</lpage>, <pub-id pub-id-type="doi">10.1111/jocd.12079</pub-id>.<pub-id pub-id-type="pmid">24641603</pub-id>
+</mixed-citation></ref><ref id="jocd70455-bib-0011"><label>11</label><mixed-citation publication-type="journal" id="jocd70455-cit-0011">
+<string-name name-style="western">
+<given-names>M.</given-names>
+<surname>Raffaini</surname>
+</string-name>, <string-name name-style="western">
+<given-names>A.</given-names>
+<surname>Magri</surname>
+</string-name>, <string-name name-style="western">
+<given-names>M.</given-names>
+<surname>Conti</surname>
+</string-name>, and <string-name name-style="western">
+<given-names>F.</given-names>
+<surname>Arcuri</surname>
+</string-name>, “<article-title>Advanced Facial Rejuvenation After Bimaxillary Surgery in Three Different Facial Types</article-title>,” <source>Aesthetic Plastic Surgery</source>
+<volume>46</volume>, no. <issue>1</issue> (<year>2022</year>): <fpage>183</fpage>–<lpage>193</lpage>, <pub-id pub-id-type="doi">10.1007/s00266-021-02399-w</pub-id>.<pub-id pub-id-type="pmid">34131790</pub-id>
+</mixed-citation></ref><ref id="jocd70455-bib-0012"><label>12</label><mixed-citation publication-type="journal" id="jocd70455-cit-0012">
+<string-name name-style="western">
+<given-names>Z.</given-names>
+<surname>Li</surname>
+</string-name>, <string-name name-style="western">
+<given-names>H.</given-names>
+<surname>Wu</surname>
+</string-name>, <string-name name-style="western">
+<given-names>Z.</given-names>
+<surname>Yang</surname>
+</string-name>, et al., “<article-title>Combining Liposuction and Thread‐Lifting for Middle‐Lower Facial Rejuvenation</article-title>,” <source>Aesthetic Plastic Surgery</source>
+<volume>48</volume>, no. <issue>9</issue> (<year>2024</year>): <fpage>1672</fpage>–<lpage>1678</lpage>, <pub-id pub-id-type="doi">10.1007/s00266-024-03872-y</pub-id>.<pub-id pub-id-type="pmid">38448603</pub-id>
+</mixed-citation></ref><ref id="jocd70455-bib-0013"><label>13</label><mixed-citation publication-type="journal" id="jocd70455-cit-0013">
+<string-name name-style="western">
+<given-names>I.</given-names>
+<surname>Pitanguy</surname>
+</string-name> and <string-name name-style="western">
+<given-names>B. H.</given-names>
+<surname>Machado</surname>
+</string-name>, “<article-title>Facial Rejuvenation Surgery: A Retrospective Study of 8788 Cases</article-title>,” <source>Aesthetic Surgery Journal</source>
+<volume>32</volume>, no. <issue>4</issue> (<year>2012</year>): <fpage>393</fpage>–<lpage>412</lpage>, <pub-id pub-id-type="doi">10.1177/1090820x12438895</pub-id>.<pub-id pub-id-type="pmid">22375057</pub-id>
+</mixed-citation></ref><ref id="jocd70455-bib-0014"><label>14</label><mixed-citation publication-type="journal" id="jocd70455-cit-0014">
+<string-name name-style="western">
+<given-names>B.</given-names>
+<surname>Azizzadeh</surname>
+</string-name>, <string-name name-style="western">
+<given-names>R.</given-names>
+<surname>Fitzgerald</surname>
+</string-name>, <string-name name-style="western">
+<given-names>G.</given-names>
+<surname>Massry</surname>
+</string-name>, and <string-name name-style="western">
+<given-names>E.</given-names>
+<surname>Smith</surname>
+</string-name>, “<article-title>Subunit Approach to Facelifting and Facial Rejuvenation</article-title>,” <source>Facial Plastic Surgery Clinics of North America</source>
+<volume>28</volume>, no. <issue>3</issue> (<year>2020</year>): <fpage>253</fpage>–<lpage>272</lpage>, <pub-id pub-id-type="doi">10.1016/j.fsc.2020.03.004</pub-id>.<pub-id pub-id-type="pmid">32503713</pub-id>
+</mixed-citation></ref><ref id="jocd70455-bib-0015"><label>15</label><mixed-citation publication-type="journal" id="jocd70455-cit-0015">
+<string-name name-style="western">
+<given-names>P. K.</given-names>
+<surname>Sullivan</surname>
+</string-name>, <string-name name-style="western">
+<given-names>E. A.</given-names>
+<surname>Hoy</surname>
+</string-name>, <string-name name-style="western">
+<given-names>V.</given-names>
+<surname>Mehan</surname>
+</string-name>, and <string-name name-style="western">
+<given-names>D. P.</given-names>
+<surname>Singer</surname>
+</string-name>, “<article-title>An Anatomical Evaluation and Surgical Approach to the Perioral Mound in Facial Rejuvenation</article-title>,” <source>Plastic and Reconstructive Surgery</source>
+<volume>126</volume>, no. <issue>4</issue> (<year>2010</year>): <fpage>1333</fpage>–<lpage>1340</lpage>, <pub-id pub-id-type="doi">10.1097/PRS.0b013e3181ea4abd</pub-id>.<pub-id pub-id-type="pmid">20885255</pub-id>
+</mixed-citation></ref><ref id="jocd70455-bib-0016"><label>16</label><mixed-citation publication-type="journal" id="jocd70455-cit-0016">
+<string-name name-style="western">
+<given-names>M. I.</given-names>
+<surname>Rendon</surname>
+</string-name>, <string-name name-style="western">
+<given-names>D. S.</given-names>
+<surname>Berson</surname>
+</string-name>, <string-name name-style="western">
+<given-names>J. L.</given-names>
+<surname>Cohen</surname>
+</string-name>, <string-name name-style="western">
+<given-names>W. E.</given-names>
+<surname>Roberts</surname>
+</string-name>, <string-name name-style="western">
+<given-names>I.</given-names>
+<surname>Starker</surname>
+</string-name>, and <string-name name-style="western">
+<given-names>B.</given-names>
+<surname>Wang</surname>
+</string-name>, “<article-title>Evidence and Considerations in the Application of Chemical Peels in Skin Disorders and Aesthetic Resurfacing</article-title>,” <source>Journal of Clinical and Aesthetic Dermatology</source>
+<volume>3</volume>, no. <issue>7</issue> (<year>2010</year>): <fpage>32</fpage>–<lpage>43</lpage>.<pub-id pub-id-type="pmcid">PMC2921757</pub-id><pub-id pub-id-type="pmid">20725555</pub-id></mixed-citation></ref><ref id="jocd70455-bib-0017"><label>17</label><mixed-citation publication-type="journal" id="jocd70455-cit-0017">
+<string-name name-style="western">
+<given-names>J. D.</given-names>
+<surname>Meaike</surname>
+</string-name>, <string-name name-style="western">
+<given-names>N.</given-names>
+<surname>Agrawal</surname>
+</string-name>, <string-name name-style="western">
+<given-names>D.</given-names>
+<surname>Chang</surname>
+</string-name>, <string-name name-style="western">
+<given-names>E. I.</given-names>
+<surname>Lee</surname>
+</string-name>, and <string-name name-style="western">
+<given-names>M. G.</given-names>
+<surname>Nigro</surname>
+</string-name>, “<article-title>Noninvasive Facial Rejuvenation. Part 3: Physician‐Directed‐Lasers, Chemical Peels, and Other Noninvasive Modalities</article-title>,” <source>Seminars in Plastic Surgery</source>
+<volume>30</volume>, no. <issue>3</issue> (<year>2016</year>): <fpage>143</fpage>–<lpage>150</lpage>, <pub-id pub-id-type="doi">10.1055/s-0036-1584818</pub-id>.<pub-id pub-id-type="pmid">27478423</pub-id>
+<pub-id pub-id-type="pmcid">PMC4961506</pub-id></mixed-citation></ref><ref id="jocd70455-bib-0018"><label>18</label><mixed-citation publication-type="journal" id="jocd70455-cit-0018">
+<string-name name-style="western">
+<given-names>J.</given-names>
+<surname>Fanning</surname>
+</string-name>, <string-name name-style="western">
+<given-names>C.</given-names>
+<surname>Jacob</surname>
+</string-name>, <string-name name-style="western">
+<given-names>I.</given-names>
+<surname>Diaz</surname>
+</string-name>, and <string-name name-style="western">
+<given-names>O.</given-names>
+<surname>Ibrahim</surname>
+</string-name>, “<article-title>Treatment of Mild‐To‐Moderate Facial Cutaneous Aging Using a Combination Peel Containing 6% Trichloroacetic Acid and 12% Lactic Acid</article-title>,” <source>Journal of Cosmetic Dermatology</source>
+<volume>22</volume>, no. <issue>11</issue> (<year>2023</year>): <fpage>3033</fpage>–<lpage>3041</lpage>, <pub-id pub-id-type="doi">10.1111/jocd.15814</pub-id>.<pub-id pub-id-type="pmid">37227430</pub-id>
+</mixed-citation></ref><ref id="jocd70455-bib-0019"><label>19</label><mixed-citation publication-type="journal" id="jocd70455-cit-0019">
+<string-name name-style="western">
+<given-names>Y.</given-names>
+<surname>Gronovich</surname>
+</string-name>, <string-name name-style="western">
+<given-names>Y.</given-names>
+<surname>Raderman</surname>
+</string-name>, <string-name name-style="western">
+<given-names>R.</given-names>
+<surname>Toledano</surname>
+</string-name>, et al., “<article-title>Evaluation of a Novel Ablative 1940 nm Pulsed Laser for Skin Rejuvenation</article-title>,” <source>Lasers in Surgery and Medicine</source>
+<volume>56</volume> (<year>2024</year>): <fpage>592</fpage>–<lpage>596</lpage>, <pub-id pub-id-type="doi">10.1002/lsm.23817</pub-id>.<pub-id pub-id-type="pmid">38890781</pub-id>
+</mixed-citation></ref><ref id="jocd70455-bib-0020"><label>20</label><mixed-citation publication-type="journal" id="jocd70455-cit-0020">
+<string-name name-style="western">
+<given-names>D. H.</given-names>
+<surname>Suh</surname>
+</string-name>, <string-name name-style="western">
+<given-names>M. K.</given-names>
+<surname>Shin</surname>
+</string-name>, <string-name name-style="western">
+<given-names>S. J.</given-names>
+<surname>Lee</surname>
+</string-name>, et al., “<article-title>Intense Focused Ultrasound Tightening in Asian Skin: Clinical and Pathologic Results</article-title>,” <source>Dermatologic Surgery</source>
+<volume>37</volume>, no. <issue>11</issue> (<year>2011</year>): <fpage>1595</fpage>–<lpage>1602</lpage>, <pub-id pub-id-type="doi">10.1111/j.1524-4725.2011.02094.x</pub-id>.<pub-id pub-id-type="pmid">21806707</pub-id>
+</mixed-citation></ref><ref id="jocd70455-bib-0021"><label>21</label><mixed-citation publication-type="journal" id="jocd70455-cit-0021">
+<string-name name-style="western">
+<given-names>G.</given-names>
+<surname>Oni</surname>
+</string-name>, <string-name name-style="western">
+<given-names>R.</given-names>
+<surname>Hoxworth</surname>
+</string-name>, <string-name name-style="western">
+<given-names>S.</given-names>
+<surname>Teotia</surname>
+</string-name>, <string-name name-style="western">
+<given-names>S.</given-names>
+<surname>Brown</surname>
+</string-name>, and <string-name name-style="western">
+<given-names>J. M.</given-names>
+<surname>Kenkel</surname>
+</string-name>, “<article-title>Evaluation of a Microfocused Ultrasound System for Improving Skin Laxity and Tightening in the Lower Face</article-title>,” <source>Aesthetic Surgery Journal</source>
+<volume>34</volume>, no. <issue>7</issue> (<year>2014</year>): <fpage>1099</fpage>–<lpage>1110</lpage>, <pub-id pub-id-type="doi">10.1177/1090820x14541956</pub-id>.<pub-id pub-id-type="pmid">24990884</pub-id>
+</mixed-citation></ref><ref id="jocd70455-bib-0022"><label>22</label><mixed-citation publication-type="journal" id="jocd70455-cit-0022">
+<string-name name-style="western">
+<given-names>H.</given-names>
+<surname>Hugul</surname>
+</string-name>, <string-name name-style="western">
+<given-names>M. C.</given-names>
+<surname>Oba</surname>
+</string-name>, <string-name name-style="western">
+<given-names>M.</given-names>
+<surname>Kirisci</surname>
+</string-name>, and <string-name name-style="western">
+<given-names>Z.</given-names>
+<surname>Kutlubay</surname>
+</string-name>, “<article-title>Focused Radiofrequency and Ultrasound for Face and Neck Rejuvenation: A Retrospective Evaluation of 158 Patients</article-title>,” <source>Journal of Cosmetic Dermatology</source>
+<volume>21</volume>, no. <issue>1</issue> (<year>2022</year>): <fpage>290</fpage>–<lpage>295</lpage>, <pub-id pub-id-type="doi">10.1111/jocd.14510</pub-id>.<pub-id pub-id-type="pmid">34601819</pub-id>
+</mixed-citation></ref><ref id="jocd70455-bib-0023"><label>23</label><mixed-citation publication-type="journal" id="jocd70455-cit-0023">
+<string-name name-style="western">
+<given-names>W. M.</given-names>
+<surname>White</surname>
+</string-name>, <string-name name-style="western">
+<given-names>I. R.</given-names>
+<surname>Makin</surname>
+</string-name>, <string-name name-style="western">
+<given-names>P. G.</given-names>
+<surname>Barthe</surname>
+</string-name>, <string-name name-style="western">
+<given-names>M. H.</given-names>
+<surname>Slayton</surname>
+</string-name>, and <string-name name-style="western">
+<given-names>R. E.</given-names>
+<surname>Gliklich</surname>
+</string-name>, “<article-title>Selective Creation of Thermal Injury Zones in the Superficial Musculoaponeurotic System Using Intense Ultrasound Therapy: A New Target for Noninvasive Facial Rejuvenation</article-title>,” <source>Archives of Facial Plastic Surgery</source>
+<volume>9</volume>, no. <issue>1</issue> (<year>2007</year>): <fpage>22</fpage>–<lpage>29</lpage>, <pub-id pub-id-type="doi">10.1001/archfaci.9.1.22</pub-id>.<pub-id pub-id-type="pmid">17224484</pub-id>
+</mixed-citation></ref><ref id="jocd70455-bib-0024"><label>24</label><mixed-citation publication-type="journal" id="jocd70455-cit-0024">
+<string-name name-style="western">
+<given-names>B. M.</given-names>
+<surname>Hantash</surname>
+</string-name>, <string-name name-style="western">
+<given-names>B.</given-names>
+<surname>Renton</surname>
+</string-name>, <string-name name-style="western">
+<given-names>R. L.</given-names>
+<surname>Berkowitz</surname>
+</string-name>, <string-name name-style="western">
+<given-names>B. C.</given-names>
+<surname>Stridde</surname>
+</string-name>, and <string-name name-style="western">
+<given-names>J.</given-names>
+<surname>Newman</surname>
+</string-name>, “<article-title>Pilot Clinical Study of a Novel Minimally Invasive Bipolar Microneedle Radiofrequency Device</article-title>,” <source>Lasers in Surgery and Medicine</source>
+<volume>41</volume>, no. <issue>2</issue> (<year>2009</year>): <fpage>87</fpage>–<lpage>95</lpage>, <pub-id pub-id-type="doi">10.1002/lsm.20687</pub-id>.<pub-id pub-id-type="pmid">19226570</pub-id>
+</mixed-citation></ref><ref id="jocd70455-bib-0025"><label>25</label><mixed-citation publication-type="journal" id="jocd70455-cit-0025">
+<string-name name-style="western">
+<given-names>J.</given-names>
+<surname>Feng</surname>
+</string-name>, <string-name name-style="western">
+<given-names>L.</given-names>
+<surname>Zhang</surname>
+</string-name>, <string-name name-style="western">
+<given-names>J.</given-names>
+<surname>Qi</surname>
+</string-name>, and <string-name name-style="western">
+<given-names>L.</given-names>
+<surname>Huang</surname>
+</string-name>, “<article-title>Histological Damage Characteristics and Quantitive Analysis of Porcine Skin With Non‐Insulated Microneedle Radiofrequency</article-title>,” <source>Skin Research and Technology</source>
+<volume>29</volume>, no. <issue>6</issue> (<year>2023</year>): <elocation-id>e13396</elocation-id>, <pub-id pub-id-type="doi">10.1111/srt.13396</pub-id>.<pub-id pub-id-type="pmid">37357651</pub-id>
+<pub-id pub-id-type="pmcid">PMC10264746</pub-id></mixed-citation></ref><ref id="jocd70455-bib-0026"><label>26</label><mixed-citation publication-type="journal" id="jocd70455-cit-0026">
+<string-name name-style="western">
+<given-names>Y.</given-names>
+<surname>Liu</surname>
+</string-name>, <string-name name-style="western">
+<given-names>W.</given-names>
+<surname>Yu</surname>
+</string-name>, <string-name name-style="western">
+<given-names>J.</given-names>
+<surname>Zhu</surname>
+</string-name>, et al., “<article-title>Facial Tightening Using a Novel Vacuum‐Assisted Microneedle Fractional Radiofrequency System: A Prospective, Randomized, Split‐Face Study</article-title>,” <source>Journal of Cosmetic Dermatology</source>
+<volume>23</volume> (<year>2024</year>): <fpage>3248</fpage>–<lpage>3255</lpage>, <pub-id pub-id-type="doi">10.1111/jocd.16414</pub-id>.<pub-id pub-id-type="pmid">38923679</pub-id>
+<pub-id pub-id-type="pmcid">PMC13649113</pub-id></mixed-citation></ref><ref id="jocd70455-bib-0027"><label>27</label><mixed-citation publication-type="journal" id="jocd70455-cit-0027">
+<string-name name-style="western">
+<given-names>B.</given-names>
+<surname>Yalici‐Armagan</surname>
+</string-name> and <string-name name-style="western">
+<given-names>G.</given-names>
+<surname>Elcin</surname>
+</string-name>, “<article-title>Evaluation of Microfocused Ultrasound for Improving Skin Laxity in the Lower Face: A Retrospective Study</article-title>,” <source>Dermatologic Therapy</source>
+<volume>33</volume>, no. <issue>6</issue> (<year>2020</year>): <elocation-id>e14132</elocation-id>, <pub-id pub-id-type="doi">10.1111/dth.14132</pub-id>.<pub-id pub-id-type="pmid">32770566</pub-id>
+</mixed-citation></ref><ref id="jocd70455-bib-0028"><label>28</label><mixed-citation publication-type="journal" id="jocd70455-cit-0028">
+<string-name name-style="western">
+<given-names>W.</given-names>
+<surname>Chen</surname>
+</string-name>, <string-name name-style="western">
+<given-names>Y.</given-names>
+<surname>Deng</surname>
+</string-name>, <string-name name-style="western">
+<given-names>G.</given-names>
+<surname>Qiao</surname>
+</string-name>, and <string-name name-style="western">
+<given-names>W.</given-names>
+<surname>Cai</surname>
+</string-name>, “<article-title>Ultrasound Rejuvenation for Upper Facial Skin: A Randomized Blinded Prospective Study</article-title>,” <source>Journal of Cosmetic Dermatology</source>
+<volume>23</volume> (<year>2024</year>): <fpage>3942</fpage>–<lpage>3949</lpage>, <pub-id pub-id-type="doi">10.1111/jocd.16482</pub-id>.<pub-id pub-id-type="pmid">39034504</pub-id>
+<pub-id pub-id-type="pmcid">PMC11626351</pub-id></mixed-citation></ref><ref id="jocd70455-bib-0029"><label>29</label><mixed-citation publication-type="journal" id="jocd70455-cit-0029">
+<string-name name-style="western">
+<given-names>W.</given-names>
+<surname>Dou</surname>
+</string-name>, <string-name name-style="western">
+<given-names>Q.</given-names>
+<surname>Yang</surname>
+</string-name>, <string-name name-style="western">
+<given-names>Y.</given-names>
+<surname>Yin</surname>
+</string-name>, et al., “<article-title>Fractional Microneedle Radiofrequency Device and Fractional Erbium‐Doped Glass 1,565‐nm Device Treatment of Human Facial Photoaging: A Prospective, Split‐Face, Random Clinical Trial</article-title>,” <source>Journal of Cosmetic and Laser Therapy</source>
+<volume>23</volume>, no. <issue>5–6</issue> (<year>2021</year>): <fpage>142</fpage>–<lpage>148</lpage>, <pub-id pub-id-type="doi">10.1080/14764172.2022.2033783</pub-id>.<pub-id pub-id-type="pmid">35083965</pub-id>
+</mixed-citation></ref><ref id="jocd70455-bib-0030"><label>30</label><mixed-citation publication-type="journal" id="jocd70455-cit-0030">
+<string-name name-style="western">
+<given-names>E. A.</given-names>
+<surname>Spataro</surname>
+</string-name>, <string-name name-style="western">
+<given-names>K.</given-names>
+<surname>Dierks</surname>
+</string-name>, and <string-name name-style="western">
+<given-names>P. J.</given-names>
+<surname>Carniol</surname>
+</string-name>, “<article-title>Microneedling‐Associated Procedures to Enhance Facial Rejuvenation</article-title>,” <source>Facial Plastic Surgery Clinics of North America</source>
+<volume>30</volume>, no. <issue>3</issue> (<year>2022</year>): <fpage>389</fpage>–<lpage>397</lpage>, <pub-id pub-id-type="doi">10.1016/j.fsc.2022.03.012</pub-id>.<pub-id pub-id-type="pmid">35934440</pub-id>
+</mixed-citation></ref><ref id="jocd70455-bib-0031"><label>31</label><mixed-citation publication-type="journal" id="jocd70455-cit-0031">
+<string-name name-style="western">
+<given-names>D.</given-names>
+<surname>Shome</surname>
+</string-name>, <string-name name-style="western">
+<given-names>S.</given-names>
+<surname>Vadera</surname>
+</string-name>, <string-name name-style="western">
+<given-names>M. S.</given-names>
+<surname>Ram</surname>
+</string-name>, <string-name name-style="western">
+<given-names>S.</given-names>
+<surname>Khare</surname>
+</string-name>, and <string-name name-style="western">
+<given-names>R.</given-names>
+<surname>Kapoor</surname>
+</string-name>, “<article-title>Use of Micro‐Focused Ultrasound for Skin Tightening of Mid and Lower Face</article-title>,” <source>Plastic and Reconstructive Surgery. Global Open</source>
+<volume>7</volume>, no. <issue>12</issue> (<year>2019</year>): <elocation-id>e2498</elocation-id>, <pub-id pub-id-type="doi">10.1097/gox.0000000000002498</pub-id>.<pub-id pub-id-type="pmid">32537285</pub-id>
+<pub-id pub-id-type="pmcid">PMC7288869</pub-id></mixed-citation></ref><ref id="jocd70455-bib-0032"><label>32</label><mixed-citation publication-type="journal" id="jocd70455-cit-0032">
+<string-name name-style="western">
+<given-names>U.</given-names>
+<surname>Khan</surname>
+</string-name> and <string-name name-style="western">
+<given-names>N.</given-names>
+<surname>Khalid</surname>
+</string-name>, “<article-title>A Systematic Review of the Clinical Efficacy of Micro‐Focused Ultrasound Treatment for Skin Rejuvenation and Tightening</article-title>,” <source>Cureus</source>
+<volume>13</volume>, no. <issue>12</issue> (<year>2021</year>): <elocation-id>e20163</elocation-id>, <pub-id pub-id-type="doi">10.7759/cureus.20163</pub-id>.<pub-id pub-id-type="pmid">35003992</pub-id>
+<pub-id pub-id-type="pmcid">PMC8722640</pub-id></mixed-citation></ref><ref id="jocd70455-bib-0033"><label>33</label><mixed-citation publication-type="journal" id="jocd70455-cit-0033">
+<string-name name-style="western">
+<given-names>J.</given-names>
+<surname>Zhu</surname>
+</string-name>, <string-name name-style="western">
+<given-names>Y.</given-names>
+<surname>Han</surname>
+</string-name>, <string-name name-style="western">
+<given-names>Y.</given-names>
+<surname>Liu</surname>
+</string-name>, et al., “<article-title>Evaluation of a Novel Microfocused Ultrasound With Three‐Dimensional Digital Imaging for Facial Tightening: A Prospective, Randomized, Controlled Trial</article-title>,” <source>Dermatology and Therapy (Heidelberg)</source>
+<volume>14</volume>, no. <issue>1</issue> (<year>2024</year>): <fpage>233</fpage>–<lpage>249</lpage>, <pub-id pub-id-type="doi">10.1007/s13555-023-01078-9</pub-id>.<pub-id pub-id-type="pmcid">PMC11756818</pub-id><pub-id pub-id-type="pmid">38100073</pub-id></mixed-citation></ref><ref id="jocd70455-bib-0034"><label>34</label><mixed-citation publication-type="journal" id="jocd70455-cit-0034">
+<string-name name-style="western">
+<given-names>J.</given-names>
+<surname>Ling</surname>
+</string-name> and <string-name name-style="western">
+<given-names>H.</given-names>
+<surname>Zhao</surname>
+</string-name>, “<article-title>A Systematic Review and Meta‐Analysis of the Clinical Efficacy and Patients' Satisfaction of Micro‐Focused Ultrasound (MFU) Treatment for Facial Rejuvenation and Tightening</article-title>,” <source>Aesthetic Plastic Surgery</source>
+<volume>47</volume>, no. <issue>5</issue> (<year>2023</year>): <fpage>1806</fpage>–<lpage>1823</lpage>, <pub-id pub-id-type="doi">10.1007/s00266-023-03384-1</pub-id>.<pub-id pub-id-type="pmid">37198297</pub-id>
+</mixed-citation></ref><ref id="jocd70455-bib-0035"><label>35</label><mixed-citation publication-type="journal" id="jocd70455-cit-0035">
+<string-name name-style="western">
+<given-names>M. L.</given-names>
+<surname>Jewell</surname>
+</string-name>, <string-name name-style="western">
+<given-names>C.</given-names>
+<surname>Desilets</surname>
+</string-name>, and <string-name name-style="western">
+<given-names>B. R.</given-names>
+<surname>Smoller</surname>
+</string-name>, “<article-title>Evaluation of a Novel High‐Intensity Focused Ultrasound Device: Preclinical Studies in a Porcine Model</article-title>,” <source>Aesthetic Surgery Journal</source>
+<volume>31</volume>, no. <issue>4</issue> (<year>2011</year>): <fpage>429</fpage>–<lpage>434</lpage>, <pub-id pub-id-type="doi">10.1177/1090820x11405026</pub-id>.<pub-id pub-id-type="pmid">21551434</pub-id>
+</mixed-citation></ref><ref id="jocd70455-bib-0036"><label>36</label><mixed-citation publication-type="journal" id="jocd70455-cit-0036">
+<string-name name-style="western">
+<given-names>Y.</given-names>
+<surname>Huang</surname>
+</string-name>, <string-name name-style="western">
+<given-names>H.</given-names>
+<surname>Zheng</surname>
+</string-name>, <string-name name-style="western">
+<given-names>Q.</given-names>
+<surname>Wu</surname>
+</string-name>, and <string-name name-style="western">
+<given-names>M.</given-names>
+<surname>Zhang</surname>
+</string-name>, “<article-title>Efficacy and Safety of Fractional Micro‐Needling Radiofrequency for the Treatment of Enlarged Pores on the Cheeks of a Chinese Cohort: A Retrospective Study</article-title>,” <source>Lasers in Medical Science</source>
+<volume>39</volume>, no. <issue>1</issue> (<year>2024</year>): <elocation-id>100</elocation-id>, <pub-id pub-id-type="doi">10.1007/s10103-024-04043-w</pub-id>.<pub-id pub-id-type="pmid">38609686</pub-id>
+</mixed-citation></ref><ref id="jocd70455-bib-0037"><label>37</label><mixed-citation publication-type="journal" id="jocd70455-cit-0037">
+<string-name name-style="western">
+<given-names>L.</given-names>
+<surname>Huang</surname>
+</string-name>, <string-name name-style="western">
+<given-names>Y.</given-names>
+<surname>Liu</surname>
+</string-name>, <string-name name-style="western">
+<given-names>W.</given-names>
+<surname>Fang</surname>
+</string-name>, et al., “<article-title>Efficiency and Safety of Microneedling Fractional Radiofrequency in the Treatment of Chinese Atrophic Acne Scars: A Retrospective Study of 3 Consecutive Treatments With 1‐Month Intervals</article-title>,” <source>Journal of Cosmetic Dermatology</source>
+<volume>22</volume>, no. <issue>2</issue> (<year>2023</year>): <fpage>497</fpage>–<lpage>504</lpage>, <pub-id pub-id-type="doi">10.1111/jocd.15454</pub-id>.<pub-id pub-id-type="pmid">36217740</pub-id>
+</mixed-citation></ref><ref id="jocd70455-bib-0038"><label>38</label><mixed-citation publication-type="journal" id="jocd70455-cit-0038">
+<string-name name-style="western">
+<given-names>Y.</given-names>
+<surname>Gao</surname>
+</string-name>, <string-name name-style="western">
+<given-names>Q.</given-names>
+<surname>Che</surname>
+</string-name>, <string-name name-style="western">
+<given-names>Q.</given-names>
+<surname>He</surname>
+</string-name>, et al., “<article-title>Treatment of Periorbital Aging With Negative Pressure Fractional Microneedle Radiofrequency: A Self‐Controlled Clinical Trial</article-title>,” <source>Journal of Cosmetic Dermatology</source>
+<volume>23</volume>, no. <issue>4</issue> (<year>2024</year>): <fpage>1269</fpage>–<lpage>1276</lpage>, <pub-id pub-id-type="doi">10.1111/jocd.16091</pub-id>.<pub-id pub-id-type="pmid">38013586</pub-id>
+</mixed-citation></ref><ref id="jocd70455-bib-0039"><label>39</label><mixed-citation publication-type="journal" id="jocd70455-cit-0039">
+<string-name name-style="western">
+<given-names>S. I.</given-names>
+<surname>Cho</surname>
+</string-name>, <string-name name-style="western">
+<given-names>B. Y.</given-names>
+<surname>Chung</surname>
+</string-name>, <string-name name-style="western">
+<given-names>M. G.</given-names>
+<surname>Choi</surname>
+</string-name>, et al., “<article-title>Evaluation of the Clinical Efficacy of Fractional Radiofrequency Microneedle Treatment in Acne Scars and Large Facial Pores</article-title>,” <source>Dermatologic Surgery</source>
+<volume>38</volume>, no. <issue>7 Pt 1</issue> (<year>2012</year>): <fpage>1017</fpage>–<lpage>1024</lpage>, <pub-id pub-id-type="doi">10.1111/j.1524-4725.2012.02402.x</pub-id>.<pub-id pub-id-type="pmid">22487513</pub-id>
+</mixed-citation></ref><ref id="jocd70455-bib-0040"><label>40</label><mixed-citation publication-type="journal" id="jocd70455-cit-0040">
+<string-name name-style="western">
+<given-names>K. Y.</given-names>
+<surname>Seo</surname>
+</string-name>, <string-name name-style="western">
+<given-names>M. S.</given-names>
+<surname>Yoon</surname>
+</string-name>, <string-name name-style="western">
+<given-names>D. H.</given-names>
+<surname>Kim</surname>
+</string-name>, and <string-name name-style="western">
+<given-names>H. J.</given-names>
+<surname>Lee</surname>
+</string-name>, “<article-title>Skin Rejuvenation by Microneedle Fractional Radiofrequency Treatment in Asian Skin; Clinical and Histological Analysis</article-title>,” <source>Lasers in Surgery and Medicine</source>
+<volume>44</volume>, no. <issue>8</issue> (<year>2012</year>): <fpage>631</fpage>–<lpage>636</lpage>, <pub-id pub-id-type="doi">10.1002/lsm.22071</pub-id>.<pub-id pub-id-type="pmid">22936274</pub-id>
+</mixed-citation></ref><ref id="jocd70455-bib-0041"><label>41</label><mixed-citation publication-type="journal" id="jocd70455-cit-0041">
+<string-name name-style="western">
+<given-names>R. M.</given-names>
+<surname>Javate</surname>
+</string-name>, <string-name name-style="western">
+<given-names>R. T.</given-names>
+<surname>Cruz</surname>, <suffix>Jr.</suffix>
+</string-name>, <string-name name-style="western">
+<given-names>J.</given-names>
+<surname>Khan</surname>
+</string-name>, <string-name name-style="western">
+<given-names>N.</given-names>
+<surname>Trakos</surname>
+</string-name>, and <string-name name-style="western">
+<given-names>R. E.</given-names>
+<surname>Gordon</surname>
+</string-name>, “<article-title>Nonablative 4‐MHz Dual Radiofrequency Wand Rejuvenation Treatment for Periorbital Rhytides and Midface Laxity</article-title>,” <source>Ophthalmic Plastic and Reconstructive Surgery</source>
+<volume>27</volume>, no. <issue>3</issue> (<year>2011</year>): <fpage>180</fpage>–<lpage>185</lpage>, <pub-id pub-id-type="doi">10.1097/IOP.0b013e3181fe8e5a</pub-id>.<pub-id pub-id-type="pmid">21283035</pub-id>
+</mixed-citation></ref><ref id="jocd70455-bib-0042"><label>42</label><mixed-citation publication-type="journal" id="jocd70455-cit-0042">
+<string-name name-style="western">
+<given-names>H. J.</given-names>
+<surname>Han</surname>
+</string-name>, <string-name name-style="western">
+<given-names>J. C.</given-names>
+<surname>Kim</surname>
+</string-name>, <string-name name-style="western">
+<given-names>Y. J.</given-names>
+<surname>Park</surname>
+</string-name>, and <string-name name-style="western">
+<given-names>H. Y.</given-names>
+<surname>Kang</surname>
+</string-name>, “<article-title>Targeting the Dermis for Melasma Maintenance Treatment</article-title>,” <source>Scientific Reports</source>
+<volume>14</volume>, no. <issue>1</issue> (<year>2024</year>): <elocation-id>949</elocation-id>, <pub-id pub-id-type="doi">10.1038/s41598-023-51133-w</pub-id>.<pub-id pub-id-type="pmid">38200171</pub-id>
+<pub-id pub-id-type="pmcid">PMC10781782</pub-id></mixed-citation></ref><ref id="jocd70455-bib-0043"><label>43</label><mixed-citation publication-type="journal" id="jocd70455-cit-0043">
+<string-name name-style="western">
+<given-names>X.</given-names>
+<surname>Wu</surname>
+</string-name>, <string-name name-style="western">
+<given-names>Z.</given-names>
+<surname>Zhang</surname>
+</string-name>, <string-name name-style="western">
+<given-names>J.</given-names>
+<surname>Zhu</surname>
+</string-name>, et al., “<article-title>Can Microneedle Fractional Radiofrequency System Treatment Impair the Skin Barrier Function in Chinese Patients? A Prospective Clinical Trial</article-title>,” <source>Dermatology and Therapy (Heidelberg)</source>
+<volume>12</volume>, no. <issue>10</issue> (<year>2022</year>): <fpage>2371</fpage>–<lpage>2382</lpage>, <pub-id pub-id-type="doi">10.1007/s13555-022-00807-w</pub-id>.<pub-id pub-id-type="pmcid">PMC9515261</pub-id><pub-id pub-id-type="pmid">36129670</pub-id></mixed-citation></ref><ref id="jocd70455-bib-0044"><label>44</label><mixed-citation publication-type="journal" id="jocd70455-cit-0044">
+<string-name name-style="western">
+<given-names>N.</given-names>
+<surname>Pazyar</surname>
+</string-name>, <string-name name-style="western">
+<given-names>M.</given-names>
+<surname>Raeispour</surname>
+</string-name>, <string-name name-style="western">
+<given-names>R.</given-names>
+<surname>Yaghoobi</surname>
+</string-name>, and <string-name name-style="western">
+<given-names>M.</given-names>
+<surname>Seyedtabib</surname>
+</string-name>, “<article-title>Evaluation of the Effectiveness of Microneedling With Tranexamic Acid in Comparison With Microneedling With Vitamin C in the Treatment of Melasma: A Prospective and Single‐Blind Clinical Trial</article-title>,” <source>Health Science Reports</source>
+<volume>6</volume>, no. <issue>10</issue> (<year>2023</year>): <elocation-id>e1636</elocation-id>, <pub-id pub-id-type="doi">10.1002/hsr2.1636</pub-id>.<pub-id pub-id-type="pmid">37867785</pub-id>
+<pub-id pub-id-type="pmcid">PMC10588557</pub-id></mixed-citation></ref><ref id="jocd70455-bib-0045"><label>45</label><mixed-citation publication-type="journal" id="jocd70455-cit-0045">
+<string-name name-style="western">
+<given-names>V.</given-names>
+<surname>Vachiramon</surname>
+</string-name>, <string-name name-style="western">
+<given-names>N.</given-names>
+<surname>Jurairattanaporn</surname>
+</string-name>, <string-name name-style="western">
+<given-names>S.</given-names>
+<surname>Harnchoowong</surname>
+</string-name>, and <string-name name-style="western">
+<given-names>P.</given-names>
+<surname>Chayavichitsilp</surname>
+</string-name>, “<article-title>Non‐Invasive High‐Intensity Focused Ultrasound for UV‐Induced Hyperpigmentation in Fitzpatrick Skin Types III and IV: A Prospective, Randomized, Controlled, Evaluator‐Blinded Trial</article-title>,” <source>Lasers in Medical Science</source>
+<volume>33</volume>, no. <issue>2</issue> (<year>2018</year>): <fpage>361</fpage>–<lpage>367</lpage>, <pub-id pub-id-type="doi">10.1007/s10103-017-2393-5</pub-id>.<pub-id pub-id-type="pmid">29177714</pub-id>
+</mixed-citation></ref><ref id="jocd70455-bib-0046"><label>46</label><mixed-citation publication-type="journal" id="jocd70455-cit-0046">
+<string-name name-style="western">
+<given-names>J. T. E.</given-names>
+<surname>Lim</surname>
+</string-name>, “<article-title>Safety and Efficacy of Superficial Micro‐Focused Ultrasound With Visualization for Melasma in Asians: An Uncontrolled Pilot Study</article-title>,” <source>Journal of Cosmetic Dermatology</source>
+<volume>22</volume>, no. <issue>6</issue> (<year>2023</year>): <fpage>1764</fpage>–<lpage>1773</lpage>, <pub-id pub-id-type="doi">10.1111/jocd.15661</pub-id>.<pub-id pub-id-type="pmid">36762392</pub-id>
+</mixed-citation></ref><ref id="jocd70455-bib-0047"><label>47</label><mixed-citation publication-type="journal" id="jocd70455-cit-0047">
+<string-name name-style="western">
+<given-names>S. Y.</given-names>
+<surname>Choi</surname>
+</string-name>, <string-name name-style="western">
+<given-names>K. H.</given-names>
+<surname>Yoo</surname>
+</string-name>, <string-name name-style="western">
+<given-names>C. T.</given-names>
+<surname>Oh</surname>
+</string-name>, et al., “<article-title>High Intensity Focused Ultrasound as a Potential New Modality for the Treatment of Pigmentary Skin Disorder</article-title>,” <source>Skin Research and Technology</source>
+<volume>22</volume>, no. <issue>2</issue> (<year>2016</year>): <fpage>131</fpage>–<lpage>136</lpage>, <pub-id pub-id-type="doi">10.1111/srt.12239</pub-id>.<pub-id pub-id-type="pmid">26094501</pub-id>
+</mixed-citation></ref><ref id="jocd70455-bib-0048"><label>48</label><mixed-citation publication-type="journal" id="jocd70455-cit-0048">
+<string-name name-style="western">
+<given-names>D.</given-names>
+<surname>Duncan</surname>
+</string-name>, “<article-title>Megasessions: Efficacy of Fewer, Longer Treatment Sessions for Fat Reduction in Noninvasive Body Contouring Using a Radiofrequency Based Device</article-title>,” <source>Journal of Drugs in Dermatology</source>
+<volume>16</volume>, no. <issue>5</issue> (<year>2017</year>): <fpage>478</fpage>–<lpage>480</lpage>.<pub-id pub-id-type="pmid">28628684</pub-id>
+</mixed-citation></ref><ref id="jocd70455-bib-0049"><label>49</label><mixed-citation publication-type="journal" id="jocd70455-cit-0049">
+<string-name name-style="western">
+<given-names>M. A.</given-names>
+<surname>Adatto</surname>
+</string-name>, <string-name name-style="western">
+<given-names>R. M.</given-names>
+<surname>Adatto‐Neilson</surname>
+</string-name>, and <string-name name-style="western">
+<given-names>G.</given-names>
+<surname>Morren</surname>
+</string-name>, “<article-title>Reduction in Adipose Tissue Volume Using a New High‐Power Radiofrequency Technology Combined With Infrared Light and Mechanical Manipulation for Body Contouring</article-title>,” <source>Lasers in Medical Science</source>
+<volume>29</volume>, no. <issue>5</issue> (<year>2014</year>): <fpage>1627</fpage>–<lpage>1631</lpage>, <pub-id pub-id-type="doi">10.1007/s10103-014-1564-x</pub-id>.<pub-id pub-id-type="pmid">24687404</pub-id>
+<pub-id pub-id-type="pmcid">PMC4149887</pub-id></mixed-citation></ref><ref id="jocd70455-bib-0050"><label>50</label><mixed-citation publication-type="journal" id="jocd70455-cit-0050">
+<string-name name-style="western">
+<given-names>E. J.</given-names>
+<surname>Ko</surname>
+</string-name>, <string-name name-style="western">
+<given-names>H.</given-names>
+<surname>Kim</surname>
+</string-name>, <string-name name-style="western">
+<given-names>W. S.</given-names>
+<surname>Park</surname>
+</string-name>, and <string-name name-style="western">
+<given-names>B. J.</given-names>
+<surname>Kim</surname>
+</string-name>, “<article-title>Correction of Midface Volume Deficiency Using Hyaluronic Acid Filler and Intradermal Radiofrequency</article-title>,” <source>Journal of Cosmetic and Laser Therapy</source>
+<volume>17</volume>, no. <issue>1</issue> (<year>2015</year>): <fpage>46</fpage>–<lpage>48</lpage>, <pub-id pub-id-type="doi">10.3109/14764172.2014.968579</pub-id>.<pub-id pub-id-type="pmid">25264587</pub-id>
+</mixed-citation></ref><ref id="jocd70455-bib-0051"><label>51</label><mixed-citation publication-type="journal" id="jocd70455-cit-0051">
+<string-name name-style="western">
+<given-names>H. J.</given-names>
+<surname>Lee</surname>
+</string-name>, <string-name name-style="western">
+<given-names>S. R.</given-names>
+<surname>Seo</surname>
+</string-name>, <string-name name-style="western">
+<given-names>M. S.</given-names>
+<surname>Yoon</surname>
+</string-name>, <string-name name-style="western">
+<given-names>J. Y.</given-names>
+<surname>Song</surname>
+</string-name>, <string-name name-style="western">
+<given-names>E. Y.</given-names>
+<surname>Lee</surname>
+</string-name>, and <string-name name-style="western">
+<given-names>S. E.</given-names>
+<surname>Lee</surname>
+</string-name>, “<article-title>Microneedle Fractional Radiofrequency Increases Epidermal Hyaluronan and Reverses Age‐Related Epidermal Dysfunction</article-title>,” <source>Lasers in Surgery and Medicine</source>
+<volume>48</volume>, no. <issue>2</issue> (<year>2016</year>): <fpage>140</fpage>–<lpage>149</lpage>, <pub-id pub-id-type="doi">10.1002/lsm.22420</pub-id>.<pub-id pub-id-type="pmid">26415023</pub-id>
+</mixed-citation></ref><ref id="jocd70455-bib-0052"><label>52</label><mixed-citation publication-type="journal" id="jocd70455-cit-0052">
+<string-name name-style="western">
+<given-names>H.</given-names>
+<surname>Kaplan</surname>
+</string-name> and <string-name name-style="western">
+<given-names>L.</given-names>
+<surname>Kaplan</surname>
+</string-name>, “<article-title>Combination of Microneedle Radiofrequency (RF), Fractional RF Skin Resurfacing and Multi‐Source Non‐Ablative Skin Tightening for Minimal‐Downtime, Full‐Face Skin Rejuvenation</article-title>,” <source>Journal of Cosmetic and Laser Therapy</source>
+<volume>18</volume>, no. <issue>8</issue> (<year>2016</year>): <fpage>438</fpage>–<lpage>441</lpage>, <pub-id pub-id-type="doi">10.1080/14764172.2016.1228981</pub-id>.<pub-id pub-id-type="pmid">27594273</pub-id>
+</mixed-citation></ref><ref id="jocd70455-bib-0053"><label>53</label><mixed-citation publication-type="journal" id="jocd70455-cit-0053">
+<string-name name-style="western">
+<given-names>L.</given-names>
+<surname>Nguyen</surname>
+</string-name>, <string-name name-style="western">
+<given-names>J.</given-names>
+<surname>Bartholomeusz</surname>
+</string-name>, <string-name name-style="western">
+<given-names>S. W.</given-names>
+<surname>Schneider</surname>
+</string-name>, and <string-name name-style="western">
+<given-names>K.</given-names>
+<surname>Herberger</surname>
+</string-name>, “<article-title>Histological and Clinical Dose‐Response Analysis of Radiofrequency Microneedling Treatment for Skin Rejuvenation</article-title>,” <source>Lasers in Medical Science</source>
+<volume>40</volume>, no. <issue>1</issue> (<year>2025</year>): <elocation-id>75</elocation-id>, <pub-id pub-id-type="doi">10.1007/s10103-025-04335-9</pub-id>.<pub-id pub-id-type="pmid">39915343</pub-id>
+<pub-id pub-id-type="pmcid">PMC11802595</pub-id></mixed-citation></ref><ref id="jocd70455-bib-0054"><label>54</label><mixed-citation publication-type="journal" id="jocd70455-cit-0054">
+<string-name name-style="western">
+<given-names>D.</given-names>
+<surname>Hurwitz</surname>
+</string-name> and <string-name name-style="western">
+<given-names>D.</given-names>
+<surname>Smith</surname>
+</string-name>, “<article-title>Treatment of Overweight Patients by Radiofrequency‐Assisted Liposuction (RFAL) for Aesthetic Reshaping and Skin Tightening</article-title>,” <source>Aesthetic Plastic Surgery</source>
+<volume>36</volume>, no. <issue>1</issue> (<year>2012</year>): <fpage>62</fpage>–<lpage>71</lpage>, <pub-id pub-id-type="doi">10.1007/s00266-011-9783-z</pub-id>.<pub-id pub-id-type="pmid">21751063</pub-id>
+</mixed-citation></ref><ref id="jocd70455-bib-0055"><label>55</label><mixed-citation publication-type="journal" id="jocd70455-cit-0055">
+<string-name name-style="western">
+<given-names>W.</given-names>
+<surname>Franco</surname>
+</string-name>, <string-name name-style="western">
+<given-names>A.</given-names>
+<surname>Kothare</surname>
+</string-name>, <string-name name-style="western">
+<given-names>S. J.</given-names>
+<surname>Ronan</surname>
+</string-name>, <string-name name-style="western">
+<given-names>R. C.</given-names>
+<surname>Grekin</surname>
+</string-name>, and <string-name name-style="western">
+<given-names>T. H.</given-names>
+<surname>McCalmont</surname>
+</string-name>, “<article-title>Hyperthermic Injury to Adipocyte Cells by Selective Heating of Subcutaneous Fat With a Novel Radiofrequency Device: Feasibility Studies</article-title>,” <source>Lasers in Surgery and Medicine</source>
+<volume>42</volume>, no. <issue>5</issue> (<year>2010</year>): <fpage>361</fpage>–<lpage>370</lpage>, <pub-id pub-id-type="doi">10.1002/lsm.20925</pub-id>.<pub-id pub-id-type="pmid">20583242</pub-id>
+</mixed-citation></ref></ref-list></back></article>
